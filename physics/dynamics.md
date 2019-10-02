@@ -1,0 +1,3 @@
+# dynamics
+
+Study of forces.
