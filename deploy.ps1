@@ -1,7 +1,11 @@
 Get-ChildItem -Attributes directory -Exclude docs | ForEach-Object {
-	Copy-Item $_ -Filter *.html -Destination docs -Recurse -Force
+  Copy-Item $_ -Filter *.html -Destination docs -Recurse -Force
 }
 
+Copy-Item contact_info.html docs
+
+
+$allFiles = Get-ChildItem docs -Recurse -File | ForEach-Object { "." + (resolve-path $_.FullName -relative).Substring(6) }
 
 $indexFile = @"
 	<!DOCTYPE html>
@@ -12,9 +16,12 @@ $indexFile = @"
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Uni notes</title>
   </head>
-	<body>
-		Available notes:
-
+  <body>
+    Available notes:
+    
+    <ul>
+      $($allFiles | ForEach-Object{"<li><a href=`"$_`">$_</a></li>"})
+    </ul>
 			 
 		
 		<footer>
