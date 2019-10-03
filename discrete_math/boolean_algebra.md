@@ -14,9 +14,9 @@
 - IF...THEN... (implication): $p \implies q$
 - AND (conjunction): $p \land q$
 - OR (disjunction): $p \lor q$
-- XOR (exculsive or): $(p \lor q) \land \text{\textasciitilde} (p \land q)$
-- NOR (neither or): $\text{\textasciitilde} (p \lor q) \equiv p \downarrow q$
-- NAND (neither or): $\text{\textasciitilde} (p \land q) \equiv p | q$
+- XOR (exclusive disjunction): $(p \lor q) \land \text{\textasciitilde} (p \land q) \equiv p \oplus q$
+- NOR (not or): $\text{\textasciitilde} (p \lor q) \equiv p \downarrow q$
+- NAND (not and): $\text{\textasciitilde} (p \land q) \equiv p | q$
 
 #### Commutative operation
 
