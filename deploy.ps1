@@ -18,7 +18,7 @@ $indexFile = @"
 			 
 		
 		<footer>
-			Page was auto-generated, if you see any problems please open an issue on <a href="github.com/shilangyu/uni-notes">GitHub</a>
+			Page was auto-generated, if you see any problems please open an issue on <a href="https://github.com/shilangyu/uni-notes">GitHub</a>
 		</footer>
   </body>
   </html>
