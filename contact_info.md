@@ -20,6 +20,16 @@ Office hours: Tuesday, Thursday 12:15-13:00, room #206A
 
 🌐 mini.pw.edu.pl/~rozejl
 
+## Transition Math and Algebra with Geometry
+
+#### Pawel Wojcicki
+
+📧 p.wojcicki@mini.pw.edu.pl
+
+🌐
+
+Faculty of mathematics, room #423
+
 ## Physics
 
 #### Wioleta Slubowska (lectures)
