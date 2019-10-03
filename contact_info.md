@@ -2,15 +2,21 @@
 
 ## Discrete math
 
-#### Tomasz Traczyk
+#### Tomasz Traczyk (lectures)
 
 📧 t.traczyk@mini.pw.edu.pl
 
 🌐 mini.pw.edu.pl/~tomtracz
 
+#### Lukasz Rozej (tutorials)
+
+📧 lukasz.rozej@gmail.com
+
+🌐 mini.pw.edu.pl/~rozejl
+
 ## Physics
 
-#### Wioleta Slubowska
+#### Wioleta Slubowska (lectures)
 
 📧 wioleta.slubowska@pw.edu.pl
 
