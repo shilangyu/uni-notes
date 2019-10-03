@@ -1,9 +1,3 @@
-Get-ChildItem -Attributes directory -Exclude docs | ForEach-Object {
-	Copy-Item $_ -Filter *.html -Destination docs -Recurse -Force
-}
-
-
-$indexFile = @"
 	<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -22,9 +16,3 @@ $indexFile = @"
 		</footer>
   </body>
   </html>
-"@
-
-[IO.File]::WriteAllLines("$pwd/docs/index.html", $indexFile)
-
-
-git add docs
