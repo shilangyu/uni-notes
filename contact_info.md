@@ -1,5 +1,11 @@
 # contact info
 
+## Programming
+
+#### Romand Podraza (lectures)
+
+Office hours: Tuesday, Thursday 12:15-13:00, room #206A
+
 ## Discrete math
 
 #### Tomasz Traczyk (lectures)
@@ -25,3 +31,9 @@
 office hours: Wednesday 13:15-14:00, room #14
 
 course meetings: Wednesday 14:15-16:00, main aula physics faculty
+
+#### A Rostocki (tutorials)
+
+📧
+
+🌐
