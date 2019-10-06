@@ -22,7 +22,7 @@ Office hours: Tuesday, Thursday 12:15-13:00, room #206A
 
 ## Transition Math and Algebra with Geometry
 
-#### Pawel Wojcicki
+#### Pawel Wojcicki (tutorials)
 
 📧 p.wojcicki@mini.pw.edu.pl
 
@@ -39,8 +39,6 @@ Faculty of mathematics, room #423
 🌐 slubowska.fizyka.pw.edu.pl
 
 office hours: Wednesday 13:15-14:00, room #14
-
-course meetings: Wednesday 14:15-16:00, main aula physics faculty
 
 #### A Rostocki (tutorials)
 
