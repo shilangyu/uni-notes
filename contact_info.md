@@ -4,7 +4,7 @@
 
 #### Romand Podraza (lectures)
 
-Office hours: Tuesday, Thursday 12:15-13:00, room #206A
+⏲ Tuesday, Thursday 12:15-13:00, room #206A
 
 ## Discrete math
 
@@ -38,10 +38,18 @@ Faculty of mathematics, room #423
 
 🌐 slubowska.fizyka.pw.edu.pl
 
-office hours: Wednesday 13:15-14:00, room #14
+⏲ Wednesday 13:15-14:00, room #14, faculty of physics
 
 #### A Rostocki (tutorials)
 
 📧
 
 🌐
+
+---
+
+📧 : e-mail
+
+🌐 : website
+
+⏲ : office hours
