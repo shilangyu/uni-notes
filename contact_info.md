@@ -22,6 +22,12 @@
 
 ## Transition Math and Algebra with Geometry
 
+#### Tomasz Traczyk (lectures)
+
+📧 t.traczyk@mini.pw.edu.pl
+
+🌐 mini.pw.edu.pl/~tomtracz
+
 #### Pawel Wojcicki (tutorials)
 
 📧 p.wojcicki@mini.pw.edu.pl
