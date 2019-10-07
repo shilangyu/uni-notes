@@ -1,10 +1,14 @@
 # contact info
 
-## Programming
-
-#### Romand Podraza (lectures)
+#### Romand Podraza (coordinator?)
 
 ⏲ Tuesday, Thursday 12:15-13:00, room #206A
+
+## Programming
+
+#### Mariusz Kaleta (lectures)
+
+📧 mkaleta@ia.pw.edu.pl
 
 ## Discrete math
 
@@ -18,7 +22,7 @@
 
 📧 lukasz.rozej@gmail.com
 
-🌐 mini.pw.edu.pl/~rozejl
+🌐 mini.pw.edu.pl/~rozejl/www
 
 ## Transition Math and Algebra with Geometry
 
