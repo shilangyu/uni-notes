@@ -50,6 +50,12 @@ Faculty of mathematics, room #423
 
 ⏲ Wednesday 13:15-14:00, room #14, faculty of physics
 
+#### Anna Kalbarczyk (labs)
+
+📧 anna.kalbarczyk@pw.edu.pl
+
+🌐 clf.if.pw.edu.pl (login: english, password: physics)
+
 #### A Rostocki (tutorials)
 
 📧
