@@ -36,9 +36,7 @@
 
 📧 p.wojcicki@mini.pw.edu.pl
 
-🌐
-
-Faculty of mathematics, room #423
+⏲ Friday 13:00-14:00 (send an email beforehand) Faculty of mathematics, room #423
 
 ## Physics
 
@@ -57,10 +55,6 @@ Faculty of mathematics, room #423
 🌐 clf.if.pw.edu.pl (login: english, password: physics)
 
 #### A Rostocki (tutorials)
-
-📧
-
-🌐
 
 ---
 

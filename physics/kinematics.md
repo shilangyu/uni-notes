@@ -7,8 +7,7 @@ Study of motion.
 | variable | meaning                                   |
 | -------- | ----------------------------------------- |
 | $a$      | acceleration                              |
-| $v$      | velocity                                  |
-| $x,y,z$  | position                                  |
+| $v$      | velocity (vector) or speed (scalar)       |
 | $x,y,z$  | position                                  |
 | $g$      | gravitation ($\approx 9.8 \frac{m}{s^2}$) |
 

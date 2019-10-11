@@ -2,13 +2,13 @@
 
 Expressed with capital letters or list of elements between braces:
 
-$A = \lbrace a_1, a_2, ..., a_n \rbrace$ where $n$ is the size of the set
+$A = \{ a_1, a_2, ..., a_n \}$ where $n$ is the size of the set
 
 Two sets are considered equal when all the elements are the same
 
 We consider subsets of some universal $X$, $A, B, ... \in 2^X =$ the set of all subsets of $X$:
 
-let: $X = \lbrace a, b, c \rbrace$ then $2^X = \lbrace \empty, \lbrace a \rbrace, \lbrace b \rbrace, \lbrace c \rbrace, \lbrace b, c \rbrace, \lbrace a, b \rbrace, \lbrace a, c \rbrace, \lbrace a, b, c \rbrace \rbrace$
+let: $X = \{ a, b, c \}$ then $2^X = \{ \emptyset, \{ a \}, \{ b \}, \{ c \}, \{ b, c \}, \{ a, b \}, \{ a, c \}, \{ a, b, c \} \}$
 
 $|2^X| = 2^{|X|}$
 
@@ -30,7 +30,7 @@ Assumption: $x \in X$
 
 #### quantifiers
 
-Assumption: $x \in \lbrace 1, 2, ..., 10 \rbrace$
+Assumption: $x \in \{ 1, 2, ..., 10 \}$
 
 - for every (all have to be true): $\forall x > 0$
 - there exists (one has to be true): $\exists x = 5$
