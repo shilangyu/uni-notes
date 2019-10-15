@@ -32,8 +32,8 @@ Assumption: $x \in X$
 
 Assumption: $x \in \{ 1, 2, ..., 10 \}$
 
-- for every (all have to be true): $\forall x > 0$
-- there exists (one has to be true): $\exists x = 5$
+- for every (all have to be true): $\forall x\ x > 0$
+- there exists (one has to be true): $\exists x\ x = 5$
 
 ---
 
