@@ -27,7 +27,9 @@ $a - b = b - a$ ✖
 
 #### Unary
 
-NOT (negation): $\neg0 \equiv 1$
+NOT (negation)
+
+$\neg0 \equiv 1$
 
 #### Contraposition law
 
@@ -35,20 +37,26 @@ $(p \implies q) \equiv (\neg q \implies \neg p)$
 
 #### De Morgan's law
 
-$$
-	\begin{array}{cc}
+$\neg(p \land q) \equiv \neg p \lor \neg q$
 
-	\neg(p \land q) \equiv \neg p \lor \neg q
+$\neg(p \lor q) \equiv \neg p \land \neg q$
 
-\\
-
-	\neg(p \lor q) \equiv \neg p \land \neg q
-	\end{array}
-$$
+$\neg(\forall x \in \mathbb{R}\ \phi(x)) \equiv (\exists x \in \mathbb{R}\ \neg\phi(x))$
 
 #### Tautology
 
 $\phi(p_1, ...,p_n)$ is called a tautology iff $\phi(p_1, ...,p_n) \equiv 1$
+
+#### quantifiers
+
+Assumption: $x \in \{ 1, 2, ..., 10 \}$
+
+- for every (all have to be true): $\forall x\ \phi(x)$
+  - same as $\{x \in \mathbb{R}: \phi(x)\} = \mathbb{R}$
+- there exists (one has to be true): $\exists x\ \phi(x)$
+  - same as $\{x \in \mathbb{R}: \phi(x)\} \ne \emptyset$
+
+**Order matter**: $(\forall x)(\exist y)\ x > y \equiv 1$ while $(\exists x)(\forall y)\ x > y \equiv 0$
 
 ---
 

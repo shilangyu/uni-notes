@@ -27,13 +27,9 @@ Assumption: $x \in X$
 - difference: $A - B = x \in A \land x \notin B$
 - symmetric difference: $A \div B = (A - B) \cup (B - A)$
 - complement: $A' = x \notin A$
-
-#### quantifiers
-
-Assumption: $x \in \{ 1, 2, ..., 10 \}$
-
-- for every (all have to be true): $\forall x\ x > 0$
-- there exists (one has to be true): $\exists x\ x = 5$
+- cartesian product: $\{1, 2\} \times \{3, 4, 5\} = \{(1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)\}$
+- union of sets: $\bigcup\limits_{i=1}^{n} S_i$
+- intersection of sets: $\bigcap\limits_{i=1}^{n} S_i$
 
 ---
 
