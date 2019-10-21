@@ -1,5 +1,6 @@
 import os
 import shutil
+from datetime import datetime
 
 docs_path = 'docs'
 excluded_dirs = ['.git', 'docs', '.vscode']
@@ -45,7 +46,8 @@ with open(os.path.join(docs_path, 'index.html'), mode='w+') as f:
 
 
     <footer>
-        Pages are auto-generated, if you see any problems please open an issue on <a href="https://github.com/shilangyu/uni-notes">GitHub</a>
+        Pages are auto-generated, if you see any problems please open an issue on <a href="https://github.com/shilangyu/uni-notes">GitHub</a> <br/>
+        Last update: {datetime.now().strftime("%H:%M %B %d, %Y")}
     </footer>
 </body>
 </html>
