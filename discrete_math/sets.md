@@ -17,6 +17,12 @@ $2^X = p(x)$
 #### declarations
 
 - $A \subseteq B$: Every element of A is an element of B
+- $A \subsetneq B$: Every element of A is an element of B but not equal to each other
+- $a \in B$: a is an element of B
+
+#### De Morgan's law
+
+$\bigcup\limits_{t \in T}(\mathbb{R} - A_t) = \mathbb{R} - \bigcap\limits_{t \in T} A_t$
 
 #### operations on sets
 
