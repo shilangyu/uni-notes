@@ -41,7 +41,7 @@ then: $|a_n - L| < \epsilon$
 
 #### subsequences
 
-$a_n$ converges to $L$ if all subsequences converge to $L$
+$a_n$ converges to $L$ if all of its subsequences converge to $L$
 
 let $a_n = (-1)^n$ then $a_{2n} = (-1)^{2n}$ and $a_{2n-1} = (-1)^{2n-1}$ are subsequences of $a_n$. They have different limits therefore $a_n$ has no limit.
 
@@ -50,3 +50,7 @@ let $a_n = (-1)^n$ then $a_{2n} = (-1)^{2n}$ and $a_{2n-1} = (-1)^{2n-1}$ are su
 $a_n \leq b_n \leq c_n$
 
 if $\lim a_n = \lim c_n = L$ then $\lim b_n = L$
+
+#### Euler limit
+
+$\lim \limits_{n \to \infin} (1 + \frac{x}{n})^n = e^x$
