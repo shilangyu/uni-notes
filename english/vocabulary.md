@@ -1,0 +1,5 @@
+# vocabulary
+
+| word | meaning |
+| ---- | ------- |
+|      |         |
