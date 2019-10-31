@@ -25,7 +25,14 @@ $LTE = LT \cup EQ$
 
 $R \subseteq X \times X$ is said to be an equivalence relation iff $R$ is reflexive, symmetric and transitive.
 
-The equivalance class of an element $x \in X$ is the set $[x]_R = \{ y \in X: x \sim y\}$
+The equivalence class of an element $x \in X$ is the set $[x]_\sim = \{ y \in X: x \sim y\}$
 
 1. Every $x \in X$ belongs to the equivalence class of some element $a$
-2. $[x] \cap [y] \neq \emptyset \iff [x] = [y]$
+2. $(\forall x, y \in X)([x] \cap [y] \neq \emptyset \iff [x] = [y])$
+
+#### partitions
+
+A partition is a set containing subsets of some set $X$ such that their collective symmetric difference equals to $X$. A partition of $X$ is a set $\{A_i: i \in I \land A_i \subseteq X\}$ such that:
+
+1. $(\forall x \in X)(\exists j \in I)(x \in A_j)$
+2. $(\forall i, j \in I)(i \neq j \implies A_i \cap A_j = \emptyset)$
