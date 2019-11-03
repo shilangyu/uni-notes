@@ -56,7 +56,7 @@ Assumption: $x \in \{ 1, 2, ..., 10 \}$
 - there exists (one has to be true): $\exists x\ \phi(x)$
   - same as $\{x \in \mathbb{R}: \phi(x)\} \ne \emptyset$
 
-**Order matters**: $(\forall x)(\exist y)\ x > y \equiv 1$ while $(\exists x)(\forall y)\ x > y \equiv 0$
+**Order matters**: $(\forall x)(\exists y)\ x > y \equiv 1$ while $(\exists x)(\forall y)\ x > y \equiv 0$
 
 ---
 

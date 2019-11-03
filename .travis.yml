@@ -1,0 +1,21 @@
+language: python
+python:
+  - 3.7
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y pandoc
+  - sudo apt-get install -y texlive-full
+
+script:
+  - python3 ./deploy.py
+
+deploy:
+  local_dir: docs
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  target_branch: gh-pages
+  on:
+    branch: master

@@ -1,5 +1,5 @@
 import os
-import shutil
+import subprocess
 from datetime import datetime
 
 docs_path = 'docs'
@@ -13,13 +13,16 @@ for root, dirs, files in os.walk('.'):
     curr_docs = os.path.join(docs_path, root[2:])
     os.makedirs(curr_docs, exist_ok=True)
 
-    for f in filter(lambda f: f.endswith('html'), files):
+    for f in filter(lambda f: f.endswith('md'), files):
         curr_file = os.path.join(root, f)
-        shutil.copy(curr_file, os.path.join(curr_docs, f))
+        curr_out = os.path.join(
+            curr_docs, curr_file.split('/')[-1][:-2] + 'html')
+        subprocess.run(['pandoc', curr_file, '-s',
+                        '--katex', '-o', curr_out, ])
         if root in summary:
-            summary[root].append(f)
+            summary[root].append(f[:-2] + 'html')
         else:
-            summary[root] = [f]
+            summary[root] = [f[:-2] + 'html']
 
 with open(os.path.join(docs_path, 'index.html'), mode='w+') as f:
     html_summary = ''

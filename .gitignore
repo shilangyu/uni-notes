@@ -1,3 +1,2 @@
-*.html
-!docs/**
+docs/
 __pycache__/

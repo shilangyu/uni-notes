@@ -53,15 +53,13 @@ let $f(x) = x^2 + x + 1$
 $f$ has no real roots it has however, 2 complex ones:
 
 $$
-x = \frac{-b \plusmn \sqrt{b^2 - 4ac}}{2a}
-\\
-x = \frac{-1 \plusmn \sqrt{1^2 - 4*1*1}}{2*1}
-\\
-x = \frac{-1 \plusmn \sqrt{-3}}{2}
-\\
-x = \frac{-1 \plusmn \sqrt{3i^2}}{2}
-\\
-x = -\frac{1}{2} \plusmn i\frac{\sqrt{3}}{2}
+\begin{matrix}
+	x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
+	x = \frac{-1 \pm \sqrt{1^2 - 4*1*1}}{2*1} \\
+	x = \frac{-1 \pm \sqrt{-3}}{2} \\
+	x = \frac{-1 \pm \sqrt{3i^2}}{2} \\
+	x = -\frac{1}{2} \pm i\frac{\sqrt{3}}{2} \\
+\end{matrix}
 $$
 
 if $a,b,c \in \mathbb{R}$ and $z$ is a root of $f$ then $\bar{z}$ is a root aswell
