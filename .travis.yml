@@ -5,9 +5,10 @@ python:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y pandoc
-  - sudo apt-get install -y texlive-full
+  - sudo apt-get install -y texlive
 
 script:
+  - pandoc -v
   - python3 ./deploy.py
 
 deploy:
