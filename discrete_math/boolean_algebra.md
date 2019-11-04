@@ -61,4 +61,4 @@ Assumption: $x \in \{ 1, 2, ..., 10 \}$
 ---
 
 1. iff $\equiv$ if and only if
-2. $\neg$ = $\text{\textasciitilde}$
+2. $\neg =\ \sim$

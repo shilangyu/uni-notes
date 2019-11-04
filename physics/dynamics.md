@@ -16,6 +16,6 @@ $F = ma$
 
 $p = mv$
 
-static friction: \\$\$
+static friction:
 
 ![forces on a slope](http://thecraftycanvas.com/library/files/2013/02/free-body-force-diagram-block-on-frictionless-incline.png)

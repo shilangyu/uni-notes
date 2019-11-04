@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 from datetime import datetime
 
@@ -16,7 +17,7 @@ for root, dirs, files in os.walk('.'):
     for f in filter(lambda f: f.endswith('md'), files):
         curr_file = os.path.join(root, f)
         curr_out = os.path.join(
-            curr_docs, curr_file.split('/')[-1][:-2] + 'html')
+            curr_docs, re.compile(r'[\\/]').split(curr_file)[-1][:-2] + 'html')
         subprocess.run(['pandoc', curr_file, '-s',
                         '--katex', '-o', curr_out, ])
         if root in summary:

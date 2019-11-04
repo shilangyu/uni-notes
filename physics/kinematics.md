@@ -19,15 +19,15 @@ Study of motion.
 
 #### movement
 
-$s(t) = s_{0} + v_{0}*t + \frac{at^2}{2}$
+$s(t) = s_{0} + v_{0}t + \frac{at^2}{2}$
 
-$s'(t) = v(t) = v_{0} + a*t$
+$s'(t) = v(t) = v_{0} + at$
 
 $s''(t) = v'(t) = a(t) = a$
 
 #### movement
 
-$\alpha(t) = \alpha_{0} + \omega_{0}*t + \frac{\epsilon t^2}{2}$
+$\alpha(t) = \alpha_{0} + \omega_{0}t + \frac{\epsilon t^2}{2}$
 
 $\alpha'(t) = \omega(t) = \omega_{0} + \epsilon t = \frac{2\pi}{T}$
 

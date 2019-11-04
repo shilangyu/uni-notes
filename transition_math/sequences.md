@@ -34,7 +34,7 @@ $\epsilon$ -
 
 then: $|a_n - L| < \epsilon$
 
-- $\lim(a_n \plusmn b_n) = \lim a_n \plusmn \lim b_n$
+- $\lim(a_n \pm b_n) = \lim a_n \pm \lim b_n$
 - $\lim(a_nb_n) = \lim a_n \lim b_n$
 - $\lim(\frac{a_n}{b_n}) = \frac{\lim a_n}{\lim b_n}$
 - $\lim(c \cdot a_n) = c\lim a_n$
@@ -53,4 +53,4 @@ if $\lim a_n = \lim c_n = L$ then $\lim b_n = L$
 
 #### Euler limit
 
-$\lim \limits_{n \to \infin} (1 + \frac{x}{n})^n = e^x$
+$\lim \limits_{n \to \infty} (1 + \frac{x}{n})^n = e^x$
