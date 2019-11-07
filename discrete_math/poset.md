@@ -8,7 +8,7 @@ $(X, \sim)$: $\sim$ is a partial order on $X$ iff $\sim$ is:
 
 $(2^{\{a, b, c\}}, \subseteq)$:
 
-![hasse diagram](hasse-diagram.png)
+![hasse diagram](https://i.imgur.com/XiWbnqp.png)
 
 ### elements
 
