@@ -36,3 +36,7 @@ A partition is a set containing subsets of some set $X$ such that their collecti
 
 1. $(\forall x \in X)(\exists j \in I)(x \in A_j)$
 2. $(\forall i, j \in I)(i \neq j \implies A_i \cap A_j = \emptyset)$
+
+---
+
+1. quotient set: set of all equivalence classes

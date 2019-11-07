@@ -28,3 +28,7 @@ $W = F \Delta x$
 ### power
 
 $P = F v$
+
+### good and bad forces
+
+Good forces are these that can be converted to potential energy
