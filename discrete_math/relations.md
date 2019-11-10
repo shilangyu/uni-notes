@@ -28,7 +28,7 @@ $R \subseteq X \times X$ is said to be an equivalence relation iff $R$ is reflex
 The equivalence class of an element $x \in X$ is the set $[x]_\sim = \{ y \in X: x \sim y\}$
 
 1. Every $x \in X$ belongs to the equivalence class of some element $a$
-2. $(\forall x, y \in X)([x] \cap [y] \neq \emptyset \iff [x] = [y])$
+2. $(\forall x, y \in X)([x]_\sim \cap [y]_\sim \neq \emptyset \iff [x]_\sim = [y]_\sim)$
 
 #### partitions
 

@@ -60,5 +60,5 @@ Assumption: $x \in \{ 1, 2, ..., 10 \}$
 
 ---
 
-1. iff $\equiv$ if and only if
-2. $\neg =\ \sim$
+1. iff $\equiv$ if and only if $\equiv \iff$
+2. $\neg \equiv\ \sim$
