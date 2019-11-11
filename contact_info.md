@@ -16,13 +16,13 @@
 
 📧 t.traczyk@mini.pw.edu.pl
 
-🌐 mini.pw.edu.pl/~tomtracz
+🌐 [https://mini.pw.edu.pl/~tomtracz](https://mini.pw.edu.pl/~tomtracz)
 
 #### Lukasz Rozej (tutorials)
 
 📧 lukasz.rozej@gmail.com
 
-🌐 mini.pw.edu.pl/~rozejl/www
+🌐 [https://mini.pw.edu.pl/~rozejl/www](https://mini.pw.edu.pl/~rozejl/www)
 
 ## Transition Math and Algebra with Geometry
 
@@ -30,7 +30,7 @@
 
 📧 t.traczyk@mini.pw.edu.pl
 
-🌐 mini.pw.edu.pl/~tomtracz
+🌐 [https://mini.pw.edu.pl/~tomtracz](https://mini.pw.edu.pl/~tomtracz)
 
 #### Pawel Wojcicki (tutorials)
 
@@ -44,7 +44,7 @@
 
 📧 wioleta.slubowska@pw.edu.pl
 
-🌐 slubowska.fizyka.pw.edu.pl
+🌐 [http://slubowska.fizyka.pw.edu.pl](http://slubowska.fizyka.pw.edu.pl)
 
 ⏲ Wednesday 13:15-14:00, room #14, faculty of physics
 
@@ -52,7 +52,7 @@
 
 📧 anna.kalbarczyk@pw.edu.pl
 
-🌐 clf.if.pw.edu.pl (login: english, password: physics)
+🌐 [https://clf.if.pw.edu.pl](https://clf.if.pw.edu.pl) (login: english, password: physics)
 
 #### A Rostocki (tutorials)
 
