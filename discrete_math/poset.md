@@ -41,4 +41,4 @@ $(X, \sim)$, $\sim$ is called a well order iff $\sim$ is a total order on $X$ an
 
 ---
 
-1. $A \preccurlyeq B \iff |A| \leq |B|$
+1. $x \preccurlyeq y$: some kind of order where $x$ comes before $y$. For example: $A \preccurlyeq B \iff |A| \leq |B|$

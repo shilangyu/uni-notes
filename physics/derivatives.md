@@ -19,3 +19,6 @@ For $f(t)$ first and second derivative:
 | $\cos{x}$           | $-\sin{x}$                             |
 | $f(g(x))$           | $f'(g(x))g'(x)$                        |
 | $e^x$               | $e^x$                                  |
+| $\ln(x)$            | $\frac{1}{x}$                          |
+| $a^x$               | $\ln(a)a^x$                            |
+| $\log_a(x)$         | $\frac{1}{x\ln(a)}$                    |

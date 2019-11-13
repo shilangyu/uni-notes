@@ -32,6 +32,31 @@ $\log_{a^n}(b) = \frac{1}{n}\log_a(b)$
 
 $\log_a(b) = \frac{\log_c(b)}{\log_c(a)}$
 
+### asymptotes
+
+![asymptote types](https://www.mathsisfun.com/algebra/images/asymptote-types.svg)
+
+#### horizontal
+
+The horizontal asymptote has a form of $y = b$ where:
+
+$\lim_{x \to \infty} f(x) = b$ or $\lim_{x \to -\infty} f(x) = b$
+
+#### vertical
+
+The vertical line $x = a$ is an asymptote if:
+
+$\lim_{x \to a^-} f(x) = \pm \infty$ or $\lim_{x \to a^+} f(x) = \pm \infty$
+
+#### oblique
+
+A line $y = ax + b$ is an oblique asymptote at $\infty$ where:
+
+$$
+	a = \lim_{x \to \infty} \frac{f(x)}{x} \\
+	b = \lim_{x \to \infty} (f(x) - ax) \\
+$$
+
 ---
 
 1. Composition operator: $(g \circ f)(a) \equiv g(f(a))$
