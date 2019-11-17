@@ -13,13 +13,13 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
-        
+
       - name: install pandoc
         run: |
-            sudo apt-get update -qq
-            curl https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb -L --output pandoc.deb
-            sudo apt install ./pandoc.deb
-            sudo apt-get install -y texlive
+          sudo apt-get update -qq
+          curl https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb -L --output pandoc.deb
+          sudo apt install ./pandoc.deb
+          sudo apt-get install -y texlive
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@2.0.3
@@ -28,4 +28,4 @@ jobs:
           BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: docs
-          BUILD_SCRIPT: python ./deploy.py
+          BUILD_SCRIPT: python3 ./deploy.py
