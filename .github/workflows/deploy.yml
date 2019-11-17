@@ -28,4 +28,6 @@ jobs:
           BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: docs
-          BUILD_SCRIPT: python3 ./deploy.py
+          BUILD_SCRIPT: |
+            python3 --version
+            python3 ./deploy.py
