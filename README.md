@@ -1,5 +1,7 @@
 # UNI NOTES
 
+![](https://github.com/shilangyu/uni-notes/workflows/deploy/badge.svg)
+
 All notes are available and rendered [here](https://shilangyu.dev/uni-notes).
 
 ## CONTRIBUTING
