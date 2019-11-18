@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"functions"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="functions">functions</h1>
+<p><span class="math inline">X</span> is the domain of a function and Y is the range co-domain.</p>
+<p><span class="math inline">f : X \to Y</span></p>
+<h3 id="injective">injective</h3>
+<p>A function is injective if for any two arguments <span class="math inline">x_1, x_2 \in X</span> we have: <span class="math inline">f(x_1) = f(x_2) \implies x_1 = x_2</span></p>
+<h3 id="surjective">surjective</h3>
+<p><span class="math inline">(\forall y \in Y)(\exists x \in X)(f(x) = y)</span></p>
+<h3 id="inverse">inverse</h3>
+<p>The inverse of a function is denoted by <span class="math inline">f^{-1}</span>. The function has to be surjective and injective to be invertible: <span class="math inline">f^{-1}(b) = a</span> if <span class="math inline">f(a) = b</span>. Its also true that for <span class="math inline">x \in X</span>: <span class="math inline">(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x</span></p>
+<h3 id="image">image</h3>
+<p>For some set <span class="math inline">A</span>, the image of <span class="math inline">A</span> by <span class="math inline">f</span> is <span class="math inline">f(A) = \{f(x): x \in A\}</span>. We can also define an inverse of an image even when the function itself isn’t invertible <span class="math inline">f^{-1}(A)</span>.</p>
+<h3 id="logarithm">logarithm</h3>
+<p><span class="math inline">\log_a(b) = c \equiv a^c = b</span> where <span class="math inline">a, b &gt; 0\ \cap a \neq 1\ \cap b \neq 1</span></p>
+<p><span class="math inline">\log_a(x^c) = c\log_a(x)</span></p>
+<p><span class="math inline">\log_a(b) = \frac{1}{\log_b(a)}</span></p>
+<p><span class="math inline">\log_{a^n}(b) = \frac{1}{n}\log_a(b)</span></p>
+<p><span class="math inline">\log_a(b) = \frac{\log_c(b)}{\log_c(a)}</span></p>
+<h3 id="asymptotes">asymptotes</h3>
+<figure>
+<img src="https://www.mathsisfun.com/algebra/images/asymptote-types.svg" alt="" /><figcaption>asymptote types</figcaption>
+</figure>
+<h4 id="horizontal">horizontal</h4>
+<p>The horizontal asymptote has a form of <span class="math inline">y = b</span> where:</p>
+<p><span class="math inline">\lim_{x \to \infty} f(x) = b</span> or <span class="math inline">\lim_{x \to -\infty} f(x) = b</span></p>
+<h4 id="vertical">vertical</h4>
+<p>The vertical line <span class="math inline">x = a</span> is an asymptote if:</p>
+<p><span class="math inline">\lim_{x \to a^-} f(x) = \pm \infty</span> or <span class="math inline">\lim_{x \to a^+} f(x) = \pm \infty</span></p>
+<h4 id="oblique">oblique</h4>
+<p>A line <span class="math inline">y = ax + b</span> is an oblique asymptote at <span class="math inline">\infty</span> where:</p>
+<p><span class="math display">
+    a = \lim_{x \to \infty} \frac{f(x)}{x} \\
+    b = \lim_{x \to \infty} (f(x) - ax) \\
+</span></p>
+<hr />
+<ol type="1">
+<li>Composition operator: <span class="math inline">(g \circ f)(a) \equiv g(f(a))</span></li>
+</ol>
+</body>
+</html>

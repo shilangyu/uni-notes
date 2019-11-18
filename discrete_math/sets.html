@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"sets"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sets">sets</h1>
+<p>Expressed with capital letters or list of elements between braces:</p>
+<p><span class="math inline">A = \{ a_1, a_2, ..., a_n \}</span> where <span class="math inline">n</span> is the size of the set</p>
+<p>Two sets are considered equal when all the elements are the same</p>
+<p>We consider subsets of some universal <span class="math inline">X</span>, <span class="math inline">A, B, ... \in 2^X =</span> the set of all subsets of <span class="math inline">X</span>:</p>
+<p>let: <span class="math inline">X = \{ a, b, c \}</span> then <span class="math inline">2^X = \{ \emptyset, \{ a \}, \{ b \}, \{ c \}, \{ b, c \}, \{ a, b \}, \{ a, c \}, \{ a, b, c \} \}</span></p>
+<p><span class="math inline">|2^X| = 2^{|X|}</span></p>
+<p><span class="math inline">2^X = p(x)</span></p>
+<h4 id="declarations">declarations</h4>
+<ul>
+<li><span class="math inline">A \subseteq B</span>: Every element of A is an element of B</li>
+<li><span class="math inline">A \subsetneq B</span>: Every element of A is an element of B but not equal to each other</li>
+<li><span class="math inline">a \in B</span>: a is an element of B</li>
+</ul>
+<h4 id="de-morgans-law">De Morgan’s law</h4>
+<p><span class="math inline">\bigcup\limits_{t \in T}(\mathbb{R} - A_t) = \mathbb{R} - \bigcap\limits_{t \in T} A_t</span></p>
+<h4 id="operations-on-sets">operations on sets</h4>
+<p>Assumption: <span class="math inline">x \in X</span></p>
+<ul>
+<li>union: <span class="math inline">A \cup B = x \in A \lor x \in B</span></li>
+<li>intersection: <span class="math inline">A \cap B = x \in A \land x \in B</span></li>
+<li>difference: <span class="math inline">A - B = x \in A \land x \notin B</span></li>
+<li>symmetric difference: <span class="math inline">A \div B = (A - B) \cup (B - A)</span></li>
+<li>complement: <span class="math inline">A&#39; = x \notin A</span></li>
+<li>cartesian product: <span class="math inline">\{1, 2\} \times \{3, 4, 5\} = \{(1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)\}</span></li>
+<li>union of sets: <span class="math inline">\bigcup\limits_{i=1}^{n} S_i</span></li>
+<li>intersection of sets: <span class="math inline">\bigcap\limits_{i=1}^{n} S_i</span></li>
+</ul>
+<hr />
+<ol type="1">
+<li><span class="math inline">x \notin A \equiv \neg(x \in A)</span></li>
+</ol>
+</body>
+</html>

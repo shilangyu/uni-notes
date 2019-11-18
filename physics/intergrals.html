@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"intergrals"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="integrals">integrals</h1>
+<h3 id="notation">notation</h3>
+<p><span class="math inline">\int f&#39;(x) dx = f(x) + const</span></p>
+<h3 id="rules">rules</h3>
+<table>
+<thead>
+<tr class="header">
+<th>function</th>
+<th>integration with respect to <span class="math inline">x</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">a</span></td>
+<td><span class="math inline">ax + const</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x^n</span></td>
+<td><span class="math inline">\frac{1}{n+1} x^{n+1} + const</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">e^x</span></td>
+<td><span class="math inline">e^x + const</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">a^x</span></td>
+<td><span class="math inline">\frac{a^x}{\ln(a)} + const</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\ln(x)</span></td>
+<td><span class="math inline">x\ln(x) - x + const</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\sin(x)</span></td>
+<td><span class="math inline">-\cos(x) + const</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\cos(x)</span></td>
+<td><span class="math inline">\sin(x) + const</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\int af(x)</span></td>
+<td><span class="math inline">a \int f(x)</span></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

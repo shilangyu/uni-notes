@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"poset"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="poset-partial-ordered-sets">POSET (partial ordered sets)</h1>
+<p><span class="math inline">(X, \sim)</span>: <span class="math inline">\sim</span> is a partial order on <span class="math inline">X</span> iff <span class="math inline">\sim</span> is:</p>
+<ol type="1">
+<li>reflexive</li>
+<li>antisymmetric</li>
+<li>transitive</li>
+</ol>
+<p><span class="math inline">(2^{\{a, b, c\}}, \subseteq)</span>:</p>
+<figure>
+<img src="https://i.imgur.com/XiWbnqp.png" alt="" /><figcaption>hasse diagram</figcaption>
+</figure>
+<h3 id="elements">elements</h3>
+<p><span class="math inline">m \in X</span> is said to be a … element:</p>
+<ul>
+<li>largest: element on top of a Hasse diagram <span class="math inline">(\forall a \in X)(a \preccurlyeq m)</span></li>
+<li>maximal: dangling ends of a Hasse diagram <span class="math inline">(\forall a \in X)(m \preccurlyeq a \implies m = a)</span></li>
+<li>smallest: element on bottom of a Hasse diagram <span class="math inline">(\forall a \in X)(m \preccurlyeq a)</span></li>
+<li>minimal: dangling starts of a Hasse diagram <span class="math inline">(\forall a \in X)(a \preccurlyeq m \implies m = a)</span></li>
+</ul>
+<h3 id="total">total</h3>
+<p>A poset <span class="math inline">(X, \sim)</span> is said to be total iff <span class="math inline">(\forall x,y \in X)(x \sim y \lor y \sim x)</span></p>
+<h3 id="chain">chain</h3>
+<p>A subset <span class="math inline">B</span> of <span class="math inline">X</span> is called a chain iff <span class="math inline">B</span> is totally ordered by <span class="math inline">\sim</span></p>
+<p><span class="math inline">C(X)</span> - the set of all chains in <span class="math inline">(X, \sim)</span></p>
+<p>A chain <span class="math inline">D</span> in <span class="math inline">(X, \sim)</span> is called a maximal chain iff <span class="math inline">D</span> is a maximal element in <span class="math inline">(C(X), \subseteq)</span></p>
+<h3 id="anti-chain">anti chain</h3>
+<p><span class="math inline">K \subseteq X</span> is called an antichain in <span class="math inline">(X, \sim)</span> iff <span class="math inline">(\forall p,q \in K)(p \sim q \lor q \sim p \implies p = q)</span></p>
+<h3 id="well-order">well order</h3>
+<p><span class="math inline">(X, \sim)</span>, <span class="math inline">\sim</span> is called a well order iff <span class="math inline">\sim</span> is a total order on <span class="math inline">X</span> and every non-empty subset <span class="math inline">A</span> of <span class="math inline">X</span> has the smallest element</p>
+<hr />
+<ol type="1">
+<li><span class="math inline">x \preccurlyeq y</span>: some kind of order where <span class="math inline">x</span> comes before <span class="math inline">y</span>. For example: <span class="math inline">A \preccurlyeq B \iff |A| \leq |B|</span></li>
+</ol>
+</body>
+</html>

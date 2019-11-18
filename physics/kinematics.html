@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"kinematics"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kinematics">kinematics</h1>
+<p>Study of motion.</p>
+<h3 id="reference">reference</h3>
+<table>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>meaning</th>
+<th>unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">a</span></td>
+<td>acceleration</td>
+<td><span class="math inline">\frac{m}{s^2}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">v</span></td>
+<td>velocity (vector) or speed (scalar)</td>
+<td><span class="math inline">\frac{m}{s}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x,y,z</span></td>
+<td>position</td>
+<td><span class="math inline">m</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">r</span></td>
+<td>radius</td>
+<td><span class="math inline">m</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\alpha</span></td>
+<td>angle</td>
+<td><span class="math inline">radians</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\epsilon</span></td>
+<td>angular acceleration</td>
+<td><span class="math inline">\frac{radian}{s}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\omega</span></td>
+<td>angular velocity</td>
+<td><span class="math inline">\frac{radian}{s^2}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">T</span></td>
+<td>period</td>
+<td><span class="math inline">s</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">f</span></td>
+<td>frequency</td>
+<td><span class="math inline">s^{-1}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">g</span></td>
+<td>gravitation (<span class="math inline">\approx 9.8 \frac{m}{s^2}</span>)</td>
+<td><span class="math inline">\frac{m}{s^2}</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="movement">movement</h4>
+<p><span class="math inline">s(t) = s_{0} + v_{0}t + \frac{at^2}{2}</span></p>
+<p><span class="math inline">s&#39;(t) = v(t) = v_{0} + at</span></p>
+<p><span class="math inline">s&#39;&#39;(t) = v&#39;(t) = a(t) = a</span></p>
+<h4 id="movement-1">movement</h4>
+<p><span class="math inline">\alpha(t) = \alpha_{0} + \omega_{0}t + \frac{\epsilon t^2}{2}</span></p>
+<p><span class="math inline">\alpha&#39;(t) = \omega(t) = \omega_{0} + \epsilon t = \frac{2\pi}{T}</span></p>
+<p><span class="math inline">\alpha&#39;&#39;(t) = \omega&#39;(t) = \epsilon(t) = \epsilon</span></p>
+<h4 id="movement-on-a-circle">movement on a circle</h4>
+<p>correlation: <span class="math inline">v = \omega r</span></p>
+<p>centripetal acceleration: <span class="math inline">a = \omega^2 r</span></p>
+</body>
+</html>

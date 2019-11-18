@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"boolean_algebra"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="boolean-algebra">Boolean algebra</h1>
+<h4 id="logical-statement">Logical statement</h4>
+<ul>
+<li><code>true</code> | <code>false</code></li>
+<li>no variables</li>
+</ul>
+<p><code>p</code>, <code>q</code>, <code>r</code> - propositional variables</p>
+<p><code>a</code>, <code>b</code>, <code>c</code> - values</p>
+<h4 id="logical-connectives">Logical connectives</h4>
+<ul>
+<li>IF…THEN… (implication): <span class="math inline">p \implies q \equiv \neg p \lor q</span></li>
+<li>AND (conjunction): <span class="math inline">p \land q</span></li>
+<li>OR (disjunction): <span class="math inline">p \lor q</span></li>
+<li>XOR (exclusive disjunction): <span class="math inline">p \oplus q \equiv (p \lor q) \land \neg (p \land q)</span></li>
+<li>NOR (not or): <span class="math inline">p \downarrow q \equiv \neg (p \lor q)</span></li>
+<li>NAND (not and): <span class="math inline">p | q \equiv \neg (p \land q)</span></li>
+<li>IF AND ONLY IF (both are the same): <span class="math inline">p \iff q \equiv (p \implies q) \land (q \implies p)</span></li>
+</ul>
+<h4 id="commutative-operation">Commutative operation</h4>
+<p><span class="math inline">a + b = b + a</span> ✔</p>
+<p><span class="math inline">a - b = b - a</span> ✖</p>
+<h4 id="unary">Unary</h4>
+<p>NOT (negation)</p>
+<p><span class="math inline">\neg0 \equiv 1</span></p>
+<h4 id="contraposition-law">Contraposition law</h4>
+<p><span class="math inline">(p \implies q) \equiv (\neg q \implies \neg p)</span></p>
+<h4 id="de-morgans-law">De Morgan’s law</h4>
+<p><span class="math inline">\neg(p \land q) \equiv \neg p \lor \neg q</span></p>
+<p><span class="math inline">\neg(p \lor q) \equiv \neg p \land \neg q</span></p>
+<p><span class="math inline">\neg(\forall x \in \mathbb{R}\ \phi(x)) \equiv (\exists x \in \mathbb{R}\ \neg\phi(x))</span></p>
+<h4 id="tautology">Tautology</h4>
+<p><span class="math inline">\phi(p_1, ...,p_n)</span> is called a tautology iff <span class="math inline">\phi(p_1, ...,p_n) \equiv 1</span></p>
+<h4 id="quantifiers">quantifiers</h4>
+<p>Assumption: <span class="math inline">x \in \{ 1, 2, ..., 10 \}</span></p>
+<ul>
+<li>for every (all have to be true): <span class="math inline">\forall x\ \phi(x)</span>
+<ul>
+<li>same as <span class="math inline">\{x \in \mathbb{R}: \phi(x)\} = \mathbb{R}</span></li>
+</ul></li>
+<li>there exists (one has to be true): <span class="math inline">\exists x\ \phi(x)</span>
+<ul>
+<li>same as <span class="math inline">\{x \in \mathbb{R}: \phi(x)\} \ne \emptyset</span></li>
+</ul></li>
+</ul>
+<p><strong>Order matters</strong>: <span class="math inline">(\forall x)(\exists y)\ x &gt; y \equiv 1</span> while <span class="math inline">(\exists x)(\forall y)\ x &gt; y \equiv 0</span></p>
+<hr />
+<ol type="1">
+<li>iff <span class="math inline">\equiv</span> if and only if <span class="math inline">\equiv \iff</span></li>
+<li><span class="math inline">\neg \equiv\ \sim</span></li>
+</ol>
+</body>
+</html>

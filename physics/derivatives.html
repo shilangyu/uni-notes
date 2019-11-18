@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"derivatives"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="derivatives">derivatives</h1>
+<h3 id="notation">notation</h3>
+<p>For <span class="math inline">f(t)</span> first and second derivative:</p>
+<ul>
+<li><span class="math inline">\frac{df}{dt}</span>, <span class="math inline">\frac{d^2f}{dt^2}</span></li>
+<li><span class="math inline">f&#39;(t)</span>, <span class="math inline">f&#39;&#39;(t)</span></li>
+<li><span class="math inline">\dot{f}</span>, <span class="math inline">\ddot{f}</span></li>
+</ul>
+<h3 id="rules">rules</h3>
+<table>
+<thead>
+<tr class="header">
+<th>function</th>
+<th>derivative with respect to <span class="math inline">x</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">Ax^B</span></td>
+<td><span class="math inline">ABx^{B-1}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">f(x)g(x)</span></td>
+<td><span class="math inline">f&#39;(x)g(x) + f(x)g&#39;(x)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\frac{f(x)}{g(x)}</span></td>
+<td><span class="math inline">\frac{f&#39;(x)g(x) - f(x)g&#39;(x)}{g^2(x)}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\sin{x}</span></td>
+<td><span class="math inline">\cos{x}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\cos{x}</span></td>
+<td><span class="math inline">-\sin{x}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\tan{x}</span></td>
+<td><span class="math inline">\frac{1}{\cos^2{x}}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\cot{x}</span></td>
+<td><span class="math inline">-\frac{1}{\sin^2{x}}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\arcsin{x}</span></td>
+<td><span class="math inline">\frac{1}{\sqrt{1-x^2}}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\arccos{x}</span></td>
+<td><span class="math inline">-\frac{1}{\sqrt{1-x^2}}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\arctan{x}</span></td>
+<td><span class="math inline">\frac{1}{x^2+1}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">arccot\ x</span></td>
+<td><span class="math inline">-\frac{1}{x^2+1}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">f(g(x))</span></td>
+<td><span class="math inline">f&#39;(g(x))g&#39;(x)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">e^x</span></td>
+<td><span class="math inline">e^x</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\ln(x)</span></td>
+<td><span class="math inline">\frac{1}{x}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">a^x</span></td>
+<td><span class="math inline">\ln(a)a^x</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\log_a(x)</span></td>
+<td><span class="math inline">\frac{1}{x\ln(a)}</span></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

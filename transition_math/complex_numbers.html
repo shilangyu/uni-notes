@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>"complex_numbers"</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="complex-numbers">complex numbers</h1>
+<h4 id="definition">definition</h4>
+<p>A complex number <span class="math inline">z=x+iy</span> where <span class="math inline">x,y \in \mathbb{R}</span>, <span class="math inline">z \in \mathbb{C}</span></p>
+<p><span class="math inline">x</span>, <span class="math inline">Re(z)</span> - real part of <span class="math inline">z</span></p>
+<p><span class="math inline">y</span>, <span class="math inline">Im(z)</span> - imaginary part of <span class="math inline">z</span></p>
+<p><span class="math inline">\mathbb{R} \subsetneq \mathbb{C}</span></p>
+<p><span class="math inline">i \in \mathbb{C} - \mathbb{R}</span></p>
+<h4 id="conjuction">conjuction</h4>
+<p><span class="math inline">\bar{z} = x - iy</span></p>
+<h4 id="length">length</h4>
+<p><span class="math inline">|z| = \sqrt{x^2 + y^2}</span></p>
+<h4 id="trygonometricpolar-form">trygonometric/polar form</h4>
+<p><span class="math inline">z = |z|(\cos{\alpha} + i\sin{\alpha})</span></p>
+<p>where:</p>
+<p><span class="math inline">\cos{\alpha} = \frac{x}{|z|}</span></p>
+<p><span class="math inline">\sin{\alpha} = \frac{y}{|z|}</span></p>
+<h4 id="exponential-form">exponential form</h4>
+<p><span class="math inline">z = |z|e^{i\alpha}</span></p>
+<p><span class="math inline">z^k = |z|^ke^{ik\alpha}</span></p>
+<p>therefore:</p>
+<p><span class="math inline">e^{iz} = \cos{z} + i\sin{z}</span></p>
+<h4 id="roots">roots</h4>
+<p>An <code>n-th</code> root of a complex number <code>z</code> (<span class="math inline">\sqrt[n]{z}</span>) has <code>n</code> solutions: <span class="math inline">\{w_0, w_1, ..., w_{n-1}\}</span> these are vertices of an <code>n</code>-regular polygon.</p>
+<p><span class="math inline">w_l = \sqrt[n]{|z|}e^{i\frac{\alpha + 2\pi l}{n}}</span></p>
+<h4 id="polynomials">polynomials</h4>
+<p>let <span class="math inline">f(x) = x^2 + x + 1</span></p>
+<p><span class="math inline">f</span> has no real roots it has however, 2 complex ones:</p>
+<p><span class="math display">
+\begin{matrix}
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
+    x = \frac{-1 \pm \sqrt{1^2 - 4*1*1}}{2*1} \\
+    x = \frac{-1 \pm \sqrt{-3}}{2} \\
+    x = \frac{-1 \pm \sqrt{3i^2}}{2} \\
+    x = -\frac{1}{2} \pm i\frac{\sqrt{3}}{2} \\
+\end{matrix}
+</span></p>
+<p>if <span class="math inline">a,b,c \in \mathbb{R}</span> and <span class="math inline">z</span> is a root of <span class="math inline">f</span> then <span class="math inline">\bar{z}</span> is a root aswell</p>
+<h4 id="cheatsheet">cheatsheet</h4>
+<p>let <span class="math inline">z = |z|(\cos{\alpha} + i\sin{\alpha})</span>, <span class="math inline">w = |w|(\cos{\phi} + i\sin{\phi})</span> then:</p>
+<p><span class="math inline">zw = |z||w|(\cos(\phi + \alpha) + i\sin(\phi + \alpha))</span></p>
+<p><span class="math inline">z^n = |z|^n(\cos(n\alpha) + i\sin(n\alpha))</span></p>
+</body>
+</html>
