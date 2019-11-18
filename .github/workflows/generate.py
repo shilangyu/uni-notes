@@ -19,7 +19,7 @@ for root, dirs, files in os.walk('.'):
         curr_out = os.path.join(
             curr_docs, re.compile(r'[\\/]').split(curr_file)[-1][:-2] + 'html')
         subprocess.run(['pandoc', curr_file, '-s',
-                        '--katex', '-o', curr_out, '--css', '/uni-notes/styles.css'])
+                        '--katex', '-o', curr_out, '--css', '/uni-notes/styles.css', '--metadata', f'pagetitle="{f[:-3]}"'])
         if root in summary:
             summary[root].append(f[:-2] + 'html')
         else:
@@ -31,7 +31,7 @@ with open(os.path.join(docs_path, 'index.html'), mode='w+') as f:
         if key != '.':
             html_summary += f'<li>{key[2:]}<ul>'
         for topic in summary[key]:
-            html_summary += f'<li><a href="{os.path.join(key, topic)}"">{topic[:-5]}</a></li>'
+            html_summary += f'<li><a href="{os.path.join(key, topic)}">{topic[:-5]}</a></li>'
         if key != '.':
             html_summary += '</ul></li>'
     f.write(f"""\
