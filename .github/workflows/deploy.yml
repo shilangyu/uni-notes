@@ -25,7 +25,7 @@ jobs:
           sudo apt-get install -y texlive
 
       - name: generate docs
-        run: python ./deploy.py
+        run: python ./.github/workflows/generate.py
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@2.0.3
