@@ -28,7 +28,7 @@ jobs:
         run: python ./.github/workflows/generate.py
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: master
