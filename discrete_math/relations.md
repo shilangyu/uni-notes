@@ -37,6 +37,17 @@ A partition is a set containing subsets of some set $X$ such that their collecti
 1. $(\forall x \in X)(\exists j \in I)(x \in A_j)$
 2. $(\forall i, j \in I)(i \neq j \implies A_i \cap A_j = \emptyset)$
 
+#### functions
+
+Functions can be expressed as a relation as well:
+
+$f \subseteq X \times Y$ is said to be a function iff
+
+- $(\forall x \in X)(\exists y \in Y)((x, y) \in f)$
+- $(\forall a \in X)(\forall p,q \in Y)((a, p) \in f \land (a, q) \in f \implies p=q)$
+
+For example: $y = \frac{1}{x}$ is not a function because it doesn't meet the first requirement, unless $f$ is defined as $f \subseteq (\mathbb{C} - \{0\}, \mathbb{C})$
+
 ---
 
 1. quotient set: set of all equivalence classes

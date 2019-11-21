@@ -19,3 +19,9 @@ $p = mv$
 static friction:
 
 ![forces on a slope](http://thecraftycanvas.com/library/files/2013/02/free-body-force-diagram-block-on-frictionless-incline.png)
+
+### conservative forces
+
+for a given $U(x, y)$ potential: $F_x = - \frac{\delta Y}{\delta x}$, $F_y = - \frac{\delta Y}{\delta y}$
+
+$dU = - F_xdx - F_ydy = - \vec{F} \cdot d\vec{r}$

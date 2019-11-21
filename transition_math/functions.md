@@ -6,7 +6,7 @@ $f : X \to Y$
 
 ### injective
 
-A function is injective if for any two arguments $x_1, x_2 \in X$ we have: $f(x_1) = f(x_2) \implies x_1 = x_2$
+A function is injective if for any two arguments $x_1, x_2 \in X$ we have: $f(x_1) = f(x_2) \implies x_1 = x_2$. In other words each $x$ has one $y$ and the opposite
 
 ### surjective
 
@@ -14,7 +14,7 @@ $(\forall y \in Y)(\exists x \in X)(f(x) = y)$
 
 ### inverse
 
-The inverse of a function is denoted by $f^{-1}$. The function has to be surjective and injective to be invertible: $f^{-1}(b) = a$ if $f(a) = b$. Its also true that for $x \in X$: $(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x$
+The inverse of a function is denoted by $f^{-1}$. The function has to be surjective and injective to be invertible: $f^{-1}(b) = a$ if $f(a) = b$. Its also true that for $(\forall x \in X)((f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x)$
 
 ### image
 
