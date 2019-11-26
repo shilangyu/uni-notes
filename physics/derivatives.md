@@ -1,5 +1,7 @@
 # derivatives
 
+Derivatives tell us the rate of change of the derived function. If $f'(x_0) > 0$ then $f$ at $x_0$ is increasing, if $f'(x_0) < 0$ it is decreasing. Refer to [functions](../transition_math/functions.html) for more information.
+
 ### notation
 
 For $f(t)$ first and second derivative:
@@ -28,3 +30,7 @@ For $f(t)$ first and second derivative:
 | $\ln(x)$            | $\frac{1}{x}$                          |
 | $a^x$               | $\ln(a)a^x$                            |
 | $\log_a(x)$         | $\frac{1}{x\ln(a)}$                    |
+
+### line tangent to a function
+
+To find a tangent line to a function at a given point we can use the following formula: $y = f(x_0) + f'(x_0)(x - x_0)$ where $(x_0, f(x_0))$ is the point where we are trying to find the tangent line.

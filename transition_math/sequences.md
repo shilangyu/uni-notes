@@ -54,3 +54,14 @@ if $\lim a_n = \lim c_n = L$ then $\lim b_n = L$
 #### Euler limit
 
 $\lim \limits_{n \to \infty} (1 + \frac{x}{n})^n = e^x$
+
+#### L'Hopital rule
+
+Iff $\lim_{x \to c} f(x) = \lim_{x \to c} g(x) = 0$ or $\lim_{x \to c} f(x) = \pm \lim_{x \to c} g(x) = \pm \infty$ then $\lim_{x \to c}\frac{f(x)}{g(x)} = \lim_{x \to c}\frac{f'(x)}{g'(x)}$
+
+**implicit usage**:
+
+- $0 \cdot \infty: f \cdot g = \frac{f}{\frac{1}{g}}$
+- $\infty - \infty: f - g = \frac{\frac{1}{g} - \frac{1}{f}}{\frac{1}{fg}}$
+- $0 \cdot \infty: f \cdot g = \frac{f}{\frac{1}{g}}$
+- $0^0, \infty^0, 1^\infty: f^g = e^{g \ln f}$
