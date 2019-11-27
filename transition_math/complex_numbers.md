@@ -12,7 +12,7 @@ $\mathbb{R} \subsetneq \mathbb{C}$
 
 $i \in \mathbb{C} - \mathbb{R}$
 
-#### conjuction
+#### conjunction
 
 $\bar{z} = x - iy$
 
@@ -20,7 +20,7 @@ $\bar{z} = x - iy$
 
 $|z| = \sqrt{x^2 + y^2}$
 
-#### trygonometric/polar form
+#### trigonometric/polar form
 
 $z = |z|(\cos{\alpha} + i\sin{\alpha})$
 
@@ -62,7 +62,7 @@ $$
 \end{matrix}
 $$
 
-if $a,b,c \in \mathbb{R}$ and $z$ is a root of $f$ then $\bar{z}$ is a root aswell
+if $a,b,c \in \mathbb{R}$ and $z$ is a root of $f$ then $\bar{z}$ is a root as well
 
 #### cheatsheet
 
