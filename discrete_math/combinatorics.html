@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>combinatorics</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="combinatorics">combinatorics</h1>
+<h3 id="rule-of-addition">rule of addition</h3>
+<p>If <span class="math inline">A, B \subseteq \mathbb{X}</span> and <span class="math inline">|A|, |B| \in \mathbb{N}</span> and <span class="math inline">A \cap B = \emptyset</span> then <span class="math inline">|A \cup B| = |A| + |B|</span></p>
+<p>also</p>
+<p>If <span class="math inline">(\forall i,j \in \{1, ..., n\})(i \ne j \implies A_i \cap A_j = \emptyset)</span> then <span class="math inline">|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i|</span></p>
+<h3 id="rule-of-multiplication">rule of multiplication</h3>
+<p>If <span class="math inline">A, B \subseteq \mathbb{X}</span> and <span class="math inline">|A|, |B| \in \mathbb{N}</span> then <span class="math inline">|A \times B| = |A| \cdot |B|</span></p>
+<h3 id="permutations">permutations</h3>
+<p>Rearrangement of elements in all of its possible states. The number of permutation of <span class="math inline">\{1, ..., n\}</span> is <span class="math inline">n!</span></p>
+<h4 id="repetitions">repetitions</h4>
+<p>Consider an example: You are in a <span class="math inline">4 \times 4 \times 4</span> grid labeled <span class="math inline">(x, y, z)</span>. A command is defined as such: <span class="math inline">(z, x, x, y, ...)</span> move one on <span class="math inline">z</span> axis, move two on <span class="math inline">x</span> axis etc. How many commands can we construct to navigate from <span class="math inline">(0,0,0)</span> to <span class="math inline">(4, 4, 4)</span>? We need to move <span class="math inline">4</span> spaces on each axis so command will be of length <span class="math inline">3 \cdot 4 = 12</span> so amount of possible commands is <span class="math inline">12!</span>. However <span class="math inline">(x, y, z)</span> in our commands are not unique so a command like <span class="math inline">(z_1, z_2) \equiv (z_2, z_1)</span>. Therefore we need to divide by the permutations of the repetitions: <span class="math inline">\frac{12!}{4!4!4!}</span>.</p>
+<h3 id="pigeon-hole-principle">pigeon hole principle</h3>
+<p>Let <span class="math inline">A</span>, <span class="math inline">B</span> be finite sets and let <span class="math inline">f : A \to B</span> be any function.</p>
+<p>If <span class="math inline">|A| &gt; |B|</span> then there are <span class="math inline">x, y \in A</span>, <span class="math inline">x \ne y</span> such that <span class="math inline">f(x) = f(y)</span>.</p>
+<p>(informally: If you put things into boxes and there are more things than boxes then at least one box will contain at least 2 things.)</p>
+<hr />
+<ol type="1">
+<li><span class="math inline">n! \equiv 1 \cdot 2 \cdot ... \cdot n</span></li>
+</ol>
+</body>
+</html>
