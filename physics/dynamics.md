@@ -25,3 +25,11 @@ static friction:
 for a given $U(x, y)$ potential: $F_x = - \frac{\delta Y}{\delta x}$, $F_y = - \frac{\delta Y}{\delta y}$
 
 $dU = - F_xdx - F_ydy = - \vec{F} \cdot d\vec{r}$
+
+### momentum
+
+- Elastic: Two objects colliding (prime indicates the velocity after the collision):
+  $m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'$
+
+- Inelastic: Two objects colliding and sticking together (prime indicates the velocity after the collision):
+  $m_1v_1 + m_2v_2 = v'(m_1 + m_2)$

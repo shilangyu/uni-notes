@@ -54,7 +54,7 @@
 
 🌐 [https://clf.if.pw.edu.pl](https://clf.if.pw.edu.pl) (login: english, password: physics)
 
-#### A Rostocki (tutorials)
+#### Aleksander Rostocki (tutorials)
 
 ## English
 
