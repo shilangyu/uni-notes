@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>fields</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="fields">fields</h1>
+<p>Set of elements with defined addition and multiplication: <span class="math inline">(\mathbb{F}, +, \cdot)</span> It has to be comply the following rules:</p>
+<ul>
+<li>Associativity of addition and multiplication: <span class="math inline">a + (b + c) = (a + b) + c</span>, and <span class="math inline">a \cdot (b \cdot c) = (a \cdot b) \cdot c</span></li>
+<li>Commutativity of addition and multiplication: <span class="math inline">a + b = b + a</span>, and <span class="math inline">a \cdot b = b \cdot a</span></li>
+<li>Additive and multiplicative identity: there exist two different elements <span class="math inline">\mathbf{0}</span> and <span class="math inline">\mathbf{1}</span> in <span class="math inline">\mathbb{F}</span> such that <span class="math inline">a + \mathbf{0} = a</span> and <span class="math inline">a \cdot \mathbf{1} = a</span></li>
+<li>Additive inverses: for every <span class="math inline">a</span> in <span class="math inline">\mathbb{F}</span>, there exists an element in <span class="math inline">\mathbb{F}</span>, denoted <span class="math inline">−a</span>, called the additive inverse of <span class="math inline">a</span>, such that <span class="math inline">a + (−a) = 0</span></li>
+<li>Multiplicative inverses: for every <span class="math inline">a \ne 0</span> in <span class="math inline">\mathbb{F}</span>, there exists an element in <span class="math inline">\mathbb{F}</span>, denoted by <span class="math inline">a^{−1}</span> or <span class="math inline">\frac{1}{a}</span>, called the multiplicative inverse of <span class="math inline">a</span>, such that <span class="math inline">a \cdot a^{−1} = 1</span></li>
+<li>Distributivity of multiplication over addition: <span class="math inline">a \cdot (b + c) = (a \cdot b) + (a \cdot c)</span></li>
+</ul>
+<h3 id="groups-vs-rings-vs-fields">groups vs rings vs fields</h3>
+<ul>
+<li>group has a defined addition and subtraction</li>
+<li>ring has a defined addition, subtraction, and multiplication</li>
+<li>field has a defined addition, subtraction, multiplication, and division (however addition and multiplication is enough as the other ones can be defined using these)</li>
+</ul>
+</body>
+</html>

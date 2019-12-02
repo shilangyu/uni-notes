@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>vector_spaces</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="vector-spaces">vector spaces</h1>
+<p><span class="math inline">V</span> - vector space over some field <span class="math inline">\mathbb{K}</span> if:</p>
+<ul>
+<li>for every <span class="math inline">u, v, w \in V</span> we have <span class="math inline">u + v = v + u</span> and <span class="math inline">u + (v + w) = (u + v) + w</span></li>
+<li>there is <span class="math inline">\mathbf{0} \in V</span> called the <em>zero vector</em> such that for any <span class="math inline">v \in V</span> we have <span class="math inline">v + 0 = 0 + v = v</span></li>
+<li>for ever <span class="math inline">v \in V</span> there is <span class="math inline">−v \in V</span> such that <span class="math inline">v + −v = −v + v = 0</span></li>
+</ul>
+<ol type="1">
+<li><span class="math inline">(\forall v \in V) 0 \cdot v = \mathbf{0}</span></li>
+<li><span class="math inline">(\forall a \in F) a \cdot \mathbf{0} = \mathbf{0}</span></li>
+<li><span class="math inline">(\forall a \in F)(\forall v \in V) (-a)v = a(-v) = -(av)</span></li>
+<li><span class="math inline">(\forall a \in F)(\forall v \in V) av = \mathbf{0} \implies a = 0 \lor v \in \mathbf{0}</span></li>
+</ol>
+</body>
+</html>
