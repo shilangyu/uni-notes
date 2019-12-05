@@ -53,8 +53,10 @@ $\lim_{x \to a^-} f(x) = \pm \infty$ or $\lim_{x \to a^+} f(x) = \pm \infty$
 A line $y = ax + b$ is an oblique asymptote at $\infty$ where:
 
 $$
+\begin{matrix}
 	a = \lim_{x \to \infty} \frac{f(x)}{x} \\
 	b = \lim_{x \to \infty} (f(x) - ax) \\
+\end{matrix}
 $$
 
 ### continuity

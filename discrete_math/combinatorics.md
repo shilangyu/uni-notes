@@ -20,6 +20,18 @@ Rearrangement of elements in all of its possible states. The number of permutati
 
 Consider an example: You are in a $4 \times 4 \times 4$ grid labeled $(x, y, z)$. A command is defined as such: $(z, x, x, y, ...)$ move one on $z$ axis, move two on $x$ axis etc. How many commands can we construct to navigate from $(0,0,0)$ to $(4, 4, 4)$? We need to move $4$ spaces on each axis so command will be of length $3 \cdot 4 = 12$ so amount of possible commands is $12!$. However $(x, y, z)$ in our commands are not unique so a command like $(z_1, z_2) \equiv (z_2, z_1)$. Therefore we need to divide by the permutations of the repetitions: $\frac{12!}{4!4!4!}$.
 
+### combinations
+
+#### amount of injections
+
+The number of injections from $\{1,...,k\} \to \{1,...,n\}$ is $\frac{n!}{(n-k)!}$
+
+The amount of subsets of length $k$: $|p_k(X)| = \frac{n!}{k!(n-k)!} = \binom{n}{k}$
+
+#### inclusion-exclusion principle
+
+$|A \cup B| = |A| + |B| - |A \cap B|$
+
 ### pigeon hole principle
 
 Let $A$, $B$ be finite sets and let $f : A \to B$ be any function.

@@ -12,7 +12,7 @@ let: $X = \{ a, b, c \}$ then $2^X = \{ \emptyset, \{ a \}, \{ b \}, \{ c \}, \{
 
 $|2^X| = 2^{|X|}$
 
-$2^X = p(x)$
+$2^X = p(X)$, also: $p_k(X)$ is a set of sets of length $k$
 
 #### declarations
 
