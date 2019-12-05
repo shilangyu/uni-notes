@@ -36,6 +36,12 @@
 <p>Rearrangement of elements in all of its possible states. The number of permutation of <span class="math inline">\{1, ..., n\}</span> is <span class="math inline">n!</span></p>
 <h4 id="repetitions">repetitions</h4>
 <p>Consider an example: You are in a <span class="math inline">4 \times 4 \times 4</span> grid labeled <span class="math inline">(x, y, z)</span>. A command is defined as such: <span class="math inline">(z, x, x, y, ...)</span> move one on <span class="math inline">z</span> axis, move two on <span class="math inline">x</span> axis etc. How many commands can we construct to navigate from <span class="math inline">(0,0,0)</span> to <span class="math inline">(4, 4, 4)</span>? We need to move <span class="math inline">4</span> spaces on each axis so command will be of length <span class="math inline">3 \cdot 4 = 12</span> so amount of possible commands is <span class="math inline">12!</span>. However <span class="math inline">(x, y, z)</span> in our commands are not unique so a command like <span class="math inline">(z_1, z_2) \equiv (z_2, z_1)</span>. Therefore we need to divide by the permutations of the repetitions: <span class="math inline">\frac{12!}{4!4!4!}</span>.</p>
+<h3 id="combinations">combinations</h3>
+<h4 id="amount-of-injections">amount of injections</h4>
+<p>The number of injections from <span class="math inline">\{1,...,k\} \to \{1,...,n\}</span> is <span class="math inline">\frac{n!}{(n-k)!}</span></p>
+<p>The amount of subsets of length <span class="math inline">k</span>: <span class="math inline">|p_k(X)| = \frac{n!}{k!(n-k)!} = \binom{n}{k}</span></p>
+<h4 id="inclusion-exclusion-principle">inclusion-exclusion principle</h4>
+<p><span class="math inline">|A \cup B| = |A| + |B| - |A \cap B|</span></p>
 <h3 id="pigeon-hole-principle">pigeon hole principle</h3>
 <p>Let <span class="math inline">A</span>, <span class="math inline">B</span> be finite sets and let <span class="math inline">f : A \to B</span> be any function.</p>
 <p>If <span class="math inline">|A| &gt; |B|</span> then there are <span class="math inline">x, y \in A</span>, <span class="math inline">x \ne y</span> such that <span class="math inline">f(x) = f(y)</span>.</p>
