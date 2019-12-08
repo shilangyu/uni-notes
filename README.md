@@ -1,6 +1,6 @@
 # UNI NOTES
 
-![](https://github.com/shilangyu/uni-notes/workflows/deploy/badge.svg)
+[![](https://github.com/shilangyu/uni-notes/workflows/deploy/badge.svg)](https://github.com/shilangyu/uni-notes/actions)
 
 All notes are available and rendered [here](https://shilangyu.dev/uni-notes).
 
