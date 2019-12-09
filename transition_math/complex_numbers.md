@@ -55,7 +55,7 @@ $f$ has no real roots it has however, 2 complex ones:
 $$
 \begin{matrix}
 	x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
-	x = \frac{-1 \pm \sqrt{1^2 - 4*1*1}}{2*1} \\
+	x = \frac{-1 \pm \sqrt{1^2 - 4 \cdot 1 \cdot 1}}{2 \cdot 1} \\
 	x = \frac{-1 \pm \sqrt{-3}}{2} \\
 	x = \frac{-1 \pm \sqrt{3i^2}}{2} \\
 	x = -\frac{1}{2} \pm i\frac{\sqrt{3}}{2} \\
