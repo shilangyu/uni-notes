@@ -19,3 +19,7 @@
 | sedentary              | tending to spend much time seated                                                  |
 | incidence              | the occurrence, rate, or frequency of a disease, crime, or other undesirable thing |
 | devise                 | plan or invent (a complex procedure, system, or mechanism) by careful thought      |
+| inundated              | overwhelm (someone) with things or people to be dealt with                         |
+| prise                  | use force in order to move, move apart                                             |
+| jubilant               | feeling or expressing great happiness and triumph                                  |
+| furore                 | an outbreak of public anger or excitement                                          |
