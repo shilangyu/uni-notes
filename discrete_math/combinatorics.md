@@ -6,7 +6,7 @@ If $A, B \subseteq \mathbb{X}$ and $|A|, |B| \in \mathbb{N}$ and $A \cap B = \em
 
 also
 
-If $(\forall i,j \in \{1, ..., n\})(i \ne j \implies A_i \cap A_j = \emptyset)$ then $|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i|$
+If $(\forall i,j \in \{1, \cdots, n\})(i \ne j \implies A_i \cap A_j = \emptyset)$ then $|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i|$
 
 ### rule of multiplication
 
@@ -14,23 +14,36 @@ If $A, B \subseteq \mathbb{X}$ and $|A|, |B| \in \mathbb{N}$ then $|A \times B| 
 
 ### permutations
 
-Rearrangement of elements in all of its possible states. The number of permutation of $\{1, ..., n\}$ is $n!$
+Rearrangement of elements in all of its possible states. The number of permutation of $\{1, \cdots, n\}$ is $n!$
 
 #### repetitions
 
-Consider an example: You are in a $4 \times 4 \times 4$ grid labeled $(x, y, z)$. A command is defined as such: $(z, x, x, y, ...)$ move one on $z$ axis, move two on $x$ axis etc. How many commands can we construct to navigate from $(0,0,0)$ to $(4, 4, 4)$? We need to move $4$ spaces on each axis so command will be of length $3 \cdot 4 = 12$ so amount of possible commands is $12!$. However $(x, y, z)$ in our commands are not unique so a command like $(z_1, z_2) \equiv (z_2, z_1)$. Therefore we need to divide by the permutations of the repetitions: $\frac{12!}{4!4!4!}$.
+Consider an example: You are in a $4 \times 4 \times 4$ grid labeled $(x, y, z)$. A command is defined as such: $(z, x, x, y, \cdots)$ move one on $z$ axis, move two on $x$ axis etc. How many commands can we construct to navigate from $(0,0,0)$ to $(4, 4, 4)$? We need to move $4$ spaces on each axis so command will be of length $3 \cdot 4 = 12$ so amount of possible commands is $12!$. However $(x, y, z)$ in our commands are not unique so a command like $(z_1, z_2) \equiv (z_2, z_1)$. Therefore we need to divide by the permutations of the repetitions: $\frac{12!}{4!4!4!}$.
+
+#### derangements (subfactorial)
+
+The number of permutations where no element is in the same place: $!n = n!\sum^n_{j=0} \frac{(-1)^j}{j!}$
 
 ### combinations
 
 #### amount of injections
 
-The number of injections from $\{1,...,k\} \to \{1,...,n\}$ is $\frac{n!}{(n-k)!}$
+The number of injections from $\{1,\cdots,k\} \to \{1,\cdots,n\}$ is $\frac{n!}{(n-k)!}$
 
 The amount of subsets of length $k$: $|p_k(X)| = \frac{n!}{k!(n-k)!} = \binom{n}{k}$
 
 #### inclusion-exclusion principle
 
 $|A \cup B| = |A| + |B| - |A \cap B|$
+
+**generalized**: $|\bigcup^n_{i=1} A_i| = \sum^n_{i=1} (-1)^{i+1} S_i$ where:
+$S_k = \sum_{1 \le i_1 \lt i_2 \lt \cdots \lt i_k \le n} |A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}|$
+
+#### multisets (combinations with repetitions )
+
+How many solutions are there to the equation $x_1 + x_2 + \cdots + x_n = k$. How many sets with repetitions but with disregarded order are there?
+
+$\big(\binom{n}{k}\big) = \binom{n+k-1}{k}$
 
 ### pigeon hole principle
 
@@ -43,4 +56,4 @@ will contain at least 2 things.)
 
 ---
 
-1. $n! \equiv 1 \cdot 2 \cdot ... \cdot n$
+1. $n! \equiv 1 \cdot 2 \cdot \ldots \cdot n$

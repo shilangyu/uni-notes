@@ -17,12 +17,12 @@ A subset $W \subseteq V$ is called a subspace of $V$ if $W$ is a vector space ov
 
 ### linear combination
 
-Let $a_1, ..., a_n \in \mathbf{K}$ and $v_1, ..., v_n \in V$. The vector $a_1v_1 + ... + a_nv_n \in V$ is called a linear combination.
+Let $a_1, \cdots, a_n \in \mathbf{K}$ and $v_1, \cdots, v_n \in V$. The vector $a_1v_1 + \cdots + a_nv_n \in V$ is called a linear combination.
 
 ### span
 
-A span of $S \subseteq V$ is a set of all linear combinations of S. Let $S \subseteq V$ then $span(S) \subseteq V$ or $span(S) = \{a_1v_1 + ... + a_nv_n : a_i \in \mathbf{K}$ and $v_i \in S\}$.
+A span of $S \subseteq V$ is a set of all linear combinations of S. Let $S \subseteq V$ then $span(S) \subseteq V$ or $span(S) = \{a_1v_1 + \cdots + a_nv_n : a_i \in \mathbf{K}$ and $v_i \in S\}$.
 
 ### linear independence
 
-$\{a_1v_1 + ... + a_nv_n\} = \mathbf{0} \implies a_1 = ... = a_n = 0$
+$\{a_1v_1 + \cdots + a_nv_n\} = \mathbf{0} \implies a_1 = \cdots = a_n = 0$

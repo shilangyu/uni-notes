@@ -45,11 +45,11 @@ $\neg(\forall x \in \mathbb{R}\ \phi(x)) \equiv (\exists x \in \mathbb{R}\ \neg\
 
 #### Tautology
 
-$\phi(p_1, ...,p_n)$ is called a tautology iff $\phi(p_1, ...,p_n) \equiv 1$
+$\phi(p_1, \cdots,p_n)$ is called a tautology iff $\phi(p_1, \cdots,p_n) \equiv 1$
 
 #### quantifiers
 
-Assumption: $x \in \{ 1, 2, ..., 10 \}$
+Assumption: $x \in \{ 1, 2, \cdots, 10 \}$
 
 - for every (all have to be true): $\forall x\ \phi(x)$
   - same as $\{x \in \mathbb{R}: \phi(x)\} = \mathbb{R}$

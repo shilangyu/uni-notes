@@ -41,8 +41,10 @@
     "mathbb",
     "mathbf",
     "mkaleta",
+    "multisets",
     "poset",
     "preccurlyeq",
+    "subfactorial",
     "subseteq",
     "subsetneq",
     "surjective"

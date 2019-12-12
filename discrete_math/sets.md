@@ -2,11 +2,11 @@
 
 Expressed with capital letters or list of elements between braces:
 
-$A = \{ a_1, a_2, ..., a_n \}$ where $n$ is the size of the set
+$A = \{ a_1, a_2, \cdots, a_n \}$ where $n$ is the size of the set
 
 Two sets are considered equal when all the elements are the same
 
-We consider subsets of some universal $X$, $A, B, ... \in 2^X =$ the set of all subsets of $X$:
+We consider subsets of some universal $X$, $A, B, \cdots \in 2^X =$ the set of all subsets of $X$:
 
 let: $X = \{ a, b, c \}$ then $2^X = \{ \emptyset, \{ a \}, \{ b \}, \{ c \}, \{ b, c \}, \{ a, b \}, \{ a, c \}, \{ a, b, c \} \}$
 

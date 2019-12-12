@@ -42,7 +42,7 @@ $e^{iz} = \cos{z} + i\sin{z}$
 
 #### roots
 
-An `n-th` root of a complex number `z` ($\sqrt[n]{z}$) has `n` solutions: $\{w_0, w_1, ..., w_{n-1}\}$ these are vertices of an `n`-regular polygon.
+An `n-th` root of a complex number `z` ($\sqrt[n]{z}$) has `n` solutions: $\{w_0, w_1, \cdots, w_{n-1}\}$ these are vertices of an `n`-regular polygon.
 
 $w_l = \sqrt[n]{|z|}e^{i\frac{\alpha + 2\pi l}{n}}$
 
