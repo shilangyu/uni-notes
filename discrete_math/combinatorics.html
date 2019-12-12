@@ -29,26 +29,32 @@
 <h3 id="rule-of-addition">rule of addition</h3>
 <p>If <span class="math inline">A, B \subseteq \mathbb{X}</span> and <span class="math inline">|A|, |B| \in \mathbb{N}</span> and <span class="math inline">A \cap B = \emptyset</span> then <span class="math inline">|A \cup B| = |A| + |B|</span></p>
 <p>also</p>
-<p>If <span class="math inline">(\forall i,j \in \{1, ..., n\})(i \ne j \implies A_i \cap A_j = \emptyset)</span> then <span class="math inline">|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i|</span></p>
+<p>If <span class="math inline">(\forall i,j \in \{1, \cdots, n\})(i \ne j \implies A_i \cap A_j = \emptyset)</span> then <span class="math inline">|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i|</span></p>
 <h3 id="rule-of-multiplication">rule of multiplication</h3>
 <p>If <span class="math inline">A, B \subseteq \mathbb{X}</span> and <span class="math inline">|A|, |B| \in \mathbb{N}</span> then <span class="math inline">|A \times B| = |A| \cdot |B|</span></p>
 <h3 id="permutations">permutations</h3>
-<p>Rearrangement of elements in all of its possible states. The number of permutation of <span class="math inline">\{1, ..., n\}</span> is <span class="math inline">n!</span></p>
+<p>Rearrangement of elements in all of its possible states. The number of permutation of <span class="math inline">\{1, \cdots, n\}</span> is <span class="math inline">n!</span></p>
 <h4 id="repetitions">repetitions</h4>
-<p>Consider an example: You are in a <span class="math inline">4 \times 4 \times 4</span> grid labeled <span class="math inline">(x, y, z)</span>. A command is defined as such: <span class="math inline">(z, x, x, y, ...)</span> move one on <span class="math inline">z</span> axis, move two on <span class="math inline">x</span> axis etc. How many commands can we construct to navigate from <span class="math inline">(0,0,0)</span> to <span class="math inline">(4, 4, 4)</span>? We need to move <span class="math inline">4</span> spaces on each axis so command will be of length <span class="math inline">3 \cdot 4 = 12</span> so amount of possible commands is <span class="math inline">12!</span>. However <span class="math inline">(x, y, z)</span> in our commands are not unique so a command like <span class="math inline">(z_1, z_2) \equiv (z_2, z_1)</span>. Therefore we need to divide by the permutations of the repetitions: <span class="math inline">\frac{12!}{4!4!4!}</span>.</p>
+<p>Consider an example: You are in a <span class="math inline">4 \times 4 \times 4</span> grid labeled <span class="math inline">(x, y, z)</span>. A command is defined as such: <span class="math inline">(z, x, x, y, \cdots)</span> move one on <span class="math inline">z</span> axis, move two on <span class="math inline">x</span> axis etc. How many commands can we construct to navigate from <span class="math inline">(0,0,0)</span> to <span class="math inline">(4, 4, 4)</span>? We need to move <span class="math inline">4</span> spaces on each axis so command will be of length <span class="math inline">3 \cdot 4 = 12</span> so amount of possible commands is <span class="math inline">12!</span>. However <span class="math inline">(x, y, z)</span> in our commands are not unique so a command like <span class="math inline">(z_1, z_2) \equiv (z_2, z_1)</span>. Therefore we need to divide by the permutations of the repetitions: <span class="math inline">\frac{12!}{4!4!4!}</span>.</p>
+<h4 id="derangements-subfactorial">derangements (subfactorial)</h4>
+<p>The number of permutations where no element is in the same place: <span class="math inline">!n = n!\sum^n_{j=0} \frac{(-1)^j}{j!}</span></p>
 <h3 id="combinations">combinations</h3>
 <h4 id="amount-of-injections">amount of injections</h4>
-<p>The number of injections from <span class="math inline">\{1,...,k\} \to \{1,...,n\}</span> is <span class="math inline">\frac{n!}{(n-k)!}</span></p>
+<p>The number of injections from <span class="math inline">\{1,\cdots,k\} \to \{1,\cdots,n\}</span> is <span class="math inline">\frac{n!}{(n-k)!}</span></p>
 <p>The amount of subsets of length <span class="math inline">k</span>: <span class="math inline">|p_k(X)| = \frac{n!}{k!(n-k)!} = \binom{n}{k}</span></p>
 <h4 id="inclusion-exclusion-principle">inclusion-exclusion principle</h4>
 <p><span class="math inline">|A \cup B| = |A| + |B| - |A \cap B|</span></p>
+<p><strong>generalized</strong>: <span class="math inline">|\bigcup^n_{i=1} A_i| = \sum^n_{i=1} (-1)^{i+1} S_i</span> where: <span class="math inline">S_k = \sum_{1 \le i_1 \lt i_2 \lt \cdots \lt i_k \le n} |A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}|</span></p>
+<h4 id="multisets-combinations-with-repetitions">multisets (combinations with repetitions )</h4>
+<p>How many solutions are there to the equation <span class="math inline">x_1 + x_2 + \cdots + x_n = k</span>. How many sets with repetitions but with disregarded order are there?</p>
+<p><span class="math inline">\big(\binom{n}{k}\big) = \binom{n+k-1}{k}</span></p>
 <h3 id="pigeon-hole-principle">pigeon hole principle</h3>
 <p>Let <span class="math inline">A</span>, <span class="math inline">B</span> be finite sets and let <span class="math inline">f : A \to B</span> be any function.</p>
 <p>If <span class="math inline">|A| &gt; |B|</span> then there are <span class="math inline">x, y \in A</span>, <span class="math inline">x \ne y</span> such that <span class="math inline">f(x) = f(y)</span>.</p>
 <p>(informally: If you put things into boxes and there are more things than boxes then at least one box will contain at least 2 things.)</p>
 <hr />
 <ol type="1">
-<li><span class="math inline">n! \equiv 1 \cdot 2 \cdot ... \cdot n</span></li>
+<li><span class="math inline">n! \equiv 1 \cdot 2 \cdot \ldots \cdot n</span></li>
 </ol>
 </body>
 </html>
