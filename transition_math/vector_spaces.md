@@ -21,8 +21,27 @@ Let $a_1, \cdots, a_n \in \mathbf{K}$ and $v_1, \cdots, v_n \in V$. The vector $
 
 ### span
 
-A span of $S \subseteq V$ is a set of all linear combinations of S. Let $S \subseteq V$ then $span(S) \subseteq V$ or $span(S) = \{a_1v_1 + \cdots + a_nv_n : a_i \in \mathbf{K}$ and $v_i \in S\}$.
+A span of $S \subseteq V$ is a set of all linear combinations of S. Let $S \subseteq V$ then $span(S) \subseteq V$ or $span(S) = \{a_1v_1 + \cdots + a_nv_n : a_i \in \mathbb{K}$ and $v_i \in S\}$.
 
 ### linear independence
 
-$\{a_1v_1 + \cdots + a_nv_n\} = \mathbf{0} \implies a_1 = \cdots = a_n = 0$
+$a_1v_1 + \cdots + a_nv_n = \mathbf{0} \implies a_1 = \cdots = a_n = 0$\
+otherwise it is called linearly dependent
+
+### basis
+
+We call $B \subseteq V$ a basis if:
+
+- $B$ is linearly independent
+- $span(B) = V$
+
+### dimension
+
+Size of a basis: $\dim(V) = |B|$. For example: $\dim(\mathbb{R}^3) = |\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}| = 3$
+
+Let $V$ be a vector space and $\dim(V) = n$. Finally, let $S \subseteq V$. Then:
+
+- if $span(S) = V$ then $|S| \ge n$
+- if $S$ is linearly independent and $|S| = n$ then $S$ is a basis
+- if $span(S) = V$ and $|S| = n$ then $S$ is a basis
+- if $|S| > n$ then $S$ is linearly dependent
