@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>matrices</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="matrices">matrices</h1>
+<p>A <span class="math inline">m \times n</span> matrix has <span class="math inline">m</span> rows and <span class="math inline">n</span> columns, therefore the size is <span class="math inline">m by n</span>. A matrix is a rectangular table of elements <span class="math inline">a_{i,j} \in \mathbb{K}</span> for <span class="math inline">i = 1, \cdots, m</span> and <span class="math inline">j = 1, \cdots, n</span>. Matrices like sets are denoted by a capital letter and elements as a lowercase letter. The set of matrices of size <span class="math inline">m \times n</span> over <span class="math inline">\mathbb{K}</span> is denoted by <span class="math inline">\mathbb{K}^n_m</span></p>
+<p><span class="math display">
+A =
+\begin{pmatrix}
+    a_{1,1} &amp; a_{1,2} &amp; \cdots &amp; a_{1,n}\\
+    a_{2,1} &amp; a_{2,2} &amp; \cdots &amp; a_{2,n}\\
+    \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots \\
+    a_{m,1} &amp; a_{m,2} &amp; \cdots &amp; a_{m,n}\\
+\end{pmatrix}
+</span></p>
+<p>You can scale and add matrices (only if the sizes are equal).</p>
+<h3 id="matrix-multiplication">matrix multiplication</h3>
+<p><span class="math inline">M(\phi) \cdot M(\psi) = M(\phi \circ \psi)</span> also <span class="math inline">M^n_m \times M^k_n \to M^k_m</span> <a href="http://matrixmultiplication.xyz/">visual</a><br />
+Let <span class="math inline">A</span> be a <span class="math inline">k \times m</span>-matrix and <span class="math inline">B</span> be a <span class="math inline">m \times n</span>-matrix. The product <span class="math inline">A \cdot B</span> of the matrices <span class="math inline">A</span>, <span class="math inline">B</span> is the <span class="math inline">k \times n</span>-matrix <span class="math inline">C = (c_{i,j})</span> whose entries are defined by <span class="math inline">c_{i,j} = a_{i,1}b_{1,j} + a_{i,2}b_{2,j} + \cdots + a_{i,m}b_{m,j}</span> for <span class="math inline">i = 1, \cdots, k</span> and <span class="math inline">j = 1, \cdots, n</span>.</p>
+<h4 id="identity-matrix">identity matrix</h4>
+<p>The identity for multiplication for <span class="math inline">M^n_n</span> is:</p>
+<p><span class="math display">
+I =
+\begin{pmatrix}
+    1 &amp; 0 &amp; \cdots &amp; 0\\
+    0 &amp; 1 &amp; \cdots &amp; 0\\
+    \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots \\
+    0 &amp; 0 &amp; \cdots &amp; 1\\
+\end{pmatrix}
+</span></p>
+<p><span class="math inline">A \cdot I = A</span></p>
+<h4 id="properties">properties</h4>
+<p><span class="math display">
+    (A \cdot B) \cdot C = A \cdot (B \cdot C )\\
+    A \cdot I_{m \times m} = I_{k \times k} \cdot A = A\\
+    (A + A_1 ) \cdot B = A \cdot B + A_1 \cdot B\\
+    A \cdot (B + B_1 ) = A \cdot B + A \cdot B_1
+</span></p>
+<h3 id="transposition">transposition</h3>
+<p>Flipping rows and columns <span class="math inline">(\forall i, j) A^T(i, j) = A(j, i)</span>. Transposition over addition and multiplication is defined as such: <span class="math inline">(A + B)^T = A^T + B^T</span> and <span class="math inline">(A \cdot B)^T = B^T \cdot A^T</span></p>
+</body>
+</html>
