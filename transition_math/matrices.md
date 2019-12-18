@@ -29,7 +29,7 @@ I =
 \begin{pmatrix}
 	1 & 0 & \cdots & 0\\
 	0 & 1 & \cdots & 0\\
-	\vdots  & \vdots  & \ddots & \vdots \\
+	\vdots  & \vdots  & \ddots & \vdots\\
 	0 & 0 & \cdots & 1\\
 \end{pmatrix}
 $$
@@ -38,12 +38,10 @@ $A \cdot I = A$
 
 #### properties
 
-$$
-	(A \cdot B) \cdot C = A \cdot (B \cdot C )\\
-	A \cdot I_{m \times m} = I_{k \times k} \cdot A = A\\
-	(A + A_1 ) \cdot B = A \cdot B + A_1 \cdot B\\
-	A \cdot (B + B_1 ) = A \cdot B + A \cdot B_1
-$$
+- $(A \cdot B) \cdot C = A \cdot (B \cdot C )$
+- $A \cdot I_{m \times m} = I_{k \times k} \cdot A = A$
+- $(A + A_1 ) \cdot B = A \cdot B + A_1 \cdot B$
+- $A \cdot (B + B_1 ) = A \cdot B + A \cdot B_1$
 
 ### transposition
 
