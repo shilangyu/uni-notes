@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>graphs</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/uni-notes/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="graphs">graphs</h1>
+<p>A graph is a pair <span class="math inline">G = (V, E)</span> where <span class="math inline">V</span> is a finite set called the set of vertices and <span class="math inline">E \subseteq p_2(V)</span>, <span class="math inline">E</span> is called the set of edges of <span class="math inline">G</span>.</p>
+<h3 id="trivial-and-complete">trivial and complete</h3>
+<h4 id="trivial">trivial</h4>
+<p>only one vertex <span class="math inline">|V| = 1</span>, <span class="math inline">E = \emptyset</span></p>
+<h4 id="complete">complete</h4>
+<p>all vertices are connected with each other <span class="math inline">K_n = (\{v_1, \cdots, v_n\}, p_2(\{v_1, \cdots, v_n\}))</span>. <span class="math inline">K_1</span> is therefore a trivial graph.</p>
+<p><span class="math inline">|p_2(\{v_1, \cdots, v_n\})| = \binom{n}{2} = \frac{n(n-1)}{2}</span></p>
+<h3 id="degree">degree</h3>
+<p>The degree of a vertex <span class="math inline">v</span> in <span class="math inline">G</span> is the number of edges containing <span class="math inline">v</span>. <span class="math inline">\deg_G(v) = |\{e \in E(a): v \in e\}|</span></p>
+<h3 id="handshaking">handshaking</h3>
+<p><span class="math inline">|E| = \frac{1}{2} \sum_{v \in V} \deg_G(v)</span></p>
+<h3 id="path">path</h3>
+<p>A path in a graph is a sequence of vertices <span class="math inline">(v_0, v_1, \cdots, v_k)</span> such that:</p>
+<ul>
+<li><span class="math inline">(\forall i = 0, \cdots, k-1)\{v_i, v_{i+1}\} \in E</span></li>
+<li><span class="math inline">(\forall 0 \le i, j \lt k) i \ne j \implies \{v_i, v_{i+1}\} \ne \{v_j, v_{j+1}\}</span></li>
+<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the path is called simple</li>
+</ul>
+<h3 id="cycle">cycle</h3>
+<p>A cycle in <span class="math inline">G</span> is a path <span class="math inline">(v_0, \cdots, v_k, v_0)</span> such that</p>
+<ul>
+<li><span class="math inline">k \ge 2</span></li>
+<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the cycle is called simple</li>
+</ul>
+<h3 id="connected">connected</h3>
+<p>A graph is said to be connected iff for every <span class="math inline">x, y \in V</span> there is a <span class="math inline">x-y</span> path in <span class="math inline">G</span>, i.e. a path <span class="math inline">(v_0, \cdots v_k)</span> such that <span class="math inline">v_0 = x</span>, <span class="math inline">v_k = y</span></p>
+<h3 id="partition">partition</h3>
+<p>Graph is connected iff for every partition <span class="math inline">\{V_1, V_2\}</span> of <span class="math inline">V</span> such that <span class="math inline">V_1 \ne \emptyset</span> and <span class="math inline">V_2 \ne \emptyset</span> there exists <span class="math inline">v_1 \in V_1</span> and <span class="math inline">v_2 \in V_2</span> such that there is a <span class="math inline">v_1 - v_2</span> path in <span class="math inline">G</span></p>
+</body>
+</html>
