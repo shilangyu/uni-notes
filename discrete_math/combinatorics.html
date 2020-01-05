@@ -33,7 +33,7 @@
 <h3 id="rule-of-multiplication">rule of multiplication</h3>
 <p>If <span class="math inline">A, B \subseteq \mathbb{X}</span> and <span class="math inline">|A|, |B| \in \mathbb{N}</span> then <span class="math inline">|A \times B| = |A| \cdot |B|</span></p>
 <h3 id="permutations">permutations</h3>
-<p>Rearrangement of elements in all of its possible states. The number of permutation of <span class="math inline">\{1, \cdots, n\}</span> is <span class="math inline">n!</span></p>
+<p>Rearrangement of elements in all of its possible states. The number of permutation of <span class="math inline">\{1, \cdots, n\}</span> is <span class="math inline">n!</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <h4 id="repetitions">repetitions</h4>
 <p>Consider an example: You are in a <span class="math inline">4 \times 4 \times 4</span> grid labeled <span class="math inline">(x, y, z)</span>. A command is defined as such: <span class="math inline">(z, x, x, y, \cdots)</span> move one on <span class="math inline">z</span> axis, move two on <span class="math inline">x</span> axis etc. How many commands can we construct to navigate from <span class="math inline">(0,0,0)</span> to <span class="math inline">(4, 4, 4)</span>? We need to move <span class="math inline">4</span> spaces on each axis so command will be of length <span class="math inline">3 \cdot 4 = 12</span> so amount of possible commands is <span class="math inline">12!</span>. However <span class="math inline">(x, y, z)</span> in our commands are not unique so a command like <span class="math inline">(z_1, z_2) \equiv (z_2, z_1)</span>. Therefore we need to divide by the permutations of the repetitions: <span class="math inline">\frac{12!}{4!4!4!}</span>.</p>
 <h4 id="derangements-subfactorial">derangements (subfactorial)</h4>
@@ -45,16 +45,26 @@
 <h4 id="inclusion-exclusion-principle">inclusion-exclusion principle</h4>
 <p><span class="math inline">|A \cup B| = |A| + |B| - |A \cap B|</span></p>
 <p><strong>generalized</strong>: <span class="math inline">|\bigcup^n_{i=1} A_i| = \sum^n_{i=1} (-1)^{i+1} S_i</span> where: <span class="math inline">S_k = \sum_{1 \le i_1 \lt i_2 \lt \cdots \lt i_k \le n} |A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}|</span></p>
-<h4 id="multisets-combinations-with-repetitions">multisets (combinations with repetitions )</h4>
-<p>How many solutions are there to the equation <span class="math inline">x_1 + x_2 + \cdots + x_n = k</span>. How many sets with repetitions but with disregarded order are there?</p>
+<p><strong>in human words</strong>: <span class="math inline">|\bigcup^n_{i=1} A_i|</span> = add individual lengths, subtract lengths of all 2 element combination unions, add lengths of all 3 element combination unions, etc.</p>
+<h4 id="combinations-with-repetitions">combinations with repetitions</h4>
+<p>How many multisets<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of length <span class="math inline">k</span> can we construct from a set of length <span class="math inline">n</span>?</p>
 <p><span class="math inline">\big(\binom{n}{k}\big) = \binom{n+k-1}{k}</span></p>
+<h4 id="stars-and-bars">stars and bars</h4>
+<p>How many solutions are there to the equation <span class="math inline">x_1 + x_2 + \cdots + x_k = n</span> for <span class="math inline">x \in \mathbf{N}</span>.</p>
+<p>Example solution for <span class="math inline">n = 6</span> and <span class="math inline">k = 4</span>:</p>
+<p>٭٭|٭||٭٭٭</p>
+<p><span class="math inline">x_1 = 3</span>, <span class="math inline">x_2 = 0</span>, <span class="math inline">x_3 = 1</span>, <span class="math inline">x_4 = 2</span></p>
+<p><span class="math inline">n + 1</span> options to place <span class="math inline">k - 1</span> bars. Because <span class="math inline">x</span> can be <span class="math inline">0</span>, we can multichoose: <span class="math inline">\big(\binom{n + 1}{k - 1}\big) = \binom{n+k-1}{k-1}</span></p>
 <h3 id="pigeon-hole-principle">pigeon hole principle</h3>
 <p>Let <span class="math inline">A</span>, <span class="math inline">B</span> be finite sets and let <span class="math inline">f : A \to B</span> be any function.</p>
 <p>If <span class="math inline">|A| &gt; |B|</span> then there are <span class="math inline">x, y \in A</span>, <span class="math inline">x \ne y</span> such that <span class="math inline">f(x) = f(y)</span>.</p>
 <p>(informally: If you put things into boxes and there are more things than boxes then at least one box will contain at least 2 things.)</p>
+<section class="footnotes" role="doc-endnotes">
 <hr />
-<ol type="1">
-<li><span class="math inline">n! \equiv 1 \cdot 2 \cdot \ldots \cdot n</span></li>
+<ol>
+<li id="fn1" role="doc-endnote"><p><span class="math inline">n! \equiv 1 \cdot 2 \cdot \ldots \cdot n</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Multiset <span class="math inline">\equiv</span> A set where equal elements can appear more than once. Though the order is still disregarded. Example: <span class="math inline">\{1, 1, 2\}</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
+</section>
 </body>
 </html>
