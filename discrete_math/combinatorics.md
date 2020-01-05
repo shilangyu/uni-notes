@@ -14,7 +14,7 @@ If $A, B \subseteq \mathbb{X}$ and $|A|, |B| \in \mathbb{N}$ then $|A \times B| 
 
 ### permutations
 
-Rearrangement of elements in all of its possible states. The number of permutation of $\{1, \cdots, n\}$ is $n!$
+Rearrangement of elements in all of its possible states. The number of permutation of $\{1, \cdots, n\}$ is $n!$[^1]
 
 #### repetitions
 
@@ -39,11 +39,25 @@ $|A \cup B| = |A| + |B| - |A \cap B|$
 **generalized**: $|\bigcup^n_{i=1} A_i| = \sum^n_{i=1} (-1)^{i+1} S_i$ where:
 $S_k = \sum_{1 \le i_1 \lt i_2 \lt \cdots \lt i_k \le n} |A_{i_1} \cap A_{i_2} \cap \cdots \cap A_{i_k}|$
 
-#### multisets (combinations with repetitions )
+**in human words**: $|\bigcup^n_{i=1} A_i|$ = add individual lengths, subtract lengths of all 2 element combination unions, add lengths of all 3 element combination unions, etc.
 
-How many solutions are there to the equation $x_1 + x_2 + \cdots + x_n = k$. How many sets with repetitions but with disregarded order are there?
+#### combinations with repetitions
+
+How many multisets[^2] of length $k$ can we construct from a set of length $n$?
 
 $\big(\binom{n}{k}\big) = \binom{n+k-1}{k}$
+
+#### stars and bars
+
+How many solutions are there to the equation $x_1 + x_2 + \cdots + x_k = n$ for $x \in \mathbf{N}$.
+
+Example solution for $n = 6$ and $k = 4$:
+
+٭٭|٭||٭٭٭
+
+$x_1 = 3$, $x_2 = 0$, $x_3 = 1$, $x_4 = 2$
+
+$n + 1$ options to place $k - 1$ bars. Because $x$ can be $0$, we can multichoose: $\big(\binom{n + 1}{k - 1}\big) = \binom{n+k-1}{k-1}$
 
 ### pigeon hole principle
 
@@ -54,6 +68,5 @@ If $|A| > |B|$ then there are $x, y \in A$, $x \ne y$ such that $f(x) = f(y)$.
 (informally: If you put things into boxes and there are more things than boxes then at least one box
 will contain at least 2 things.)
 
----
-
-1. $n! \equiv 1 \cdot 2 \cdot \ldots \cdot n$
+[^1]: $n! \equiv 1 \cdot 2 \cdot \ldots \cdot n$
+[^2]: Multiset $\equiv$ A set where equal elements can appear more than once. Though the order is still disregarded. Example: $\{1, 1, 2\}$
