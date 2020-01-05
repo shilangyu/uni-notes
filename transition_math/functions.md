@@ -14,7 +14,7 @@ $(\forall y \in Y)(\exists x \in X)(f(x) = y)$. In other words: All $y \in Y$ ha
 
 ### inverse
 
-The inverse of a function is denoted by $f^{-1}: Y \to X$. The function has to be surjective and injective to be invertible: $f^{-1}(b) = a$ if $f(a) = b$. Its also true that for $(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x$
+The inverse of a function is denoted by $f^{-1}: Y \to X$. The function has to be surjective and injective to be invertible: $f^{-1}(b) = a$ if $f(a) = b$. Its also true that for $(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x$[^1]
 
 ### image
 
@@ -79,6 +79,4 @@ A local maximum or minimum is a maximal or minimal value of a function in a give
 
 A global maximum or minimum is a maximal or minimal value of a function in $Y$
 
----
-
-1. Composition operator: $(g \circ f)(a) \equiv g(f(a))$
+[^1]: Composition operator: $(g \circ f)(a) \equiv g(f(a))$

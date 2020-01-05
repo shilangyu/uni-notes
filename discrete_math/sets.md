@@ -30,13 +30,11 @@ Assumption: $x \in X$
 
 - union: $A \cup B = x \in A \lor x \in B$
 - intersection: $A \cap B = x \in A \land x \in B$
-- difference: $A - B = x \in A \land x \notin B$
+- difference: $A - B = x \in A \land x \notin B$[^1]
 - symmetric difference: $A \div B = (A - B) \cup (B - A)$
 - complement: $A' = x \notin A$
 - cartesian product: $\{1, 2\} \times \{3, 4, 5\} = \{(1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)\}$
 - union of sets: $\bigcup\limits_{i=1}^{n} S_i$
 - intersection of sets: $\bigcap\limits_{i=1}^{n} S_i$
 
----
-
-1. $x \notin A \equiv \neg(x \in A)$
+[^1]: $x \notin A \equiv \neg(x \in A)$

@@ -14,7 +14,7 @@ $(2^{\{a, b, c\}}, \subseteq)$:
 
 $m \in X$ is said to be a ... element:
 
-- largest: element on top of a Hasse diagram $(\forall a \in X)(a \preccurlyeq m)$
+- largest: element on top of a Hasse diagram $(\forall a \in X)(a \preccurlyeq m)$[^1]
 - maximal: dangling ends of a Hasse diagram $(\forall a \in X)(m \preccurlyeq a \implies m = a)$
 - smallest: element on bottom of a Hasse diagram $(\forall a \in X)(m \preccurlyeq a)$
 - minimal: dangling starts of a Hasse diagram $(\forall a \in X)(a \preccurlyeq m \implies m = a)$
@@ -39,6 +39,4 @@ $K \subseteq X$ is called an antichain in $(X, \sim)$ iff $(\forall p,q \in K)(p
 
 $(X, \sim)$, $\sim$ is called a well order iff $\sim$ is a total order on $X$ and every non-empty subset $A$ of $X$ has the smallest element
 
----
-
-1. $x \preccurlyeq y$: some kind of order where $x$ comes before $y$. For example: $A \preccurlyeq B \iff |A| \leq |B|$
+[^1]: $x \preccurlyeq y$: some kind of order where $x$ comes before $y$. For example: $A \preccurlyeq B \iff |A| \leq |B|$

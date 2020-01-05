@@ -11,7 +11,7 @@
 
 #### Logical connectives
 
-- IF...THEN... (implication): $p \implies q \equiv \neg p \lor q$
+- IF...THEN... (implication): $p \implies q \equiv \neg p \lor q$[^2]
 - AND (conjunction): $p \land q$
 - OR (disjunction): $p \lor q$
 - XOR (exclusive disjunction): $p \oplus q \equiv (p \lor q) \land \neg (p \land q)$
@@ -45,7 +45,7 @@ $\neg(\forall x \in \mathbb{R}\ \phi(x)) \equiv (\exists x \in \mathbb{R}\ \neg\
 
 #### Tautology
 
-$\phi(p_1, \cdots,p_n)$ is called a tautology iff $\phi(p_1, \cdots,p_n) \equiv 1$
+$\phi(p_1, \cdots,p_n)$ is called a tautology iff[^1] $\phi(p_1, \cdots,p_n) \equiv 1$
 
 #### quantifiers
 
@@ -58,7 +58,5 @@ Assumption: $x \in \{ 1, 2, \cdots, 10 \}$
 
 **Order matters**: $(\forall x)(\exists y)\ x > y \equiv 1$ while $(\exists x)(\forall y)\ x > y \equiv 0$
 
----
-
-1. iff $\equiv$ if and only if $\equiv \iff$
-2. $\neg \equiv\ \sim$
+[^1]: iff $\equiv$ if and only if $\equiv \iff$
+[^2]: $\neg \equiv\ \sim$
