@@ -23,3 +23,4 @@
 | prise                  | use force in order to move, move apart                                             |
 | jubilant               | feeling or expressing great happiness and triumph                                  |
 | furore                 | an outbreak of public anger or excitement                                          |
+| indigenous             | originating or occurring naturally in a particular place; native                   |
