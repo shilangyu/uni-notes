@@ -39,8 +39,31 @@ A cycle in $G$ is a path $(v_0, \cdots, v_k, v_0)$ such that
 
 ### connected
 
-A graph is said to be connected iff for every $x, y \in V$ there is a $x-y$ path in $G$, i.e. a path $(v_0, \cdots v_k)$ such that $v_0 = x$, $v_k = y$
+A graph is said to be connected iff for every $x, y \in V$ there is a $x-y$ path in $G$, i.e. a path $(v_0, \cdots v_k)$ such that $v_0 = x$, $v_k = y$. Otherwise it is called disconnected.
 
 ### partition
 
 Graph is connected iff for every partition $\{V_1, V_2\}$ of $V$ such that $V_1 \ne \emptyset$ and $V_2 \ne \emptyset$ there exists $v_1 \in V_1$ and $v_2 \in V_2$ such that there is a $v_1 - v_2$ path in $G$
+
+### Eulerian
+
+$G$ is called Eulerian iff:
+
+- $G$ is connected, nontrivial
+- $(\forall v \in V(G))(2 | \deg(v))$
+
+### subgraphs
+
+$G = (V, E)$, $H = (W, F)$ is called a subgraph of $G$ if $W \subseteq V$ and $F \subseteq E$. Denoted as $H \preccurlyeq G$, it is a [poset](./poset.html).
+
+#### spanning
+
+If $W = V$ then $H$ is called a spanning subgraph of $G$.
+
+#### induced
+
+If $F = E \cap p_2(W)$ then $H$ is called an induced subgraph of $G$.
+
+### component
+
+A component of $G$ is any maximal connected subgraph of $G$.

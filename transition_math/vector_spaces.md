@@ -37,7 +37,7 @@ We call $B \subseteq V$ a basis if:
 
 ### dimension
 
-Size of a basis: $\dim(V) = |B|$. For example: $\dim(\mathbb{R}^3) = |\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}| = 3$
+Maximal amount of vectors that are together linearly independent. Size of a basis: $\dim(V) = |B|$. For example: $\dim(\mathbb{R}^3) = |\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}| = 3$
 
 Let $V$ be a vector space and $\dim(V) = n$. Finally, let $S \subseteq V$. Then:
 
