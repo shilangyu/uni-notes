@@ -51,8 +51,22 @@
 <li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the cycle is called simple</li>
 </ul>
 <h3 id="connected">connected</h3>
-<p>A graph is said to be connected iff for every <span class="math inline">x, y \in V</span> there is a <span class="math inline">x-y</span> path in <span class="math inline">G</span>, i.e. a path <span class="math inline">(v_0, \cdots v_k)</span> such that <span class="math inline">v_0 = x</span>, <span class="math inline">v_k = y</span></p>
+<p>A graph is said to be connected iff for every <span class="math inline">x, y \in V</span> there is a <span class="math inline">x-y</span> path in <span class="math inline">G</span>, i.e. a path <span class="math inline">(v_0, \cdots v_k)</span> such that <span class="math inline">v_0 = x</span>, <span class="math inline">v_k = y</span>. Otherwise it is called disconnected.</p>
 <h3 id="partition">partition</h3>
 <p>Graph is connected iff for every partition <span class="math inline">\{V_1, V_2\}</span> of <span class="math inline">V</span> such that <span class="math inline">V_1 \ne \emptyset</span> and <span class="math inline">V_2 \ne \emptyset</span> there exists <span class="math inline">v_1 \in V_1</span> and <span class="math inline">v_2 \in V_2</span> such that there is a <span class="math inline">v_1 - v_2</span> path in <span class="math inline">G</span></p>
+<h3 id="eulerian">Eulerian</h3>
+<p><span class="math inline">G</span> is called Eulerian iff:</p>
+<ul>
+<li><span class="math inline">G</span> is connected, nontrivial</li>
+<li><span class="math inline">(\forall v \in V(G))(2 | \deg(v))</span></li>
+</ul>
+<h3 id="subgraphs">subgraphs</h3>
+<p><span class="math inline">G = (V, E)</span>, <span class="math inline">H = (W, F)</span> is called a subgraph of <span class="math inline">G</span> if <span class="math inline">W \subseteq V</span> and <span class="math inline">F \subseteq E</span>. Denoted as <span class="math inline">H \preccurlyeq G</span>, it is a <a href="./poset.html">poset</a>.</p>
+<h4 id="spanning">spanning</h4>
+<p>If <span class="math inline">W = V</span> then <span class="math inline">H</span> is called a spanning subgraph of <span class="math inline">G</span>.</p>
+<h4 id="induced">induced</h4>
+<p>If <span class="math inline">F = E \cap p_2(W)</span> then <span class="math inline">H</span> is called an induced subgraph of <span class="math inline">G</span>.</p>
+<h3 id="component">component</h3>
+<p>A component of <span class="math inline">G</span> is any maximal connected subgraph of <span class="math inline">G</span>.</p>
 </body>
 </html>

@@ -61,5 +61,44 @@ I =
 </ul>
 <h3 id="transposition">transposition</h3>
 <p>Flipping rows and columns <span class="math inline">(\forall i, j) A^T(i, j) = A(j, i)</span>. Transposition over addition and multiplication is defined as such: <span class="math inline">(A + B)^T = A^T + B^T</span> and <span class="math inline">(A \cdot B)^T = B^T \cdot A^T</span></p>
+<h3 id="elementary-operations">elementary operations</h3>
+<p>All of them are invertible</p>
+<h4 id="rowcolumn-switching">row/column switching</h4>
+<p><span class="math inline">i</span>-th row/column and <span class="math inline">j</span>-th row/column are interchanged: <span class="math inline">(R_i \leftrightarrow R_j)</span>/<span class="math inline">(C_i \leftrightarrow C_j)</span></p>
+<h4 id="rowcolumn-scaling">row/column scaling</h4>
+<p>Each element in <span class="math inline">i</span>-th row/column is multiplied by a nonzero scalar <span class="math inline">k \in \mathbf{K}</span> <span class="math inline">(kR_i \rightarrow R_i)</span>/<span class="math inline">(kC_i \rightarrow C_i)</span></p>
+<h4 id="rowcolumn-addition">row/column addition</h4>
+<p><span class="math inline">i</span>-th row/column is replaced by as sum of <span class="math inline">i</span>-th row/column and a multiple of <span class="math inline">j</span>-th row/column <span class="math inline">(R_i + k \cdot R_j \rightarrow R_i)</span>/<span class="math inline">(C_i + k \cdot C_j \rightarrow C_i)</span></p>
+<h3 id="row-equivalence">row equivalence</h3>
+<p>We say that matrices <span class="math inline">A</span> and <span class="math inline">B</span> of the same sizes are row equivalent if one can be obtained from the other using elementary row operations. <span class="math inline">A \sim B</span></p>
+<h3 id="row-echolon-form">row echolon form</h3>
+<p>We say that a matrix <span class="math inline">A</span> is ain <em>row echolon form</em> if</p>
+<ul>
+<li>all zero rows are at the bottom</li>
+<li>the first nonzero number in the <span class="math inline">i</span>-th row is to the right from the first nonzero coefficient in the row above it</li>
+</ul>
+<p>Example:</p>
+<p><span class="math display">
+A =
+\begin{pmatrix}
+    2 &amp; 1 &amp; 0  &amp; 3 \\
+    0 &amp; 6 &amp; 12 &amp; 12\\
+    0 &amp; 0 &amp; 2  &amp; 1 \\
+    0 &amp; 0 &amp; 0  &amp; 0 \\
+\end{pmatrix}
+</span></p>
+<p>The nonzero rows of a row-echelon matrix are linearly independent.</p>
+<h3 id="row-canonical">row canonical</h3>
+<p>It is a row echolon plus:</p>
+<ul>
+<li>the first nonzero entry in every nonzero row is <span class="math inline">1</span></li>
+<li>the first nonzero entry in every nonzero row is the only nonzero entry in its column</li>
+</ul>
+<h3 id="rank">rank</h3>
+<p>The rank of a matrix <span class="math inline">A</span> is the dimension of the space spanned by rows of <span class="math inline">A</span>. The equivalent for columns is called the <strong>column rank</strong>.</p>
+<p>For every <span class="math inline">A</span> column_rank(<span class="math inline">A</span>) = rank(<span class="math inline">A</span>)</p>
+<p><span class="math inline">A \sim B</span>, <span class="math inline">B</span> is row echolon then: rank(<span class="math inline">A</span>) = the number of nonzero rows in <span class="math inline">B</span></p>
+<h3 id="rouchécapelli-law">Rouché–Capelli law</h3>
+<p><span class="math inline">AX = B</span> has solution iff rank(<span class="math inline">A</span>) = rank(<span class="math inline">[A, B]</span>)</p>
 </body>
 </html>
