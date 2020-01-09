@@ -46,3 +46,63 @@ $A \cdot I = A$
 ### transposition
 
 Flipping rows and columns $(\forall i, j) A^T(i, j) = A(j, i)$. Transposition over addition and multiplication is defined as such: $(A + B)^T = A^T + B^T$ and $(A \cdot B)^T = B^T \cdot A^T$
+
+### elementary operations
+
+All of them are invertible
+
+#### row/column switching
+
+$i$-th row/column and $j$-th row/column are interchanged: $(R_i \leftrightarrow R_j)$/$(C_i \leftrightarrow C_j)$
+
+#### row/column scaling
+
+Each element in $i$-th row/column is multiplied by a nonzero scalar $k \in \mathbf{K}$ $(kR_i \rightarrow R_i)$/$(kC_i \rightarrow C_i)$
+
+#### row/column addition
+
+$i$-th row/column is replaced by as sum of $i$-th row/column and a multiple of $j$-th row/column $(R_i + k \cdot R_j \rightarrow R_i)$/$(C_i + k \cdot C_j \rightarrow C_i)$
+
+### row equivalence
+
+We say that matrices $A$ and $B$ of the same sizes are row equivalent if one can be obtained from the other using elementary row operations. $A \sim B$
+
+### row echolon form
+
+We say that a matrix $A$ is ain _row echolon form_ if
+
+- all zero rows are at the bottom
+- the first nonzero number in the $i$-th row is to the right from the first nonzero coefficient in the row above it
+
+Example:
+
+$$
+A =
+\begin{pmatrix}
+	2 & 1 & 0  & 3 \\
+	0 & 6 & 12 & 12\\
+	0 & 0 & 2  & 1 \\
+	0 & 0 & 0  & 0 \\
+\end{pmatrix}
+$$
+
+The nonzero rows of a row-echelon matrix are linearly independent.
+
+### row canonical
+
+It is a row echolon plus:
+
+- the first nonzero entry in every nonzero row is $1$
+- the first nonzero entry in every nonzero row is the only nonzero entry in its column
+
+### rank
+
+The rank of a matrix $A$ is the dimension of the space spanned by rows of $A$. The equivalent for columns is called the **column rank**.
+
+For every $A$ column_rank($A$) = rank($A$)
+
+$A \sim B$, $B$ is row echolon then: rank($A$) = the number of nonzero rows in $B$
+
+### Rouché–Capelli law
+
+$AX = B$ has solution iff rank($A$) = rank($[A, B]$)
