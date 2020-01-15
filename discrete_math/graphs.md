@@ -67,3 +67,63 @@ If $F = E \cap p_2(W)$ then $H$ is called an induced subgraph of $G$.
 ### component
 
 A component of $G$ is any maximal connected subgraph of $G$.
+
+If $G$ is a disconnected graph, $\bar{G}$ is connected.
+
+### complement
+
+A complement of $G = (V, E)$ (denoted by $\bar{G}$) is $(V, \{u, v \in V : uv \notin E\})$. In other words the edges are flipped: If 2 vertices were adjacent in $G$, they are not adjacent in $\bar{G}$ and the other way around.
+
+### isomorphic
+
+### self-complementary
+
+If $\bar{G}$ is isomorphic to $G$ then the graph is self-complementary
+
+### min/max degree
+
+$\delta(G) = \min(\{\deg(v) : v \in V\})$
+
+$\Delta(G) = \max(\{\deg(v) : v \in V\})$
+
+If $\delta(G) \ge 2$ then $G$ has a cycle
+
+### k-regular
+
+$G$ is $k$-regular iff $(\forall v \in V)(\deg(v) = k)$
+
+### trees
+
+$G$ is called a tree iff:
+
+- $G$ is connected
+- $G$ has no cycles
+
+Every connected graph has a [spanning](#spanning) tree
+
+The following conditions are equivalent:
+
+1. $G$ is a tree
+2. $(\forall u, v \in V)$ $!\exists$[^1] $u-v$ path in $G$ and the path is simple
+3. $G$ is connected and $|V| = |E| + 1$
+4. $G$ has no cycles and $|V| = |E| + 1$
+5. $G$ has no cycles and $(\forall u, v \in V)(\{u, v\} \notin E \implies G^+ = (V, E \cup \{\{u, v\}\})$ $!\exists$ cycle
+
+### weighted/network graphs
+
+For a connected graph $G = (V, E)$
+
+$N = ((V, E), w) w: E \to \mathbf{R}^+$
+
+Find the cheapest spanning tree in $N$. A greedy naive way:
+
+1. take a cheapest edge
+2. take a new cheapest edge connected to current edges
+3. did this edge create a cycle?
+   - yes: go back to step 2 and choose the next cheapest one
+   - no: continue
+4. do our edges form a connected graph?
+   - yes: you are done
+   - no: go to step 2
+
+[^1]: $!\exists$: there exists exactly one
