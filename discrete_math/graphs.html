@@ -68,5 +68,56 @@
 <p>If <span class="math inline">F = E \cap p_2(W)</span> then <span class="math inline">H</span> is called an induced subgraph of <span class="math inline">G</span>.</p>
 <h3 id="component">component</h3>
 <p>A component of <span class="math inline">G</span> is any maximal connected subgraph of <span class="math inline">G</span>.</p>
+<p>If <span class="math inline">G</span> is a disconnected graph, <span class="math inline">\bar{G}</span> is connected.</p>
+<h3 id="complement">complement</h3>
+<p>A complement of <span class="math inline">G = (V, E)</span> (denoted by <span class="math inline">\bar{G}</span>) is <span class="math inline">(V, \{u, v \in V : uv \notin E\})</span>. In other words the edges are flipped: If 2 vertices were adjacent in <span class="math inline">G</span>, they are not adjacent in <span class="math inline">\bar{G}</span> and the other way around.</p>
+<h3 id="isomorphic">isomorphic</h3>
+<h3 id="self-complementary">self-complementary</h3>
+<p>If <span class="math inline">\bar{G}</span> is isomorphic to <span class="math inline">G</span> then the graph is self-complementary</p>
+<h3 id="minmax-degree">min/max degree</h3>
+<p><span class="math inline">\delta(G) = \min(\{\deg(v) : v \in V\})</span></p>
+<p><span class="math inline">\Delta(G) = \max(\{\deg(v) : v \in V\})</span></p>
+<p>If <span class="math inline">\delta(G) \ge 2</span> then <span class="math inline">G</span> has a cycle</p>
+<h3 id="k-regular">k-regular</h3>
+<p><span class="math inline">G</span> is <span class="math inline">k</span>-regular iff <span class="math inline">(\forall v \in V)(\deg(v) = k)</span></p>
+<h3 id="trees">trees</h3>
+<p><span class="math inline">G</span> is called a tree iff:</p>
+<ul>
+<li><span class="math inline">G</span> is connected</li>
+<li><span class="math inline">G</span> has no cycles</li>
+</ul>
+<p>Every connected graph has a <a href="#spanning">spanning</a> tree</p>
+<p>The following conditions are equivalent:</p>
+<ol type="1">
+<li><span class="math inline">G</span> is a tree</li>
+<li><span class="math inline">(\forall u, v \in V)</span> <span class="math inline">!\exists</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">u-v</span> path in <span class="math inline">G</span> and the path is simple</li>
+<li><span class="math inline">G</span> is connected and <span class="math inline">|V| = |E| + 1</span></li>
+<li><span class="math inline">G</span> has no cycles and <span class="math inline">|V| = |E| + 1</span></li>
+<li><span class="math inline">G</span> has no cycles and <span class="math inline">(\forall u, v \in V)(\{u, v\} \notin E \implies G^+ = (V, E \cup \{\{u, v\}\})</span> <span class="math inline">!\exists</span> cycle</li>
+</ol>
+<h3 id="weightednetwork-graphs">weighted/network graphs</h3>
+<p>For a connected graph <span class="math inline">G = (V, E)</span></p>
+<p><span class="math inline">N = ((V, E), w) w: E \to \mathbf{R}^+</span></p>
+<p>Find the cheapest spanning tree in <span class="math inline">N</span>. A greedy naive way:</p>
+<ol type="1">
+<li>take a cheapest edge</li>
+<li>take a new cheapest edge connected to current edges</li>
+<li>did this edge create a cycle?
+<ul>
+<li>yes: go back to step 2 and choose the next cheapest one</li>
+<li>no: continue</li>
+</ul></li>
+<li>do our edges form a connected graph?
+<ul>
+<li>yes: you are done</li>
+<li>no: go to step 2</li>
+</ul></li>
+</ol>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><span class="math inline">!\exists</span>: there exists exactly one<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body>
 </html>
