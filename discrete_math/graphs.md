@@ -76,6 +76,8 @@ A complement of $G = (V, E)$ (denoted by $\bar{G}$) is $(V, \{u, v \in V : uv \n
 
 ### isomorphic
 
+_graphs that have the same structure_. Hard to example mathematically. Please refer to [wikipedia](https://en.wikipedia.org/wiki/Graph_isomorphism).
+
 ### self-complementary
 
 If $\bar{G}$ is isomorphic to $G$ then the graph is self-complementary
