@@ -99,7 +99,7 @@ A =
 <p>For every <span class="math inline">A</span> column_rank(<span class="math inline">A</span>) = rank(<span class="math inline">A</span>)</p>
 <p><span class="math inline">A \sim B</span>, <span class="math inline">B</span> is row echolon then: rank(<span class="math inline">A</span>) = the number of nonzero rows in <span class="math inline">B</span></p>
 <h3 id="rouchécapelli-law">Rouché–Capelli law</h3>
-<p><span class="math inline">AX = B</span> has solution iff <span class="math inline">rank(A) = rank([A, B])</span></p>
+<p><span class="math inline">AX = B</span> has solution iff <span class="math inline">rank(A) = rank([A|B])</span></p>
 <h3 id="determinant">determinant</h3>
 <p>Works only for square matrices</p>
 <p><span class="math display">
@@ -132,5 +132,13 @@ A =
 <h3 id="inversion">inversion</h3>
 <p><span class="math inline">AX = I</span>, then <span class="math inline">M = A^{-1}</span></p>
 <p>Passing through <span class="math inline">[A|I]</span> to <span class="math inline">[I|B]</span> with elementary operations will yield a <span class="math inline">B = A^{-1}</span></p>
+<h3 id="eigenvalue-and-eigenvector">eigenvalue and eigenvector</h3>
+<p>For <span class="math inline">A_{n \times n}</span> and <span class="math inline">\lambda</span>, <span class="math inline">\lambda</span> is called eigenvalue of <span class="math inline">A</span> if either holds:</p>
+<ul>
+<li>there is a non-zero vector <span class="math inline">v</span> such that <span class="math inline">Av = \lambda v</span></li>
+<li><span class="math inline">\det(A - \lambda I) = 0</span> same as <span class="math inline">(A - \lambda I)v = \mathbf{0}</span></li>
+</ul>
+<p><span class="math inline">v</span> is an eigenvector. There are at most <span class="math inline">n</span> different eigenvalue for a given matrix.</p>
+<p>An eigenvalue of <span class="math inline">A</span> is also an eigenvalue of <span class="math inline">A^T</span></p>
 </body>
 </html>
