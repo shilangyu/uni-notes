@@ -105,7 +105,7 @@ $A \sim B$, $B$ is row echolon then: rank($A$) = the number of nonzero rows in $
 
 ### Rouché–Capelli law
 
-$AX = B$ has solution iff $rank(A) = rank([A, B])$
+$AX = B$ has solution iff $rank(A) = rank([A|B])$
 
 ### determinant
 
@@ -153,3 +153,14 @@ Let $A_{|i}$ denote a matrix obtained from $A$ by replacing its $i$-th column wi
 $AX = I$, then $M = A^{-1}$
 
 Passing through $[A|I]$ to $[I|B]$ with elementary operations will yield a $B = A^{-1}$
+
+### eigenvalue and eigenvector
+
+For $A_{n \times n}$ and $\lambda$, $\lambda$ is called eigenvalue of $A$ if either holds:
+
+- there is a non-zero vector $v$ such that $Av = \lambda v$
+- $\det(A - \lambda I) = 0$ same as $(A - \lambda I)v = \mathbf{0}$
+
+$v$ is an eigenvector. There are at most $n$ different eigenvalue for a given matrix.
+
+An eigenvalue of $A$ is also an eigenvalue of $A^T$
