@@ -114,6 +114,22 @@
 <li>no: go to step 2</li>
 </ul></li>
 </ol>
+<h3 id="connectivity">connectivity</h3>
+<p><span class="math inline">\kappa(G) = min\{k :</span> there exists a k-element set <span class="math inline">S \subseteq V</span> such that <span class="math inline">G - S</span> is disconnected or trivial <span class="math inline">\}</span></p>
+<p>For example: A tree has connectivity of <span class="math inline">1</span>, a complete graph <span class="math inline">K_n</span> has connectivity of <span class="math inline">n-1</span></p>
+<p>We call a graph a <strong>k-connected</strong> one when <span class="math inline">\kappa(G) \ge k</span></p>
+<h4 id="connected-1">2-connected</h4>
+<p><span class="math inline">G</span> is 2-connected iff for every <span class="math inline">x, y \in V(G)</span> there exists a simple cycle <span class="math inline">C</span> in <span class="math inline">G</span> such that <span class="math inline">x, y \in V(C)</span></p>
+<h3 id="hamiltonian">Hamiltonian</h3>
+<h4 id="cycle-1">cycle</h4>
+<p>A Hamiltonian cycle in <span class="math inline">G</span> is a spanning, simple cycle in <span class="math inline">G</span></p>
+<h4 id="graph">graph</h4>
+<p><span class="math inline">G</span> is a Hamiltonian graph iff <span class="math inline">G</span> has a Hamiltonian cycle.</p>
+<p>If <span class="math inline">G</span> is Hamiltonian then:</p>
+<ul>
+<li><span class="math inline">G</span> is 2-connected</li>
+<li><span class="math inline">(\forall S \subseteq V(G))(G-S</span> has at most <span class="math inline">|S|</span> components<span class="math inline">)</span></li>
+</ul>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
