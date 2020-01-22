@@ -128,4 +128,31 @@ Find the cheapest spanning tree in $N$. A greedy naive way:
    - yes: you are done
    - no: go to step 2
 
+### connectivity
+
+$\kappa(G) = min\{k :$ there exists a k-element set $S \subseteq V$ such that $G - S$ is disconnected or trivial $\}$
+
+For example: A tree has connectivity of $1$, a complete graph $K_n$ has connectivity of $n-1$
+
+We call a graph a **k-connected** one when $\kappa(G) \ge k$
+
+#### 2-connected
+
+$G$ is 2-connected iff for every $x, y \in V(G)$ there exists a simple cycle $C$ in $G$ such that $x, y \in V(C)$
+
+### Hamiltonian
+
+#### cycle
+
+A Hamiltonian cycle in $G$ is a spanning, simple cycle in $G$
+
+#### graph
+
+$G$ is a Hamiltonian graph iff $G$ has a Hamiltonian cycle.
+
+If $G$ is Hamiltonian then:
+
+- $G$ is 2-connected
+- $(\forall S \subseteq V(G))(G-S$ has at most $|S|$ components$)$
+
 [^1]: $!\exists$: there exists exactly one
