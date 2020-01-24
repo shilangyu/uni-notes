@@ -120,7 +120,7 @@ A =
 \end{pmatrix}
 $$
 
-$\det(A) = a_{1,1} \cdot a_{2,2} \cdot a_{3,3} + a_{1,2} \cdot a_{2,3} \cdot a_{3,1} + a_{1,3} \cdot a_{2,1} \cdot a_{3,2} − a_{1,3} \cdot a_{2,2}\cdot a_{3,1} − a_{1,2} \cdot a_{2,1} \cdot a_{3,3} − a_{1,1} \cdot a_{2,3} \cdot a_{3,2}$
+$\det(A) = a_{1,1} \cdot a_{2,2} \cdot a_{3,3} + a_{1,2} \cdot a_{2,3} \cdot a_{3,1} + a_{1,3} \cdot a_{2,1} \cdot a_{3,2} - a_{1,3} \cdot a_{2,2} \cdot a_{3,1} - a_{1,2} \cdot a_{2,1} \cdot a_{3,3} - a_{1,1} \cdot a_{2,3} \cdot a_{3,2}$
 
 #### Laplace expansion
 
@@ -133,7 +133,7 @@ $\det(A) = \sum_{i=1}^n (-1) ^{i+j} \cdot \det(A_{ij})$
 - $\det(A) = \det(A^T)$
 - $\det(A) = 0$ if $A$ has a zero row/column or two identical rows\columns
 - $\det(A) = 0$ iff $rank(A) < n$
-- $\det(A) = −\det(B)$ if $B$ is obtained from $A$ by single row switching $R_i \leftrightarrow R_j$
+- $\det(A) = -\det(B)$ if $B$ is obtained from $A$ by single row switching $R_i \leftrightarrow R_j$
 - $\det(A) = \det(B)$ if $B$ is obtained from $A$ by single row addition $R_i + k \cdot R_j \rightarrow R_i$
 - $k \cdot \det(A) = \det(B)$ if $B$ is obtained from $A$ by the row scaling $kR_i \rightarrow R_i$
 - $\det(I_{n \times n}) = 1$
