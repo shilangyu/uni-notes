@@ -164,3 +164,11 @@ For $A_{n \times n}$ and $\lambda$, $\lambda$ is called eigenvalue of $A$ if eit
 $v$ is an eigenvector. There are at most $n$ different eigenvalue for a given matrix.
 
 An eigenvalue of $A$ is also an eigenvalue of $A^T$
+
+### similar
+
+We say that $A_{n \times n}$ is similar to $B_{n \times n}$ iff $(\exists P)(A = P^{-1}BP)$
+
+### diagonal
+
+$A$ is diagonal iff $(\forall 1 \le i, j \le n)(i \ne j \implies A(i, j) = 0)$

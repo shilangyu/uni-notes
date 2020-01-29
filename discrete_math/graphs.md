@@ -82,6 +82,10 @@ _graphs that have the same structure_. Hard to example mathematically. Please re
 
 If $\bar{G}$ is isomorphic to $G$ then the graph is self-complementary
 
+### bipartite
+
+A graph $G$ is called bipartite if the vertices can be divided into 2 disjoint and independent sets.
+
 ### min/max degree
 
 $\delta(G) = \min(\{\deg(v) : v \in V\})$
@@ -154,5 +158,32 @@ If $G$ is Hamiltonian then:
 
 - $G$ is 2-connected
 - $(\forall S \subseteq V(G))(G-S$ has at most $|S|$ components$)$
+
+#### Dirac
+
+If $G$ has $p$ vertices, $p \ge 3$, and $(\forall v \in V)(\deg(v) \ge \frac{p}{2})$ then $G$ is Hamiltonian
+
+##### corollary
+
+$(\forall \{x, y\} \notin E \implies \deg(x) + \deg(y) \ge p) \implies G$ is Hamiltonian
+
+### planar
+
+$G$ is said to be planar iff $G$ can be represented by a drawing in which no two edges intersect.
+
+#### facets
+
+"parts" of a planar graph ($K_4$ has 4 facets)
+
+#### Euler formula for planar graphs
+
+Let $G$ be a connected planar graph with with $n$ vertices and $k$ edges. Then, in every planar representation of $G$ the number of facets, $f$ satisfies the formula $f = k - n + 2$
+
+##### corollary
+
+For every planar graph $G$ with $k$ edges, $n$ vertices, and $f$ facets we have:
+
+- $f \le \frac{2}{3}k$
+- $k \le 3n - 6$
 
 [^1]: $!\exists$: there exists exactly one
