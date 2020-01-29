@@ -75,6 +75,8 @@
 <p><em>graphs that have the same structure</em>. Hard to example mathematically. Please refer to <a href="https://en.wikipedia.org/wiki/Graph_isomorphism">wikipedia</a>.</p>
 <h3 id="self-complementary">self-complementary</h3>
 <p>If <span class="math inline">\bar{G}</span> is isomorphic to <span class="math inline">G</span> then the graph is self-complementary</p>
+<h3 id="bipartite">bipartite</h3>
+<p>A graph <span class="math inline">G</span> is called bipartite if the vertices can be divided into 2 disjoint and independent sets.</p>
 <h3 id="minmax-degree">min/max degree</h3>
 <p><span class="math inline">\delta(G) = \min(\{\deg(v) : v \in V\})</span></p>
 <p><span class="math inline">\Delta(G) = \max(\{\deg(v) : v \in V\})</span></p>
@@ -129,6 +131,22 @@
 <ul>
 <li><span class="math inline">G</span> is 2-connected</li>
 <li><span class="math inline">(\forall S \subseteq V(G))(G-S</span> has at most <span class="math inline">|S|</span> components<span class="math inline">)</span></li>
+</ul>
+<h4 id="dirac">Dirac</h4>
+<p>If <span class="math inline">G</span> has <span class="math inline">p</span> vertices, <span class="math inline">p \ge 3</span>, and <span class="math inline">(\forall v \in V)(\deg(v) \ge \frac{p}{2})</span> then <span class="math inline">G</span> is Hamiltonian</p>
+<h5 id="corollary">corollary</h5>
+<p><span class="math inline">(\forall \{x, y\} \notin E \implies \deg(x) + \deg(y) \ge p) \implies G</span> is Hamiltonian</p>
+<h3 id="planar">planar</h3>
+<p><span class="math inline">G</span> is said to be planar iff <span class="math inline">G</span> can be represented by a drawing in which no two edges intersect.</p>
+<h4 id="facets">facets</h4>
+<p>“parts” of a planar graph (<span class="math inline">K_4</span> has 4 facets)</p>
+<h4 id="euler-formula-for-planar-graphs">Euler formula for planar graphs</h4>
+<p>Let <span class="math inline">G</span> be a connected planar graph with with <span class="math inline">n</span> vertices and <span class="math inline">k</span> edges. Then, in every planar representation of <span class="math inline">G</span> the number of facets, <span class="math inline">f</span> satisfies the formula <span class="math inline">f = k - n + 2</span></p>
+<h5 id="corollary-1">corollary</h5>
+<p>For every planar graph <span class="math inline">G</span> with <span class="math inline">k</span> edges, <span class="math inline">n</span> vertices, and <span class="math inline">f</span> facets we have:</p>
+<ul>
+<li><span class="math inline">f \le \frac{2}{3}k</span></li>
+<li><span class="math inline">k \le 3n - 6</span></li>
 </ul>
 <section class="footnotes" role="doc-endnotes">
 <hr />
