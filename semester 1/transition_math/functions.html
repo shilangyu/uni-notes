@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>functions</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+</head>
+<body>
+<h1 id="functions">functions</h1>
+<p><span class="math inline">X</span> is the domain of a function and Y is the range co-domain.</p>
+<p><span class="math inline">f : X \to Y</span></p>
+<h3 id="injective">injective</h3>
+<p>A function is injective if for any two arguments <span class="math inline">x_1, x_2 \in X</span> we have: <span class="math inline">f(x_1) = f(x_2) \implies x_1 = x_2</span>. In other words: a given <span class="math inline">y</span> can be obtained only through one <span class="math inline">x</span>.</p>
+<h3 id="surjective">surjective</h3>
+<p><span class="math inline">(\forall y \in Y)(\exists x \in X)(f(x) = y)</span>. In other words: All <span class="math inline">y \in Y</span> have to obtainable.</p>
+<h3 id="inverse">inverse</h3>
+<p>The inverse of a function is denoted by <span class="math inline">f^{-1}: Y \to X</span>. The function has to be surjective and injective to be invertible: <span class="math inline">f^{-1}(b) = a</span> if <span class="math inline">f(a) = b</span>. Its also true that for <span class="math inline">(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<h3 id="image">image</h3>
+<p>For some set <span class="math inline">A</span>, the image of <span class="math inline">A</span> by <span class="math inline">f</span> is <span class="math inline">f(A) = \{f(x): x \in A\}</span>. We can also define an inverse of an image even when the function itself isn’t invertible <span class="math inline">f^{-1}(A)</span>.</p>
+<h3 id="logarithm">logarithm</h3>
+<p><span class="math inline">\log_a(b) = c \equiv a^c = b</span> where <span class="math inline">a, b &gt; 0\ \cap a \neq 1\ \cap b \neq 1</span></p>
+<p><span class="math inline">\log_a(x^c) = c\log_a(x)</span></p>
+<p><span class="math inline">\log_a(b) = \frac{1}{\log_b(a)}</span></p>
+<p><span class="math inline">\log_{a^n}(b) = \frac{1}{n}\log_a(b)</span></p>
+<p><span class="math inline">\log_a(b) = \frac{\log_c(b)}{\log_c(a)}</span></p>
+<h3 id="asymptotes">asymptotes</h3>
+<figure>
+<img src="https://www.mathsisfun.com/algebra/images/asymptote-types.svg" alt="" /><figcaption>asymptote types</figcaption>
+</figure>
+<h4 id="horizontal">horizontal</h4>
+<p>The horizontal asymptote has a form of <span class="math inline">y = b</span> where:</p>
+<p><span class="math inline">\lim_{x \to \infty} f(x) = b</span> or <span class="math inline">\lim_{x \to -\infty} f(x) = b</span></p>
+<h4 id="vertical">vertical</h4>
+<p>The vertical line <span class="math inline">x = a</span> is an asymptote if:</p>
+<p><span class="math inline">\lim_{x \to a^-} f(x) = \pm \infty</span> or <span class="math inline">\lim_{x \to a^+} f(x) = \pm \infty</span></p>
+<h4 id="oblique">oblique</h4>
+<p>A line <span class="math inline">y = ax + b</span> is an oblique asymptote at <span class="math inline">\infty</span> where:</p>
+<p><span class="math display">
+\begin{matrix}
+    a = \lim_{x \to \infty} \frac{f(x)}{x} \\
+    b = \lim_{x \to \infty} (f(x) - ax) \\
+\end{matrix}
+</span></p>
+<h3 id="continuity">continuity</h3>
+<p>A function is said to be continuous if at all points it is true that: <span class="math inline">f(x_0) = \lim_{x \to x_0^-}f(x) = \lim_{x \to x_0^+}f(x)</span></p>
+<h3 id="differentiability">differentiability</h3>
+<p>A function is said to be differentiable at some point <span class="math inline">x_0</span> if the <span class="math inline">f&#39;(x_0)</span> exists. It also means that the function is continuous at point <span class="math inline">x_0</span> but not the other way around.</p>
+<h3 id="extreme-values">extreme values</h3>
+<p>To find an extremum we can take a derivative and compare to zero (Make sure the derivative at <span class="math inline">x_0</span> exists): <span class="math inline">f&#39;(x_0) = 0</span>. Then using the found arguments <span class="math inline">f(x_0)</span> is an extremum.</p>
+<h4 id="local">local</h4>
+<p>A local maximum or minimum is a maximal or minimal value of a function in a given range</p>
+<h4 id="globalabsolute">global/absolute</h4>
+<p>A global maximum or minimum is a maximal or minimal value of a function in <span class="math inline">Y</span></p>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Composition operator: <span class="math inline">(g \circ f)(a) \equiv g(f(a))</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

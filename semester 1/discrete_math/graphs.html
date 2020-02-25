@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>graphs</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+</head>
+<body>
+<h1 id="graphs">graphs</h1>
+<p>A graph is a pair <span class="math inline">G = (V, E)</span> where <span class="math inline">V</span> is a finite set called the set of vertices and <span class="math inline">E \subseteq p_2(V)</span>, <span class="math inline">E</span> is called the set of edges of <span class="math inline">G</span>.</p>
+<h3 id="trivial-and-complete">trivial and complete</h3>
+<h4 id="trivial">trivial</h4>
+<p>only one vertex <span class="math inline">|V| = 1</span>, <span class="math inline">E = \emptyset</span></p>
+<h4 id="complete">complete</h4>
+<p>all vertices are connected with each other <span class="math inline">K_n = (\{v_1, \cdots, v_n\}, p_2(\{v_1, \cdots, v_n\}))</span>. <span class="math inline">K_1</span> is therefore a trivial graph.</p>
+<p><span class="math inline">|p_2(\{v_1, \cdots, v_n\})| = \binom{n}{2} = \frac{n(n-1)}{2}</span></p>
+<h3 id="degree">degree</h3>
+<p>The degree of a vertex <span class="math inline">v</span> in <span class="math inline">G</span> is the number of edges containing <span class="math inline">v</span>. <span class="math inline">\deg_G(v) = |\{e \in E(a): v \in e\}|</span></p>
+<h3 id="handshaking">handshaking</h3>
+<p><span class="math inline">|E| = \frac{1}{2} \sum_{v \in V} \deg_G(v)</span></p>
+<h3 id="path">path</h3>
+<p>A path in a graph is a sequence of vertices <span class="math inline">(v_0, v_1, \cdots, v_k)</span> such that:</p>
+<ul>
+<li><span class="math inline">(\forall i = 0, \cdots, k-1)\{v_i, v_{i+1}\} \in E</span></li>
+<li><span class="math inline">(\forall 0 \le i, j \lt k) i \ne j \implies \{v_i, v_{i+1}\} \ne \{v_j, v_{j+1}\}</span></li>
+<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the path is called simple</li>
+</ul>
+<h3 id="cycle">cycle</h3>
+<p>A cycle in <span class="math inline">G</span> is a path <span class="math inline">(v_0, \cdots, v_k, v_0)</span> such that</p>
+<ul>
+<li><span class="math inline">k \ge 2</span></li>
+<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the cycle is called simple</li>
+</ul>
+<h3 id="connected">connected</h3>
+<p>A graph is said to be connected iff for every <span class="math inline">x, y \in V</span> there is a <span class="math inline">x-y</span> path in <span class="math inline">G</span>, i.e. a path <span class="math inline">(v_0, \cdots v_k)</span> such that <span class="math inline">v_0 = x</span>, <span class="math inline">v_k = y</span>. Otherwise it is called disconnected.</p>
+<h3 id="partition">partition</h3>
+<p>Graph is connected iff for every partition <span class="math inline">\{V_1, V_2\}</span> of <span class="math inline">V</span> such that <span class="math inline">V_1 \ne \emptyset</span> and <span class="math inline">V_2 \ne \emptyset</span> there exists <span class="math inline">v_1 \in V_1</span> and <span class="math inline">v_2 \in V_2</span> such that there is a <span class="math inline">v_1 - v_2</span> path in <span class="math inline">G</span></p>
+<h3 id="eulerian">Eulerian</h3>
+<p><span class="math inline">G</span> is called Eulerian iff:</p>
+<ul>
+<li><span class="math inline">G</span> is connected, nontrivial</li>
+<li><span class="math inline">(\forall v \in V(G))(2 | \deg(v))</span></li>
+</ul>
+<h3 id="subgraphs">subgraphs</h3>
+<p><span class="math inline">G = (V, E)</span>, <span class="math inline">H = (W, F)</span> is called a subgraph of <span class="math inline">G</span> if <span class="math inline">W \subseteq V</span> and <span class="math inline">F \subseteq E</span>. Denoted as <span class="math inline">H \preccurlyeq G</span>, it is a <a href="./poset.html">poset</a>.</p>
+<h4 id="spanning">spanning</h4>
+<p>If <span class="math inline">W = V</span> then <span class="math inline">H</span> is called a spanning subgraph of <span class="math inline">G</span>.</p>
+<h4 id="induced">induced</h4>
+<p>If <span class="math inline">F = E \cap p_2(W)</span> then <span class="math inline">H</span> is called an induced subgraph of <span class="math inline">G</span>.</p>
+<h3 id="component">component</h3>
+<p>A component of <span class="math inline">G</span> is any maximal connected subgraph of <span class="math inline">G</span>.</p>
+<p>If <span class="math inline">G</span> is a disconnected graph, <span class="math inline">\bar{G}</span> is connected.</p>
+<h3 id="complement">complement</h3>
+<p>A complement of <span class="math inline">G = (V, E)</span> (denoted by <span class="math inline">\bar{G}</span>) is <span class="math inline">(V, \{u, v \in V : uv \notin E\})</span>. In other words the edges are flipped: If 2 vertices were adjacent in <span class="math inline">G</span>, they are not adjacent in <span class="math inline">\bar{G}</span> and the other way around.</p>
+<h3 id="isomorphic">isomorphic</h3>
+<p><em>graphs that have the same structure</em>. Hard to example mathematically. Please refer to <a href="https://en.wikipedia.org/wiki/Graph_isomorphism">wikipedia</a>.</p>
+<h3 id="self-complementary">self-complementary</h3>
+<p>If <span class="math inline">\bar{G}</span> is isomorphic to <span class="math inline">G</span> then the graph is self-complementary</p>
+<h3 id="bipartite">bipartite</h3>
+<p>A graph <span class="math inline">G</span> is called bipartite if the vertices can be divided into 2 disjoint and independent sets.</p>
+<h3 id="minmax-degree">min/max degree</h3>
+<p><span class="math inline">\delta(G) = \min(\{\deg(v) : v \in V\})</span></p>
+<p><span class="math inline">\Delta(G) = \max(\{\deg(v) : v \in V\})</span></p>
+<p>If <span class="math inline">\delta(G) \ge 2</span> then <span class="math inline">G</span> has a cycle</p>
+<h3 id="k-regular">k-regular</h3>
+<p><span class="math inline">G</span> is <span class="math inline">k</span>-regular iff <span class="math inline">(\forall v \in V)(\deg(v) = k)</span></p>
+<h3 id="trees">trees</h3>
+<p><span class="math inline">G</span> is called a tree iff:</p>
+<ul>
+<li><span class="math inline">G</span> is connected</li>
+<li><span class="math inline">G</span> has no cycles</li>
+</ul>
+<p>Every connected graph has a <a href="#spanning">spanning</a> tree</p>
+<p>The following conditions are equivalent:</p>
+<ol type="1">
+<li><span class="math inline">G</span> is a tree</li>
+<li><span class="math inline">(\forall u, v \in V)</span> <span class="math inline">!\exists</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">u-v</span> path in <span class="math inline">G</span> and the path is simple</li>
+<li><span class="math inline">G</span> is connected and <span class="math inline">|V| = |E| + 1</span></li>
+<li><span class="math inline">G</span> has no cycles and <span class="math inline">|V| = |E| + 1</span></li>
+<li><span class="math inline">G</span> has no cycles and <span class="math inline">(\forall u, v \in V)(\{u, v\} \notin E \implies G^+ = (V, E \cup \{\{u, v\}\})</span> <span class="math inline">!\exists</span> cycle</li>
+</ol>
+<h3 id="weightednetwork-graphs">weighted/network graphs</h3>
+<p>For a connected graph <span class="math inline">G = (V, E)</span></p>
+<p><span class="math inline">N = ((V, E), w) w: E \to \mathbf{R}^+</span></p>
+<p>Find the cheapest spanning tree in <span class="math inline">N</span>. A greedy naive way:</p>
+<ol type="1">
+<li>take a cheapest edge</li>
+<li>take a new cheapest edge connected to current edges</li>
+<li>did this edge create a cycle?
+<ul>
+<li>yes: go back to step 2 and choose the next cheapest one</li>
+<li>no: continue</li>
+</ul></li>
+<li>do our edges form a connected graph?
+<ul>
+<li>yes: you are done</li>
+<li>no: go to step 2</li>
+</ul></li>
+</ol>
+<h3 id="connectivity">connectivity</h3>
+<p><span class="math inline">\kappa(G) = min\{k :</span> there exists a k-element set <span class="math inline">S \subseteq V</span> such that <span class="math inline">G - S</span> is disconnected or trivial <span class="math inline">\}</span></p>
+<p>For example: A tree has connectivity of <span class="math inline">1</span>, a complete graph <span class="math inline">K_n</span> has connectivity of <span class="math inline">n-1</span></p>
+<p>We call a graph a <strong>k-connected</strong> one when <span class="math inline">\kappa(G) \ge k</span></p>
+<h4 id="connected-1">2-connected</h4>
+<p><span class="math inline">G</span> is 2-connected iff for every <span class="math inline">x, y \in V(G)</span> there exists a simple cycle <span class="math inline">C</span> in <span class="math inline">G</span> such that <span class="math inline">x, y \in V(C)</span></p>
+<h3 id="hamiltonian">Hamiltonian</h3>
+<h4 id="cycle-1">cycle</h4>
+<p>A Hamiltonian cycle in <span class="math inline">G</span> is a spanning, simple cycle in <span class="math inline">G</span></p>
+<h4 id="graph">graph</h4>
+<p><span class="math inline">G</span> is a Hamiltonian graph iff <span class="math inline">G</span> has a Hamiltonian cycle.</p>
+<p>If <span class="math inline">G</span> is Hamiltonian then:</p>
+<ul>
+<li><span class="math inline">G</span> is 2-connected</li>
+<li><span class="math inline">(\forall S \subseteq V(G))(G-S</span> has at most <span class="math inline">|S|</span> components<span class="math inline">)</span></li>
+</ul>
+<h4 id="dirac">Dirac</h4>
+<p>If <span class="math inline">G</span> has <span class="math inline">p</span> vertices, <span class="math inline">p \ge 3</span>, and <span class="math inline">(\forall v \in V)(\deg(v) \ge \frac{p}{2})</span> then <span class="math inline">G</span> is Hamiltonian</p>
+<h5 id="corollary">corollary</h5>
+<p><span class="math inline">(\forall \{x, y\} \notin E \implies \deg(x) + \deg(y) \ge p) \implies G</span> is Hamiltonian</p>
+<h3 id="planar">planar</h3>
+<p><span class="math inline">G</span> is said to be planar iff <span class="math inline">G</span> can be represented by a drawing in which no two edges intersect.</p>
+<h4 id="facets">facets</h4>
+<p>“parts” of a planar graph (<span class="math inline">K_4</span> has 4 facets)</p>
+<h4 id="euler-formula-for-planar-graphs">Euler formula for planar graphs</h4>
+<p>Let <span class="math inline">G</span> be a connected planar graph with with <span class="math inline">n</span> vertices and <span class="math inline">k</span> edges. Then, in every planar representation of <span class="math inline">G</span> the number of facets, <span class="math inline">f</span> satisfies the formula <span class="math inline">f = k - n + 2</span></p>
+<h5 id="corollary-1">corollary</h5>
+<p>For every planar graph <span class="math inline">G</span> with <span class="math inline">k</span> edges, <span class="math inline">n</span> vertices, and <span class="math inline">f</span> facets we have:</p>
+<ul>
+<li><span class="math inline">f \le \frac{2}{3}k</span></li>
+<li><span class="math inline">k \le 3n - 6</span></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><span class="math inline">!\exists</span>: there exists exactly one<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
