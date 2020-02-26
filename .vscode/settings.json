@@ -5,8 +5,10 @@
     "Capelli",
     "Cramer's",
     "Eulerian",
+    "Grzegorz",
     "Kalbarczyk",
     "Kaleta",
+    "Karpisz",
     "L'Hopital",
     "Lukasz",
     "Mariusz",
@@ -18,10 +20,12 @@
     "Podraza",
     "Romand",
     "Rostocki",
+    "Roszkowska",
     "Rouché",
     "Rozej",
     "Slubowska",
     "Symmetricity",
+    "Tarapata",
     "Tomasz",
     "Traczyk",
     "Wioleta",
@@ -38,6 +42,7 @@
     "combinatorics",
     "downarrow",
     "echolon",
+    "eecel",
     "emptyset",
     "extremum",
     "gmail",
@@ -59,6 +64,7 @@
     "subgraphs",
     "subseteq",
     "subsetneq",
-    "surjective"
+    "surjective",
+    "vmatrix"
   ]
 }
