@@ -18,7 +18,7 @@ $p = mv$
 
 static friction:
 
-![forces on a slope](http://thecraftycanvas.com/library/files/2013/02/free-body-force-diagram-block-on-frictionless-incline.png)
+![forces on a slope](http://thecraftycanvas.com/library/files/2013/02/free-body-force-diagram-block-on-frictionless-incline.png){style="filter: invert(1);"}
 
 ### conservative forces
 

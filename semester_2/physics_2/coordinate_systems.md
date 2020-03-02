@@ -8,19 +8,19 @@ Let $P$ be a point in the given coordinate system
 
 $P = (x, y, z)$
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Rectangular_coordinates.svg/1034px-Rectangular_coordinates.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Rectangular_coordinates.svg/1034px-Rectangular_coordinates.svg.png){style="filter: invert(1);"}
 
 ### cylindrical
 
 $P = (\rho, \phi, z)$
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Cylindrical_coordinates.svg/878px-Cylindrical_coordinates.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Cylindrical_coordinates.svg/878px-Cylindrical_coordinates.svg.png){style="filter: invert(1);"}
 
 ### spherical
 
 $P = (r, \theta, \phi)$
 
-![](https://upload.wikimedia.org/wikipedia/commons/4/4f/3D_Spherical.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/4/4f/3D_Spherical.svg){style="filter: invert(1);"}
 
 ### bridge between systems
 

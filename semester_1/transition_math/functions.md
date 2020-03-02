@@ -34,7 +34,7 @@ $\log_a(b) = \frac{\log_c(b)}{\log_c(a)}$
 
 ### asymptotes
 
-![asymptote types](https://www.mathsisfun.com/algebra/images/asymptote-types.svg)
+![asymptote types](https://www.mathsisfun.com/algebra/images/asymptote-types.svg){style="filter: invert(1);"}
 
 #### horizontal
 

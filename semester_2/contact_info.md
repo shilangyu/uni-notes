@@ -44,6 +44,16 @@
 
 ⏲
 
+## Academic writing
+
+#### Monika Kulińska-Trigonidi (tutorials)
+
+📧
+
+🌐 []()
+
+⏲
+
 ---
 
 📧 : e-mail

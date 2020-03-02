@@ -37,6 +37,6 @@ To find a tangent line to a function at a given point we can use the following f
 
 ### mean value theorem
 
-![By Who2010 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=51081991](https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Mittelwertsatz3.svg/1920px-Mittelwertsatz3.svg.png)
+![By Who2010 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=51081991](https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Mittelwertsatz3.svg/1920px-Mittelwertsatz3.svg.png){style="filter: invert(1);"}
 
 If a function is continuous at $[a;b]$ and differentiable at $(a;b)$ then $(\exists x_0)(f'(x_0) = \frac{f(b) - f(a)}{b - a})$
