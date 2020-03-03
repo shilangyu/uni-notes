@@ -351,5 +351,37 @@
 <li>if <span class="math inline">L = 0</span> and <span class="math inline">\sum b_n</span> converges then <span class="math inline">\sum a_n</span> converges</li>
 <li>if <span class="math inline">L = \infty</span> and <span class="math inline">\sum b_n</span> diverges then <span class="math inline">\sum a_n</span> diverges</li>
 </ul>
+<h4 id="ratio-test">ratio test</h4>
+<p>Measure the rate of growth or decline of a series: <span class="math inline">\frac{a_{n+1}}{a_n}</span></p>
+<p>Let <span class="math inline">\rho = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}</span>, then:</p>
+<ul>
+<li>the series converges if <span class="math inline">\rho &lt; 1</span></li>
+<li>the series diverges if <span class="math inline">\rho &gt; 1</span></li>
+<li>the test is inconclusive if <span class="math inline">\rho = 1</span></li>
+</ul>
+<h4 id="n-th-root-test">n-th root test</h4>
+<p>Let <span class="math inline">\rho = \lim_{n \to \infty} \sqrt[n]{a_n}</span>, then:</p>
+<ul>
+<li>the series converges if <span class="math inline">\rho &lt; 1</span></li>
+<li>the series diverges if <span class="math inline">\rho &gt; 1</span></li>
+<li>the test is inconclusive if <span class="math inline">\rho = 1</span></li>
+</ul>
+<h3 id="alternating-series">alternating series</h3>
+<p>Series in which terms alternate between positive and negative. Usually consists of <span class="math inline">(-1)^n</span>.</p>
+<h4 id="alternating-harmonic-series">alternating harmonic series</h4>
+<p><span class="math inline">\sum (-1)^n \frac{1}{n}</span></p>
+<h4 id="alternating-series-test">alternating series test</h4>
+<p>The series <span class="math inline">\sum (-1)^{n+1} a_n</span> converges if all three are satisfied:</p>
+<ul>
+<li><span class="math inline">a_n &gt; 0</span></li>
+<li><span class="math inline">a_n \ge a_{n+1}</span> for <span class="math inline">n \ge N</span></li>
+<li><span class="math inline">\lim_{n \to \infty} a_n = 0</span></li>
+</ul>
+<h4 id="absolute-convergence">absolute convergence</h4>
+<p>We say that <span class="math inline">\sum a_n</span> is convergent absolutely iff <span class="math inline">\sum |a_n|</span> is convergent</p>
+<h4 id="conditional-convergence">conditional convergence</h4>
+<p>We say that <span class="math inline">\sum a_n</span> is convergent conditionally iff <span class="math inline">\sum a_n</span> is convergent and <span class="math inline">\sum |a_n|</span> is divergent</p>
+<h4 id="absolute-convergence-test">absolute convergence test</h4>
+<p>If <span class="math inline">\sum |a_n|</span> converges, then <span class="math inline">\sum a_n</span> converges.</p>
 </body>
 </html>

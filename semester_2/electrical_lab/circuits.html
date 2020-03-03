@@ -4,21 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>maxwell_equations</title>
+  <title>circuits</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -326,40 +318,6 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="maxwell-equations">Maxwell equations</h1>
-<!--
-### electromagnetic field (EMF)
-
-**E** is electric field OR electruc field intesity $V/m$
-**D** is electruc flux density OR electruc displacement OR electrc infuctuin $C/m2$
-**epsilon** is permittivity $F/m$
-
-**H** is magnetic field OR
-
-$\vec D = \overline{\overline \epsilon}\vec E$ -->
-<h3 id="delnabla">del/nabla</h3>
-<p>Del is denoted by <span class="math inline">\nabla</span>, it is a vector of derivatives of each component: <span class="math inline">\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}</span></p>
-<p>It doesn’t exist by itself, it will appear next to a vector or a multivariate function.</p>
-<h3 id="curl">curl</h3>
-<p>Curl (sometimes called rot) describes the rotation of a vector field.</p>
-<p>Let <span class="math inline">\vec{F} = [F_x, F_y, F_z]</span>, then:</p>
-<p><span class="math display">
-    \nabla \times \vec{F} =
-        \begin{vmatrix}
-            \hat{\imath}            &amp; \hat{\jmath}            &amp; \hat{k}                 \\
-            \frac{\delta}{\delta x} &amp; \frac{\delta}{\delta y} &amp; \frac{\delta}{\delta x} \\
-            F_x                     &amp; F_y                     &amp; F_z                     \\
-        \end{vmatrix}
-</span></p>
-<h3 id="formulae">formulae</h3>
-<p><span class="math display">
-\begin{matrix}
-    \nabla \cdot  D &amp;=&amp; \rho_v                         \\
-    \nabla \cdot  B &amp;=&amp; 0                            \\
-    \nabla \times E &amp;=&amp; -\frac{\delta B}{\delta t}   \\
-    \nabla \times H &amp;=&amp; J + \frac{\delta D}{\delta t}\\
-\end{matrix}
-</span></p>
-<h3 id="environment-of-propagating-em-waves">environment of propagating EM waves</h3>
+<h1 id="circuits">circuits</h1>
 </body>
 </html>
