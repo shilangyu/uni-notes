@@ -28,13 +28,13 @@
 
 ## Physics 2
 
-#### ??? (lectures)
+#### Bartłomiej Salski (lectures)
 
-📧
+📧 bsalski@ire.pw.edu.pl
 
 🌐 []()
 
-⏲
+⏲ room 546
 
 #### Tomasz Karpisz (tutorials)
 

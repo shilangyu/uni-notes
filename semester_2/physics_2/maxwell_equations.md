@@ -11,9 +11,9 @@
 
 $\vec D = \overline{\overline \epsilon}\vec E$ -->
 
-### nabla
+### del/nabla
 
-Nabla is denoted by $\nabla$, it is a vector of derivatives of each component: $\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}$
+Del is denoted by $\nabla$, it is a vector of derivatives of each component: $\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}$
 
 It doesn't exist by itself, it will appear next to a vector or a multivariate function.
 
@@ -32,13 +32,15 @@ $$
 		\end{vmatrix}
 $$
 
-### formulas
+### formulae
 
 $$
 \begin{matrix}
-	\nabla \cdot  D &=& \rho                         \\
+	\nabla \cdot  D &=& \rho_v                         \\
 	\nabla \cdot  B &=& 0                            \\
 	\nabla \times E &=& -\frac{\delta B}{\delta t}   \\
 	\nabla \times H &=& J + \frac{\delta D}{\delta t}\\
 \end{matrix}
 $$
+
+### environment of propagating EM waves
