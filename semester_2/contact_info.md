@@ -2,7 +2,7 @@
 
 ## Mathematical analysis
 
-#### Barbara Roszkowska-Lech (lectures)
+### Barbara Roszkowska-Lech (lectures)
 
 📧 barosz@mini.pw.edu
 
@@ -10,7 +10,7 @@
 
 ## Object oriented programming
 
-#### Roman Podraza (lectures)
+### Roman Podraza (lectures)
 
 📧
 
@@ -18,7 +18,7 @@
 
 ## Electrical and Computer Engineering Laboratory
 
-#### Grzegorz Tarapata (lectures)
+### Grzegorz Tarapata (lectures)
 
 📧 gtarapata@elka.pw.edu.pl
 
@@ -28,7 +28,7 @@
 
 ## Physics 2
 
-#### Bartłomiej Salski (lectures)
+### Bartłomiej Salski (lectures)
 
 📧 bsalski@ire.pw.edu.pl
 
@@ -36,7 +36,7 @@
 
 ⏲ room 546
 
-#### Tomasz Karpisz (tutorials)
+### Tomasz Karpisz (tutorials)
 
 📧 t.karpisz@ire.pw.edu.pl
 
@@ -46,7 +46,7 @@
 
 ## Academic writing
 
-#### Monika Kulińska-Trigonidi (tutorials)
+### Monika Kulińska-Trigonidi (tutorials)
 
 📧
 

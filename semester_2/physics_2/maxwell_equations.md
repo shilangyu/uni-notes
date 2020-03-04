@@ -11,13 +11,13 @@
 
 $\vec D = \overline{\overline \epsilon}\vec E$ -->
 
-### del/nabla
+## del/nabla
 
 Del is denoted by $\nabla$, it is a vector of derivatives of each component: $\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}$
 
 It doesn't exist by itself, it will appear next to a vector or a multivariate function.
 
-### curl
+## curl
 
 Curl (sometimes called rot) describes the rotation of a vector field.
 
