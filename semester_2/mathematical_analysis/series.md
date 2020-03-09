@@ -8,7 +8,7 @@ Others don't: $1 - 1 + 1 - 1 + \cdots$, they are called **divergent**
 
 [more about sequences](/uni-notes/semester_1/transition_math/sequences.html)
 
-## test for divergence
+## n-th term test
 
 If $\sum_{n=1}^{\infty} a_n$ converges then $a_n \to 0$.
 

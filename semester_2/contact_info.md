@@ -2,11 +2,13 @@
 
 ## Mathematical analysis
 
-### Barbara Roszkowska-Lech (lectures)
+### Barbara Roszkowska-Lech (lectures & tutorials)
 
 📧 barosz@mini.pw.edu
 
 🌐 [https://mini.pw.edu.pl/~barosz/www/?Dydaktyka:Analysis_EMANA_2020](https://mini.pw.edu.pl/~barosz/www/?Dydaktyka:Analysis_EMANA_2020)
+
+⏲
 
 ## Object oriented programming
 
@@ -15,6 +17,8 @@
 📧
 
 🌐
+
+⏲
 
 ## Electrical and Computer Engineering Laboratory
 
@@ -46,9 +50,9 @@
 
 ## Academic writing
 
-### Monika Kulińska-Trigonidi (tutorials)
+### Izabela Zamecznik (tutorials)
 
-📧
+📧 izabela.zamecznik@pw.edu.pl
 
 🌐 []()
 

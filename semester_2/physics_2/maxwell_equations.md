@@ -17,19 +17,44 @@ Del is denoted by $\nabla$, it is a vector of derivatives of each component: $\n
 
 It doesn't exist by itself, it will appear next to a vector or a multivariate function.
 
+### Laplacian
+
+$\Delta = \nabla \nabla = \frac{\delta}{\delta x} + \frac{\delta}{\delta y} + \frac{\delta}{\delta z}$
+
 ## curl
 
-Curl (sometimes called rot) describes the rotation of a vector field.
+Curl (sometimes called rotation) describes the rotation of a vector field.
 
 Let $\vec{F} = [F_x, F_y, F_z]$, then:
 
 $$
-	\nabla \times \vec{F} =
+	curl(F) = \nabla \times \vec{F} =
 		\begin{vmatrix}
 			\hat{\imath}            & \hat{\jmath}            & \hat{k}                 \\
 			\frac{\delta}{\delta x} & \frac{\delta}{\delta y} & \frac{\delta}{\delta x} \\
 			F_x                     & F_y                     & F_z                     \\
-		\end{vmatrix}
+		\end{vmatrix} =
+		\begin{bmatrix}
+			\frac{\delta F_z}{\delta y} - \frac{\delta F_y}{\delta z} \\
+			\frac{\delta F_x}{\delta z} - \frac{\delta F_z}{\delta x} \\
+			\frac{\delta F_y}{\delta x} - \frac{\delta F_x}{\delta y} \\
+		\end{bmatrix}
+$$
+
+## gradient
+
+Gradient of a scalar field $f$ shows the direction to the local maximum of $f$.
+
+$$
+	grad(f) = \nabla f = \frac{\delta f}{\delta x}\hat{\imath} + \frac{\delta f}{\delta y}\hat{\jmath} + \frac{\delta f}{\delta z}\hat{k}
+$$
+
+## divergence
+
+Divergence of a vector field $\vec v$ is a measure of its increase in the direction it points
+
+$$
+	div(\vec v) = \nabla \cdot \vec v = \frac{\delta v_x}{\delta x} + \frac{\delta v_y}{\delta y} + \frac{\delta v_z}{\delta z}
 $$
 
 ### formulae
