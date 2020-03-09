@@ -327,31 +327,31 @@
 </head>
 <body>
 <h1 id="series">series</h1>
-<h3 id="infinite-sums">infinite sums</h3>
+<h2 id="infinite-sums">infinite sums</h2>
 <p>Some infinite series have a sum: <span class="math inline">\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots = 1</span>, they are called <strong>convergent</strong></p>
 <p>Others don’t: <span class="math inline">1 - 1 + 1 - 1 + \cdots</span>, they are called <strong>divergent</strong></p>
 <p><a href="/uni-notes/semester_1/transition_math/sequences.html">more about sequences</a></p>
-<h3 id="test-for-divergence">test for divergence</h3>
+<h2 id="n-th-term-test">n-th term test</h2>
 <p>If <span class="math inline">\sum_{n=1}^{\infty} a_n</span> converges then <span class="math inline">a_n \to 0</span>.</p>
 <p>Series diverges if <span class="math inline">\lim_{n\to\infty} a_n</span> fails to exist or is different from 0.</p>
 <p>This however does not work the other way, if <span class="math inline">a_n \to 0</span> the series still can be divergent.</p>
-<h3 id="series-with-non-negative-terms">series with non-negative terms</h3>
+<h2 id="series-with-non-negative-terms">series with non-negative terms</h2>
 <p>Partial sums form non-decreasing sequence.</p>
 <p>These series converge iff partial sums are bounded from above.</p>
 <p><strong>example:</strong> Harmonic series <span class="math inline">\sum_{n=1}^{\infty} \frac{1}{n^p}</span> is convergent iff <span class="math inline">p &gt; 1</span></p>
-<h4 id="direct-comparison-test-dct">direct comparison test (DCT)</h4>
-<h5 id="convergence">convergence</h5>
+<h3 id="direct-comparison-test-dct">direct comparison test (DCT)</h3>
+<h4 id="convergence">convergence</h4>
 <p><span class="math inline">\sum_{n=1}^{\infty} a_n</span> converges if there is a convergent series <span class="math inline">\sum_{n=1}^{\infty} c_n</span> with <span class="math inline">a_n \le c_n</span> for all <span class="math inline">n &gt; N</span>, for some integer <span class="math inline">N</span>.</p>
-<h5 id="divergence">divergence</h5>
+<h4 id="divergence">divergence</h4>
 <p><span class="math inline">\sum_{n=1}^{\infty} a_n</span> diverges if there is a divergent series <span class="math inline">\sum_{n=1}^{\infty} d_n</span> with <span class="math inline">a_n \ge d_n</span> for all <span class="math inline">n &gt; N</span>, for some integer <span class="math inline">N</span>.</p>
-<h4 id="limit-comparison-test-lct">limit comparison test (LCT)</h4>
+<h3 id="limit-comparison-test-lct">limit comparison test (LCT)</h3>
 <p>Let <span class="math inline">\lim_{n \to \infty} \frac{a_n}{b_n} = L</span></p>
 <ul>
 <li>if <span class="math inline">0 &lt; L &lt; \infty</span> then <span class="math inline">\sum a_n</span> and <span class="math inline">\sum b_n</span> both converge or both diverge</li>
 <li>if <span class="math inline">L = 0</span> and <span class="math inline">\sum b_n</span> converges then <span class="math inline">\sum a_n</span> converges</li>
 <li>if <span class="math inline">L = \infty</span> and <span class="math inline">\sum b_n</span> diverges then <span class="math inline">\sum a_n</span> diverges</li>
 </ul>
-<h4 id="ratio-test">ratio test</h4>
+<h3 id="ratio-test">ratio test</h3>
 <p>Measure the rate of growth or decline of a series: <span class="math inline">\frac{a_{n+1}}{a_n}</span></p>
 <p>Let <span class="math inline">\rho = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}</span>, then:</p>
 <ul>
@@ -359,29 +359,29 @@
 <li>the series diverges if <span class="math inline">\rho &gt; 1</span></li>
 <li>the test is inconclusive if <span class="math inline">\rho = 1</span></li>
 </ul>
-<h4 id="n-th-root-test">n-th root test</h4>
+<h3 id="n-th-root-test">n-th root test</h3>
 <p>Let <span class="math inline">\rho = \lim_{n \to \infty} \sqrt[n]{a_n}</span>, then:</p>
 <ul>
 <li>the series converges if <span class="math inline">\rho &lt; 1</span></li>
 <li>the series diverges if <span class="math inline">\rho &gt; 1</span></li>
 <li>the test is inconclusive if <span class="math inline">\rho = 1</span></li>
 </ul>
-<h3 id="alternating-series">alternating series</h3>
+<h2 id="alternating-series">alternating series</h2>
 <p>Series in which terms alternate between positive and negative. Usually consists of <span class="math inline">(-1)^n</span>.</p>
-<h4 id="alternating-harmonic-series">alternating harmonic series</h4>
+<h3 id="alternating-harmonic-series">alternating harmonic series</h3>
 <p><span class="math inline">\sum (-1)^n \frac{1}{n}</span></p>
-<h4 id="alternating-series-test">alternating series test</h4>
+<h3 id="alternating-series-test">alternating series test</h3>
 <p>The series <span class="math inline">\sum (-1)^{n+1} a_n</span> converges if all three are satisfied:</p>
 <ul>
 <li><span class="math inline">a_n &gt; 0</span></li>
 <li><span class="math inline">a_n \ge a_{n+1}</span> for <span class="math inline">n \ge N</span></li>
 <li><span class="math inline">\lim_{n \to \infty} a_n = 0</span></li>
 </ul>
-<h4 id="absolute-convergence">absolute convergence</h4>
+<h3 id="absolute-convergence">absolute convergence</h3>
 <p>We say that <span class="math inline">\sum a_n</span> is convergent absolutely iff <span class="math inline">\sum |a_n|</span> is convergent</p>
-<h4 id="conditional-convergence">conditional convergence</h4>
+<h3 id="conditional-convergence">conditional convergence</h3>
 <p>We say that <span class="math inline">\sum a_n</span> is convergent conditionally iff <span class="math inline">\sum a_n</span> is convergent and <span class="math inline">\sum |a_n|</span> is divergent</p>
-<h4 id="absolute-convergence-test">absolute convergence test</h4>
+<h3 id="absolute-convergence-test">absolute convergence test</h3>
 <p>If <span class="math inline">\sum |a_n|</span> converges, then <span class="math inline">\sum a_n</span> converges.</p>
 </body>
 </html>

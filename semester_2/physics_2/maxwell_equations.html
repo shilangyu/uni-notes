@@ -337,19 +337,36 @@
 **H** is magnetic field OR
 
 $\vec D = \overline{\overline \epsilon}\vec E$ -->
-<h3 id="delnabla">del/nabla</h3>
+<h2 id="delnabla">del/nabla</h2>
 <p>Del is denoted by <span class="math inline">\nabla</span>, it is a vector of derivatives of each component: <span class="math inline">\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}</span></p>
 <p>It doesn’t exist by itself, it will appear next to a vector or a multivariate function.</p>
-<h3 id="curl">curl</h3>
-<p>Curl (sometimes called rot) describes the rotation of a vector field.</p>
+<h3 id="laplacian">Laplacian</h3>
+<p><span class="math inline">\Delta = \nabla \nabla = \frac{\delta}{\delta x} + \frac{\delta}{\delta y} + \frac{\delta}{\delta z}</span></p>
+<h2 id="curl">curl</h2>
+<p>Curl (sometimes called rotation) describes the rotation of a vector field.</p>
 <p>Let <span class="math inline">\vec{F} = [F_x, F_y, F_z]</span>, then:</p>
 <p><span class="math display">
-    \nabla \times \vec{F} =
+    curl(F) = \nabla \times \vec{F} =
         \begin{vmatrix}
             \hat{\imath}            &amp; \hat{\jmath}            &amp; \hat{k}                 \\
             \frac{\delta}{\delta x} &amp; \frac{\delta}{\delta y} &amp; \frac{\delta}{\delta x} \\
             F_x                     &amp; F_y                     &amp; F_z                     \\
-        \end{vmatrix}
+        \end{vmatrix} =
+        \begin{bmatrix}
+            \frac{\delta F_z}{\delta y} - \frac{\delta F_y}{\delta z} \\
+            \frac{\delta F_x}{\delta z} - \frac{\delta F_z}{\delta x} \\
+            \frac{\delta F_y}{\delta x} - \frac{\delta F_x}{\delta y} \\
+        \end{bmatrix}
+</span></p>
+<h2 id="gradient">gradient</h2>
+<p>Gradient of a scalar field <span class="math inline">f</span> shows the direction to the local maximum of <span class="math inline">f</span>.</p>
+<p><span class="math display">
+    grad(f) = \nabla f = \frac{\delta f}{\delta x}\hat{\imath} + \frac{\delta f}{\delta y}\hat{\jmath} + \frac{\delta f}{\delta z}\hat{k}
+</span></p>
+<h2 id="divergence">divergence</h2>
+<p>Divergence of a vector field <span class="math inline">\vec v</span> is a measure of its increase in the direction it points</p>
+<p><span class="math display">
+    div(\vec v) = \nabla \cdot \vec v = \frac{\delta v_x}{\delta x} + \frac{\delta v_y}{\delta y} + \frac{\delta v_z}{\delta z}
 </span></p>
 <h3 id="formulae">formulae</h3>
 <p><span class="math display">
