@@ -1,16 +1,5 @@
 # Maxwell equations
 
-<!--
-### electromagnetic field (EMF)
-
-**E** is electric field OR electruc field intesity $V/m$
-**D** is electruc flux density OR electruc displacement OR electrc infuctuin $C/m2$
-**epsilon** is permittivity $F/m$
-
-**H** is magnetic field OR
-
-$\vec D = \overline{\overline \epsilon}\vec E$ -->
-
 ## del/nabla
 
 Del is denoted by $\nabla$, it is a vector of derivatives of each component: $\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}$
@@ -19,7 +8,7 @@ It doesn't exist by itself, it will appear next to a vector or a multivariate fu
 
 ### Laplacian
 
-$\Delta = \nabla \nabla = \frac{\delta}{\delta x} + \frac{\delta}{\delta y} + \frac{\delta}{\delta z}$
+$\Delta = \nabla \nabla = \nabla^2$
 
 ## curl
 
@@ -59,13 +48,43 @@ $$
 
 ### formulae
 
+#### differential forms
+
 $$
-\begin{matrix}
-	\nabla \cdot  D &=& \rho_v                         \\
-	\nabla \cdot  B &=& 0                            \\
-	\nabla \times E &=& -\frac{\delta B}{\delta t}   \\
-	\nabla \times H &=& J + \frac{\delta D}{\delta t}\\
-\end{matrix}
+	\nabla \times \vec E = -\frac{\delta \vec B}{\delta t}
+$$
+
+$$
+	\nabla \times \vec H = \vec J + \frac{\delta \vec D}{\delta t}
+$$
+
+$$
+	\nabla \cdot \vec D = \rho_v
+$$
+
+$$
+	\nabla \cdot \vec B = 0
+$$
+
+#### complex forms
+
+$$
+	\nabla \times \underline{\vec E} = -j\omega \underline{\vec B}
+$$
+
+$$
+	\nabla \times \underline{\vec H} = \underline{\vec J} + j\omega \underline{\vec D}
+$$
+
+$$
+	\nabla \cdot \underline{\vec D} = \rho_v
+$$
+
+$$
+	\nabla \cdot \underline{\vec B} = 0
 $$
 
 ### environment of propagating EM waves
+
+$$
+$$
