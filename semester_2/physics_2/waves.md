@@ -1,5 +1,27 @@
 # waves
 
+## environments
+
+### dispersion
+
+Dispersion occurs when electromagnetic properties, such as permittivity, permeability or conductivity, vary with frequency.
+
+### dielectrics
+
+A material is called dielectric if it reacts with an external electric field $E$. Then the polarization density $P$ is: $\vec P = \epsilon_0 \chi_e \vec E$.
+
+We say a material is conductive if it allows electrons/ions to flow through it.
+
+#### losses
+
+Losses are quantified with a _loss tangent_: $\epsilon_r = \epsilon_r'(1 − j\tan \delta)$
+
+However if losses have conductive behavior then: $\epsilon_r = \epsilon_r'j\frac{\sigma}{\omega \epsilon_0}$
+
+### electric susceptibility
+
+$\chi_e$ is electric susceptibility, it can be expressed in terms of relative permittivity: $\epsilon_r = 1 + \chi_e$. Therefore: $\vec D = \epsilon_0(1+\chi_e)\vec E$
+
 ## wavefront
 
 Surface of equal phase, for example a spherical wave
