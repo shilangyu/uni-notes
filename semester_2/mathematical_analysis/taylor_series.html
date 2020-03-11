@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>maxwell_equations</title>
+  <title>taylor_series</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,67 +326,25 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="maxwell-equations">Maxwell equations</h1>
-<h2 id="delnabla">del/nabla</h2>
-<p>Del is denoted by <span class="math inline">\nabla</span>, it is a vector of derivatives of each component: <span class="math inline">\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}</span></p>
-<p>It doesn’t exist by itself, it will appear next to a vector or a multivariate function.</p>
-<h3 id="laplacian">Laplacian</h3>
-<p><span class="math inline">\Delta = \nabla \nabla = \nabla^2</span></p>
-<h2 id="curl">curl</h2>
-<p>Curl (sometimes called rotation) describes the rotation of a vector field.</p>
-<p>Let <span class="math inline">\vec{F} = [F_x, F_y, F_z]</span>, then:</p>
+<h1 id="taylor-series">Taylor series</h1>
+<p>Taylor series are power series generated from a function <span class="math inline">f</span></p>
+<h2 id="constructing-a-series">constructing a series</h2>
+<p>For <span class="math inline">x = a</span> then <span class="math inline">a_n = \frac{f^{(n)}(a)}{n!}</span></p>
+<p>Then if <span class="math inline">f</span> has a series representation it must be:</p>
 <p><span class="math display">
-    curl(F) = \nabla \times \vec{F} =
-        \begin{vmatrix}
-            \hat{\imath}            &amp; \hat{\jmath}            &amp; \hat{k}                 \\
-            \frac{\delta}{\delta x} &amp; \frac{\delta}{\delta y} &amp; \frac{\delta}{\delta x} \\
-            F_x                     &amp; F_y                     &amp; F_z                     \\
-        \end{vmatrix} =
-        \begin{bmatrix}
-            \frac{\delta F_z}{\delta y} - \frac{\delta F_y}{\delta z} \\
-            \frac{\delta F_x}{\delta z} - \frac{\delta F_z}{\delta x} \\
-            \frac{\delta F_y}{\delta x} - \frac{\delta F_x}{\delta y} \\
-        \end{bmatrix}
+    f(x) = f(a) + f&#39;(a)(x - a) + \frac{f&#39;&#39;(a)}{2!}(x - a)^2 + \cdots
 </span></p>
-<h2 id="gradient">gradient</h2>
-<p>Gradient of a scalar field <span class="math inline">f</span> shows the direction to the local maximum of <span class="math inline">f</span>.</p>
+<h2 id="maclaurin-series">Maclaurin series</h2>
+<p>If the series are centered around <span class="math inline">x = 0</span> we call the generated power series Maclaurin series.</p>
+<h2 id="order-of-n">order of n</h2>
+<p>Tells us about the ‘deepness’. How many derivatives we are taking (instead of abstract <span class="math inline">\infty</span>). <span class="math inline">n</span> is then called the order of the Taylor series.</p>
 <p><span class="math display">
-    grad(f) = \nabla f = \frac{\delta f}{\delta x}\hat{\imath} + \frac{\delta f}{\delta y}\hat{\jmath} + \frac{\delta f}{\delta z}\hat{k}
+    P_n(x) = f(a) + f&#39;(a)(x - a) + \frac{f&#39;&#39;(a)}{2!}(x - a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x - a)^n
 </span></p>
-<h2 id="divergence">divergence</h2>
-<p>Divergence of a vector field <span class="math inline">\vec v</span> is a measure of its increase in the direction it points</p>
-<p><span class="math display">
-    div(\vec v) = \nabla \cdot \vec v = \frac{\delta v_x}{\delta x} + \frac{\delta v_y}{\delta y} + \frac{\delta v_z}{\delta z}
-</span></p>
-<h3 id="formulae">formulae</h3>
-<h4 id="differential-forms">differential forms</h4>
-<p><span class="math display">
-    \nabla \times \vec E = -\frac{\delta \vec B}{\delta t}
-</span></p>
-<p><span class="math display">
-    \nabla \times \vec H = \vec J + \frac{\delta \vec D}{\delta t}
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \vec D = \rho_v
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \vec B = 0
-</span></p>
-<h4 id="complex-forms">complex forms</h4>
-<p><span class="math display">
-    \nabla \times \underline{\vec E} = -j\omega \underline{\vec B}
-</span></p>
-<p><span class="math display">
-    \nabla \times \underline{\vec H} = \underline{\vec J} + j\omega \underline{\vec D}
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \underline{\vec D} = \rho_v
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \underline{\vec B} = 0
-</span></p>
-<h3 id="environment-of-propagating-em-waves">environment of propagating EM waves</h3>
-<p><span class="math display">
-</span></p>
+<h2 id="taylor-theorem">Taylor theorem</h2>
+<p>Let <span class="math inline">R_n</span> be the remainder (error)</p>
+<p><span class="math inline">f(x) = P_n(x) + R_n(x)</span></p>
+<p>Let <span class="math inline">I</span> be an interval, <span class="math inline">x, a \in I</span> there is a number <span class="math inline">c</span> between <span class="math inline">x</span> and <span class="math inline">a</span> then <span class="math inline">R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x - a)^{n+1}</span></p>
+<p>If <span class="math inline">\lim_{n \to \infty} R_n = 0</span> for all <span class="math inline">x \in I</span> the Taylor series generated by <span class="math inline">f</span> at <span class="math inline">x = a</span> converges to <span class="math inline">f</span> on <span class="math inline">I</span>.</p>
 </body>
 </html>

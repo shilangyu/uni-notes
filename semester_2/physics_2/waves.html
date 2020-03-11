@@ -11,6 +11,14 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -318,6 +326,22 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-
+<h1 id="waves">waves</h1>
+<h2 id="wavefront">wavefront</h2>
+<p>Surface of equal phase, for example a spherical wave</p>
+<h2 id="plane-wave">plane wave</h2>
+<p>Approximation of a real wave.</p>
+<p>When we move far from the source of a spherical wave, the wave becomes approximately straight.</p>
+<p>Let <span class="math inline">\vec k</span> be the normal unit vector of the plane wave. Let <span class="math inline">\vec r</span> be the distance from source Then <span class="math inline">\vec r \vec k - vt = const</span>.</p>
+<h3 id="phase">phase</h3>
+<p><span class="math inline">\beta = \frac{\omega}{v} = \omega\sqrt{\mu \epsilon}</span></p>
+<p>(in radians): <span class="math inline">\phi = \omega t - \vec \beta \vec r = - \beta (\vec r \vec k - vt) = const</span></p>
+<h3 id="properties">properties</h3>
+<p>A plane wave is a transverse electromagnetic wave (TEM)</p>
+<ol type="1">
+<li>Velocity <span class="math inline">v = \frac{1}{\sqrt{\mu \epsilon}}</span></li>
+<li>Orthogonal vectors <span class="math inline">\vec E = \sqrt{\frac{\mu}{\epsilon}}\vec H \times \vec k</span> and <span class="math inline">\vec H = \sqrt{\frac{\epsilon}{\mu}}\vec k \times \vec E</span></li>
+<li>Impedance <span class="math inline">Z_w = \frac{E_\perp}{H_\perp} = \sqrt{\frac{\mu}{\epsilon}}</span></li>
+</ol>
 </body>
 </html>

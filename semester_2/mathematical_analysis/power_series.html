@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>maxwell_equations</title>
+  <title>power_series</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,67 +326,24 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="maxwell-equations">Maxwell equations</h1>
-<h2 id="delnabla">del/nabla</h2>
-<p>Del is denoted by <span class="math inline">\nabla</span>, it is a vector of derivatives of each component: <span class="math inline">\nabla = \frac{\delta}{\delta x} \hat{\imath} + \frac{\delta}{\delta y} \hat{\jmath} + \frac{\delta}{\delta z} \hat{k}</span></p>
-<p>It doesn’t exist by itself, it will appear next to a vector or a multivariate function.</p>
-<h3 id="laplacian">Laplacian</h3>
-<p><span class="math inline">\Delta = \nabla \nabla = \nabla^2</span></p>
-<h2 id="curl">curl</h2>
-<p>Curl (sometimes called rotation) describes the rotation of a vector field.</p>
-<p>Let <span class="math inline">\vec{F} = [F_x, F_y, F_z]</span>, then:</p>
-<p><span class="math display">
-    curl(F) = \nabla \times \vec{F} =
-        \begin{vmatrix}
-            \hat{\imath}            &amp; \hat{\jmath}            &amp; \hat{k}                 \\
-            \frac{\delta}{\delta x} &amp; \frac{\delta}{\delta y} &amp; \frac{\delta}{\delta x} \\
-            F_x                     &amp; F_y                     &amp; F_z                     \\
-        \end{vmatrix} =
-        \begin{bmatrix}
-            \frac{\delta F_z}{\delta y} - \frac{\delta F_y}{\delta z} \\
-            \frac{\delta F_x}{\delta z} - \frac{\delta F_z}{\delta x} \\
-            \frac{\delta F_y}{\delta x} - \frac{\delta F_x}{\delta y} \\
-        \end{bmatrix}
-</span></p>
-<h2 id="gradient">gradient</h2>
-<p>Gradient of a scalar field <span class="math inline">f</span> shows the direction to the local maximum of <span class="math inline">f</span>.</p>
-<p><span class="math display">
-    grad(f) = \nabla f = \frac{\delta f}{\delta x}\hat{\imath} + \frac{\delta f}{\delta y}\hat{\jmath} + \frac{\delta f}{\delta z}\hat{k}
-</span></p>
-<h2 id="divergence">divergence</h2>
-<p>Divergence of a vector field <span class="math inline">\vec v</span> is a measure of its increase in the direction it points</p>
-<p><span class="math display">
-    div(\vec v) = \nabla \cdot \vec v = \frac{\delta v_x}{\delta x} + \frac{\delta v_y}{\delta y} + \frac{\delta v_z}{\delta z}
-</span></p>
-<h3 id="formulae">formulae</h3>
-<h4 id="differential-forms">differential forms</h4>
-<p><span class="math display">
-    \nabla \times \vec E = -\frac{\delta \vec B}{\delta t}
-</span></p>
-<p><span class="math display">
-    \nabla \times \vec H = \vec J + \frac{\delta \vec D}{\delta t}
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \vec D = \rho_v
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \vec B = 0
-</span></p>
-<h4 id="complex-forms">complex forms</h4>
-<p><span class="math display">
-    \nabla \times \underline{\vec E} = -j\omega \underline{\vec B}
-</span></p>
-<p><span class="math display">
-    \nabla \times \underline{\vec H} = \underline{\vec J} + j\omega \underline{\vec D}
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \underline{\vec D} = \rho_v
-</span></p>
-<p><span class="math display">
-    \nabla \cdot \underline{\vec B} = 0
-</span></p>
-<h3 id="environment-of-propagating-em-waves">environment of propagating EM waves</h3>
-<p><span class="math display">
-</span></p>
+<h1 id="power-series">power series</h1>
+<p>A power series centered at <span class="math inline">x = a</span> is: <span class="math inline">\sum a_n(x - a)^n = a_0 + a_1(x-a) + a_2(x - a)^2 + \cdots</span></p>
+<p><strong>example</strong>: Geometric series centered at <span class="math inline">x = 0</span> then <span class="math inline">1 + x + x^2 + \cdots = \frac{1}{1-x}</span> are convergent at <span class="math inline">-1 &lt; x &lt; 1</span></p>
+<h2 id="convergence-theorem">convergence theorem</h2>
+<p>There are 3 possibilities for a power series with respect to convergence</p>
+<ul>
+<li>There is a positive number <span class="math inline">R</span> such that the series diverges for <span class="math inline">|x-a| &gt; R</span> but converges for all <span class="math inline">x</span> such that <span class="math inline">|x-a| &lt; R</span>. The series may or may not converge at <span class="math inline">x = a \pm R</span></li>
+<li>The series converges for all <span class="math inline">x</span> (<span class="math inline">R = \infty</span>)</li>
+<li>The series converges for <span class="math inline">x = a</span> and diverges elsewhere (<span class="math inline">R = 0</span>)</li>
+</ul>
+<h2 id="interval-of-convergence">interval of convergence</h2>
+<p>The previously mentioned <span class="math inline">R</span> is called the <em>radius of convergence</em></p>
+<h3 id="finding-the-interval-of-convergence">finding the interval of convergence</h3>
+<ol type="1">
+<li>Use ratio or n-th root test to find absolute convergence</li>
+<li>Test convergence at the endpoints using DCT, LCT, or AST</li>
+</ol>
+<h2 id="term-by-term-differentiation">term-by-term differentiation</h2>
+<p>Inside of the interval of convergence, the series have derivatives of all orders.</p>
 </body>
 </html>
