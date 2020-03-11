@@ -14,7 +14,7 @@ $$
 
 ## Maclaurin series
 
-If the series are centered around $x = 0$ we call the generated power series Maclaurin series.
+If the series are centered around $a = 0$ we call the generated power series Maclaurin series.
 
 ## order of n
 
