@@ -12,7 +12,7 @@ $$
 | ---------------------------- | ---------------------------------------------------------------------------- |
 | $a$                          | $ax + C$                                                                     |
 | $x^n$                        | $\frac{x^{n+1}}{n+1} + C$, $a \ne -1$                                        |
-| $\frac{1}{x}$                | \$\ln                                                                        | x | + C\$ | <!-- this fucks up Markdown All In One because of the | inside TeX while being in a table, tracker: https://github.com/yzhang-gh/vscode-markdown/issues/641--> |
+| $\frac{1}{x}$                | $\ln|x| + C$ | <!-- this fucks up Markdown All In One because of the | inside TeX while being in a table, tracker: https://github.com/yzhang-gh/vscode-markdown/issues/641--> 
 | $e^x$                        | $e^x + C$                                                                    |
 | $a^x$                        | $\frac{a^x}{\ln(a)} + C$                                                     |
 | $\ln(x)$                     | $x\ln(x) - x + C$                                                            |
@@ -49,7 +49,7 @@ $$
 ### by parts
 
 $$
-	\int f(x)g'(x)dx = f(x)g(x) − \int f'(x)g(x)dx
+	\int f(x)g'(x)dx = f(x)g(x) - \int f'(x)g(x)dx
 $$
 
 ## $+\ C$
