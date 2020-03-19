@@ -58,6 +58,16 @@
 
 ⏲
 
+## C1 english 2
+
+### Ewa Furyk (tutorials)
+
+📧 ewa.furyk@pw.edu.pl
+
+🌐 []()
+
+⏲
+
 ---
 
 📧 : e-mail
