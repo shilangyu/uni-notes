@@ -4,13 +4,21 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>contact_info</title>
+  <title>integrals</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -318,44 +326,122 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="contact-info">contact info</h1>
-<h2 id="mathematical-analysis">Mathematical analysis</h2>
-<h3 id="barbara-roszkowska-lech-lectures-tutorials">Barbara Roszkowska-Lech (lectures &amp; tutorials)</h3>
-<p>📧 barosz@mini.pw.edu</p>
-<p>🌐 <a href="https://mini.pw.edu.pl/~barosz/www/?Dydaktyka:Analysis_EMANA_2020">https://mini.pw.edu.pl/~barosz/www/?Dydaktyka:Analysis_EMANA_2020</a></p>
-<p>⏲</p>
-<h2 id="object-oriented-programming">Object oriented programming</h2>
-<h3 id="roman-podraza-lectures">Roman Podraza (lectures)</h3>
-<p>📧</p>
-<p>🌐</p>
-<p>⏲</p>
-<h2 id="electrical-and-computer-engineering-laboratory">Electrical and Computer Engineering Laboratory</h2>
-<h3 id="grzegorz-tarapata-lectures">Grzegorz Tarapata (lectures)</h3>
-<p>📧 gtarapata@elka.pw.edu.pl</p>
-<p>🌐 <a href="eecel.ise.pw.pl">eecel.ise.pw.pl</a></p>
-<p>⏲ room 240 Wednesday 12:00-15:00</p>
-<h2 id="physics-2">Physics 2</h2>
-<h3 id="bartłomiej-salski-lectures">Bartłomiej Salski (lectures)</h3>
-<p>📧 bsalski@ire.pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲ room 546</p>
-<h3 id="tomasz-karpisz-tutorials">Tomasz Karpisz (tutorials)</h3>
-<p>📧 t.karpisz@ire.pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<h2 id="academic-writing">Academic writing</h2>
-<h3 id="izabela-zamecznik-tutorials">Izabela Zamecznik (tutorials)</h3>
-<p>📧 izabela.zamecznik@pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<h2 id="c1-english-2">C1 english 2</h2>
-<h3 id="ewa-furyk-tutorials">Ewa Furyk (tutorials)</h3>
-<p>📧 ewa.furyk@pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<hr />
-<p>📧 : e-mail</p>
-<p>🌐 : website</p>
-<p>⏲ : office hours</p>
+<h1 id="integrals">integrals</h1>
+<p>A function <span class="math inline">F(x)</span> is called an antiderivative of <span class="math inline">f(x)</span> when:</p>
+<p><span class="math display">
+    F&#39;(x) = f(x) \implies \frac{d F(x)}{dx} = f(x) \implies F(x) = \int f(x) dx
+</span></p>
+<h2 id="common-antiderivatives">common antiderivatives</h2>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">f(x)</span></th>
+<th><span class="math inline">\int f(x) dx</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">a</span></td>
+<td><span class="math inline">ax + C</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x^n</span></td>
+<td><span class="math inline">\frac{x^{n+1}}{n+1} + C</span>, <span class="math inline">a \ne -1</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\frac{1}{x}</span></td>
+<td>$</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">e^x</span></td>
+<td><span class="math inline">e^x + C</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">a^x</span></td>
+<td><span class="math inline">\frac{a^x}{\ln(a)} + C</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\ln(x)</span></td>
+<td><span class="math inline">x\ln(x) - x + C</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\sin(x)</span></td>
+<td><span class="math inline">-\cos(x) + C</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\cos(x)</span></td>
+<td><span class="math inline">\sin(x) + C</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\frac{1}{1 + x^2}</span></td>
+<td><span class="math inline">\arctan(x) + C</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\frac{1}{\sqrt{a^2 - x^2}}</span></td>
+<td><span class="math inline">\arcsin\frac{x}{a} + C</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\sqrt{a^2 - x^2}</span></td>
+<td><span class="math inline">\frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin\frac{x}{a} + C</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\frac{1}{\sqrt{a^2 + x^2}}</span></td>
+<td><span class="math inline">\ln(x + \sqrt{a^2 + x^2}) + C</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\sqrt{a^2 + x^2}</span></td>
+<td><span class="math inline">\frac{x}{2} \sqrt{a^2 + x^2} + \frac{a^2}{2} \ln(x + \sqrt{a^2 + x^2}) + C</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="rules">rules</h2>
+<h3 id="constant-multiple">constant multiple</h3>
+<p><span class="math display">
+    \int af(x) dx = a \int f(x) dx
+</span></p>
+<h3 id="sum-and-difference">sum and difference</h3>
+<p><span class="math display">
+    \int (f(x) \pm g(x)) dx = \int f(x) dx \pm \int g(x) dx
+</span></p>
+<h3 id="by-substitution">by substitution</h3>
+<p>Let <span class="math inline">y = g(x)</span></p>
+<p><span class="math display">
+    \int f(g(x))g&#39;(x) dx = \int f(y)dy
+</span></p>
+<h3 id="by-parts">by parts</h3>
+<p><span class="math display">
+    \int f(x)g&#39;(x)dx = f(x)g(x) − \int f&#39;(x)g(x)dx
+</span></p>
+<h2 id="c"><span class="math inline">+\ C</span></h2>
+<p>We need to always add a constant after integration because it is lost during derivation:</p>
+<p>Let <span class="math inline">f(x) = x + 1</span> then <span class="math inline">f&#39;(x) = 1</span>, then we integrate <span class="math inline">\int f&#39;(x) dx = x</span>. As we can see, the <span class="math inline">+\ 1</span> was lost.</p>
+<p>Functions differing by a constant are called a family of primitive functions.</p>
+<h2 id="method-of-partial-fractions">method of partial fractions</h2>
+<p>To find <span class="math inline">\int \frac{f(x)}{g(x)} dx</span> two things have to be satisfied:</p>
+<ul>
+<li>the degree of <span class="math inline">f(x)</span> must be smaller than the degree of <span class="math inline">g(x)</span></li>
+<li>we must know the factors of <span class="math inline">g(x)</span></li>
+</ul>
+<p>Then the following steps can be taken:</p>
+<ol type="1">
+<li>factorize <span class="math inline">g(x)</span></li>
+<li>take factors of degree one from <span class="math inline">g(x)</span> (form of <span class="math inline">(x - a)^m</span>) assign to them the sum of <span class="math inline">m</span> partial fractions: <span class="math display">\sum_{i=1}^{m} \frac{A_i}{(x - a)^i}</span></li>
+<li>take factors of degree two from <span class="math inline">g(x)</span> (form of <span class="math inline">(x^2 + px + q)^n</span>) assign to them the sum of <span class="math inline">n</span> partial fractions: <span class="math display">\sum_{i=1}^{n} \frac{B_ix + C_i}{(x^2 + px + q)^i}</span></li>
+<li>set <span class="math inline">\frac{f(x)}{g(x)}</span> to be the sum of the partial sums from step 2 and 3</li>
+<li>find the <span class="math inline">A, B, C</span> coefficients</li>
+</ol>
+<p>Taking an integral of the partial fractions is much simpler.</p>
+<h2 id="universal-trigonometric-substitution">universal trigonometric substitution</h2>
+<p>Let <span class="math inline">t = \tan\frac{x}{2}</span> then trigonometrical functions can be reduced to a rational function:</p>
+<ul>
+<li><span class="math inline">\sin x = \frac{2t}{1 + t^2}</span></li>
+<li><span class="math inline">\cos x = \frac{1 - t}{1 + t^2}</span></li>
+<li><span class="math inline">\tan x = \frac{2t}{1 - t^2}</span></li>
+</ul>
+<p><span class="math inline">dx</span> is then replaced with <span class="math inline">\frac{2}{1 + t^2}dt</span></p>
 </body>
 </html>
