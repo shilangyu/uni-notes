@@ -58,3 +58,11 @@ $$
 $$
 
 where $\epsilon_0 = \frac{10^{-9}}{36\pi}[\frac{F}{m}]$, $\mu_0 = 4\pi10^{-7}[\frac{H}{m}]$
+
+## amplitude to vector
+
+Applies to any vector, $H$ is just an example
+
+$$
+	H_0 = H \cdot e^{jwt}
+$$
