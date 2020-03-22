@@ -64,5 +64,5 @@ where $\epsilon_0 = \frac{10^{-9}}{36\pi}[\frac{F}{m}]$, $\mu_0 = 4\pi10^{-7}[\f
 Applies to any vector, $H$ is just an example
 
 $$
-	H_0 = H \cdot e^{jwt}
+	H = H_0 \cdot e^{jwt}
 $$
