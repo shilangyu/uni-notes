@@ -15,10 +15,11 @@ $$
 | $\frac{1}{x}$                | $\ln\vert x \vert + C$                                                       |
 | $e^x$                        | $e^x + C$                                                                    |
 | $a^x$                        | $\frac{a^x}{\ln(a)} + C$                                                     |
+| $\vert x \vert$              | $\frac{x\vert x \vert}{2} + C$                                               |
 | $\ln(x)$                     | $x\ln(x) - x + C$                                                            |
 | $\sin(x)$                    | $-\cos(x) + C$                                                               |
 | $\cos(x)$                    | $\sin(x) + C$                                                                |
-| $\frac{1}{1 + x^2}$          | $\arctan(x) + C$                                                             |
+| $\frac{1}{a^2 + x^2}$        | $\frac{1}{a}\arctan(\frac{x}{a}) + C$                                        |
 | $\frac{1}{\sqrt{a^2 - x^2}}$ | $\arcsin\frac{x}{a} + C$                                                     |
 | $\sqrt{a^2 - x^2}$           | $\frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin\frac{x}{a} + C$        |
 | $\frac{1}{\sqrt{a^2 + x^2}}$ | $\ln(x + \sqrt{a^2 + x^2}) + C$                                              |
@@ -94,3 +95,57 @@ Let $t = \tan\frac{x}{2}$ then trigonometrical functions can be reduced to a rat
 - $\tan x = \frac{2t}{1 - t^2}$
 
 $dx$ is then replaced with $\frac{2}{1 + t^2}dt$
+
+## definite integrals
+
+Powerful tool for finding areas under graphs
+
+### Riemann sums
+
+Let $f$ be continuous on some closed interval $[a,b]$. Now we evenly divide it into $n$ subintervals. If $P$ is the partition of all edges of intervals then $P = \{ x_0 = a, x_1, \cdots, x_{n-1}, x_n = b\}$. To find the area of some subinterval of $f$ at some point $c_k$: $f(c_k) \cdot (x_k - x_{k-1}) = f(c_k) \cdot \Delta_{x_k}$. Therefore to find the area of the whole interval:
+
+$$
+	\sum_{k=1}^n f(c_k) \cdot \Delta_{x_k}
+$$
+
+To find the area ($I$) of some $f$ on a closed interval $[a,b]$ $n$ has to approach infinity
+
+$$
+	\lim_{n \to \infty} \sum_{k=1}^n f(c_k) \cdot \Delta_{x_k} = I
+$$
+
+$I$ is called the definite integral of $f$ over $[a,b]$
+
+$$
+I = \int_a^bf(x)dx = F(b) - F(a)
+$$
+
+where $F' = f$
+
+### differentiation
+
+$\frac{d}{dx} \int_a^x f(t)dt = f(x)$
+
+$\frac{d}{dx} \int_a^b f(x)dx = 0$
+
+### properties
+
+Same as with indefinite integrals plus:
+
+- $\int_a^b f(x)dx = -\int_b^a f(x)dx$
+- $\int_a^a f(x)dx = 0$
+- $\int_a^b f(x)dx = \int_a^c f(x)dx +  \int_c^b g(x)dx$
+
+### substitution
+
+$$
+	\int_a^b f(g(x)) \cdot g'(x) dx = \int_{g(a)}^{g(b)} f(u) du
+$$
+
+### mean value theorem
+
+While this is true, finding $c$ is incredibly hard:
+
+$$
+	\int_a^b f(x) dx = (b-a)f(c)
+$$
