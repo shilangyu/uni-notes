@@ -365,34 +365,38 @@
 <td><span class="math inline">\frac{a^x}{\ln(a)} + C</span></td>
 </tr>
 <tr class="even">
+<td><span class="math inline">\vert x \vert</span></td>
+<td><span class="math inline">\frac{x\vert x \vert}{2} + C</span></td>
+</tr>
+<tr class="odd">
 <td><span class="math inline">\ln(x)</span></td>
 <td><span class="math inline">x\ln(x) - x + C</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="math inline">\sin(x)</span></td>
 <td><span class="math inline">-\cos(x) + C</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="math inline">\cos(x)</span></td>
 <td><span class="math inline">\sin(x) + C</span></td>
 </tr>
-<tr class="odd">
-<td><span class="math inline">\frac{1}{1 + x^2}</span></td>
-<td><span class="math inline">\arctan(x) + C</span></td>
-</tr>
 <tr class="even">
+<td><span class="math inline">\frac{1}{a^2 + x^2}</span></td>
+<td><span class="math inline">\frac{1}{a}\arctan(\frac{x}{a}) + C</span></td>
+</tr>
+<tr class="odd">
 <td><span class="math inline">\frac{1}{\sqrt{a^2 - x^2}}</span></td>
 <td><span class="math inline">\arcsin\frac{x}{a} + C</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="math inline">\sqrt{a^2 - x^2}</span></td>
 <td><span class="math inline">\frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin\frac{x}{a} + C</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="math inline">\frac{1}{\sqrt{a^2 + x^2}}</span></td>
 <td><span class="math inline">\ln(x + \sqrt{a^2 + x^2}) + C</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="math inline">\sqrt{a^2 + x^2}</span></td>
 <td><span class="math inline">\frac{x}{2} \sqrt{a^2 + x^2} + \frac{a^2}{2} \ln(x + \sqrt{a^2 + x^2}) + C</span></td>
 </tr>
@@ -447,5 +451,40 @@
 <li><span class="math inline">\tan x = \frac{2t}{1 - t^2}</span></li>
 </ul>
 <p><span class="math inline">dx</span> is then replaced with <span class="math inline">\frac{2}{1 + t^2}dt</span></p>
+<h2 id="definite-integrals">definite integrals</h2>
+<p>Powerful tool for finding areas under graphs</p>
+<h3 id="riemann-sums">Riemann sums</h3>
+<p>Let <span class="math inline">f</span> be continuous on some closed interval <span class="math inline">[a,b]</span>. Now we evenly divide it into <span class="math inline">n</span> subintervals. If <span class="math inline">P</span> is the partition of all edges of intervals then <span class="math inline">P = \{ x_0 = a, x_1, \cdots, x_{n-1}, x_n = b\}</span>. To find the area of some subinterval of <span class="math inline">f</span> at some point <span class="math inline">c_k</span>: <span class="math inline">f(c_k) \cdot (x_k - x_{k-1}) = f(c_k) \cdot \Delta_{x_k}</span>. Therefore to find the area of the whole interval:</p>
+<p><span class="math display">
+    \sum_{k=1}^n f(c_k) \cdot \Delta_{x_k}
+</span></p>
+<p>To find the area (<span class="math inline">I</span>) of some <span class="math inline">f</span> on a closed interval <span class="math inline">[a,b]</span> <span class="math inline">n</span> has to approach infinity</p>
+<p><span class="math display">
+    \lim_{n \to \infty} \sum_{k=1}^n f(c_k) \cdot \Delta_{x_k} = I
+</span></p>
+<p><span class="math inline">I</span> is called the definite integral of <span class="math inline">f</span> over <span class="math inline">[a,b]</span></p>
+<p><span class="math display">
+I = \int_a^bf(x)dx = F(b) - F(a)
+</span></p>
+<p>where <span class="math inline">F&#39; = f</span></p>
+<h3 id="differentiation">differentiation</h3>
+<p><span class="math inline">\frac{d}{dx} \int_a^x f(t)dt = f(x)</span></p>
+<p><span class="math inline">\frac{d}{dx} \int_a^b f(x)dx = 0</span></p>
+<h3 id="properties">properties</h3>
+<p>Same as with indefinite integrals plus:</p>
+<ul>
+<li><span class="math inline">\int_a^b f(x)dx = -\int_b^a f(x)dx</span></li>
+<li><span class="math inline">\int_a^a f(x)dx = 0</span></li>
+<li><span class="math inline">\int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b g(x)dx</span></li>
+</ul>
+<h3 id="substitution">substitution</h3>
+<p><span class="math display">
+    \int_a^b f(g(x)) \cdot g&#39;(x) dx = \int_{g(a)}^{g(b)} f(u) du
+</span></p>
+<h3 id="mean-value-theorem">mean value theorem</h3>
+<p>While this is true, finding <span class="math inline">c</span> is incredibly hard:</p>
+<p><span class="math display">
+    \int_a^b f(x) dx = (b-a)f(c)
+</span></p>
 </body>
 </html>
