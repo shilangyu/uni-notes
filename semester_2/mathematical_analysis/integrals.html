@@ -468,7 +468,7 @@ I = \int_a^bf(x)dx = F(b) - F(a)
 </span></p>
 <p>where <span class="math inline">F&#39; = f</span></p>
 <h3 id="differentiation">differentiation</h3>
-<p><span class="math inline">\frac{d}{dx} \int_a^x f(t)dt = f(x)</span></p>
+<p><span class="math inline">\frac{d}{dx} \int_a^{g(x)} f(t)dt = f(g(x))g&#39;(x)</span></p>
 <p><span class="math inline">\frac{d}{dx} \int_a^b f(x)dx = 0</span></p>
 <h3 id="properties">properties</h3>
 <p>Same as with indefinite integrals plus:</p>
@@ -485,6 +485,23 @@ I = \int_a^bf(x)dx = F(b) - F(a)
 <p>While this is true, finding <span class="math inline">c</span> is incredibly hard:</p>
 <p><span class="math display">
     \int_a^b f(x) dx = (b-a)f(c)
+</span></p>
+<h3 id="smooth-function">smooth function</h3>
+<p>A function with a continuous first derivative is called smooth and its graph is a smooth curve.</p>
+<h3 id="area-between-curves">area between curves</h3>
+<p>If in a range <span class="math inline">[a,b]</span> <span class="math inline">f(x) \le g(x)</span> then the area between the curves is</p>
+<p><span class="math display">
+\int_a^b |g(x) - f(x)| dx
+</span></p>
+<h3 id="length-of-the-curve">length of the curve</h3>
+<p>Let <span class="math inline">f</span> be a smooth function. The length of the curve from <span class="math inline">a</span> to <span class="math inline">b</span> is then:</p>
+<p><span class="math display">
+    \int_a^b \sqrt{1 + (f&#39;(x))^2}dx
+</span></p>
+<h3 id="volume-of-solids-of-revolution">volume of solids of revolution</h3>
+<p>If we rotate some region <span class="math inline">P</span> (marked by the area under the graph of some function <span class="math inline">f</span> from <span class="math inline">a</span> to <span class="math inline">b</span>) about the <span class="math inline">x</span> axis the formula for its volume is:</p>
+<p><span class="math display">
+\pi \int_a^b (f(x))^2dx
 </span></p>
 </body>
 </html>
