@@ -124,7 +124,7 @@ where $F' = f$
 
 ### differentiation
 
-$\frac{d}{dx} \int_a^x f(t)dt = f(x)$
+$\frac{d}{dx} \int_a^{g(x)} f(t)dt = f(g(x))g'(x)$
 
 $\frac{d}{dx} \int_a^b f(x)dx = 0$
 
@@ -148,4 +148,32 @@ While this is true, finding $c$ is incredibly hard:
 
 $$
 	\int_a^b f(x) dx = (b-a)f(c)
+$$
+
+### smooth function
+
+A function with a continuous first derivative is called smooth and its graph is a smooth curve.
+
+### area between curves
+
+If in a range $[a,b]$ $f(x) \le g(x)$ then the area between the curves is
+
+$$
+\int_a^b |g(x) - f(x)| dx
+$$
+
+### length of the curve
+
+Let $f$ be a smooth function. The length of the curve from $a$ to $b$ is then:
+
+$$
+	\int_a^b \sqrt{1 + (f'(x))^2}dx
+$$
+
+### volume of solids of revolution
+
+If we rotate some region $P$ (marked by the area under the graph of some function $f$ from $a$ to $b$) about the $x$ axis the formula for its volume is:
+
+$$
+\pi \int_a^b (f(x))^2dx
 $$
