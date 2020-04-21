@@ -503,5 +503,40 @@ I = \int_a^bf(x)dx = F(b) - F(a)
 <p><span class="math display">
 \pi \int_a^b (f(x))^2dx
 </span></p>
+<h2 id="improper-integrals">improper integrals</h2>
+<p>Integrals with infinite limits are called <em>improper integrals</em>.</p>
+<p><span class="math display">
+\int_a^\infty f(x)dx = \lim_{b\to\infty} \int_a^b f(x)dx
+</span></p>
+<p>If the limit is finite we say the improper integral converges and the limit is the resulting value. Otherwise it diverges.</p>
+<h3 id="harmonic-series">harmonic series</h3>
+<p>Just like with series, <span class="math inline">\int_1^\infty \frac{1}{x^p}dx</span> converges only if <span class="math inline">p &gt; 1</span>, converges to <span class="math inline">\frac{1}{p-1}</span></p>
+<h3 id="convergence">convergence</h3>
+<p><span class="math display">
+\int_{-\infty}^\infty f(x)dx = \int_{-\infty}^c f(x)dx + \int_c^\infty f(x)dx
+</span></p>
+<p>The left side converges only if the right one does as well.</p>
+<h3 id="unbounded-limits">unbounded limits</h3>
+<p>If one (or both) of the limits of an integral are unbounded, we can define an improper integral with a limit directed towards the interval:</p>
+<p>let <span class="math inline">a</span> be unbounded:</p>
+<p><span class="math display">
+\int_a^b f(x)dx = \lim_{c \to a^+} \int_c^b f(x)dx
+</span></p>
+<p>let <span class="math inline">b</span> be unbounded:</p>
+<p><span class="math display">
+\int_a^b f(x)dx = \lim_{c \to b^-} \int_a^c f(x)dx
+</span></p>
+<h3 id="omitting-unbounded-points">omitting unbounded points</h3>
+<p>If the function we are integrating over some interval is not continuous, we split the integral into multiple smaller ones to omit the unbounded points and analyze the left and right side separately.</p>
+<h3 id="tests-for-convergence">tests for convergence</h3>
+<p>It is important to note it only tells us where something diverges/converges, the converging values might still be different</p>
+<h4 id="dct">DCT</h4>
+<p>let <span class="math inline">0 \le f(x) \le g(x)</span> for <span class="math inline">x \ge a</span></p>
+<ul>
+<li><span class="math inline">\int_a^\infty f(x)dx</span> converges if <span class="math inline">\int_a^\infty g(x)dx</span> converges</li>
+<li><span class="math inline">\int_a^\infty g(x)dx</span> diverges if <span class="math inline">\int_a^\infty f(x)dx</span> diverges</li>
+</ul>
+<h4 id="lct">LCT</h4>
+<p>let <span class="math inline">f</span> and <span class="math inline">g</span> be positive continuous functions on <span class="math inline">[a, \infty)</span>. If <span class="math inline">\lim_{x\to\infty}\frac{f(x)}{g(x)} = L</span>, <span class="math inline">0 \le L</span> then <span class="math inline">\int_a^\infty f(x)dx</span> and <span class="math inline">\int_a^\infty g(x)dx</span> both converge or both diverge.</p>
 </body>
 </html>
