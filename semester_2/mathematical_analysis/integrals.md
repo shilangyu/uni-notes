@@ -177,3 +177,60 @@ If we rotate some region $P$ (marked by the area under the graph of some functio
 $$
 \pi \int_a^b (f(x))^2dx
 $$
+
+## improper integrals
+
+Integrals with infinite limits are called _improper integrals_.
+
+$$
+\int_a^\infty f(x)dx = \lim_{b\to\infty} \int_a^b f(x)dx
+$$
+
+If the limit is finite we say the improper integral converges and the limit is the resulting value. Otherwise it diverges.
+
+### harmonic series
+
+Just like with series, $\int_1^\infty \frac{1}{x^p}dx$ converges only if $p > 1$, converges to $\frac{1}{p-1}$
+
+### convergence
+
+$$
+\int_{-\infty}^\infty f(x)dx = \int_{-\infty}^c f(x)dx + \int_c^\infty f(x)dx
+$$
+
+The left side converges only if the right one does as well.
+
+### unbounded limits
+
+If one (or both) of the limits of an integral are unbounded, we can define an improper integral with a limit directed towards the interval:
+
+let $a$ be unbounded:
+
+$$
+\int_a^b f(x)dx = \lim_{c \to a^+} \int_c^b f(x)dx
+$$
+
+let $b$ be unbounded:
+
+$$
+\int_a^b f(x)dx = \lim_{c \to b^-} \int_a^c f(x)dx
+$$
+
+### omitting unbounded points
+
+If the function we are integrating over some interval is not continuous, we split the integral into multiple smaller ones to omit the unbounded points and analyze the left and right side separately.
+
+### tests for convergence
+
+It is important to note it only tells us where something diverges/converges, the converging values might still be different
+
+#### DCT
+
+let $0 \le f(x) \le g(x)$ for $x \ge a$
+
+- $\int_a^\infty f(x)dx$ converges if $\int_a^\infty g(x)dx$ converges
+- $\int_a^\infty g(x)dx$ diverges if $\int_a^\infty f(x)dx$ diverges
+
+#### LCT
+
+let $f$ and $g$ be positive continuous functions on $[a, \infty)$. If $\lim_{x\to\infty}\frac{f(x)}{g(x)} = L$, $0 \le L$ then $\int_a^\infty f(x)dx$ and $\int_a^\infty g(x)dx$ both converge or both diverge.
