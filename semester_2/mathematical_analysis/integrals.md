@@ -234,3 +234,7 @@ let $0 \le f(x) \le g(x)$ for $x \ge a$
 #### LCT
 
 let $f$ and $g$ be positive continuous functions on $[a, \infty)$. If $\lim_{x\to\infty}\frac{f(x)}{g(x)} = L$, $0 \le L$ then $\int_a^\infty f(x)dx$ and $\int_a^\infty g(x)dx$ both converge or both diverge.
+
+### integral test
+
+Let $N \ge 1$, $a_n = f(n)$ then $\sum_{n=1}^\infty a_n$ and $\int_N^\infty f(x)dx$ both diverge or both converge.
