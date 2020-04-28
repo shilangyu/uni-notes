@@ -4,13 +4,21 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>contact_info</title>
+  <title>multivariate_functions</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -318,44 +326,32 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="contact-info">contact info</h1>
-<h2 id="mathematical-analysis">Mathematical analysis</h2>
-<h3 id="barbara-roszkowska-lech-lectures-tutorials">Barbara Roszkowska-Lech (lectures &amp; tutorials)</h3>
-<p>📧 barosz@mini.pw.edu</p>
-<p>🌐 <a href="https://mini.pw.edu.pl/~barosz/www/?Dydaktyka:Analysis_EMANA_2020">https://mini.pw.edu.pl/~barosz/www/?Dydaktyka:Analysis_EMANA_2020</a></p>
-<p>⏲</p>
-<h2 id="object-oriented-programming">Object oriented programming</h2>
-<h3 id="roman-podraza-lectures">Roman Podraza (lectures)</h3>
-<p>📧</p>
-<p>🌐</p>
-<p>⏲</p>
-<h2 id="electrical-and-computer-engineering-laboratory">Electrical and Computer Engineering Laboratory</h2>
-<h3 id="grzegorz-tarapata-lectures">Grzegorz Tarapata (lectures)</h3>
-<p>📧 gtarapata@elka.pw.edu.pl</p>
-<p>🌐 <a href="http://www.eecel.ise.pw.edu.pl/">http://www.eecel.ise.pw.edu.pl/</a></p>
-<p>⏲ room 240 Wednesday 12:00-15:00</p>
-<h2 id="physics-2">Physics 2</h2>
-<h3 id="bartłomiej-salski-lectures">Bartłomiej Salski (lectures)</h3>
-<p>📧 bsalski@ire.pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲ room 546</p>
-<h3 id="tomasz-karpisz-tutorials">Tomasz Karpisz (tutorials)</h3>
-<p>📧 t.karpisz@ire.pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<h2 id="academic-writing">Academic writing</h2>
-<h3 id="izabela-zamecznik-tutorials">Izabela Zamecznik (tutorials)</h3>
-<p>📧 izabela.zamecznik@pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<h2 id="c1-english-2">C1 english 2</h2>
-<h3 id="ewa-furyk-tutorials">Ewa Furyk (tutorials)</h3>
-<p>📧 ewa.furyk@pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<hr />
-<p>📧 : e-mail</p>
-<p>🌐 : website</p>
-<p>⏲ : office hours</p>
+<h1 id="multivariate-functions">multivariate functions</h1>
+<p>Functions that take multiple arguments: <span class="math inline">f(x_1, x_2, \cdots, x_n) = y</span></p>
+<h2 id="level-curve">level curve</h2>
+<p>let <span class="math inline">f(x, y) = z</span> then for some constant <span class="math inline">c</span>, <span class="math inline">f(x, y) = c</span> is called a level curve</p>
+<h2 id="limit">limit</h2>
+<p>Finding a limit of a multivariate functions is much more difficult (even when there are only 2 arguments) because instead of approaching a point from left or right we have infinite ways of approaching it.</p>
+<p><span class="math display">
+    \lim_{(x, y) \to (x_0, y_0)} f(x, y) = L
+</span></p>
+<h3 id="two-path-test">two-path test</h3>
+<p>If the limit is different when approaching the point from 2 different paths then we can say the limit does not exist.</p>
+<p><strong>Example</strong>: let <span class="math inline">f(x, y) = \frac{xy}{x^2 + y^2}</span> when <span class="math inline">(x, y) \to (0, 0)</span></p>
+<ul>
+<li>if <span class="math inline">y = 0</span> then <span class="math inline">f(x, 0) \to 0</span></li>
+<li>if <span class="math inline">y = x</span> then <span class="math inline">f(x, x) \to \frac{1}{2}</span></li>
+</ul>
+<h3 id="properties">properties</h3>
+<p>Let <span class="math inline">\lim_{(x, y) \to (x_0, y_0)} f(x, y) = L</span> and <span class="math inline">\lim_{(x, y) \to (x_0, y_0)} g(x, y) = M</span></p>
+<ul>
+<li><span class="math inline">\lim_{(x, y) \to (x_0, y_0)} f(x, y) \pm g(x, y) = L + M</span></li>
+<li><span class="math inline">\lim_{(x, y) \to (x_0, y_0)} f(x, y) \cdot g(x, y) = L \cdot M</span></li>
+<li><span class="math inline">\lim_{(x, y) \to (x_0, y_0)} \frac{f(x, y)}{g(x, y)} = \frac{L}{M}</span>, <span class="math inline">M \ne 0</span></li>
+<li><span class="math inline">\lim_{(x, y) \to (x_0, y_0)} k \cdot f(x, y) = k \cdot L</span></li>
+</ul>
+<p>Sandwich theorem still applies.</p>
+<h2 id="continuity">continuity</h2>
+<p>A function is considered continuos if <span class="math inline">\lim_{(x, y) \to (x_0, y_0)} f(x, y) = f(x_0, y_0)</span></p>
 </body>
 </html>
