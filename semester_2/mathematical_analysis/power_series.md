@@ -4,6 +4,16 @@ A power series centered at $x = a$ is: $\sum a_n(x - a)^n = a_0 + a_1(x-a) + a_2
 
 **example**: Geometric series centered at $x = 0$ then $1 + x + x^2 + \cdots = \frac{1}{1-x}$ are convergent at $-1 < x < 1$
 
+## common power series
+
+| function          | expanded series                          |
+| ----------------- | ---------------------------------------- |
+| $\frac{1}{1 - x}$ | $\sum x^n$ for $\vert x \vert \lt 1$     |
+| $e^x$             | $\sum \frac{x^n}{n!}$                    |
+| $\sin x$          | $\sum (-1)^n \frac{x^{2n+1}}{(2n + 1)!}$ |
+| $\cos x$          | $\sum (-1)^n \frac{x^{2n}}{(2n)!}$       |
+| $(1 + x)^k$       | $\sum \binom{k}{n}x^n$                   |
+
 ## convergence theorem
 
 There are 3 possibilities for a power series with respect to convergence
