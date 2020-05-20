@@ -353,5 +353,64 @@
 <p>Sandwich theorem still applies.</p>
 <h2 id="continuity">continuity</h2>
 <p>A function is considered continuos if <span class="math inline">\lim_{(x, y) \to (x_0, y_0)} f(x, y) = f(x_0, y_0)</span></p>
+<h2 id="partial-derivatives">partial derivatives</h2>
+<p>Derivatives of a function with respect to a given argument.</p>
+<p><span class="math display">
+    \frac{\partial f}{\partial x} (x_0, y_0) \equiv \frac{d}{dx} f(x, y_0)|_{x=x_0} \equiv f_x(x_0, y_0) = \lim_{h \to 0} \frac{f(x_0 + h, y_0) - f(x_0, y_0)}{h}
+</span></p>
+<h3 id="higher-order">higher order</h3>
+<h4 id="pure">pure</h4>
+<p>We call a partial derivative <em>pure</em> when all partial derivatives were taken with respect to the same variable. <strong>Example</strong>: <span class="math inline">f_{xx}</span> or <span class="math inline">f_{yy}</span></p>
+<h4 id="mixed">mixed</h4>
+<p>We call a partial derivative <em>mixed</em> when partial derivatives were taken with respect to different variables. <strong>Example</strong>: <span class="math inline">f_{xy}</span> or <span class="math inline">f_{yx}</span></p>
+<h3 id="mixed-derivatives-theorem">mixed derivatives theorem</h3>
+<p>If a function and its derivatives (<span class="math inline">f_x</span>, <span class="math inline">f_y</span>, <span class="math inline">f_{yx}</span>, <span class="math inline">f_{xy}</span>) are defined and continuous on an open region containing a point <span class="math inline">(x_0 ,y_0)</span> then <span class="math inline">f_{xy}(x_0, y_0) = f_{yx}(x_0, y_0)</span></p>
+<h3 id="chain-rule">chain rule</h3>
+<p>Let <span class="math inline">w = f(x, y)</span>, <span class="math inline">x = g(r, s)</span>, <span class="math inline">y = h(r, s)</span> then:</p>
+<p><span class="math display">
+\frac{\partial w}{\partial r} = \frac{\partial w}{\partial x} \frac{\partial x}{\partial r} + \frac{\partial w}{\partial y} \frac{\partial y}{\partial r}
+</span></p>
+<h3 id="implicit-function">implicit function</h3>
+<p>Suppose that <span class="math inline">F(x, y)</span> is differentiable and that the equation <span class="math inline">F(x, y) = 0</span> defines <span class="math inline">y</span> implicitly as a differentiable function of <span class="math inline">z</span>, Then at any point where <span class="math inline">F_y \ne 0</span>:</p>
+<p><span class="math display">
+    \frac{dy}{dx} = - \frac{F_x}{F_y}
+</span></p>
+<h3 id="gradient">gradient</h3>
+<p>Direction of the steepest ascent</p>
+<p><span class="math inline">\nabla f(x, y) = grad f(x, y) = [f_x(x, y), f_y(x, y)] = f_x(x, y)\mathbf{i} + f_y(x, y)\mathbf{j}</span></p>
+<h3 id="directional-derivative">directional derivative</h3>
+<p>Rate of change along a unit vector: <span class="math inline">\nabla_{\vec u} f(x_0, y_0) = \nabla f(x_0, y_0) \cdot \vec u = |\nabla f(x_0, y_0)| \cos \theta = \lim_{s \to 0^+} \frac{f(P_0 + \vec u) - f(P_0)}{s}</span></p>
+<h3 id="tangent-plane">tangent plane</h3>
+<p>Like a tangent line, but it’s a plane because of the higher dimension of the graph. The tangent plane at <span class="math inline">P_0 = (x_0, y_0, f(x_0, y_0)) = (x_0, y_0, z_0)</span> is defined as:</p>
+<p><span class="math display">
+    f_x(P_0)(x - x_0) + f_y(P_0)(y - y_0) - (z - z_0) = 0
+</span></p>
+<h2 id="extrema">extrema</h2>
+<p>Peaks and valleys</p>
+<h3 id="local">local</h3>
+<p>minimum/maximum in a given radius</p>
+<h3 id="globalabsolute">global/absolute</h3>
+<p>minimum/maximum across the whole domain</p>
+<h3 id="first-derivative-test">First Derivative Test</h3>
+<p>If <span class="math inline">f(a, b)</span> is a local extremum then <span class="math inline">f_x(a, b) = f_y(a, b) = 0</span></p>
+<h2 id="critical-points">critical points</h2>
+<p>Points where <span class="math inline">f_x</span> and <span class="math inline">f_y</span> are 0 or do not exist are called critical points of <span class="math inline">f</span>. Extrema of <span class="math inline">f</span> can only exist on such points or on boundaries. However not every critical point means that theres an extremum there.</p>
+<h2 id="saddle-point">saddle point</h2>
+<p>When there is a local maximum and minimum at the same time at a critical point.</p>
+<h2 id="discriminant">discriminant</h2>
+<p><span class="math display">
+    Df(x, y) = \begin{vmatrix}
+        f_{xx} &amp; f_{xy} \\
+        f_{yx} &amp; f_{yy} \\
+    \end{vmatrix} = f_{xx}f_{yy} - f^2_{xy}
+</span></p>
+<h2 id="second-derivative-test">second derivative test</h2>
+<p>Let <span class="math inline">f(a, b)</span> be a critical point, then:</p>
+<ul>
+<li><span class="math inline">f</span> has a local maximum at <span class="math inline">(a, b)</span> if <span class="math inline">Df(a, b) &gt; 0</span> and <span class="math inline">f_{xx}(a, b) &lt; 0</span></li>
+<li><span class="math inline">f</span> has a local minimum at <span class="math inline">(a, b)</span> if <span class="math inline">Df(a, b) &gt; 0</span> and <span class="math inline">f_{xx}(a, b) &gt; 0</span></li>
+<li><span class="math inline">f</span> has a saddle point at <span class="math inline">(a, b)</span> if <span class="math inline">Df(a, b) &lt; 0</span></li>
+<li>The test is inconclusive at <span class="math inline">(a, b)</span> if <span class="math inline">Df(a, b) = 0</span></li>
+</ul>
 </body>
 </html>
