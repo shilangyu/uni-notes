@@ -91,7 +91,7 @@ Taking an integral of the partial fractions is much simpler.
 Let $t = \tan\frac{x}{2}$ then trigonometrical functions can be reduced to a rational function:
 
 - $\sin x = \frac{2t}{1 + t^2}$
-- $\cos x = \frac{1 - t}{1 + t^2}$
+- $\cos x = \frac{1 - t^2}{1 + t^2}$
 - $\tan x = \frac{2t}{1 - t^2}$
 
 $dx$ is then replaced with $\frac{2}{1 + t^2}dt$
