@@ -540,5 +540,20 @@ I = \int_a^bf(x)dx = F(b) - F(a)
 <p>let <span class="math inline">f</span> and <span class="math inline">g</span> be positive continuous functions on <span class="math inline">[a, \infty)</span>. If <span class="math inline">\lim_{x\to\infty}\frac{f(x)}{g(x)} = L</span>, <span class="math inline">0 \le L</span> then <span class="math inline">\int_a^\infty f(x)dx</span> and <span class="math inline">\int_a^\infty g(x)dx</span> both converge or both diverge.</p>
 <h3 id="integral-test">integral test</h3>
 <p>Let <span class="math inline">N \ge 1</span>, <span class="math inline">a_n = f(n)</span> then <span class="math inline">\sum_{n=1}^\infty a_n</span> and <span class="math inline">\int_N^\infty f(x)dx</span> both diverge or both converge.</p>
+<h3 id="double-integrals">double integrals</h3>
+<p>The find a volume under some region <span class="math inline">R</span> of a function <span class="math inline">f(x, y)</span> we use double integrals (assuming <span class="math inline">f(x, y)</span> is continuous over <span class="math inline">R</span>):</p>
+<p><span class="math display">
+    \iint\limits_R f(x, y)dxdy
+</span></p>
+<h4 id="rectangular-region">rectangular region</h4>
+<p>If <span class="math inline">R</span> is a rectangular region bounded by <span class="math inline">a \le x \le b</span> and <span class="math inline">c \le y \le d</span>, then:</p>
+<p><span class="math display">
+    \int_{a}^b \big(\int_{c}^d f(x, y)dy\big)dx = \int_{c}^d \big(\int_{a}^b f(x, y)dx\big)dy
+</span></p>
+<h4 id="non-rectangular-region">non-rectangular region</h4>
+<p>When one component is bounded by a function, it has to be integrated first, example: <span class="math inline">0 \le x \le 1</span> and <span class="math inline">g(x) \le y \le h(x)</span></p>
+<p><span class="math display">
+    \int_{0}^1 \big(\int_{g(x)}^{h(x)} f(x, y)dy\big)dx
+</span></p>
 </body>
 </html>
