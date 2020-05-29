@@ -238,3 +238,27 @@ let $f$ and $g$ be positive continuous functions on $[a, \infty)$. If $\lim_{x\t
 ### integral test
 
 Let $N \ge 1$, $a_n = f(n)$ then $\sum_{n=1}^\infty a_n$ and $\int_N^\infty f(x)dx$ both diverge or both converge.
+
+### double integrals
+
+The find a volume under some region $R$ of a function $f(x, y)$ we use double integrals (assuming $f(x, y)$ is continuous over $R$):
+
+$$
+	\iint\limits_R f(x, y)dxdy
+$$
+
+#### rectangular region
+
+If $R$ is a rectangular region bounded by $a \le x \le b$ and $c \le y \le d$, then:
+
+$$
+	\int_{a}^b \big(\int_{c}^d f(x, y)dy\big)dx = \int_{c}^d \big(\int_{a}^b f(x, y)dx\big)dy
+$$
+
+#### non-rectangular region
+
+When one component is bounded by a function, it has to be integrated first, example: $0 \le x \le 1$ and $g(x) \le y \le h(x)$
+
+$$
+	\int_{0}^1 \big(\int_{g(x)}^{h(x)} f(x, y)dy\big)dx
+$$
