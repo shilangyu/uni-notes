@@ -540,20 +540,36 @@ I = \int_a^bf(x)dx = F(b) - F(a)
 <p>let <span class="math inline">f</span> and <span class="math inline">g</span> be positive continuous functions on <span class="math inline">[a, \infty)</span>. If <span class="math inline">\lim_{x\to\infty}\frac{f(x)}{g(x)} = L</span>, <span class="math inline">0 \le L</span> then <span class="math inline">\int_a^\infty f(x)dx</span> and <span class="math inline">\int_a^\infty g(x)dx</span> both converge or both diverge.</p>
 <h3 id="integral-test">integral test</h3>
 <p>Let <span class="math inline">N \ge 1</span>, <span class="math inline">a_n = f(n)</span> then <span class="math inline">\sum_{n=1}^\infty a_n</span> and <span class="math inline">\int_N^\infty f(x)dx</span> both diverge or both converge.</p>
-<h3 id="double-integrals">double integrals</h3>
+<h2 id="double-integrals">double integrals</h2>
 <p>The find a volume under some region <span class="math inline">R</span> of a function <span class="math inline">f(x, y)</span> we use double integrals (assuming <span class="math inline">f(x, y)</span> is continuous over <span class="math inline">R</span>):</p>
 <p><span class="math display">
     \iint\limits_R f(x, y)dxdy
 </span></p>
-<h4 id="rectangular-region">rectangular region</h4>
+<h3 id="rectangular-region">rectangular region</h3>
 <p>If <span class="math inline">R</span> is a rectangular region bounded by <span class="math inline">a \le x \le b</span> and <span class="math inline">c \le y \le d</span>, then:</p>
 <p><span class="math display">
     \int_{a}^b \big(\int_{c}^d f(x, y)dy\big)dx = \int_{c}^d \big(\int_{a}^b f(x, y)dx\big)dy
 </span></p>
-<h4 id="non-rectangular-region">non-rectangular region</h4>
+<h3 id="non-rectangular-region">non-rectangular region</h3>
 <p>When one component is bounded by a function, it has to be integrated first, example: <span class="math inline">0 \le x \le 1</span> and <span class="math inline">g(x) \le y \le h(x)</span></p>
 <p><span class="math display">
     \int_{0}^1 \big(\int_{g(x)}^{h(x)} f(x, y)dy\big)dx
 </span></p>
+<h2 id="jacobian-matrix">Jacobian matrix</h2>
+<p>Matrix of all partial derivatives of a function</p>
+<p><span class="math display">
+    \mathbf{J} =
+    \begin{bmatrix}
+        \frac{\partial f_{x_1}}{\partial x_1}   &amp; \cdots &amp; \frac{\partial f_{x_1}}{\partial x_n} \\
+        \vdots &amp; \ddots &amp; \vdots \\
+        \frac{\partial f_{x_n}}{\partial x_1}   &amp; \cdots &amp; \frac{\partial f_{x_n}}{\partial x_n} \\
+    \end{bmatrix}
+</span></p>
+<h3 id="switching-between-coordinate-systems-during-integration">switching between coordinate systems during integration</h3>
+<p>The function has to be multiplied by the determinant of the Jacobian matrix when switching from cartesian to polar parametrization.</p>
+<p><span class="math display">
+\iint \limits_{f(A)} f(x, y)dxdy = \iint \limits_{A} f(r\cos\theta, r\sin\theta) \det\mathbf{J} drd\theta
+</span></p>
+<p>In the case of 2 dimensions <span class="math inline">\det\mathbf{J} = r</span>, in 3 <span class="math inline">\det\mathbf{J} = r^2\sin\theta</span></p>
 </body>
 </html>
