@@ -84,7 +84,7 @@ $\nabla f(x, y) = grad f(x, y) = [f_x(x, y), f_y(x, y)] = f_x(x, y)\mathbf{i} + 
 
 ### directional derivative
 
-Rate of change along a unit vector: $\nabla_{\vec u} f(x_0, y_0) = \nabla f(x_0, y_0) \cdot \vec u = |\nabla f(x_0, y_0)| \cos \theta = \lim_{s \to 0^+} \frac{f(P_0 + \vec u) - f(P_0)}{s}$
+Rate of change along a unit vector: $\nabla_{\vec u} f(x_0, y_0) = \nabla f(x_0, y_0) \cdot \vec u = |\nabla f(x_0, y_0)| \cos \theta = \lim_{s \to 0^+} \frac{f(P_0 + s \vec u) - f(P_0)}{s}$
 
 ### tangent plane
 
