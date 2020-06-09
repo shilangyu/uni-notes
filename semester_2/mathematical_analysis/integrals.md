@@ -284,4 +284,11 @@ $$
 \iint \limits_{f(A)} f(x, y)dxdy = \iint \limits_{A} f(r\cos\theta, r\sin\theta) \det\mathbf{J} drd\theta
 $$
 
-In the case of 2 dimensions $\det\mathbf{J} = r$, in 3 $\det\mathbf{J} = r^2\sin\theta$
+In the case of 2 dimensions for polar $\det\mathbf{J} = r$, in 3 $\det\mathbf{J}_x = r^2\sin\theta$
+
+## additional usages
+
+Two variable functions:
+
+- area of region $D$: $S = \iint \limits_D \sqrt{1 + f_x^2 + f_y^2}dxdy$
+- volume of region $W$: $V = \iiint \limits_W dxdydz$
