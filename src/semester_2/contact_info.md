@@ -26,7 +26,7 @@
 
 📧 gtarapata@elka.pw.edu.pl
 
-🌐 [eecel.ise.pw.pl](eecel.ise.pw.pl)
+🌐 [http://www.eecel.ise.pw.edu.pl/](http://www.eecel.ise.pw.edu.pl/)
 
 ⏲ room 240 Wednesday 12:00-15:00
 
@@ -53,6 +53,16 @@
 ### Izabela Zamecznik (tutorials)
 
 📧 izabela.zamecznik@pw.edu.pl
+
+🌐 []()
+
+⏲
+
+## C1 english 2
+
+### Ewa Furyk (tutorials)
+
+📧 ewa.furyk@pw.edu.pl
 
 🌐 []()
 

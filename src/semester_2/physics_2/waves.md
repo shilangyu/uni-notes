@@ -14,7 +14,7 @@ We say a material is conductive if it allows electrons/ions to flow through it.
 
 #### losses
 
-Losses are quantified with a _loss tangent_: $\epsilon_r = \epsilon_r'(1 − j\tan \delta)$
+Losses are quantified with a _loss tangent_: $\epsilon_r = \epsilon_r'(1 - j\tan \delta)$
 
 However if losses have conductive behavior then: $\epsilon_r = \epsilon_r'j\frac{\sigma}{\omega \epsilon_0}$
 

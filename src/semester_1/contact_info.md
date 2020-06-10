@@ -10,6 +10,20 @@
 
 📧 mkaleta@ia.pw.edu.pl
 
+## Discrete math
+
+#### Tomasz Traczyk (lectures)
+
+📧 t.traczyk@mini.pw.edu.pl
+
+🌐 [https://mini.pw.edu.pl/~tomtracz](https://mini.pw.edu.pl/~tomtracz)
+
+#### Lukasz Rozej (tutorials)
+
+📧 lukasz.rozej@gmail.com
+
+🌐 [https://mini.pw.edu.pl/~rozejl/www](https://mini.pw.edu.pl/~rozejl/www)
+
 ## Transition Math and Algebra with Geometry
 
 #### Tomasz Traczyk (lectures)
