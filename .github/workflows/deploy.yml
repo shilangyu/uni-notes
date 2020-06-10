@@ -25,7 +25,9 @@ jobs:
           sudo apt-get install -y texlive
 
       - name: generate docs
-        run: deno run --unstable --allow-run --allow-write --allow-read ./.github/workflows/generate.jsx
+        run: |
+          deno --version
+          deno run --unstable --allow-run --allow-write --allow-read ./.github/workflows/generate.jsx
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3

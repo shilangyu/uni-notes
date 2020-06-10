@@ -1,6 +1,6 @@
 import renderToString from "https://cdn.pika.dev/preact-render-to-string";
 import { h } from "https://cdn.pika.dev/preact@^10.0.0";
-import * as fs from "https://deno.land/std/fs/mod.ts";
+import * as fs from "https://deno.land/std@0.56.0/fs/mod.ts";
 const React = { createElement: h }; // I don't want to create a jsconfig just to change the jsx factory...
 
 await Deno.remove("docs", { recursive: true }).catch(() => {});
