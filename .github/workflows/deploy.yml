@@ -15,7 +15,7 @@ jobs:
       - name: Setup Deno
         uses: denolib/setup-deno@master
         with:
-          deno-version: v1.x
+          deno-version: v1.0.5
 
       - name: install pandoc
         run: |
