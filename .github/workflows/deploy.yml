@@ -12,10 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
+      - name: Install Deno
+        run: curl -fsSL https://deno.land/x/install/install.sh | sh
 
       - name: install pandoc
         run: |
@@ -25,7 +23,7 @@ jobs:
           sudo apt-get install -y texlive
 
       - name: generate docs
-        run: python ./.github/workflows/generate.py
+        run: deno run --unstable --allow-run --allow-write --allow-read ./.github/workflows/generate.jsx
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
