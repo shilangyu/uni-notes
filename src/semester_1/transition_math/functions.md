@@ -10,7 +10,7 @@ A function is injective if for any two arguments $x_1, x_2 \in X$ we have: $f(x_
 
 ### surjective
 
-$(\forall y \in Y)(\exists x \in X)(f(x) = y)$. In other words: All $y \in Y$ have to obtainable.
+$(\forall y \in Y)(\exists x \in X)(f(x) = y)$. In other words: All $y \in Y$ have to be obtainable.
 
 ### inverse
 
