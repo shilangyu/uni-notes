@@ -1,6 +1,6 @@
 import renderToString from "https://cdn.pika.dev/preact-render-to-string";
-import { h } from "https://cdn.pika.dev/preact@^10.0.0";
-import * as fs from "https://deno.land/std@0.56.0/fs/mod.ts";
+import { h } from "https://cdn.skypack.dev/preact@^10.4.4";
+
 const React = { createElement: h }; // I don't want to create a jsconfig just to change the jsx factory...
 
 await Deno.remove("docs", { recursive: true }).catch(() => {});
@@ -39,8 +39,8 @@ function Summary({ path }) {
     Deno.mkdirSync("docs/" + base + dirname);
   }
 
-  pandocExec.push(...files.map(
-    (filename) =>
+  pandocExec.push(
+    ...files.map((filename) =>
       Deno.run({
         cmd: [
           "pandoc",
@@ -54,26 +54,30 @@ function Summary({ path }) {
           "-H",
           ".github/workflows/headers.html",
         ],
-      }).status(),
-  ));
+      }).status()
+    ),
+  );
 
   return (
     <ul>
-      {files.map((filename) =>
+      {files.map((filename) => (
         <li>
           <a href={base + filename.replace(/md$/, "html")}>
             {filename.replace(/\.md$/, "")}
           </a>
         </li>
-      )}
-      {dirs.map((dirname) =>
-        <li>{dirname}<Summary path={base + dirname} /></li>
-      )}
+      ))}
+      {dirs.map((dirname) => (
+        <li>
+          {dirname}
+          <Summary path={base + dirname} />
+        </li>
+      ))}
     </ul>
   );
 }
 
-await fs.writeFileStr(
+await Deno.writeTextFile(
   "docs/index.html",
   renderToString(
     <html lang="en">
@@ -84,16 +88,14 @@ await fs.writeFileStr(
         <title>Uni notes</title>
         <span
           dangerouslySetInnerHTML={{
-            __html: await fs.readFileStr(".github/workflows/headers.html"),
+            __html: await Deno.readTextFile(".github/workflows/headers.html"),
           }}
         >
         </span>
       </head>
       <body>
         Available notes:
-
         <Summary path="." />
-
         <footer>
           Pages are auto-generated, if you see any problems please open an issue
           on <a href="https://github.com/shilangyu/uni-notes">GitHub</a>

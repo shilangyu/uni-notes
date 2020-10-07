@@ -1,4 +1,5 @@
 {
+  "deno.enable": true,
   "cSpell.words": [
     "Aleksander",
     "Antisymmetricity",
