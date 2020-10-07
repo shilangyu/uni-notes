@@ -18,7 +18,7 @@
 
 🌐 [https://mini.pw.edu.pl/~tomtracz](https://mini.pw.edu.pl/~tomtracz)
 
-#### Lukasz Rozej (tutorials)
+#### Łukasz Rożej (tutorials)
 
 📧 lukasz.rozej@gmail.com
 
