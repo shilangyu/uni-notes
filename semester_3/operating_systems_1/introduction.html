@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>introduction</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+</head>
+<body>
+<h1 id="introduction">introduction</h1>
+<h2 id="overview">overview</h2>
+<p>Operating system (OP) is something that:</p>
+<ul>
+<li>acts as a intermediary between a user and the hardware</li>
+<li>fairly allocates resources</li>
+<li>has an always running kernel</li>
+<li>executes user programs</li>
+</ul>
+<h3 id="structure">structure</h3>
+<ol type="1">
+<li>computer hardware: CPU, memory, IO devices</li>
+<li>operating system: <em>see above</em></li>
+<li>program: instructions defining the way in which the system resources are used to solve the computing problems of the users</li>
+<li>users: people, other computers</li>
+</ol>
+<h3 id="multiprogramming">multiprogramming</h3>
+<p>OP has to schedule jobs to evenly distribute work across CPU cores:</p>
+<ul>
+<li>when one job is waiting for something (for example IO), OP switching to a different job</li>
+<li>allocate physically private memory chunks for each job</li>
+<li>provides interfaces for shared devices through IO functions</li>
+</ul>
+<h3 id="timesharing-multitasking">timesharing (multitasking)</h3>
+<p>When the CPU switches the jobs very frequently making it feel like multiple jobs are running simultaneously. If processes use more memory than available, <strong>swapping</strong> moves them in and out between memory and swap memory (swap file/swap partition).</p>
+<h3 id="real-time-rt-systems">real-time (RT) systems</h3>
+<p>Systems with a rigid time requirement</p>
+<h4 id="hard-rt-systems">hard RT systems</h4>
+<ul>
+<li>time-critical systems like industrial control, robotics, embedded</li>
+<li>can’t exist in universal/multi-mode systems</li>
+<li>prevent usage of cost effective solutions like virtual memory, dynamic loading (introduces unpredictable response times)</li>
+</ul>
+<h4 id="soft-rt-systems">soft RT systems</h4>
+<ul>
+<li>attempt to meet deadlines but can fail in return for a more overall cost-effective system</li>
+<li>used when predictable response times are not a requirement</li>
+</ul>
+<h3 id="interface">interface</h3>
+<h3 id="concurrent-resource-usage">concurrent resource usage</h3>
+<p>Jobs have access to shared resources only indirectly - through system calls (syscall). Often implemented through some system function to form an interface between OP and user programs.</p>
+<p>Multiprogramming and timesharing. Concurrent resource use is implemented with:</p>
+<ul>
+<li>interrupts</li>
+<li>communication and synchronization</li>
+<li>multi-core architectures</li>
+</ul>
+<h4 id="symmetric-multiprocessing-smp">symmetric multiprocessing (SMP)</h4>
+<p>CPUs share the whole system</p>
+<h4 id="asymmetric-multiprocessing-smp">asymmetric multiprocessing (SMP)</h4>
+<p>One master and many slave (workers) CPUs</p>
+<h3 id="syscall-api">syscall API</h3>
+<p>Example scenario with C’s <code>printf()</code> (POSIX environment)</p>
+<ul>
+<li><code>printf()</code> is called</li>
+<li>formatted string is stored in a local stdout buffer</li>
+<li>when the buffer is full (or forcefully flushed with <code>fflush()</code>) a <code>write</code> syscall is dispatched to move the buffer to a destination device</li>
+</ul>
+<h3 id="structure-1">structure</h3>
+<h4 id="simple-system-ms-dos">simple system: MS-DOS</h4>
+<ul>
+<li>single-tasking</li>
+<li>shell spawned on boot up</li>
+<li>single memory space</li>
+<li>loads a program into memory overwriting all but the kernel</li>
+<li>when program ends the shell is reloaded</li>
+</ul>
+<h4 id="monolithic-system">monolithic system</h4>
+<ul>
+<li>kernel as a single program</li>
+<li>system programs</li>
+</ul>
+<h4 id="microkernel-system">microkernel system</h4>
+<ul>
+<li>moved as much functionality to user space</li>
+<li>communication with message passing</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>pros</th>
+<th>cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>easier to extend with new functionality</td>
+<td>performance overhead because of kernel-user space communication</td>
+</tr>
+<tr class="even">
+<td>easier to port to new architectures</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>less code runs in kernel mode thus more secure and reliable</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="hybrid-system">hybrid system</h4>
+<p>One that uses approaches from different system structures to address the specific problems it is trying to solve.</p>
+<p>For example:</p>
+<ul>
+<li>Linux: has a monolithic kernel but with dynamic loading of functionality</li>
+<li>Mac OS: Mach microkernel, BSD Unix parts, dynamically loadable modules (here called kernel extensions)</li>
+</ul>
+<h3 id="kernel-modules">kernel modules</h3>
+<p>Each core component is separate and loadable.</p>
+<h2 id="operation">operation</h2>
+<ul>
+<li>IO devices and the CPU can execute concurrently</li>
+<li>each device controller is in charge of a particular device type</li>
+<li>each device controller has a local buffer</li>
+<li>CPU moves data from/to main memory to/from local buffers</li>
+<li>IO is from the device to local buffer of controller</li>
+<li>device controller informs CPU that it has finished its operation by causing an <em>interrupt</em></li>
+</ul>
+<h3 id="interrupts">interrupts</h3>
+<p>Interrupts inform the OS that attention is needed and something has to be immediately executed. Interrupts can be cause by hardware (IO devices), software, or CPU traps (like error).</p>
+<p>Interrupts are disabled when a different interrupt is being processed to prevent lost interrupts.</p>
+<p>Operating systems are <strong>interrupt driven</strong></p>
+<h4 id="handling">handling</h4>
+<ul>
+<li>preserve the state of the CPU (store registers)</li>
+<li>which type of interrupt has occurred
+<ul>
+<li>polling</li>
+<li>vectored interrupt system</li>
+</ul></li>
+</ul>
+<h3 id="io">IO</h3>
+<ul>
+<li>synchronous: CPU idles until the next interrupt, only one IO at a time (though can be completed in a non-blocking manner: if can’t be performed immediately it will return with an error code)</li>
+<li>asynchronous: non-blocking but status has to be polled. IO states are stored in a device-status table</li>
+</ul>
+<h3 id="direct-memory-access-dma">direct memory access (DMA)</h3>
+<p>Device transfers its buffer straight to memory without CPU intervention.</p>
+<ul>
+<li>high speed IO information transfer (close to memory speed)</li>
+<li>CPU and DMA might fight for memory resulting in inconsistent speed ups</li>
+</ul>
+<h3 id="storage">storage</h3>
+<p>disk storage (ROM) <span class="math inline">\implies</span> main memory (RAM) <span class="math inline">\implies</span> cache <span class="math inline">\implies</span> registers</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>registers</th>
+<th>cache</th>
+<th>RAM</th>
+<th>ROM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>size</td>
+<td>&lt; 1 KB</td>
+<td>&gt; 16 MB</td>
+<td>&gt; 16 GB</td>
+<td>&gt; 100 GB</td>
+</tr>
+<tr class="even">
+<td>access time [ns]</td>
+<td>0.25-0.5</td>
+<td>0.5-25</td>
+<td>80-250</td>
+<td>5,000,000</td>
+</tr>
+<tr class="odd">
+<td>bandwidth [MB/s]</td>
+<td>20,000-100,000</td>
+<td>5,000-10,000</td>
+<td>1,000-5,000</td>
+<td>20-150</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modes">modes</h3>
+<ul>
+<li>Current mode is stored in a <em>mode bit</em></li>
+<li>Some operations can be only done in kernel mode (called privileged instructions)</li>
+<li>A syscall switches to kernel mode and after returning from call changes back to user mode</li>
+</ul>
+</body>
+</html>
