@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>graphs</title>
+  <title>power_series</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,35 +326,25 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="graphs"><span class="header-section-number">1</span> graphs</h1>
-<p>for more, see <a href="../../semester_1/discrete_math/graphs.html">semester 1</a></p>
-<h2 id="connectivity"><span class="header-section-number">1.1</span> connectivity</h2>
-<h3 id="trail"><span class="header-section-number">1.1.1</span> trail</h3>
-<p>A sequence of vertices and edges that are connected in a graph <span class="math inline">G</span>. (<span class="math inline">v_o, e_1, v_1, e_2, \cdots, e_n, v_n</span>).</p>
-<ol type="1">
-<li>If all vertices in a trail are different, then it is called a <strong>path</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a trail, then it is called a <strong>closed trail</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a path, then it is called a <strong>cycle</strong></li>
-</ol>
-<h3 id="cut-vertex"><span class="header-section-number">1.1.2</span> cut vertex</h3>
-<p>In a connected graph <span class="math inline">G</span>, <span class="math inline">G - v</span> would result in a disconnected graph.</p>
-<p>A set of vertices <span class="math inline">V&#39; \subseteq V(G)</span> is a <strong>cut set</strong> if the graph <span class="math inline">G - V&#39;</span> is disconnected.</p>
-<p>A set of edges <span class="math inline">E&#39; \subseteq V(G)</span> is a <strong>edge cut set</strong> if the graph <span class="math inline">G - E&#39;</span> is disconnected.</p>
-<h3 id="edge-connectivity-kappag"><span class="header-section-number">1.1.3</span> edge connectivity <span class="math inline">\kappa&#39;(G)</span></h3>
-<ol type="1">
-<li>the cardinality of a smallest edge cut set if <span class="math inline">G \ne K_1</span></li>
-<li>0 if <span class="math inline">G=K_1</span></li>
-</ol>
-<h3 id="independent-path"><span class="header-section-number">1.1.4</span> independent path</h3>
-<p>When a set of paths do not share an inner vertex.</p>
-<h3 id="g-ge-3"><span class="header-section-number">1.1.5</span> <span class="math inline">|G| \ge 3</span></h3>
-<p>Then these conditions are equivalent:</p>
+<h1 id="power-series"><span class="header-section-number">1</span> power series</h1>
+<p><span class="math inline">\sum_{n=0}^\infty a_n(x - x_0)^n</span></p>
+<p>for more, see <a href="../../semester_2/mathematical_analysis/power_series.html">semester 2</a></p>
+<h2 id="extended-ratioroot-test"><span class="header-section-number">1.1</span> extended ratio/root test</h2>
+<p><span class="math inline">l = \lim_{n \to \infty} |\frac{a_{n+1}}{a_n}|</span> or <span class="math inline">l = \lim_{n \to \infty} \sqrt[n]{|a_n|}</span></p>
+<p>(Note: here <span class="math inline">l \ne l</span>)</p>
+<p>then:</p>
+<p><span class="math display">
+    R =
+    \begin{cases}
+      \frac{1}{l} &amp; \text{if}\ l &gt; 0 \\
+      \infty &amp; \text{if}\ l = 0 \\
+      0 &amp; \text{if}\ l = \infty \\
+    \end{cases}
+</span></p>
 <ul>
-<li><span class="math inline">G</span> is 2-connected</li>
-<li><span class="math inline">G</span> has no cut vertex</li>
-<li>each two vertices lie on common cycle</li>
-<li>each vertex and edge lie on a common cycle</li>
-<li>each two edges lie on a common cycle</li>
+<li>if <span class="math inline">|x - x_0| &lt; R</span>, the power series converges absolutely</li>
+<li>if <span class="math inline">|x - x_0| &gt; R</span>, the power series diverges</li>
+<li>if <span class="math inline">|x - x_0| = R</span>, the test is inconclusive</li>
 </ul>
 </body>
 </html>

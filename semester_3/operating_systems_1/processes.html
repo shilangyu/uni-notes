@@ -4,21 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>graphs</title>
+  <title>processes</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -326,35 +318,69 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="graphs"><span class="header-section-number">1</span> graphs</h1>
-<p>for more, see <a href="../../semester_1/discrete_math/graphs.html">semester 1</a></p>
-<h2 id="connectivity"><span class="header-section-number">1.1</span> connectivity</h2>
-<h3 id="trail"><span class="header-section-number">1.1.1</span> trail</h3>
-<p>A sequence of vertices and edges that are connected in a graph <span class="math inline">G</span>. (<span class="math inline">v_o, e_1, v_1, e_2, \cdots, e_n, v_n</span>).</p>
-<ol type="1">
-<li>If all vertices in a trail are different, then it is called a <strong>path</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a trail, then it is called a <strong>closed trail</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a path, then it is called a <strong>cycle</strong></li>
-</ol>
-<h3 id="cut-vertex"><span class="header-section-number">1.1.2</span> cut vertex</h3>
-<p>In a connected graph <span class="math inline">G</span>, <span class="math inline">G - v</span> would result in a disconnected graph.</p>
-<p>A set of vertices <span class="math inline">V&#39; \subseteq V(G)</span> is a <strong>cut set</strong> if the graph <span class="math inline">G - V&#39;</span> is disconnected.</p>
-<p>A set of edges <span class="math inline">E&#39; \subseteq V(G)</span> is a <strong>edge cut set</strong> if the graph <span class="math inline">G - E&#39;</span> is disconnected.</p>
-<h3 id="edge-connectivity-kappag"><span class="header-section-number">1.1.3</span> edge connectivity <span class="math inline">\kappa&#39;(G)</span></h3>
-<ol type="1">
-<li>the cardinality of a smallest edge cut set if <span class="math inline">G \ne K_1</span></li>
-<li>0 if <span class="math inline">G=K_1</span></li>
-</ol>
-<h3 id="independent-path"><span class="header-section-number">1.1.4</span> independent path</h3>
-<p>When a set of paths do not share an inner vertex.</p>
-<h3 id="g-ge-3"><span class="header-section-number">1.1.5</span> <span class="math inline">|G| \ge 3</span></h3>
-<p>Then these conditions are equivalent:</p>
+<h1 id="processes"><span class="header-section-number">1</span> processes</h1>
+<p>Instance of a program that is being executed.</p>
+<h2 id="concepts"><span class="header-section-number">1.1</span> concepts</h2>
+<p>A process can be described as either:</p>
 <ul>
-<li><span class="math inline">G</span> is 2-connected</li>
-<li><span class="math inline">G</span> has no cut vertex</li>
-<li>each two vertices lie on common cycle</li>
-<li>each vertex and edge lie on a common cycle</li>
-<li>each two edges lie on a common cycle</li>
+<li>IO-bound process - spends more time doing IO than computations; many short CPU bursts</li>
+<li>CPU-bound process – spends more time doing computations; few very long CPU bursts</li>
 </ul>
+<h3 id="structure"><span class="header-section-number">1.1.1</span> structure</h3>
+<ul>
+<li>text: code</li>
+<li>data: global/static variables</li>
+<li>stack: temporary quick access data</li>
+<li>heap: dynamically allocated memory during runtime</li>
+</ul>
+<p>Stack and heap is growable/shrinkable.</p>
+<h3 id="states"><span class="header-section-number">1.1.2</span> states</h3>
+<ul>
+<li>new: The process is being created</li>
+<li>ready: The process is waiting to be assigned to a processor</li>
+<li>running: Instructions are being executed</li>
+<li>waiting: The process is waiting for some event to occur</li>
+<li>terminated: The process has finished execution</li>
+</ul>
+<h3 id="process-control-block-pcb"><span class="header-section-number">1.1.3</span> process control block (PCB)</h3>
+<p>Stores information about running processes. pid, process state, CPU registers, CPU scheduling info (priorities, queue), memory limits, stats etc.</p>
+<h3 id="context-switch"><span class="header-section-number">1.1.4</span> context switch</h3>
+<p>Switching from one process to another. Requires saving current PCB and loading the one that is needed. Context switches are expensive to perform.</p>
+<h2 id="scheduling"><span class="header-section-number">1.2</span> scheduling</h2>
+<p>Maximize/optimize CPU use. Decides which process is executed next.</p>
+<p>Processes move around these queues:</p>
+<ul>
+<li>job queue</li>
+<li>ready queue</li>
+<li>device queue</li>
+</ul>
+<h3 id="types"><span class="header-section-number">1.2.1</span> types</h3>
+<ul>
+<li>short-term scheduler: selects the next process and allocates CPU (fast, often runs)</li>
+<li>long-term scheduler: selects processes into the read queue (slower, rarely runs)</li>
+<li>medium-term scheduler: swaps out/in processes from/to disk to/from memory</li>
+</ul>
+<h2 id="operations"><span class="header-section-number">1.3</span> operations</h2>
+<p>Processes are a tree: parents can create its own processes called children.</p>
+<ul>
+<li>parent and children execute concurrently</li>
+<li>parent has to wait until children terminate</li>
+</ul>
+<h3 id="fork"><span class="header-section-number">1.3.1</span> fork</h3>
+<p>Creates a new child process with a copy of the current process’ memory, registers, etc.</p>
+<h3 id="exec-family"><span class="header-section-number">1.3.2</span> exec family</h3>
+<p>Executing other programs with arguments.</p>
+<h3 id="process-termination"><span class="header-section-number">1.3.3</span> process termination</h3>
+<p><code>exit()</code> exits current process with a given status code.</p>
+<p><code>kill(pid, SIGNAL)</code> kills a process.</p>
+<ul>
+<li>If no parent was waiting for its child, the child process becomes a <em>zombie</em></li>
+<li>If parent terminates before the child, the child process becomes an <em>orphan</em> (some operating systems don’t allow such behavior and all children are killed if the parent terminated)</li>
+</ul>
+<p>All resources are deallocated by the operating system.</p>
+<h4 id="wait"><span class="header-section-number">1.3.3.1</span> wait</h4>
+<p>Waits for child to exit. Returns the exit code and pid of the child process.</p>
+<h3 id="inter-process-communication-ipc"><span class="header-section-number">1.3.4</span> inter-process communication (IPC)</h3>
+<p>Either by shared memory or message passing.</p>
 </body>
 </html>

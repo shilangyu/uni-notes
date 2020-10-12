@@ -326,65 +326,65 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="graphs">graphs</h1>
+<h1 id="graphs"><span class="header-section-number">1</span> graphs</h1>
 <p>A graph is a pair <span class="math inline">G = (V, E)</span> where <span class="math inline">V</span> is a finite set called the set of vertices and <span class="math inline">E \subseteq p_2(V)</span>, <span class="math inline">E</span> is called the set of edges of <span class="math inline">G</span>.</p>
-<h3 id="trivial-and-complete">trivial and complete</h3>
-<h4 id="trivial">trivial</h4>
+<h3 id="trivial-and-complete"><span class="header-section-number">1.0.1</span> trivial and complete</h3>
+<h4 id="trivial"><span class="header-section-number">1.0.1.1</span> trivial</h4>
 <p>only one vertex <span class="math inline">|V| = 1</span>, <span class="math inline">E = \emptyset</span></p>
-<h4 id="complete">complete</h4>
+<h4 id="complete"><span class="header-section-number">1.0.1.2</span> complete</h4>
 <p>all vertices are connected with each other <span class="math inline">K_n = (\{v_1, \cdots, v_n\}, p_2(\{v_1, \cdots, v_n\}))</span>. <span class="math inline">K_1</span> is therefore a trivial graph.</p>
 <p><span class="math inline">|p_2(\{v_1, \cdots, v_n\})| = \binom{n}{2} = \frac{n(n-1)}{2}</span></p>
-<h3 id="degree">degree</h3>
+<h3 id="degree"><span class="header-section-number">1.0.2</span> degree</h3>
 <p>The degree of a vertex <span class="math inline">v</span> in <span class="math inline">G</span> is the number of edges containing <span class="math inline">v</span>. <span class="math inline">\deg_G(v) = |\{e \in E(a): v \in e\}|</span></p>
-<h3 id="handshaking">handshaking</h3>
+<h3 id="handshaking"><span class="header-section-number">1.0.3</span> handshaking</h3>
 <p><span class="math inline">|E| = \frac{1}{2} \sum_{v \in V} \deg_G(v)</span></p>
-<h3 id="path">path</h3>
+<h3 id="path"><span class="header-section-number">1.0.4</span> path</h3>
 <p>A path in a graph is a sequence of vertices <span class="math inline">(v_0, v_1, \cdots, v_k)</span> such that:</p>
 <ul>
 <li><span class="math inline">(\forall i = 0, \cdots, k-1)\{v_i, v_{i+1}\} \in E</span></li>
 <li><span class="math inline">(\forall 0 \le i, j \lt k) i \ne j \implies \{v_i, v_{i+1}\} \ne \{v_j, v_{j+1}\}</span></li>
 <li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the path is called simple</li>
 </ul>
-<h3 id="cycle">cycle</h3>
+<h3 id="cycle"><span class="header-section-number">1.0.5</span> cycle</h3>
 <p>A cycle in <span class="math inline">G</span> is a path <span class="math inline">(v_0, \cdots, v_k, v_0)</span> such that</p>
 <ul>
 <li><span class="math inline">k \ge 2</span></li>
 <li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the cycle is called simple</li>
 </ul>
-<h3 id="connected">connected</h3>
+<h3 id="connected"><span class="header-section-number">1.0.6</span> connected</h3>
 <p>A graph is said to be connected iff for every <span class="math inline">x, y \in V</span> there is a <span class="math inline">x-y</span> path in <span class="math inline">G</span>, i.e. a path <span class="math inline">(v_0, \cdots v_k)</span> such that <span class="math inline">v_0 = x</span>, <span class="math inline">v_k = y</span>. Otherwise it is called disconnected.</p>
-<h3 id="partition">partition</h3>
+<h3 id="partition"><span class="header-section-number">1.0.7</span> partition</h3>
 <p>Graph is connected iff for every partition <span class="math inline">\{V_1, V_2\}</span> of <span class="math inline">V</span> such that <span class="math inline">V_1 \ne \emptyset</span> and <span class="math inline">V_2 \ne \emptyset</span> there exists <span class="math inline">v_1 \in V_1</span> and <span class="math inline">v_2 \in V_2</span> such that there is a <span class="math inline">v_1 - v_2</span> path in <span class="math inline">G</span></p>
-<h3 id="eulerian">Eulerian</h3>
+<h3 id="eulerian"><span class="header-section-number">1.0.8</span> Eulerian</h3>
 <p><span class="math inline">G</span> is called Eulerian iff:</p>
 <ul>
 <li><span class="math inline">G</span> is connected, nontrivial</li>
 <li><span class="math inline">(\forall v \in V(G))(2 | \deg(v))</span></li>
 </ul>
-<h3 id="subgraphs">subgraphs</h3>
+<h3 id="subgraphs"><span class="header-section-number">1.0.9</span> subgraphs</h3>
 <p><span class="math inline">G = (V, E)</span>, <span class="math inline">H = (W, F)</span> is called a subgraph of <span class="math inline">G</span> if <span class="math inline">W \subseteq V</span> and <span class="math inline">F \subseteq E</span>. Denoted as <span class="math inline">H \preccurlyeq G</span>, it is a <a href="./poset.html">poset</a>.</p>
-<h4 id="spanning">spanning</h4>
+<h4 id="spanning"><span class="header-section-number">1.0.9.1</span> spanning</h4>
 <p>If <span class="math inline">W = V</span> then <span class="math inline">H</span> is called a spanning subgraph of <span class="math inline">G</span>.</p>
-<h4 id="induced">induced</h4>
+<h4 id="induced"><span class="header-section-number">1.0.9.2</span> induced</h4>
 <p>If <span class="math inline">F = E \cap p_2(W)</span> then <span class="math inline">H</span> is called an induced subgraph of <span class="math inline">G</span>.</p>
-<h3 id="component">component</h3>
+<h3 id="component"><span class="header-section-number">1.0.10</span> component</h3>
 <p>A component of <span class="math inline">G</span> is any maximal connected subgraph of <span class="math inline">G</span>.</p>
 <p>If <span class="math inline">G</span> is a disconnected graph, <span class="math inline">\bar{G}</span> is connected.</p>
-<h3 id="complement">complement</h3>
+<h3 id="complement"><span class="header-section-number">1.0.11</span> complement</h3>
 <p>A complement of <span class="math inline">G = (V, E)</span> (denoted by <span class="math inline">\bar{G}</span>) is <span class="math inline">(V, \{u, v \in V : uv \notin E\})</span>. In other words the edges are flipped: If 2 vertices were adjacent in <span class="math inline">G</span>, they are not adjacent in <span class="math inline">\bar{G}</span> and the other way around.</p>
-<h3 id="isomorphic">isomorphic</h3>
+<h3 id="isomorphic"><span class="header-section-number">1.0.12</span> isomorphic</h3>
 <p><em>graphs that have the same structure</em>. Hard to example mathematically. Please refer to <a href="https://en.wikipedia.org/wiki/Graph_isomorphism">wikipedia</a>.</p>
-<h3 id="self-complementary">self-complementary</h3>
+<h3 id="self-complementary"><span class="header-section-number">1.0.13</span> self-complementary</h3>
 <p>If <span class="math inline">\bar{G}</span> is isomorphic to <span class="math inline">G</span> then the graph is self-complementary</p>
-<h3 id="bipartite">bipartite</h3>
+<h3 id="bipartite"><span class="header-section-number">1.0.14</span> bipartite</h3>
 <p>A graph <span class="math inline">G</span> is called bipartite if the vertices can be divided into 2 disjoint and independent sets.</p>
-<h3 id="minmax-degree">min/max degree</h3>
+<h3 id="minmax-degree"><span class="header-section-number">1.0.15</span> min/max degree</h3>
 <p><span class="math inline">\delta(G) = \min(\{\deg(v) : v \in V\})</span></p>
 <p><span class="math inline">\Delta(G) = \max(\{\deg(v) : v \in V\})</span></p>
 <p>If <span class="math inline">\delta(G) \ge 2</span> then <span class="math inline">G</span> has a cycle</p>
-<h3 id="k-regular">k-regular</h3>
+<h3 id="k-regular"><span class="header-section-number">1.0.16</span> k-regular</h3>
 <p><span class="math inline">G</span> is <span class="math inline">k</span>-regular iff <span class="math inline">(\forall v \in V)(\deg(v) = k)</span></p>
-<h3 id="trees">trees</h3>
+<h3 id="trees"><span class="header-section-number">1.0.17</span> trees</h3>
 <p><span class="math inline">G</span> is called a tree iff:</p>
 <ul>
 <li><span class="math inline">G</span> is connected</li>
@@ -399,7 +399,7 @@
 <li><span class="math inline">G</span> has no cycles and <span class="math inline">|V| = |E| + 1</span></li>
 <li><span class="math inline">G</span> has no cycles and <span class="math inline">(\forall u, v \in V)(\{u, v\} \notin E \implies G^+ = (V, E \cup \{\{u, v\}\})</span> <span class="math inline">!\exists</span> cycle</li>
 </ol>
-<h3 id="weightednetwork-graphs">weighted/network graphs</h3>
+<h3 id="weightednetwork-graphs"><span class="header-section-number">1.0.18</span> weighted/network graphs</h3>
 <p>For a connected graph <span class="math inline">G = (V, E)</span></p>
 <p><span class="math inline">N = ((V, E), w) w: E \to \mathbf{R}^+</span></p>
 <p>Find the cheapest spanning tree in <span class="math inline">N</span>. A greedy naive way:</p>
@@ -417,33 +417,33 @@
 <li>no: go to step 2</li>
 </ul></li>
 </ol>
-<h3 id="connectivity">connectivity</h3>
+<h3 id="connectivity"><span class="header-section-number">1.0.19</span> connectivity</h3>
 <p><span class="math inline">\kappa(G) = min\{k :</span> there exists a k-element set <span class="math inline">S \subseteq V</span> such that <span class="math inline">G - S</span> is disconnected or trivial <span class="math inline">\}</span></p>
 <p>For example: A tree has connectivity of <span class="math inline">1</span>, a complete graph <span class="math inline">K_n</span> has connectivity of <span class="math inline">n-1</span></p>
 <p>We call a graph a <strong>k-connected</strong> one when <span class="math inline">\kappa(G) \ge k</span></p>
-<h4 id="connected-1">2-connected</h4>
+<h4 id="connected-1"><span class="header-section-number">1.0.19.1</span> 2-connected</h4>
 <p><span class="math inline">G</span> is 2-connected iff for every <span class="math inline">x, y \in V(G)</span> there exists a simple cycle <span class="math inline">C</span> in <span class="math inline">G</span> such that <span class="math inline">x, y \in V(C)</span></p>
-<h3 id="hamiltonian">Hamiltonian</h3>
-<h4 id="cycle-1">cycle</h4>
+<h3 id="hamiltonian"><span class="header-section-number">1.0.20</span> Hamiltonian</h3>
+<h4 id="cycle-1"><span class="header-section-number">1.0.20.1</span> cycle</h4>
 <p>A Hamiltonian cycle in <span class="math inline">G</span> is a spanning, simple cycle in <span class="math inline">G</span></p>
-<h4 id="graph">graph</h4>
+<h4 id="graph"><span class="header-section-number">1.0.20.2</span> graph</h4>
 <p><span class="math inline">G</span> is a Hamiltonian graph iff <span class="math inline">G</span> has a Hamiltonian cycle.</p>
 <p>If <span class="math inline">G</span> is Hamiltonian then:</p>
 <ul>
 <li><span class="math inline">G</span> is 2-connected</li>
 <li><span class="math inline">(\forall S \subseteq V(G))(G-S</span> has at most <span class="math inline">|S|</span> components<span class="math inline">)</span></li>
 </ul>
-<h4 id="dirac">Dirac</h4>
+<h4 id="dirac"><span class="header-section-number">1.0.20.3</span> Dirac</h4>
 <p>If <span class="math inline">G</span> has <span class="math inline">p</span> vertices, <span class="math inline">p \ge 3</span>, and <span class="math inline">(\forall v \in V)(\deg(v) \ge \frac{p}{2})</span> then <span class="math inline">G</span> is Hamiltonian</p>
-<h5 id="corollary">corollary</h5>
+<h5 id="corollary"><span class="header-section-number">1.0.20.3.1</span> corollary</h5>
 <p><span class="math inline">(\forall \{x, y\} \notin E \implies \deg(x) + \deg(y) \ge p) \implies G</span> is Hamiltonian</p>
-<h3 id="planar">planar</h3>
+<h3 id="planar"><span class="header-section-number">1.0.21</span> planar</h3>
 <p><span class="math inline">G</span> is said to be planar iff <span class="math inline">G</span> can be represented by a drawing in which no two edges intersect.</p>
-<h4 id="facets">facets</h4>
+<h4 id="facets"><span class="header-section-number">1.0.21.1</span> facets</h4>
 <p>“parts” of a planar graph (<span class="math inline">K_4</span> has 4 facets)</p>
-<h4 id="euler-formula-for-planar-graphs">Euler formula for planar graphs</h4>
+<h4 id="euler-formula-for-planar-graphs"><span class="header-section-number">1.0.21.2</span> Euler formula for planar graphs</h4>
 <p>Let <span class="math inline">G</span> be a connected planar graph with with <span class="math inline">n</span> vertices and <span class="math inline">k</span> edges. Then, in every planar representation of <span class="math inline">G</span> the number of facets, <span class="math inline">f</span> satisfies the formula <span class="math inline">f = k - n + 2</span></p>
-<h5 id="corollary-1">corollary</h5>
+<h5 id="corollary-1"><span class="header-section-number">1.0.21.2.1</span> corollary</h5>
 <p>For every planar graph <span class="math inline">G</span> with <span class="math inline">k</span> edges, <span class="math inline">n</span> vertices, and <span class="math inline">f</span> facets we have:</p>
 <ul>
 <li><span class="math inline">f \le \frac{2}{3}k</span></li>
