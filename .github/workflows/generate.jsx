@@ -46,6 +46,7 @@ function Summary({ path }) {
           "pandoc",
           base + filename,
           "-s",
+          "--number-sections",
           "--katex",
           "-o",
           "docs/" + base + filename.replace(/md$/, "html"),
