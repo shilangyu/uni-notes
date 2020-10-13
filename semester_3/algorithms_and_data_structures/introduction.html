@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>graphs</title>
+  <title>introduction</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,51 +326,43 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="graphs"><span class="header-section-number">1</span> graphs</h1>
-<p>for more, see <a href="../../semester_1/discrete_math/graphs.html">semester 1</a></p>
-<h2 id="notation"><span class="header-section-number">1.1</span> notation</h2>
-<p><span class="math inline">G = (V, E)</span></p>
+<h1 id="introduction"><span class="header-section-number">1</span> introduction</h1>
+<h2 id="asymptotic-notation"><span class="header-section-number">1.1</span> asymptotic notation</h2>
 <ul>
-<li><span class="math inline">V(G)</span>, <span class="math inline">E(G)</span>: vertex/edge set of <span class="math inline">G</span></li>
-<li><span class="math inline">|G| = |V|</span>: order of <span class="math inline">G</span> (number of vertices)</li>
-<li><span class="math inline">e(G) = |E|</span>: size of <span class="math inline">G</span> (number of edges)</li>
-<li><span class="math inline">G[V&#39;]</span>, <span class="math inline">G[E&#39;]</span>: induced subgraph by set of vertices/edges</li>
+<li>upper bound: <span class="math inline">f = O(g)</span></li>
+<li>lower bound: <span class="math inline">f = \Omega(g)</span></li>
+<li>tight bound: <span class="math inline">f = \Theta(g)</span>, <span class="math inline">g = \Theta(f)</span></li>
 </ul>
-<h2 id="connectivity"><span class="header-section-number">1.2</span> connectivity</h2>
-<p><span class="math inline">k \le \kappa(G) \le \kappa&#39;(G) \le \delta(G)</span></p>
-<h3 id="trail"><span class="header-section-number">1.2.1</span> trail</h3>
-<p>A sequence of vertices and edges that are connected in a graph <span class="math inline">G</span>. (<span class="math inline">v_o, e_1, v_1, e_2, \cdots, e_n, v_n</span>).</p>
+<h2 id="computational-complexity"><span class="header-section-number">1.2</span> computational complexity</h2>
 <ol type="1">
-<li>If all vertices in a trail are different, then it is called a <strong>path</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a trail, then it is called a <strong>closed trail</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a path, then it is called a <strong>cycle</strong></li>
+<li><span class="math inline">O(1)</span>: constant time (does not depend on the size of input)</li>
+<li><span class="math inline">O(\log n)</span>: logarithmic time</li>
+<li><span class="math inline">O(n)</span>: linear time</li>
+<li><span class="math inline">O(n \log n)</span>: quasilinear/loglinear time</li>
+<li><span class="math inline">O(n^2)</span>: quadratic time</li>
+<li><span class="math inline">O(n^c)</span>: polynomial time</li>
+<li><span class="math inline">O(c^n)</span>: exponential time</li>
+<li><span class="math inline">O(n!)</span>: factorial time</li>
 </ol>
-<h3 id="cut-vertex"><span class="header-section-number">1.2.2</span> cut vertex</h3>
-<p>In a connected graph <span class="math inline">G</span>, <span class="math inline">G - v</span> would result in a disconnected graph.</p>
-<p>A set of vertices <span class="math inline">V&#39; \subseteq V(G)</span> is a <strong>cut set</strong> if the graph <span class="math inline">G - V&#39;</span> is disconnected.</p>
-<p>A set of edges <span class="math inline">E&#39; \subseteq V(G)</span> is a <strong>edge cut set</strong> if the graph <span class="math inline">G - E&#39;</span> is disconnected.</p>
-<h3 id="edge-connectivity-kappag"><span class="header-section-number">1.2.3</span> edge connectivity <span class="math inline">\kappa&#39;(G)</span></h3>
-<ol type="1">
-<li>the cardinality of a smallest edge cut set if <span class="math inline">G \ne K_1</span></li>
-<li>0 if <span class="math inline">G=K_1</span></li>
-</ol>
-<h3 id="independent-path"><span class="header-section-number">1.2.4</span> independent path</h3>
-<p>When a set of paths do not share an inner vertex.</p>
-<h3 id="g-ge-3"><span class="header-section-number">1.2.5</span> <span class="math inline">|G| \ge 3</span></h3>
-<p>Then these conditions are equivalent:</p>
+<h2 id="problem-types"><span class="header-section-number">1.3</span> problem types</h2>
 <ul>
-<li><span class="math inline">G</span> is 2-connected</li>
-<li><span class="math inline">G</span> has no cut vertex</li>
-<li>each two vertices lie on common cycle</li>
-<li>each vertex and edge lie on a common cycle</li>
-<li>each two edges lie on a common cycle</li>
+<li>decision problem: does the input satisfy some conditions?</li>
+<li>optimization problem: optimal solution for given input</li>
 </ul>
-<h2 id="euler-tours-and-trails"><span class="header-section-number">1.3</span> Euler tours and trails</h2>
+<h2 id="algorithmic-domain"><span class="header-section-number">1.4</span> algorithmic domain</h2>
+<p><span class="math inline">(A, f_1, \cdots, f_m, r_1, \cdots, r_n)</span> where:</p>
 <ul>
-<li>an Euler trail is a trail which contains each edge of a graph</li>
-<li>an Euler tour is a closed Euler trail</li>
-<li>a graph which has an Euler tour is called an Eulerian graph</li>
+<li><span class="math inline">A</span> universum</li>
+<li><span class="math inline">f_1, \cdots, f_m</span> function such that <span class="math inline">f_i: A^{k_1} \to A</span></li>
+<li><span class="math inline">r_1, \cdots, f_n</span> relations such that <span class="math inline">r_j \subset A^{l_j}</span></li>
 </ul>
-<p>A connected graph <span class="math inline">G</span> is Eulerian iff the degree of every vertex in <span class="math inline">G</span> is even</p>
+<p>We say <span class="math inline">f</span> is a partial function if its value is undefined for some elements of <span class="math inline">A</span></p>
+<p>There are:</p>
+<ul>
+<li>instructions</li>
+<li>predicates</li>
+</ul>
+<h2 id="semantic-correctness"><span class="header-section-number">1.5</span> semantic correctness</h2>
+<p>Is when an algorithm is proven to produce correct output for a given input.</p>
 </body>
 </html>
