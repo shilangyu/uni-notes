@@ -86,6 +86,7 @@
     "injective",
     "jspalins",
     "leftrightarrow",
+    "loglinear",
     "marcinp",
     "mathbb",
     "mathbf",
@@ -98,6 +99,7 @@
     "poset",
     "preccurlyeq",
     "printf",
+    "quasilinear",
     "rightarrow",
     "ska",
     "ski",
@@ -112,6 +114,7 @@
     "surjective",
     "syscall",
     "ukasz",
+    "universum",
     "vmatrix",
     "Łukasz"
   ]
