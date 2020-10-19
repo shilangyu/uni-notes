@@ -112,6 +112,8 @@
     "subseteq",
     "subsetneq",
     "surjective",
+    "symlink",
+    "symlinks",
     "syscall",
     "ukasz",
     "universum",
