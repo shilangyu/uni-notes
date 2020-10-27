@@ -57,3 +57,21 @@ Then these conditions are equivalent:
 - a graph which has an Euler tour is called an Eulerian graph
 
 A connected graph $G$ is Eulerian iff the degree of every vertex in $G$ is even
+
+### algorithm for constructing euler tours
+
+1. choose any vertex
+2. choose an new edge that is not a bridge (if no choice, then the bridge edge)
+3. move to the new vertex
+4. repeat step 2 and 3 until done
+
+## traveling salesman
+
+> Finding an Hamiltonian path of minimal distance in a weighted graph
+
+To find the optimal solution brute force has to be used. There is, however, an algorithm that finds in the worst case a twice longer solution than the optimal one but in a much faster time:
+
+1. Find minimum spanning tree $T$ of $G$
+2. Duplicate each edge in $T$ to create a multigraph $T'$
+3. Find any Euler tour $S$ in $T'$
+4. Return a Hamiltonian cycle $C$ whose consecutive vertices are vertices of $G$ written in order of first appearance in the tour $S$

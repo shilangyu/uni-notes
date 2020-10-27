@@ -36,7 +36,3 @@ There are:
 
 - instructions
 - predicates
-
-## semantic correctness
-
-Is when an algorithm is proven to produce correct output for a given input.
