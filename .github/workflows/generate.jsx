@@ -1,4 +1,4 @@
-import renderToString from "https://cdn.pika.dev/preact-render-to-string";
+import renderToString from "https://cdn.skypack.dev/preact-render-to-string";
 import { h } from "https://cdn.skypack.dev/preact@^10.4.4";
 
 const React = { createElement: h }; // I don't want to create a jsconfig just to change the jsx factory...
