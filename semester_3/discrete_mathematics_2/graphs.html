@@ -372,5 +372,23 @@
 <li>a graph which has an Euler tour is called an Eulerian graph</li>
 </ul>
 <p>A connected graph <span class="math inline">G</span> is Eulerian iff the degree of every vertex in <span class="math inline">G</span> is even</p>
+<h3 id="algorithm-for-constructing-euler-tours"><span class="header-section-number">1.3.1</span> algorithm for constructing euler tours</h3>
+<ol type="1">
+<li>choose any vertex</li>
+<li>choose an new edge that is not a bridge (if no choice, then the bridge edge)</li>
+<li>move to the new vertex</li>
+<li>repeat step 2 and 3 until done</li>
+</ol>
+<h2 id="traveling-salesman"><span class="header-section-number">1.4</span> traveling salesman</h2>
+<blockquote>
+<p>Finding an Hamiltonian path of minimal distance in a weighted graph</p>
+</blockquote>
+<p>To find the optimal solution brute force has to be used. There is, however, an algorithm that finds in the worst case a twice longer solution than the optimal one but in a much faster time:</p>
+<ol type="1">
+<li>Find minimum spanning tree <span class="math inline">T</span> of <span class="math inline">G</span></li>
+<li>Duplicate each edge in <span class="math inline">T</span> to create a multigraph <span class="math inline">T&#39;</span></li>
+<li>Find any Euler tour <span class="math inline">S</span> in <span class="math inline">T&#39;</span></li>
+<li>Return a Hamiltonian cycle <span class="math inline">C</span> whose consecutive vertices are vertices of <span class="math inline">G</span> written in order of first appearance in the tour <span class="math inline">S</span></li>
+</ol>
 </body>
 </html>

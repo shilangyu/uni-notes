@@ -4,21 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>introduction</title>
+  <title>signals</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -326,41 +318,61 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="introduction"><span class="header-section-number">1</span> introduction</h1>
-<h2 id="asymptotic-notation"><span class="header-section-number">1.1</span> asymptotic notation</h2>
+<h1 id="signals"><span class="header-section-number">1</span> signals</h1>
+<p>Signal is notification to a process/thread from the system. During generation of a signal it is determined whether it is addressed to a process or a thread.</p>
 <ul>
-<li>upper bound: <span class="math inline">f = O(g)</span></li>
-<li>lower bound: <span class="math inline">f = \Omega(g)</span></li>
-<li>tight bound: <span class="math inline">f = \Theta(g)</span>, <span class="math inline">g = \Theta(f)</span></li>
+<li>hardware exceptions</li>
+<li>actions by processes: <code>kill()</code>, <code>alarm()</code>, etc</li>
 </ul>
-<h2 id="computational-complexity"><span class="header-section-number">1.2</span> computational complexity</h2>
-<ol type="1">
-<li><span class="math inline">O(1)</span>: constant time (does not depend on the size of input)</li>
-<li><span class="math inline">O(\log n)</span>: logarithmic time</li>
-<li><span class="math inline">O(n)</span>: linear time</li>
-<li><span class="math inline">O(n \log n)</span>: quasilinear/loglinear time</li>
-<li><span class="math inline">O(n^2)</span>: quadratic time</li>
-<li><span class="math inline">O(n^c)</span>: polynomial time</li>
-<li><span class="math inline">O(c^n)</span>: exponential time</li>
-<li><span class="math inline">O(n!)</span>: factorial time</li>
-</ol>
-<h2 id="problem-types"><span class="header-section-number">1.3</span> problem types</h2>
+<p>Some popular signals:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Nr</th>
+<th>Name</th>
+<th>Meaning</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>SIGHUP</td>
+<td>Hangup</td>
+<td>Exit</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>SIGINT</td>
+<td>tty interrupt (typically: ^C)</td>
+<td>Exit</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>SIGKILL</td>
+<td>Unconditional process termination</td>
+<td>Exit</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>SIGSEGV</td>
+<td>Segmentation Fault</td>
+<td>Core dump + exit</td>
+</tr>
+</tbody>
+</table>
+<h2 id="signals-in-c"><span class="header-section-number">1.1</span> signals in C</h2>
+<p><code>int kill(pid_t pid, int sig)</code></p>
+<p>Where <code>pid</code> is the process ID, and <code>sig</code> is the signal number.</p>
+<p>The signal is sent to:</p>
 <ul>
-<li>decision problem: does the input satisfy some conditions?</li>
-<li>optimization problem: optimal solution for given input</li>
+<li><code>pid &gt; 0</code>: a process with given PID</li>
+<li><code>pid == 0</code>: all processes that belong to the process group of the sender</li>
+<li><code>pid == -1</code>: all processes in the system except init</li>
+<li><code>pid &lt; -1</code>: to all processes that belong to the process group where the process group id is <code>-pid</code></li>
 </ul>
-<h2 id="algorithmic-domain"><span class="header-section-number">1.4</span> algorithmic domain</h2>
-<p><span class="math inline">(A, f_1, \cdots, f_m, r_1, \cdots, r_n)</span> where:</p>
-<ul>
-<li><span class="math inline">A</span> universum</li>
-<li><span class="math inline">f_1, \cdots, f_m</span> function such that <span class="math inline">f_i: A^{k_1} \to A</span></li>
-<li><span class="math inline">r_1, \cdots, f_n</span> relations such that <span class="math inline">r_j \subset A^{l_j}</span></li>
-</ul>
-<p>We say <span class="math inline">f</span> is a partial function if its value is undefined for some elements of <span class="math inline">A</span></p>
-<p>There are:</p>
-<ul>
-<li>instructions</li>
-<li>predicates</li>
-</ul>
+<h2 id="handling-signals"><span class="header-section-number">1.2</span> handling signals</h2>
+<p>Each process has a defined set of actions to take when a signal is received. In C, these actions can be overwritten with custom behavior. When handling a signal there is no information where did the signal come from, just the number.</p>
+<p>The main program is stopped when handling a signal, therefore it is not advised to handle signals for too long (ex. don’t do IO).</p>
 </body>
 </html>
