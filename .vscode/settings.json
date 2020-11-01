@@ -99,6 +99,7 @@
     "multichoose",
     "multigraph",
     "multisets",
+    "overdamped",
     "perp",
     "pmatrix",
     "poset",
@@ -121,6 +122,7 @@
     "symlinks",
     "syscall",
     "ukasz",
+    "underdamped",
     "universum",
     "vmatrix",
     "Łukasz"
