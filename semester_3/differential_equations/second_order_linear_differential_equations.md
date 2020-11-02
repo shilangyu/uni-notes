@@ -1,8 +1,6 @@
 # second order linear differential equations
 
-## with constant coefficients
-
-### homogenous
+## homogenous
 
 $ay'' + by' + cy = 0$
 
@@ -15,7 +13,7 @@ $ay'' + by' + cy = 0$
 - If $r$ is complex, the general solution is in the form: $y = e^{Re(r)x}(b_1 \cos(Im(r)x) + b_2 \sin(Im(r)x))$
 - If $r_1 = r_2$ then $y = c_1e^{rx} + c_2xe^{rx}$
 
-### non-homogenous
+## non-homogenous
 
 $ay'' + by' + cy = g(x)$
 
@@ -23,7 +21,7 @@ Let $y_h$ be the solution to $ay'' + by' + cy = 0$ and $y_p$ is a collection of 
 
 Then $y = y_h + y_p$
 
-#### method of undetermined coefficients
+### method of undetermined coefficients
 
 **Examples:**
 
@@ -36,7 +34,7 @@ Then $y = y_h + y_p$
 5. So: $-Aa + Bb + Ac = 0$ and $-Ba - Ab  + Bc = 1$
 6. Solving step 5 we get $A$ and $B$
 
-#### method of variation of parameters
+### method of variation of parameters
 
 $y_p = v_1 y_1 + v_2 y_2$
 
@@ -46,6 +44,12 @@ $$
 		v_1'y_1' + v_2'y_2' = \frac{g(x)}{a} \\
 	\end{cases}
 $$
+
+#### Wronskian
+
+$W(x) = y_1y_2' + y_1'y_2$
+
+Then: $v_1 = -\int \frac{g(x)y_2}{a \cdot W(x)} dx$ and $v_2 = \int \frac{g(x)y_1}{a \cdot W(x)} dx$
 
 ## damped harmonic motion
 
