@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>second_order_linear_differential_equations</title>
+  <title>series_solutions</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,68 +326,28 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="second-order-linear-differential-equations"><span class="header-section-number">1</span> second order linear differential equations</h1>
-<h2 id="homogenous"><span class="header-section-number">1.1</span> homogenous</h2>
-<p><span class="math inline">ay&#39;&#39; + by&#39; + cy = 0</span></p>
+<h1 id="series-solutions-of-differential-equations"><span class="header-section-number">1</span> series solutions of differential equations</h1>
+<p><span class="math inline">a(x)y&#39;&#39;+b(x)y&#39;+c(x)y=f(x)</span></p>
+<p>Solution will be a power series: <span class="math inline">y = \sum_{i=0}^\infty a_i(x - x_0)^i</span></p>
+<p>The sums coming from <span class="math inline">y&#39;&#39;</span> and <span class="math inline">y&#39;</span> should have a common <span class="math inline">x^i</span> factor to be able to join them. Then a recursive formula for <span class="math inline">a_i</span> can be derived.</p>
+<p><strong>Example:</strong></p>
+<p><span class="math inline">y&#39;&#39; + 2xy&#39; - y = 0</span>, <span class="math inline">y(0) = 0</span>, <span class="math inline">y&#39;(0) = 1</span></p>
 <ol type="1">
-<li><span class="math inline">y = e^{rx}</span></li>
-<li><span class="math inline">ar^2e^{rx} + bre^{rx} + ce^{rx} = 0</span></li>
-<li><span class="math inline">ar^2 + br + c = 0</span></li>
-<li><span class="math inline">y = e^{r_1x}\ \lor\ y = e^{r_2x}</span></li>
-<li>for <span class="math inline">c_1, c_2</span> as arbitrary constants: <span class="math inline">y = c_1e^{r_1x} + c_2e^{r_2x}</span></li>
-</ol>
+<li>Let <span class="math inline">y = \sum_{i=0}^\infty a_ix^i</span>
 <ul>
-<li>If <span class="math inline">r</span> is complex, the general solution is in the form: <span class="math inline">y = e^{Re(r)x}(b_1 \cos(Im(r)x) + b_2 \sin(Im(r)x))</span></li>
-<li>If <span class="math inline">r_1 = r_2</span> then <span class="math inline">y = c_1e^{rx} + c_2xe^{rx}</span></li>
-</ul>
-<h2 id="non-homogenous"><span class="header-section-number">1.2</span> non-homogenous</h2>
-<p><span class="math inline">ay&#39;&#39; + by&#39; + cy = g(x)</span></p>
-<p>Let <span class="math inline">y_h</span> be the solution to <span class="math inline">ay&#39;&#39; + by&#39; + cy = 0</span> and <span class="math inline">y_p</span> is a collection of functions that differentiated give <span class="math inline">g(x)</span></p>
-<p>Then <span class="math inline">y = y_h + y_p</span></p>
-<h3 id="method-of-undetermined-coefficients"><span class="header-section-number">1.2.1</span> method of undetermined coefficients</h3>
-<p><strong>Examples:</strong></p>
-<ol type="1">
-<li><span class="math inline">ay&#39;&#39; + by&#39; + cy = \sin(x)</span></li>
-<li><span class="math inline">y_p = A\cos(x) + B\sin(x)</span>
-<ul>
-<li><span class="math inline">y_p&#39; = -A\sin(x) + B\cos(x)</span></li>
-<li><span class="math inline">y_p&#39;&#39; = -A\cos(x) - B\sin(x)</span></li>
+<li>Then <span class="math inline">y&#39; = \sum_{i=0}^\infty ia_ix^{i-1}</span></li>
+<li>Then <span class="math inline">y&#39;&#39; = \sum_{i=0}^\infty i(i-1)a_ix^{i-2}</span></li>
 </ul></li>
-<li><span class="math inline">a(-A\cos(x) - B\sin(x)) + b(-A\sin(x) + B\cos(x)) + c(A\cos(x) + B\sin(x)) = \sin(x)</span></li>
-<li><span class="math inline">(-Aa + Bb + Ac)\cos(x) + (-Ba - Ab + Bc)\sin(x) = \sin(x)</span></li>
-<li>So: <span class="math inline">-Aa + Bb + Ac = 0</span> and <span class="math inline">-Ba - Ab + Bc = 1</span></li>
-<li>Solving step 5 we get <span class="math inline">A</span> and <span class="math inline">B</span></li>
+<li>Create a common <span class="math inline">x^i</span>: <span class="math inline">y&#39;&#39; = \sum_{j=0}^\infty (j+2)(j+1)a_{j+2}x^j</span> (we leave <span class="math inline">y&#39;</span> with a <span class="math inline">x^{i-1}</span> because <span class="math inline">b(x) = 2x</span>)</li>
+<li>DE takes form of: <span class="math inline">\sum_{j=0}^\infty (j+2)(j+1)a_{j+2}x^j + \sum_{i=0}^\infty 2ia_ix^i - \sum_{i=0}^\infty a_ix^i = 0</span></li>
+<li>Simplify: <span class="math inline">\sum_{i=0}^\infty \big[(i+2)(i+1)a_{i+2} + (2i - 1)a_i \big] x^i = 0</span></li>
+<li>Which means: <span class="math inline">(i+2)(i+1)a_{i+2} + (2i - 1)a_i = 0 \implies a_{i+2} = -\frac{2i - 1}{(i+2)(i+1)}a_i</span></li>
+<li>After calculating some <span class="math inline">a</span> terms we get: <span class="math inline">y = a_0(1 + \frac{x^2}{2} - \frac{3x^4}{4!} + \frac{21x^6}{6!} - \cdots) + a_1(x - \frac{x^3}{3!} + \frac{5x^5}{5!} - \frac{45x^7}{7!} + \cdots)</span></li>
+<li>Using the initial conditions we get <span class="math inline">a_0 = 0</span> and <span class="math inline">a_1 = 1</span></li>
 </ol>
-<h3 id="method-of-variation-of-parameters"><span class="header-section-number">1.2.2</span> method of variation of parameters</h3>
-<p><span class="math inline">y_p = v_1 y_1 + v_2 y_2</span></p>
-<p><span class="math display">
-    \begin{cases}
-        v_1&#39;y_1 + v_2&#39;y_2 = 0 \\
-        v_1&#39;y_1&#39; + v_2&#39;y_2&#39; = \frac{g(x)}{a} \\
-    \end{cases}
-</span></p>
-<h4 id="wronskian"><span class="header-section-number">1.2.2.1</span> Wronskian</h4>
-<p><span class="math inline">W(x) = y_1y_2&#39; + y_1&#39;y_2</span></p>
-<p>Then: <span class="math inline">v_1 = -\int \frac{g(x)y_2}{a \cdot W(x)} dx</span> and <span class="math inline">v_2 = \int \frac{g(x)y_1}{a \cdot W(x)} dx</span></p>
-<h2 id="damped-harmonic-motion"><span class="header-section-number">1.3</span> damped harmonic motion</h2>
-<p><span class="math inline">\frac{d^2x}{dt^2} + \beta\frac{dx}{dt} + \omega^2x = 0</span> where <span class="math inline">\beta = \frac{\gamma}{m}</span> and <span class="math inline">\omega^2 = \frac{k}{m}</span></p>
-<p>We can see this as a differential equation:</p>
-<p><span class="math inline">r^2 + \beta r + \omega^2 = 0</span></p>
-<ul>
-<li>if <span class="math inline">\beta^2 &gt; 4\omega^2</span> (two real roots) we call it overdamped</li>
-<li>if <span class="math inline">\beta^2 = 4\omega^2</span> (one real root) we call it critically damped</li>
-<li>if <span class="math inline">\beta^2 &lt; 4\omega^2</span> (complex roots) we call it an underdamped case
-<ul>
-<li>let <span class="math inline">\overline \omega = \omega \sqrt{1 - \frac{\beta^2}{4\omega^2}}</span></li>
-<li>then <span class="math inline">x = e^\frac{-\beta t}{2}(c_1 \cos\overline\omega t + c_2 \sin\overline\omega t)</span></li>
-</ul></li>
-</ul>
-<h2 id="damped-forced-oscillations"><span class="header-section-number">1.4</span> damped forced oscillations</h2>
-<p><span class="math inline">m\frac{d^2x}{dt^2} + \gamma \frac{dx}{dt} + kx = F_0 \cos \Omega t</span></p>
-<p>The solution is:</p>
-<p><span class="math display">
-x(t) = c_1e^{r_1t} + c_2e^{r_2t} + \frac{F_0}{\sqrt{m^2(\omega^2 - \Omega^2)^2 + \gamma^2\omega^2}}\cos(\Omega t - \delta)
-</span></p>
-<p>Where <span class="math inline">\delta = \tan^{-1}\big (\frac{\gamma \Omega}{m(\omega^2 - \Omega^2)}\big )</span></p>
+<h2 id="the-frobenius-method"><span class="header-section-number">1.1</span> the Frobenius method</h2>
+<p>When we cannot get a recursive formula for <span class="math inline">a_i</span></p>
+<p>Then we consider a solution in a form of <span class="math inline">y = x^r \sum_{i=0}^\infty a_i</span></p>
+<p><strong>TODO</strong></p>
 </body>
 </html>
