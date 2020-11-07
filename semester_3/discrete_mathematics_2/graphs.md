@@ -75,3 +75,23 @@ To find the optimal solution brute force has to be used. There is, however, an a
 2. Duplicate each edge in $T$ to create a multigraph $T'$
 3. Find any Euler tour $S$ in $T'$
 4. Return a Hamiltonian cycle $C$ whose consecutive vertices are vertices of $G$ written in order of first appearance in the tour $S$
+
+## bipartite
+
+$G=(X,Y,E)$
+
+- all trees are bipartite
+- $K_{m,n}$ denotes a complete bipartite graph where $|X| = m$, $|Y| = n$
+- a graph is bipartite iff it does not contain odd cycles (cycle with off number of edges)
+
+### matching
+
+A graph is called matching when every component is isomorphic to $K_2$
+
+## edge coloring
+
+Each edge is colored by a color $c \in C$. A k-coloring of a graph is when $|C| = k$
+
+### good
+
+We say a k-coloring is called **good** when no two edges with a common vertex share a color

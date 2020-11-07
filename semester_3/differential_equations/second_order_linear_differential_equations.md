@@ -72,7 +72,7 @@ $m\frac{d^2x}{dt^2} + \gamma \frac{dx}{dt} + kx = F_0 \cos \Omega t$
 The solution is:
 
 $$
-x(t) = c_1e^{r_1t} + c_2e^{r_2t} + \frac{F_0}{\sqrt{m^2(\omega^2 - \Omega^2)^2 + \gamma^2\omega^2}}\cos(\Omega t - \delta)
+x(t) = c_1e^{r_1t} + c_2e^{r_2t} + \frac{F_0}{\sqrt{m^2(\omega^2 - \Omega^2)^2 + \gamma^2\Omega^2}}\cos(\Omega t - \delta)
 $$
 
 Where $\delta = \tan^{-1}\big (\frac{\gamma \Omega}{m(\omega^2 - \Omega^2)}\big )$
