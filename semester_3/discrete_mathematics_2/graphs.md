@@ -95,3 +95,45 @@ Each edge is colored by a color $c \in C$. A k-coloring of a graph is when $|C| 
 ### good
 
 We say a k-coloring is called **good** when no two edges with a common vertex share a color
+
+### chromatic index
+
+$\chi'(G)$ the smallest $k$ needed for a good coloring of a graph
+
+$\chi'(G) \ge \Delta(G)$
+
+$$
+\chi'(C_n) =
+\begin{cases}
+2 \text{ if } n \text{ is even} \\
+3 \text{ if } n \text{ is odd} \\
+\end{cases}
+$$
+
+$$
+\chi'(K_n) =
+\begin{cases}
+2 \text{ if } n \text{ is even} \\
+3 \text{ if } n \text{ is odd} \\
+\end{cases}
+$$
+
+$$
+\chi'(\text{bipartite graph}) = \Delta(\text{bipartite graph})
+$$
+
+## multigraph
+
+When multiple edges between $v$ and $u$ are allowed.
+
+### multiplicity
+
+$\mu(G)$ is the maximum number of edges joining two vertices in $G$
+
+### Vizing theorem
+
+$\Delta(G) \le \chi'(G) \le \Delta(G) + \mu(G)$
+
+### Shannon theorem
+
+$\Delta(G) \le \chi'(G) \le \frac{3}{2} \Delta(G)$

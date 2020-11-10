@@ -1,6 +1,6 @@
 # complexity
 
-Defined relative to the size of input
+Defined relative to the size of input: $T(n)$
 
 ## space complexity
 
@@ -20,3 +20,11 @@ A set of instructions for which their asymptotic running time is equal to the as
 
 - Worst-case: the worst time complexity for a specific input
 - Average-case: the average time complexity from all inputs
+
+## master theorem
+
+$T(n) = aT(\lfloor \frac{n}{b} \rfloor) + f(n)$ where $f(n) = \Theta(n^\alpha)$
+
+- $\log_ba < \alpha \implies T(n) = \Theta(n^\alpha)$
+- $\log_ba = \alpha \implies T(n) = \Theta(n^\alpha \log n)$
+- $\log_ba > \alpha \implies T(n) = \Theta(n^{\log_ba})$
