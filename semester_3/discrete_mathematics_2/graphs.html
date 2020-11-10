@@ -403,5 +403,33 @@
 <p>Each edge is colored by a color <span class="math inline">c \in C</span>. A k-coloring of a graph is when <span class="math inline">|C| = k</span></p>
 <h3 id="good"><span class="header-section-number">1.6.1</span> good</h3>
 <p>We say a k-coloring is called <strong>good</strong> when no two edges with a common vertex share a color</p>
+<h3 id="chromatic-index"><span class="header-section-number">1.6.2</span> chromatic index</h3>
+<p><span class="math inline">\chi&#39;(G)</span> the smallest <span class="math inline">k</span> needed for a good coloring of a graph</p>
+<p><span class="math inline">\chi&#39;(G) \ge \Delta(G)</span></p>
+<p><span class="math display">
+\chi&#39;(C_n) =
+\begin{cases}
+2 \text{ if } n \text{ is even} \\
+3 \text{ if } n \text{ is odd} \\
+\end{cases}
+</span></p>
+<p><span class="math display">
+\chi&#39;(K_n) =
+\begin{cases}
+2 \text{ if } n \text{ is even} \\
+3 \text{ if } n \text{ is odd} \\
+\end{cases}
+</span></p>
+<p><span class="math display">
+\chi&#39;(\text{bipartite graph}) = \Delta(\text{bipartite graph})
+</span></p>
+<h2 id="multigraph"><span class="header-section-number">1.7</span> multigraph</h2>
+<p>When multiple edges between <span class="math inline">v</span> and <span class="math inline">u</span> are allowed.</p>
+<h3 id="multiplicity"><span class="header-section-number">1.7.1</span> multiplicity</h3>
+<p><span class="math inline">\mu(G)</span> is the maximum number of edges joining two vertices in <span class="math inline">G</span></p>
+<h3 id="vizing-theorem"><span class="header-section-number">1.7.2</span> Vizing theorem</h3>
+<p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \Delta(G) + \mu(G)</span></p>
+<h3 id="shannon-theorem"><span class="header-section-number">1.7.3</span> Shannon theorem</h3>
+<p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \frac{3}{2} \Delta(G)</span></p>
 </body>
 </html>

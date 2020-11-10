@@ -4,21 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>complexity</title>
+  <title>algorithm_design</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -326,26 +318,17 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="complexity"><span class="header-section-number">1</span> complexity</h1>
-<p>Defined relative to the size of input: <span class="math inline">T(n)</span></p>
-<h2 id="space-complexity"><span class="header-section-number">1.1</span> space complexity</h2>
-<p>The peak asymptotic space (memory) needed in an algorithm.</p>
-<h2 id="time-complexity"><span class="header-section-number">1.2</span> time complexity</h2>
-<p>The asymptotic time (operations) needed in an algorithm.</p>
-<p>Base unit of operations are the elementary operations.</p>
-<h3 id="dominating-instruction"><span class="header-section-number">1.2.1</span> dominating instruction</h3>
-<p>A set of instructions for which their asymptotic running time is equal to the asymptotic running time of the whole algorithm.</p>
-<h3 id="cases"><span class="header-section-number">1.2.2</span> cases</h3>
-<ul>
-<li>Worst-case: the worst time complexity for a specific input</li>
-<li>Average-case: the average time complexity from all inputs</li>
-</ul>
-<h2 id="master-theorem"><span class="header-section-number">1.3</span> master theorem</h2>
-<p><span class="math inline">T(n) = aT(\lfloor \frac{n}{b} \rfloor) + f(n)</span> where <span class="math inline">f(n) = \Theta(n^\alpha)</span></p>
-<ul>
-<li><span class="math inline">\log_ba &lt; \alpha \implies T(n) = \Theta(n^\alpha)</span></li>
-<li><span class="math inline">\log_ba = \alpha \implies T(n) = \Theta(n^\alpha \log n)</span></li>
-<li><span class="math inline">\log_ba &gt; \alpha \implies T(n) = \Theta(n^{\log_ba})</span></li>
-</ul>
+<h1 id="algorithm-design"><span class="header-section-number">1</span> algorithm design</h1>
+<h2 id="divide-and-conquer"><span class="header-section-number">1.1</span> divide and conquer</h2>
+<p>Dividing a problem into the same kind but with a smaller size of input. Once the size is small enough the solution is trivial.</p>
+<ol type="1">
+<li>Divide the problem into small chunks</li>
+<li>Recursively conquer subproblems</li>
+<li>Combine solutions to subproblems to form the complete general solution</li>
+</ol>
+<p>An example of a divide and conquer problem is merge sort, where sorting is done by merging sorted sublists.</p>
+<h2 id="dynamic-programming"><span class="header-section-number">1.2</span> dynamic programming</h2>
+<p>When subproblems are repeating. Dynamic programming adds a <code>memo</code> object where we remember results to subproblems (partial solutions) (think: cache).</p>
+<p>Example: computing n-th fibonacci number.</p>
 </body>
 </html>
