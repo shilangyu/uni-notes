@@ -105,16 +105,16 @@ $\chi'(G) \ge \Delta(G)$
 $$
 \chi'(C_n) =
 \begin{cases}
-2 \text{ if } n \text{ is even} \\
-3 \text{ if } n \text{ is odd} \\
+2 &\text{ if } n \text{ is even} \\
+3 &\text{ if } n \text{ is odd} \\
 \end{cases}
 $$
 
 $$
 \chi'(K_n) =
 \begin{cases}
-2 \text{ if } n \text{ is even} \\
-3 \text{ if } n \text{ is odd} \\
+n &\text{ if } n \text{ is odd} \\
+n-1 &\text{ if } n \text{ is even} \\
 \end{cases}
 $$
 
