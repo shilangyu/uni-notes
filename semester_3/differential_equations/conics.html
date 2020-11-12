@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>conics</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+</head>
+<body>
+<h1 id="conics"><span class="header-section-number">1</span> conics</h1>
+<h2 id="ellipse"><span class="header-section-number">1.1</span> ellipse</h2>
+<p>Described by a set of points in the plane for which the sum of distances from two fixed points (called foci <span class="math inline">F</span>, <span class="math inline">F&#39;</span>) is constant.</p>
+<p><span class="math display">
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+</span></p>
+<h2 id="hyperbola"><span class="header-section-number">1.2</span> hyperbola</h2>
+<p>Described by a set of points in the plane for which the difference of distances from two fixed points (called foci <span class="math inline">F</span>, <span class="math inline">F&#39;</span>) is constant.</p>
+<p><span class="math display">
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1
+</span></p>
+<h2 id="parabola"><span class="header-section-number">1.3</span> parabola</h2>
+<p>Described by a set of points in the plane for which the distances from a fixed point (called focus) and a fixed line (called the directrix) are equal.</p>
+<p><span class="math display">
+y = \frac{1}{4c}x^2
+</span></p>
+<p>Where <span class="math inline">f = (0, c)</span> and the directrix by the <span class="math inline">x</span>-axis</p>
+</body>
+</html>
