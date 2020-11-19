@@ -94,13 +94,11 @@ Each edge is colored by a color $c \in C$. A k-coloring of a graph is when $|C| 
 
 ### good
 
-We say a k-coloring is called **good** when no two edges with a common vertex share a color
+We say a k-coloring of edges is called **good** when no two edges with a common vertex share a color
 
 ### chromatic index
 
-$\chi'(G)$ the smallest $k$ needed for a good coloring of a graph
-
-$\chi'(G) \ge \Delta(G)$
+$\chi'(G)$ the smallest $k$ needed for a good edge coloring of a graph
 
 $$
 \chi'(C_n) =
@@ -137,3 +135,37 @@ $\Delta(G) \le \chi'(G) \le \Delta(G) + \mu(G)$
 ### Shannon theorem
 
 $\Delta(G) \le \chi'(G) \le \frac{3}{2} \Delta(G)$
+
+## vertex coloring
+
+Each vertex is colored by a color $c \in C$. A k-coloring of a graph is when $|C| = k$
+
+### good
+
+We say a k-coloring of vertices is called **good** when no two vertices with a common edge share a color
+
+### independent
+
+A set of vertices $S \in V(G)$ is called independent if no two vertices from $S$ share an edge
+
+### chromatic number
+
+$\chi(G)$ the smallest $k$ needed for a good vertex coloring of a graph
+
+$\chi(G) \le \Delta(G) + 1$
+
+### Brooks theorem
+
+If $G$ is a connected graph and is not complete nor an odd cycle then $\chi(G) \le \Delta(G)$
+
+### clique
+
+A clique is a subgraph such that every two distinct vertices in the clique are adjacent (complete subgraphs)
+
+$w(G)$ is the cardinality of the largest clique in $G$
+
+$\chi(G) \le w(G)$
+
+### Dezartes
+
+For all $k > 2$ there exists a graph $G$ such that $\chi(G) = k$ and $w(G)=2$

@@ -25,5 +25,3 @@ $y'' + 2xy' - y = 0$, $y(0) = 0$, $y'(0) = 1$
 When we cannot get a recursive formula for $a_i$
 
 Then we consider a solution in a form of $y = x^r \sum_{i=0}^\infty a_i$
-
-**TODO**
