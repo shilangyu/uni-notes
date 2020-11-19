@@ -402,10 +402,9 @@
 <h2 id="edge-coloring"><span class="header-section-number">1.6</span> edge coloring</h2>
 <p>Each edge is colored by a color <span class="math inline">c \in C</span>. A k-coloring of a graph is when <span class="math inline">|C| = k</span></p>
 <h3 id="good"><span class="header-section-number">1.6.1</span> good</h3>
-<p>We say a k-coloring is called <strong>good</strong> when no two edges with a common vertex share a color</p>
+<p>We say a k-coloring of edges is called <strong>good</strong> when no two edges with a common vertex share a color</p>
 <h3 id="chromatic-index"><span class="header-section-number">1.6.2</span> chromatic index</h3>
-<p><span class="math inline">\chi&#39;(G)</span> the smallest <span class="math inline">k</span> needed for a good coloring of a graph</p>
-<p><span class="math inline">\chi&#39;(G) \ge \Delta(G)</span></p>
+<p><span class="math inline">\chi&#39;(G)</span> the smallest <span class="math inline">k</span> needed for a good edge coloring of a graph</p>
 <p><span class="math display">
 \chi&#39;(C_n) =
 \begin{cases}
@@ -431,5 +430,22 @@ n-1 &amp;\text{ if } n \text{ is even} \\
 <p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \Delta(G) + \mu(G)</span></p>
 <h3 id="shannon-theorem"><span class="header-section-number">1.7.3</span> Shannon theorem</h3>
 <p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \frac{3}{2} \Delta(G)</span></p>
+<h2 id="vertex-coloring"><span class="header-section-number">1.8</span> vertex coloring</h2>
+<p>Each vertex is colored by a color <span class="math inline">c \in C</span>. A k-coloring of a graph is when <span class="math inline">|C| = k</span></p>
+<h3 id="good-1"><span class="header-section-number">1.8.1</span> good</h3>
+<p>We say a k-coloring of vertices is called <strong>good</strong> when no two vertices with a common edge share a color</p>
+<h3 id="independent"><span class="header-section-number">1.8.2</span> independent</h3>
+<p>A set of vertices <span class="math inline">S \in V(G)</span> is called independent if no two vertices from <span class="math inline">S</span> share an edge</p>
+<h3 id="chromatic-number"><span class="header-section-number">1.8.3</span> chromatic number</h3>
+<p><span class="math inline">\chi(G)</span> the smallest <span class="math inline">k</span> needed for a good vertex coloring of a graph</p>
+<p><span class="math inline">\chi(G) \le \Delta(G) + 1</span></p>
+<h3 id="brooks-theorem"><span class="header-section-number">1.8.4</span> Brooks theorem</h3>
+<p>If <span class="math inline">G</span> is a connected graph and is not complete nor an odd cycle then <span class="math inline">\chi(G) \le \Delta(G)</span></p>
+<h3 id="clique"><span class="header-section-number">1.8.5</span> clique</h3>
+<p>A clique is a subgraph such that every two distinct vertices in the clique are adjacent (complete subgraphs)</p>
+<p><span class="math inline">w(G)</span> is the cardinality of the largest clique in <span class="math inline">G</span></p>
+<p><span class="math inline">\chi(G) \le w(G)</span></p>
+<h3 id="dezartes"><span class="header-section-number">1.8.6</span> Dezartes</h3>
+<p>For all <span class="math inline">k &gt; 2</span> there exists a graph <span class="math inline">G</span> such that <span class="math inline">\chi(G) = k</span> and <span class="math inline">w(G)=2</span></p>
 </body>
 </html>
