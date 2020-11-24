@@ -169,3 +169,13 @@ $\chi(G) \le w(G)$
 ### Dezartes
 
 For all $k > 2$ there exists a graph $G$ such that $\chi(G) = k$ and $w(G)=2$
+
+## Planar graphs
+
+A multigraph is planar on a plane iff it is planar on a sphere
+
+## facets (faces)
+
+$F(G) = \{f_1, f_2, \cdots, f_n\}$ - set of facets of $G$
+
+$\phi (G) = |F(G)|$ - number of facets of $G$
