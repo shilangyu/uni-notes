@@ -449,8 +449,35 @@ n-1 &amp;\text{ if } n \text{ is even} \\
 <p>For all <span class="math inline">k &gt; 2</span> there exists a graph <span class="math inline">G</span> such that <span class="math inline">\chi(G) = k</span> and <span class="math inline">w(G)=2</span></p>
 <h2 id="planar-graphs"><span class="header-section-number">1.9</span> Planar graphs</h2>
 <p>A multigraph is planar on a plane iff it is planar on a sphere</p>
-<h2 id="facets-faces"><span class="header-section-number">1.10</span> facets (faces)</h2>
-<p><span class="math inline">F(G) = \{f_1, f_2, \cdots, f_n\}</span> - set of facets of <span class="math inline">G</span></p>
-<p><span class="math inline">\phi (G) = |F(G)|</span> - number of facets of <span class="math inline">G</span></p>
+<p>The planar representation is denoted by <span class="math inline">\tilde{G}</span></p>
+<h3 id="faces"><span class="header-section-number">1.9.1</span> faces</h3>
+<p>Regions in <span class="math inline">\tilde{G}</span></p>
+<p><span class="math inline">F(\tilde{G}) = \{f_1, f_2, \cdots, f_n\}</span> - set of faces of <span class="math inline">\tilde{G}</span></p>
+<p><span class="math inline">\phi (\tilde{G}) = |F(\tilde{G})|</span> - number of faces of <span class="math inline">\tilde{G}</span></p>
+<h3 id="incident"><span class="header-section-number">1.9.2</span> incident</h3>
+<p>A face <span class="math inline">f</span> is incident with an edge <span class="math inline">e</span> if <span class="math inline">e</span> belongs to the border of <span class="math inline">f</span></p>
+<h3 id="degree"><span class="header-section-number">1.9.3</span> degree</h3>
+<p>A degree of a face is the amount of edges incident to it <span class="math inline">deg(f)</span> (bridges are counted twice)</p>
+<h3 id="dual-multigraph-g"><span class="header-section-number">1.9.4</span> dual multigraph <span class="math inline">G^*</span></h3>
+<p><span class="math inline">V(G^*) = \{f^* : f \text{ is a face in } G\} = \{f^*:f \in F(G)\}</span></p>
+<p>For every edge which is incident with faces <span class="math inline">f</span> and <span class="math inline">g</span> we define an edge in <span class="math inline">G^*</span>: <span class="math inline">e^* = f^*g^* \in E(G)</span></p>
+<h4 id="properties"><span class="header-section-number">1.9.4.1</span> properties</h4>
+<ol type="1">
+<li><span class="math inline">|G^*| = \phi(\tilde{G})</span></li>
+<li><span class="math inline">|E(G^*)| = |E(\tilde{G})|</span></li>
+<li><span class="math inline">\deg_{G^*} f^* = \deg_{\tilde{G}} f</span></li>
+<li><span class="math inline">\sum_{f \in F(G)} \deg_{\tilde{G}} = 2|E(\tilde G)|</span></li>
+<li>Dual multigraphs of different planar representations of a graph can be non-isomorphic</li>
+<li><span class="math inline">G^*</span> is planar</li>
+<li>If <span class="math inline">\tilde G</span> is connected, <span class="math inline">G^{**}</span> is isomorphic to <span class="math inline">\tilde G</span></li>
+</ol>
+<h3 id="euler-formula"><span class="header-section-number">1.9.5</span> Euler formula</h3>
+<p><span class="math inline">|\tilde G| - |E(\tilde G)| + \phi(\tilde G) = 2</span></p>
+<h4 id="corollary"><span class="header-section-number">1.9.5.1</span> corollary</h4>
+<ul>
+<li>Every planar representation of <span class="math inline">G</span> has the same amount of faces</li>
+<li>If <span class="math inline">G</span> is a simple planar graph and <span class="math inline">|G| \ge 3</span> then <span class="math inline">|E(G) \le 3|G| - 6</span></li>
+<li>If <span class="math inline">G</span> is a simple planar graph then <span class="math inline">\delta(G) \le 5</span></li>
+</ul>
 </body>
 </html>
