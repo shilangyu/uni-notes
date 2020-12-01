@@ -174,8 +174,46 @@ For all $k > 2$ there exists a graph $G$ such that $\chi(G) = k$ and $w(G)=2$
 
 A multigraph is planar on a plane iff it is planar on a sphere
 
-## facets (faces)
+The planar representation is denoted by $\tilde{G}$
 
-$F(G) = \{f_1, f_2, \cdots, f_n\}$ - set of facets of $G$
+### faces
 
-$\phi (G) = |F(G)|$ - number of facets of $G$
+Regions in $\tilde{G}$
+
+$F(\tilde{G}) = \{f_1, f_2, \cdots, f_n\}$ - set of faces of $\tilde{G}$
+
+$\phi (\tilde{G}) = |F(\tilde{G})|$ - number of faces of $\tilde{G}$
+
+### incident
+
+A face $f$ is incident with an edge $e$ if $e$ belongs to the border of $f$
+
+### degree
+
+A degree of a face is the amount of edges incident to it $deg(f)$ (bridges are counted twice)
+
+### dual multigraph $G^*$
+
+$V(G^*) = \{f^* : f \text{ is a face in } G\} = \{f^*:f \in F(G)\}$
+
+For every edge which is incident with faces $f$ and $g$ we define an edge in $G^*$: $e^* = f^*g^* \in E(G)$
+
+#### properties
+
+1. $|G^*| = \phi(\tilde{G})$
+2. $|E(G^*)| = |E(\tilde{G})|$
+3. $\deg_{G^*} f^* = \deg_{\tilde{G}} f$
+4. $\sum_{f \in F(G)} \deg_{\tilde{G}} = 2|E(\tilde G)|$
+5. Dual multigraphs of different planar representations of a graph can be non-isomorphic
+6. $G^*$ is planar
+7. If $\tilde G$ is connected, $G^{**}$ is isomorphic to $\tilde G$
+
+### Euler formula
+
+$|\tilde G| - |E(\tilde G)| + \phi(\tilde G) = 2$
+
+#### corollary
+
+- Every planar representation of $G$ has the same amount of faces
+- If $G$ is a simple planar graph and $|G| \ge 3$ then $|E(G) \le 3|G| - 6$
+- If $G$ is a simple planar graph then $\delta(G) \le 5$
