@@ -15,8 +15,10 @@ $$
 If $r \ge 0$ and $- \pi < \theta \le \pi$:
 
 $$
-r = \sqrt{x^2 + y^2} \\
+r = \sqrt{x^2 + y^2}
+$$
 
+$$
 \theta = \begin{cases}
 \tan^{-1}(\frac{y}{x}) & \text{if} & x \ge 0 \\
 \tan^{-1}(\frac{y}{x}) + \pi & \text{if} & x < 0 \\
@@ -38,12 +40,16 @@ $$
 If $\rho \ge 0$ and $- \pi < \theta \le \pi$:
 
 $$
-\rho = \sqrt{x^2 + y^2 + z^2} \\
+\rho = \sqrt{x^2 + y^2 + z^2}
+$$
 
+$$
 \theta = \begin{cases}
 \tan^{-1}(\frac{y}{x}) & \text{if} & x \ge 0 \\
 \tan^{-1}(\frac{y}{x}) + \pi & \text{if} & x < 0 \\
-\end{cases} \\
+\end{cases}
+$$
 
+$$
 \phi = \cos^{-1}\frac{z}{\sqrt{x^2 + y^2 + z^2}}
 $$
