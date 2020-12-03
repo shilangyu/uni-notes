@@ -337,10 +337,15 @@ z = z \\
 \end{cases}
 </span></p>
 <p>If <span class="math inline">r \ge 0</span> and <span class="math inline">- \pi &lt; \theta \le \pi</span>:</p>
-<p>$$ r =  \</p>
-=
-
-<p>$$</p>
+<p><span class="math display">
+r = \sqrt{x^2 + y^2}
+</span></p>
+<p><span class="math display">
+\theta = \begin{cases}
+\tan^{-1}(\frac{y}{x}) &amp; \text{if} &amp; x \ge 0 \\
+\tan^{-1}(\frac{y}{x}) + \pi &amp; \text{if} &amp; x &lt; 0 \\
+\end{cases}
+</span></p>
 <h2 id="spherical"><span class="header-section-number">1.2</span> spherical</h2>
 <p><span class="math inline">(\rho, \theta, \phi)</span></p>
 <p><span class="math display">
@@ -351,10 +356,17 @@ z = \rho \cos\theta \\
 \end{cases}
 </span></p>
 <p>If <span class="math inline">\rho \ge 0</span> and <span class="math inline">- \pi &lt; \theta \le \pi</span>:</p>
-<p>$$ =  \</p>
-=
-
-<p>\</p>
-<p>= ^{-1} $$</p>
+<p><span class="math display">
+\rho = \sqrt{x^2 + y^2 + z^2}
+</span></p>
+<p><span class="math display">
+\theta = \begin{cases}
+\tan^{-1}(\frac{y}{x}) &amp; \text{if} &amp; x \ge 0 \\
+\tan^{-1}(\frac{y}{x}) + \pi &amp; \text{if} &amp; x &lt; 0 \\
+\end{cases}
+</span></p>
+<p><span class="math display">
+\phi = \cos^{-1}\frac{z}{\sqrt{x^2 + y^2 + z^2}}
+</span></p>
 </body>
 </html>
