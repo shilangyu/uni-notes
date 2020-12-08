@@ -1,0 +1,29 @@
+# partial derivatives
+
+## chain rule
+
+Let $F(t) = f(g(t), h(t), i(t))$ then:
+
+$$
+F'(t) = f_x(g(t), h(t), i(t))g'(t) + f_y(g(t), h(t), i(t))h'(t) + f_z(g(t), h(t), i(t))i'(t)
+$$
+
+### matrix function
+
+$$
+\frac{\partial(u_1, \cdots ,u_m)}{\partial (x_1, \cdots, x_n)} =
+\begin{pmatrix}
+	\frac{\partial u_1}{\partial x_1} & \frac{\partial u_1}{\partial x_2} & \cdots & \frac{\partial u_1}{\partial x_n} \\
+	\frac{\partial u_2}{\partial x_1} & \frac{\partial u_2}{\partial x_2} & \cdots & \frac{\partial u_2}{\partial x_n} \\
+	\vdots & \vdots & \ddots & \vdots\\
+	\frac{\partial u_m}{\partial x_1} & \frac{\partial u_m}{\partial x_2} & \cdots & \frac{\partial u_m}{\partial x_n} \\
+\end{pmatrix}
+$$
+
+### generalization
+
+$$
+\frac{\partial(u_1,\cdots,u_m)}{\partial (t_1,\cdots,t_k)} =
+\frac{\partial(u_1,\cdots,u_m)}{\partial (x_1,\cdots,x_n)}
+\frac{\partial(x_1,\cdots,x_n)}{\partial (t_1,\cdots,t_k)}
+$$

@@ -217,3 +217,25 @@ $|\tilde G| - |E(\tilde G)| + \phi(\tilde G) = 2$
 - Every planar representation of $G$ has the same amount of faces
 - If $G$ is a simple planar graph and $|G| \ge 3$ then $|E(G) \le 3|G| - 6$
 - If $G$ is a simple planar graph then $\delta(G) \le 5$
+
+## subdivision
+
+### of an edge
+
+A subdivision of an edge $uv \in E(G)$ is an operation of replacing this edge with any $uv$ path whose internal vertices are not in $G$
+
+### of a graph
+
+If $H$ was obtained from subdivision of some edges of $G$ then $H$ is a subdivision of $G$.
+
+$H$ is planar iff $G$ is planar
+
+### Kuratowski
+
+A graph is planer iff it does not contain a subdivision of $K_5$ or $K_{3,3}$
+
+## Mobius
+
+Any political map can be colored with 4 colors (coloring of states)
+
+If a graph is planar then $\chi(G) \le 4$

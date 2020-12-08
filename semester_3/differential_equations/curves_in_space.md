@@ -6,6 +6,10 @@ $\vec\sigma(t) = f(t)\hat\imath + g(t)\hat\jmath + h(t)\hat k$
 
 When $||\vec\sigma(t)|| = \text{const}$ then $\vec\sigma'(t)$ is perpendicular to $\vec\sigma(t)$ for all $t$
 
+## tangent line
+
+$r = \vec\sigma(t_0) + t\vec\sigma'(t_0)$
+
 ## length
 
 $L = \int_a^b \sqrt{f'(t)^2 + g'(t)^2 + h'(t)^2}dt$
