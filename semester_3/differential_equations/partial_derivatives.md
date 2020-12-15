@@ -1,5 +1,9 @@
 # partial derivatives
 
+## linear approximation
+
+$\Delta z = f_x(x_0, y_0)\Delta x + f_y(x_0, y_0)\Delta y$
+
 ## chain rule
 
 Let $F(t) = f(g(t), h(t), i(t))$ then:

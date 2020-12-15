@@ -239,3 +239,36 @@ A graph is planer iff it does not contain a subdivision of $K_5$ or $K_{3,3}$
 Any political map can be colored with 4 colors (coloring of states)
 
 If a graph is planar then $\chi(G) \le 4$
+
+## perfect matching
+
+A matching that contains all vertices of $G$ is called a perfect matching
+
+## covered vertex
+
+A matching $M$ covers a vertex from $G$ if the vertex is in $M$
+
+## neighbor set
+
+$N_G(X)$ denotes the set of all neighbors of all vertices in $X$
+
+## Hall theorem
+
+$G=(X,Y,E)$
+
+There exists a matching in $G$ covering the set $X$ iff $\forall_{x \subseteq X} |N_G(S)| \ge |S|$
+
+## Systems of distinct representatives
+
+Let $A_i \subseteq X$ where $i \in \{1, 2, \cdots, n\}$. Then $(a_1, a_2, \cdots, a_n)$ is called a system of distinct representatives if
+
+1. $a_i \in A_i$
+2. $a_i \ne a_j$ for all $i \ne j$
+
+### Hall theorem restated
+
+$(A_1, A_2, \cdots, A_n)$ as a system of distinct representatives iff
+
+$$
+\forall_{I \subseteq \{1, 2, \cdots, n\}}\ \big|\bigcup_{i \in I} A_i \big| \ge |I|
+$$

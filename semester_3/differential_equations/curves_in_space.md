@@ -28,7 +28,10 @@ If the length of $\vec\sigma'(t)$ is constant and equal to 1, the curve is said 
 
 ## curvature
 
-Let $k$ be a scalar: $k = ||\frac{dT}{ds}||$. Then $k$ is called the curvature of a curve.
+$s = \int_a^t ||\vec\sigma'(u)||du$
+
+Let $k$ be a scalar: $k = ||\frac{dT}{ds}||$. Then $k$ is called the
+curvature of a curve.
 
 ### principle normal vector
 
@@ -37,3 +40,9 @@ When $k \ne 0$:
 $N = \frac{\frac{dT}{ds}}{||\frac{dT}{ds}||}$
 
 Then $N$ is called the principle normal vector
+
+Alternative formulae:
+
+$k = \frac{||v \times v'||}{||v||^3}$
+
+$N(t) = \frac{(v \cdot v)v' - (v' \cdot v)v}{||(v \cdot v)v' - (v' \cdot v)v||}$
