@@ -327,12 +327,14 @@
 </head>
 <body>
 <h1 id="partial-derivatives"><span class="header-section-number">1</span> partial derivatives</h1>
-<h2 id="chain-rule"><span class="header-section-number">1.1</span> chain rule</h2>
+<h2 id="linear-approximation"><span class="header-section-number">1.1</span> linear approximation</h2>
+<p><span class="math inline">\Delta z = f_x(x_0, y_0)\Delta x + f_y(x_0, y_0)\Delta y</span></p>
+<h2 id="chain-rule"><span class="header-section-number">1.2</span> chain rule</h2>
 <p>Let <span class="math inline">F(t) = f(g(t), h(t), i(t))</span> then:</p>
 <p><span class="math display">
 F&#39;(t) = f_x(g(t), h(t), i(t))g&#39;(t) + f_y(g(t), h(t), i(t))h&#39;(t) + f_z(g(t), h(t), i(t))i&#39;(t)
 </span></p>
-<h3 id="matrix-function"><span class="header-section-number">1.1.1</span> matrix function</h3>
+<h3 id="matrix-function"><span class="header-section-number">1.2.1</span> matrix function</h3>
 <p><span class="math display">
 \frac{\partial(u_1, \cdots ,u_m)}{\partial (x_1, \cdots, x_n)} =
 \begin{pmatrix}
@@ -342,7 +344,7 @@ F&#39;(t) = f_x(g(t), h(t), i(t))g&#39;(t) + f_y(g(t), h(t), i(t))h&#39;(t) + f_
     \frac{\partial u_m}{\partial x_1} &amp; \frac{\partial u_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial u_m}{\partial x_n} \\
 \end{pmatrix}
 </span></p>
-<h3 id="generalization"><span class="header-section-number">1.1.2</span> generalization</h3>
+<h3 id="generalization"><span class="header-section-number">1.2.2</span> generalization</h3>
 <p><span class="math display">
 \frac{\partial(u_1,\cdots,u_m)}{\partial (t_1,\cdots,t_k)} =
 \frac{\partial(u_1,\cdots,u_m)}{\partial (x_1,\cdots,x_n)}

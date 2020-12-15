@@ -490,5 +490,25 @@ n-1 &amp;\text{ if } n \text{ is even} \\
 <h2 id="mobius"><span class="header-section-number">1.11</span> Mobius</h2>
 <p>Any political map can be colored with 4 colors (coloring of states)</p>
 <p>If a graph is planar then <span class="math inline">\chi(G) \le 4</span></p>
+<h2 id="perfect-matching"><span class="header-section-number">1.12</span> perfect matching</h2>
+<p>A matching that contains all vertices of <span class="math inline">G</span> is called a perfect matching</p>
+<h2 id="covered-vertex"><span class="header-section-number">1.13</span> covered vertex</h2>
+<p>A matching <span class="math inline">M</span> covers a vertex from <span class="math inline">G</span> if the vertex is in <span class="math inline">M</span></p>
+<h2 id="neighbor-set"><span class="header-section-number">1.14</span> neighbor set</h2>
+<p><span class="math inline">N_G(X)</span> denotes the set of all neighbors of all vertices in <span class="math inline">X</span></p>
+<h2 id="hall-theorem"><span class="header-section-number">1.15</span> Hall theorem</h2>
+<p><span class="math inline">G=(X,Y,E)</span></p>
+<p>There exists a matching in <span class="math inline">G</span> covering the set <span class="math inline">X</span> iff <span class="math inline">\forall_{x \subseteq X} |N_G(S)| \ge |S|</span></p>
+<h2 id="systems-of-distinct-representatives"><span class="header-section-number">1.16</span> Systems of distinct representatives</h2>
+<p>Let <span class="math inline">A_i \subseteq X</span> where <span class="math inline">i \in \{1, 2, \cdots, n\}</span>. Then <span class="math inline">(a_1, a_2, \cdots, a_n)</span> is called a system of distinct representatives if</p>
+<ol type="1">
+<li><span class="math inline">a_i \in A_i</span></li>
+<li><span class="math inline">a_i \ne a_j</span> for all <span class="math inline">i \ne j</span></li>
+</ol>
+<h3 id="hall-theorem-restated"><span class="header-section-number">1.16.1</span> Hall theorem restated</h3>
+<p><span class="math inline">(A_1, A_2, \cdots, A_n)</span> as a system of distinct representatives iff</p>
+<p><span class="math display">
+\forall_{I \subseteq \{1, 2, \cdots, n\}}\ \big|\bigcup_{i \in I} A_i \big| \ge |I|
+</span></p>
 </body>
 </html>
