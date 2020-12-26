@@ -215,7 +215,7 @@ $|\tilde G| - |E(\tilde G)| + \phi(\tilde G) = 2$
 #### corollary
 
 - Every planar representation of $G$ has the same amount of faces
-- If $G$ is a simple planar graph and $|G| \ge 3$ then $|E(G) \le 3|G| - 6$
+- If $G$ is a simple planar graph and $|G| \ge 3$ then $|E(G)| \le 3|G| - 6$
 - If $G$ is a simple planar graph then $\delta(G) \le 5$
 
 ## subdivision
@@ -272,3 +272,19 @@ $(A_1, A_2, \cdots, A_n)$ as a system of distinct representatives iff
 $$
 \forall_{I \subseteq \{1, 2, \cdots, n\}}\ \big|\bigcup_{i \in I} A_i \big| \ge |I|
 $$
+
+## vertex cover
+
+A set of vertices such that every edge in the graph contains a vertex from this set.
+
+## Konig theorem
+
+Let $G$ be a bipartite graph
+
+The number of edges in a largest matching in $G$ is equal to the cardinality of a smallest vertex cover.
+
+## Dilworth theorem
+
+$(P, \preccurlyeq)$ - finite poset
+
+The minimum number of chains covering $P$ is equal to the maximum cardinality of an antichain of $P$

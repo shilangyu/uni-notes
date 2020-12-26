@@ -31,3 +31,15 @@ $$
 \frac{\partial(u_1,\cdots,u_m)}{\partial (x_1,\cdots,x_n)}
 \frac{\partial(x_1,\cdots,x_n)}{\partial (t_1,\cdots,t_k)}
 $$
+
+## Lagrange multipliers
+
+To find the extreme values of $f(x,y)$ on a $g(x,y) = c$ constraint solve the system of equations:
+
+$$
+\begin{cases}
+	f_x(x,y) = \lambda g_x(x,y)\\
+	f_y(x,y) = \lambda g_y(x,y)\\
+	g(x,y) = c \\
+\end{cases}
+$$
