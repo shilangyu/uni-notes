@@ -256,7 +256,7 @@ $N_G(X)$ denotes the set of all neighbors of all vertices in $X$
 
 $G=(X,Y,E)$
 
-There exists a matching in $G$ covering the set $X$ iff $\forall_{x \subseteq X} |N_G(S)| \ge |S|$
+There exists a matching in $G$ covering the set $X$ iff $\forall_{S \subseteq X} |N_G(S)| \ge |S|$
 
 ## Systems of distinct representatives
 
