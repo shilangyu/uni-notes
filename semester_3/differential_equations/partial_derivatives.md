@@ -32,7 +32,11 @@ $$
 \frac{\partial(x_1,\cdots,x_n)}{\partial (t_1,\cdots,t_k)}
 $$
 
-## Lagrange multipliers
+## constrained extrema
+
+To find extrema of a function in a region we first find the extrema inside the region with 2nd derivate test and then separately find extrema on the boundary.
+
+### Lagrange multipliers
 
 To find the extreme values of $f(x,y)$ on a $g(x,y) = c$ constraint solve the system of equations:
 
