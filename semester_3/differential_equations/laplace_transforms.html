@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>partial_derivatives</title>
+  <title>laplace_transforms</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,40 +326,41 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="partial-derivatives"><span class="header-section-number">1</span> partial derivatives</h1>
-<h2 id="linear-approximation"><span class="header-section-number">1.1</span> linear approximation</h2>
-<p><span class="math inline">\Delta z = f_x(x_0, y_0)\Delta x + f_y(x_0, y_0)\Delta y</span></p>
-<h2 id="chain-rule"><span class="header-section-number">1.2</span> chain rule</h2>
-<p>Let <span class="math inline">F(t) = f(g(t), h(t), i(t))</span> then:</p>
+<h1 id="laplace-transforms"><span class="header-section-number">1</span> Laplace transforms</h1>
+<p>Let <span class="math inline">u(t)</span> be a function defined on <span class="math inline">0 \le t &lt; \infty</span>. The Laplace transform of <span class="math inline">u(t)</span> is <span class="math inline">U(s)</span> defined as:</p>
 <p><span class="math display">
-F&#39;(t) = f_x(g(t), h(t), i(t))g&#39;(t) + f_y(g(t), h(t), i(t))h&#39;(t) + f_z(g(t), h(t), i(t))i&#39;(t)
+\mathcal{L}[u] = U(s) = \int_0^\infty u(t) e^{-st} dt
 </span></p>
-<h3 id="matrix-function"><span class="header-section-number">1.2.1</span> matrix function</h3>
+<p>Assuming the improper integral exists.</p>
+<h2 id="heavyside-function"><span class="header-section-number">1.1</span> Heavyside function</h2>
+<p>Useful for defining functions of several formulae as a single formula</p>
 <p><span class="math display">
-\frac{\partial(u_1, \cdots ,u_m)}{\partial (x_1, \cdots, x_n)} =
-\begin{pmatrix}
-    \frac{\partial u_1}{\partial x_1} &amp; \frac{\partial u_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial u_1}{\partial x_n} \\
-    \frac{\partial u_2}{\partial x_1} &amp; \frac{\partial u_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial u_2}{\partial x_n} \\
-    \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
-    \frac{\partial u_m}{\partial x_1} &amp; \frac{\partial u_m}{\partial x_2} &amp; \cdots &amp; \frac{\partial u_m}{\partial x_n} \\
-\end{pmatrix}
-</span></p>
-<h3 id="generalization"><span class="header-section-number">1.2.2</span> generalization</h3>
-<p><span class="math display">
-\frac{\partial(u_1,\cdots,u_m)}{\partial (t_1,\cdots,t_k)} =
-\frac{\partial(u_1,\cdots,u_m)}{\partial (x_1,\cdots,x_n)}
-\frac{\partial(x_1,\cdots,x_n)}{\partial (t_1,\cdots,t_k)}
-</span></p>
-<h2 id="constrained-extrema"><span class="header-section-number">1.3</span> constrained extrema</h2>
-<p>To find extrema of a function in a region we first find the extrema inside the region with 2nd derivate test and then separately find extrema on the boundary.</p>
-<h3 id="lagrange-multipliers"><span class="header-section-number">1.3.1</span> Lagrange multipliers</h3>
-<p>To find the extreme values of <span class="math inline">f(x,y)</span> on a <span class="math inline">g(x,y) = c</span> constraint solve the system of equations:</p>
-<p><span class="math display">
-\begin{cases}
-    f_x(x,y) = \lambda g_x(x,y)\\
-    f_y(x,y) = \lambda g_y(x,y)\\
-    g(x,y) = c \\
+h_a(t) = \begin{cases}
+    0 &amp; \text{if} &amp; t &lt; a \\
+    1 &amp; \text{if} &amp; t \ge a \\
 \end{cases}
 </span></p>
+<p><strong>Example</strong>:</p>
+<p><span class="math display">
+f(t) = \begin{cases}
+    t^2 &amp; \text{if} &amp; 0 \le t &lt; 1 \\
+    1 &amp; \text{if} &amp; 1 \le t &lt; 2 \\
+    t - 1 &amp; \text{if} &amp; 2 \le t \\
+\end{cases}
+</span></p>
+<p>Can be expressed as <span class="math inline">f(t) = t^2h_0(t) + (1-t^2)h_1(t) + (t-2)h_2(t)</span></p>
+<h2 id="condition"><span class="header-section-number">1.2</span> condition</h2>
+<p>If the function <span class="math inline">u(t)</span> is piecewise continuous and there exists a constant <span class="math inline">M &gt; 0</span> and <span class="math inline">\alpha</span> such that <span class="math inline">|u(t)| \le Me^{\alpha t}</span> then <span class="math inline">u(t)</span> has a Laplace transform.</p>
+<h2 id="theorems"><span class="header-section-number">1.3</span> theorems</h2>
+<ul>
+<li><span class="math inline">\mathcal{L}[u&#39;] = sU(s) - u(0)</span></li>
+<li><span class="math inline">\mathcal{L}[u&#39;&#39;] = s^2U(s) - su(0) - u&#39;(0)</span></li>
+</ul>
+<h2 id="properties"><span class="header-section-number">1.4</span> properties</h2>
+<ul>
+<li>Linearity: <span class="math inline">\mathcal{L}[c_1u_1 + c_2u_2] = c_1\mathcal{L}[u_1] + c_2\mathcal{L}[u_2]</span></li>
+<li>Shift property: <span class="math inline">\mathcal{L}[u(t)e^{at}](s) = \mathcal{L}[u](s - a)</span></li>
+<li>Switching property: <span class="math inline">\mathcal{L}[h_a(t)u(t - a)] = \mathcal{L}[u](s) \cdot e^{-as}</span></li>
+</ul>
 </body>
 </html>
