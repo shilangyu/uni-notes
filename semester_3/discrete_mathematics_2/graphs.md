@@ -288,3 +288,31 @@ The number of edges in a largest matching in $G$ is equal to the cardinality of 
 $(P, \preccurlyeq)$ - finite poset
 
 The minimum number of chains covering $P$ is equal to the maximum cardinality of an antichain of $P$
+
+## Ramsey theorem
+
+$R(m, k)$
+
+$\forall m, k \in \mathbf{Z}\ \exists n_0$ such that for every integer $n \ge n_0$ and every coloring of edges of the complete graph $K_n$ with two colors (red and blue) there is a clique (complete subgraph) $K_m$ whose all edges are colored with blue or a clique $K_k$ whose all edges are colored red.
+
+### known Ramsey numbers
+
+| $m \char`\\ k$ |  3  |  4  |  5  |  6  |  7  |  8  |  9  |
+| :------------: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+|       3        |  6  |  9  | 14  | 18  | 23  | 28  | 36  |
+|       4        |     | 18  | 25  |  ?  |  ?  |  ?  |  ?  |
+|       5        |     |     |  ?  |  ?  |  ?  |  ?  |  ?  |
+
+- $43 \le R(5, 5) \le 45$
+- $102 \le R(6, 6) \le 165$
+- $798 \le R(10, 10) \le 23556$
+- $R(m, k) \le \binom{m + k -2}{m-1}$
+- $R(m, m) > \frac{m}{2\sqrt{2}} \cdot 2^{\frac{m}{2}}$
+
+### application in posets
+
+In any poset with at least $rs + 1$ elements there is either a chain of length $r + 1$ or an antichain of length $s + 1$
+
+### Erdos, Szeberes theorem
+
+In any sequence of $n \ge rs + 1$ different real numbers there is an increasing subsequence of length $r + 1$ or a decreasing subsequence of length $s + 1$

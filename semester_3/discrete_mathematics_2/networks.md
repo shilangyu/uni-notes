@@ -47,6 +47,15 @@ If $s \in A$ and $t \in V-A$ then $W(f) = f(A, V-A) - f(V-A, V)$
 
 The value of a maximal flow from $s$ to $t$ is equal to the capacity of minimal cut between $s$ and $t$
 
+### algorithm
+
+$FF(S)$:
+
+1. for each edge $uv \in E$
+   1. do $f(uv) \leftarrow 0$
+2. while there exists an augmenting path $P$ in $S$ from $s$ to $t$ for the flow $f$
+   1. do modify the flow $f$ by increasing by the value of $f$ along the path $P$
+
 ### proposition
 
 $W(f) \le c(A, V-A)$
@@ -79,3 +88,15 @@ f(e_i) - \delta & \text{if} & e_i\ \text{is a useful reverse edge} \\
 $$
 
 $f'(e) = f(e)$ for all edges not belonging to our augmented path
+
+## theorem
+
+These are equivalent:
+
+- a flow $f$ from $s$ to $t$ is maximal
+- there is not augmenting path in the network for the flow $f$
+- $W(f) = c(A, V - A)$ for some $A \subseteq V$ such that $s \in A$ and $t \in V-A$
+
+## multiple sources/sinks
+
+Let $s_1, s_2, \cdots s_p$ be the sinks and let $t_1, t_2, \cdots t_q$ be sources
