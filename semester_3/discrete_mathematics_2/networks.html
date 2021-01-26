@@ -359,7 +359,19 @@
 <p>If <span class="math inline">s \in A</span> and <span class="math inline">t \in V-A</span> then <span class="math inline">W(f) = f(A, V-A) - f(V-A, V)</span></p>
 <h2 id="ford-fulkerson-theorem"><span class="header-section-number">1.4</span> Ford-Fulkerson Theorem</h2>
 <p>The value of a maximal flow from <span class="math inline">s</span> to <span class="math inline">t</span> is equal to the capacity of minimal cut between <span class="math inline">s</span> and <span class="math inline">t</span></p>
-<h3 id="proposition"><span class="header-section-number">1.4.1</span> proposition</h3>
+<h3 id="algorithm"><span class="header-section-number">1.4.1</span> algorithm</h3>
+<p><span class="math inline">FF(S)</span>:</p>
+<ol type="1">
+<li>for each edge <span class="math inline">uv \in E</span>
+<ol type="1">
+<li>do <span class="math inline">f(uv) \leftarrow 0</span></li>
+</ol></li>
+<li>while there exists an augmenting path <span class="math inline">P</span> in <span class="math inline">S</span> from <span class="math inline">s</span> to <span class="math inline">t</span> for the flow <span class="math inline">f</span>
+<ol type="1">
+<li>do modify the flow <span class="math inline">f</span> by increasing by the value of <span class="math inline">f</span> along the path <span class="math inline">P</span></li>
+</ol></li>
+</ol>
+<h3 id="proposition"><span class="header-section-number">1.4.2</span> proposition</h3>
 <p><span class="math inline">W(f) \le c(A, V-A)</span></p>
 <h2 id="augmenting-paths"><span class="header-section-number">1.5</span> augmenting paths</h2>
 <p>An augmenting path from <span class="math inline">s</span> to <span class="math inline">t</span> for a flow <span class="math inline">f</span> is a sequence of vertices and edges <span class="math inline">v_0, e_1, v_1, \cdots, v_{l-1}, e_l, v_l</span> where <span class="math inline">v_0 = s</span> and <span class="math inline">v_l = t</span> and <span class="math inline">e_i</span> is useful from <span class="math inline">v_{i-1}</span> to <span class="math inline">v_i</span></p>
@@ -383,5 +395,14 @@ f(e_i) - \delta &amp; \text{if} &amp; e_i\ \text{is a useful reverse edge} \\
 \end{cases}
 </span></p>
 <p><span class="math inline">f&#39;(e) = f(e)</span> for all edges not belonging to our augmented path</p>
+<h2 id="theorem"><span class="header-section-number">1.6</span> theorem</h2>
+<p>These are equivalent:</p>
+<ul>
+<li>a flow <span class="math inline">f</span> from <span class="math inline">s</span> to <span class="math inline">t</span> is maximal</li>
+<li>there is not augmenting path in the network for the flow <span class="math inline">f</span></li>
+<li><span class="math inline">W(f) = c(A, V - A)</span> for some <span class="math inline">A \subseteq V</span> such that <span class="math inline">s \in A</span> and <span class="math inline">t \in V-A</span></li>
+</ul>
+<h2 id="multiple-sourcessinks"><span class="header-section-number">1.7</span> multiple sources/sinks</h2>
+<p>Let <span class="math inline">s_1, s_2, \cdots s_p</span> be the sinks and let <span class="math inline">t_1, t_2, \cdots t_q</span> be sources</p>
 </body>
 </html>

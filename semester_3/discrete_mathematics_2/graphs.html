@@ -518,5 +518,66 @@ n-1 &amp;\text{ if } n \text{ is even} \\
 <h2 id="dilworth-theorem"><span class="header-section-number">1.19</span> Dilworth theorem</h2>
 <p><span class="math inline">(P, \preccurlyeq)</span> - finite poset</p>
 <p>The minimum number of chains covering <span class="math inline">P</span> is equal to the maximum cardinality of an antichain of <span class="math inline">P</span></p>
+<h2 id="ramsey-theorem"><span class="header-section-number">1.20</span> Ramsey theorem</h2>
+<p><span class="math inline">R(m, k)</span></p>
+<p><span class="math inline">\forall m, k \in \mathbf{Z}\ \exists n_0</span> such that for every integer <span class="math inline">n \ge n_0</span> and every coloring of edges of the complete graph <span class="math inline">K_n</span> with two colors (red and blue) there is a clique (complete subgraph) <span class="math inline">K_m</span> whose all edges are colored with blue or a clique <span class="math inline">K_k</span> whose all edges are colored red.</p>
+<h3 id="known-ramsey-numbers"><span class="header-section-number">1.20.1</span> known Ramsey numbers</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">m \char`\\ k</span></th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">9</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+<td style="text-align: center;">?</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="math inline">43 \le R(5, 5) \le 45</span></li>
+<li><span class="math inline">102 \le R(6, 6) \le 165</span></li>
+<li><span class="math inline">798 \le R(10, 10) \le 23556</span></li>
+<li><span class="math inline">R(m, k) \le \binom{m + k -2}{m-1}</span></li>
+<li><span class="math inline">R(m, m) &gt; \frac{m}{2\sqrt{2}} \cdot 2^{\frac{m}{2}}</span></li>
+</ul>
+<h3 id="application-in-posets"><span class="header-section-number">1.20.2</span> application in posets</h3>
+<p>In any poset with at least <span class="math inline">rs + 1</span> elements there is either a chain of length <span class="math inline">r + 1</span> or an antichain of length <span class="math inline">s + 1</span></p>
+<h3 id="erdos-szeberes-theorem"><span class="header-section-number">1.20.3</span> Erdos, Szeberes theorem</h3>
+<p>In any sequence of <span class="math inline">n \ge rs + 1</span> different real numbers there is an increasing subsequence of length <span class="math inline">r + 1</span> or a decreasing subsequence of length <span class="math inline">s + 1</span></p>
 </body>
 </html>
