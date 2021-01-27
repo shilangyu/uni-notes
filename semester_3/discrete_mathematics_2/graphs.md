@@ -164,7 +164,7 @@ A clique is a subgraph such that every two distinct vertices in the clique are a
 
 $w(G)$ is the cardinality of the largest clique in $G$
 
-$\chi(G) \le w(G)$
+$\chi(G) \ge w(G)$
 
 ### Dezartes
 
