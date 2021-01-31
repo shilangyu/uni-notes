@@ -8,7 +8,20 @@ $$
 
 Assuming the improper integral exists.
 
-## Heavyside function
+## table
+
+| $u(t)$         | $U(t)$                            |
+| -------------- | --------------------------------- |
+| $1$            | $\frac{1}{s}$ for $s > 0$         |
+| $t$            | $\frac{1}{s^2}$ for $s > 0$       |
+| $e^{at}$       | $\frac{1}{s - a}$ for $s > a$     |
+| $h_a(t)$       | $\frac{1}{s} e^{-as}$ for $s > 0$ |
+| $h_a(t)u(t-a)$ | $U(s)e^{-as}$                     |
+| $\delta_a(t)$  | $e^{-as}$                         |
+| $$             | $$                                |
+| $$             | $$                                |
+
+## Heavyside function (unit switching function)
 
 Useful for defining functions of several formulae as a single formula
 
@@ -45,3 +58,28 @@ If the function $u(t)$ is piecewise continuous and there exists a constant $M > 
 - Linearity: $\mathcal{L}[c_1u_1 + c_2u_2] = c_1\mathcal{L}[u_1] + c_2\mathcal{L}[u_2]$
 - Shift property: $\mathcal{L}[u(t)e^{at}](s) = \mathcal{L}[u](s - a)$
 - Switching property: $\mathcal{L}[h_a(t)u(t - a)] = \mathcal{L}[u](s) \cdot e^{-as}$
+
+## convolution
+
+$(u * v)(t) = \int_0^t u(\tau)v(t - \tau) d\tau$
+
+When $u$ and $v$ are continuous on $[0, \infty)$ then $(u * v)(t) = (v * u)(t)$
+
+## delta function
+
+Let $a > 0$, $\epsilon > 0$
+
+$$
+b_{a,\epsilon}(t) = \begin{cases}
+\frac{1}{\epsilon} & \text{for } a - \frac{\epsilon}{2} \le t < a + \frac{\epsilon}{2} \\
+0 & \text{otherwise}
+\end{cases} = \frac{1}{\epsilon}(h_{a - \frac{\epsilon}{2}}(t) - h_{a+\frac{\epsilon}{2}}(t))
+$$
+
+Delta function is a generalized function:
+
+$\delta_a(t) = \lim_{\epsilon \to 0} b_{a, \epsilon}(t)$
+
+### properties
+
+- $\int_0^\infty \delta_a(t)\phi(t) dt = \phi(a)$ for $a \ge 0$

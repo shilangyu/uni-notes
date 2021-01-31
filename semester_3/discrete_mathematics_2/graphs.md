@@ -232,7 +232,7 @@ $H$ is planar iff $G$ is planar
 
 ### Kuratowski
 
-A graph is planer iff it does not contain a subdivision of $K_5$ or $K_{3,3}$
+A graph is planar iff it does not contain a subdivision of $K_5$ or $K_{3,3}$
 
 ## Mobius
 
