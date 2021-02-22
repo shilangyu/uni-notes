@@ -82,7 +82,7 @@ $G=(X,Y,E)$
 
 - all trees are bipartite
 - $K_{m,n}$ denotes a complete bipartite graph where $|X| = m$, $|Y| = n$
-- a graph is bipartite iff it does not contain odd cycles (cycle with off number of edges)
+- a graph is bipartite iff it does not contain odd cycles (cycle with odd number of edges)
 
 ### matching
 
