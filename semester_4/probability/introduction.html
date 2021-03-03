@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>introduction</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+</head>
+<body>
+<h1 id="introduction"><span class="header-section-number">1</span> introduction</h1>
+<h2 id="sample-space"><span class="header-section-number">1.1</span> sample space</h2>
+<p>Denoted by <span class="math inline">\Omega</span> is the set of all possible outcomes of an experiment.</p>
+<ul>
+<li><span class="math inline">\Omega</span> - the set of the elementary events</li>
+</ul>
+<h2 id="event"><span class="header-section-number">1.2</span> event</h2>
+<p><span class="math inline">\omega \subset \Omega</span> - events</p>
+<h3 id="simple"><span class="header-section-number">1.2.1</span> simple</h3>
+<p>Event is called simple when <span class="math inline">|\omega| = 1</span></p>
+<h3 id="compound"><span class="header-section-number">1.2.2</span> compound</h3>
+<p>Event is called compound when <span class="math inline">|\omega| &gt; 1</span></p>
+<h2 id="venn-diagrams"><span class="header-section-number">1.3</span> Venn diagrams</h2>
+<figure>
+<img src="https://mathworld.wolfram.com/images/eps-gif/VennDiagram_900.gif" alt="" /><figcaption>https://mathworld.wolfram.com/images/eps-gif/VennDiagram_900.gif</figcaption>
+</figure>
+<h2 id="properties"><span class="header-section-number">1.4</span> properties</h2>
+<ul>
+<li><span class="math inline">A \cup B = B \cup A</span></li>
+<li><span class="math inline">(A \cup B) \cup C = A \cup (B \cup C)</span></li>
+<li><span class="math inline">(A \cup B) \cap C = (A \cap C) \cup (B \cup C)</span></li>
+<li><span class="math inline">\overline {(A \cup B)} = \bar A \cap \bar B</span></li>
+<li><span class="math inline">\overline {(A \cap B)} = \bar A \cup \bar B</span></li>
+</ul>
+<p>Where <span class="math inline">A, B, C</span> are events and <span class="math inline">\bar A</span> denotes the complement of <span class="math inline">A</span></p>
+<h2 id="axioms-of-probability"><span class="header-section-number">1.5</span> axioms of probability</h2>
+<ul>
+<li>for any event <span class="math inline">A \subset \Omega</span>: <span class="math inline">P(A) \ge 0</span></li>
+<li><span class="math inline">P(\Omega) = 1</span></li>
+<li><span class="math inline">P(\bigcup A_i) = \sum P(A_i)</span></li>
+</ul>
+<h3 id="propositions"><span class="header-section-number">1.5.1</span> propositions</h3>
+<ul>
+<li><span class="math inline">P(\emptyset) = 0</span></li>
+<li><span class="math inline">P(\bar A) = 1 - P(A)</span></li>
+<li>for <span class="math inline">A, B \subset S</span>: <span class="math inline">P(A \cup B) = P(A) + P(B) - P(A \cap B)</span></li>
+<li>for <span class="math inline">A \subset B</span>: <span class="math inline">P(A) \le P(B)</span></li>
+</ul>
+<h2 id="equally-likely-outcomes"><span class="header-section-number">1.6</span> equally likely outcomes</h2>
+<ul>
+<li><span class="math inline">N</span> - amount of outcomes in <span class="math inline">\Omega</span></li>
+<li><span class="math inline">N(A)</span> - amount of outcomes in <span class="math inline">A</span></li>
+</ul>
+<p><span class="math inline">P(A) = \frac{N(A)}{N}</span></p>
+<h2 id="conditional-probability"><span class="header-section-number">1.7</span> conditional probability</h2>
+<p><span class="math inline">P(A|B) = \frac{P(A \cap B)}{P(B)}</span></p>
+<h3 id="multiplication-rule"><span class="header-section-number">1.7.1</span> multiplication rule</h3>
+<p><span class="math inline">P(A \cap B) = P(A|B) \cdot P(B)</span></p>
+<h3 id="total-probability"><span class="header-section-number">1.7.2</span> total probability</h3>
+<p>Events <span class="math inline">A_1, A_2, \cdots</span> are exhaustive when <span class="math inline">\bigcup A_i = \Omega</span></p>
+<p>When such events are exhaustive and mutually exclusive then: <span class="math inline">P(B) = \sum P(B \cap A_i) = \sum P(A_i) \cdot P(B | A_i)</span></p>
+<h3 id="bayes-formula"><span class="header-section-number">1.7.3</span> Bayes’ formula</h3>
+<p>Let <span class="math inline">A_1, A_2, \cdots</span> be mutually exclusive exhaustive events. Then for any other event <span class="math inline">B</span> and all <span class="math inline">j</span>:</p>
+<p><span class="math display">
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+</span></p>
+<p>or</p>
+<p><span class="math display">
+P(A_j|B) = \frac{P(B|A_j) \cdot P(A_j)}{\sum P(B|A_i) \cdot P(A_i)}
+</span></p>
+<p>Also:</p>
+<p><span class="math inline">P_B(A) = P(A|B)</span></p>
+<h2 id="independence"><span class="header-section-number">1.8</span> independence</h2>
+<p>When <span class="math inline">P(A \cap B) = P(A)P(B)</span> then <span class="math inline">A</span> and <span class="math inline">B</span> are independent events</p>
+<p>If A and B are independent then so are the complements:</p>
+<ul>
+<li><span class="math inline">P(A \cap \bar B) = P(A)P(\bar B)</span></li>
+<li><span class="math inline">P(\bar A \cap B) = P(\bar A)P(B)</span></li>
+<li><span class="math inline">P(\bar A \cap \bar B) = P(\bar A)P(\bar B)</span></li>
+</ul>
+<h3 id="more-than-two-events"><span class="header-section-number">1.8.1</span> more than two events</h3>
+<p>For <span class="math inline">A_1, A_2, \cdots A_n</span></p>
+<p><span class="math inline">P(\bigcap A_i) = \prod P(A_i)</span> for all combinations of <span class="math inline">A</span> sets</p>
+<p>Any combinations of complements are also mutually independent</p>
+<h3 id="inclusion-exclusion"><span class="header-section-number">1.8.2</span> inclusion exclusion</h3>
+<p><span class="math inline">P(\bigcup A_i) = 1 - \prod (1 - P(A_i))</span></p>
+<h3 id="bernoulli-trials"><span class="header-section-number">1.8.3</span> Bernoulli trials</h3>
+<p>Let an experiment have only 2 possible outcomes: failure (<span class="math inline">f</span>) or success (<span class="math inline">s</span>) where <span class="math inline">P(s) = p</span> and <span class="math inline">P(f) = 1 - p = q</span></p>
+<p>The probability that we obtain exactly <span class="math inline">k</span> successes in the <span class="math inline">n</span> independent Bernoulli trials is <span class="math inline">b(k; n, p) = \binom{n}{k}p^k(1-p)^{n-k}</span></p>
+<h4 id="poisson-lemma"><span class="header-section-number">1.8.3.1</span> Poisson lemma</h4>
+<p><span class="math inline">lim_{n\to \infty}n\cdot p_n = \lambda &gt; 0</span> then</p>
+<p><span class="math inline">lim_{n\to\infty}\binom{n}{k}p_n^k(1-p_n)^{n-k} = e^{-\lambda}\cdot\frac{\lambda^k}{k!}</span></p>
+<p><span class="math inline">F(k; \lambda) = \sum_{i=0}^k e^{-\lambda} \frac{\lambda^i}{i!}</span></p>
+</body>
+</html>
