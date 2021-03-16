@@ -12,6 +12,9 @@ $\Pi(N)$ is the family of all such partitions of $N$
 
 The Stirling number $S_{n,k} = {n \brace k}$ is the number of all k-partitions of an $n$-set
 
+- $|\text{surj}(N, R)| = |R|! \cdot S_{|N|,|R|}$
+- $S_{n,k} = S_{n-1,k-1} + k \cdot S_{n-1, k}$
+
 ## Bell number
 
 $B_n = \sum_k S_{n,k}$

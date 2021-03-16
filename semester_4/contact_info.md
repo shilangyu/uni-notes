@@ -10,6 +10,16 @@
 
 ⏲
 
+## Programming in graphical environment
+
+### Paweł Aszklar (lectures)
+
+📧 p.Aszklar@mini.pw.edu.pl
+
+🌐 [http://pages.mini.pw.edu.pl/~aszklarp/pige.php?lang=en](http://pages.mini.pw.edu.pl/~aszklarp/pige.php?lang=en)
+
+⏲
+
 ## Introduction to digital systems
 
 ### Tomasz Owczarek (lectures)
