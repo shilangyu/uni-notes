@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>counting</title>
+  <title>random_variables</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,18 +326,65 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="counting"><span class="header-section-number">1</span> counting</h1>
-<h2 id="k-permutations-of-n-element-set"><span class="header-section-number">1.1</span> k-permutations of n-element set</h2>
-<p><span class="math inline">n^{\underline k} = \binom{n}{k}k! = \frac{n!}{(n - k)!}</span></p>
-<h2 id="stirling-number"><span class="header-section-number">1.2</span> Stirling number</h2>
-<p>Let <span class="math inline">N</span> be a set and have partitions denoted by <span class="math inline">A_i</span> (<span class="math inline">i \le k</span>).</p>
-<p><span class="math inline">\Pi(N)</span> is the family of all such partitions of <span class="math inline">N</span></p>
-<p>The Stirling number <span class="math inline">S_{n,k} = {n \brace k}</span> is the number of all k-partitions of an <span class="math inline">n</span>-set</p>
+<h1 id="random-variables"><span class="header-section-number">1</span> random variables</h1>
+<p>Random variable <span class="math inline">rv</span> is a function mapping the sample space to some other set. <span class="math inline">X: \Omega \to \mathbf{R}</span>. <span class="math inline">\mathcal{X}</span> denotes the range of <span class="math inline">X</span>: <span class="math inline">\mathcal{X} = X(\Omega)</span></p>
+<h2 id="cumulative-distribution-function"><span class="header-section-number">1.1</span> cumulative distribution function</h2>
+<p><span class="math inline">F(x) = P(X \le x) = P(\{\omega \in \Omega : X(\omega) \le x\})</span></p>
+<h3 id="properties"><span class="header-section-number">1.1.1</span> properties</h3>
+<ol type="1">
+<li><span class="math inline">\lim_{x\to -\infty} F(x) = 0</span></li>
+<li><span class="math inline">\lim_{x\to \infty} F(x) = 1</span></li>
+<li>cdf is non-decreasing</li>
+<li>cdf is right continuous</li>
+</ol>
+<h3 id="propositions"><span class="header-section-number">1.1.2</span> propositions</h3>
 <ul>
-<li><span class="math inline">|\text{surj}(N, R)| = |R|! \cdot S_{|N|,|R|}</span></li>
-<li><span class="math inline">S_{n,k} = S_{n-1,k-1} + k \cdot S_{n-1, k}</span></li>
+<li><span class="math inline">P(a &lt; X \le b) = F(b) - F(a)</span></li>
+<li><span class="math inline">P(a \le X \le b) = F(b) - F(a^-)</span></li>
+<li><span class="math inline">P(a &lt; X &lt; b) = F(b^-) - F(a)</span></li>
+<li><span class="math inline">P(a \le X &lt; b) = F(b^-) - F(a^-)</span></li>
 </ul>
-<h2 id="bell-number"><span class="header-section-number">1.3</span> Bell number</h2>
-<p><span class="math inline">B_n = \sum_k S_{n,k}</span></p>
+<h2 id="discrete-rv"><span class="header-section-number">1.2</span> discrete <span class="math inline">rv</span></h2>
+<p>A <span class="math inline">rv</span> that can take on at most a countable number of possible values</p>
+<h3 id="probability-mass-function-pmf"><span class="header-section-number">1.2.1</span> probability mass function <span class="math inline">pmf</span></h3>
+<p><span class="math inline">p(a) = P(X = a)</span></p>
+<ul>
+<li><span class="math inline">p(x) \ge 0</span></li>
+<li><span class="math inline">\sum_{x\in X}p(x) = 1</span></li>
+</ul>
+<h2 id="continuous-rv"><span class="header-section-number">1.3</span> continuous <span class="math inline">rv</span></h2>
+<p>Uncountable set of possible values</p>
+<h3 id="probability-density-function-pdf"><span class="header-section-number">1.3.1</span> probability density function <span class="math inline">pdf</span></h3>
+<p><span class="math inline">pmf</span> for continuous <span class="math inline">rv</span>: <span class="math inline">F(x) = \int_{-\infty}^{x} f(t)dt</span></p>
+<h2 id="mixed-rv"><span class="header-section-number">1.4</span> mixed <span class="math inline">rv</span></h2>
+<p>There exists <span class="math inline">p \in (0; 1)</span> such that <span class="math inline">F(x) = p \cdot F_d(x) + (1 - p)\cdot F_c(x)</span> where <span class="math inline">F_d</span> and <span class="math inline">F_c</span> are cdf of a discrete and continuous <span class="math inline">rv</span> respectively.</p>
+<h2 id="function-of-rv"><span class="header-section-number">1.5</span> function of <span class="math inline">rv</span></h2>
+<p>Let <span class="math inline">Y(\omega) = g(X(\omega))</span> be a new <span class="math inline">rv</span></p>
+<p>If <span class="math inline">g</span> is a strictly monotonic, differentiable function then <span class="math inline">Y</span>’s pdf is given by</p>
+<p><span class="math display">
+f_Y(y) = f_X(g^{-1}(y)) \cdot \frac{1}{|g&#39;(g^{-1}(y))|}
+</span></p>
+<h3 id="for-continuous-rv"><span class="header-section-number">1.5.1</span> for continuous <span class="math inline">rv</span></h3>
+<ul>
+<li>When <span class="math inline">Y = aX + b</span> where <span class="math inline">a \ne 0</span>: <span class="math inline">f_Y(y) = \frac{1}{|a|}f_X(\frac{y-b}{a})</span></li>
+<li>When <span class="math inline">Y = X^2</span> where <span class="math inline">y &gt; 0</span>: <span class="math inline">f_Y(y) = \frac{1}{2\sqrt{y}}(f_X(\sqrt{y} + f_X(-\sqrt{y}))</span></li>
+</ul>
+<h2 id="expectations"><span class="header-section-number">1.6</span> expectations</h2>
+<p><em>“probability mass center”</em></p>
+<h3 id="of-discrete-rv"><span class="header-section-number">1.6.1</span> of discrete <span class="math inline">rv</span></h3>
+<p><span class="math inline">E[X] = \sum_{x_i \in X} x_iP(X = x_i)</span></p>
+<h3 id="of-continuous-rv"><span class="header-section-number">1.6.2</span> of continuous <span class="math inline">rv</span></h3>
+<p><span class="math inline">E[X] = \int_{-\infty}^\infty xf(x) dx</span></p>
+<h3 id="of-mixed-rv"><span class="header-section-number">1.6.3</span> of mixed <span class="math inline">rv</span></h3>
+<p><span class="math inline">E[X] = pE[X_d] + (1 - p)E[X_c]</span></p>
+<h2 id="moments"><span class="header-section-number">1.7</span> moments</h2>
+<p><span class="math inline">E[(X - c)^n]</span></p>
+<h3 id="raw-moment"><span class="header-section-number">1.7.1</span> raw moment</h3>
+<p><span class="math inline">m_n = E[X^n]</span></p>
+<ul>
+<li>if the n-th moment exists, all moments <span class="math inline">&lt;n</span> also exist</li>
+</ul>
+<h3 id="central-moment"><span class="header-section-number">1.7.2</span> central moment</h3>
+<p><span class="math inline">\mu_n = E[(X - \mu)^n]</span></p>
 </body>
 </html>
