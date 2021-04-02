@@ -87,3 +87,22 @@ $m_n = E[X^n]$
 ### central moment
 
 $\mu_n =  E[(X - \mu)^n]$
+
+## variance
+
+$V(X) = \sigma^2 = E[(X - \mu)^2] = m_2 - \mu^2 = E[X^2] - E^2[X]$
+
+- The variance is 0 iff all values are equal
+- $V(aX + b) = V(aX) = a^2V(X)$
+
+## standardized
+
+$X^* = \frac{X- \mu}{\sigma}$ where $\sigma = \sqrt{V(X)}$
+
+## skewness
+
+$\gamma_1 = E[X^{*^3}] = \frac{\mu_3}{\sigma^3}$
+
+## kurtosis
+
+$\gamma_2 = \frac{\mu_4}{\sigma^4} - 3$
