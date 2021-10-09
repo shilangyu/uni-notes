@@ -2,11 +2,11 @@
 
 ## Computer statistics
 
-### Ewa S (lectures/labs)
+### Ewa Kominiak (lectures/labs)
 
-📧
+📧 ewa.kominiak@pw.edu.pl
 
-🌐 []()
+🌐 [https://drive.google.com/drive/folders/1kyGAmhn14DAw2E9dStZPu2fRQEhZ_dkg](https://drive.google.com/drive/folders/1kyGAmhn14DAw2E9dStZPu2fRQEhZ_dkg)
 
 ⏲
 
@@ -17,6 +17,14 @@
 📧
 
 🌐 [https://mini.pw.edu.pl/~kellerp/teaching/2021/nm2/](https://mini.pw.edu.pl/~kellerp/teaching/2021/nm2/)
+
+⏲
+
+### Oskar Kędzierski (labs)
+
+📧 oskar.kedzierski@pw.edu.pl
+
+🌐 []()
 
 ⏲
 
@@ -40,19 +48,45 @@
 
 ⏲
 
-## Automata theory
+### Michał Okulewicz (lectures)
+
+📧 m.okulewicz@mini.pw.edu.pl
+
+🌐 [https://pages.mini.pw.edu.pl/~okulewiczm/www/](https://pages.mini.pw.edu.pl/~okulewiczm/www/)
+
+⏲
+
+## Automata theory and Formal languages
 
 ### Władysław Homenda (lectures)
 
-📧 m.bednarz@mini.pw.edu.pl
+📧 homenda@mini.pw.edu.pl
 
-🌐 [homenda.mini.pw.edu](homenda.mini.pw.edu)
+🌐 [https://homenda.mini.pw.edu.pl](https://homenda.mini.pw.edu.pl)
 
 ⏲ room 552
 
 ### Marcin Luckner (tutorials)
 
+📧 mluckner@mini.pw.edu.pl
+
+🌐 [https://mini.pw.edu.pl/~lucknerm](https://mini.pw.edu.pl/~lucknerm)
+
+⏲ Room 505
+
+## Graphic processors in computational applications
+
+### Krzysztof Kaczmarski (lectures)
+
 📧
+
+🌐 [https://pages.mini.pw.edu.pl/~kaczmarskik/gpca](https://pages.mini.pw.edu.pl/~kaczmarskik/gpca)
+
+⏲ Mondays, room 515 GM
+
+### Cezary Bella (labs)
+
+📧 c.bella@mini.pw.edu.pl
 
 🌐 []()
 
