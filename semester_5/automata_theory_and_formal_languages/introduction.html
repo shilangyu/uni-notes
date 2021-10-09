@@ -338,13 +338,13 @@
 <h2 id="trees"><span class="header-section-number">1.2</span> trees</h2>
 <p>Connected graph without cycles, or:</p>
 <ol type="1">
-<li><span class="math inline">T = (\{v\}, \empty)</span> is the tree with the root <span class="math inline">v</span></li>
+<li><span class="math inline">T = (\{v\}, \emptyset)</span> is the tree with the root <span class="math inline">v</span></li>
 <li>if <span class="math inline">T_1 = (V_1, E_1)</span>, <span class="math inline">T_2 = (V_2, E_2)</span>, <span class="math inline">\cdots</span>, <span class="math inline">T_m = (V_m, E_m)</span> are trees with roots <span class="math inline">v_1, v_2, \cdots, v_m</span> then <span class="math inline">T=(V_1 \cup \cdots V_m \cup \{v\}, E_1 \cup \cdots E_m \cup \{\{v, v_1\}, \cdots, \{v, v_m\}\})</span> is a tree with the root <span class="math inline">v</span></li>
 <li>tree is an object obtained by applying previous two steps finite amount of times</li>
 </ol>
 <h3 id="height"><span class="header-section-number">1.2.1</span> height</h3>
 <ol type="1">
-<li><span class="math inline">h(T) = 0</span> for <span class="math inline">T = (\{v\}, \empty)</span></li>
+<li><span class="math inline">h(T) = 0</span> for <span class="math inline">T = (\{v\}, \emptyset)</span></li>
 <li>assume the <span class="math inline">T_1, \cdots, T_m</span> are of height <span class="math inline">h_1, \cdots, h_m</span>, then <span class="math inline">h(T) = 1 + \max\{h_1, \cdots, h_m\}</span></li>
 </ol>
 <h3 id="k-tree"><span class="header-section-number">1.2.2</span> k-tree</h3>
@@ -354,7 +354,7 @@
 <p>A k-tree with height <span class="math inline">h</span> has at most <span class="math inline">k^h</span> leaves</p>
 <p><strong>Proof</strong>:</p>
 <ol type="1">
-<li><span class="math inline">T = (\{v\}, \empty)</span>, <span class="math inline">h(T) = 0</span>, <span class="math inline">leaves(T) = 1 = k^0</span></li>
+<li><span class="math inline">T = (\{v\}, \emptyset)</span>, <span class="math inline">h(T) = 0</span>, <span class="math inline">leaves(T) = 1 = k^0</span></li>
 <li>we assume that <span class="math inline">leaves(T_1) \le k^{h_1}, \cdots, leaves(T_m) \le k^{h_m}</span>. Therefore <span class="math inline">leaves(T) \le k^{h_1} + k^{h_2} + \cdots + k^{h_m} \le k \cdot k^{\max\{h_1, \cdots, h_m\}} = k^{1+\max\{h_1, \cdots, h_m\}} = k^h</span></li>
 </ol>
 </body>
