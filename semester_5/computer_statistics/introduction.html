@@ -355,5 +355,33 @@
 <li>For categorical data, columns are in the following order: Classes (ordered), amount, frequency, cumulative amount, cumulative frequency</li>
 <li>For continuous or discrete with many values: Class intervals, midpoint, amount, frequency, cumulative amount, cumulative frequency. The number of intervals is <span class="math inline">\sqrt{n}</span> for small <span class="math inline">n</span>, <span class="math inline">\lceil\log_2(n)\rceil + 1</span> for large <span class="math inline">n</span></li>
 </ul>
+<h3 id="numerical-description"><span class="header-section-number">1.3.1</span> numerical description</h3>
+<p><span class="math inline">x_{(1)}, \cdots, x_{(n)}</span> denotes an ordered sample</p>
+<h4 id="measures"><span class="header-section-number">1.3.1.1</span> measures</h4>
+<h5 id="central-tendency"><span class="header-section-number">1.3.1.1.1</span> central tendency</h5>
+<ul>
+<li><strong>Sample mean</strong>: arithmetic average</li>
+<li><strong>Median</strong>: “middle value”</li>
+<li><strong>Mode</strong>: most frequent value</li>
+</ul>
+<h5 id="quantiles"><span class="header-section-number">1.3.1.1.2</span> quantiles</h5>
+<p>The sample quantile to probability <span class="math inline">p</span>, <span class="math inline">\hat q_p</span> has position <span class="math inline">(n+1)p</span> in the ordered sample. So <span class="math inline">\hat q_p = x_{((n+1)p)}</span>.</p>
+<h5 id="variability"><span class="header-section-number">1.3.1.1.3</span> variability</h5>
+<ul>
+<li><strong>Range</strong>: <span class="math inline">R = m_{\max} - m_{\min}</span></li>
+<li><strong>Interquantile Range</strong>: <span class="math inline">IQR = Q_3 - Q_2</span></li>
+<li><strong>Sample variance</strong>: <span class="math inline">s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \overline x)^2 = \frac{\sum_{i=1}^n x_i^2 - n(\overline x)^2}{n-1}</span></li>
+<li><strong>Sample standard deviation</strong>: <span class="math inline">s = \sqrt{s^2}</span></li>
+</ul>
+<h5 id="shapes"><span class="header-section-number">1.3.1.1.4</span> shapes</h5>
+<ul>
+<li><strong>Skewness</strong>: <span class="math inline">sk = \frac{m_3}{s^3}</span> where <span class="math inline">m_3 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline x)^3</span></li>
+<li><strong>Kurtosis</strong>: <span class="math inline">k = \frac{m_4}{s^4}</span> where <span class="math inline">m_4 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline x)^4</span></li>
+</ul>
+<h5 id="outliers"><span class="header-section-number">1.3.1.1.5</span> outliers</h5>
+<ul>
+<li>If <span class="math inline">x_i \in (Q_1 - 1.5IQR; Q_3 + 1.5IQR)</span> then it is called an outlier</li>
+<li>If <span class="math inline">x_i \in (Q_1 - 3IQR; Q_3 + 3IQR)</span> then it is called an extreme outlier</li>
+</ul>
 </body>
 </html>
