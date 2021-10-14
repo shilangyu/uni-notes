@@ -38,3 +38,11 @@ A k-tree with height $h$ has at most $k^h$ leaves
 
 1. $T = (\{v\}, \emptyset)$, $h(T) = 0$, $leaves(T) = 1 = k^0$
 2. we assume that $leaves(T_1) \le k^{h_1}, \cdots, leaves(T_m) \le k^{h_m}$. Therefore $leaves(T) \le k^{h_1} + k^{h_2} + \cdots + k^{h_m} \le k \cdot k^{\max\{h_1, \cdots, h_m\}} = k^{1+\max\{h_1, \cdots, h_m\}} = k^h$
+
+## relation
+
+See _semester 1 discrete math_ for more info.
+
+### closure of relation
+
+$R'$ is a $P$-closure of $R$ if $R \subset R'$ and $R'$ is the smallest set with $P$-property.

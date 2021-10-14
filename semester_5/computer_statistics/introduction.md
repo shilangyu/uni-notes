@@ -27,3 +27,36 @@ Deals with collecting,
 
 - For categorical data, columns are in the following order: Classes (ordered), amount, frequency, cumulative amount, cumulative frequency
 - For continuous or discrete with many values: Class intervals, midpoint, amount, frequency, cumulative amount, cumulative frequency. The number of intervals is $\sqrt{n}$ for small $n$, $\lceil\log_2(n)\rceil + 1$ for large $n$
+
+### numerical description
+
+$x_{(1)}, \cdots, x_{(n)}$ denotes an ordered sample
+
+#### measures
+
+##### central tendency
+
+- **Sample mean**: arithmetic average
+- **Median**: "middle value"
+- **Mode**: most frequent value
+
+##### quantiles
+
+The sample quantile to probability $p$, $\hat q_p$ has position $(n+1)p$ in the ordered sample. So $\hat q_p = x_{((n+1)p)}$.
+
+##### variability
+
+- **Range**: $R = m_{\max} - m_{\min}$
+- **Interquantile Range**: $IQR = Q_3 - Q_2$
+- **Sample variance**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \overline x)^2 = \frac{\sum_{i=1}^n x_i^2 - n(\overline x)^2}{n-1}$
+- **Sample standard deviation**: $s = \sqrt{s^2}$
+
+##### shapes
+
+- **Skewness**: $sk = \frac{m_3}{s^3}$ where $m_3 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline x)^3$
+- **Kurtosis**: $k = \frac{m_4}{s^4}$ where $m_4 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline x)^4$
+
+##### outliers
+
+- If $x_i \in (Q_1 - 1.5IQR; Q_3 + 1.5IQR)$ then it is called an outlier
+- If $x_i \in (Q_1 - 3IQR; Q_3 + 3IQR)$ then it is called an extreme outlier

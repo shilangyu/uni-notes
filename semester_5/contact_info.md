@@ -1,5 +1,25 @@
 # contact info
 
+## Introduction to machine learning
+
+### Agnieszka Jastrzębska (lectures)
+
+📧
+
+🌐 [https://jastrzebska.mini.pw.edu.pl](https://jastrzebska.mini.pw.edu.pl)
+
+<!-- password: 1q2w3e4r -->
+
+⏲
+
+### Rauzan Sumara (labs)
+
+📧
+
+🌐 [https://rauzansumara.github.io/laboratory](https://rauzansumara.github.io/laboratory)
+
+⏲
+
 ## Computer statistics
 
 ### Ewa Kominiak (lectures/labs)
