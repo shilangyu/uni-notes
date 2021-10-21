@@ -38,6 +38,11 @@
 
 🌐 [https://mini.pw.edu.pl/~kellerp/teaching/2021/nm2/](https://mini.pw.edu.pl/~kellerp/teaching/2021/nm2/)
 
+<!--
+username: stud
+password: 2021-22sp
+ -->
+
 ⏲
 
 ### Oskar Kędzierski (labs)
