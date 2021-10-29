@@ -446,13 +446,61 @@
 <h3 id="simplification"><span class="header-section-number">1.7.1</span> simplification</h3>
 <ol type="1">
 <li>removing useless symbols<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">\to</span> remove productions using those symbols</li>
-<li>removing unit productions</li>
-<li>changing status of nullable symbols</li>
+<li>removing unit productions
+<ol type="1">
+<li>delete productions of the form <span class="math inline">A \mapsto A</span></li>
+<li>replace <span class="math inline">A \mapsto B</span> with <span class="math inline">A \mapsto \text{right hand side of B-production}</span></li>
+</ol></li>
+<li>changing status of nullable symbols (nonterminals which can generate an empty word)</li>
 </ol>
+<h4 id="identification-of-useless-symbols"><span class="header-section-number">1.7.1.1</span> identification of useless symbols</h4>
+<h5 id="not-reachable"><span class="header-section-number">1.7.1.1.1</span> not reachable</h5>
+<p>TODO: wording here is very wrong</p>
+<ol type="1">
+<li><span class="math inline">V_r = \{s\}</span>, <span class="math inline">T_r = \emptyset</span></li>
+<li>production starts with a reachable left hand symbol and symbols on its right hand side to the two sets above</li>
+<li>repeat step 2. as long as <span class="math inline">V_r</span>, <span class="math inline">T_r</span> are being changed</li>
+<li>remove productions that do not include symbols from sets 1.</li>
+</ol>
+<h5 id="not-generative"><span class="header-section-number">1.7.1.1.2</span> not generative</h5>
+<ol type="1">
+<li><span class="math inline">V_g = \emptyset</span>, <span class="math inline">T_g = T</span></li>
+<li>for each production if its right hand side is empty or has only generative symbols then add its left hand side to <span class="math inline">V_g</span></li>
+<li>repeat step 2. as lon as <span class="math inline">V_g</span> is being changed</li>
+<li>remove non generative symbols and productions using those</li>
+</ol>
+<h5 id="nullables"><span class="header-section-number">1.7.1.1.3</span> nullables</h5>
+<ol type="1">
+<li><span class="math inline">V_n = \emptyset</span> the set of nullable symbols</li>
+<li>for each production if its right hand side is empty or is a string of nullable symbols then add its left hand side to <span class="math inline">V_n</span></li>
+<li>repeat step 2. as long as <span class="math inline">V_n</span> is being changed</li>
+<li>change status of nullable symbols and delete nullable productions</li>
+</ol>
+<p><span class="math inline">A \mapsto X_1, \cdots, X_k, \cdots X_n</span></p>
+<p>if <span class="math inline">X_k</span> is nullable then replace this production with</p>
+<ul>
+<li><span class="math inline">A \mapsto X_1, \cdots, X_k, \cdots X_n</span></li>
+<li><span class="math inline">A \mapsto X_1, \cdots, X_{k-1}, X_{k+1} \cdots X_n</span></li>
+</ul>
+<p>Finally, delete productions to empty word</p>
+<p>If a grammar doesn’t generate the empty word then the generated language does not change</p>
+<h3 id="derivation-trees"><span class="header-section-number">1.7.2</span> derivation trees</h3>
+<p>A derivation tree of a word in a grammar is a tree with the following properties:</p>
+<ol type="1">
+<li>its internal nodes are labelled by nonterminals</li>
+<li>its leaves are labelled by an empty word or terminals</li>
+<li>its root is labelled by the initial symbol of the grammar</li>
+<li>for each internal node its children are labelled by symbol of right hand side of a production from this node’s label (these children must appear in the order defined by the right hand side derivations)</li>
+<li>if a node has a child labelled by an empty word then it is the only child of this node</li>
+<li>the crop<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of such a tree is the derived word</li>
+</ol>
+<h4 id="unique-derivation"><span class="header-section-number">1.7.2.1</span> unique derivation</h4>
+<p>We say that a word has unique derivation in a grammar if there is exactly one derivation tree</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p><strong>useless symbols</strong> - Not reachable (does not appear in any derivation), not generative (nonterminals that cannot generate a string of terminals)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>sequence of leaves<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

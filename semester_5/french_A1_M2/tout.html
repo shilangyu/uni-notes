@@ -4,21 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>inferential_statistics</title>
+  <title>tout</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -326,20 +318,85 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="inferential-statistics"><span class="header-section-number">1</span> inferential statistics</h1>
-<p>Procedures used to draw conclusions about population characteristics based on the information contained in a sample drawn from this population.</p>
-<h2 id="chi2-distribution"><span class="header-section-number">1.1</span> <span class="math inline">\chi^2</span> distribution</h2>
-<p>Let <span class="math inline">\chi_k^2</span> denotes a <span class="math inline">\chi^2</span> distribution with <span class="math inline">k</span> degrees of freedom</p>
+<h2 id="limpératif"><span class="header-section-number">0.1</span> L’impératif</h2>
+<h3 id="parler"><span class="header-section-number">0.1.1</span> parler</h3>
 <ul>
-<li>Let <span class="math inline">X \sim N(0,1)</span> then <span class="math inline">X^2 \sim \chi_1^2</span></li>
-<li>Let <span class="math inline">U_1, \cdots, U_n \sim \chi_1^2</span> then <span class="math inline">V = \sum_{i=1}^n U_i \sim \chi_n^2</span></li>
-<li><span class="math inline">E[\chi_n^2] = n</span></li>
-<li><span class="math inline">Var(\chi_n^2) = 2n</span></li>
+<li><p>(tu) Parle!</p></li>
+<li><p>(nous) Parlons!</p></li>
+<li><p>(vous) Parlez!</p></li>
+<li><p>(tu) Ne parle pas!</p></li>
+<li><p>(nous) Ne parlons pas!</p></li>
+<li><p>(vous) Ne parlez pas!</p></li>
 </ul>
-<h3 id="t-student-distribution"><span class="header-section-number">1.1.1</span> <span class="math inline">t</span>-student distribution</h3>
-<p>Let <span class="math inline">X \sim N(0,1)</span> and <span class="math inline">U \sim \chi_n^2</span> independent, then:</p>
-<p><span class="math display">
-\frac{X}{\sqrt{\frac{U}{n}}} \sim t_n
-</span></p>
+<h3 id="aller"><span class="header-section-number">0.1.2</span> aller</h3>
+<ul>
+<li><p>(tu) Va! / Vas-y!</p></li>
+<li><p>(nous) Allons!</p></li>
+<li><p>(vous) Allez!</p></li>
+<li><p>(tu) Ne va pas! / N’y va pas!</p></li>
+<li><p>(nous) N’allons pas!</p></li>
+<li><p>(vous) N’allez pas!</p></li>
+</ul>
+<h3 id="prendre"><span class="header-section-number">0.1.3</span> prendre</h3>
+<ul>
+<li><p>(tu) Prends!</p></li>
+<li><p>(nous) Prenons!</p></li>
+<li><p>(vous) Prenez!</p></li>
+<li><p>(tu) Ne prends pas!</p></li>
+<li><p>(nous) Ne prenons pas!</p></li>
+<li><p>(vous) Ne prenez pas!</p></li>
+</ul>
+<h3 id="être"><span class="header-section-number">0.1.4</span> être</h3>
+<ul>
+<li><p>(tu) Sois!</p></li>
+<li><p>(nous) Soyons!</p></li>
+<li><p>(vous) Soyez!</p></li>
+<li><p>(tu) Ne sois pas!</p></li>
+<li><p>(nous) Ne soyons pas!</p></li>
+<li><p>(vous) Ne soyez pas!</p></li>
+</ul>
+<h3 id="avoir"><span class="header-section-number">0.1.5</span> avoir</h3>
+<ul>
+<li><p>(tu) Aie!</p></li>
+<li><p>(nous) Ayons!</p></li>
+<li><p>(vous) Ayez!</p></li>
+<li><p>(tu) N’aie pas!</p></li>
+<li><p>(nous) N’ayons pas!</p></li>
+<li><p>(vous) N’ayez pas!</p></li>
+</ul>
+<h2 id="cest-par-où"><span class="header-section-number">0.2</span> C’est par où?</h2>
+<h3 id="aller-voyager"><span class="header-section-number">0.2.1</span> aller (voyager)</h3>
+<ul>
+<li>en voiture</li>
+<li>en train</li>
+<li>en avion</li>
+<li>en bateau</li>
+<li>en métro</li>
+<li>en bus</li>
+<li>en tramway</li>
+<li>en taxi</li>
+<li>en rollers</li>
+<li>à moto</li>
+<li>à vélo</li>
+<li>à cheval</li>
+<li>à pied</li>
+</ul>
+<h3 id="vocab"><span class="header-section-number">0.2.2</span> vocab</h3>
+<ul>
+<li>jusqu’au bout de la rue - till the end of the road</li>
+<li>cour - dziedziniec</li>
+<li>par ici - this way</li>
+<li>par là - that way</li>
+<li>carrefour - skrzyżowanie</li>
+<li>l’arrêt - przystanek</li>
+</ul>
+<h3 id="ex"><span class="header-section-number">0.2.3</span> ex</h3>
+<ol type="1">
+<li>Vous arrivez place de l’Opera</li>
+<li>Prenez la rue</li>
+<li>Passez devant la poste</li>
+<li>continuez tout droite</li>
+</ol>
+<p>Pour aller à la poste prenez la ligne dix-sept sur ce l’arrêt. Quand vous arrivez à la rue de Taleur tournez à gauche et continuez jusqu’au bout de la rue. Ensuite, vous allez voir une boulongerie, passez devant cette boulongerie et vous ette à votre destination.</p>
 </body>
 </html>
