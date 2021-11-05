@@ -192,6 +192,42 @@ Finally, delete productions to empty word
 
 If a grammar doesn't generate the empty word then the generated language does not change
 
+### normal form
+
+Any context-free grammar not generating empty word can be transformed to normal forms
+
+#### Chomsky
+
+The productions are $A \mapsto a$ or $A \mapsto BC$
+
+1. simplify a grammar
+2. this yields productions $A \mapsto a$ or $A \mapsto x_1, \cdots , x_n$ where $n \ge 2$
+3. in all productions $A \mapsto x_1, \cdots , x_n$ where $n \ge 2$ replace terminals with a nonterminal and add a new production $A_a \mapsto a$
+4. this yields productions $A \mapsto a$, $A \mapsto BC$, and $A \mapsto B_1, \cdots, B_n$ where $n > 2$
+5. replace $A \mapsto B_1, \cdots, B_n$ where $n > 2$ with $A \mapsto B_1, \cdots, B_{n-2}, B_{n-1,n}$ and $B_{n-1,n} \mapsto B_{n-1}B_n$
+6. repeat step 5. until all productions are in Chomsky's form
+
+#### Greibach
+
+The productions are $A \mapsto a\alpha$ where $\alpha \in V^*$
+
+1. transform a grammar to Chomsky's form (obligatory in automatic transformation)
+2. enumerate all nonterminals $A_1, A_2, \cdots A_N$
+3. all productions have to satisfy the star condition:
+
+$$
+(*) \begin{cases}
+   A_i \mapsto a\alpha   & a \in T, \alpha \in V^* \\
+   A_i \mapsto A_j\alpha & j > i, \alpha \in V^*, |\alpha| > 0\\
+\end{cases}
+$$
+
+4. assume that all $A_i$ productions satisfy $(*)$ for $i < k$ and $A_k$ productions do not, thus are $A_k \mapsto a\alpha$, $A_k \mapsto A_i\alpha$ where $i < k$, and $A_k \mapsto A_k\alpha$
+5. replace in $A_k \mapsto A_i\alpha$ where $i < k$ the $A_i$ with right-hand side of $A_i$ productions. After this operation if we still have of the same form they will have the first nonterminal of greater index than $i$. Repeating this step will make it satisfy $(*)$
+6. assume that we have productions $A_k \mapsto A_k\alpha_1 | A_k\alpha_2 | \cdots | A_k\alpha_m | \beta_1 | \cdots | \beta_n$. Add another nonterminal $B_k$ and replace productions with $A_k \mapsto \beta_1 | \cdots | \beta_n | B_k\beta_1 | \cdots | B_k\beta_n$ and $B_k \mapsto \alpha_1 | \cdots | \alpha_m | \alpha_1B_k|\cdots | \alpha_mB_k$. $B_k$ proceeds all $A_i$ nonterminals and $B$ nonterminals are arranged according to their indices. Repeat to $A_{k+1}$, $A_N$
+7. $A_N$ productions are in the Greibach form
+8. $A_{N-1}$ productions are either $A_{N-1} \mapsto a\alpha$ or $A_{N-1} A_N \alpha$. Replace with right-hand side of $A_N$. Repeat for $A_{N-l}$.
+
 ### derivation trees
 
 A derivation tree of a word in a grammar is a tree with the following properties:
