@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>inferential_statistics</title>
+  <title>sufficiency</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,49 +326,10 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="inferential-statistics"><span class="header-section-number">1</span> inferential statistics</h1>
-<p>Procedures used to draw conclusions about population characteristics based on the information contained in a sample drawn from this population.</p>
-<h2 id="chi2-distribution"><span class="header-section-number">1.1</span> <span class="math inline">\chi^2</span> distribution</h2>
-<p>Let <span class="math inline">\chi_k^2</span> denotes a <span class="math inline">\chi^2</span> distribution with <span class="math inline">k</span> degrees of freedom</p>
-<ul>
-<li>Let <span class="math inline">X \sim N(0,1)</span> then <span class="math inline">X^2 \sim \chi_1^2</span></li>
-<li>Let <span class="math inline">U_1, \cdots, U_n \sim \chi_1^2</span> then <span class="math inline">V = \sum_{i=1}^n U_i \sim \chi_n^2</span></li>
-<li><span class="math inline">E[\chi_n^2] = n</span></li>
-<li><span class="math inline">Var(\chi_n^2) = 2n</span></li>
-</ul>
-<h3 id="t-student-distribution"><span class="header-section-number">1.1.1</span> <span class="math inline">t</span>-student distribution</h3>
-<p>Let <span class="math inline">X \sim N(0,1)</span> and <span class="math inline">U \sim \chi_n^2</span> independent, then:</p>
-<p><span class="math display">
-\frac{X}{\sqrt{\frac{U}{n}}} \sim t_n
-</span></p>
-<h2 id="sample-mean"><span class="header-section-number">1.2</span> sample mean</h2>
-<p>Let <span class="math inline">X_1, \cdots, X_n \stackrel{i.i.d.}{\sim} N(\mu, \sigma)</span>. Then:</p>
-<p><span class="math display">
-\begin{aligned}
-    E(\bar X_n) = \mu, &amp;&amp;&amp; V(\bar X_n) = \frac{\sigma^2}{n}, &amp;&amp;&amp; \bar X_n \sim N(\mu, \frac{\sigma}{\sqrt{n}})
-\end{aligned}
-</span></p>
-<p><span class="math display">
-\begin{aligned}
-    \bar X_n \stackrel{n \to \infty}{\to} \mu &amp;\text{ in probability} \\
-    Var(X_n) \stackrel{n \to \infty}{\to} 0 &amp; \\
-\end{aligned}
-</span></p>
-<h2 id="central-limit-theorem-clt"><span class="header-section-number">1.3</span> central limit theorem (CLT)</h2>
-<p>Let <span class="math inline">X_1, \cdots, X_n</span> be <span class="math inline">i.i.d.</span> and <span class="math inline">E(X_i) = \mu</span> and <span class="math inline">V(X_i) = \sigma^2 &lt; \infty</span>. Then:</p>
-<p><span class="math display">
-\frac{\bar X_n - \mu}{\frac{\sigma}{\sqrt n}} \stackrel{n \to \infty}{\to} N(0, 1) \text{ in distribution}
-</span></p>
-<h2 id="empirical-distribution-function-ecdf"><span class="header-section-number">1.4</span> empirical distribution function (ECDF)</h2>
-<p><span class="math display">
-F_n(x) = \frac{1}{n} \sum_{i=1}^n 1_{(-\infty, x]} (X_i)
-</span></p>
-<p>Where <span class="math inline">1_A(x)</span> is the indicator function equal to one if <span class="math inline">x \in A</span> and zero otherwise.</p>
-<h3 id="glivenko-cantelli"><span class="header-section-number">1.4.1</span> Glivenko-Cantelli</h3>
-<p>As <span class="math inline">n \to \infty</span>,</p>
-<p><span class="math display">
-\sup_{t \in \mathbf{R}} |F_n(t) - F(t)| \to 0
-</span></p>
-<p>with probability 1.</p>
+<h1 id="sufficiency"><span class="header-section-number">1</span> sufficiency</h1>
+<p>Statistic <span class="math inline">T(X)</span> is a function defined on the sample <span class="math inline">X = (X_1, \cdots, X_n)</span> with values in <span class="math inline">\mathbf{R}^k</span> with <span class="math inline">k \le n</span></p>
+<p>Statistic <span class="math inline">T(X)</span> is a sufficient statistic for <span class="math inline">\theta</span> if the conditional distribution function of <span class="math inline">X</span> given <span class="math inline">T(X)</span> does not depend on <span class="math inline">\theta</span></p>
+<p>For some joint p.d. <span class="math inline">X</span> of i.i.d. we wish to consider <span class="math inline">P_\theta (X = x | T(X) = T(x))</span></p>
+<p>Since <span class="math inline">\{X = x\}</span> is a subset of all events <span class="math inline">\{T(X) = T(x)\}</span> then <span class="math inline">P_\theta (X = x | T(X) = T(x)) = \frac{P_\theta (X = x)}{P_\theta (T(X) = T(x))}</span></p>
 </body>
 </html>

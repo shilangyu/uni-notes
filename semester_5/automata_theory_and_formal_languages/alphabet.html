@@ -484,7 +484,39 @@
 </ul>
 <p>Finally, delete productions to empty word</p>
 <p>If a grammar doesn’t generate the empty word then the generated language does not change</p>
-<h3 id="derivation-trees"><span class="header-section-number">1.7.2</span> derivation trees</h3>
+<h3 id="normal-form"><span class="header-section-number">1.7.2</span> normal form</h3>
+<p>Any context-free grammar not generating empty word can be transformed to normal forms</p>
+<h4 id="chomsky"><span class="header-section-number">1.7.2.1</span> Chomsky</h4>
+<p>The productions are <span class="math inline">A \mapsto a</span> or <span class="math inline">A \mapsto BC</span></p>
+<ol type="1">
+<li>simplify a grammar</li>
+<li>this yields productions <span class="math inline">A \mapsto a</span> or <span class="math inline">A \mapsto x_1, \cdots , x_n</span> where <span class="math inline">n \ge 2</span></li>
+<li>in all productions <span class="math inline">A \mapsto x_1, \cdots , x_n</span> where <span class="math inline">n \ge 2</span> replace terminals with a nonterminal and add a new production <span class="math inline">A_a \mapsto a</span></li>
+<li>this yields productions <span class="math inline">A \mapsto a</span>, <span class="math inline">A \mapsto BC</span>, and <span class="math inline">A \mapsto B_1, \cdots, B_n</span> where <span class="math inline">n &gt; 2</span></li>
+<li>replace <span class="math inline">A \mapsto B_1, \cdots, B_n</span> where <span class="math inline">n &gt; 2</span> with <span class="math inline">A \mapsto B_1, \cdots, B_{n-2}, B_{n-1,n}</span> and <span class="math inline">B_{n-1,n} \mapsto B_{n-1}B_n</span></li>
+<li>repeat step 5. until all productions are in Chomsky’s form</li>
+</ol>
+<h4 id="greibach"><span class="header-section-number">1.7.2.2</span> Greibach</h4>
+<p>The productions are <span class="math inline">A \mapsto a\alpha</span> where <span class="math inline">\alpha \in V^*</span></p>
+<ol type="1">
+<li>transform a grammar to Chomsky’s form (obligatory in automatic transformation)</li>
+<li>enumerate all nonterminals <span class="math inline">A_1, A_2, \cdots A_N</span></li>
+<li>all productions have to satisfy the star condition:</li>
+</ol>
+<p><span class="math display">
+(*) \begin{cases}
+   A_i \mapsto a\alpha   &amp; a \in T, \alpha \in V^* \\
+   A_i \mapsto A_j\alpha &amp; j &gt; i, \alpha \in V^*, |\alpha| &gt; 0\\
+\end{cases}
+</span></p>
+<ol start="4" type="1">
+<li>assume that all <span class="math inline">A_i</span> productions satisfy <span class="math inline">(*)</span> for <span class="math inline">i &lt; k</span> and <span class="math inline">A_k</span> productions do not, thus are <span class="math inline">A_k \mapsto a\alpha</span>, <span class="math inline">A_k \mapsto A_i\alpha</span> where <span class="math inline">i &lt; k</span>, and <span class="math inline">A_k \mapsto A_k\alpha</span></li>
+<li>replace in <span class="math inline">A_k \mapsto A_i\alpha</span> where <span class="math inline">i &lt; k</span> the <span class="math inline">A_i</span> with right-hand side of <span class="math inline">A_i</span> productions. After this operation if we still have of the same form they will have the first nonterminal of greater index than <span class="math inline">i</span>. Repeating this step will make it satisfy <span class="math inline">(*)</span></li>
+<li>assume that we have productions <span class="math inline">A_k \mapsto A_k\alpha_1 | A_k\alpha_2 | \cdots | A_k\alpha_m | \beta_1 | \cdots | \beta_n</span>. Add another nonterminal <span class="math inline">B_k</span> and replace productions with <span class="math inline">A_k \mapsto \beta_1 | \cdots | \beta_n | B_k\beta_1 | \cdots | B_k\beta_n</span> and <span class="math inline">B_k \mapsto \alpha_1 | \cdots | \alpha_m | \alpha_1B_k|\cdots | \alpha_mB_k</span>. <span class="math inline">B_k</span> proceeds all <span class="math inline">A_i</span> nonterminals and <span class="math inline">B</span> nonterminals are arranged according to their indices. Repeat to <span class="math inline">A_{k+1}</span>, <span class="math inline">A_N</span></li>
+<li><span class="math inline">A_N</span> productions are in the Greibach form</li>
+<li><span class="math inline">A_{N-1}</span> productions are either <span class="math inline">A_{N-1} \mapsto a\alpha</span> or <span class="math inline">A_{N-1} A_N \alpha</span>. Replace with right-hand side of <span class="math inline">A_N</span>. Repeat for <span class="math inline">A_{N-l}</span>.</li>
+</ol>
+<h3 id="derivation-trees"><span class="header-section-number">1.7.3</span> derivation trees</h3>
 <p>A derivation tree of a word in a grammar is a tree with the following properties:</p>
 <ol type="1">
 <li>its internal nodes are labelled by nonterminals</li>
@@ -494,7 +526,7 @@
 <li>if a node has a child labelled by an empty word then it is the only child of this node</li>
 <li>the crop<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of such a tree is the derived word</li>
 </ol>
-<h4 id="unique-derivation"><span class="header-section-number">1.7.2.1</span> unique derivation</h4>
+<h4 id="unique-derivation"><span class="header-section-number">1.7.3.1</span> unique derivation</h4>
 <p>We say that a word has unique derivation in a grammar if there is exactly one derivation tree</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
