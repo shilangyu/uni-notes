@@ -99,6 +99,14 @@ password: 2021-22sp
 
 ⏲ Room 505
 
+### Janusz Rafałko (tutorials)
+
+📧 j.rafalko@mini.pw.edu.pl
+
+🌐 [https://pages.mini.pw.edu.pl/~rafalkoj/www/?Dydaktyka:2021%2F2022:-\_Automata_Theory_and_Formal_Languagesm](https://pages.mini.pw.edu.pl/~rafalkoj/www/?Dydaktyka:2021%2F2022:-_Automata_Theory_and_Formal_Languages)
+
+⏲ Room 505
+
 ## Graphic processors in computational applications
 
 ### Krzysztof Kaczmarski (lectures)
