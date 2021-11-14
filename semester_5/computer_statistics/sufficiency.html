@@ -331,5 +331,27 @@
 <p>Statistic <span class="math inline">T(X)</span> is a sufficient statistic for <span class="math inline">\theta</span> if the conditional distribution function of <span class="math inline">X</span> given <span class="math inline">T(X)</span> does not depend on <span class="math inline">\theta</span></p>
 <p>For some joint p.d. <span class="math inline">X</span> of i.i.d. we wish to consider <span class="math inline">P_\theta (X = x | T(X) = T(x))</span></p>
 <p>Since <span class="math inline">\{X = x\}</span> is a subset of all events <span class="math inline">\{T(X) = T(x)\}</span> then <span class="math inline">P_\theta (X = x | T(X) = T(x)) = \frac{P_\theta (X = x)}{P_\theta (T(X) = T(x))}</span></p>
+<h2 id="factorization-theorem"><span class="header-section-number">1.1</span> factorization theorem</h2>
+<p>Let <span class="math inline">p(x|\theta)</span> be a joint pdf (or pmf) of <span class="math inline">X</span>. A statistic <span class="math inline">T(x)</span> is sufficient if we can find</p>
+<p><span class="math display">
+p(x|\theta) = h(x)g(T(x) | \theta)
+</span></p>
+<h3 id="minimal-sufficient-statistic"><span class="header-section-number">1.1.1</span> minimal sufficient statistic</h3>
+<p>A function of any other sufficient statistic. Has the smallest dimensionality.</p>
+<p>If</p>
+<p><span class="math display">
+(\frac{p(x|\theta)}{p(y|\theta)} \text{ does not depend on } \theta) \iff (T(x) = T(y))
+</span></p>
+<p>Then <span class="math inline">T(X)</span> is the minimal sufficient statistic.</p>
+<h2 id="exponential-family"><span class="header-section-number">1.2</span> exponential family</h2>
+<p>Distribution belongs to the exponential family if its pdf can be expressed as:</p>
+<p><span class="math display">
+p(x|\theta) = h(x)c(\theta)\exp(\sum_{j=1}^k \omega_j(\theta)t_j(x))
+</span></p>
+<p>If i.i.d. joint distributions belong to the exponential family then</p>
+<p><span class="math display">
+T(X) = (\sum_{i = 1}^n t_1(X_i), \cdots, \sum_{i = 1}^n t_k(X_i))^T
+</span></p>
+<p>is a sufficient statistic for <span class="math inline">\theta</span></p>
 </body>
 </html>
