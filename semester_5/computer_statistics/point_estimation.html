@@ -337,13 +337,64 @@
 </ul>
 <h2 id="variance"><span class="header-section-number">1.3</span> variance</h2>
 <p><span class="math display">
-Var(\hat \theta) = E(\hat \theta - E(\hat \theta))^2
+Var(\hat \theta) = E[(\hat \theta - E(\hat \theta))^2]
 </span></p>
 <h3 id="minimum-variance-unbiased-estimator-mvue"><span class="header-section-number">1.3.1</span> minimum variance unbiased estimator (MVUE)</h3>
 <p>Among all unbiased estimators, the one with the smallest variance is called MVUE</p>
 <h2 id="mean-squared-error-mse"><span class="header-section-number">1.4</span> mean squared error (MSE)</h2>
 <p><span class="math display">
-MSE(\hat \theta) = E(\hat \theta - \theta)^2 = Var(\hat \theta) + bias(\hat \theta)^2
+MSE(\hat \theta) = E[(\hat \theta - \theta)^2] = Var(\hat \theta) + bias^2(\hat \theta)
 </span></p>
+<h2 id="regular-model"><span class="header-section-number">1.5</span> regular model</h2>
+<p>Model <span class="math inline">P = \{f(\cdot, \theta) : \theta \in \Theta\}</span> is called regular if</p>
+<ol type="1">
+<li><span class="math inline">\Theta</span> is open interval in <span class="math inline">\mathbb R</span></li>
+<li>Support <span class="math inline">A = \{ x \in \mathbb R : f(x; \theta) &gt; 0 \}</span> does not depend on <span class="math inline">\theta</span></li>
+<li>The derivative <span class="math inline">\frac{\partial \ln(f(x; \theta))}{\partial \theta}</span> exists and is finite for each <span class="math inline">x \in A</span> and <span class="math inline">\theta \in \Theta</span></li>
+<li><span class="math inline">0 &lt; E[(\frac{\partial \ln(f(X; \theta))}{\partial \theta})^2] &lt; \infty</span></li>
+<li>Is <span class="math inline">f(x; \theta)</span> a pdf and <span class="math inline">E_\theta[|T|] &lt; \infty</span> so</li>
+</ol>
+<p><span class="math display">
+\frac{\partial}{\partial \theta} \int T(X)f(x; \theta)dx = \int T(X) \frac{\partial}{\partial \theta} f(x; \theta)dx
+</span></p>
+<h3 id="fisher-information"><span class="header-section-number">1.5.1</span> fisher information</h3>
+<p><span class="math inline">I(\theta)</span> in a single observation from pdf or pmf <span class="math inline">f(x; \theta)</span> is the variance of a random variable <span class="math inline">U = \frac{\partial \ln(f(X; \theta))}{\partial \theta}</span></p>
+<p><span class="math display">
+I(\theta) = Var[\frac{\partial \ln(f(X; \theta))}{\partial \theta}]
+</span></p>
+<p>If <span class="math inline">f(X; \theta)</span> is twice differentiable then,</p>
+<p><span class="math display">
+I(\theta) = -E[\frac{\partial^2 \ln(f(X; \theta))}{\partial \theta^2}]
+</span></p>
+<h3 id="random-sample"><span class="header-section-number">1.5.2</span> random sample</h3>
+<p>Let <span class="math inline">I_n(\theta)</span> be the fisher information for random sample <span class="math inline">X_1, \cdots, X_n</span> then <span class="math inline">nI(\theta) = I_n(\theta)</span></p>
+<h3 id="cramer-rao"><span class="header-section-number">1.5.3</span> Cramer-Rao</h3>
+<p>If the statistic <span class="math inline">T = t(X_1, \cdots, X_n)</span> is an unbiased estimator of <span class="math inline">\theta</span> then</p>
+<p><span class="math display">
+Var[T] \le \frac{1}{I_n(\theta)}
+</span></p>
+<h2 id="efficiency"><span class="header-section-number">1.6</span> efficiency</h2>
+<p>The ratio of cramer-rao lower bound to <span class="math inline">Var[T]</span> is called efficiency. <span class="math inline">T</span> is called efficient if its efficiency is equal to 1.</p>
+<h3 id="relative"><span class="header-section-number">1.6.1</span> relative</h3>
+<p>Let <span class="math inline">T_1</span> and <span class="math inline">T_2</span> be unbiased estimators of <span class="math inline">\theta</span>. Then</p>
+<p><span class="math display">
+eff(T_1, T_2) = \frac{Var[T_2]}{Var[T_1]}
+</span></p>
+<p>is called the relative efficiency.</p>
+<h2 id="finding-estimators"><span class="header-section-number">1.7</span> finding estimators</h2>
+<h3 id="method-of-moments"><span class="header-section-number">1.7.1</span> method of moments</h3>
+<p>The <span class="math inline">k</span>-th moment is <span class="math inline">E[X^k]</span>. The <span class="math inline">k</span>-th sample moment is <span class="math inline">\frac{1}{n} \sum_{i=1}^n X_i^k</span></p>
+<p>Let <span class="math inline">X_1, \cdots, X_n</span> be a random sample from <span class="math inline">f(x; \theta_1, \cdots, \theta_m)</span> where <span class="math inline">\theta_i</span> are unknown parameters. The moment estimators <span class="math inline">\hat \theta_1, \cdots, \hat \theta_m</span> are obtained by equaling the first <span class="math inline">m</span> sample moment to corresponding population moments and solving for <span class="math inline">\theta_1, \cdots, \theta_m</span></p>
+<h3 id="maximum-likelihood-estimator-mle"><span class="header-section-number">1.7.2</span> maximum likelihood estimator (MLE)</h3>
+<p><span class="math display">
+L(\theta) = f(x_1, \cdots, x_n; \theta_1, \cdots, \theta_m)
+</span></p>
+<p>When <span class="math inline">x</span> are observed values, <span class="math inline">L(\theta)</span> is regarded as a function of <span class="math inline">\theta</span> and called a likelihood function. The maximum likelihood estimates <span class="math inline">\hat \theta</span> are those values that maximize <span class="math inline">L(\theta)</span>. MLE is the estimator when replacing <span class="math inline">x_i</span> but <span class="math inline">X_i</span></p>
+<h4 id="theorems"><span class="header-section-number">1.7.2.1</span> theorems</h4>
+<ul>
+<li>Let <span class="math inline">\hat \theta</span> be MLE of <span class="math inline">\theta_0</span> then <span class="math inline">\hat \theta \to \theta_0</span> in probability when <span class="math inline">n \to \infty</span>. That is, <span class="math inline">\hat \theta</span> is a consistent estimator for <span class="math inline">\theta_0</span></li>
+<li><span class="math inline">\sqrt{n I(\theta_0)}(\hat \theta - \theta_0) \to N(0, 1)</span></li>
+<li><span class="math inline">Var[\hat \theta] \approx \frac{1}{nI(\theta_0)}</span> when <span class="math inline">n</span> is big. MLE is asymptotically efficient</li>
+</ul>
 </body>
 </html>

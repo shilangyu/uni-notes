@@ -369,7 +369,7 @@
 <h5 id="variability"><span class="header-section-number">1.3.1.1.3</span> variability</h5>
 <ul>
 <li><strong>Range</strong>: <span class="math inline">R = m_{\max} - m_{\min}</span></li>
-<li><strong>Interquantile Range</strong>: <span class="math inline">IQR = Q_3 - Q_2</span></li>
+<li><strong>Interquantile Range</strong>: <span class="math inline">IQR = Q_3 - Q_1</span></li>
 <li><strong>Sample variance</strong>: <span class="math inline">s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \overline x)^2 = \frac{\sum_{i=1}^n x_i^2 - n(\overline x)^2}{n-1}</span></li>
 <li><strong>Sample standard deviation</strong>: <span class="math inline">s = \sqrt{s^2}</span></li>
 </ul>
@@ -380,8 +380,8 @@
 </ul>
 <h5 id="outliers"><span class="header-section-number">1.3.1.1.5</span> outliers</h5>
 <ul>
-<li>If <span class="math inline">x_i \in (Q_1 - 1.5IQR; Q_3 + 1.5IQR)</span> then it is called an outlier</li>
-<li>If <span class="math inline">x_i \in (Q_1 - 3IQR; Q_3 + 3IQR)</span> then it is called an extreme outlier</li>
+<li>If <span class="math inline">x_i &lt; Q_1 - 1.5IQR \lor x_i &gt; Q_3 + 1.5IQR</span> then it is called an outlier</li>
+<li>If <span class="math inline">x_i &lt; Q_1 - 3IQR \lor x_i &gt; Q_3 + 3IQR</span> then it is called an extreme outlier</li>
 </ul>
 </body>
 </html>
