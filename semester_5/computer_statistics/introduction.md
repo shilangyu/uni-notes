@@ -47,7 +47,7 @@ The sample quantile to probability $p$, $\hat q_p$ has position $(n+1)p$ in the 
 ##### variability
 
 - **Range**: $R = m_{\max} - m_{\min}$
-- **Interquantile Range**: $IQR = Q_3 - Q_2$
+- **Interquantile Range**: $IQR = Q_3 - Q_1$
 - **Sample variance**: $s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \overline x)^2 = \frac{\sum_{i=1}^n x_i^2 - n(\overline x)^2}{n-1}$
 - **Sample standard deviation**: $s = \sqrt{s^2}$
 
@@ -58,5 +58,5 @@ The sample quantile to probability $p$, $\hat q_p$ has position $(n+1)p$ in the 
 
 ##### outliers
 
-- If $x_i \in (Q_1 - 1.5IQR; Q_3 + 1.5IQR)$ then it is called an outlier
-- If $x_i \in (Q_1 - 3IQR; Q_3 + 3IQR)$ then it is called an extreme outlier
+- If $x_i < Q_1 - 1.5IQR \lor x_i > Q_3 + 1.5IQR$ then it is called an outlier
+- If $x_i < Q_1 - 3IQR \lor x_i > Q_3 + 3IQR$ then it is called an extreme outlier
