@@ -64,7 +64,7 @@ Let $I_n(\theta)$ be the fisher information for random sample $X_1, \cdots, X_n$
 If the statistic $T = t(X_1, \cdots, X_n)$ is an unbiased estimator of $\theta$ then
 
 $$
-Var[T] \le \frac{1}{I_n(\theta)}
+Var[T] \ge \frac{1}{I_n(\theta)}
 $$
 
 ## efficiency
@@ -92,13 +92,39 @@ Let $X_1, \cdots, X_n$ be a random sample from $f(x; \theta_1, \cdots, \theta_m)
 ### maximum likelihood estimator (MLE)
 
 $$
-L(\theta) = f(x_1, \cdots, x_n; \theta_1, \cdots, \theta_m)
+L(\theta) = f(x_1, \cdots, x_n; \theta_1, \cdots, \theta_m) = \prod_{i=1}^n p(x_i; \theta_1, \cdots, \theta_m)
 $$
 
-When $x$ are observed values, $L(\theta)$ is regarded as a function of $\theta$ and called a likelihood function. The maximum likelihood estimates $\hat \theta$ are those values that maximize $L(\theta)$. MLE is the estimator when replacing $x_i$ but $X_i$
+When $x$ are observed values, $L(\theta)$ is regarded as a function of $\theta$ and called a likelihood function. The maximum likelihood estimates $\hat \theta$ are those values that maximize $L(\theta)$. MLE is the estimator when replacing $x_i$ with $X_i$
 
 #### theorems
 
 - Let $\hat \theta$ be MLE of $\theta_0$ then $\hat \theta \to \theta_0$ in probability when $n \to \infty$. That is, $\hat \theta$ is a consistent estimator for $\theta_0$
 - $\sqrt{n I(\theta_0)}(\hat \theta - \theta_0) \to N(0, 1)$
 - $Var[\hat \theta] \approx \frac{1}{nI(\theta_0)}$ when $n$ is big. MLE is asymptotically efficient
+
+### Bayesian estimation
+
+Let $\Theta$ be the unknown parameter, a random variable. We know its $f_\Theta(\theta)$ pdf/pmf (called prior). Then the distribution given the date is
+
+$$
+f_{\Theta|X}(\theta|x) = \frac{f_{X|\Theta}(x|\theta)f_\Theta(\theta)}{\int f_{X|\Theta}(x|\theta)f_\Theta(\theta) d\theta}
+$$
+
+The pdf $f_{\Theta|X}(\theta|x)$ is called the posterior.
+
+$f_{\Theta|X}(\theta|x) \propto f_{X|\Theta}(x|\theta)f_\Theta(\theta)$
+
+### density estimator
+
+$$
+\hat f_h(x) = \frac{1}{nh} \sum_{i=1}^n K(\frac{x - X_i}{h})
+$$
+
+Where $K(t)$ is a Kernel function and $h$ a bandwidth
+
+#### kernel functions
+
+- Boxcar: $K(u) = \frac{1}{2}1_{\{|u| \le 1\}}$
+- Epanechnikov: $K(u) = \frac{3}{4}(1 - u^2)1_{\{|u| \le 1\}}$
+- Gaussian: $K(u) = \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}}$
