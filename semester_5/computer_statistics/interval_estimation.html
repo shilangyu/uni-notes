@@ -11,6 +11,14 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -319,5 +327,23 @@
 </head>
 <body>
 <h1 id="interval-estimation"><span class="header-section-number">1</span> interval estimation</h1>
+<h2 id="confidence-interval-ci"><span class="header-section-number">1.1</span> confidence interval (CI)</h2>
+<p>Let <span class="math inline">h(X_1, \cdots, X_n, \theta)</span> is a random variable with a known distribution not depending on <span class="math inline">\theta</span>.</p>
+<p>For any <span class="math inline">\alpha \in (0; 1)</span> constants <span class="math inline">a</span> and <span class="math inline">b</span> can be found that satisfies</p>
+<p><span class="math display">
+\begin{aligned}
+    P(a &lt; h(X_1, \cdots, X_n, \theta) &lt; b) = 1 - \alpha \\
+    P(l(X_1, \cdots, X_n) &lt; \theta &lt; u(X_1, \cdots, X_n)) = 1 - \alpha \\
+\end{aligned}
+</span></p>
+<p>Then the confidence interval is</p>
+<p><span class="math display">
+Cl_{1 - \alpha}(\theta) = (l(X_1, \cdots, X_n); u(X_1, \cdots, X_n))
+</span></p>
+<h3 id="standard-normal"><span class="header-section-number">1.1.1</span> standard normal</h3>
+<p>For the standard normal we can define the confidence interval for a sample as</p>
+<p><span class="math display">
+Cl_{1 - \alpha}(\mu) = (\bar X - \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{\sigma}{\sqrt{n}} Z_{\frac{\alpha}{2}})
+</span></p>
 </body>
 </html>
