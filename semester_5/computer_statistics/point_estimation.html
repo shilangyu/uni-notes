@@ -371,7 +371,7 @@ I(\theta) = -E[\frac{\partial^2 \ln(f(X; \theta))}{\partial \theta^2}]
 <h3 id="cramer-rao"><span class="header-section-number">1.5.3</span> Cramer-Rao</h3>
 <p>If the statistic <span class="math inline">T = t(X_1, \cdots, X_n)</span> is an unbiased estimator of <span class="math inline">\theta</span> then</p>
 <p><span class="math display">
-Var[T] \le \frac{1}{I_n(\theta)}
+Var[T] \ge \frac{1}{I_n(\theta)}
 </span></p>
 <h2 id="efficiency"><span class="header-section-number">1.6</span> efficiency</h2>
 <p>The ratio of cramer-rao lower bound to <span class="math inline">Var[T]</span> is called efficiency. <span class="math inline">T</span> is called efficient if its efficiency is equal to 1.</p>
@@ -387,14 +387,32 @@ eff(T_1, T_2) = \frac{Var[T_2]}{Var[T_1]}
 <p>Let <span class="math inline">X_1, \cdots, X_n</span> be a random sample from <span class="math inline">f(x; \theta_1, \cdots, \theta_m)</span> where <span class="math inline">\theta_i</span> are unknown parameters. The moment estimators <span class="math inline">\hat \theta_1, \cdots, \hat \theta_m</span> are obtained by equaling the first <span class="math inline">m</span> sample moment to corresponding population moments and solving for <span class="math inline">\theta_1, \cdots, \theta_m</span></p>
 <h3 id="maximum-likelihood-estimator-mle"><span class="header-section-number">1.7.2</span> maximum likelihood estimator (MLE)</h3>
 <p><span class="math display">
-L(\theta) = f(x_1, \cdots, x_n; \theta_1, \cdots, \theta_m)
+L(\theta) = f(x_1, \cdots, x_n; \theta_1, \cdots, \theta_m) = \prod_{i=1}^n p(x_i; \theta_1, \cdots, \theta_m)
 </span></p>
-<p>When <span class="math inline">x</span> are observed values, <span class="math inline">L(\theta)</span> is regarded as a function of <span class="math inline">\theta</span> and called a likelihood function. The maximum likelihood estimates <span class="math inline">\hat \theta</span> are those values that maximize <span class="math inline">L(\theta)</span>. MLE is the estimator when replacing <span class="math inline">x_i</span> but <span class="math inline">X_i</span></p>
+<p>When <span class="math inline">x</span> are observed values, <span class="math inline">L(\theta)</span> is regarded as a function of <span class="math inline">\theta</span> and called a likelihood function. The maximum likelihood estimates <span class="math inline">\hat \theta</span> are those values that maximize <span class="math inline">L(\theta)</span>. MLE is the estimator when replacing <span class="math inline">x_i</span> with <span class="math inline">X_i</span></p>
 <h4 id="theorems"><span class="header-section-number">1.7.2.1</span> theorems</h4>
 <ul>
 <li>Let <span class="math inline">\hat \theta</span> be MLE of <span class="math inline">\theta_0</span> then <span class="math inline">\hat \theta \to \theta_0</span> in probability when <span class="math inline">n \to \infty</span>. That is, <span class="math inline">\hat \theta</span> is a consistent estimator for <span class="math inline">\theta_0</span></li>
 <li><span class="math inline">\sqrt{n I(\theta_0)}(\hat \theta - \theta_0) \to N(0, 1)</span></li>
 <li><span class="math inline">Var[\hat \theta] \approx \frac{1}{nI(\theta_0)}</span> when <span class="math inline">n</span> is big. MLE is asymptotically efficient</li>
+</ul>
+<h3 id="bayesian-estimation"><span class="header-section-number">1.7.3</span> Bayesian estimation</h3>
+<p>Let <span class="math inline">\Theta</span> be the unknown parameter, a random variable. We know its <span class="math inline">f_\Theta(\theta)</span> pdf/pmf (called prior). Then the distribution given the date is</p>
+<p><span class="math display">
+f_{\Theta|X}(\theta|x) = \frac{f_{X|\Theta}(x|\theta)f_\Theta(\theta)}{\int f_{X|\Theta}(x|\theta)f_\Theta(\theta) d\theta}
+</span></p>
+<p>The pdf <span class="math inline">f_{\Theta|X}(\theta|x)</span> is called the posterior.</p>
+<p><span class="math inline">f_{\Theta|X}(\theta|x) \propto f_{X|\Theta}(x|\theta)f_\Theta(\theta)</span></p>
+<h3 id="density-estimator"><span class="header-section-number">1.7.4</span> density estimator</h3>
+<p><span class="math display">
+\hat f_h(x) = \frac{1}{nh} \sum_{i=1}^n K(\frac{x - X_i}{h})
+</span></p>
+<p>Where <span class="math inline">K(t)</span> is a Kernel function and <span class="math inline">h</span> a bandwidth</p>
+<h4 id="kernel-functions"><span class="header-section-number">1.7.4.1</span> kernel functions</h4>
+<ul>
+<li>Boxcar: <span class="math inline">K(u) = \frac{1}{2}1_{\{|u| \le 1\}}</span></li>
+<li>Epanechnikov: <span class="math inline">K(u) = \frac{3}{4}(1 - u^2)1_{\{|u| \le 1\}}</span></li>
+<li>Gaussian: <span class="math inline">K(u) = \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}}</span></li>
 </ul>
 </body>
 </html>
