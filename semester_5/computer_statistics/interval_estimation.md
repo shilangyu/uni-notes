@@ -21,8 +21,36 @@ $$
 
 ### standard normal
 
+#### for $\mu$
+
 For the standard normal we can define the confidence interval for a sample as
+
+Known $\sigma$
 
 $$
 Cl_{1 - \alpha}(\mu) = (\bar X - \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{\sigma}{\sqrt{n}} Z_{\frac{\alpha}{2}})
 $$
+
+Unknown $\sigma$
+
+$$
+Cl_{1 - \alpha}(\mu) = (\bar X - \frac{s}{\sqrt{n}} t_{1 - \frac{\alpha}{2}, n-1}; \bar X + \frac{s}{\sqrt{n}} t_{1 - \frac{\alpha}{2}, n-1})
+$$
+
+#### for $\sigma$
+
+$$
+Cl_{1 - \alpha}(\sigma^2) = (\frac{(n-1)s^2}{\chi^2_{1- \frac{\alpha}{2}, n-1}},\frac{(n-1)s^2}{\chi^2_{\frac{\alpha}{2}, n-1}})
+$$
+
+### any large sample
+
+Using CLT, it is approximately
+
+$$
+Cl_{1 - \alpha}(\mu) = (\bar X - \frac{s}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{s}{\sqrt{n}} Z_{\frac{\alpha}{2}})
+$$
+
+## one sided confidence interval
+
+Confidence bounded by an upper or lower bound.
