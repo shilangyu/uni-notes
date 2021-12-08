@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>turing_machines</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+</head>
+<body>
+<h1 id="turing-machines"><span class="header-section-number">1</span> turing machines</h1>
+<p>Turing machines are computational models, most universal and powerful. It is used to accept languages, compute functions, and solve problems.</p>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span></p>
+<ul>
+<li><span class="math inline">Q</span> - set of states</li>
+<li><span class="math inline">\Sigma \subset \Gamma</span> - input alphabet</li>
+<li><span class="math inline">\Gamma</span> - tape alphabet</li>
+<li><span class="math inline">\delta: Q \times \Gamma \to Q \times \Gamma \times \{L, R\}</span> - transition function</li>
+<li><span class="math inline">q_0 \in Q</span> - initial state</li>
+<li><span class="math inline">B \in \Gamma</span>, <span class="math inline">B \notin \Sigma</span> - blank symbol</li>
+<li><span class="math inline">F \subset Q</span> - accepting/final states</li>
+<li>stop condition</li>
+</ul>
+<p>|<span class="math inline">a_1</span>|<span class="math inline">a_2</span>|<span class="math inline">\cdots</span>|<span class="math inline">a_n</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">\cdots</span></p>
+<p><span class="math inline">\delta(q, X) = (p, Y, D)</span> produces the next state where <span class="math inline">q</span> is the current state, <span class="math inline">X</span> is the current symbol read by the head, <span class="math inline">p</span> is the new state, <span class="math inline">Y</span> is the printed symbol, <span class="math inline">D</span> is the direction (<span class="math inline">D \in \{L, R\}</span>).</p>
+<h2 id="example"><span class="header-section-number">1.1</span> example</h2>
+<p>Design a turing machine which computes the following function, <span class="math inline">f : \mathbb N \to \mathbb N</span>, <span class="math inline">f(n) = \lceil\frac{n}{3}\rceil</span></p>
+<p>We can use unary system, that is, <span class="math inline">n</span> is represented as the digit repeated <span class="math inline">n</span> times (<span class="math inline">5_{10} \equiv 00000_1</span>). Walk along the tape, turn the first leading zero into a new symbol, ie <span class="math inline">A</span>, go to the end of the tape, remove 2 trailing zeros. Repeat. Print all <span class="math inline">A</span> as a number.</p>
+<p>Transition function as a table:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\delta</span></th>
+<th style="text-align: center;"><span class="math inline">0</span></th>
+<th style="text-align: center;"><span class="math inline">A</span></th>
+<th style="text-align: center;"><span class="math inline">X</span></th>
+<th style="text-align: center;"><span class="math inline">B</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">q_0</span></td>
+<td style="text-align: center;"><span class="math inline">(q_2, X, R)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">(q_6, B, R)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">q_1</span></td>
+<td style="text-align: center;"><span class="math inline">(q_2, A, R)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">(q_6, B, L)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">q_2</span></td>
+<td style="text-align: center;"><span class="math inline">(q_2, 0, R)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">(q_3, B, L)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">q_3</span></td>
+<td style="text-align: center;"><span class="math inline">(q_4, B, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0, R)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">q_4</span></td>
+<td style="text-align: center;"><span class="math inline">(q_L, B, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0, R)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">q_L</span></td>
+<td style="text-align: center;"><span class="math inline">(q_L, 0, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_1, A, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_1, X, R)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">q_6</span></td>
+<td style="text-align: center;"><span class="math inline">(q_A, 0, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_A, B, L)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Empty spaces indicated states that will never happen.</p>
+<p>Thus, <span class="math inline">M = (\{q_0, q_1, 1_2, q_3, q_4, q_L, q_6, q_A\}, \{0\}, \{0, A, X, B\}, \delta, q_0, B, \{q_A\})</span></p>
+<h2 id="configuration"><span class="header-section-number">1.2</span> configuration</h2>
+<ul>
+<li><p>tape content</p></li>
+<li><p>state of control unit</p></li>
+<li><p>head position</p></li>
+<li><p><span class="math inline">\alpha</span>, left of the head</p></li>
+<li><p><span class="math inline">\beta</span>, from head to the right to the last non-blank symbol</p></li>
+<li><p><span class="math inline">q</span></p></li>
+</ul>
+<h3 id="computation"><span class="header-section-number">1.2.1</span> computation</h3>
+<p>Sequence of configurations in which,</p>
+<ol type="1">
+<li>the beginning configuration is the beginning configuration of the machine</li>
+<li>each next configuration of this sequence is obtained by applying the transition function on the previous configuration</li>
+<li>last configuration is such that the stop condition is satisfied.</li>
+</ol>
+<p>Example from above:</p>
+<p><span class="math display">
+\begin{aligned}
+    &amp;q_0 0000000 \vdash X q_2 000000 \vdash X0 q_2 00000 \vdash X00 q_2 0000 \stackrel{3}{\vdash} X00000 q_2 0 \vdash \\
+    &amp;\vdash X000000 q_2 \vdash X00000 q_3 0 \vdash X0000 q_4 0 \vdash X000 q_L 0 \vdash X00 q_L 00 \vdash X0 q_L 0000 \vdash \\
+    &amp;\vdash q_L X 0000 \vdash X q_1 0000 \vdash XA q_2 000 \stackrel{3}{\vdash} XA000 q_2 \vdash XA00 q_3 0 \vdash XA0 q_4 0 \vdash \\
+    &amp;\vdash XA q_L 0 \vdash X q_L A0 \vdash XA q_1 0 \vdash XAA q_2 \vdash XA q_3 A \vdash X q_6 A 0 \vdash q_6 X00 \vdash 0 q_6 00 \vdash q_A 000
+\end{aligned}
+</span></p>
+<!--
+HOMEWORK:
+    design a turing machine whether a given binary word (non empty):
+    A) is divisible by 2
+    B) is divisible by 4
+    C) is divisible by 8
+-->
+</body>
+</html>

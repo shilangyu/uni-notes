@@ -341,9 +341,26 @@
 Cl_{1 - \alpha}(\theta) = (l(X_1, \cdots, X_n); u(X_1, \cdots, X_n))
 </span></p>
 <h3 id="standard-normal"><span class="header-section-number">1.1.1</span> standard normal</h3>
+<h4 id="for-mu"><span class="header-section-number">1.1.1.1</span> for <span class="math inline">\mu</span></h4>
 <p>For the standard normal we can define the confidence interval for a sample as</p>
+<p>Known <span class="math inline">\sigma</span></p>
 <p><span class="math display">
 Cl_{1 - \alpha}(\mu) = (\bar X - \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{\sigma}{\sqrt{n}} Z_{\frac{\alpha}{2}})
 </span></p>
+<p>Unknown <span class="math inline">\sigma</span></p>
+<p><span class="math display">
+Cl_{1 - \alpha}(\mu) = (\bar X - \frac{s}{\sqrt{n}} t_{1 - \frac{\alpha}{2}, n-1}; \bar X + \frac{s}{\sqrt{n}} t_{1 - \frac{\alpha}{2}, n-1})
+</span></p>
+<h4 id="for-sigma"><span class="header-section-number">1.1.1.2</span> for <span class="math inline">\sigma</span></h4>
+<p><span class="math display">
+Cl_{1 - \alpha}(\sigma^2) = (\frac{(n-1)s^2}{\chi^2_{1- \frac{\alpha}{2}, n-1}},\frac{(n-1)s^2}{\chi^2_{\frac{\alpha}{2}, n-1}})
+</span></p>
+<h3 id="any-large-sample"><span class="header-section-number">1.1.2</span> any large sample</h3>
+<p>Using CLT, it is approximately</p>
+<p><span class="math display">
+Cl_{1 - \alpha}(\mu) = (\bar X - \frac{s}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{s}{\sqrt{n}} Z_{\frac{\alpha}{2}})
+</span></p>
+<h2 id="one-sided-confidence-interval"><span class="header-section-number">1.2</span> one sided confidence interval</h2>
+<p>Confidence bounded by an upper or lower bound.</p>
 </body>
 </html>
