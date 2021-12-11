@@ -434,12 +434,34 @@
     &amp;\vdash XA q_L 0 \vdash X q_L A0 \vdash XA q_1 0 \vdash XAA q_2 \vdash XA q_3 A \vdash X q_6 A 0 \vdash q_6 X00 \vdash 0 q_6 00 \vdash q_A 000
 \end{aligned}
 </span></p>
+<h2 id="guard"><span class="header-section-number">1.3</span> guard</h2>
+
+<p>First cell of the tape is a guard symbol <span class="math inline">\ooalign{C\cr\hidewidth$|$\hidewidth}</span>. This symbol can only be stored there.</p>
+<p><span class="math inline">\delta(q, \ooalign{C\cr\hidewidth$|$\hidewidth}) = (p, \ooalign{C\cr\hidewidth$|$\hidewidth}, R)</span></p>
+<p>Turing machines in basic model are equivalent to Turing machines with guard.</p>
+<h2 id="accepting-state"><span class="header-section-number">1.4</span> accepting state</h2>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\})</span>, where <span class="math inline">ACC</span> is the accepting state with stop condition.</p>
+<h2 id="rejecting-state"><span class="header-section-number">1.5</span> rejecting state</h2>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\}, \{REJ\})</span>, where <span class="math inline">REJ</span> is the rejecting state with stop condition. Computation is finished iff the machine switches to <span class="math inline">ACC</span>.</p>
+<h2 id="multitrack-turing-machines"><span class="header-section-number">1.6</span> multitrack turing machines</h2>
+<p>The tape has several tracks. <span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span>. Input configuration: input data are stored on the first track. All other tracks are filled in with the blank symbol. <span class="math inline">\delta: Q \times \Gamma^k \to Q \times \Gamma^k \times \{L, R\}</span> where <span class="math inline">k</span> is the amount of tracks. Again, multitrack turing machines are equivalent to basic models.</p>
+<ol type="1">
+<li>Turing machine in basic model is a multitrack Turing machine</li>
+<li>Change alphabet such that each vector of symbols has a new symbol representation: <span class="math inline">M = (Q, \Sigma \times \{B\}^{k-1}, \Gamma^k, \delta, q_0, \{B\}^k, F)</span></li>
+</ol>
+<h2 id="two-way-infinite-tape"><span class="header-section-number">1.7</span> two way infinite tape</h2>
+<p><span class="math inline">\cdots</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">a_1</span>|<span class="math inline">a_2</span>|<span class="math inline">\cdots</span>|<span class="math inline">a_n</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">\cdots</span></p>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span></p>
 <!--
 HOMEWORK:
     design a turing machine whether a given binary word (non empty):
     A) is divisible by 2
     B) is divisible by 4
     C) is divisible by 8
+
+    design a basic model turing machine:
+    A) shifts its content one cell right, prints guard at the first place, returns head to the beginning
+    B) shifts its content one cell left, dropping symbol from the first cell and puts head over the first cell
 -->
 </body>
 </html>
