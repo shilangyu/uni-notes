@@ -68,10 +68,45 @@ $$
 \end{aligned}
 $$
 
+## guard
+
+\newcommand{\vertchar}[1]{\ooalign{#1\cr\hidewidth$|$\hidewidth}}
+
+First cell of the tape is a guard symbol $\vertchar{C}$. This symbol can only be stored there.
+
+$\delta(q, \vertchar{C}) = (p, \vertchar{C}, R)$
+
+Turing machines in basic model are equivalent to Turing machines with guard.
+
+## accepting state
+
+$M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\})$, where $ACC$ is the accepting state with stop condition.
+
+## rejecting state
+
+$M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\}, \{REJ\})$, where $REJ$ is the rejecting state with stop condition. Computation is finished iff the machine switches to $ACC$.
+
+## multitrack turing machines
+
+The tape has several tracks. $M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)$. Input configuration: input data are stored on the first track. All other tracks are filled in with the blank symbol. $\delta: Q \times \Gamma^k \to Q \times \Gamma^k \times \{L, R\}$ where $k$ is the amount of tracks. Again, multitrack turing machines are equivalent to basic models.
+
+1. Turing machine in basic model is a multitrack Turing machine
+2. Change alphabet such that each vector of symbols has a new symbol representation: $M = (Q, \Sigma \times \{B\}^{k-1}, \Gamma^k, \delta, q_0, \{B\}^k, F)$
+
+## two way infinite tape
+
+$\cdots$|$B$|$B$|$a_1$|$a_2$|$\cdots$|$a_n$|$B$|$B$|$\cdots$
+
+$M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)$
+
 <!--
 HOMEWORK:
 	design a turing machine whether a given binary word (non empty):
 	A) is divisible by 2
 	B) is divisible by 4
 	C) is divisible by 8
+
+	design a basic model turing machine:
+	A) shifts its content one cell right, prints guard at the first place, returns head to the beginning
+	B) shifts its content one cell left, dropping symbol from the first cell and puts head over the first cell
 -->
