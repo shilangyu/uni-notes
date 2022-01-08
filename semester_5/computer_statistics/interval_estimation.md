@@ -28,7 +28,7 @@ For the standard normal we can define the confidence interval for a sample as
 Known $\sigma$
 
 $$
-Cl_{1 - \alpha}(\mu) = (\bar X - \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{\sigma}{\sqrt{n}} Z_{\frac{\alpha}{2}})
+Cl_{1 - \alpha}(\mu) = (\bar X - \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}})
 $$
 
 Unknown $\sigma$

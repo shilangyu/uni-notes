@@ -279,10 +279,5 @@ Recall context free productions: $A \mapsto \alpha$ where $\alpha \in (V \cup T)
 
 A grammar is a $LL(1)$ iff for each nonterminal $A$ sets SELECT are pairwise disjoint for all $A$-productions
 
-<!--
-HOMEWORK:
-- formulate word belonging to grammar algorithm
- -->
-
 [^1]: **useless symbols** - Not reachable (does not appear in any derivation), not generative (nonterminals that cannot generate a string of terminals)
 [^2]: sequence of leaves

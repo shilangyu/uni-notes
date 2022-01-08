@@ -70,11 +70,9 @@ $$
 
 ## guard
 
-\newcommand{\vertchar}[1]{\ooalign{#1\cr\hidewidth$|$\hidewidth}}
+First cell of the tape is a guard symbol $\#$. This symbol can only be stored there.
 
-First cell of the tape is a guard symbol $\vertchar{C}$. This symbol can only be stored there.
-
-$\delta(q, \vertchar{C}) = (p, \vertchar{C}, R)$
+$\delta(q, \#) = (p, \#, R)$
 
 Turing machines in basic model are equivalent to Turing machines with guard.
 
@@ -99,6 +97,73 @@ $\cdots$|$B$|$B$|$a_1$|$a_2$|$\cdots$|$a_n$|$B$|$B$|$\cdots$
 
 $M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)$
 
+## non-deterministic TM
+
+For some configurations there may be more than one possible move. Machine picks the move which leads to the acceptation of input.
+
+In general empty entry in transition table means beginning of infinite computation. For sake of simplicity in some cases we might interpret empty entries as rejecting the input. In fact in each empty entry we should start the cleaning procedure and rejecting the input.
+
+Our interpretation of non-determinism relies on interpreting computation as a tree. A non-deterministic machine accepts iff at least one leaf accepts.
+
+### degree of non-determinism
+
+Maximal amount of options is called the degree of non-determinism.
+
+The number of children in the computation tree cannot be bigger than the degree of non-determinism.
+
+### equivalence
+
+The class of non-deterministic TM is equivalent to the class of deterministic TM (in terms of problems they solve).
+
+Given is a non-deterministic TM and some input date. COnsider the computation tree for this input. This is a $k$-tree. $k$-degree of non-determinism. At each level we have a finite number of nodes. Let's visit this tree with BFS, if there is an accepting leaf we will come to this leaf after final number of steps. Based on this observation we will construct a deterministic machine which is equivalent to this non-deterministic one.
+
+1. This is a three-tape TM
+   1. the first tape is used to keep input data
+   2. the second tape stores sequences of numbers of lengths $1, 2, 3, \cdots$ of elements $\{1, 2, \cdots, k\}$
+2. for each generated sequence we:
+   1. copy input from the first tape to the third tape
+   2. simulate computation of non-deterministic turing machine defined by the sequence on the second tape.
+   3. if simulation comes to accepting node, then we accept input
+   4. otherwise we continue to next sequence
+
+### push down automata
+
+It has a stack and input tape. $A = (Q, \Sigma, \Gamma, \delta, q_0, \vdash, F)$
+
+- $\Gamma$ - stack alphabet
+- $\vdash$ - end-of-stack symbol
+- $\Sigma \cap \Gamma = \emptyset$
+- $\delta: Q \times (\Sigma \cup \{\varepsilon\}) \times \Gamma \to \bigcup_{k=0}^\infty (Q \times \Gamma)^k$
+- other symbols mean the same as in TM
+
+Configuration $\gamma q w$:
+
+- $\gamma$ - content of the stack
+- $q$ - state
+- $w$ - content of input
+
+Computation of push down automata is always finite. It is used only for acceptation of languages, not for computing functions.
+
+A move of a push down automaton is done as follows:
+
+1. Control unit switches to state described by value of transition function.
+2. The input head reads the input symbol or does not check input ($\varepsilon$). Drop the read symbol.
+3. Stack head reads top symbol from the stack and removes it.
+4. Push the string of stack symbols to the stack.
+5. If value of transition function includes several pairs then the one is chosen which leads to acceptation of input.
+
+Push down automata is deterministic iff:
+
+1. for each configuration (entry in transition tables) we have at most one possible move
+2. if for a given state and stack symbol we have not rejecting move then for the same state and stack symbol and for each input symbol we must have only rejecting moves
+
+For a given push down automaton we can construct a TM which will be equivalent. The opposite is not always true.
+
+#### equivalence of classes of push-down automata and context-free grammars
+
+1. for a given push-down automaton we may design a context-free grammar which is equivalent
+1. for a given context-free grammar we may design a push-down automaton which is equivalent
+
 <!--
 HOMEWORK:
 	design a turing machine whether a given binary word (non empty):
@@ -109,4 +174,6 @@ HOMEWORK:
 	design a basic model turing machine:
 	A) shifts its content one cell right, prints guard at the first place, returns head to the beginning
 	B) shifts its content one cell left, dropping symbol from the first cell and puts head over the first cell
+
+	design a push down automaton accepting the following language L = {w in {a, b}^* : w = w^R}
 -->
