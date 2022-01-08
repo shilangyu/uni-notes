@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>interval_estimation</title>
+  <title>hypothesis_testing</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,41 +326,56 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="interval-estimation"><span class="header-section-number">1</span> interval estimation</h1>
-<h2 id="confidence-interval-ci"><span class="header-section-number">1.1</span> confidence interval (CI)</h2>
-<p>Let <span class="math inline">h(X_1, \cdots, X_n, \theta)</span> is a random variable with a known distribution not depending on <span class="math inline">\theta</span>.</p>
-<p>For any <span class="math inline">\alpha \in (0; 1)</span> constants <span class="math inline">a</span> and <span class="math inline">b</span> can be found that satisfies</p>
+<h1 id="hypothesis-testing"><span class="header-section-number">1</span> hypothesis testing</h1>
+<p>Null hypothesis <span class="math inline">H_0</span>. New alternatives emerging from the previous hypothesis are alternative hypothesis <span class="math inline">H_1</span>.</p>
+<h2 id="testing-procedure"><span class="header-section-number">1.1</span> testing procedure</h2>
+<p>Testing to check whether <span class="math inline">H_0</span> should be rejected or failed to reject.</p>
+<h3 id="test-statistic"><span class="header-section-number">1.1.1</span> test statistic</h3>
+<p>Distance between the sample data we have collected and the null hypothesis.</p>
+<h3 id="rejection-region-rr"><span class="header-section-number">1.1.2</span> rejection region (RR)</h3>
+<p>Set of all values of test statistic for which <span class="math inline">H_0</span> would be rejected. If the test statistic falls into RR then <span class="math inline">H_0</span> will be rejected.</p>
+<h3 id="error-type"><span class="header-section-number">1.1.3</span> error type</h3>
+<p>When an erroneous conclusion is reached about the population parameter.</p>
+<h4 id="type-1-error"><span class="header-section-number">1.1.3.1</span> Type 1 error</h4>
+<p>To reject a true null hypothesis</p>
 <p><span class="math display">
-\begin{aligned}
-    P(a &lt; h(X_1, \cdots, X_n, \theta) &lt; b) = 1 - \alpha \\
-    P(l(X_1, \cdots, X_n) &lt; \theta &lt; u(X_1, \cdots, X_n)) = 1 - \alpha \\
-\end{aligned}
+\alpha = P(\text{reject } H_0|H_0 \text{ is true})
 </span></p>
-<p>Then the confidence interval is</p>
+<h4 id="type-2-error"><span class="header-section-number">1.1.3.2</span> Type 2 error</h4>
+<p>To fail to reject a false null hypothesis</p>
 <p><span class="math display">
-Cl_{1 - \alpha}(\theta) = (l(X_1, \cdots, X_n); u(X_1, \cdots, X_n))
+\beta = P(\text{accept } H_0|H_0 \text{ is false})
 </span></p>
-<h3 id="standard-normal"><span class="header-section-number">1.1.1</span> standard normal</h3>
-<h4 id="for-mu"><span class="header-section-number">1.1.1.1</span> for <span class="math inline">\mu</span></h4>
-<p>For the standard normal we can define the confidence interval for a sample as</p>
-<p>Known <span class="math inline">\sigma</span></p>
+<h4 id="power"><span class="header-section-number">1.1.3.3</span> power</h4>
 <p><span class="math display">
-Cl_{1 - \alpha}(\mu) = (\bar X - \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{\sigma}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}})
+\text{power} = 1 - \beta = P(\text{reject } H_0|H_0 \text{ is false})
 </span></p>
-<p>Unknown <span class="math inline">\sigma</span></p>
+<h2 id="p-value"><span class="header-section-number">1.2</span> p-value</h2>
+<p>Probability of obtaining a test statistic at least as extreme as the observed one (given <span class="math inline">H_0</span> is true)</p>
+<ul>
+<li>If <span class="math inline">\text{p-value} \le \alpha</span> then reject <span class="math inline">H_0</span></li>
+<li>If <span class="math inline">\text{p-value} &gt; \alpha</span> then fail to reject <span class="math inline">H_0</span></li>
+</ul>
+<h2 id="simple-hypothesis"><span class="header-section-number">1.3</span> simple hypothesis</h2>
+<h3 id="nyeman-pearson-theorem"><span class="header-section-number">1.3.1</span> Nyeman-Pearson theorem</h3>
+<p>For testing <span class="math inline">H_0: \theta = \theta_0</span> versus a simple alternative hypothesis <span class="math inline">H_1: \theta = \theta_1</span>, let <span class="math inline">c</span> be a positive fixed number. Then:</p>
 <p><span class="math display">
-Cl_{1 - \alpha}(\mu) = (\bar X - \frac{s}{\sqrt{n}} t_{1 - \frac{\alpha}{2}, n-1}; \bar X + \frac{s}{\sqrt{n}} t_{1 - \frac{\alpha}{2}, n-1})
+R^* = \{(x_1, \cdots, x_n) : \frac{f(x_1, \cdots, x_n; \theta_1)}{f(x_1, \cdots, x_n; \theta_0)} \ge c \}
 </span></p>
-<h4 id="for-sigma"><span class="header-section-number">1.1.1.2</span> for <span class="math inline">\sigma</span></h4>
+<p>is the rejection region.</p>
 <p><span class="math display">
-Cl_{1 - \alpha}(\sigma^2) = (\frac{(n-1)s^2}{\chi^2_{1- \frac{\alpha}{2}, n-1}},\frac{(n-1)s^2}{\chi^2_{\frac{\alpha}{2}, n-1}})
+\alpha^* = P((X_1, \cdots, X_n) \in R^* | H_0)
 </span></p>
-<h3 id="any-large-sample"><span class="header-section-number">1.1.2</span> any large sample</h3>
-<p>Using CLT, it is approximately</p>
 <p><span class="math display">
-Cl_{1 - \alpha}(\mu) = (\bar X - \frac{s}{\sqrt{n}} Z_{1 - \frac{\alpha}{2}}; \bar X + \frac{s}{\sqrt{n}} Z_{\frac{\alpha}{2}})
+\beta^* = P((X_1, \cdots, X_n) \notin R^* | H_1)
 </span></p>
-<h2 id="one-sided-confidence-interval"><span class="header-section-number">1.2</span> one sided confidence interval</h2>
-<p>Confidence bounded by an upper or lower bound.</p>
+<p>Are type 1 and 2 errors respectively.</p>
+<h2 id="uniformly-most-powerful-tests-ump-tests"><span class="header-section-number">1.4</span> uniformly most powerful tests (UMP tests)</h2>
+<p>Let <span class="math inline">H_0: \theta \in \Omega_0</span> vs <span class="math inline">H_1: \theta \in \Omega_1</span>. The power function is defined as</p>
+<p><span class="math display">
+\pi(\theta&#39;) = P((X_1, \cdots, X_n) \in R|\theta = \theta&#39;)
+</span></p>
+<p>UMP test is one for which <span class="math inline">\pi(\theta&#39;)</span> is maximized for any <span class="math inline">\theta&#39; \in \Omega_1</span> subject to <span class="math inline">\pi(\theta&#39;) \le \alpha</span> for any <span class="math inline">\theta&#39; \in \Omega_0</span></p>
+<h3 id="likelihood-ratio-test"><span class="header-section-number">1.4.1</span> likelihood ratio test</h3>
 </body>
 </html>

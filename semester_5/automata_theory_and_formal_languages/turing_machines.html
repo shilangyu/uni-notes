@@ -435,9 +435,8 @@
 \end{aligned}
 </span></p>
 <h2 id="guard"><span class="header-section-number">1.3</span> guard</h2>
-
-<p>First cell of the tape is a guard symbol <span class="math inline">\ooalign{C\cr\hidewidth$|$\hidewidth}</span>. This symbol can only be stored there.</p>
-<p><span class="math inline">\delta(q, \ooalign{C\cr\hidewidth$|$\hidewidth}) = (p, \ooalign{C\cr\hidewidth$|$\hidewidth}, R)</span></p>
+<p>First cell of the tape is a guard symbol <span class="math inline">\#</span>. This symbol can only be stored there.</p>
+<p><span class="math inline">\delta(q, \#) = (p, \#, R)</span></p>
 <p>Turing machines in basic model are equivalent to Turing machines with guard.</p>
 <h2 id="accepting-state"><span class="header-section-number">1.4</span> accepting state</h2>
 <p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\})</span>, where <span class="math inline">ACC</span> is the accepting state with stop condition.</p>
@@ -452,6 +451,65 @@
 <h2 id="two-way-infinite-tape"><span class="header-section-number">1.7</span> two way infinite tape</h2>
 <p><span class="math inline">\cdots</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">a_1</span>|<span class="math inline">a_2</span>|<span class="math inline">\cdots</span>|<span class="math inline">a_n</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">\cdots</span></p>
 <p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span></p>
+<h2 id="non-deterministic-tm"><span class="header-section-number">1.8</span> non-deterministic TM</h2>
+<p>For some configurations there may be more than one possible move. Machine picks the move which leads to the acceptation of input.</p>
+<p>In general empty entry in transition table means beginning of infinite computation. For sake of simplicity in some cases we might interpret empty entries as rejecting the input. In fact in each empty entry we should start the cleaning procedure and rejecting the input.</p>
+<p>Our interpretation of non-determinism relies on interpreting computation as a tree. A non-deterministic machine accepts iff at least one leaf accepts.</p>
+<h3 id="degree-of-non-determinism"><span class="header-section-number">1.8.1</span> degree of non-determinism</h3>
+<p>Maximal amount of options is called the degree of non-determinism.</p>
+<p>The number of children in the computation tree cannot be bigger than the degree of non-determinism.</p>
+<h3 id="equivalence"><span class="header-section-number">1.8.2</span> equivalence</h3>
+<p>The class of non-deterministic TM is equivalent to the class of deterministic TM (in terms of problems they solve).</p>
+<p>Given is a non-deterministic TM and some input date. COnsider the computation tree for this input. This is a <span class="math inline">k</span>-tree. <span class="math inline">k</span>-degree of non-determinism. At each level we have a finite number of nodes. Let’s visit this tree with BFS, if there is an accepting leaf we will come to this leaf after final number of steps. Based on this observation we will construct a deterministic machine which is equivalent to this non-deterministic one.</p>
+<ol type="1">
+<li>This is a three-tape TM
+<ol type="1">
+<li>the first tape is used to keep input data</li>
+<li>the second tape stores sequences of numbers of lengths <span class="math inline">1, 2, 3, \cdots</span> of elements <span class="math inline">\{1, 2, \cdots, k\}</span></li>
+</ol></li>
+<li>for each generated sequence we:
+<ol type="1">
+<li>copy input from the first tape to the third tape</li>
+<li>simulate computation of non-deterministic turing machine defined by the sequence on the second tape.</li>
+<li>if simulation comes to accepting node, then we accept input</li>
+<li>otherwise we continue to next sequence</li>
+</ol></li>
+</ol>
+<h3 id="push-down-automata"><span class="header-section-number">1.8.3</span> push down automata</h3>
+<p>It has a stack and input tape. <span class="math inline">A = (Q, \Sigma, \Gamma, \delta, q_0, \vdash, F)</span></p>
+<ul>
+<li><span class="math inline">\Gamma</span> - stack alphabet</li>
+<li><span class="math inline">\vdash</span> - end-of-stack symbol</li>
+<li><span class="math inline">\Sigma \cap \Gamma = \emptyset</span></li>
+<li><span class="math inline">\delta: Q \times (\Sigma \cup \{\varepsilon\}) \times \Gamma \to \bigcup_{k=0}^\infty (Q \times \Gamma)^k</span></li>
+<li>other symbols mean the same as in TM</li>
+</ul>
+<p>Configuration <span class="math inline">\gamma q w</span>:</p>
+<ul>
+<li><span class="math inline">\gamma</span> - content of the stack</li>
+<li><span class="math inline">q</span> - state</li>
+<li><span class="math inline">w</span> - content of input</li>
+</ul>
+<p>Computation of push down automata is always finite. It is used only for acceptation of languages, not for computing functions.</p>
+<p>A move of a push down automaton is done as follows:</p>
+<ol type="1">
+<li>Control unit switches to state described by value of transition function.</li>
+<li>The input head reads the input symbol or does not check input (<span class="math inline">\varepsilon</span>). Drop the read symbol.</li>
+<li>Stack head reads top symbol from the stack and removes it.</li>
+<li>Push the string of stack symbols to the stack.</li>
+<li>If value of transition function includes several pairs then the one is chosen which leads to acceptation of input.</li>
+</ol>
+<p>Push down automata is deterministic iff:</p>
+<ol type="1">
+<li>for each configuration (entry in transition tables) we have at most one possible move</li>
+<li>if for a given state and stack symbol we have not rejecting move then for the same state and stack symbol and for each input symbol we must have only rejecting moves</li>
+</ol>
+<p>For a given push down automaton we can construct a TM which will be equivalent. The opposite is not always true.</p>
+<h4 id="equivalence-of-classes-of-push-down-automata-and-context-free-grammars"><span class="header-section-number">1.8.3.1</span> equivalence of classes of push-down automata and context-free grammars</h4>
+<ol type="1">
+<li>for a given push-down automaton we may design a context-free grammar which is equivalent</li>
+<li>for a given context-free grammar we may design a push-down automaton which is equivalent</li>
+</ol>
 <!--
 HOMEWORK:
     design a turing machine whether a given binary word (non empty):
@@ -462,6 +520,8 @@ HOMEWORK:
     design a basic model turing machine:
     A) shifts its content one cell right, prints guard at the first place, returns head to the beginning
     B) shifts its content one cell left, dropping symbol from the first cell and puts head over the first cell
+
+    design a push down automaton accepting the following language L = {w in {a, b}^* : w = w^R}
 -->
 </body>
 </html>
