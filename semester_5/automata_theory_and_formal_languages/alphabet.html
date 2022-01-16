@@ -551,6 +551,16 @@
 <li>SELECT: FIRST or FIRST <span class="math inline">\cup</span> FOLLOW. SELECT is FIRST iff production is non-nullable</li>
 </ul>
 <p>A grammar is a <span class="math inline">LL(1)</span> iff for each nonterminal <span class="math inline">A</span> sets SELECT are pairwise disjoint for all <span class="math inline">A</span>-productions</p>
+<h2 id="context-sensitive-grammars"><span class="header-section-number">1.11</span> Context-sensitive grammars</h2>
+<p>Productions of the form:</p>
+<ul>
+<li><span class="math inline">\alpha \mapsto \beta</span></li>
+<li><span class="math inline">\alpha, \beta \in (V \cup T)^*</span></li>
+</ul>
+<p>Where <span class="math inline">1 \le |\alpha| \le |\beta|</span></p>
+<p>So the empty word does not belong to context-sensitive languages (CSL)</p>
+<h3 id="normal-form-1"><span class="header-section-number">1.11.1</span> Normal form</h3>
+<p>Productions are <span class="math inline">\delta_1 A \delta_2 \mapsto \delta_1 \alpha \delta_2</span> where <span class="math inline">A \in V</span>, <span class="math inline">\alpha \in (V \cup T)^*</span>, <span class="math inline">|x| \ge 1</span>, and <span class="math inline">\delta_1, \delta_2 \in (V \cup T)^*</span></p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
