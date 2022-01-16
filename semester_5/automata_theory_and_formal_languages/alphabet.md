@@ -279,5 +279,20 @@ Recall context free productions: $A \mapsto \alpha$ where $\alpha \in (V \cup T)
 
 A grammar is a $LL(1)$ iff for each nonterminal $A$ sets SELECT are pairwise disjoint for all $A$-productions
 
+## Context-sensitive grammars
+
+Productions of the form:
+
+- $\alpha \mapsto \beta$
+- $\alpha, \beta \in (V \cup T)^*$
+
+Where $1 \le |\alpha| \le |\beta|$
+
+So the empty word does not belong to context-sensitive languages (CSL)
+
+### Normal form
+
+Productions are $\delta_1 A \delta_2 \mapsto \delta_1 \alpha \delta_2$ where $A \in V$, $\alpha \in (V \cup T)^*$, $|x| \ge 1$, and $\delta_1, \delta_2 \in (V \cup T)^*$
+
 [^1]: **useless symbols** - Not reachable (does not appear in any derivation), not generative (nonterminals that cannot generate a string of terminals)
 [^2]: sequence of leaves
