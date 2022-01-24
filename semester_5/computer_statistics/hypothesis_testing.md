@@ -80,3 +80,27 @@ $$
 UMP test is one for which $\pi(\theta')$ is maximized for any $\theta' \in \Omega_1$ subject to $\pi(\theta') \le \alpha$ for any $\theta' \in \Omega_0$
 
 ### likelihood ratio test
+
+TODO
+
+## Wilcoxon Signed-Rank test
+
+We wish to test $H_0$ be $\tilde \mu = 0$ (median or mean) without normality assumptions.
+
+Let $R_1, \cdots, R_n$ be ranks of $|X_1|, \cdots, |X_n|$ (ascending order), then
+
+$$
+W_+ = \sum_{X_i:sign(X_i)=1} R_i
+$$
+
+Is the sum of all positive signed-ranks.
+
+For $H_0$ $\tilde \mu = \mu_0$ then just subtract $\mu_0$ from each observation and consider the Wilcoxon test for the modified sample.
+
+### Mann-Whitney test
+
+Two independent samples, we wish to test $H_0$ $\mu_X = \mu_Y$. We order the pooled sample and assign ranks $R_1, \cdots, R_{m+n}$. Set
+
+$$
+W = \text{Sum of } R_i \text{ associated with } X-\text{sample}
+$$
