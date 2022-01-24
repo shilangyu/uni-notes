@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>hypothesis_testing</title>
+  <title>regression</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -326,70 +326,32 @@
   <meta name="theme-color" content="#252525" />
 </head>
 <body>
-<h1 id="hypothesis-testing"><span class="header-section-number">1</span> hypothesis testing</h1>
-<p>Null hypothesis <span class="math inline">H_0</span>. New alternatives emerging from the previous hypothesis are alternative hypothesis <span class="math inline">H_1</span>.</p>
-<h2 id="testing-procedure"><span class="header-section-number">1.1</span> testing procedure</h2>
-<p>Testing to check whether <span class="math inline">H_0</span> should be rejected or failed to reject.</p>
-<h3 id="test-statistic"><span class="header-section-number">1.1.1</span> test statistic</h3>
-<p>Distance between the sample data we have collected and the null hypothesis.</p>
-<h3 id="rejection-region-rr"><span class="header-section-number">1.1.2</span> rejection region (RR)</h3>
-<p>Set of all values of test statistic for which <span class="math inline">H_0</span> would be rejected. If the test statistic falls into RR then <span class="math inline">H_0</span> will be rejected.</p>
-<h3 id="error-type"><span class="header-section-number">1.1.3</span> error type</h3>
-<p>When an erroneous conclusion is reached about the population parameter.</p>
-<h4 id="type-1-error"><span class="header-section-number">1.1.3.1</span> Type 1 error</h4>
-<p>To reject a true null hypothesis</p>
+<h1 id="regression"><span class="header-section-number">1</span> regression</h1>
+<h2 id="bivariate-data"><span class="header-section-number">1.1</span> bivariate data</h2>
+<p>Data obtained when observing two characteristics of one object</p>
 <p><span class="math display">
-\alpha = P(\text{reject } H_0|H_0 \text{ is true})
+(x_1, y_1), (x_2, y_2), \cdots, (x_n, y_n)
 </span></p>
-<h4 id="type-2-error"><span class="header-section-number">1.1.3.2</span> Type 2 error</h4>
-<p>To fail to reject a false null hypothesis</p>
+<h2 id="sample-covariance"><span class="header-section-number">1.2</span> Sample covariance</h2>
+<p>Linear relationship</p>
 <p><span class="math display">
-\beta = P(\text{accept } H_0|H_0 \text{ is false})
+s_{xy} = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar x)(y_i - \bar y) = \frac{1}{n-1}(\sum_{i=1}^nx_iy_i - n\bar x\bar y)
 </span></p>
-<h4 id="power"><span class="header-section-number">1.1.3.3</span> power</h4>
+<h2 id="sample-correlation"><span class="header-section-number">1.3</span> Sample correlation</h2>
 <p><span class="math display">
-\text{power} = 1 - \beta = P(\text{reject } H_0|H_0 \text{ is false})
+r_{xy} = \frac{s_{xy}}{s_xs_y}
 </span></p>
-<h2 id="p-value"><span class="header-section-number">1.2</span> p-value</h2>
-<p>Probability of obtaining a test statistic at least as extreme as the observed one (given <span class="math inline">H_0</span> is true)</p>
-<ul>
-<li>If <span class="math inline">\text{p-value} \le \alpha</span> then reject <span class="math inline">H_0</span></li>
-<li>If <span class="math inline">\text{p-value} &gt; \alpha</span> then fail to reject <span class="math inline">H_0</span></li>
-</ul>
-<h2 id="simple-hypothesis"><span class="header-section-number">1.3</span> simple hypothesis</h2>
-<h3 id="nyeman-pearson-theorem"><span class="header-section-number">1.3.1</span> Nyeman-Pearson theorem</h3>
-<p>For testing <span class="math inline">H_0: \theta = \theta_0</span> versus a simple alternative hypothesis <span class="math inline">H_1: \theta = \theta_1</span>, let <span class="math inline">c</span> be a positive fixed number. Then:</p>
+<p>Note that <span class="math inline">-1 \le r_{xy} \le 1</span></p>
+<h2 id="spearman-correlation-coefficient"><span class="header-section-number">1.4</span> Spearman correlation coefficient</h2>
+<p>Measure of monotonicity</p>
 <p><span class="math display">
-R^* = \{(x_1, \cdots, x_n) : \frac{f(x_1, \cdots, x_n; \theta_1)}{f(x_1, \cdots, x_n; \theta_0)} \ge c \}
+\rho_{xy} = \frac{s_{r(x)r(y)}}{s_{r(x)}s_{r(y)}}
 </span></p>
-<p>is the rejection region.</p>
+<p>Where <span class="math inline">r(x)</span> denotes the rank of <span class="math inline">x</span></p>
+<p>If there are no ties:</p>
 <p><span class="math display">
-\alpha^* = P((X_1, \cdots, X_n) \in R^* | H_0)
+\rho_{xy} = 1 - \frac{6\sum_{i=1}^n d_i^2}{n(n^2 - 1)}
 </span></p>
-<p><span class="math display">
-\beta^* = P((X_1, \cdots, X_n) \notin R^* | H_1)
-</span></p>
-<p>Are type 1 and 2 errors respectively.</p>
-<h2 id="uniformly-most-powerful-tests-ump-tests"><span class="header-section-number">1.4</span> uniformly most powerful tests (UMP tests)</h2>
-<p>Let <span class="math inline">H_0: \theta \in \Omega_0</span> vs <span class="math inline">H_1: \theta \in \Omega_1</span>. The power function is defined as</p>
-<p><span class="math display">
-\pi(\theta&#39;) = P((X_1, \cdots, X_n) \in R|\theta = \theta&#39;)
-</span></p>
-<p>UMP test is one for which <span class="math inline">\pi(\theta&#39;)</span> is maximized for any <span class="math inline">\theta&#39; \in \Omega_1</span> subject to <span class="math inline">\pi(\theta&#39;) \le \alpha</span> for any <span class="math inline">\theta&#39; \in \Omega_0</span></p>
-<h3 id="likelihood-ratio-test"><span class="header-section-number">1.4.1</span> likelihood ratio test</h3>
-<p>TODO</p>
-<h2 id="wilcoxon-signed-rank-test"><span class="header-section-number">1.5</span> Wilcoxon Signed-Rank test</h2>
-<p>We wish to test <span class="math inline">H_0</span> be <span class="math inline">\tilde \mu = 0</span> (median or mean) without normality assumptions.</p>
-<p>Let <span class="math inline">R_1, \cdots, R_n</span> be ranks of <span class="math inline">|X_1|, \cdots, |X_n|</span> (ascending order), then</p>
-<p><span class="math display">
-W_+ = \sum_{X_i:sign(X_i)=1} R_i
-</span></p>
-<p>Is the sum of all positive signed-ranks.</p>
-<p>For <span class="math inline">H_0</span> <span class="math inline">\tilde \mu = \mu_0</span> then just subtract <span class="math inline">\mu_0</span> from each observation and consider the Wilcoxon test for the modified sample.</p>
-<h3 id="mann-whitney-test"><span class="header-section-number">1.5.1</span> Mann-Whitney test</h3>
-<p>Two independent samples, we wish to test <span class="math inline">H_0</span> <span class="math inline">\mu_X = \mu_Y</span>. We order the pooled sample and assign ranks <span class="math inline">R_1, \cdots, R_{m+n}</span>. Set</p>
-<p><span class="math display">
-W = \text{Sum of } R_i \text{ associated with } X-\text{sample}
-</span></p>
+<p>Where <span class="math inline">d_i = r(x_i) - r(y_i)</span></p>
 </body>
 </html>
