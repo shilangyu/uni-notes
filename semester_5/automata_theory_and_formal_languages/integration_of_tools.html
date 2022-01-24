@@ -339,21 +339,21 @@
 <h2 id="myhill-nerode-theorem"><span class="header-section-number">1.4</span> Myhill-Nerode Theorem</h2>
 <p>The following conditions are equivalent:</p>
 <ol type="1">
-<li><span class="math inline">L \in \sum^*</span> is accepted by some DFA</li>
+<li><span class="math inline">L \in \Sigma^*</span> is accepted by some DFA</li>
 <li><span class="math inline">L</span> is union of some equivalence classes of some equivalence relation <span class="math inline">\rho</span> of finite index which is right-invariant<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 <li><span class="math inline">R_L</span> has finite index</li>
 </ol>
 <h3 id="proof"><span class="header-section-number">1.4.1</span> Proof</h3>
 <h4 id="implies-2."><span class="header-section-number">1.4.1.1</span> <span class="math inline">1. \implies 2.</span></h4>
-<p>Assume that <span class="math inline">A=(Q, \sum, \delta, q_0, F)</span> is DFA and accepts <span class="math inline">L</span>. Let <span class="math inline">x, y \in \sum^*</span>, <span class="math inline">x \rho y \equiv \text{ computation for both ends in the same state }</span>. It is an equivalence relation, has finite index, and is right-invariant.</p>
+<p>Assume that <span class="math inline">A=(Q, \Sigma, \delta, q_0, F)</span> is DFA and accepts <span class="math inline">L</span>. Let <span class="math inline">x, y \in \Sigma^*</span>, <span class="math inline">x \rho y \equiv \text{ computation for both ends in the same state }</span>. It is an equivalence relation, has finite index, and is right-invariant.</p>
 <h4 id="implies-3."><span class="header-section-number">1.4.1.2</span> <span class="math inline">2. \implies 3.</span></h4>
 <p><span class="math inline">x \rho y \implies x R_L y</span>. Each equivalence class of <span class="math inline">\rho</span> is included in some equivalence class of <span class="math inline">R_L</span>. If two languages are related then they are in the same equivalence class and thus are both inside or both outside of <span class="math inline">L</span>.</p>
 <h4 id="implies-1."><span class="header-section-number">1.4.1.3</span> <span class="math inline">3. \implies 1.</span></h4>
-<p>Assume that <span class="math inline">A=(Q, \sum, \delta, q_0, F)</span> is DFA and accepts <span class="math inline">L</span>.</p>
+<p>Assume that <span class="math inline">A=(Q, \Sigma, \delta, q_0, F)</span> is DFA and accepts <span class="math inline">L</span>.</p>
 <ul>
 <li><span class="math inline">q_0 \equiv q_{[\epsilon]}</span></li>
 <li><span class="math inline">F</span> states labeled by classes included in the language</li>
-<li><span class="math inline">\delta(q_{[\epsilon]}, a) = q_{[wa]}</span> where <span class="math inline">w \in \sum^*</span> and <span class="math inline">a \in \sum</span></li>
+<li><span class="math inline">\delta(q_{[\epsilon]}, a) = q_{[wa]}</span> where <span class="math inline">w \in \Sigma^*</span> and <span class="math inline">a \in \Sigma</span></li>
 </ul>
 <!--
 HOMEWORK:
