@@ -355,6 +355,32 @@
 <li><span class="math inline">F</span> states labeled by classes included in the language</li>
 <li><span class="math inline">\delta(q_{[\epsilon]}, a) = q_{[wa]}</span> where <span class="math inline">w \in \Sigma^*</span> and <span class="math inline">a \in \Sigma</span></li>
 </ul>
+<h2 id="inner-operations-in-regular-languages"><span class="header-section-number">1.5</span> inner operations in regular languages</h2>
+<ul>
+<li>union, concatenation, Kleene closure
+<ul>
+<li><span class="math inline">+</span>, <span class="math inline">\circ</span>, <span class="math inline">^*</span> - operations on regular expressions are the corresponding operations on languages</li>
+</ul></li>
+<li>complement, intersection</li>
+</ul>
+<p>Let <span class="math inline">L_1</span> and <span class="math inline">L_2</span> be regular languages. Let <span class="math inline">A_k = (Q_k, \Sigma, \delta_k, q_0^k, F_k)</span> be their automaton.</p>
+<ul>
+<li><span class="math inline">\bar A_k = (Q_k, \Sigma, \delta_k, q_0^k, Q_k \backslash F_k)</span> accepts <span class="math inline">\bar L_k</span>.</li>
+<li><span class="math inline">A_1 \times A_2 = (Q_1 \times Q_2, \Sigma, (\delta_1, \delta_2), (q_0^1, q_0^2), F_1 \times F_2)</span> accepts <span class="math inline">L_1 \cap L_2</span></li>
+</ul>
+<h3 id="preposition"><span class="header-section-number">1.5.1</span> preposition</h3>
+<ul>
+<li>The class of finite automata is equivalent to the class of regular expressions</li>
+<li>The class of finite automata is equivalent to the class of regular grammars</li>
+</ul>
+<h2 id="rgl-subsetneq-cfl"><span class="header-section-number">1.6</span> RgL <span class="math inline">\subsetneq</span> CFL</h2>
+<ul>
+<li>Finite automata are special cases of push down automata.</li>
+<li>Regular grammars are special cases of context free grammars.</li>
+<li><span class="math inline">L = \text{same amount of &#39;a&#39; as &#39;b&#39;}</span> - it is context free but not regular</li>
+</ul>
+<h2 id="csl-subsetneq-rkl"><span class="header-section-number">1.7</span> CSL <span class="math inline">\subsetneq</span> RkL</h2>
+<p>Let <span class="math inline">G = (V, T, P, S)</span>. Let <span class="math inline">V = \{v_1, \cdots, v_m\}</span>, <span class="math inline">T = \{t_1, \cdots, t_n\}</span>.</p>
 <!--
 HOMEWORK:
   - prove {a^m b^m c^m d^m : m > 0} is not context free and prove it is context sensitive

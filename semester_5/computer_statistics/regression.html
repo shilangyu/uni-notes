@@ -353,5 +353,55 @@ r_{xy} = \frac{s_{xy}}{s_xs_y}
 \rho_{xy} = 1 - \frac{6\sum_{i=1}^n d_i^2}{n(n^2 - 1)}
 </span></p>
 <p>Where <span class="math inline">d_i = r(x_i) - r(y_i)</span></p>
+<h2 id="relationships"><span class="header-section-number">1.5</span> relationships</h2>
+<h3 id="deterministic"><span class="header-section-number">1.5.1</span> deterministic</h3>
+<p><span class="math inline">y = f(x)</span></p>
+<h3 id="nondeterministic"><span class="header-section-number">1.5.2</span> nondeterministic</h3>
+<p><span class="math inline">y = f(x) + \varepsilon</span></p>
+<h2 id="linear-regression"><span class="header-section-number">1.6</span> linear regression</h2>
+<p><span class="math display">
+Y_i = \beta_0 + \beta_1x_i + \varepsilon_i
+</span></p>
+<ul>
+<li><span class="math inline">\varepsilon_1, \cdots, \varepsilon_n \sim N(0, \sigma^2)</span></li>
+<li><span class="math inline">\beta_0</span> is called the intercept</li>
+<li><span class="math inline">\beta_1</span> is called the slope</li>
+</ul>
+<p>Regression line <span class="math inline">\hat y = \hat \beta_0 + \hat \beta_1 x</span> can be estimated using least squares. These estimators are:</p>
+<ul>
+<li><span class="math inline">\hat \beta_1 = \frac{s_{xy}}{s_x^2}</span></li>
+<li><span class="math inline">\hat \beta_0 = \bar y - \hat \beta_1 \bar x</span></li>
+</ul>
+<p>Unbiased estimator for <span class="math inline">\sigma^2</span>: <span class="math inline">s_R^2 = \frac{1}{n-2} \sum_{i=1}^n(y_i - \hat y_i)^2</span></p>
+<h3 id="parameters"><span class="header-section-number">1.6.1</span> parameters</h3>
+<p><span class="math display">
+\hat \beta_0 \sim N(\beta_0, \sqrt{\sigma^2(\frac{1}{n} + \frac{\bar x^2}{(n-1)s_X^2})})
+</span></p>
+<p><span class="math display">
+\frac{\hat \beta_0 - \beta_0}{\sqrt{s_R^2(\frac{1}{n} + \frac{\bar x^2}{(n-1)s_X^2})}} \sim t_{n-2}
+</span></p>
+<p><span class="math display">
+\hat \beta_1 \sim N(\beta_1, \sqrt{\frac{\sigma^2}{(n-1)s_X^2}})
+</span></p>
+<p><span class="math display">
+\frac{\hat \beta_1 - \beta_1}{\sqrt{\frac{s_R^2}{(n-1)s_X^2}}} \sim t_{n-2}
+</span></p>
+<h2 id="coefficient-of-determination"><span class="header-section-number">1.7</span> coefficient of determination</h2>
+<p>Goodness of fit</p>
+<p><span class="math display">
+R^2 = r^2_{(x,y)}
+</span></p>
+<p>is the percentage of the sample variability in the <span class="math inline">y</span> variable is explained by the model (linear dependence on <span class="math inline">x</span>). Higher the better.</p>
+<h3 id="variability-decomposition"><span class="header-section-number">1.7.1</span> variability decomposition</h3>
+<p><span class="math display">
+\begin{aligned}
+    \text{Total sum of squares (SST)} &amp;= \text{Residual sum of squares (SSR)} &amp;&amp;+ \text{Model sum of squares (SSM)} \\
+    \sum_i (y_i - \bar y)^2 &amp;= \sum_i (y_i - \hat y)^2 &amp;&amp;+ \sum_i (\hat y - \bar y)^2 \\
+\end{aligned}
+</span></p>
+<p>then</p>
+<p><span class="math display">
+R^2 = 1 - \frac{\text{SSR}}{\text{SST}} = \frac{\text{SSM}}{\text{SST}}
+</span></p>
 </body>
 </html>
