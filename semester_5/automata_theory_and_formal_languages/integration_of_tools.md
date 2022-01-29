@@ -39,6 +39,32 @@ Assume that $A=(Q, \Sigma, \delta, q_0, F)$ is DFA and accepts $L$.
 - $F$ states labeled by classes included in the language
 - $\delta(q_{[\epsilon]}, a) = q_{[wa]}$ where $w \in \Sigma^*$ and $a \in \Sigma$
 
+## inner operations in regular languages
+
+- union, concatenation, Kleene closure
+  - $+$, $\circ$, $^*$ - operations on regular expressions are the corresponding operations on languages
+- complement, intersection
+
+Let $L_1$ and $L_2$ be regular languages. Let $A_k = (Q_k, \Sigma, \delta_k, q_0^k, F_k)$ be their automaton.
+
+- $\bar A_k = (Q_k, \Sigma, \delta_k, q_0^k, Q_k \backslash F_k)$ accepts $\bar L_k$.
+- $A_1 \times A_2 = (Q_1 \times Q_2, \Sigma, (\delta_1, \delta_2), (q_0^1, q_0^2), F_1 \times F_2)$ accepts $L_1 \cap L_2$
+
+### preposition
+
+- The class of finite automata is equivalent to the class of regular expressions
+- The class of finite automata is equivalent to the class of regular grammars
+
+## RgL $\subsetneq$ CFL
+
+- Finite automata are special cases of push down automata.
+- Regular grammars are special cases of context free grammars.
+- $L = \text{same amount of 'a' as 'b'}$ - it is context free but not regular
+
+## CSL $\subsetneq$ RkL
+
+Let $G = (V, T, P, S)$. Let $V = \{v_1, \cdots, v_m\}$, $T = \{t_1, \cdots, t_n\}$.
+
 <!--
 HOMEWORK:
   - prove {a^m b^m c^m d^m : m > 0} is not context free and prove it is context sensitive

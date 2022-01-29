@@ -64,7 +64,7 @@ Productions of the form $A \to wB$ or $A \to w$
 - concatenation
   1. of words: $u \circ v$
   2. of languages: $L_1 \circ L_2$
-- $*$ closure, Kleen closure: $L^* = \bigcup_{k=0}^\infty L^k$
+- $*$ closure, Kleene closure: $L^* = \bigcup_{k=0}^\infty L^k$
 
 $$
 \begin{cases}
@@ -292,7 +292,11 @@ So the empty word does not belong to context-sensitive languages (CSL)
 
 ### Normal form
 
-Productions are $\delta_1 A \delta_2 \mapsto \delta_1 \alpha \delta_2$ where $A \in V$, $\alpha \in (V \cup T)^*$, $|x| \ge 1$, and $\delta_1, \delta_2 \in (V \cup T)^*$
+Productions are $\delta_1 A \delta_2 \mapsto \delta_1 \alpha \delta_2$ where $A \in V$, $\alpha \in (V \cup T)^*$, $|\alpha| \ge 1$, and $\delta_1, \delta_2 \in (V \cup T)^*$
+
+## Recursive languages
+
+Those that are accepted by turing machines with a stop property. There is no class of grammars generating these languages.
 
 [^1]: **useless symbols** - Not reachable (does not appear in any derivation), not generative (nonterminals that cannot generate a string of terminals)
 [^2]: sequence of leaves
