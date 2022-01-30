@@ -199,7 +199,7 @@ Each state is represented as an equivalence class of the $R_L$ relation. Transit
 
 ##### left quotient
 
-Of languages: $L_1 \backslash L_2 = \{y \in \Sigma^* : (\exist_{x\in L_2})xy \in L_1\}$
+Of languages: $L_1 \backslash L_2 = \{y \in \Sigma^* : (\exists_{x\in L_2})xy \in L_1\}$
 
 <!--
 HOMEWORK:
