@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>graphs</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,39 +455,90 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="graphs"><span class="header-section-number">1</span> graphs</h1>
-<p>for more, see <a href="../../semester_1/discrete_math/graphs.html">semester 1</a></p>
-<h2 id="notation"><span class="header-section-number">1.1</span> notation</h2>
+<h1 data-number="1" id="graphs"><span
+class="header-section-number">1</span> graphs</h1>
+<p>for more, see <a
+href="../../semester_1/discrete_math/graphs.html">semester 1</a></p>
+<h2 data-number="1.1" id="notation"><span
+class="header-section-number">1.1</span> notation</h2>
 <p><span class="math inline">G = (V, E)</span></p>
 <ul>
-<li><span class="math inline">V(G)</span>, <span class="math inline">E(G)</span>: vertex/edge set of <span class="math inline">G</span></li>
-<li><span class="math inline">|G| = |V|</span>: order of <span class="math inline">G</span> (number of vertices)</li>
-<li><span class="math inline">e(G) = |E|</span>: size of <span class="math inline">G</span> (number of edges)</li>
-<li><span class="math inline">G[V&#39;]</span>, <span class="math inline">G[E&#39;]</span>: induced subgraph by set of vertices/edges</li>
+<li><span class="math inline">V(G)</span>, <span
+class="math inline">E(G)</span>: vertex/edge set of <span
+class="math inline">G</span></li>
+<li><span class="math inline">|G| = |V|</span>: order of <span
+class="math inline">G</span> (number of vertices)</li>
+<li><span class="math inline">e(G) = |E|</span>: size of <span
+class="math inline">G</span> (number of edges)</li>
+<li><span class="math inline">G[V&#39;]</span>, <span
+class="math inline">G[E&#39;]</span>: induced subgraph by set of
+vertices/edges</li>
 </ul>
-<h2 id="connectivity"><span class="header-section-number">1.2</span> connectivity</h2>
-<p><span class="math inline">k \le \kappa(G) \le \kappa&#39;(G) \le \delta(G)</span></p>
-<h3 id="trail"><span class="header-section-number">1.2.1</span> trail</h3>
-<p>A sequence of vertices and edges that are connected in a graph <span class="math inline">G</span>. (<span class="math inline">v_o, e_1, v_1, e_2, \cdots, e_n, v_n</span>).</p>
+<h2 data-number="1.2" id="connectivity"><span
+class="header-section-number">1.2</span> connectivity</h2>
+<p><span class="math inline">k \le \kappa(G) \le \kappa&#39;(G) \le
+\delta(G)</span></p>
+<h3 data-number="1.2.1" id="trail"><span
+class="header-section-number">1.2.1</span> trail</h3>
+<p>A sequence of vertices and edges that are connected in a graph <span
+class="math inline">G</span>. (<span class="math inline">v_o, e_1, v_1,
+e_2, \cdots, e_n, v_n</span>).</p>
 <ol type="1">
-<li>If all vertices in a trail are different, then it is called a <strong>path</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a trail, then it is called a <strong>closed trail</strong></li>
-<li>If <span class="math inline">v_0 = v_n</span> in a path, then it is called a <strong>cycle</strong></li>
+<li>If all vertices in a trail are different, then it is called a
+<strong>path</strong></li>
+<li>If <span class="math inline">v_0 = v_n</span> in a trail, then it is
+called a <strong>closed trail</strong></li>
+<li>If <span class="math inline">v_0 = v_n</span> in a path, then it is
+called a <strong>cycle</strong></li>
 </ol>
-<h3 id="cut-vertex"><span class="header-section-number">1.2.2</span> cut vertex</h3>
-<p>In a connected graph <span class="math inline">G</span>, <span class="math inline">G - v</span> would result in a disconnected graph.</p>
-<p>A set of vertices <span class="math inline">V&#39; \subseteq V(G)</span> is a <strong>cut set</strong> if the graph <span class="math inline">G - V&#39;</span> is disconnected.</p>
-<p>A set of edges <span class="math inline">E&#39; \subseteq V(G)</span> is a <strong>edge cut set</strong> if the graph <span class="math inline">G - E&#39;</span> is disconnected.</p>
-<h3 id="edge-connectivity-kappag"><span class="header-section-number">1.2.3</span> edge connectivity <span class="math inline">\kappa&#39;(G)</span></h3>
+<h3 data-number="1.2.2" id="cut-vertex"><span
+class="header-section-number">1.2.2</span> cut vertex</h3>
+<p>In a connected graph <span class="math inline">G</span>, <span
+class="math inline">G - v</span> would result in a disconnected
+graph.</p>
+<p>A set of vertices <span class="math inline">V&#39; \subseteq
+V(G)</span> is a <strong>cut set</strong> if the graph <span
+class="math inline">G - V&#39;</span> is disconnected.</p>
+<p>A set of edges <span class="math inline">E&#39; \subseteq V(G)</span>
+is a <strong>edge cut set</strong> if the graph <span
+class="math inline">G - E&#39;</span> is disconnected.</p>
+<h3 data-number="1.2.3" id="edge-connectivity-kappag"><span
+class="header-section-number">1.2.3</span> edge connectivity <span
+class="math inline">\kappa&#39;(G)</span></h3>
 <ol type="1">
-<li>the cardinality of a smallest edge cut set if <span class="math inline">G \ne K_1</span></li>
+<li>the cardinality of a smallest edge cut set if <span
+class="math inline">G \ne K_1</span></li>
 <li>0 if <span class="math inline">G=K_1</span></li>
 </ol>
-<h3 id="independent-path"><span class="header-section-number">1.2.4</span> independent path</h3>
+<h3 data-number="1.2.4" id="independent-path"><span
+class="header-section-number">1.2.4</span> independent path</h3>
 <p>When a set of paths do not share an inner vertex.</p>
-<h3 id="g-ge-3"><span class="header-section-number">1.2.5</span> <span class="math inline">|G| \ge 3</span></h3>
+<h3 data-number="1.2.5" id="g-ge-3"><span
+class="header-section-number">1.2.5</span> <span class="math inline">|G|
+\ge 3</span></h3>
 <p>Then these conditions are equivalent:</p>
 <ul>
 <li><span class="math inline">G</span> is 2-connected</li>
@@ -365,46 +547,77 @@
 <li>each vertex and edge lie on a common cycle</li>
 <li>each two edges lie on a common cycle</li>
 </ul>
-<h2 id="euler-tours-and-trails"><span class="header-section-number">1.3</span> Euler tours and trails</h2>
+<h2 data-number="1.3" id="euler-tours-and-trails"><span
+class="header-section-number">1.3</span> Euler tours and trails</h2>
 <ul>
 <li>an Euler trail is a trail which contains each edge of a graph</li>
 <li>an Euler tour is a closed Euler trail</li>
 <li>a graph which has an Euler tour is called an Eulerian graph</li>
 </ul>
-<p>A connected graph <span class="math inline">G</span> is Eulerian iff the degree of every vertex in <span class="math inline">G</span> is even</p>
-<h3 id="algorithm-for-constructing-euler-tours"><span class="header-section-number">1.3.1</span> algorithm for constructing euler tours</h3>
+<p>A connected graph <span class="math inline">G</span> is Eulerian iff
+the degree of every vertex in <span class="math inline">G</span> is
+even</p>
+<h3 data-number="1.3.1"
+id="algorithm-for-constructing-euler-tours"><span
+class="header-section-number">1.3.1</span> algorithm for constructing
+euler tours</h3>
 <ol type="1">
 <li>choose any vertex</li>
-<li>choose an new edge that is not a bridge (if no choice, then the bridge edge)</li>
+<li>choose an new edge that is not a bridge (if no choice, then the
+bridge edge)</li>
 <li>move to the new vertex</li>
 <li>repeat step 2 and 3 until done</li>
 </ol>
-<h2 id="traveling-salesman"><span class="header-section-number">1.4</span> traveling salesman</h2>
+<h2 data-number="1.4" id="traveling-salesman"><span
+class="header-section-number">1.4</span> traveling salesman</h2>
 <blockquote>
-<p>Finding an Hamiltonian path of minimal distance in a weighted graph</p>
+<p>Finding an Hamiltonian path of minimal distance in a weighted
+graph</p>
 </blockquote>
-<p>To find the optimal solution brute force has to be used. There is, however, an algorithm that finds in the worst case a twice longer solution than the optimal one but in a much faster time:</p>
+<p>To find the optimal solution brute force has to be used. There is,
+however, an algorithm that finds in the worst case a twice longer
+solution than the optimal one but in a much faster time:</p>
 <ol type="1">
-<li>Find minimum spanning tree <span class="math inline">T</span> of <span class="math inline">G</span></li>
-<li>Duplicate each edge in <span class="math inline">T</span> to create a multigraph <span class="math inline">T&#39;</span></li>
-<li>Find any Euler tour <span class="math inline">S</span> in <span class="math inline">T&#39;</span></li>
-<li>Return a Hamiltonian cycle <span class="math inline">C</span> whose consecutive vertices are vertices of <span class="math inline">G</span> written in order of first appearance in the tour <span class="math inline">S</span></li>
+<li>Find minimum spanning tree <span class="math inline">T</span> of
+<span class="math inline">G</span></li>
+<li>Duplicate each edge in <span class="math inline">T</span> to create
+a multigraph <span class="math inline">T&#39;</span></li>
+<li>Find any Euler tour <span class="math inline">S</span> in <span
+class="math inline">T&#39;</span></li>
+<li>Return a Hamiltonian cycle <span class="math inline">C</span> whose
+consecutive vertices are vertices of <span class="math inline">G</span>
+written in order of first appearance in the tour <span
+class="math inline">S</span></li>
 </ol>
-<h2 id="bipartite"><span class="header-section-number">1.5</span> bipartite</h2>
+<h2 data-number="1.5" id="bipartite"><span
+class="header-section-number">1.5</span> bipartite</h2>
 <p><span class="math inline">G=(X,Y,E)</span></p>
 <ul>
 <li>all trees are bipartite</li>
-<li><span class="math inline">K_{m,n}</span> denotes a complete bipartite graph where <span class="math inline">|X| = m</span>, <span class="math inline">|Y| = n</span></li>
-<li>a graph is bipartite iff it does not contain odd cycles (cycle with odd number of edges)</li>
+<li><span class="math inline">K_{m,n}</span> denotes a complete
+bipartite graph where <span class="math inline">|X| = m</span>, <span
+class="math inline">|Y| = n</span></li>
+<li>a graph is bipartite iff it does not contain odd cycles (cycle with
+odd number of edges)</li>
 </ul>
-<h3 id="matching"><span class="header-section-number">1.5.1</span> matching</h3>
-<p>A graph is called matching when every component is isomorphic to <span class="math inline">K_2</span></p>
-<h2 id="edge-coloring"><span class="header-section-number">1.6</span> edge coloring</h2>
-<p>Each edge is colored by a color <span class="math inline">c \in C</span>. A k-coloring of a graph is when <span class="math inline">|C| = k</span></p>
-<h3 id="good"><span class="header-section-number">1.6.1</span> good</h3>
-<p>We say a k-coloring of edges is called <strong>good</strong> when no two edges with a common vertex share a color</p>
-<h3 id="chromatic-index"><span class="header-section-number">1.6.2</span> chromatic index</h3>
-<p><span class="math inline">\chi&#39;(G)</span> the smallest <span class="math inline">k</span> needed for a good edge coloring of a graph</p>
+<h3 data-number="1.5.1" id="matching"><span
+class="header-section-number">1.5.1</span> matching</h3>
+<p>A graph is called matching when every component is isomorphic to
+<span class="math inline">K_2</span></p>
+<h2 data-number="1.6" id="edge-coloring"><span
+class="header-section-number">1.6</span> edge coloring</h2>
+<p>Each edge is colored by a color <span class="math inline">c \in
+C</span>. A k-coloring of a graph is when <span class="math inline">|C|
+= k</span></p>
+<h3 data-number="1.6.1" id="good"><span
+class="header-section-number">1.6.1</span> good</h3>
+<p>We say a k-coloring of edges is called <strong>good</strong> when no
+two edges with a common vertex share a color</p>
+<h3 data-number="1.6.2" id="chromatic-index"><span
+class="header-section-number">1.6.2</span> chromatic index</h3>
+<p><span class="math inline">\chi&#39;(G)</span> the smallest <span
+class="math inline">k</span> needed for a good edge coloring of a
+graph</p>
 <p><span class="math display">
 \chi&#39;(C_n) =
 \begin{cases}
@@ -422,110 +635,221 @@ n-1 &amp;\text{ if } n \text{ is even} \\
 <p><span class="math display">
 \chi&#39;(\text{bipartite graph}) = \Delta(\text{bipartite graph})
 </span></p>
-<h2 id="multigraph"><span class="header-section-number">1.7</span> multigraph</h2>
-<p>When multiple edges between <span class="math inline">v</span> and <span class="math inline">u</span> are allowed.</p>
-<h3 id="multiplicity"><span class="header-section-number">1.7.1</span> multiplicity</h3>
-<p><span class="math inline">\mu(G)</span> is the maximum number of edges joining two vertices in <span class="math inline">G</span></p>
-<h3 id="vizing-theorem"><span class="header-section-number">1.7.2</span> Vizing theorem</h3>
-<p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \Delta(G) + \mu(G)</span></p>
-<h3 id="shannon-theorem"><span class="header-section-number">1.7.3</span> Shannon theorem</h3>
-<p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \frac{3}{2} \Delta(G)</span></p>
-<h2 id="vertex-coloring"><span class="header-section-number">1.8</span> vertex coloring</h2>
-<p>Each vertex is colored by a color <span class="math inline">c \in C</span>. A k-coloring of a graph is when <span class="math inline">|C| = k</span></p>
-<h3 id="good-1"><span class="header-section-number">1.8.1</span> good</h3>
-<p>We say a k-coloring of vertices is called <strong>good</strong> when no two vertices with a common edge share a color</p>
-<h3 id="independent"><span class="header-section-number">1.8.2</span> independent</h3>
-<p>A set of vertices <span class="math inline">S \in V(G)</span> is called independent if no two vertices from <span class="math inline">S</span> share an edge</p>
-<h3 id="chromatic-number"><span class="header-section-number">1.8.3</span> chromatic number</h3>
-<p><span class="math inline">\chi(G)</span> the smallest <span class="math inline">k</span> needed for a good vertex coloring of a graph</p>
+<h2 data-number="1.7" id="multigraph"><span
+class="header-section-number">1.7</span> multigraph</h2>
+<p>When multiple edges between <span class="math inline">v</span> and
+<span class="math inline">u</span> are allowed.</p>
+<h3 data-number="1.7.1" id="multiplicity"><span
+class="header-section-number">1.7.1</span> multiplicity</h3>
+<p><span class="math inline">\mu(G)</span> is the maximum number of
+edges joining two vertices in <span class="math inline">G</span></p>
+<h3 data-number="1.7.2" id="vizing-theorem"><span
+class="header-section-number">1.7.2</span> Vizing theorem</h3>
+<p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \Delta(G) +
+\mu(G)</span></p>
+<h3 data-number="1.7.3" id="shannon-theorem"><span
+class="header-section-number">1.7.3</span> Shannon theorem</h3>
+<p><span class="math inline">\Delta(G) \le \chi&#39;(G) \le \frac{3}{2}
+\Delta(G)</span></p>
+<h2 data-number="1.8" id="vertex-coloring"><span
+class="header-section-number">1.8</span> vertex coloring</h2>
+<p>Each vertex is colored by a color <span class="math inline">c \in
+C</span>. A k-coloring of a graph is when <span class="math inline">|C|
+= k</span></p>
+<h3 data-number="1.8.1" id="good-1"><span
+class="header-section-number">1.8.1</span> good</h3>
+<p>We say a k-coloring of vertices is called <strong>good</strong> when
+no two vertices with a common edge share a color</p>
+<h3 data-number="1.8.2" id="independent"><span
+class="header-section-number">1.8.2</span> independent</h3>
+<p>A set of vertices <span class="math inline">S \in V(G)</span> is
+called independent if no two vertices from <span
+class="math inline">S</span> share an edge</p>
+<h3 data-number="1.8.3" id="chromatic-number"><span
+class="header-section-number">1.8.3</span> chromatic number</h3>
+<p><span class="math inline">\chi(G)</span> the smallest <span
+class="math inline">k</span> needed for a good vertex coloring of a
+graph</p>
 <p><span class="math inline">\chi(G) \le \Delta(G) + 1</span></p>
-<h3 id="brooks-theorem"><span class="header-section-number">1.8.4</span> Brooks theorem</h3>
-<p>If <span class="math inline">G</span> is a connected graph and is not complete nor an odd cycle then <span class="math inline">\chi(G) \le \Delta(G)</span></p>
-<h3 id="clique"><span class="header-section-number">1.8.5</span> clique</h3>
-<p>A clique is a subgraph such that every two distinct vertices in the clique are adjacent (complete subgraphs)</p>
-<p><span class="math inline">w(G)</span> is the cardinality of the largest clique in <span class="math inline">G</span></p>
+<h3 data-number="1.8.4" id="brooks-theorem"><span
+class="header-section-number">1.8.4</span> Brooks theorem</h3>
+<p>If <span class="math inline">G</span> is a connected graph and is not
+complete nor an odd cycle then <span class="math inline">\chi(G) \le
+\Delta(G)</span></p>
+<h3 data-number="1.8.5" id="clique"><span
+class="header-section-number">1.8.5</span> clique</h3>
+<p>A clique is a subgraph such that every two distinct vertices in the
+clique are adjacent (complete subgraphs)</p>
+<p><span class="math inline">w(G)</span> is the cardinality of the
+largest clique in <span class="math inline">G</span></p>
 <p><span class="math inline">\chi(G) \ge w(G)</span></p>
-<h3 id="dezartes"><span class="header-section-number">1.8.6</span> Dezartes</h3>
-<p>For all <span class="math inline">k &gt; 2</span> there exists a graph <span class="math inline">G</span> such that <span class="math inline">\chi(G) = k</span> and <span class="math inline">w(G)=2</span></p>
-<h2 id="planar-graphs"><span class="header-section-number">1.9</span> Planar graphs</h2>
+<h3 data-number="1.8.6" id="dezartes"><span
+class="header-section-number">1.8.6</span> Dezartes</h3>
+<p>For all <span class="math inline">k &gt; 2</span> there exists a
+graph <span class="math inline">G</span> such that <span
+class="math inline">\chi(G) = k</span> and <span
+class="math inline">w(G)=2</span></p>
+<h2 data-number="1.9" id="planar-graphs"><span
+class="header-section-number">1.9</span> Planar graphs</h2>
 <p>A multigraph is planar on a plane iff it is planar on a sphere</p>
-<p>The planar representation is denoted by <span class="math inline">\tilde{G}</span></p>
-<h3 id="faces"><span class="header-section-number">1.9.1</span> faces</h3>
+<p>The planar representation is denoted by <span
+class="math inline">\tilde{G}</span></p>
+<h3 data-number="1.9.1" id="faces"><span
+class="header-section-number">1.9.1</span> faces</h3>
 <p>Regions in <span class="math inline">\tilde{G}</span></p>
-<p><span class="math inline">F(\tilde{G}) = \{f_1, f_2, \cdots, f_n\}</span> - set of faces of <span class="math inline">\tilde{G}</span></p>
-<p><span class="math inline">\phi (\tilde{G}) = |F(\tilde{G})|</span> - number of faces of <span class="math inline">\tilde{G}</span></p>
-<h3 id="incident"><span class="header-section-number">1.9.2</span> incident</h3>
-<p>A face <span class="math inline">f</span> is incident with an edge <span class="math inline">e</span> if <span class="math inline">e</span> belongs to the border of <span class="math inline">f</span></p>
-<h3 id="degree"><span class="header-section-number">1.9.3</span> degree</h3>
-<p>A degree of a face is the amount of edges incident to it <span class="math inline">deg(f)</span> (bridges are counted twice)</p>
-<h3 id="dual-multigraph-g"><span class="header-section-number">1.9.4</span> dual multigraph <span class="math inline">G^*</span></h3>
-<p><span class="math inline">V(G^*) = \{f^* : f \text{ is a face in } G\} = \{f^*:f \in F(G)\}</span></p>
-<p>For every edge which is incident with faces <span class="math inline">f</span> and <span class="math inline">g</span> we define an edge in <span class="math inline">G^*</span>: <span class="math inline">e^* = f^*g^* \in E(G)</span></p>
-<h4 id="properties"><span class="header-section-number">1.9.4.1</span> properties</h4>
+<p><span class="math inline">F(\tilde{G}) = \{f_1, f_2, \cdots,
+f_n\}</span> - set of faces of <span
+class="math inline">\tilde{G}</span></p>
+<p><span class="math inline">\phi (\tilde{G}) = |F(\tilde{G})|</span> -
+number of faces of <span class="math inline">\tilde{G}</span></p>
+<h3 data-number="1.9.2" id="incident"><span
+class="header-section-number">1.9.2</span> incident</h3>
+<p>A face <span class="math inline">f</span> is incident with an edge
+<span class="math inline">e</span> if <span class="math inline">e</span>
+belongs to the border of <span class="math inline">f</span></p>
+<h3 data-number="1.9.3" id="degree"><span
+class="header-section-number">1.9.3</span> degree</h3>
+<p>A degree of a face is the amount of edges incident to it <span
+class="math inline">deg(f)</span> (bridges are counted twice)</p>
+<h3 data-number="1.9.4" id="dual-multigraph-g"><span
+class="header-section-number">1.9.4</span> dual multigraph <span
+class="math inline">G^*</span></h3>
+<p><span class="math inline">V(G^*) = \{f^* : f \text{ is a face in }
+G\} = \{f^*:f \in F(G)\}</span></p>
+<p>For every edge which is incident with faces <span
+class="math inline">f</span> and <span class="math inline">g</span> we
+define an edge in <span class="math inline">G^*</span>: <span
+class="math inline">e^* = f^*g^* \in E(G)</span></p>
+<h4 data-number="1.9.4.1" id="properties"><span
+class="header-section-number">1.9.4.1</span> properties</h4>
 <ol type="1">
 <li><span class="math inline">|G^*| = \phi(\tilde{G})</span></li>
 <li><span class="math inline">|E(G^*)| = |E(\tilde{G})|</span></li>
-<li><span class="math inline">\deg_{G^*} f^* = \deg_{\tilde{G}} f</span></li>
-<li><span class="math inline">\sum_{f \in F(G)} \deg_{\tilde{G}} = 2|E(\tilde G)|</span></li>
-<li>Dual multigraphs of different planar representations of a graph can be non-isomorphic</li>
+<li><span class="math inline">\deg_{G^*} f^* = \deg_{\tilde{G}}
+f</span></li>
+<li><span class="math inline">\sum_{f \in F(G)} \deg_{\tilde{G}} =
+2|E(\tilde G)|</span></li>
+<li>Dual multigraphs of different planar representations of a graph can
+be non-isomorphic</li>
 <li><span class="math inline">G^*</span> is planar</li>
-<li>If <span class="math inline">\tilde G</span> is connected, <span class="math inline">G^{**}</span> is isomorphic to <span class="math inline">\tilde G</span></li>
+<li>If <span class="math inline">\tilde G</span> is connected, <span
+class="math inline">G^{**}</span> is isomorphic to <span
+class="math inline">\tilde G</span></li>
 </ol>
-<h3 id="euler-formula"><span class="header-section-number">1.9.5</span> Euler formula</h3>
-<p><span class="math inline">|\tilde G| - |E(\tilde G)| + \phi(\tilde G) = 2</span></p>
-<h4 id="corollary"><span class="header-section-number">1.9.5.1</span> corollary</h4>
+<h3 data-number="1.9.5" id="euler-formula"><span
+class="header-section-number">1.9.5</span> Euler formula</h3>
+<p><span class="math inline">|\tilde G| - |E(\tilde G)| + \phi(\tilde G)
+= 2</span></p>
+<h4 data-number="1.9.5.1" id="corollary"><span
+class="header-section-number">1.9.5.1</span> corollary</h4>
 <ul>
-<li>Every planar representation of <span class="math inline">G</span> has the same amount of faces</li>
-<li>If <span class="math inline">G</span> is a simple planar graph and <span class="math inline">|G| \ge 3</span> then <span class="math inline">|E(G)| \le 3|G| - 6</span></li>
-<li>If <span class="math inline">G</span> is a simple planar graph then <span class="math inline">\delta(G) \le 5</span></li>
+<li>Every planar representation of <span class="math inline">G</span>
+has the same amount of faces</li>
+<li>If <span class="math inline">G</span> is a simple planar graph and
+<span class="math inline">|G| \ge 3</span> then <span
+class="math inline">|E(G)| \le 3|G| - 6</span></li>
+<li>If <span class="math inline">G</span> is a simple planar graph then
+<span class="math inline">\delta(G) \le 5</span></li>
 </ul>
-<h2 id="subdivision"><span class="header-section-number">1.10</span> subdivision</h2>
-<h3 id="of-an-edge"><span class="header-section-number">1.10.1</span> of an edge</h3>
-<p>A subdivision of an edge <span class="math inline">uv \in E(G)</span> is an operation of replacing this edge with any <span class="math inline">uv</span> path whose internal vertices are not in <span class="math inline">G</span></p>
-<h3 id="of-a-graph"><span class="header-section-number">1.10.2</span> of a graph</h3>
-<p>If <span class="math inline">H</span> was obtained from subdivision of some edges of <span class="math inline">G</span> then <span class="math inline">H</span> is a subdivision of <span class="math inline">G</span>.</p>
-<p><span class="math inline">H</span> is planar iff <span class="math inline">G</span> is planar</p>
-<h3 id="kuratowski"><span class="header-section-number">1.10.3</span> Kuratowski</h3>
-<p>A graph is planar iff it does not contain a subdivision of <span class="math inline">K_5</span> or <span class="math inline">K_{3,3}</span></p>
-<h2 id="mobius"><span class="header-section-number">1.11</span> Mobius</h2>
-<p>Any political map can be colored with 4 colors (coloring of states)</p>
-<p>If a graph is planar then <span class="math inline">\chi(G) \le 4</span></p>
-<h2 id="perfect-matching"><span class="header-section-number">1.12</span> perfect matching</h2>
-<p>A matching that contains all vertices of <span class="math inline">G</span> is called a perfect matching</p>
-<h2 id="covered-vertex"><span class="header-section-number">1.13</span> covered vertex</h2>
-<p>A matching <span class="math inline">M</span> covers a vertex from <span class="math inline">G</span> if the vertex is in <span class="math inline">M</span></p>
-<h2 id="neighbor-set"><span class="header-section-number">1.14</span> neighbor set</h2>
-<p><span class="math inline">N_G(X)</span> denotes the set of all neighbors of all vertices in <span class="math inline">X</span></p>
-<h2 id="hall-theorem"><span class="header-section-number">1.15</span> Hall theorem</h2>
+<h2 data-number="1.10" id="subdivision"><span
+class="header-section-number">1.10</span> subdivision</h2>
+<h3 data-number="1.10.1" id="of-an-edge"><span
+class="header-section-number">1.10.1</span> of an edge</h3>
+<p>A subdivision of an edge <span class="math inline">uv \in E(G)</span>
+is an operation of replacing this edge with any <span
+class="math inline">uv</span> path whose internal vertices are not in
+<span class="math inline">G</span></p>
+<h3 data-number="1.10.2" id="of-a-graph"><span
+class="header-section-number">1.10.2</span> of a graph</h3>
+<p>If <span class="math inline">H</span> was obtained from subdivision
+of some edges of <span class="math inline">G</span> then <span
+class="math inline">H</span> is a subdivision of <span
+class="math inline">G</span>.</p>
+<p><span class="math inline">H</span> is planar iff <span
+class="math inline">G</span> is planar</p>
+<h3 data-number="1.10.3" id="kuratowski"><span
+class="header-section-number">1.10.3</span> Kuratowski</h3>
+<p>A graph is planar iff it does not contain a subdivision of <span
+class="math inline">K_5</span> or <span
+class="math inline">K_{3,3}</span></p>
+<h2 data-number="1.11" id="mobius"><span
+class="header-section-number">1.11</span> Mobius</h2>
+<p>Any political map can be colored with 4 colors (coloring of
+states)</p>
+<p>If a graph is planar then <span class="math inline">\chi(G) \le
+4</span></p>
+<h2 data-number="1.12" id="perfect-matching"><span
+class="header-section-number">1.12</span> perfect matching</h2>
+<p>A matching that contains all vertices of <span
+class="math inline">G</span> is called a perfect matching</p>
+<h2 data-number="1.13" id="covered-vertex"><span
+class="header-section-number">1.13</span> covered vertex</h2>
+<p>A matching <span class="math inline">M</span> covers a vertex from
+<span class="math inline">G</span> if the vertex is in <span
+class="math inline">M</span></p>
+<h2 data-number="1.14" id="neighbor-set"><span
+class="header-section-number">1.14</span> neighbor set</h2>
+<p><span class="math inline">N_G(X)</span> denotes the set of all
+neighbors of all vertices in <span class="math inline">X</span></p>
+<h2 data-number="1.15" id="hall-theorem"><span
+class="header-section-number">1.15</span> Hall theorem</h2>
 <p><span class="math inline">G=(X,Y,E)</span></p>
-<p>There exists a matching in <span class="math inline">G</span> covering the set <span class="math inline">X</span> iff <span class="math inline">\forall_{S \subseteq X} |N_G(S)| \ge |S|</span></p>
-<h2 id="systems-of-distinct-representatives"><span class="header-section-number">1.16</span> Systems of distinct representatives</h2>
-<p>Let <span class="math inline">A_i \subseteq X</span> where <span class="math inline">i \in \{1, 2, \cdots, n\}</span>. Then <span class="math inline">(a_1, a_2, \cdots, a_n)</span> is called a system of distinct representatives if</p>
+<p>There exists a matching in <span class="math inline">G</span>
+covering the set <span class="math inline">X</span> iff <span
+class="math inline">\forall_{S \subseteq X} |N_G(S)| \ge |S|</span></p>
+<h2 data-number="1.16" id="systems-of-distinct-representatives"><span
+class="header-section-number">1.16</span> Systems of distinct
+representatives</h2>
+<p>Let <span class="math inline">A_i \subseteq X</span> where <span
+class="math inline">i \in \{1, 2, \cdots, n\}</span>. Then <span
+class="math inline">(a_1, a_2, \cdots, a_n)</span> is called a system of
+distinct representatives if</p>
 <ol type="1">
 <li><span class="math inline">a_i \in A_i</span></li>
-<li><span class="math inline">a_i \ne a_j</span> for all <span class="math inline">i \ne j</span></li>
+<li><span class="math inline">a_i \ne a_j</span> for all <span
+class="math inline">i \ne j</span></li>
 </ol>
-<h3 id="hall-theorem-restated"><span class="header-section-number">1.16.1</span> Hall theorem restated</h3>
-<p><span class="math inline">(A_1, A_2, \cdots, A_n)</span> as a system of distinct representatives iff</p>
+<h3 data-number="1.16.1" id="hall-theorem-restated"><span
+class="header-section-number">1.16.1</span> Hall theorem restated</h3>
+<p><span class="math inline">(A_1, A_2, \cdots, A_n)</span> as a system
+of distinct representatives iff</p>
 <p><span class="math display">
-\forall_{I \subseteq \{1, 2, \cdots, n\}}\ \big|\bigcup_{i \in I} A_i \big| \ge |I|
+\forall_{I \subseteq \{1, 2, \cdots, n\}}\ \big|\bigcup_{i \in I} A_i
+\big| \ge |I|
 </span></p>
-<h2 id="vertex-cover"><span class="header-section-number">1.17</span> vertex cover</h2>
-<p>A set of vertices such that every edge in the graph contains a vertex from this set.</p>
-<h2 id="konig-theorem"><span class="header-section-number">1.18</span> Konig theorem</h2>
+<h2 data-number="1.17" id="vertex-cover"><span
+class="header-section-number">1.17</span> vertex cover</h2>
+<p>A set of vertices such that every edge in the graph contains a vertex
+from this set.</p>
+<h2 data-number="1.18" id="konig-theorem"><span
+class="header-section-number">1.18</span> Konig theorem</h2>
 <p>Let <span class="math inline">G</span> be a bipartite graph</p>
-<p>The number of edges in a largest matching in <span class="math inline">G</span> is equal to the cardinality of a smallest vertex cover.</p>
-<h2 id="dilworth-theorem"><span class="header-section-number">1.19</span> Dilworth theorem</h2>
+<p>The number of edges in a largest matching in <span
+class="math inline">G</span> is equal to the cardinality of a smallest
+vertex cover.</p>
+<h2 data-number="1.19" id="dilworth-theorem"><span
+class="header-section-number">1.19</span> Dilworth theorem</h2>
 <p><span class="math inline">(P, \preccurlyeq)</span> - finite poset</p>
-<p>The minimum number of chains covering <span class="math inline">P</span> is equal to the maximum cardinality of an antichain of <span class="math inline">P</span></p>
-<h2 id="ramsey-theorem"><span class="header-section-number">1.20</span> Ramsey theorem</h2>
+<p>The minimum number of chains covering <span
+class="math inline">P</span> is equal to the maximum cardinality of an
+antichain of <span class="math inline">P</span></p>
+<h2 data-number="1.20" id="ramsey-theorem"><span
+class="header-section-number">1.20</span> Ramsey theorem</h2>
 <p><span class="math inline">R(m, k)</span></p>
-<p><span class="math inline">\forall m, k \in \mathbf{Z}\ \exists n_0</span> such that for every integer <span class="math inline">n \ge n_0</span> and every coloring of edges of the complete graph <span class="math inline">K_n</span> with two colors (red and blue) there is a clique (complete subgraph) <span class="math inline">K_m</span> whose all edges are colored with blue or a clique <span class="math inline">K_k</span> whose all edges are colored red.</p>
-<h3 id="known-ramsey-numbers"><span class="header-section-number">1.20.1</span> known Ramsey numbers</h3>
+<p><span class="math inline">\forall m, k \in \mathbf{Z}\ \exists
+n_0</span> such that for every integer <span class="math inline">n \ge
+n_0</span> and every coloring of edges of the complete graph <span
+class="math inline">K_n</span> with two colors (red and blue) there is a
+clique (complete subgraph) <span class="math inline">K_m</span> whose
+all edges are colored with blue or a clique <span
+class="math inline">K_k</span> whose all edges are colored red.</p>
+<h3 data-number="1.20.1" id="known-ramsey-numbers"><span
+class="header-section-number">1.20.1</span> known Ramsey numbers</h3>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">m \backslash k</span></th>
+<th style="text-align: center;"><span class="math inline">m \backslash
+k</span></th>
 <th style="text-align: center;">3</th>
 <th style="text-align: center;">4</th>
 <th style="text-align: center;">5</th>
@@ -572,12 +896,22 @@ n-1 &amp;\text{ if } n \text{ is even} \\
 <li><span class="math inline">43 \le R(5, 5) \le 45</span></li>
 <li><span class="math inline">102 \le R(6, 6) \le 165</span></li>
 <li><span class="math inline">798 \le R(10, 10) \le 23556</span></li>
-<li><span class="math inline">R(m, k) \le \binom{m + k -2}{m-1}</span></li>
-<li><span class="math inline">R(m, m) &gt; \frac{m}{2\sqrt{2}} \cdot 2^{\frac{m}{2}}</span></li>
+<li><span class="math inline">R(m, k) \le \binom{m + k
+-2}{m-1}</span></li>
+<li><span class="math inline">R(m, m) &gt; \frac{m}{2\sqrt{2}} \cdot
+2^{\frac{m}{2}}</span></li>
 </ul>
-<h3 id="application-in-posets"><span class="header-section-number">1.20.2</span> application in posets</h3>
-<p>In any poset with at least <span class="math inline">rs + 1</span> elements there is either a chain of length <span class="math inline">r + 1</span> or an antichain of length <span class="math inline">s + 1</span></p>
-<h3 id="erdos-szeberes-theorem"><span class="header-section-number">1.20.3</span> Erdos, Szeberes theorem</h3>
-<p>In any sequence of <span class="math inline">n \ge rs + 1</span> different real numbers there is an increasing subsequence of length <span class="math inline">r + 1</span> or a decreasing subsequence of length <span class="math inline">s + 1</span></p>
+<h3 data-number="1.20.2" id="application-in-posets"><span
+class="header-section-number">1.20.2</span> application in posets</h3>
+<p>In any poset with at least <span class="math inline">rs + 1</span>
+elements there is either a chain of length <span class="math inline">r +
+1</span> or an antichain of length <span class="math inline">s +
+1</span></p>
+<h3 data-number="1.20.3" id="erdos-szeberes-theorem"><span
+class="header-section-number">1.20.3</span> Erdos, Szeberes theorem</h3>
+<p>In any sequence of <span class="math inline">n \ge rs + 1</span>
+different real numbers there is an increasing subsequence of length
+<span class="math inline">r + 1</span> or a decreasing subsequence of
+length <span class="math inline">s + 1</span></p>
 </body>
 </html>

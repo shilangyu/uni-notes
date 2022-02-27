@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>turing_machines</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,28 +455,83 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="turing-machines"><span class="header-section-number">1</span> turing machines</h1>
-<p>Turing machines are computational models, most universal and powerful. It is used to accept languages, compute functions, and solve problems.</p>
-<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span></p>
+<h1 data-number="1" id="turing-machines"><span
+class="header-section-number">1</span> turing machines</h1>
+<p>Turing machines are computational models, most universal and
+powerful. It is used to accept languages, compute functions, and solve
+problems.</p>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B,
+F)</span></p>
 <ul>
 <li><span class="math inline">Q</span> - set of states</li>
-<li><span class="math inline">\Sigma \subset \Gamma</span> - input alphabet</li>
+<li><span class="math inline">\Sigma \subset \Gamma</span> - input
+alphabet</li>
 <li><span class="math inline">\Gamma</span> - tape alphabet</li>
-<li><span class="math inline">\delta: Q \times \Gamma \to Q \times \Gamma \times \{L, R\}</span> - transition function</li>
+<li><span class="math inline">\delta: Q \times \Gamma \to Q \times
+\Gamma \times \{L, R\}</span> - transition function</li>
 <li><span class="math inline">q_0 \in Q</span> - initial state</li>
-<li><span class="math inline">B \in \Gamma</span>, <span class="math inline">B \notin \Sigma</span> - blank symbol</li>
-<li><span class="math inline">F \subset Q</span> - accepting/final states</li>
+<li><span class="math inline">B \in \Gamma</span>, <span
+class="math inline">B \notin \Sigma</span> - blank symbol</li>
+<li><span class="math inline">F \subset Q</span> - accepting/final
+states</li>
 <li>stop condition</li>
 </ul>
-<p>|<span class="math inline">a_1</span>|<span class="math inline">a_2</span>|<span class="math inline">\cdots</span>|<span class="math inline">a_n</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">\cdots</span></p>
-<p><span class="math inline">\delta(q, X) = (p, Y, D)</span> produces the next state where <span class="math inline">q</span> is the current state, <span class="math inline">X</span> is the current symbol read by the head, <span class="math inline">p</span> is the new state, <span class="math inline">Y</span> is the printed symbol, <span class="math inline">D</span> is the direction (<span class="math inline">D \in \{L, R\}</span>).</p>
-<h2 id="example"><span class="header-section-number">1.1</span> example</h2>
-<p>Design a turing machine which computes the following function, <span class="math inline">f : \mathbb N \to \mathbb N</span>, <span class="math inline">f(n) = \lceil\frac{n}{3}\rceil</span></p>
-<p>We can use unary system, that is, <span class="math inline">n</span> is represented as the digit repeated <span class="math inline">n</span> times (<span class="math inline">5_{10} \equiv 00000_1</span>). Walk along the tape, turn the first leading zero into a new symbol, ie <span class="math inline">A</span>, go to the end of the tape, remove 2 trailing zeros. Repeat. Print all <span class="math inline">A</span> as a number.</p>
+<p>|<span class="math inline">a_1</span>|<span
+class="math inline">a_2</span>|<span
+class="math inline">\cdots</span>|<span
+class="math inline">a_n</span>|<span class="math inline">B</span>|<span
+class="math inline">B</span>|<span class="math inline">\cdots</span></p>
+<p><span class="math inline">\delta(q, X) = (p, Y, D)</span> produces
+the next state where <span class="math inline">q</span> is the current
+state, <span class="math inline">X</span> is the current symbol read by
+the head, <span class="math inline">p</span> is the new state, <span
+class="math inline">Y</span> is the printed symbol, <span
+class="math inline">D</span> is the direction (<span
+class="math inline">D \in \{L, R\}</span>).</p>
+<h2 data-number="1.1" id="example"><span
+class="header-section-number">1.1</span> example</h2>
+<p>Design a turing machine which computes the following function, <span
+class="math inline">f : \mathbb N \to \mathbb N</span>, <span
+class="math inline">f(n) = \lceil\frac{n}{3}\rceil</span></p>
+<p>We can use unary system, that is, <span class="math inline">n</span>
+is represented as the digit repeated <span class="math inline">n</span>
+times (<span class="math inline">5_{10} \equiv 00000_1</span>). Walk
+along the tape, turn the first leading zero into a new symbol, ie <span
+class="math inline">A</span>, go to the end of the tape, remove 2
+trailing zeros. Repeat. Print all <span class="math inline">A</span> as
+a number.</p>
 <p>Transition function as a table:</p>
 <table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th><span class="math inline">\delta</span></th>
@@ -358,132 +544,222 @@
 <tbody>
 <tr class="odd">
 <td><span class="math inline">q_0</span></td>
-<td style="text-align: center;"><span class="math inline">(q_2, X, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_2, X,
+R)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">(q_6, B, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, B,
+R)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">q_1</span></td>
-<td style="text-align: center;"><span class="math inline">(q_2, A, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_2, A,
+R)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">(q_6, B, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, B,
+L)</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">q_2</span></td>
-<td style="text-align: center;"><span class="math inline">(q_2, 0, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_2, 0,
+R)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">(q_3, B, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_3, B,
+L)</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">q_3</span></td>
-<td style="text-align: center;"><span class="math inline">(q_4, B, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_6, 0, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_6, 0, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_4, B,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0,
+R)</span></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">q_4</span></td>
-<td style="text-align: center;"><span class="math inline">(q_L, B, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_6, 0, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_6, 0, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_L, B,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0,
+R)</span></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">q_L</span></td>
-<td style="text-align: center;"><span class="math inline">(q_L, 0, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_1, A, R)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_1, X, R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_L, 0,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_1, A,
+R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_1, X,
+R)</span></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">q_6</span></td>
-<td style="text-align: center;"><span class="math inline">(q_A, 0, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_6, 0, L)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_6, 0, R)</span></td>
-<td style="text-align: center;"><span class="math inline">(q_A, B, L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_A, 0,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0,
+L)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_6, 0,
+R)</span></td>
+<td style="text-align: center;"><span class="math inline">(q_A, B,
+L)</span></td>
 </tr>
 </tbody>
 </table>
 <p>Empty spaces indicated states that will never happen.</p>
-<p>Thus, <span class="math inline">M = (\{q_0, q_1, 1_2, q_3, q_4, q_L, q_6, q_A\}, \{0\}, \{0, A, X, B\}, \delta, q_0, B, \{q_A\})</span></p>
-<h2 id="configuration"><span class="header-section-number">1.2</span> configuration</h2>
+<p>Thus, <span class="math inline">M = (\{q_0, q_1, 1_2, q_3, q_4, q_L,
+q_6, q_A\}, \{0\}, \{0, A, X, B\}, \delta, q_0, B, \{q_A\})</span></p>
+<h2 data-number="1.2" id="configuration"><span
+class="header-section-number">1.2</span> configuration</h2>
 <ul>
 <li><p>tape content</p></li>
 <li><p>state of control unit</p></li>
 <li><p>head position</p></li>
-<li><p><span class="math inline">\alpha</span>, left of the head</p></li>
-<li><p><span class="math inline">\beta</span>, from head to the right to the last non-blank symbol</p></li>
+<li><p><span class="math inline">\alpha</span>, left of the
+head</p></li>
+<li><p><span class="math inline">\beta</span>, from head to the right to
+the last non-blank symbol</p></li>
 <li><p><span class="math inline">q</span></p></li>
 </ul>
-<h3 id="computation"><span class="header-section-number">1.2.1</span> computation</h3>
+<h3 data-number="1.2.1" id="computation"><span
+class="header-section-number">1.2.1</span> computation</h3>
 <p>Sequence of configurations in which,</p>
 <ol type="1">
-<li>the beginning configuration is the beginning configuration of the machine</li>
-<li>each next configuration of this sequence is obtained by applying the transition function on the previous configuration</li>
-<li>last configuration is such that the stop condition is satisfied.</li>
+<li>the beginning configuration is the beginning configuration of the
+machine</li>
+<li>each next configuration of this sequence is obtained by applying the
+transition function on the previous configuration</li>
+<li>last configuration is such that the stop condition is
+satisfied.</li>
 </ol>
 <p>Example from above:</p>
 <p><span class="math display">
 \begin{aligned}
-    &amp;q_0 0000000 \vdash X q_2 000000 \vdash X0 q_2 00000 \vdash X00 q_2 0000 \stackrel{3}{\vdash} X00000 q_2 0 \vdash \\
-    &amp;\vdash X000000 q_2 \vdash X00000 q_3 0 \vdash X0000 q_4 0 \vdash X000 q_L 0 \vdash X00 q_L 00 \vdash X0 q_L 0000 \vdash \\
-    &amp;\vdash q_L X 0000 \vdash X q_1 0000 \vdash XA q_2 000 \stackrel{3}{\vdash} XA000 q_2 \vdash XA00 q_3 0 \vdash XA0 q_4 0 \vdash \\
-    &amp;\vdash XA q_L 0 \vdash X q_L A0 \vdash XA q_1 0 \vdash XAA q_2 \vdash XA q_3 A \vdash X q_6 A 0 \vdash q_6 X00 \vdash 0 q_6 00 \vdash q_A 000
+    &amp;q_0 0000000 \vdash X q_2 000000 \vdash X0 q_2 00000 \vdash X00
+q_2 0000 \stackrel{3}{\vdash} X00000 q_2 0 \vdash \\
+    &amp;\vdash X000000 q_2 \vdash X00000 q_3 0 \vdash X0000 q_4 0
+\vdash X000 q_L 0 \vdash X00 q_L 00 \vdash X0 q_L 0000 \vdash \\
+    &amp;\vdash q_L X 0000 \vdash X q_1 0000 \vdash XA q_2 000
+\stackrel{3}{\vdash} XA000 q_2 \vdash XA00 q_3 0 \vdash XA0 q_4 0 \vdash
+\\
+    &amp;\vdash XA q_L 0 \vdash X q_L A0 \vdash XA q_1 0 \vdash XAA q_2
+\vdash XA q_3 A \vdash X q_6 A 0 \vdash q_6 X00 \vdash 0 q_6 00 \vdash
+q_A 000
 \end{aligned}
 </span></p>
-<h2 id="guard"><span class="header-section-number">1.3</span> guard</h2>
-<p>First cell of the tape is a guard symbol <span class="math inline">\#</span>. This symbol can only be stored there.</p>
+<h2 data-number="1.3" id="guard"><span
+class="header-section-number">1.3</span> guard</h2>
+<p>First cell of the tape is a guard symbol <span
+class="math inline">\#</span>. This symbol can only be stored there.</p>
 <p><span class="math inline">\delta(q, \#) = (p, \#, R)</span></p>
-<p>Turing machines in basic model are equivalent to Turing machines with guard.</p>
-<h2 id="accepting-state"><span class="header-section-number">1.4</span> accepting state</h2>
-<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\})</span>, where <span class="math inline">ACC</span> is the accepting state with stop condition.</p>
-<h2 id="rejecting-state"><span class="header-section-number">1.5</span> rejecting state</h2>
-<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, \{ACC\}, \{REJ\})</span>, where <span class="math inline">REJ</span> is the rejecting state with stop condition. Computation is finished iff the machine switches to <span class="math inline">ACC</span>.</p>
-<h2 id="multitrack-turing-machines"><span class="header-section-number">1.6</span> multitrack turing machines</h2>
-<p>The tape has several tracks. <span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span>. Input configuration: input data are stored on the first track. All other tracks are filled in with the blank symbol. <span class="math inline">\delta: Q \times \Gamma^k \to Q \times \Gamma^k \times \{L, R\}</span> where <span class="math inline">k</span> is the amount of tracks. Again, multitrack turing machines are equivalent to basic models.</p>
+<p>Turing machines in basic model are equivalent to Turing machines with
+guard.</p>
+<h2 data-number="1.4" id="accepting-state"><span
+class="header-section-number">1.4</span> accepting state</h2>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B,
+\{ACC\})</span>, where <span class="math inline">ACC</span> is the
+accepting state with stop condition.</p>
+<h2 data-number="1.5" id="rejecting-state"><span
+class="header-section-number">1.5</span> rejecting state</h2>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B,
+\{ACC\}, \{REJ\})</span>, where <span class="math inline">REJ</span> is
+the rejecting state with stop condition. Computation is finished iff the
+machine switches to <span class="math inline">ACC</span>.</p>
+<h2 data-number="1.6" id="multitrack-turing-machines"><span
+class="header-section-number">1.6</span> multitrack turing machines</h2>
+<p>The tape has several tracks. <span class="math inline">M = (Q,
+\Sigma, \Gamma, \delta, q_0, B, F)</span>. Input configuration: input
+data are stored on the first track. All other tracks are filled in with
+the blank symbol. <span class="math inline">\delta: Q \times \Gamma^k
+\to Q \times \Gamma^k \times \{L, R\}</span> where <span
+class="math inline">k</span> is the amount of tracks. Again, multitrack
+turing machines are equivalent to basic models.</p>
 <ol type="1">
 <li>Turing machine in basic model is a multitrack Turing machine</li>
-<li>Change alphabet such that each vector of symbols has a new symbol representation: <span class="math inline">M = (Q, \Sigma \times \{B\}^{k-1}, \Gamma^k, \delta, q_0, \{B\}^k, F)</span></li>
+<li>Change alphabet such that each vector of symbols has a new symbol
+representation: <span class="math inline">M = (Q, \Sigma \times
+\{B\}^{k-1}, \Gamma^k, \delta, q_0, \{B\}^k, F)</span></li>
 </ol>
-<h2 id="two-way-infinite-tape"><span class="header-section-number">1.7</span> two way infinite tape</h2>
-<p><span class="math inline">\cdots</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">a_1</span>|<span class="math inline">a_2</span>|<span class="math inline">\cdots</span>|<span class="math inline">a_n</span>|<span class="math inline">B</span>|<span class="math inline">B</span>|<span class="math inline">\cdots</span></p>
-<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)</span></p>
-<h2 id="non-deterministic-tm"><span class="header-section-number">1.8</span> non-deterministic TM</h2>
-<p>For some configurations there may be more than one possible move. Machine picks the move which leads to the acceptation of input.</p>
-<p>In general empty entry in transition table means beginning of infinite computation. For sake of simplicity in some cases we might interpret empty entries as rejecting the input. In fact in each empty entry we should start the cleaning procedure and rejecting the input.</p>
-<p>Our interpretation of non-determinism relies on interpreting computation as a tree. A non-deterministic machine accepts iff at least one leaf accepts.</p>
-<h3 id="degree-of-non-determinism"><span class="header-section-number">1.8.1</span> degree of non-determinism</h3>
-<p>Maximal amount of options is called the degree of non-determinism.</p>
-<p>The number of children in the computation tree cannot be bigger than the degree of non-determinism.</p>
-<h3 id="equivalence"><span class="header-section-number">1.8.2</span> equivalence</h3>
-<p>The class of non-deterministic TM is equivalent to the class of deterministic TM (in terms of problems they solve).</p>
-<p>Given is a non-deterministic TM and some input date. Consider the computation tree for this input. This is a <span class="math inline">k</span>-tree. <span class="math inline">k</span>-degree of non-determinism. At each level we have a finite number of nodes. Let’s visit this tree with BFS, if there is an accepting leaf we will come to this leaf after final number of steps. Based on this observation we will construct a deterministic machine which is equivalent to this non-deterministic one.</p>
+<h2 data-number="1.7" id="two-way-infinite-tape"><span
+class="header-section-number">1.7</span> two way infinite tape</h2>
+<p><span class="math inline">\cdots</span>|<span
+class="math inline">B</span>|<span class="math inline">B</span>|<span
+class="math inline">a_1</span>|<span
+class="math inline">a_2</span>|<span
+class="math inline">\cdots</span>|<span
+class="math inline">a_n</span>|<span class="math inline">B</span>|<span
+class="math inline">B</span>|<span class="math inline">\cdots</span></p>
+<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B,
+F)</span></p>
+<h2 data-number="1.8" id="non-deterministic-tm"><span
+class="header-section-number">1.8</span> non-deterministic TM</h2>
+<p>For some configurations there may be more than one possible move.
+Machine picks the move which leads to the acceptation of input.</p>
+<p>In general empty entry in transition table means beginning of
+infinite computation. For sake of simplicity in some cases we might
+interpret empty entries as rejecting the input. In fact in each empty
+entry we should start the cleaning procedure and rejecting the
+input.</p>
+<p>Our interpretation of non-determinism relies on interpreting
+computation as a tree. A non-deterministic machine accepts iff at least
+one leaf accepts.</p>
+<h3 data-number="1.8.1" id="degree-of-non-determinism"><span
+class="header-section-number">1.8.1</span> degree of
+non-determinism</h3>
+<p>Maximal amount of options is called the degree of
+non-determinism.</p>
+<p>The number of children in the computation tree cannot be bigger than
+the degree of non-determinism.</p>
+<h3 data-number="1.8.2" id="equivalence"><span
+class="header-section-number">1.8.2</span> equivalence</h3>
+<p>The class of non-deterministic TM is equivalent to the class of
+deterministic TM (in terms of problems they solve).</p>
+<p>Given is a non-deterministic TM and some input date. Consider the
+computation tree for this input. This is a <span
+class="math inline">k</span>-tree. <span
+class="math inline">k</span>-degree of non-determinism. At each level we
+have a finite number of nodes. Let’s visit this tree with BFS, if there
+is an accepting leaf we will come to this leaf after final number of
+steps. Based on this observation we will construct a deterministic
+machine which is equivalent to this non-deterministic one.</p>
 <ol type="1">
 <li>This is a three-tape TM
 <ol type="1">
 <li>the first tape is used to keep input data</li>
-<li>the second tape stores sequences of numbers of lengths <span class="math inline">1, 2, 3, \cdots</span> of elements <span class="math inline">\{1, 2, \cdots, k\}</span></li>
+<li>the second tape stores sequences of numbers of lengths <span
+class="math inline">1, 2, 3, \cdots</span> of elements <span
+class="math inline">\{1, 2, \cdots, k\}</span></li>
 </ol></li>
 <li>for each generated sequence we:
 <ol type="1">
 <li>copy input from the first tape to the third tape</li>
-<li>simulate computation of non-deterministic turing machine defined by the sequence on the second tape.</li>
+<li>simulate computation of non-deterministic turing machine defined by
+the sequence on the second tape.</li>
 <li>if simulation comes to accepting node, then we accept input</li>
 <li>otherwise we continue to next sequence</li>
 </ol></li>
 </ol>
-<h3 id="linear-bounded-automaton"><span class="header-section-number">1.8.3</span> linear bounded automaton</h3>
-<p>A TM with a input tape guarded from both sides of the input. Used to accept CSL.</p>
-<h3 id="push-down-automata"><span class="header-section-number">1.8.4</span> push down automata</h3>
-<p>It has a stack and input tape. <span class="math inline">A = (Q, \Sigma, \Gamma, \delta, q_0, \vdash, F)</span></p>
+<h3 data-number="1.8.3" id="linear-bounded-automaton"><span
+class="header-section-number">1.8.3</span> linear bounded automaton</h3>
+<p>A TM with a input tape guarded from both sides of the input. Used to
+accept CSL.</p>
+<h3 data-number="1.8.4" id="push-down-automata"><span
+class="header-section-number">1.8.4</span> push down automata</h3>
+<p>It has a stack and input tape. <span class="math inline">A = (Q,
+\Sigma, \Gamma, \delta, q_0, \vdash, F)</span></p>
 <ul>
 <li><span class="math inline">\Gamma</span> - stack alphabet</li>
 <li><span class="math inline">\vdash</span> - end-of-stack symbol</li>
 <li><span class="math inline">\Sigma \cap \Gamma = \emptyset</span></li>
-<li><span class="math inline">\delta: Q \times (\Sigma \cup \{\varepsilon\}) \times \Gamma \to \bigcup_{k=0}^\infty (Q \times \Gamma)^k</span></li>
+<li><span class="math inline">\delta: Q \times (\Sigma \cup
+\{\varepsilon\}) \times \Gamma \to \bigcup_{k=0}^\infty (Q \times
+\Gamma)^k</span></li>
 <li>other symbols mean the same as in TM</li>
 </ul>
 <p>Configuration <span class="math inline">\gamma q w</span>:</p>
@@ -492,47 +768,91 @@
 <li><span class="math inline">q</span> - state</li>
 <li><span class="math inline">w</span> - content of input</li>
 </ul>
-<p>Computation of push down automata is always finite. It is used only for acceptation of languages, not for computing functions.</p>
+<p>Computation of push down automata is always finite. It is used only
+for acceptation of languages, not for computing functions.</p>
 <p>A move of a push down automaton is done as follows:</p>
 <ol type="1">
-<li>Control unit switches to state described by value of transition function.</li>
-<li>The input head reads the input symbol or does not check input (<span class="math inline">\varepsilon</span>). Drop the read symbol.</li>
+<li>Control unit switches to state described by value of transition
+function.</li>
+<li>The input head reads the input symbol or does not check input (<span
+class="math inline">\varepsilon</span>). Drop the read symbol.</li>
 <li>Stack head reads top symbol from the stack and removes it.</li>
 <li>Push the string of stack symbols to the stack.</li>
-<li>If value of transition function includes several pairs then the one is chosen which leads to acceptation of input.</li>
+<li>If value of transition function includes several pairs then the one
+is chosen which leads to acceptation of input.</li>
 </ol>
 <p>Push down automata is deterministic iff:</p>
 <ol type="1">
-<li>for each configuration (entry in transition tables) we have at most one possible move</li>
-<li>if for a given state and stack symbol we have not rejecting move then for the same state and stack symbol and for each input symbol we must have only rejecting moves</li>
+<li>for each configuration (entry in transition tables) we have at most
+one possible move</li>
+<li>if for a given state and stack symbol we have not rejecting move
+then for the same state and stack symbol and for each input symbol we
+must have only rejecting moves</li>
 </ol>
-<p>For a given push down automaton we can construct a TM which will be equivalent. The opposite is not always true.</p>
-<h4 id="equivalence-of-classes-of-push-down-automata-and-context-free-grammars"><span class="header-section-number">1.8.4.1</span> equivalence of classes of push-down automata and context-free grammars</h4>
+<p>For a given push down automaton we can construct a TM which will be
+equivalent. The opposite is not always true.</p>
+<h4 data-number="1.8.4.1"
+id="equivalence-of-classes-of-push-down-automata-and-context-free-grammars"><span
+class="header-section-number">1.8.4.1</span> equivalence of classes of
+push-down automata and context-free grammars</h4>
 <ol type="1">
-<li>for a given push-down automaton we may design a context-free grammar which is equivalent</li>
-<li>for a given context-free grammar we may design a push-down automaton which is equivalent</li>
+<li>for a given push-down automaton we may design a context-free grammar
+which is equivalent</li>
+<li>for a given context-free grammar we may design a push-down automaton
+which is equivalent</li>
 </ol>
-<h2 id="finite-automata"><span class="header-section-number">1.9</span> finite automata</h2>
-<p>Reads input word letter by letter switching between states. State at the end of the input is the final output. Used to accept/reject regular languages and only those. Transition function is <span class="math inline">\delta: Q \times \Gamma \to Q</span></p>
-<h3 id="varepsilon-nondeterministic-finite-automata"><span class="header-section-number">1.9.1</span> <span class="math inline">\varepsilon</span> nondeterministic finite automata</h3>
-<p>The transition function can read empty words, ie change states without consuming letter: <span class="math inline">\delta: Q \times (\Sigma \cup \{\varepsilon\}) \to 2^Q</span>. <span class="math inline">\varepsilon</span>-NFA is equivalent to DFA.</p>
-<h4 id="varepsilon-closure"><span class="header-section-number">1.9.1.1</span> <span class="math inline">\varepsilon</span>-closure</h4>
-<p>All states that can be reached only with <span class="math inline">\varepsilon</span>: <span class="math inline">\varepsilon\text{-}Cl(q) = \{p : p \in \delta(q, \varepsilon)\}</span></p>
-<h3 id="minimization"><span class="header-section-number">1.9.2</span> minimization</h3>
-<p>Generated DFA from the following methods is minimal (with respect to states ie has the smallest amount of states).</p>
-<h4 id="through-r_l"><span class="header-section-number">1.9.2.1</span> through <span class="math inline">R_L</span></h4>
-<p>Each state is represented as an equivalence class of the <span class="math inline">R_L</span> relation. Transition between states is reflected by transitions between equivalence classes when concatenating a letter. Accepting states are those whose equivalence classes contain words in the language.</p>
-<h4 id="through-regular-expressions"><span class="header-section-number">1.9.2.2</span> through regular expressions</h4>
+<h2 data-number="1.9" id="finite-automata"><span
+class="header-section-number">1.9</span> finite automata</h2>
+<p>Reads input word letter by letter switching between states. State at
+the end of the input is the final output. Used to accept/reject regular
+languages and only those. Transition function is <span
+class="math inline">\delta: Q \times \Gamma \to Q</span></p>
+<h3 data-number="1.9.1"
+id="varepsilon-nondeterministic-finite-automata"><span
+class="header-section-number">1.9.1</span> <span
+class="math inline">\varepsilon</span> nondeterministic finite
+automata</h3>
+<p>The transition function can read empty words, ie change states
+without consuming letter: <span class="math inline">\delta: Q \times
+(\Sigma \cup \{\varepsilon\}) \to 2^Q</span>. <span
+class="math inline">\varepsilon</span>-NFA is equivalent to DFA.</p>
+<h4 data-number="1.9.1.1" id="varepsilon-closure"><span
+class="header-section-number">1.9.1.1</span> <span
+class="math inline">\varepsilon</span>-closure</h4>
+<p>All states that can be reached only with <span
+class="math inline">\varepsilon</span>: <span
+class="math inline">\varepsilon\text{-}Cl(q) = \{p : p \in \delta(q,
+\varepsilon)\}</span></p>
+<h3 data-number="1.9.2" id="minimization"><span
+class="header-section-number">1.9.2</span> minimization</h3>
+<p>Generated DFA from the following methods is minimal (with respect to
+states ie has the smallest amount of states).</p>
+<h4 data-number="1.9.2.1" id="through-r_l"><span
+class="header-section-number">1.9.2.1</span> through <span
+class="math inline">R_L</span></h4>
+<p>Each state is represented as an equivalence class of the <span
+class="math inline">R_L</span> relation. Transition between states is
+reflected by transitions between equivalence classes when concatenating
+a letter. Accepting states are those whose equivalence classes contain
+words in the language.</p>
+<h4 data-number="1.9.2.2" id="through-regular-expressions"><span
+class="header-section-number">1.9.2.2</span> through regular
+expressions</h4>
 <ol type="1">
-<li>Divide using left quotient language generated by regular expression by all letters of the alphabet</li>
-<li>Recursively divide results until no new results are obtained (creates loops)</li>
+<li>Divide using left quotient language generated by regular expression
+by all letters of the alphabet</li>
+<li>Recursively divide results until no new results are obtained
+(creates loops)</li>
 <li>States in our automaton are all languages we got from quotients</li>
 <li>Initial state is the original language</li>
 <li>Accepting states are states generating empty word</li>
-<li>Transition between states is obtained from the letter by which we divided</li>
+<li>Transition between states is obtained from the letter by which we
+divided</li>
 </ol>
-<h5 id="left-quotient"><span class="header-section-number">1.9.2.2.1</span> left quotient</h5>
-<p>Of languages: <span class="math inline">L_1 \backslash L_2 = \{y \in \Sigma^* : (\exists_{x\in L_2})xy \in L_1\}</span></p>
+<h5 data-number="1.9.2.2.1" id="left-quotient"><span
+class="header-section-number">1.9.2.2.1</span> left quotient</h5>
+<p>Of languages: <span class="math inline">L_1 \backslash L_2 = \{y \in
+\Sigma^* : (\exists_{x\in L_2})xy \in L_1\}</span></p>
 <!--
 HOMEWORK:
     design a turing machine whether a given binary word (non empty):

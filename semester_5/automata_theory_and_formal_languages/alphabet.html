@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>alphabet</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,49 +455,103 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="alphabet"><span class="header-section-number">1</span> alphabet</h1>
-<p><span class="math inline">\Sigma = \{a^{(1)}, \cdots, a^{(\rho)}\}</span> Non-empty!</p>
-<h2 id="words"><span class="header-section-number">1.1</span> words</h2>
+<h1 data-number="1" id="alphabet"><span
+class="header-section-number">1</span> alphabet</h1>
+<p><span class="math inline">\Sigma = \{a^{(1)}, \cdots,
+a^{(\rho)}\}</span> Non-empty!</p>
+<h2 data-number="1.1" id="words"><span
+class="header-section-number">1.1</span> words</h2>
 <p>Finite sequence of elements (letters)</p>
 <p>Empty word: <span class="math inline">w = \varepsilon</span></p>
-<p>A set of all words over an alphabet is infinite and countable: <span class="math inline">\Sigma^*</span></p>
+<p>A set of all words over an alphabet is infinite and countable: <span
+class="math inline">\Sigma^*</span></p>
 <p>We can enumerate all words as follows (canonical order):</p>
 <ol type="1">
 <li>shorter words proceed longer ones</li>
 <li>equal lengths are sorted alphabetically</li>
 </ol>
-<h2 id="language"><span class="header-section-number">1.2</span> language</h2>
-<p>A language over an alphabet is any subset of <span class="math inline">\Sigma^*</span>, there is an infinite uncountable number of languages</p>
+<h2 data-number="1.2" id="language"><span
+class="header-section-number">1.2</span> language</h2>
+<p>A language over an alphabet is any subset of <span
+class="math inline">\Sigma^*</span>, there is an infinite uncountable
+number of languages</p>
 <ul>
 <li>A, B, C, <span class="math inline">\cdots</span> - nonterminals</li>
-<li>a, b, c, <span class="math inline">\cdots</span>, 0, 1, 2, <span class="math inline">\cdots</span>, +, -, <span class="math inline">\cdots</span> - terminals</li>
-<li><span class="math inline">\alpha, \beta, \gamma, \cdots</span> - strings of terminals and nonterminals</li>
-<li>z, y, x, w, v, <span class="math inline">\cdots</span> - strings of terminals</li>
-<li>Z, Y, X, W, <span class="math inline">\cdots</span> - either terminal or nonterminal</li>
+<li>a, b, c, <span class="math inline">\cdots</span>, 0, 1, 2, <span
+class="math inline">\cdots</span>, +, -, <span
+class="math inline">\cdots</span> - terminals</li>
+<li><span class="math inline">\alpha, \beta, \gamma, \cdots</span> -
+strings of terminals and nonterminals</li>
+<li>z, y, x, w, v, <span class="math inline">\cdots</span> - strings of
+terminals</li>
+<li>Z, Y, X, W, <span class="math inline">\cdots</span> - either
+terminal or nonterminal</li>
 </ul>
-<h2 id="grammars"><span class="header-section-number">1.3</span> grammars</h2>
+<h2 data-number="1.3" id="grammars"><span
+class="header-section-number">1.3</span> grammars</h2>
 <p><span class="math inline">G = (V, T, P, S)</span></p>
 <ul>
-<li><span class="math inline">V</span> - finite set of symbols called nonterminals</li>
-<li><span class="math inline">T</span> - finite set of symbols called terminals</li>
+<li><span class="math inline">V</span> - finite set of symbols called
+nonterminals</li>
+<li><span class="math inline">T</span> - finite set of symbols called
+terminals</li>
 <li><span class="math inline">P</span> - finite set of productions</li>
-<li><span class="math inline">S</span> - nonterminal (distinguished) called initial symbol of a grammar</li>
+<li><span class="math inline">S</span> - nonterminal (distinguished)
+called initial symbol of a grammar</li>
 </ul>
-<p>Production is a pair <span class="math inline">(\alpha, \beta)</span>, <span class="math inline">\alpha, \beta \in (V \cup T)^*</span>, <span class="math inline">\alpha \ne \varepsilon</span></p>
-<p>By default <span class="math inline">S, E</span> are the initial symbols of a grammar</p>
-<h3 id="direct-derivation"><span class="header-section-number">1.3.1</span> direct derivation</h3>
-<p><span class="math inline">\gamma \alpha \delta \implies \gamma \beta \delta</span>, <span class="math inline">\alpha, \beta, \gamma, \delta \in (V \cup T)^*</span> and <span class="math inline">\alpha \to \beta</span> is a production</p>
-<h3 id="derivation"><span class="header-section-number">1.3.2</span> derivation</h3>
+<p>Production is a pair <span class="math inline">(\alpha,
+\beta)</span>, <span class="math inline">\alpha, \beta \in (V \cup
+T)^*</span>, <span class="math inline">\alpha \ne \varepsilon</span></p>
+<p>By default <span class="math inline">S, E</span> are the initial
+symbols of a grammar</p>
+<h3 data-number="1.3.1" id="direct-derivation"><span
+class="header-section-number">1.3.1</span> direct derivation</h3>
+<p><span class="math inline">\gamma \alpha \delta \implies \gamma \beta
+\delta</span>, <span class="math inline">\alpha, \beta, \gamma, \delta
+\in (V \cup T)^*</span> and <span class="math inline">\alpha \to
+\beta</span> is a production</p>
+<h3 data-number="1.3.2" id="derivation"><span
+class="header-section-number">1.3.2</span> derivation</h3>
 <p>Application of direct derivation several times</p>
-<p>A language <span class="math inline">L(G)</span> generated by a grammar <span class="math inline">G</span> is the set of all words over <span class="math inline">T</span> that can be derived from <span class="math inline">S</span></p>
-<h3 id="regular-grammars"><span class="header-section-number">1.3.3</span> regular grammars</h3>
-<h4 id="left-linear"><span class="header-section-number">1.3.3.1</span> left linear</h4>
-<p>Productions of the form <span class="math inline">A \to Bw</span> or <span class="math inline">A \to w</span></p>
-<h4 id="right-linear"><span class="header-section-number">1.3.3.2</span> right linear</h4>
-<p>Productions of the form <span class="math inline">A \to wB</span> or <span class="math inline">A \to w</span></p>
-<h2 id="operations"><span class="header-section-number">1.4</span> operations</h2>
+<p>A language <span class="math inline">L(G)</span> generated by a
+grammar <span class="math inline">G</span> is the set of all words over
+<span class="math inline">T</span> that can be derived from <span
+class="math inline">S</span></p>
+<h3 data-number="1.3.3" id="regular-grammars"><span
+class="header-section-number">1.3.3</span> regular grammars</h3>
+<h4 data-number="1.3.3.1" id="left-linear"><span
+class="header-section-number">1.3.3.1</span> left linear</h4>
+<p>Productions of the form <span class="math inline">A \to Bw</span> or
+<span class="math inline">A \to w</span></p>
+<h4 data-number="1.3.3.2" id="right-linear"><span
+class="header-section-number">1.3.3.2</span> right linear</h4>
+<p>Productions of the form <span class="math inline">A \to wB</span> or
+<span class="math inline">A \to w</span></p>
+<h2 data-number="1.4" id="operations"><span
+class="header-section-number">1.4</span> operations</h2>
 <ul>
 <li>set theoretical operations: union, intersection, complement</li>
 <li>concatenation
@@ -374,7 +559,8 @@
 <li>of words: <span class="math inline">u \circ v</span></li>
 <li>of languages: <span class="math inline">L_1 \circ L_2</span></li>
 </ol></li>
-<li><span class="math inline">*</span> closure, Kleene closure: <span class="math inline">L^* = \bigcup_{k=0}^\infty L^k</span></li>
+<li><span class="math inline">*</span> closure, Kleene closure: <span
+class="math inline">L^* = \bigcup_{k=0}^\infty L^k</span></li>
 </ul>
 <p><span class="math display">
 \begin{cases}
@@ -382,192 +568,370 @@
     L^{k+1} = L^k \circ L \\
 \end{cases}
 </span></p>
-<h2 id="chomskys-hierarchy-of-languages"><span class="header-section-number">1.5</span> Chomsky’s hierarchy of languages</h2>
-<p>regular <span class="math inline">\subsetneq</span> context free <span class="math inline">\subsetneq</span> context sensitive <span class="math inline">\subsetneq</span> recursive <span class="math inline">\subsetneq</span> recursively enumerable <span class="math inline">\subsetneq</span> all</p>
-<h2 id="regular-expressions"><span class="header-section-number">1.6</span> regular expressions</h2>
+<h2 data-number="1.5" id="chomskys-hierarchy-of-languages"><span
+class="header-section-number">1.5</span> Chomsky’s hierarchy of
+languages</h2>
+<p>regular <span class="math inline">\subsetneq</span> context free
+<span class="math inline">\subsetneq</span> context sensitive <span
+class="math inline">\subsetneq</span> recursive <span
+class="math inline">\subsetneq</span> recursively enumerable <span
+class="math inline">\subsetneq</span> all</p>
+<h2 data-number="1.6" id="regular-expressions"><span
+class="header-section-number">1.6</span> regular expressions</h2>
 <p>Finite strings of symbols over alphabet</p>
 <ol type="1">
-<li><span class="math inline">\emptyset, \varepsilon</span> and <span class="math inline">\forall_{a \in \Sigma} a</span></li>
-<li>let <span class="math inline">r</span> and <span class="math inline">s</span> be regular expressions: <span class="math inline">(r+s)</span>, <span class="math inline">(r \circ s)</span>, <span class="math inline">(r^*)</span> (operator precedence is as in the presented order)</li>
+<li><span class="math inline">\emptyset, \varepsilon</span> and <span
+class="math inline">\forall_{a \in \Sigma} a</span></li>
+<li>let <span class="math inline">r</span> and <span
+class="math inline">s</span> be regular expressions: <span
+class="math inline">(r+s)</span>, <span class="math inline">(r \circ
+s)</span>, <span class="math inline">(r^*)</span> (operator precedence
+is as in the presented order)</li>
 <li>apply the rules above finite amount of times</li>
 </ol>
 <p>Regular expressions generate languages</p>
 <ol type="1">
 <li><ul>
-<li><span class="math inline">\emptyset</span> generate <span class="math inline">\emptyset</span></li>
-<li><span class="math inline">\varepsilon</span> generate <span class="math inline">\{\varepsilon\}</span></li>
-<li><span class="math inline">\forall_{a \in \Sigma} a</span> generates <span class="math inline">\{a\}</span></li>
+<li><span class="math inline">\emptyset</span> generate <span
+class="math inline">\emptyset</span></li>
+<li><span class="math inline">\varepsilon</span> generate <span
+class="math inline">\{\varepsilon\}</span></li>
+<li><span class="math inline">\forall_{a \in \Sigma} a</span> generates
+<span class="math inline">\{a\}</span></li>
 </ul></li>
-<li>if <span class="math inline">r</span> and <span class="math inline">s</span> generate languages <span class="math inline">R</span> and <span class="math inline">S</span> then
+<li>if <span class="math inline">r</span> and <span
+class="math inline">s</span> generate languages <span
+class="math inline">R</span> and <span class="math inline">S</span> then
 <ul>
-<li><span class="math inline">(r+s)</span> generates <span class="math inline">R \cup S</span></li>
-<li><span class="math inline">(r \circ s)</span> generates <span class="math inline">R \circ S</span></li>
-<li><span class="math inline">(r^*)</span> generates <span class="math inline">R^*</span></li>
+<li><span class="math inline">(r+s)</span> generates <span
+class="math inline">R \cup S</span></li>
+<li><span class="math inline">(r \circ s)</span> generates <span
+class="math inline">R \circ S</span></li>
+<li><span class="math inline">(r^*)</span> generates <span
+class="math inline">R^*</span></li>
 </ul></li>
 </ol>
-<p><strong>Regular languages</strong> are those generated by regular expressions and only those. Regular grammars generate regular languages and only regular languages.</p>
-<h3 id="equivalent-expressions"><span class="header-section-number">1.6.1</span> equivalent expressions</h3>
+<p><strong>Regular languages</strong> are those generated by regular
+expressions and only those. Regular grammars generate regular languages
+and only regular languages.</p>
+<h3 data-number="1.6.1" id="equivalent-expressions"><span
+class="header-section-number">1.6.1</span> equivalent expressions</h3>
 <ul>
 <li><span class="math inline">\emptyset + r \equiv r</span></li>
 <li><span class="math inline">r + s \equiv s + r</span></li>
 <li><span class="math inline">(r+s) + t \equiv r + (s+t)</span></li>
-<li><span class="math inline">\varepsilon r \equiv r\varepsilon \equiv r</span></li>
+<li><span class="math inline">\varepsilon r \equiv r\varepsilon \equiv
+r</span></li>
 <li><span class="math inline">r(s+t) \equiv rs + rt</span></li>
 <li><span class="math inline">(r^*)^* \equiv r^*</span></li>
 <li><span class="math inline">(r^*s^*)^* \equiv (r+s)^*</span></li>
 <li><span class="math inline">(\varepsilon + r)^* \equiv r^*</span></li>
 <li><span class="math inline">(s + r)^* \equiv (r^* + s^*)^*</span></li>
 </ul>
-<h3 id="tools-to-check-if-a-language-is-regular"><span class="header-section-number">1.6.2</span> tools to check if a language is regular</h3>
+<h3 data-number="1.6.2"
+id="tools-to-check-if-a-language-is-regular"><span
+class="header-section-number">1.6.2</span> tools to check if a language
+is regular</h3>
 <ol type="1">
 <li>regular grammars</li>
 <li>regular expressions</li>
 <li>pumping lemma</li>
 <li>Myhill-Nerode lemma</li>
 </ol>
-<h4 id="pumping-lemma"><span class="header-section-number">1.6.2.1</span> pumping lemma</h4>
-<p>If a language <span class="math inline">L</span> is regular then there exists a constant <span class="math inline">n_L</span> s.t. for any <span class="math inline">z \in L</span>:</p>
+<h4 data-number="1.6.2.1" id="pumping-lemma"><span
+class="header-section-number">1.6.2.1</span> pumping lemma</h4>
+<p>If a language <span class="math inline">L</span> is regular then
+there exists a constant <span class="math inline">n_L</span> s.t. for
+any <span class="math inline">z \in L</span>:</p>
 <p><span class="math display">
-|z| \ge n_L \implies (\exists_{u,v,w \in \Sigma^*, z = uvw, |uv| \le n_L, |v| \ge 1})(\forall_{i=0,1,2,\cdots})z_i= uv^iw\in L
+|z| \ge n_L \implies (\exists_{u,v,w \in \Sigma^*, z = uvw, |uv| \le
+n_L, |v| \ge 1})(\forall_{i=0,1,2,\cdots})z_i= uv^iw\in L
 </span></p>
-<h5 id="contraposition"><span class="header-section-number">1.6.2.1.1</span> contraposition</h5>
-<p>If for any constant <span class="math inline">N</span> there exists <span class="math inline">z \in L</span> s.t. the following conditions holds:</p>
+<h5 data-number="1.6.2.1.1" id="contraposition"><span
+class="header-section-number">1.6.2.1.1</span> contraposition</h5>
+<p>If for any constant <span class="math inline">N</span> there exists
+<span class="math inline">z \in L</span> s.t. the following conditions
+holds:</p>
 <p><span class="math display">
-|z| \ge N \land (\forall_{u,v,w \in \Sigma^*, z= uvw, |uv| \le N, |v| \ge 1})(\exists_{i=0,1,2,\cdots})z_i=uv^iw \notin L
+|z| \ge N \land (\forall_{u,v,w \in \Sigma^*, z= uvw, |uv| \le N, |v|
+\ge 1})(\exists_{i=0,1,2,\cdots})z_i=uv^iw \notin L
 </span></p>
 <p>then <span class="math inline">L</span> is not regular</p>
-<h4 id="myhill-nerode"><span class="header-section-number">1.6.2.2</span> Myhill-Nerode</h4>
-<p>A language <span class="math inline">L</span> is regular iff the relation <span class="math inline">R_L</span> induced by <span class="math inline">L</span> has finite index (finite number of equivalence classes)</p>
-<p>Where <span class="math inline">uR_Lv \equiv \big [(\forall_{z\in \Sigma^*})uz\in L \equiv vz \in L\big]</span></p>
-<p>let <span class="math inline">\rho \subset \Sigma^*\times\Sigma^*</span>, <span class="math inline">u,v\in \Sigma^*</span>, <span class="math inline">u\rho v \equiv |supp(u) \cap supp(v)| = 2</span> where <span class="math inline">supp(u) = \text{the set of letters in u}</span></p>
-<h2 id="context-free-grammars-and-languages"><span class="header-section-number">1.7</span> context-free grammars and languages</h2>
-<p>A grammar is context-free iff it’s productions are of a form <span class="math inline">A \mapsto \alpha</span> where <span class="math inline">A \in V</span>, <span class="math inline">\alpha \in (V\cup T)^*</span></p>
-<p>Context-free languages are languages generated by context-free grammars and only those.</p>
-<h3 id="simplification"><span class="header-section-number">1.7.1</span> simplification</h3>
+<h4 data-number="1.6.2.2" id="myhill-nerode"><span
+class="header-section-number">1.6.2.2</span> Myhill-Nerode</h4>
+<p>A language <span class="math inline">L</span> is regular iff the
+relation <span class="math inline">R_L</span> induced by <span
+class="math inline">L</span> has finite index (finite number of
+equivalence classes)</p>
+<p>Where <span class="math inline">uR_Lv \equiv \big [(\forall_{z\in
+\Sigma^*})uz\in L \equiv vz \in L\big]</span></p>
+<p>let <span class="math inline">\rho \subset
+\Sigma^*\times\Sigma^*</span>, <span class="math inline">u,v\in
+\Sigma^*</span>, <span class="math inline">u\rho v \equiv |supp(u) \cap
+supp(v)| = 2</span> where <span class="math inline">supp(u) = \text{the
+set of letters in u}</span></p>
+<h2 data-number="1.7" id="context-free-grammars-and-languages"><span
+class="header-section-number">1.7</span> context-free grammars and
+languages</h2>
+<p>A grammar is context-free iff it’s productions are of a form <span
+class="math inline">A \mapsto \alpha</span> where <span
+class="math inline">A \in V</span>, <span class="math inline">\alpha \in
+(V\cup T)^*</span></p>
+<p>Context-free languages are languages generated by context-free
+grammars and only those.</p>
+<h3 data-number="1.7.1" id="simplification"><span
+class="header-section-number">1.7.1</span> simplification</h3>
 <ol type="1">
-<li>removing useless symbols<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">\to</span> remove productions using those symbols</li>
+<li>removing useless symbols<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> <span
+class="math inline">\to</span> remove productions using those
+symbols</li>
 <li>removing unit productions
 <ol type="1">
-<li>delete productions of the form <span class="math inline">A \mapsto A</span></li>
-<li>replace <span class="math inline">A \mapsto B</span> with <span class="math inline">A \mapsto \text{right hand side of B-production}</span></li>
+<li>delete productions of the form <span class="math inline">A \mapsto
+A</span></li>
+<li>replace <span class="math inline">A \mapsto B</span> with <span
+class="math inline">A \mapsto \text{right hand side of
+B-production}</span></li>
 </ol></li>
-<li>changing status of nullable symbols (nonterminals which can generate an empty word)</li>
+<li>changing status of nullable symbols (nonterminals which can generate
+an empty word)</li>
 </ol>
-<h4 id="identification-of-useless-symbols"><span class="header-section-number">1.7.1.1</span> identification of useless symbols</h4>
-<h5 id="not-reachable"><span class="header-section-number">1.7.1.1.1</span> not reachable</h5>
+<h4 data-number="1.7.1.1" id="identification-of-useless-symbols"><span
+class="header-section-number">1.7.1.1</span> identification of useless
+symbols</h4>
+<h5 data-number="1.7.1.1.1" id="not-reachable"><span
+class="header-section-number">1.7.1.1.1</span> not reachable</h5>
 <p>TODO: wording here is very wrong</p>
 <ol type="1">
-<li><span class="math inline">V_r = \{s\}</span>, <span class="math inline">T_r = \emptyset</span></li>
-<li>production starts with a reachable left hand symbol and symbols on its right hand side to the two sets above</li>
-<li>repeat step 2. as long as <span class="math inline">V_r</span>, <span class="math inline">T_r</span> are being changed</li>
+<li><span class="math inline">V_r = \{s\}</span>, <span
+class="math inline">T_r = \emptyset</span></li>
+<li>production starts with a reachable left hand symbol and symbols on
+its right hand side to the two sets above</li>
+<li>repeat step 2. as long as <span class="math inline">V_r</span>,
+<span class="math inline">T_r</span> are being changed</li>
 <li>remove productions that do not include symbols from sets 1.</li>
 </ol>
-<h5 id="not-generative"><span class="header-section-number">1.7.1.1.2</span> not generative</h5>
+<h5 data-number="1.7.1.1.2" id="not-generative"><span
+class="header-section-number">1.7.1.1.2</span> not generative</h5>
 <ol type="1">
-<li><span class="math inline">V_g = \emptyset</span>, <span class="math inline">T_g = T</span></li>
-<li>for each production if its right hand side is empty or has only generative symbols then add its left hand side to <span class="math inline">V_g</span></li>
-<li>repeat step 2. as lon as <span class="math inline">V_g</span> is being changed</li>
+<li><span class="math inline">V_g = \emptyset</span>, <span
+class="math inline">T_g = T</span></li>
+<li>for each production if its right hand side is empty or has only
+generative symbols then add its left hand side to <span
+class="math inline">V_g</span></li>
+<li>repeat step 2. as lon as <span class="math inline">V_g</span> is
+being changed</li>
 <li>remove non generative symbols and productions using those</li>
 </ol>
-<h5 id="nullables"><span class="header-section-number">1.7.1.1.3</span> nullables</h5>
+<h5 data-number="1.7.1.1.3" id="nullables"><span
+class="header-section-number">1.7.1.1.3</span> nullables</h5>
 <ol type="1">
-<li><span class="math inline">V_n = \emptyset</span> the set of nullable symbols</li>
-<li>for each production if its right hand side is empty or is a string of nullable symbols then add its left hand side to <span class="math inline">V_n</span></li>
-<li>repeat step 2. as long as <span class="math inline">V_n</span> is being changed</li>
-<li>change status of nullable symbols and delete nullable productions</li>
+<li><span class="math inline">V_n = \emptyset</span> the set of nullable
+symbols</li>
+<li>for each production if its right hand side is empty or is a string
+of nullable symbols then add its left hand side to <span
+class="math inline">V_n</span></li>
+<li>repeat step 2. as long as <span class="math inline">V_n</span> is
+being changed</li>
+<li>change status of nullable symbols and delete nullable
+productions</li>
 </ol>
-<p><span class="math inline">A \mapsto X_1, \cdots, X_k, \cdots X_n</span></p>
-<p>if <span class="math inline">X_k</span> is nullable then replace this production with</p>
+<p><span class="math inline">A \mapsto X_1, \cdots, X_k, \cdots
+X_n</span></p>
+<p>if <span class="math inline">X_k</span> is nullable then replace this
+production with</p>
 <ul>
-<li><span class="math inline">A \mapsto X_1, \cdots, X_k, \cdots X_n</span></li>
-<li><span class="math inline">A \mapsto X_1, \cdots, X_{k-1}, X_{k+1} \cdots X_n</span></li>
+<li><span class="math inline">A \mapsto X_1, \cdots, X_k, \cdots
+X_n</span></li>
+<li><span class="math inline">A \mapsto X_1, \cdots, X_{k-1}, X_{k+1}
+\cdots X_n</span></li>
 </ul>
 <p>Finally, delete productions to empty word</p>
-<p>If a grammar doesn’t generate the empty word then the generated language does not change</p>
-<h3 id="normal-form"><span class="header-section-number">1.7.2</span> normal form</h3>
-<p>Any context-free grammar not generating empty word can be transformed to normal forms</p>
-<h4 id="chomsky"><span class="header-section-number">1.7.2.1</span> Chomsky</h4>
-<p>The productions are <span class="math inline">A \mapsto a</span> or <span class="math inline">A \mapsto BC</span></p>
+<p>If a grammar doesn’t generate the empty word then the generated
+language does not change</p>
+<h3 data-number="1.7.2" id="normal-form"><span
+class="header-section-number">1.7.2</span> normal form</h3>
+<p>Any context-free grammar not generating empty word can be transformed
+to normal forms</p>
+<h4 data-number="1.7.2.1" id="chomsky"><span
+class="header-section-number">1.7.2.1</span> Chomsky</h4>
+<p>The productions are <span class="math inline">A \mapsto a</span> or
+<span class="math inline">A \mapsto BC</span></p>
 <ol type="1">
 <li>simplify a grammar</li>
-<li>this yields productions <span class="math inline">A \mapsto a</span> or <span class="math inline">A \mapsto x_1, \cdots , x_n</span> where <span class="math inline">n \ge 2</span></li>
-<li>in all productions <span class="math inline">A \mapsto x_1, \cdots , x_n</span> where <span class="math inline">n \ge 2</span> replace terminals with a nonterminal and add a new production <span class="math inline">A_a \mapsto a</span></li>
-<li>this yields productions <span class="math inline">A \mapsto a</span>, <span class="math inline">A \mapsto BC</span>, and <span class="math inline">A \mapsto B_1, \cdots, B_n</span> where <span class="math inline">n &gt; 2</span></li>
-<li>replace <span class="math inline">A \mapsto B_1, \cdots, B_n</span> where <span class="math inline">n &gt; 2</span> with <span class="math inline">A \mapsto B_1, \cdots, B_{n-2}, B_{n-1,n}</span> and <span class="math inline">B_{n-1,n} \mapsto B_{n-1}B_n</span></li>
+<li>this yields productions <span class="math inline">A \mapsto a</span>
+or <span class="math inline">A \mapsto x_1, \cdots , x_n</span> where
+<span class="math inline">n \ge 2</span></li>
+<li>in all productions <span class="math inline">A \mapsto x_1, \cdots ,
+x_n</span> where <span class="math inline">n \ge 2</span> replace
+terminals with a nonterminal and add a new production <span
+class="math inline">A_a \mapsto a</span></li>
+<li>this yields productions <span class="math inline">A \mapsto
+a</span>, <span class="math inline">A \mapsto BC</span>, and <span
+class="math inline">A \mapsto B_1, \cdots, B_n</span> where <span
+class="math inline">n &gt; 2</span></li>
+<li>replace <span class="math inline">A \mapsto B_1, \cdots, B_n</span>
+where <span class="math inline">n &gt; 2</span> with <span
+class="math inline">A \mapsto B_1, \cdots, B_{n-2}, B_{n-1,n}</span> and
+<span class="math inline">B_{n-1,n} \mapsto B_{n-1}B_n</span></li>
 <li>repeat step 5. until all productions are in Chomsky’s form</li>
 </ol>
-<h4 id="greibach"><span class="header-section-number">1.7.2.2</span> Greibach</h4>
-<p>The productions are <span class="math inline">A \mapsto a\alpha</span> where <span class="math inline">\alpha \in V^*</span></p>
+<h4 data-number="1.7.2.2" id="greibach"><span
+class="header-section-number">1.7.2.2</span> Greibach</h4>
+<p>The productions are <span class="math inline">A \mapsto
+a\alpha</span> where <span class="math inline">\alpha \in V^*</span></p>
 <ol type="1">
-<li>transform a grammar to Chomsky’s form (obligatory in automatic transformation)</li>
-<li>enumerate all nonterminals <span class="math inline">A_1, A_2, \cdots A_N</span></li>
+<li>transform a grammar to Chomsky’s form (obligatory in automatic
+transformation)</li>
+<li>enumerate all nonterminals <span class="math inline">A_1, A_2,
+\cdots A_N</span></li>
 <li>all productions have to satisfy the star condition:</li>
 </ol>
 <p><span class="math display">
 (*) \begin{cases}
    A_i \mapsto a\alpha   &amp; a \in T, \alpha \in V^* \\
-   A_i \mapsto A_j\alpha &amp; j &gt; i, \alpha \in V^*, |\alpha| &gt; 0\\
+   A_i \mapsto A_j\alpha &amp; j &gt; i, \alpha \in V^*, |\alpha| &gt;
+0\\
 \end{cases}
 </span></p>
 <ol start="4" type="1">
-<li>assume that all <span class="math inline">A_i</span> productions satisfy <span class="math inline">(*)</span> for <span class="math inline">i &lt; k</span> and <span class="math inline">A_k</span> productions do not, thus are <span class="math inline">A_k \mapsto a\alpha</span>, <span class="math inline">A_k \mapsto A_i\alpha</span> where <span class="math inline">i &lt; k</span>, and <span class="math inline">A_k \mapsto A_k\alpha</span></li>
-<li>replace in <span class="math inline">A_k \mapsto A_i\alpha</span> where <span class="math inline">i &lt; k</span> the <span class="math inline">A_i</span> with right-hand side of <span class="math inline">A_i</span> productions. After this operation if we still have of the same form they will have the first nonterminal of greater index than <span class="math inline">i</span>. Repeating this step will make it satisfy <span class="math inline">(*)</span></li>
-<li>assume that we have productions <span class="math inline">A_k \mapsto A_k\alpha_1 | A_k\alpha_2 | \cdots | A_k\alpha_m | \beta_1 | \cdots | \beta_n</span>. Add another nonterminal <span class="math inline">B_k</span> and replace productions with <span class="math inline">A_k \mapsto \beta_1 | \cdots | \beta_n | B_k\beta_1 | \cdots | B_k\beta_n</span> and <span class="math inline">B_k \mapsto \alpha_1 | \cdots | \alpha_m | \alpha_1B_k|\cdots | \alpha_mB_k</span>. <span class="math inline">B_k</span> proceeds all <span class="math inline">A_i</span> nonterminals and <span class="math inline">B</span> nonterminals are arranged according to their indices. Repeat to <span class="math inline">A_{k+1}</span>, <span class="math inline">A_N</span></li>
-<li><span class="math inline">A_N</span> productions are in the Greibach form</li>
-<li><span class="math inline">A_{N-1}</span> productions are either <span class="math inline">A_{N-1} \mapsto a\alpha</span> or <span class="math inline">A_{N-1} A_N \alpha</span>. Replace with right-hand side of <span class="math inline">A_N</span>. Repeat for <span class="math inline">A_{N-l}</span>.</li>
+<li>assume that all <span class="math inline">A_i</span> productions
+satisfy <span class="math inline">(*)</span> for <span
+class="math inline">i &lt; k</span> and <span
+class="math inline">A_k</span> productions do not, thus are <span
+class="math inline">A_k \mapsto a\alpha</span>, <span
+class="math inline">A_k \mapsto A_i\alpha</span> where <span
+class="math inline">i &lt; k</span>, and <span class="math inline">A_k
+\mapsto A_k\alpha</span></li>
+<li>replace in <span class="math inline">A_k \mapsto A_i\alpha</span>
+where <span class="math inline">i &lt; k</span> the <span
+class="math inline">A_i</span> with right-hand side of <span
+class="math inline">A_i</span> productions. After this operation if we
+still have of the same form they will have the first nonterminal of
+greater index than <span class="math inline">i</span>. Repeating this
+step will make it satisfy <span class="math inline">(*)</span></li>
+<li>assume that we have productions <span class="math inline">A_k
+\mapsto A_k\alpha_1 | A_k\alpha_2 | \cdots | A_k\alpha_m | \beta_1 |
+\cdots | \beta_n</span>. Add another nonterminal <span
+class="math inline">B_k</span> and replace productions with <span
+class="math inline">A_k \mapsto \beta_1 | \cdots | \beta_n | B_k\beta_1
+| \cdots | B_k\beta_n</span> and <span class="math inline">B_k \mapsto
+\alpha_1 | \cdots | \alpha_m | \alpha_1B_k|\cdots | \alpha_mB_k</span>.
+<span class="math inline">B_k</span> proceeds all <span
+class="math inline">A_i</span> nonterminals and <span
+class="math inline">B</span> nonterminals are arranged according to
+their indices. Repeat to <span class="math inline">A_{k+1}</span>, <span
+class="math inline">A_N</span></li>
+<li><span class="math inline">A_N</span> productions are in the Greibach
+form</li>
+<li><span class="math inline">A_{N-1}</span> productions are either
+<span class="math inline">A_{N-1} \mapsto a\alpha</span> or <span
+class="math inline">A_{N-1} A_N \alpha</span>. Replace with right-hand
+side of <span class="math inline">A_N</span>. Repeat for <span
+class="math inline">A_{N-l}</span>.</li>
 </ol>
-<h3 id="derivation-trees"><span class="header-section-number">1.7.3</span> derivation trees</h3>
-<p>A derivation tree of a word in a grammar is a tree with the following properties:</p>
+<h3 data-number="1.7.3" id="derivation-trees"><span
+class="header-section-number">1.7.3</span> derivation trees</h3>
+<p>A derivation tree of a word in a grammar is a tree with the following
+properties:</p>
 <ol type="1">
 <li>its internal nodes are labelled by nonterminals</li>
 <li>its leaves are labelled by an empty word or terminals</li>
 <li>its root is labelled by the initial symbol of the grammar</li>
-<li>for each internal node its children are labelled by symbol of right hand side of a production from this node’s label (these children must appear in the order defined by the right hand side derivations)</li>
-<li>if a node has a child labelled by an empty word then it is the only child of this node</li>
-<li>the crop<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> of such a tree is the derived word</li>
+<li>for each internal node its children are labelled by symbol of right
+hand side of a production from this node’s label (these children must
+appear in the order defined by the right hand side derivations)</li>
+<li>if a node has a child labelled by an empty word then it is the only
+child of this node</li>
+<li>the crop<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> of such a tree is the derived
+word</li>
 </ol>
-<h4 id="unique-derivation"><span class="header-section-number">1.7.3.1</span> unique derivation</h4>
-<p>We say that a word has unique derivation in a grammar if there is exactly one derivation tree</p>
-<h3 id="pumping-lemma-1"><span class="header-section-number">1.7.4</span> pumping lemma</h3>
-<p>If a language <span class="math inline">L</span> is context free then there exists a constant <span class="math inline">n_L</span> such that for each <span class="math inline">z \in L</span> the following holds</p>
+<h4 data-number="1.7.3.1" id="unique-derivation"><span
+class="header-section-number">1.7.3.1</span> unique derivation</h4>
+<p>We say that a word has unique derivation in a grammar if there is
+exactly one derivation tree</p>
+<h3 data-number="1.7.4" id="pumping-lemma-1"><span
+class="header-section-number">1.7.4</span> pumping lemma</h3>
+<p>If a language <span class="math inline">L</span> is context free then
+there exists a constant <span class="math inline">n_L</span> such that
+for each <span class="math inline">z \in L</span> the following
+holds</p>
 <p><span class="math display">
-|z| \ge \implies (\exists_{u,v,w,x,y \in \Sigma^*}, z=uvwxy, |vwx| \le n_L, |vx| \ge 1)(\forall_{i=0,1,2,\cdots})z_i = uv^iwx^iy \in L
+|z| \ge \implies (\exists_{u,v,w,x,y \in \Sigma^*}, z=uvwxy, |vwx| \le
+n_L, |vx| \ge 1)(\forall_{i=0,1,2,\cdots})z_i = uv^iwx^iy \in L
 </span></p>
-<h4 id="contraposition-1"><span class="header-section-number">1.7.4.1</span> contraposition</h4>
-<p>If for any constant <span class="math inline">N</span> there exists <span class="math inline">z \in L</span> s.t. the following conditions holds:</p>
+<h4 data-number="1.7.4.1" id="contraposition-1"><span
+class="header-section-number">1.7.4.1</span> contraposition</h4>
+<p>If for any constant <span class="math inline">N</span> there exists
+<span class="math inline">z \in L</span> s.t. the following conditions
+holds:</p>
 <p><span class="math display">
-|z| \ge N \land (\forall_{u,v,w,x,y \in \Sigma^*, z = uvwxy, |vwx| \le N, |vx| \ge 1})(\exists_{i=0,1,2,\cdots})z_i= uv^iwx^iy \notin L
+|z| \ge N \land (\forall_{u,v,w,x,y \in \Sigma^*, z = uvwxy, |vwx| \le
+N, |vx| \ge 1})(\exists_{i=0,1,2,\cdots})z_i= uv^iwx^iy \notin L
 </span></p>
 <p>then <span class="math inline">L</span> is not context free</p>
-<h2 id="cocke-younger-kasami-algorithm"><span class="header-section-number">1.8</span> Cocke-Younger-Kasami algorithm</h2>
-<p>Algorithm for checking whether a word belongs to the language generated by a grammar to grammar in Chomsky’s normal form.</p>
-<h2 id="translation-grammars"><span class="header-section-number">1.9</span> translation grammars</h2>
-<p><span class="math inline">G = (V, T, T_r, P, S)</span> where <span class="math inline">T_r</span> denote the translation symbols</p>
-<h2 id="ll1-grammars"><span class="header-section-number">1.10</span> <span class="math inline">LL(1)</span> grammars</h2>
-<p>Recall context free productions: <span class="math inline">A \mapsto \alpha</span> where <span class="math inline">\alpha \in (V \cup T)^*</span></p>
+<h2 data-number="1.8" id="cocke-younger-kasami-algorithm"><span
+class="header-section-number">1.8</span> Cocke-Younger-Kasami
+algorithm</h2>
+<p>Algorithm for checking whether a word belongs to the language
+generated by a grammar to grammar in Chomsky’s normal form.</p>
+<h2 data-number="1.9" id="translation-grammars"><span
+class="header-section-number">1.9</span> translation grammars</h2>
+<p><span class="math inline">G = (V, T, T_r, P, S)</span> where <span
+class="math inline">T_r</span> denote the translation symbols</p>
+<h2 data-number="1.10" id="ll1-grammars"><span
+class="header-section-number">1.10</span> <span
+class="math inline">LL(1)</span> grammars</h2>
+<p>Recall context free productions: <span class="math inline">A \mapsto
+\alpha</span> where <span class="math inline">\alpha \in (V \cup
+T)^*</span></p>
 <ul>
-<li>FIRST: a set of terminals that begin any intermediate word of any derivation from <span class="math inline">\alpha</span> to a string of terminals</li>
-<li>FOLLOW: it is a set of terminals which can directly follow <span class="math inline">A</span> in any intermediate word of any derivation in this grammar</li>
-<li>SELECT: FIRST or FIRST <span class="math inline">\cup</span> FOLLOW. SELECT is FIRST iff production is non-nullable</li>
+<li>FIRST: a set of terminals that begin any intermediate word of any
+derivation from <span class="math inline">\alpha</span> to a string of
+terminals</li>
+<li>FOLLOW: it is a set of terminals which can directly follow <span
+class="math inline">A</span> in any intermediate word of any derivation
+in this grammar</li>
+<li>SELECT: FIRST or FIRST <span class="math inline">\cup</span> FOLLOW.
+SELECT is FIRST iff production is non-nullable</li>
 </ul>
-<p>A grammar is a <span class="math inline">LL(1)</span> iff for each nonterminal <span class="math inline">A</span> sets SELECT are pairwise disjoint for all <span class="math inline">A</span>-productions</p>
-<h2 id="context-sensitive-grammars"><span class="header-section-number">1.11</span> Context-sensitive grammars</h2>
+<p>A grammar is a <span class="math inline">LL(1)</span> iff for each
+nonterminal <span class="math inline">A</span> sets SELECT are pairwise
+disjoint for all <span class="math inline">A</span>-productions</p>
+<h2 data-number="1.11" id="context-sensitive-grammars"><span
+class="header-section-number">1.11</span> Context-sensitive
+grammars</h2>
 <p>Productions of the form:</p>
 <ul>
 <li><span class="math inline">\alpha \mapsto \beta</span></li>
 <li><span class="math inline">\alpha, \beta \in (V \cup T)^*</span></li>
 </ul>
 <p>Where <span class="math inline">1 \le |\alpha| \le |\beta|</span></p>
-<p>So the empty word does not belong to context-sensitive languages (CSL)</p>
-<h3 id="normal-form-1"><span class="header-section-number">1.11.1</span> Normal form</h3>
-<p>Productions are <span class="math inline">\delta_1 A \delta_2 \mapsto \delta_1 \alpha \delta_2</span> where <span class="math inline">A \in V</span>, <span class="math inline">\alpha \in (V \cup T)^*</span>, <span class="math inline">|\alpha| \ge 1</span>, and <span class="math inline">\delta_1, \delta_2 \in (V \cup T)^*</span></p>
-<h2 id="recursive-languages"><span class="header-section-number">1.12</span> Recursive languages</h2>
-<p>Those that are accepted by turing machines with a stop property. There is no class of grammars generating these languages.</p>
-<section class="footnotes" role="doc-endnotes">
+<p>So the empty word does not belong to context-sensitive languages
+(CSL)</p>
+<h3 data-number="1.11.1" id="normal-form-1"><span
+class="header-section-number">1.11.1</span> Normal form</h3>
+<p>Productions are <span class="math inline">\delta_1 A \delta_2 \mapsto
+\delta_1 \alpha \delta_2</span> where <span class="math inline">A \in
+V</span>, <span class="math inline">\alpha \in (V \cup T)^*</span>,
+<span class="math inline">|\alpha| \ge 1</span>, and <span
+class="math inline">\delta_1, \delta_2 \in (V \cup T)^*</span></p>
+<h2 data-number="1.12" id="recursive-languages"><span
+class="header-section-number">1.12</span> Recursive languages</h2>
+<p>Those that are accepted by turing machines with a stop property.
+There is no class of grammars generating these languages.</p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><strong>useless symbols</strong> - Not reachable (does not appear in any derivation), not generative (nonterminals that cannot generate a string of terminals)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>sequence of leaves<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><strong>useless symbols</strong> -
+Not reachable (does not appear in any derivation), not generative
+(nonterminals that cannot generate a string of terminals)<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>sequence of leaves<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

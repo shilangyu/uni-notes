@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>integrals</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,14 +455,39 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="integrals"><span class="header-section-number">1</span> integrals</h1>
-<p>A function <span class="math inline">F(x)</span> is called an antiderivative of <span class="math inline">f(x)</span> when:</p>
+<h1 data-number="1" id="integrals"><span
+class="header-section-number">1</span> integrals</h1>
+<p>A function <span class="math inline">F(x)</span> is called an
+antiderivative of <span class="math inline">f(x)</span> when:</p>
 <p><span class="math display">
-    F&#39;(x) = f(x) \implies \frac{d F(x)}{dx} = f(x) \implies F(x) = \int f(x) dx
+    F&#39;(x) = f(x) \implies \frac{d F(x)}{dx} = f(x) \implies F(x) =
+\int f(x) dx
 </span></p>
-<h2 id="common-antiderivatives"><span class="header-section-number">1.1</span> common antiderivatives</h2>
+<h2 data-number="1.1" id="common-antiderivatives"><span
+class="header-section-number">1.1</span> common antiderivatives</h2>
 <table>
 <colgroup>
 <col style="width: 26%" />
@@ -350,7 +506,8 @@
 </tr>
 <tr class="even">
 <td><span class="math inline">x^n</span></td>
-<td><span class="math inline">\frac{x^{n+1}}{n+1} + C</span>, <span class="math inline">a \ne -1</span></td>
+<td><span class="math inline">\frac{x^{n+1}}{n+1} + C</span>, <span
+class="math inline">a \ne -1</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\frac{1}{x}</span></td>
@@ -382,7 +539,8 @@
 </tr>
 <tr class="even">
 <td><span class="math inline">\frac{1}{a^2 + x^2}</span></td>
-<td><span class="math inline">\frac{1}{a}\arctan(\frac{x}{a}) + C</span></td>
+<td><span class="math inline">\frac{1}{a}\arctan(\frac{x}{a}) +
+C</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\frac{1}{\sqrt{a^2 - x^2}}</span></td>
@@ -390,7 +548,8 @@
 </tr>
 <tr class="even">
 <td><span class="math inline">\sqrt{a^2 - x^2}</span></td>
-<td><span class="math inline">\frac{x}{2} \sqrt{a^2 - x^2} + \frac{a^2}{2} \arcsin\frac{x}{a} + C</span></td>
+<td><span class="math inline">\frac{x}{2} \sqrt{a^2 - x^2} +
+\frac{a^2}{2} \arcsin\frac{x}{a} + C</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\frac{1}{\sqrt{a^2 + x^2}}</span></td>
@@ -398,25 +557,31 @@
 </tr>
 <tr class="even">
 <td><span class="math inline">\sqrt{a^2 + x^2}</span></td>
-<td><span class="math inline">\frac{x}{2} \sqrt{a^2 + x^2} + \frac{a^2}{2} \ln(x + \sqrt{a^2 + x^2}) + C</span></td>
+<td><span class="math inline">\frac{x}{2} \sqrt{a^2 + x^2} +
+\frac{a^2}{2} \ln(x + \sqrt{a^2 + x^2}) + C</span></td>
 </tr>
 </tbody>
 </table>
-<h2 id="rules"><span class="header-section-number">1.2</span> rules</h2>
-<h3 id="constant-multiple"><span class="header-section-number">1.2.1</span> constant multiple</h3>
+<h2 data-number="1.2" id="rules"><span
+class="header-section-number">1.2</span> rules</h2>
+<h3 data-number="1.2.1" id="constant-multiple"><span
+class="header-section-number">1.2.1</span> constant multiple</h3>
 <p><span class="math display">
     \int af(x) dx = a \int f(x) dx
 </span></p>
-<h3 id="sum-and-difference"><span class="header-section-number">1.2.2</span> sum and difference</h3>
+<h3 data-number="1.2.2" id="sum-and-difference"><span
+class="header-section-number">1.2.2</span> sum and difference</h3>
 <p><span class="math display">
     \int (f(x) \pm g(x)) dx = \int f(x) dx \pm \int g(x) dx
 </span></p>
-<h3 id="by-substitution"><span class="header-section-number">1.2.3</span> by substitution</h3>
+<h3 data-number="1.2.3" id="by-substitution"><span
+class="header-section-number">1.2.3</span> by substitution</h3>
 <p>Let <span class="math inline">y = g(x)</span></p>
 <p><span class="math display">
     \int f(g(x))g&#39;(x) dx = \int f(y)dy
 </span></p>
-<h3 id="by-parts"><span class="header-section-number">1.2.4</span> by parts</h3>
+<h3 data-number="1.2.4" id="by-parts"><span
+class="header-section-number">1.2.4</span> by parts</h3>
 <p><span class="math display">
     \int f(x)g&#39;(x)dx = f(x)g(x) - \int f&#39;(x)g(x)dx
 </span></p>
@@ -424,100 +589,177 @@
 <p><span class="math display">
     \int fdg = fg - \int gdf
 </span></p>
-<h2 id="c"><span class="header-section-number">1.3</span> <span class="math inline">+\ C</span></h2>
-<p>We need to always add a constant after integration because it is lost during derivation:</p>
-<p>Let <span class="math inline">f(x) = x + 1</span> then <span class="math inline">f&#39;(x) = 1</span>, then we integrate <span class="math inline">\int f&#39;(x) dx = x</span>. As we can see, the <span class="math inline">+\ 1</span> was lost.</p>
-<p>Functions differing by a constant are called a family of primitive functions.</p>
-<h2 id="method-of-partial-fractions"><span class="header-section-number">1.4</span> method of partial fractions</h2>
-<p>To find <span class="math inline">\int \frac{f(x)}{g(x)} dx</span> two things have to be satisfied:</p>
+<h2 data-number="1.3" id="c"><span
+class="header-section-number">1.3</span> <span class="math inline">+\
+C</span></h2>
+<p>We need to always add a constant after integration because it is lost
+during derivation:</p>
+<p>Let <span class="math inline">f(x) = x + 1</span> then <span
+class="math inline">f&#39;(x) = 1</span>, then we integrate <span
+class="math inline">\int f&#39;(x) dx = x</span>. As we can see, the
+<span class="math inline">+\ 1</span> was lost.</p>
+<p>Functions differing by a constant are called a family of primitive
+functions.</p>
+<h2 data-number="1.4" id="method-of-partial-fractions"><span
+class="header-section-number">1.4</span> method of partial
+fractions</h2>
+<p>To find <span class="math inline">\int \frac{f(x)}{g(x)} dx</span>
+two things have to be satisfied:</p>
 <ul>
-<li>the degree of <span class="math inline">f(x)</span> must be smaller than the degree of <span class="math inline">g(x)</span></li>
-<li>we must know the factors of <span class="math inline">g(x)</span></li>
+<li>the degree of <span class="math inline">f(x)</span> must be smaller
+than the degree of <span class="math inline">g(x)</span></li>
+<li>we must know the factors of <span
+class="math inline">g(x)</span></li>
 </ul>
 <p>Then the following steps can be taken:</p>
 <ol type="1">
 <li>factorize <span class="math inline">g(x)</span></li>
-<li>take factors of degree one from <span class="math inline">g(x)</span> (form of <span class="math inline">(x - a)^m</span>) assign to them the sum of <span class="math inline">m</span> partial fractions: <span class="math display">\sum_{i=1}^{m} \frac{A_i}{(x - a)^i}</span></li>
-<li>take factors of degree two from <span class="math inline">g(x)</span> (form of <span class="math inline">(x^2 + px + q)^n</span>) assign to them the sum of <span class="math inline">n</span> partial fractions: <span class="math display">\sum_{i=1}^{n} \frac{B_ix + C_i}{(x^2 + px + q)^i}</span></li>
-<li>set <span class="math inline">\frac{f(x)}{g(x)}</span> to be the sum of the partial sums from step 2 and 3</li>
+<li>take factors of degree one from <span
+class="math inline">g(x)</span> (form of <span class="math inline">(x -
+a)^m</span>) assign to them the sum of <span
+class="math inline">m</span> partial fractions: <span
+class="math display">\sum_{i=1}^{m} \frac{A_i}{(x - a)^i}</span></li>
+<li>take factors of degree two from <span
+class="math inline">g(x)</span> (form of <span class="math inline">(x^2
++ px + q)^n</span>) assign to them the sum of <span
+class="math inline">n</span> partial fractions: <span
+class="math display">\sum_{i=1}^{n} \frac{B_ix + C_i}{(x^2 + px +
+q)^i}</span></li>
+<li>set <span class="math inline">\frac{f(x)}{g(x)}</span> to be the sum
+of the partial sums from step 2 and 3</li>
 <li>find the <span class="math inline">A, B, C</span> coefficients</li>
 </ol>
 <p>Taking an integral of the partial fractions is much simpler.</p>
-<h2 id="universal-trigonometric-substitution"><span class="header-section-number">1.5</span> universal trigonometric substitution</h2>
-<p>Let <span class="math inline">t = \tan\frac{x}{2}</span> then trigonometrical functions can be reduced to a rational function:</p>
+<h2 data-number="1.5" id="universal-trigonometric-substitution"><span
+class="header-section-number">1.5</span> universal trigonometric
+substitution</h2>
+<p>Let <span class="math inline">t = \tan\frac{x}{2}</span> then
+trigonometrical functions can be reduced to a rational function:</p>
 <ul>
 <li><span class="math inline">\sin x = \frac{2t}{1 + t^2}</span></li>
-<li><span class="math inline">\cos x = \frac{1 - t^2}{1 + t^2}</span></li>
+<li><span class="math inline">\cos x = \frac{1 - t^2}{1 +
+t^2}</span></li>
 <li><span class="math inline">\tan x = \frac{2t}{1 - t^2}</span></li>
 </ul>
-<p><span class="math inline">dx</span> is then replaced with <span class="math inline">\frac{2}{1 + t^2}dt</span></p>
-<h2 id="definite-integrals"><span class="header-section-number">1.6</span> definite integrals</h2>
+<p><span class="math inline">dx</span> is then replaced with <span
+class="math inline">\frac{2}{1 + t^2}dt</span></p>
+<h2 data-number="1.6" id="definite-integrals"><span
+class="header-section-number">1.6</span> definite integrals</h2>
 <p>Powerful tool for finding areas under graphs</p>
-<h3 id="riemann-sums"><span class="header-section-number">1.6.1</span> Riemann sums</h3>
-<p>Let <span class="math inline">f</span> be continuous on some closed interval <span class="math inline">[a,b]</span>. Now we evenly divide it into <span class="math inline">n</span> subintervals. If <span class="math inline">P</span> is the partition of all edges of intervals then <span class="math inline">P = \{ x_0 = a, x_1, \cdots, x_{n-1}, x_n = b\}</span>. To find the area of some subinterval of <span class="math inline">f</span> at some point <span class="math inline">c_k</span>: <span class="math inline">f(c_k) \cdot (x_k - x_{k-1}) = f(c_k) \cdot \Delta_{x_k}</span>. Therefore to find the area of the whole interval:</p>
+<h3 data-number="1.6.1" id="riemann-sums"><span
+class="header-section-number">1.6.1</span> Riemann sums</h3>
+<p>Let <span class="math inline">f</span> be continuous on some closed
+interval <span class="math inline">[a,b]</span>. Now we evenly divide it
+into <span class="math inline">n</span> subintervals. If <span
+class="math inline">P</span> is the partition of all edges of intervals
+then <span class="math inline">P = \{ x_0 = a, x_1, \cdots, x_{n-1}, x_n
+= b\}</span>. To find the area of some subinterval of <span
+class="math inline">f</span> at some point <span
+class="math inline">c_k</span>: <span class="math inline">f(c_k) \cdot
+(x_k - x_{k-1}) = f(c_k) \cdot \Delta_{x_k}</span>. Therefore to find
+the area of the whole interval:</p>
 <p><span class="math display">
     \sum_{k=1}^n f(c_k) \cdot \Delta_{x_k}
 </span></p>
-<p>To find the area (<span class="math inline">I</span>) of some <span class="math inline">f</span> on a closed interval <span class="math inline">[a,b]</span> <span class="math inline">n</span> has to approach infinity</p>
+<p>To find the area (<span class="math inline">I</span>) of some <span
+class="math inline">f</span> on a closed interval <span
+class="math inline">[a,b]</span> <span class="math inline">n</span> has
+to approach infinity</p>
 <p><span class="math display">
     \lim_{n \to \infty} \sum_{k=1}^n f(c_k) \cdot \Delta_{x_k} = I
 </span></p>
-<p><span class="math inline">I</span> is called the definite integral of <span class="math inline">f</span> over <span class="math inline">[a,b]</span></p>
+<p><span class="math inline">I</span> is called the definite integral of
+<span class="math inline">f</span> over <span
+class="math inline">[a,b]</span></p>
 <p><span class="math display">
 I = \int_a^bf(x)dx = F(b) - F(a)
 </span></p>
 <p>where <span class="math inline">F&#39; = f</span></p>
-<h3 id="differentiation"><span class="header-section-number">1.6.2</span> differentiation</h3>
-<p><span class="math inline">\frac{d}{dx} \int_a^{g(x)} f(t)dt = f(g(x))g&#39;(x)</span></p>
+<h3 data-number="1.6.2" id="differentiation"><span
+class="header-section-number">1.6.2</span> differentiation</h3>
+<p><span class="math inline">\frac{d}{dx} \int_a^{g(x)} f(t)dt =
+f(g(x))g&#39;(x)</span></p>
 <p><span class="math inline">\frac{d}{dx} \int_a^b f(x)dx = 0</span></p>
-<h3 id="properties"><span class="header-section-number">1.6.3</span> properties</h3>
+<h3 data-number="1.6.3" id="properties"><span
+class="header-section-number">1.6.3</span> properties</h3>
 <p>Same as with indefinite integrals plus:</p>
 <ul>
-<li><span class="math inline">\int_a^b f(x)dx = -\int_b^a f(x)dx</span></li>
+<li><span class="math inline">\int_a^b f(x)dx = -\int_b^a
+f(x)dx</span></li>
 <li><span class="math inline">\int_a^a f(x)dx = 0</span></li>
-<li><span class="math inline">\int_a^b f(x)dx = \int_a^c f(x)dx + \int_c^b g(x)dx</span></li>
+<li><span class="math inline">\int_a^b f(x)dx = \int_a^c f(x)dx +
+\int_c^b g(x)dx</span></li>
 </ul>
-<h3 id="substitution"><span class="header-section-number">1.6.4</span> substitution</h3>
+<h3 data-number="1.6.4" id="substitution"><span
+class="header-section-number">1.6.4</span> substitution</h3>
 <p><span class="math display">
     \int_a^b f(g(x)) \cdot g&#39;(x) dx = \int_{g(a)}^{g(b)} f(u) du
 </span></p>
-<h3 id="mean-value-theorem"><span class="header-section-number">1.6.5</span> mean value theorem</h3>
-<p>While this is true, finding <span class="math inline">c</span> is incredibly hard:</p>
+<h3 data-number="1.6.5" id="mean-value-theorem"><span
+class="header-section-number">1.6.5</span> mean value theorem</h3>
+<p>While this is true, finding <span class="math inline">c</span> is
+incredibly hard:</p>
 <p><span class="math display">
     \int_a^b f(x) dx = (b-a)f(c)
 </span></p>
-<h3 id="smooth-function"><span class="header-section-number">1.6.6</span> smooth function</h3>
-<p>A function with a continuous first derivative is called smooth and its graph is a smooth curve.</p>
-<h3 id="area-between-curves"><span class="header-section-number">1.6.7</span> area between curves</h3>
-<p>If in a range <span class="math inline">[a,b]</span> <span class="math inline">f(x) \le g(x)</span> then the area between the curves is</p>
+<h3 data-number="1.6.6" id="smooth-function"><span
+class="header-section-number">1.6.6</span> smooth function</h3>
+<p>A function with a continuous first derivative is called smooth and
+its graph is a smooth curve.</p>
+<h3 data-number="1.6.7" id="area-between-curves"><span
+class="header-section-number">1.6.7</span> area between curves</h3>
+<p>If in a range <span class="math inline">[a,b]</span> <span
+class="math inline">f(x) \le g(x)</span> then the area between the
+curves is</p>
 <p><span class="math display">
 \int_a^b |g(x) - f(x)| dx
 </span></p>
-<h3 id="length-of-the-curve"><span class="header-section-number">1.6.8</span> length of the curve</h3>
-<p>Let <span class="math inline">f</span> be a smooth function. The length of the curve from <span class="math inline">a</span> to <span class="math inline">b</span> is then:</p>
+<h3 data-number="1.6.8" id="length-of-the-curve"><span
+class="header-section-number">1.6.8</span> length of the curve</h3>
+<p>Let <span class="math inline">f</span> be a smooth function. The
+length of the curve from <span class="math inline">a</span> to <span
+class="math inline">b</span> is then:</p>
 <p><span class="math display">
     \int_a^b \sqrt{1 + (f&#39;(x))^2}dx
 </span></p>
-<h3 id="volume-of-solids-of-revolution"><span class="header-section-number">1.6.9</span> volume of solids of revolution</h3>
-<p>If we rotate some region <span class="math inline">P</span> (marked by the area under the graph of some function <span class="math inline">f</span> from <span class="math inline">a</span> to <span class="math inline">b</span>) about the <span class="math inline">x</span> axis the formula for its volume is:</p>
+<h3 data-number="1.6.9" id="volume-of-solids-of-revolution"><span
+class="header-section-number">1.6.9</span> volume of solids of
+revolution</h3>
+<p>If we rotate some region <span class="math inline">P</span> (marked
+by the area under the graph of some function <span
+class="math inline">f</span> from <span class="math inline">a</span> to
+<span class="math inline">b</span>) about the <span
+class="math inline">x</span> axis the formula for its volume is:</p>
 <p><span class="math display">
 \pi \int_a^b (f(x))^2dx
 </span></p>
-<h2 id="improper-integrals"><span class="header-section-number">1.7</span> improper integrals</h2>
-<p>Integrals with infinite limits are called <em>improper integrals</em>.</p>
+<h2 data-number="1.7" id="improper-integrals"><span
+class="header-section-number">1.7</span> improper integrals</h2>
+<p>Integrals with infinite limits are called <em>improper
+integrals</em>.</p>
 <p><span class="math display">
 \int_a^\infty f(x)dx = \lim_{b\to\infty} \int_a^b f(x)dx
 </span></p>
-<p>If the limit is finite we say the improper integral converges and the limit is the resulting value. Otherwise it diverges.</p>
-<h3 id="harmonic-series"><span class="header-section-number">1.7.1</span> harmonic series</h3>
-<p>Just like with series, <span class="math inline">\int_1^\infty \frac{1}{x^p}dx</span> converges only if <span class="math inline">p &gt; 1</span>, converges to <span class="math inline">\frac{1}{p-1}</span></p>
-<h3 id="convergence"><span class="header-section-number">1.7.2</span> convergence</h3>
+<p>If the limit is finite we say the improper integral converges and the
+limit is the resulting value. Otherwise it diverges.</p>
+<h3 data-number="1.7.1" id="harmonic-series"><span
+class="header-section-number">1.7.1</span> harmonic series</h3>
+<p>Just like with series, <span class="math inline">\int_1^\infty
+\frac{1}{x^p}dx</span> converges only if <span class="math inline">p
+&gt; 1</span>, converges to <span
+class="math inline">\frac{1}{p-1}</span></p>
+<h3 data-number="1.7.2" id="convergence"><span
+class="header-section-number">1.7.2</span> convergence</h3>
 <p><span class="math display">
-\int_{-\infty}^\infty f(x)dx = \int_{-\infty}^c f(x)dx + \int_c^\infty f(x)dx
+\int_{-\infty}^\infty f(x)dx = \int_{-\infty}^c f(x)dx + \int_c^\infty
+f(x)dx
 </span></p>
 <p>The left side converges only if the right one does as well.</p>
-<h3 id="unbounded-limits"><span class="header-section-number">1.7.3</span> unbounded limits</h3>
-<p>If one (or both) of the limits of an integral are unbounded, we can define an improper integral with a limit directed towards the interval:</p>
+<h3 data-number="1.7.3" id="unbounded-limits"><span
+class="header-section-number">1.7.3</span> unbounded limits</h3>
+<p>If one (or both) of the limits of an integral are unbounded, we can
+define an improper integral with a limit directed towards the
+interval:</p>
 <p>let <span class="math inline">a</span> be unbounded:</p>
 <p><span class="math display">
 \int_a^b f(x)dx = \lim_{c \to a^+} \int_c^b f(x)dx
@@ -526,56 +768,105 @@ I = \int_a^bf(x)dx = F(b) - F(a)
 <p><span class="math display">
 \int_a^b f(x)dx = \lim_{c \to b^-} \int_a^c f(x)dx
 </span></p>
-<h3 id="omitting-unbounded-points"><span class="header-section-number">1.7.4</span> omitting unbounded points</h3>
-<p>If the function we are integrating over some interval is not continuous, we split the integral into multiple smaller ones to omit the unbounded points and analyze the left and right side separately.</p>
-<h3 id="tests-for-convergence"><span class="header-section-number">1.7.5</span> tests for convergence</h3>
-<p>It is important to note it only tells us where something diverges/converges, the converging values might still be different</p>
-<h4 id="dct"><span class="header-section-number">1.7.5.1</span> DCT</h4>
-<p>let <span class="math inline">0 \le f(x) \le g(x)</span> for <span class="math inline">x \ge a</span></p>
+<h3 data-number="1.7.4" id="omitting-unbounded-points"><span
+class="header-section-number">1.7.4</span> omitting unbounded
+points</h3>
+<p>If the function we are integrating over some interval is not
+continuous, we split the integral into multiple smaller ones to omit the
+unbounded points and analyze the left and right side separately.</p>
+<h3 data-number="1.7.5" id="tests-for-convergence"><span
+class="header-section-number">1.7.5</span> tests for convergence</h3>
+<p>It is important to note it only tells us where something
+diverges/converges, the converging values might still be different</p>
+<h4 data-number="1.7.5.1" id="dct"><span
+class="header-section-number">1.7.5.1</span> DCT</h4>
+<p>let <span class="math inline">0 \le f(x) \le g(x)</span> for <span
+class="math inline">x \ge a</span></p>
 <ul>
-<li><span class="math inline">\int_a^\infty f(x)dx</span> converges if <span class="math inline">\int_a^\infty g(x)dx</span> converges</li>
-<li><span class="math inline">\int_a^\infty g(x)dx</span> diverges if <span class="math inline">\int_a^\infty f(x)dx</span> diverges</li>
+<li><span class="math inline">\int_a^\infty f(x)dx</span> converges if
+<span class="math inline">\int_a^\infty g(x)dx</span> converges</li>
+<li><span class="math inline">\int_a^\infty g(x)dx</span> diverges if
+<span class="math inline">\int_a^\infty f(x)dx</span> diverges</li>
 </ul>
-<h4 id="lct"><span class="header-section-number">1.7.5.2</span> LCT</h4>
-<p>let <span class="math inline">f</span> and <span class="math inline">g</span> be positive continuous functions on <span class="math inline">[a, \infty)</span>. If <span class="math inline">\lim_{x\to\infty}\frac{f(x)}{g(x)} = L</span>, <span class="math inline">0 \le L</span> then <span class="math inline">\int_a^\infty f(x)dx</span> and <span class="math inline">\int_a^\infty g(x)dx</span> both converge or both diverge.</p>
-<h3 id="integral-test"><span class="header-section-number">1.7.6</span> integral test</h3>
-<p>Let <span class="math inline">N \ge 1</span>, <span class="math inline">a_n = f(n)</span> then <span class="math inline">\sum_{n=1}^\infty a_n</span> and <span class="math inline">\int_N^\infty f(x)dx</span> both diverge or both converge.</p>
-<h2 id="double-integrals"><span class="header-section-number">1.8</span> double integrals</h2>
-<p>The find a volume under some region <span class="math inline">R</span> of a function <span class="math inline">f(x, y)</span> we use double integrals (assuming <span class="math inline">f(x, y)</span> is continuous over <span class="math inline">R</span>):</p>
+<h4 data-number="1.7.5.2" id="lct"><span
+class="header-section-number">1.7.5.2</span> LCT</h4>
+<p>let <span class="math inline">f</span> and <span
+class="math inline">g</span> be positive continuous functions on <span
+class="math inline">[a, \infty)</span>. If <span
+class="math inline">\lim_{x\to\infty}\frac{f(x)}{g(x)} = L</span>, <span
+class="math inline">0 \le L</span> then <span
+class="math inline">\int_a^\infty f(x)dx</span> and <span
+class="math inline">\int_a^\infty g(x)dx</span> both converge or both
+diverge.</p>
+<h3 data-number="1.7.6" id="integral-test"><span
+class="header-section-number">1.7.6</span> integral test</h3>
+<p>Let <span class="math inline">N \ge 1</span>, <span
+class="math inline">a_n = f(n)</span> then <span
+class="math inline">\sum_{n=1}^\infty a_n</span> and <span
+class="math inline">\int_N^\infty f(x)dx</span> both diverge or both
+converge.</p>
+<h2 data-number="1.8" id="double-integrals"><span
+class="header-section-number">1.8</span> double integrals</h2>
+<p>The find a volume under some region <span
+class="math inline">R</span> of a function <span
+class="math inline">f(x, y)</span> we use double integrals (assuming
+<span class="math inline">f(x, y)</span> is continuous over <span
+class="math inline">R</span>):</p>
 <p><span class="math display">
     \iint\limits_R f(x, y)dxdy
 </span></p>
-<h3 id="rectangular-region"><span class="header-section-number">1.8.1</span> rectangular region</h3>
-<p>If <span class="math inline">R</span> is a rectangular region bounded by <span class="math inline">a \le x \le b</span> and <span class="math inline">c \le y \le d</span>, then:</p>
+<h3 data-number="1.8.1" id="rectangular-region"><span
+class="header-section-number">1.8.1</span> rectangular region</h3>
+<p>If <span class="math inline">R</span> is a rectangular region bounded
+by <span class="math inline">a \le x \le b</span> and <span
+class="math inline">c \le y \le d</span>, then:</p>
 <p><span class="math display">
-    \int_{a}^b \big(\int_{c}^d f(x, y)dy\big)dx = \int_{c}^d \big(\int_{a}^b f(x, y)dx\big)dy
+    \int_{a}^b \big(\int_{c}^d f(x, y)dy\big)dx = \int_{c}^d
+\big(\int_{a}^b f(x, y)dx\big)dy
 </span></p>
-<h3 id="non-rectangular-region"><span class="header-section-number">1.8.2</span> non-rectangular region</h3>
-<p>When one component is bounded by a function, it has to be integrated first, example: <span class="math inline">0 \le x \le 1</span> and <span class="math inline">g(x) \le y \le h(x)</span></p>
+<h3 data-number="1.8.2" id="non-rectangular-region"><span
+class="header-section-number">1.8.2</span> non-rectangular region</h3>
+<p>When one component is bounded by a function, it has to be integrated
+first, example: <span class="math inline">0 \le x \le 1</span> and <span
+class="math inline">g(x) \le y \le h(x)</span></p>
 <p><span class="math display">
     \int_{0}^1 \big(\int_{g(x)}^{h(x)} f(x, y)dy\big)dx
 </span></p>
-<h2 id="jacobian-matrix"><span class="header-section-number">1.9</span> Jacobian matrix</h2>
+<h2 data-number="1.9" id="jacobian-matrix"><span
+class="header-section-number">1.9</span> Jacobian matrix</h2>
 <p>Matrix of all partial derivatives of a function</p>
 <p><span class="math display">
     \mathbf{J} =
     \begin{bmatrix}
-        \frac{\partial f_{x_1}}{\partial x_1}   &amp; \cdots &amp; \frac{\partial f_{x_1}}{\partial x_n} \\
+        \frac{\partial f_{x_1}}{\partial x_1}   &amp; \cdots &amp;
+\frac{\partial f_{x_1}}{\partial x_n} \\
         \vdots &amp; \ddots &amp; \vdots \\
-        \frac{\partial f_{x_n}}{\partial x_1}   &amp; \cdots &amp; \frac{\partial f_{x_n}}{\partial x_n} \\
+        \frac{\partial f_{x_n}}{\partial x_1}   &amp; \cdots &amp;
+\frac{\partial f_{x_n}}{\partial x_n} \\
     \end{bmatrix}
 </span></p>
-<h3 id="switching-between-coordinate-systems-during-integration"><span class="header-section-number">1.9.1</span> switching between coordinate systems during integration</h3>
-<p>The function has to be multiplied by the determinant of the Jacobian matrix when switching from cartesian to polar parametrization.</p>
+<h3 data-number="1.9.1"
+id="switching-between-coordinate-systems-during-integration"><span
+class="header-section-number">1.9.1</span> switching between coordinate
+systems during integration</h3>
+<p>The function has to be multiplied by the determinant of the Jacobian
+matrix when switching from cartesian to polar parametrization.</p>
 <p><span class="math display">
-\iint \limits_{f(A)} f(x, y)dxdy = \iint \limits_{A} f(r\cos\theta, r\sin\theta) \det\mathbf{J} drd\theta
+\iint \limits_{f(A)} f(x, y)dxdy = \iint \limits_{A} f(r\cos\theta,
+r\sin\theta) \det\mathbf{J} drd\theta
 </span></p>
-<p>In the case of 2 dimensions for polar <span class="math inline">\det\mathbf{J} = r</span>, in 3 <span class="math inline">\det\mathbf{J}_x = r^2\sin\theta</span></p>
-<h2 id="additional-usages"><span class="header-section-number">1.10</span> additional usages</h2>
+<p>In the case of 2 dimensions for polar <span
+class="math inline">\det\mathbf{J} = r</span>, in 3 <span
+class="math inline">\det\mathbf{J}_x = r^2\sin\theta</span></p>
+<h2 data-number="1.10" id="additional-usages"><span
+class="header-section-number">1.10</span> additional usages</h2>
 <p>Two variable functions:</p>
 <ul>
-<li>area of region <span class="math inline">D</span>: <span class="math inline">S = \iint \limits_D \sqrt{1 + f_x^2 + f_y^2}dxdy</span></li>
-<li>volume of region <span class="math inline">W</span>: <span class="math inline">V = \iiint \limits_W dxdydz</span></li>
+<li>area of region <span class="math inline">D</span>: <span
+class="math inline">S = \iint \limits_D \sqrt{1 + f_x^2 +
+f_y^2}dxdy</span></li>
+<li>volume of region <span class="math inline">W</span>: <span
+class="math inline">V = \iiint \limits_W dxdydz</span></li>
 </ul>
 </body>
 </html>

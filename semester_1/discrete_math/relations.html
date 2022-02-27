@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>relations</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,44 +455,100 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="relations"><span class="header-section-number">1</span> relations</h1>
-<p>A relation <span class="math inline">R</span> on a set <span class="math inline">X</span> is a subset of <span class="math inline">X \times X</span> ( <span class="math inline">R \subseteq X \times X</span>)</p>
-<p><span class="math inline">(a,b) \in R \equiv aRb \equiv a \sim b</span></p>
-<p>Defining the equality symbol as a set: <span class="math inline">EQ = \{(x, x): x \in X\}</span></p>
+<h1 data-number="1" id="relations"><span
+class="header-section-number">1</span> relations</h1>
+<p>A relation <span class="math inline">R</span> on a set <span
+class="math inline">X</span> is a subset of <span class="math inline">X
+\times X</span> ( <span class="math inline">R \subseteq X \times
+X</span>)</p>
+<p><span class="math inline">(a,b) \in R \equiv aRb \equiv a \sim
+b</span></p>
+<p>Defining the equality symbol as a set: <span class="math inline">EQ =
+\{(x, x): x \in X\}</span></p>
 <p><span class="math inline">\leq LTE</span></p>
 <p><span class="math inline">\lt LT</span></p>
 <p><span class="math inline">= EQ</span></p>
 <p><span class="math inline">LTE = LT \cup EQ</span></p>
-<h4 id="properties-of-relations"><span class="header-section-number">1.0.0.1</span> properties of relations</h4>
+<h4 data-number="1.0.0.1" id="properties-of-relations"><span
+class="header-section-number">1.0.0.1</span> properties of
+relations</h4>
 <ol type="1">
-<li>Reflexivity: <span class="math inline">(\forall x \in X)(x \sim x)</span></li>
-<li>Symmetricity: <span class="math inline">(\forall x,y \in X)(x \sim y \implies y \sim x)</span></li>
-<li>Transitivity: <span class="math inline">(\forall x,y,z \in X)(x \sim y \land y \sim z \implies x \sim z)</span></li>
-<li>Antisymmetricity: <span class="math inline">(\forall x,y \in X)(x \sim y \land y \sim x \implies x=y)</span></li>
+<li>Reflexivity: <span class="math inline">(\forall x \in X)(x \sim
+x)</span></li>
+<li>Symmetricity: <span class="math inline">(\forall x,y \in X)(x \sim y
+\implies y \sim x)</span></li>
+<li>Transitivity: <span class="math inline">(\forall x,y,z \in X)(x \sim
+y \land y \sim z \implies x \sim z)</span></li>
+<li>Antisymmetricity: <span class="math inline">(\forall x,y \in X)(x
+\sim y \land y \sim x \implies x=y)</span></li>
 </ol>
-<h4 id="equivalence-relations"><span class="header-section-number">1.0.0.2</span> equivalence relations</h4>
-<p><span class="math inline">R \subseteq X \times X</span> is said to be an equivalence relation iff <span class="math inline">R</span> is reflexive, symmetric and transitive.</p>
-<p>The equivalence class of an element <span class="math inline">x \in X</span> is the set <span class="math inline">[x]_\sim = \{ y \in X: x \sim y\}</span></p>
+<h4 data-number="1.0.0.2" id="equivalence-relations"><span
+class="header-section-number">1.0.0.2</span> equivalence relations</h4>
+<p><span class="math inline">R \subseteq X \times X</span> is said to be
+an equivalence relation iff <span class="math inline">R</span> is
+reflexive, symmetric and transitive.</p>
+<p>The equivalence class of an element <span class="math inline">x \in
+X</span> is the set <span class="math inline">[x]_\sim = \{ y \in X: x
+\sim y\}</span></p>
 <ol type="1">
-<li>Every <span class="math inline">x \in X</span> belongs to the equivalence class of some element <span class="math inline">a</span></li>
-<li><span class="math inline">(\forall x, y \in X)([x]_\sim \cap [y]_\sim \neq \emptyset \iff [x]_\sim = [y]_\sim)</span></li>
+<li>Every <span class="math inline">x \in X</span> belongs to the
+equivalence class of some element <span
+class="math inline">a</span></li>
+<li><span class="math inline">(\forall x, y \in X)([x]_\sim \cap
+[y]_\sim \neq \emptyset \iff [x]_\sim = [y]_\sim)</span></li>
 </ol>
-<h4 id="partitions"><span class="header-section-number">1.0.0.3</span> partitions</h4>
-<p>A partition is a set containing subsets of some set <span class="math inline">X</span> such that their collective symmetric difference equals to <span class="math inline">X</span>. A partition of <span class="math inline">X</span> is a set <span class="math inline">\{A_i: i \in I \land A_i \subseteq X\}</span> such that:</p>
+<h4 data-number="1.0.0.3" id="partitions"><span
+class="header-section-number">1.0.0.3</span> partitions</h4>
+<p>A partition is a set containing subsets of some set <span
+class="math inline">X</span> such that their collective symmetric
+difference equals to <span class="math inline">X</span>. A partition of
+<span class="math inline">X</span> is a set <span
+class="math inline">\{A_i: i \in I \land A_i \subseteq X\}</span> such
+that:</p>
 <ol type="1">
-<li><span class="math inline">(\forall x \in X)(\exists j \in I)(x \in A_j)</span></li>
-<li><span class="math inline">(\forall i, j \in I)(i \neq j \implies A_i \cap A_j = \emptyset)</span></li>
+<li><span class="math inline">(\forall x \in X)(\exists j \in I)(x \in
+A_j)</span></li>
+<li><span class="math inline">(\forall i, j \in I)(i \neq j \implies A_i
+\cap A_j = \emptyset)</span></li>
 </ol>
-<h4 id="functions"><span class="header-section-number">1.0.0.4</span> functions</h4>
+<h4 data-number="1.0.0.4" id="functions"><span
+class="header-section-number">1.0.0.4</span> functions</h4>
 <p>Functions can be expressed as a relation as well:</p>
-<p><span class="math inline">f \subseteq X \times Y</span> is said to be a function iff</p>
+<p><span class="math inline">f \subseteq X \times Y</span> is said to be
+a function iff</p>
 <ul>
-<li><span class="math inline">(\forall x \in X)(\exists y \in Y)((x, y) \in f)</span></li>
-<li><span class="math inline">(\forall a \in X)(\forall p,q \in Y)((a, p) \in f \land (a, q) \in f \implies p=q)</span></li>
+<li><span class="math inline">(\forall x \in X)(\exists y \in Y)((x, y)
+\in f)</span></li>
+<li><span class="math inline">(\forall a \in X)(\forall p,q \in Y)((a,
+p) \in f \land (a, q) \in f \implies p=q)</span></li>
 </ul>
-<p>For example: <span class="math inline">y = \frac{1}{x}</span> is not a function because it doesn’t meet the first requirement, unless <span class="math inline">f</span> is defined as <span class="math inline">f \subseteq (\mathbb{C} - \{0\}, \mathbb{C})</span></p>
+<p>For example: <span class="math inline">y = \frac{1}{x}</span> is not
+a function because it doesn’t meet the first requirement, unless <span
+class="math inline">f</span> is defined as <span class="math inline">f
+\subseteq (\mathbb{C} - \{0\}, \mathbb{C})</span></p>
 <hr />
 <ol type="1">
 <li>quotient set: set of all equivalence classes</li>

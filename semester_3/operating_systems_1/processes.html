@@ -6,14 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>processes</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -316,17 +455,25 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="processes"><span class="header-section-number">1</span> processes</h1>
+<h1 data-number="1" id="processes"><span
+class="header-section-number">1</span> processes</h1>
 <p>Instance of a program that is being executed.</p>
-<h2 id="concepts"><span class="header-section-number">1.1</span> concepts</h2>
+<h2 data-number="1.1" id="concepts"><span
+class="header-section-number">1.1</span> concepts</h2>
 <p>A process can be described as either:</p>
 <ul>
-<li>IO-bound process - spends more time doing IO than computations; many short CPU bursts</li>
-<li>CPU-bound process – spends more time doing computations; few very long CPU bursts</li>
+<li>IO-bound process - spends more time doing IO than computations; many
+short CPU bursts</li>
+<li>CPU-bound process – spends more time doing computations; few very
+long CPU bursts</li>
 </ul>
-<h3 id="structure"><span class="header-section-number">1.1.1</span> structure</h3>
+<h3 data-number="1.1.1" id="structure"><span
+class="header-section-number">1.1.1</span> structure</h3>
 <ul>
 <li>text: code</li>
 <li>data: global/static variables</li>
@@ -334,7 +481,8 @@
 <li>heap: dynamically allocated memory during runtime</li>
 </ul>
 <p>Stack and heap is growable/shrinkable.</p>
-<h3 id="states"><span class="header-section-number">1.1.2</span> states</h3>
+<h3 data-number="1.1.2" id="states"><span
+class="header-section-number">1.1.2</span> states</h3>
 <ul>
 <li>new: The process is being created</li>
 <li>ready: The process is waiting to be assigned to a processor</li>
@@ -342,45 +490,72 @@
 <li>waiting: The process is waiting for some event to occur</li>
 <li>terminated: The process has finished execution</li>
 </ul>
-<h3 id="process-control-block-pcb"><span class="header-section-number">1.1.3</span> process control block (PCB)</h3>
-<p>Stores information about running processes. pid, process state, CPU registers, CPU scheduling info (priorities, queue), memory limits, stats etc.</p>
-<h3 id="context-switch"><span class="header-section-number">1.1.4</span> context switch</h3>
-<p>Switching from one process to another. Requires saving current PCB and loading the one that is needed. Context switches are expensive to perform.</p>
-<h2 id="scheduling"><span class="header-section-number">1.2</span> scheduling</h2>
-<p>Maximize/optimize CPU use. Decides which process is executed next.</p>
+<h3 data-number="1.1.3" id="process-control-block-pcb"><span
+class="header-section-number">1.1.3</span> process control block
+(PCB)</h3>
+<p>Stores information about running processes. pid, process state, CPU
+registers, CPU scheduling info (priorities, queue), memory limits, stats
+etc.</p>
+<h3 data-number="1.1.4" id="context-switch"><span
+class="header-section-number">1.1.4</span> context switch</h3>
+<p>Switching from one process to another. Requires saving current PCB
+and loading the one that is needed. Context switches are expensive to
+perform.</p>
+<h2 data-number="1.2" id="scheduling"><span
+class="header-section-number">1.2</span> scheduling</h2>
+<p>Maximize/optimize CPU use. Decides which process is executed
+next.</p>
 <p>Processes move around these queues:</p>
 <ul>
 <li>job queue</li>
 <li>ready queue</li>
 <li>device queue</li>
 </ul>
-<h3 id="types"><span class="header-section-number">1.2.1</span> types</h3>
+<h3 data-number="1.2.1" id="types"><span
+class="header-section-number">1.2.1</span> types</h3>
 <ul>
-<li>short-term scheduler: selects the next process and allocates CPU (fast, often runs)</li>
-<li>long-term scheduler: selects processes into the read queue (slower, rarely runs)</li>
-<li>medium-term scheduler: swaps out/in processes from/to disk to/from memory</li>
+<li>short-term scheduler: selects the next process and allocates CPU
+(fast, often runs)</li>
+<li>long-term scheduler: selects processes into the read queue (slower,
+rarely runs)</li>
+<li>medium-term scheduler: swaps out/in processes from/to disk to/from
+memory</li>
 </ul>
-<h2 id="operations"><span class="header-section-number">1.3</span> operations</h2>
-<p>Processes are a tree: parents can create its own processes called children.</p>
+<h2 data-number="1.3" id="operations"><span
+class="header-section-number">1.3</span> operations</h2>
+<p>Processes are a tree: parents can create its own processes called
+children.</p>
 <ul>
 <li>parent and children execute concurrently</li>
 <li>parent has to wait until children terminate</li>
 </ul>
-<h3 id="fork"><span class="header-section-number">1.3.1</span> fork</h3>
-<p>Creates a new child process with a copy of the current process’ memory, registers, etc.</p>
-<h3 id="exec-family"><span class="header-section-number">1.3.2</span> exec family</h3>
+<h3 data-number="1.3.1" id="fork"><span
+class="header-section-number">1.3.1</span> fork</h3>
+<p>Creates a new child process with a copy of the current process’
+memory, registers, etc.</p>
+<h3 data-number="1.3.2" id="exec-family"><span
+class="header-section-number">1.3.2</span> exec family</h3>
 <p>Executing other programs with arguments.</p>
-<h3 id="process-termination"><span class="header-section-number">1.3.3</span> process termination</h3>
-<p><code>exit()</code> exits current process with a given status code.</p>
+<h3 data-number="1.3.3" id="process-termination"><span
+class="header-section-number">1.3.3</span> process termination</h3>
+<p><code>exit()</code> exits current process with a given status
+code.</p>
 <p><code>kill(pid, SIGNAL)</code> kills a process.</p>
 <ul>
-<li>If no parent was waiting for its child, the child process becomes a <em>zombie</em></li>
-<li>If parent terminates before the child, the child process becomes an <em>orphan</em> (some operating systems don’t allow such behavior and all children are killed if the parent terminated)</li>
+<li>If no parent was waiting for its child, the child process becomes a
+<em>zombie</em></li>
+<li>If parent terminates before the child, the child process becomes an
+<em>orphan</em> (some operating systems don’t allow such behavior and
+all children are killed if the parent terminated)</li>
 </ul>
 <p>All resources are deallocated by the operating system.</p>
-<h4 id="wait"><span class="header-section-number">1.3.3.1</span> wait</h4>
-<p>Waits for child to exit. Returns the exit code and pid of the child process.</p>
-<h3 id="inter-process-communication-ipc"><span class="header-section-number">1.3.4</span> inter-process communication (IPC)</h3>
+<h4 data-number="1.3.3.1" id="wait"><span
+class="header-section-number">1.3.3.1</span> wait</h4>
+<p>Waits for child to exit. Returns the exit code and pid of the child
+process.</p>
+<h3 data-number="1.3.4" id="inter-process-communication-ipc"><span
+class="header-section-number">1.3.4</span> inter-process communication
+(IPC)</h3>
 <p>Either by shared memory or message passing.</p>
 </body>
 </html>

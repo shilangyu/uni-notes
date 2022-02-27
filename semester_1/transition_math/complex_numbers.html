@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>complex_numbers</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,35 +455,77 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="complex-numbers"><span class="header-section-number">1</span> complex numbers</h1>
-<h4 id="definition"><span class="header-section-number">1.0.0.1</span> definition</h4>
-<p>A complex number <span class="math inline">z=x+iy</span> where <span class="math inline">x,y \in \mathbb{R}</span>, <span class="math inline">z \in \mathbb{C}</span></p>
-<p><span class="math inline">x</span>, <span class="math inline">Re(z)</span> - real part of <span class="math inline">z</span></p>
-<p><span class="math inline">y</span>, <span class="math inline">Im(z)</span> - imaginary part of <span class="math inline">z</span></p>
+<h1 data-number="1" id="complex-numbers"><span
+class="header-section-number">1</span> complex numbers</h1>
+<h4 data-number="1.0.0.1" id="definition"><span
+class="header-section-number">1.0.0.1</span> definition</h4>
+<p>A complex number <span class="math inline">z=x+iy</span> where <span
+class="math inline">x,y \in \mathbb{R}</span>, <span
+class="math inline">z \in \mathbb{C}</span></p>
+<p><span class="math inline">x</span>, <span
+class="math inline">Re(z)</span> - real part of <span
+class="math inline">z</span></p>
+<p><span class="math inline">y</span>, <span
+class="math inline">Im(z)</span> - imaginary part of <span
+class="math inline">z</span></p>
 <p><span class="math inline">\mathbb{R} \subsetneq \mathbb{C}</span></p>
 <p><span class="math inline">i \in \mathbb{C} - \mathbb{R}</span></p>
-<h4 id="conjunction"><span class="header-section-number">1.0.0.2</span> conjunction</h4>
+<h4 data-number="1.0.0.2" id="conjunction"><span
+class="header-section-number">1.0.0.2</span> conjunction</h4>
 <p><span class="math inline">\bar{z} = x - iy</span></p>
-<h4 id="length"><span class="header-section-number">1.0.0.3</span> length</h4>
+<h4 data-number="1.0.0.3" id="length"><span
+class="header-section-number">1.0.0.3</span> length</h4>
 <p><span class="math inline">|z| = \sqrt{x^2 + y^2}</span></p>
-<h4 id="trigonometricpolar-form"><span class="header-section-number">1.0.0.4</span> trigonometric/polar form</h4>
-<p><span class="math inline">z = |z|(\cos{\alpha} + i\sin{\alpha})</span></p>
+<h4 data-number="1.0.0.4" id="trigonometricpolar-form"><span
+class="header-section-number">1.0.0.4</span> trigonometric/polar
+form</h4>
+<p><span class="math inline">z = |z|(\cos{\alpha} +
+i\sin{\alpha})</span></p>
 <p>where:</p>
 <p><span class="math inline">\cos{\alpha} = \frac{x}{|z|}</span></p>
 <p><span class="math inline">\sin{\alpha} = \frac{y}{|z|}</span></p>
-<h4 id="exponential-form"><span class="header-section-number">1.0.0.5</span> exponential form</h4>
+<h4 data-number="1.0.0.5" id="exponential-form"><span
+class="header-section-number">1.0.0.5</span> exponential form</h4>
 <p><span class="math inline">z = |z|e^{i\alpha}</span></p>
 <p><span class="math inline">z^k = |z|^ke^{ik\alpha}</span></p>
 <p>therefore:</p>
 <p><span class="math inline">e^{iz} = \cos{z} + i\sin{z}</span></p>
-<h4 id="roots"><span class="header-section-number">1.0.0.6</span> roots</h4>
-<p>An <code>n-th</code> root of a complex number <code>z</code> (<span class="math inline">\sqrt[n]{z}</span>) has <code>n</code> solutions: <span class="math inline">\{w_0, w_1, \cdots, w_{n-1}\}</span> these are vertices of an <code>n</code>-regular polygon.</p>
-<p><span class="math inline">w_l = \sqrt[n]{|z|}e^{i\frac{\alpha + 2\pi l}{n}}</span></p>
-<h4 id="polynomials"><span class="header-section-number">1.0.0.7</span> polynomials</h4>
+<h4 data-number="1.0.0.6" id="roots"><span
+class="header-section-number">1.0.0.6</span> roots</h4>
+<p>An <code>n-th</code> root of a complex number <code>z</code> (<span
+class="math inline">\sqrt[n]{z}</span>) has <code>n</code> solutions:
+<span class="math inline">\{w_0, w_1, \cdots, w_{n-1}\}</span> these are
+vertices of an <code>n</code>-regular polygon.</p>
+<p><span class="math inline">w_l = \sqrt[n]{|z|}e^{i\frac{\alpha + 2\pi
+l}{n}}</span></p>
+<h4 data-number="1.0.0.7" id="polynomials"><span
+class="header-section-number">1.0.0.7</span> polynomials</h4>
 <p>let <span class="math inline">f(x) = x^2 + x + 1</span></p>
-<p><span class="math inline">f</span> has no real roots it has however, 2 complex ones:</p>
+<p><span class="math inline">f</span> has no real roots it has however,
+2 complex ones:</p>
 <p><span class="math display">
 \begin{matrix}
     x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
@@ -362,10 +535,18 @@
     x = -\frac{1}{2} \pm i\frac{\sqrt{3}}{2} \\
 \end{matrix}
 </span></p>
-<p>if <span class="math inline">a,b,c \in \mathbb{R}</span> and <span class="math inline">z</span> is a root of <span class="math inline">f</span> then <span class="math inline">\bar{z}</span> is a root as well</p>
-<h4 id="cheatsheet"><span class="header-section-number">1.0.0.8</span> cheatsheet</h4>
-<p>let <span class="math inline">z = |z|(\cos{\alpha} + i\sin{\alpha})</span>, <span class="math inline">w = |w|(\cos{\phi} + i\sin{\phi})</span> then:</p>
-<p><span class="math inline">zw = |z||w|(\cos(\phi + \alpha) + i\sin(\phi + \alpha))</span></p>
-<p><span class="math inline">z^n = |z|^n(\cos(n\alpha) + i\sin(n\alpha))</span></p>
+<p>if <span class="math inline">a,b,c \in \mathbb{R}</span> and <span
+class="math inline">z</span> is a root of <span
+class="math inline">f</span> then <span
+class="math inline">\bar{z}</span> is a root as well</p>
+<h4 data-number="1.0.0.8" id="cheatsheet"><span
+class="header-section-number">1.0.0.8</span> cheatsheet</h4>
+<p>let <span class="math inline">z = |z|(\cos{\alpha} +
+i\sin{\alpha})</span>, <span class="math inline">w = |w|(\cos{\phi} +
+i\sin{\phi})</span> then:</p>
+<p><span class="math inline">zw = |z||w|(\cos(\phi + \alpha) +
+i\sin(\phi + \alpha))</span></p>
+<p><span class="math inline">z^n = |z|^n(\cos(n\alpha) +
+i\sin(n\alpha))</span></p>
 </body>
 </html>

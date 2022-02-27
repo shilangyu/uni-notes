@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>introduction</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,20 +455,50 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="computer-statistics"><span class="header-section-number">1</span> Computer statistics</h1>
+<h1 data-number="1" id="computer-statistics"><span
+class="header-section-number">1</span> Computer statistics</h1>
 <p>Midterm 1: 16.11 or 23.11 Midterm 2: 11.01 R test: 24-25.01</p>
-<h2 id="descriptive-statistics"><span class="header-section-number">1.1</span> descriptive statistics</h2>
+<h2 data-number="1.1" id="descriptive-statistics"><span
+class="header-section-number">1.1</span> descriptive statistics</h2>
 <p>Deals with collecting,</p>
 <ul>
-<li><strong>Population</strong>: complete collection of all items of interest</li>
-<li><strong>Sample</strong>: observed subset of the population. Denoted by <span class="math inline">x_1, x_2, \dots x_n</span> where is a sample size</li>
-<li><strong>Parameter</strong>: characteristic of a population (fixed)</li>
-<li><strong>Statistic</strong>: specific characteristic of a sample. Estimator is a statistic which we wish to be close to the parameter of interest</li>
+<li><strong>Population</strong>: complete collection of all items of
+interest</li>
+<li><strong>Sample</strong>: observed subset of the population. Denoted
+by <span class="math inline">x_1, x_2, \dots x_n</span> where is a
+sample size</li>
+<li><strong>Parameter</strong>: characteristic of a population
+(fixed)</li>
+<li><strong>Statistic</strong>: specific characteristic of a sample.
+Estimator is a statistic which we wish to be close to the parameter of
+interest</li>
 <li><strong>Variable</strong>: characteristic of an individual</li>
 </ul>
-<h2 id="classification"><span class="header-section-number">1.2</span> classification</h2>
+<h2 data-number="1.2" id="classification"><span
+class="header-section-number">1.2</span> classification</h2>
 <ul>
 <li>categorical
 <ul>
@@ -350,38 +511,68 @@
 <li>continuous: range of possible values, often floats</li>
 </ul></li>
 </ul>
-<h2 id="frequency-distribution"><span class="header-section-number">1.3</span> frequency distribution</h2>
+<h2 data-number="1.3" id="frequency-distribution"><span
+class="header-section-number">1.3</span> frequency distribution</h2>
 <ul>
-<li>For categorical data, columns are in the following order: Classes (ordered), amount, frequency, cumulative amount, cumulative frequency</li>
-<li>For continuous or discrete with many values: Class intervals, midpoint, amount, frequency, cumulative amount, cumulative frequency. The number of intervals is <span class="math inline">\sqrt{n}</span> for small <span class="math inline">n</span>, <span class="math inline">\lceil\log_2(n)\rceil + 1</span> for large <span class="math inline">n</span></li>
+<li>For categorical data, columns are in the following order: Classes
+(ordered), amount, frequency, cumulative amount, cumulative
+frequency</li>
+<li>For continuous or discrete with many values: Class intervals,
+midpoint, amount, frequency, cumulative amount, cumulative frequency.
+The number of intervals is <span class="math inline">\sqrt{n}</span> for
+small <span class="math inline">n</span>, <span
+class="math inline">\lceil\log_2(n)\rceil + 1</span> for large <span
+class="math inline">n</span></li>
 </ul>
-<h3 id="numerical-description"><span class="header-section-number">1.3.1</span> numerical description</h3>
-<p><span class="math inline">x_{(1)}, \cdots, x_{(n)}</span> denotes an ordered sample</p>
-<h4 id="measures"><span class="header-section-number">1.3.1.1</span> measures</h4>
-<h5 id="central-tendency"><span class="header-section-number">1.3.1.1.1</span> central tendency</h5>
+<h3 data-number="1.3.1" id="numerical-description"><span
+class="header-section-number">1.3.1</span> numerical description</h3>
+<p><span class="math inline">x_{(1)}, \cdots, x_{(n)}</span> denotes an
+ordered sample</p>
+<h4 data-number="1.3.1.1" id="measures"><span
+class="header-section-number">1.3.1.1</span> measures</h4>
+<h5 data-number="1.3.1.1.1" id="central-tendency"><span
+class="header-section-number">1.3.1.1.1</span> central tendency</h5>
 <ul>
 <li><strong>Sample mean</strong>: arithmetic average</li>
 <li><strong>Median</strong>: “middle value”</li>
 <li><strong>Mode</strong>: most frequent value</li>
 </ul>
-<h5 id="quantiles"><span class="header-section-number">1.3.1.1.2</span> quantiles</h5>
-<p>The sample quantile to probability <span class="math inline">p</span>, <span class="math inline">\hat q_p</span> has position <span class="math inline">(n+1)p</span> in the ordered sample. So <span class="math inline">\hat q_p = x_{((n+1)p)}</span>.</p>
-<h5 id="variability"><span class="header-section-number">1.3.1.1.3</span> variability</h5>
+<h5 data-number="1.3.1.1.2" id="quantiles"><span
+class="header-section-number">1.3.1.1.2</span> quantiles</h5>
+<p>The sample quantile to probability <span
+class="math inline">p</span>, <span class="math inline">\hat q_p</span>
+has position <span class="math inline">(n+1)p</span> in the ordered
+sample. So <span class="math inline">\hat q_p = x_{((n+1)p)}</span>.</p>
+<h5 data-number="1.3.1.1.3" id="variability"><span
+class="header-section-number">1.3.1.1.3</span> variability</h5>
 <ul>
-<li><strong>Range</strong>: <span class="math inline">R = m_{\max} - m_{\min}</span></li>
-<li><strong>Interquantile Range</strong>: <span class="math inline">IQR = Q_3 - Q_1</span></li>
-<li><strong>Sample variance</strong>: <span class="math inline">s^2 = \frac{1}{n-1}\sum_{i=1}^n(x_i - \overline x)^2 = \frac{\sum_{i=1}^n x_i^2 - n(\overline x)^2}{n-1}</span></li>
-<li><strong>Sample standard deviation</strong>: <span class="math inline">s = \sqrt{s^2}</span></li>
+<li><strong>Range</strong>: <span class="math inline">R = m_{\max} -
+m_{\min}</span></li>
+<li><strong>Interquantile Range</strong>: <span class="math inline">IQR
+= Q_3 - Q_1</span></li>
+<li><strong>Sample variance</strong>: <span class="math inline">s^2 =
+\frac{1}{n-1}\sum_{i=1}^n(x_i - \overline x)^2 = \frac{\sum_{i=1}^n
+x_i^2 - n(\overline x)^2}{n-1}</span></li>
+<li><strong>Sample standard deviation</strong>: <span
+class="math inline">s = \sqrt{s^2}</span></li>
 </ul>
-<h5 id="shapes"><span class="header-section-number">1.3.1.1.4</span> shapes</h5>
+<h5 data-number="1.3.1.1.4" id="shapes"><span
+class="header-section-number">1.3.1.1.4</span> shapes</h5>
 <ul>
-<li><strong>Skewness</strong>: <span class="math inline">sk = \frac{m_3}{s^3}</span> where <span class="math inline">m_3 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline x)^3</span></li>
-<li><strong>Kurtosis</strong>: <span class="math inline">k = \frac{m_4}{s^4}</span> where <span class="math inline">m_4 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline x)^4</span></li>
+<li><strong>Skewness</strong>: <span class="math inline">sk =
+\frac{m_3}{s^3}</span> where <span class="math inline">m_3 = \frac{1}{n}
+\sum_{i=1}^n (x_i - \overline x)^3</span></li>
+<li><strong>Kurtosis</strong>: <span class="math inline">k =
+\frac{m_4}{s^4}</span> where <span class="math inline">m_4 = \frac{1}{n}
+\sum_{i=1}^n (x_i - \overline x)^4</span></li>
 </ul>
-<h5 id="outliers"><span class="header-section-number">1.3.1.1.5</span> outliers</h5>
+<h5 data-number="1.3.1.1.5" id="outliers"><span
+class="header-section-number">1.3.1.1.5</span> outliers</h5>
 <ul>
-<li>If <span class="math inline">x_i &lt; Q_1 - 1.5IQR \lor x_i &gt; Q_3 + 1.5IQR</span> then it is called an outlier</li>
-<li>If <span class="math inline">x_i &lt; Q_1 - 3IQR \lor x_i &gt; Q_3 + 3IQR</span> then it is called an extreme outlier</li>
+<li>If <span class="math inline">x_i &lt; Q_1 - 1.5IQR \lor x_i &gt; Q_3
++ 1.5IQR</span> then it is called an outlier</li>
+<li>If <span class="math inline">x_i &lt; Q_1 - 3IQR \lor x_i &gt; Q_3 +
+3IQR</span> then it is called an extreme outlier</li>
 </ul>
 </body>
 </html>

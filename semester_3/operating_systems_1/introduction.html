@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>introduction</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,10 +455,33 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="introduction"><span class="header-section-number">1</span> introduction</h1>
-<h2 id="overview"><span class="header-section-number">1.1</span> overview</h2>
+<h1 data-number="1" id="introduction"><span
+class="header-section-number">1</span> introduction</h1>
+<h2 data-number="1.1" id="overview"><span
+class="header-section-number">1.1</span> overview</h2>
 <p>Operating system (OP) is something that:</p>
 <ul>
 <li>acts as a intermediary between a user and the hardware</li>
@@ -335,57 +489,89 @@
 <li>has an always running kernel</li>
 <li>executes user programs</li>
 </ul>
-<h3 id="structure"><span class="header-section-number">1.1.1</span> structure</h3>
+<h3 data-number="1.1.1" id="structure"><span
+class="header-section-number">1.1.1</span> structure</h3>
 <ol type="1">
 <li>computer hardware: CPU, memory, IO devices</li>
 <li>operating system: <em>see above</em></li>
-<li>program: instructions defining the way in which the system resources are used to solve the computing problems of the users</li>
+<li>program: instructions defining the way in which the system resources
+are used to solve the computing problems of the users</li>
 <li>users: people, other computers</li>
 </ol>
-<h3 id="multiprogramming"><span class="header-section-number">1.1.2</span> multiprogramming</h3>
-<p>OP has to schedule jobs to evenly distribute work across CPU cores:</p>
+<h3 data-number="1.1.2" id="multiprogramming"><span
+class="header-section-number">1.1.2</span> multiprogramming</h3>
+<p>OP has to schedule jobs to evenly distribute work across CPU
+cores:</p>
 <ul>
-<li>when one job is waiting for something (for example IO), OP switching to a different job</li>
+<li>when one job is waiting for something (for example IO), OP switching
+to a different job</li>
 <li>allocate physically private memory chunks for each job</li>
 <li>provides interfaces for shared devices through IO functions</li>
 </ul>
-<h3 id="timesharing-multitasking"><span class="header-section-number">1.1.3</span> timesharing (multitasking)</h3>
-<p>When the CPU switches the jobs very frequently making it feel like multiple jobs are running simultaneously. If processes use more memory than available, <strong>swapping</strong> moves them in and out between memory and swap memory (swap file/swap partition).</p>
-<h3 id="real-time-rt-systems"><span class="header-section-number">1.1.4</span> real-time (RT) systems</h3>
+<h3 data-number="1.1.3" id="timesharing-multitasking"><span
+class="header-section-number">1.1.3</span> timesharing
+(multitasking)</h3>
+<p>When the CPU switches the jobs very frequently making it feel like
+multiple jobs are running simultaneously. If processes use more memory
+than available, <strong>swapping</strong> moves them in and out between
+memory and swap memory (swap file/swap partition).</p>
+<h3 data-number="1.1.4" id="real-time-rt-systems"><span
+class="header-section-number">1.1.4</span> real-time (RT) systems</h3>
 <p>Systems with a rigid time requirement</p>
-<h4 id="hard-rt-systems"><span class="header-section-number">1.1.4.1</span> hard RT systems</h4>
+<h4 data-number="1.1.4.1" id="hard-rt-systems"><span
+class="header-section-number">1.1.4.1</span> hard RT systems</h4>
 <ul>
-<li>time-critical systems like industrial control, robotics, embedded</li>
+<li>time-critical systems like industrial control, robotics,
+embedded</li>
 <li>can’t exist in universal/multi-mode systems</li>
-<li>prevent usage of cost effective solutions like virtual memory, dynamic loading (introduces unpredictable response times)</li>
+<li>prevent usage of cost effective solutions like virtual memory,
+dynamic loading (introduces unpredictable response times)</li>
 </ul>
-<h4 id="soft-rt-systems"><span class="header-section-number">1.1.4.2</span> soft RT systems</h4>
+<h4 data-number="1.1.4.2" id="soft-rt-systems"><span
+class="header-section-number">1.1.4.2</span> soft RT systems</h4>
 <ul>
-<li>attempt to meet deadlines but can fail in return for a more overall cost-effective system</li>
+<li>attempt to meet deadlines but can fail in return for a more overall
+cost-effective system</li>
 <li>used when predictable response times are not a requirement</li>
 </ul>
-<h3 id="interface"><span class="header-section-number">1.1.5</span> interface</h3>
-<h3 id="concurrent-resource-usage"><span class="header-section-number">1.1.6</span> concurrent resource usage</h3>
-<p>Jobs have access to shared resources only indirectly - through system calls (syscall). Often implemented through some system function to form an interface between OP and user programs.</p>
-<p>Multiprogramming and timesharing. Concurrent resource use is implemented with:</p>
+<h3 data-number="1.1.5" id="interface"><span
+class="header-section-number">1.1.5</span> interface</h3>
+<h3 data-number="1.1.6" id="concurrent-resource-usage"><span
+class="header-section-number">1.1.6</span> concurrent resource
+usage</h3>
+<p>Jobs have access to shared resources only indirectly - through system
+calls (syscall). Often implemented through some system function to form
+an interface between OP and user programs.</p>
+<p>Multiprogramming and timesharing. Concurrent resource use is
+implemented with:</p>
 <ul>
 <li>interrupts</li>
 <li>communication and synchronization</li>
 <li>multi-core architectures</li>
 </ul>
-<h4 id="symmetric-multiprocessing-smp"><span class="header-section-number">1.1.6.1</span> symmetric multiprocessing (SMP)</h4>
+<h4 data-number="1.1.6.1" id="symmetric-multiprocessing-smp"><span
+class="header-section-number">1.1.6.1</span> symmetric multiprocessing
+(SMP)</h4>
 <p>CPUs share the whole system</p>
-<h4 id="asymmetric-multiprocessing-smp"><span class="header-section-number">1.1.6.2</span> asymmetric multiprocessing (SMP)</h4>
+<h4 data-number="1.1.6.2" id="asymmetric-multiprocessing-smp"><span
+class="header-section-number">1.1.6.2</span> asymmetric multiprocessing
+(SMP)</h4>
 <p>One master and many slave (workers) CPUs</p>
-<h3 id="syscall-api"><span class="header-section-number">1.1.7</span> syscall API</h3>
-<p>Example scenario with C’s <code>printf()</code> (POSIX environment)</p>
+<h3 data-number="1.1.7" id="syscall-api"><span
+class="header-section-number">1.1.7</span> syscall API</h3>
+<p>Example scenario with C’s <code>printf()</code> (POSIX
+environment)</p>
 <ul>
 <li><code>printf()</code> is called</li>
 <li>formatted string is stored in a local stdout buffer</li>
-<li>when the buffer is full (or forcefully flushed with <code>fflush()</code>) a <code>write</code> syscall is dispatched to move the buffer to a destination device</li>
+<li>when the buffer is full (or forcefully flushed with
+<code>fflush()</code>) a <code>write</code> syscall is dispatched to
+move the buffer to a destination device</li>
 </ul>
-<h3 id="structure-1"><span class="header-section-number">1.1.8</span> structure</h3>
-<h4 id="simple-system-ms-dos"><span class="header-section-number">1.1.8.1</span> simple system: MS-DOS</h4>
+<h3 data-number="1.1.8" id="structure-1"><span
+class="header-section-number">1.1.8</span> structure</h3>
+<h4 data-number="1.1.8.1" id="simple-system-ms-dos"><span
+class="header-section-number">1.1.8.1</span> simple system: MS-DOS</h4>
 <ul>
 <li>single-tasking</li>
 <li>shell spawned on boot up</li>
@@ -393,12 +579,14 @@
 <li>loads a program into memory overwriting all but the kernel</li>
 <li>when program ends the shell is reloaded</li>
 </ul>
-<h4 id="monolithic-system"><span class="header-section-number">1.1.8.2</span> monolithic system</h4>
+<h4 data-number="1.1.8.2" id="monolithic-system"><span
+class="header-section-number">1.1.8.2</span> monolithic system</h4>
 <ul>
 <li>kernel as a single program</li>
 <li>system programs</li>
 </ul>
-<h4 id="microkernel-system"><span class="header-section-number">1.1.8.3</span> microkernel system</h4>
+<h4 data-number="1.1.8.3" id="microkernel-system"><span
+class="header-section-number">1.1.8.3</span> microkernel system</h4>
 <ul>
 <li>moved as much functionality to user space</li>
 <li>communication with message passing</li>
@@ -429,29 +617,41 @@
 </tr>
 </tbody>
 </table>
-<h4 id="hybrid-system"><span class="header-section-number">1.1.8.4</span> hybrid system</h4>
-<p>One that uses approaches from different system structures to address the specific problems it is trying to solve.</p>
+<h4 data-number="1.1.8.4" id="hybrid-system"><span
+class="header-section-number">1.1.8.4</span> hybrid system</h4>
+<p>One that uses approaches from different system structures to address
+the specific problems it is trying to solve.</p>
 <p>For example:</p>
 <ul>
-<li>Linux: has a monolithic kernel but with dynamic loading of functionality</li>
-<li>Mac OS: Mach microkernel, BSD Unix parts, dynamically loadable modules (here called kernel extensions)</li>
+<li>Linux: has a monolithic kernel but with dynamic loading of
+functionality</li>
+<li>Mac OS: Mach microkernel, BSD Unix parts, dynamically loadable
+modules (here called kernel extensions)</li>
 </ul>
-<h3 id="kernel-modules"><span class="header-section-number">1.1.9</span> kernel modules</h3>
+<h3 data-number="1.1.9" id="kernel-modules"><span
+class="header-section-number">1.1.9</span> kernel modules</h3>
 <p>Each core component is separate and loadable.</p>
-<h2 id="operation"><span class="header-section-number">1.2</span> operation</h2>
+<h2 data-number="1.2" id="operation"><span
+class="header-section-number">1.2</span> operation</h2>
 <ul>
 <li>IO devices and the CPU can execute concurrently</li>
 <li>each device controller is in charge of a particular device type</li>
 <li>each device controller has a local buffer</li>
 <li>CPU moves data from/to main memory to/from local buffers</li>
 <li>IO is from the device to local buffer of controller</li>
-<li>device controller informs CPU that it has finished its operation by causing an <em>interrupt</em></li>
+<li>device controller informs CPU that it has finished its operation by
+causing an <em>interrupt</em></li>
 </ul>
-<h3 id="interrupts"><span class="header-section-number">1.2.1</span> interrupts</h3>
-<p>Interrupts inform the OS that attention is needed and something has to be immediately executed. Interrupts can be cause by hardware (IO devices), software, or CPU traps (like error).</p>
-<p>Interrupts are disabled when a different interrupt is being processed to prevent lost interrupts.</p>
+<h3 data-number="1.2.1" id="interrupts"><span
+class="header-section-number">1.2.1</span> interrupts</h3>
+<p>Interrupts inform the OS that attention is needed and something has
+to be immediately executed. Interrupts can be cause by hardware (IO
+devices), software, or CPU traps (like error).</p>
+<p>Interrupts are disabled when a different interrupt is being processed
+to prevent lost interrupts.</p>
 <p>Operating systems are <strong>interrupt driven</strong></p>
-<h4 id="handling"><span class="header-section-number">1.2.1.1</span> handling</h4>
+<h4 data-number="1.2.1.1" id="handling"><span
+class="header-section-number">1.2.1.1</span> handling</h4>
 <ul>
 <li>preserve the state of the CPU (store registers)</li>
 <li>which type of interrupt has occurred
@@ -460,20 +660,38 @@
 <li>vectored interrupt system</li>
 </ul></li>
 </ul>
-<h3 id="io"><span class="header-section-number">1.2.2</span> IO</h3>
+<h3 data-number="1.2.2" id="io"><span
+class="header-section-number">1.2.2</span> IO</h3>
 <ul>
-<li>synchronous: CPU idles until the next interrupt, only one IO at a time (though can be completed in a non-blocking manner: if can’t be performed immediately it will return with an error code)</li>
-<li>asynchronous: non-blocking but status has to be polled. IO states are stored in a device-status table</li>
+<li>synchronous: CPU idles until the next interrupt, only one IO at a
+time (though can be completed in a non-blocking manner: if can’t be
+performed immediately it will return with an error code)</li>
+<li>asynchronous: non-blocking but status has to be polled. IO states
+are stored in a device-status table</li>
 </ul>
-<h3 id="direct-memory-access-dma"><span class="header-section-number">1.2.3</span> direct memory access (DMA)</h3>
-<p>Device transfers its buffer straight to memory without CPU intervention.</p>
+<h3 data-number="1.2.3" id="direct-memory-access-dma"><span
+class="header-section-number">1.2.3</span> direct memory access
+(DMA)</h3>
+<p>Device transfers its buffer straight to memory without CPU
+intervention.</p>
 <ul>
 <li>high speed IO information transfer (close to memory speed)</li>
-<li>CPU and DMA might fight for memory resulting in inconsistent speed ups</li>
+<li>CPU and DMA might fight for memory resulting in inconsistent speed
+ups</li>
 </ul>
-<h3 id="storage"><span class="header-section-number">1.2.4</span> storage</h3>
-<p>disk storage (ROM) <span class="math inline">\implies</span> main memory (RAM) <span class="math inline">\implies</span> cache <span class="math inline">\implies</span> registers</p>
-<table>
+<h3 data-number="1.2.4" id="storage"><span
+class="header-section-number">1.2.4</span> storage</h3>
+<p>disk storage (ROM) <span class="math inline">\implies</span> main
+memory (RAM) <span class="math inline">\implies</span> cache <span
+class="math inline">\implies</span> registers</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 22%" />
+<col style="width: 19%" />
+<col style="width: 17%" />
+<col style="width: 14%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th></th>
@@ -507,11 +725,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="modes"><span class="header-section-number">1.2.5</span> modes</h3>
+<h3 data-number="1.2.5" id="modes"><span
+class="header-section-number">1.2.5</span> modes</h3>
 <ul>
 <li>Current mode is stored in a <em>mode bit</em></li>
-<li>Some operations can be only done in kernel mode (called privileged instructions)</li>
-<li>A syscall switches to kernel mode and after returning from call changes back to user mode</li>
+<li>Some operations can be only done in kernel mode (called privileged
+instructions)</li>
+<li>A syscall switches to kernel mode and after returning from call
+changes back to user mode</li>
 </ul>
 </body>
 </html>

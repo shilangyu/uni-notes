@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>introduction</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,25 +455,57 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="introduction"><span class="header-section-number">1</span> introduction</h1>
-<h2 id="notation"><span class="header-section-number">1.1</span> notation</h2>
+<h1 data-number="1" id="introduction"><span
+class="header-section-number">1</span> introduction</h1>
+<h2 data-number="1.1" id="notation"><span
+class="header-section-number">1.1</span> notation</h2>
 <ul>
 <li><span class="math inline">E[\frac{V}{m}]</span> electric field</li>
-<li><span class="math inline">D[\frac{C}{m^2}]</span> electric flux density</li>
-<li><span class="math inline">\epsilon[\frac{F}{m}]</span> permittivity</li>
+<li><span class="math inline">D[\frac{C}{m^2}]</span> electric flux
+density</li>
+<li><span class="math inline">\epsilon[\frac{F}{m}]</span>
+permittivity</li>
 <li><span class="math inline">H[\frac{A}{m}]</span> magnetic field</li>
-<li><span class="math inline">B[\frac{Vs}{m^2}][T]</span> magnetic flux density</li>
+<li><span class="math inline">B[\frac{Vs}{m^2}][T]</span> magnetic flux
+density</li>
 <li><span class="math inline">\mu[\frac{H}{m}]</span> permeability</li>
-<li><span class="math inline">J[\frac{A}{m^2}]</span> electric current density</li>
-<li><span class="math inline">\sigma[\frac{S}{m}]</span> conductivity</li>
+<li><span class="math inline">J[\frac{A}{m^2}]</span> electric current
+density</li>
+<li><span class="math inline">\sigma[\frac{S}{m}]</span>
+conductivity</li>
 </ul>
-<h2 id="properties-of-waves"><span class="header-section-number">1.2</span> properties of waves</h2>
+<h2 data-number="1.2" id="properties-of-waves"><span
+class="header-section-number">1.2</span> properties of waves</h2>
 <ul>
-<li>Wavelength <span class="math inline">\lambda</span> - <span class="math inline">x</span> length between periods</li>
-<li>Period <span class="math inline">T</span> - time period of a sinusoidal wave</li>
-<li>Frequency <span class="math inline">f</span> - how many periods per second</li>
+<li>Wavelength <span class="math inline">\lambda</span> - <span
+class="math inline">x</span> length between periods</li>
+<li>Period <span class="math inline">T</span> - time period of a
+sinusoidal wave</li>
+<li>Frequency <span class="math inline">f</span> - how many periods per
+second</li>
 </ul>
 <p><span class="math display">
     \lambda = \frac{c}{f}
@@ -350,11 +513,15 @@
 <p><span class="math display">
     f = \frac{1}{T}
 </span></p>
-<h2 id="electromagnetic-wave-emf"><span class="header-section-number">1.3</span> electromagnetic wave EMF</h2>
-<p>Spatial distribution of an electric field (produced by stationary charges) and magnetic field (produced by moving charges/currents)</p>
-<h2 id="electromagnetic-wave"><span class="header-section-number">1.4</span> electromagnetic wave</h2>
+<h2 data-number="1.3" id="electromagnetic-wave-emf"><span
+class="header-section-number">1.3</span> electromagnetic wave EMF</h2>
+<p>Spatial distribution of an electric field (produced by stationary
+charges) and magnetic field (produced by moving charges/currents)</p>
+<h2 data-number="1.4" id="electromagnetic-wave"><span
+class="header-section-number">1.4</span> electromagnetic wave</h2>
 <p>Periodic (harmonic) variations of EMF in space (and time)</p>
-<h2 id="formulae"><span class="header-section-number">1.5</span> formulae</h2>
+<h2 data-number="1.5" id="formulae"><span
+class="header-section-number">1.5</span> formulae</h2>
 <p><span class="math display">
     \vec D = \overline{\overline \epsilon} \vec E
 </span></p>
@@ -366,14 +533,19 @@
 </span></p>
 <p><strong>perms</strong></p>
 <p><span class="math display">
-    \overline{\overline \epsilon} = \epsilon_0 \overline{\overline \epsilon}_r
+    \overline{\overline \epsilon} = \epsilon_0 \overline{\overline
+\epsilon}_r
 </span></p>
 <p><span class="math display">
     \overline{\overline \mu} = \mu_0 \overline{\overline \mu}_r
 </span></p>
-<p>where <span class="math inline">\epsilon_0 = \frac{10^{-9}}{36\pi}[\frac{F}{m}]</span>, <span class="math inline">\mu_0 = 4\pi10^{-7}[\frac{H}{m}]</span></p>
-<h2 id="amplitude-to-vector"><span class="header-section-number">1.6</span> amplitude to vector</h2>
-<p>Applies to any vector, <span class="math inline">H</span> is just an example</p>
+<p>where <span class="math inline">\epsilon_0 =
+\frac{10^{-9}}{36\pi}[\frac{F}{m}]</span>, <span
+class="math inline">\mu_0 = 4\pi10^{-7}[\frac{H}{m}]</span></p>
+<h2 data-number="1.6" id="amplitude-to-vector"><span
+class="header-section-number">1.6</span> amplitude to vector</h2>
+<p>Applies to any vector, <span class="math inline">H</span> is just an
+example</p>
 <p><span class="math display">
     H = H_0 \cdot e^{jwt}
 </span></p>

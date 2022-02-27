@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>regression</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,79 +455,133 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="regression"><span class="header-section-number">1</span> regression</h1>
-<h2 id="bivariate-data"><span class="header-section-number">1.1</span> bivariate data</h2>
+<h1 data-number="1" id="regression"><span
+class="header-section-number">1</span> regression</h1>
+<h2 data-number="1.1" id="bivariate-data"><span
+class="header-section-number">1.1</span> bivariate data</h2>
 <p>Data obtained when observing two characteristics of one object</p>
 <p><span class="math display">
 (x_1, y_1), (x_2, y_2), \cdots, (x_n, y_n)
 </span></p>
-<h2 id="sample-covariance"><span class="header-section-number">1.2</span> Sample covariance</h2>
+<h2 data-number="1.2" id="sample-covariance"><span
+class="header-section-number">1.2</span> Sample covariance</h2>
 <p>Linear relationship</p>
 <p><span class="math display">
-s_{xy} = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar x)(y_i - \bar y) = \frac{1}{n-1}(\sum_{i=1}^nx_iy_i - n\bar x\bar y)
+s_{xy} = \frac{1}{n-1}\sum_{i=1}^n(x_i - \bar x)(y_i - \bar y) =
+\frac{1}{n-1}(\sum_{i=1}^nx_iy_i - n\bar x\bar y)
 </span></p>
-<h2 id="sample-correlation"><span class="header-section-number">1.3</span> Sample correlation</h2>
+<h2 data-number="1.3" id="sample-correlation"><span
+class="header-section-number">1.3</span> Sample correlation</h2>
 <p><span class="math display">
 r_{xy} = \frac{s_{xy}}{s_xs_y}
 </span></p>
 <p>Note that <span class="math inline">-1 \le r_{xy} \le 1</span></p>
-<h2 id="spearman-correlation-coefficient"><span class="header-section-number">1.4</span> Spearman correlation coefficient</h2>
+<h2 data-number="1.4" id="spearman-correlation-coefficient"><span
+class="header-section-number">1.4</span> Spearman correlation
+coefficient</h2>
 <p>Measure of monotonicity</p>
 <p><span class="math display">
 \rho_{xy} = \frac{s_{r(x)r(y)}}{s_{r(x)}s_{r(y)}}
 </span></p>
-<p>Where <span class="math inline">r(x)</span> denotes the rank of <span class="math inline">x</span></p>
+<p>Where <span class="math inline">r(x)</span> denotes the rank of <span
+class="math inline">x</span></p>
 <p>If there are no ties:</p>
 <p><span class="math display">
 \rho_{xy} = 1 - \frac{6\sum_{i=1}^n d_i^2}{n(n^2 - 1)}
 </span></p>
 <p>Where <span class="math inline">d_i = r(x_i) - r(y_i)</span></p>
-<h2 id="relationships"><span class="header-section-number">1.5</span> relationships</h2>
-<h3 id="deterministic"><span class="header-section-number">1.5.1</span> deterministic</h3>
+<h2 data-number="1.5" id="relationships"><span
+class="header-section-number">1.5</span> relationships</h2>
+<h3 data-number="1.5.1" id="deterministic"><span
+class="header-section-number">1.5.1</span> deterministic</h3>
 <p><span class="math inline">y = f(x)</span></p>
-<h3 id="nondeterministic"><span class="header-section-number">1.5.2</span> nondeterministic</h3>
+<h3 data-number="1.5.2" id="nondeterministic"><span
+class="header-section-number">1.5.2</span> nondeterministic</h3>
 <p><span class="math inline">y = f(x) + \varepsilon</span></p>
-<h2 id="linear-regression"><span class="header-section-number">1.6</span> linear regression</h2>
+<h2 data-number="1.6" id="linear-regression"><span
+class="header-section-number">1.6</span> linear regression</h2>
 <p><span class="math display">
 Y_i = \beta_0 + \beta_1x_i + \varepsilon_i
 </span></p>
 <ul>
-<li><span class="math inline">\varepsilon_1, \cdots, \varepsilon_n \sim N(0, \sigma^2)</span></li>
-<li><span class="math inline">\beta_0</span> is called the intercept</li>
+<li><span class="math inline">\varepsilon_1, \cdots, \varepsilon_n \sim
+N(0, \sigma^2)</span></li>
+<li><span class="math inline">\beta_0</span> is called the
+intercept</li>
 <li><span class="math inline">\beta_1</span> is called the slope</li>
 </ul>
-<p>Regression line <span class="math inline">\hat y = \hat \beta_0 + \hat \beta_1 x</span> can be estimated using least squares. These estimators are:</p>
+<p>Regression line <span class="math inline">\hat y = \hat \beta_0 +
+\hat \beta_1 x</span> can be estimated using least squares. These
+estimators are:</p>
 <ul>
-<li><span class="math inline">\hat \beta_1 = \frac{s_{xy}}{s_x^2}</span></li>
-<li><span class="math inline">\hat \beta_0 = \bar y - \hat \beta_1 \bar x</span></li>
+<li><span class="math inline">\hat \beta_1 =
+\frac{s_{xy}}{s_x^2}</span></li>
+<li><span class="math inline">\hat \beta_0 = \bar y - \hat \beta_1 \bar
+x</span></li>
 </ul>
-<p>Unbiased estimator for <span class="math inline">\sigma^2</span>: <span class="math inline">s_R^2 = \frac{1}{n-2} \sum_{i=1}^n(y_i - \hat y_i)^2</span></p>
-<h3 id="parameters"><span class="header-section-number">1.6.1</span> parameters</h3>
+<p>Unbiased estimator for <span class="math inline">\sigma^2</span>:
+<span class="math inline">s_R^2 = \frac{1}{n-2} \sum_{i=1}^n(y_i - \hat
+y_i)^2</span></p>
+<h3 data-number="1.6.1" id="parameters"><span
+class="header-section-number">1.6.1</span> parameters</h3>
 <p><span class="math display">
-\hat \beta_0 \sim N(\beta_0, \sqrt{\sigma^2(\frac{1}{n} + \frac{\bar x^2}{(n-1)s_X^2})})
+\hat \beta_0 \sim N(\beta_0, \sqrt{\sigma^2(\frac{1}{n} + \frac{\bar
+x^2}{(n-1)s_X^2})})
 </span></p>
 <p><span class="math display">
-\frac{\hat \beta_0 - \beta_0}{\sqrt{s_R^2(\frac{1}{n} + \frac{\bar x^2}{(n-1)s_X^2})}} \sim t_{n-2}
+\frac{\hat \beta_0 - \beta_0}{\sqrt{s_R^2(\frac{1}{n} + \frac{\bar
+x^2}{(n-1)s_X^2})}} \sim t_{n-2}
 </span></p>
 <p><span class="math display">
 \hat \beta_1 \sim N(\beta_1, \sqrt{\frac{\sigma^2}{(n-1)s_X^2}})
 </span></p>
 <p><span class="math display">
-\frac{\hat \beta_1 - \beta_1}{\sqrt{\frac{s_R^2}{(n-1)s_X^2}}} \sim t_{n-2}
+\frac{\hat \beta_1 - \beta_1}{\sqrt{\frac{s_R^2}{(n-1)s_X^2}}} \sim
+t_{n-2}
 </span></p>
-<h2 id="coefficient-of-determination"><span class="header-section-number">1.7</span> coefficient of determination</h2>
+<h2 data-number="1.7" id="coefficient-of-determination"><span
+class="header-section-number">1.7</span> coefficient of
+determination</h2>
 <p>Goodness of fit</p>
 <p><span class="math display">
 R^2 = r^2_{(x,y)}
 </span></p>
-<p>is the percentage of the sample variability in the <span class="math inline">y</span> variable is explained by the model (linear dependence on <span class="math inline">x</span>). Higher the better.</p>
-<h3 id="variability-decomposition"><span class="header-section-number">1.7.1</span> variability decomposition</h3>
+<p>is the percentage of the sample variability in the <span
+class="math inline">y</span> variable is explained by the model (linear
+dependence on <span class="math inline">x</span>). Higher the
+better.</p>
+<h3 data-number="1.7.1" id="variability-decomposition"><span
+class="header-section-number">1.7.1</span> variability
+decomposition</h3>
 <p><span class="math display">
 \begin{aligned}
-    \text{Total sum of squares (SST)} &amp;= \text{Residual sum of squares (SSR)} &amp;&amp;+ \text{Model sum of squares (SSM)} \\
-    \sum_i (y_i - \bar y)^2 &amp;= \sum_i (y_i - \hat y)^2 &amp;&amp;+ \sum_i (\hat y - \bar y)^2 \\
+    \text{Total sum of squares (SST)} &amp;= \text{Residual sum of
+squares (SSR)} &amp;&amp;+ \text{Model sum of squares (SSM)} \\
+    \sum_i (y_i - \bar y)^2 &amp;= \sum_i (y_i - \hat y)^2 &amp;&amp;+
+\sum_i (\hat y - \bar y)^2 \\
 \end{aligned}
 </span></p>
 <p>then</p>

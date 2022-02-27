@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>graphs</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,67 +455,168 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="graphs"><span class="header-section-number">1</span> graphs</h1>
-<p>A graph is a pair <span class="math inline">G = (V, E)</span> where <span class="math inline">V</span> is a finite set called the set of vertices and <span class="math inline">E \subseteq p_2(V)</span>, <span class="math inline">E</span> is called the set of edges of <span class="math inline">G</span>.</p>
-<h3 id="trivial-and-complete"><span class="header-section-number">1.0.1</span> trivial and complete</h3>
-<h4 id="trivial"><span class="header-section-number">1.0.1.1</span> trivial</h4>
-<p>only one vertex <span class="math inline">|V| = 1</span>, <span class="math inline">E = \emptyset</span></p>
-<h4 id="complete"><span class="header-section-number">1.0.1.2</span> complete</h4>
-<p>all vertices are connected with each other <span class="math inline">K_n = (\{v_1, \cdots, v_n\}, p_2(\{v_1, \cdots, v_n\}))</span>. <span class="math inline">K_1</span> is therefore a trivial graph.</p>
-<p><span class="math inline">|p_2(\{v_1, \cdots, v_n\})| = \binom{n}{2} = \frac{n(n-1)}{2}</span></p>
-<h3 id="degree"><span class="header-section-number">1.0.2</span> degree</h3>
-<p>The degree of a vertex <span class="math inline">v</span> in <span class="math inline">G</span> is the number of edges containing <span class="math inline">v</span>. <span class="math inline">\deg_G(v) = |\{e \in E(a): v \in e\}|</span></p>
-<h3 id="handshaking"><span class="header-section-number">1.0.3</span> handshaking</h3>
-<p><span class="math inline">|E| = \frac{1}{2} \sum_{v \in V} \deg_G(v)</span></p>
-<h3 id="path"><span class="header-section-number">1.0.4</span> path</h3>
-<p>A path in a graph is a sequence of vertices <span class="math inline">(v_0, v_1, \cdots, v_k)</span> such that:</p>
+<h1 data-number="1" id="graphs"><span
+class="header-section-number">1</span> graphs</h1>
+<p>A graph is a pair <span class="math inline">G = (V, E)</span> where
+<span class="math inline">V</span> is a finite set called the set of
+vertices and <span class="math inline">E \subseteq p_2(V)</span>, <span
+class="math inline">E</span> is called the set of edges of <span
+class="math inline">G</span>.</p>
+<h3 data-number="1.0.1" id="trivial-and-complete"><span
+class="header-section-number">1.0.1</span> trivial and complete</h3>
+<h4 data-number="1.0.1.1" id="trivial"><span
+class="header-section-number">1.0.1.1</span> trivial</h4>
+<p>only one vertex <span class="math inline">|V| = 1</span>, <span
+class="math inline">E = \emptyset</span></p>
+<h4 data-number="1.0.1.2" id="complete"><span
+class="header-section-number">1.0.1.2</span> complete</h4>
+<p>all vertices are connected with each other <span
+class="math inline">K_n = (\{v_1, \cdots, v_n\}, p_2(\{v_1, \cdots,
+v_n\}))</span>. <span class="math inline">K_1</span> is therefore a
+trivial graph.</p>
+<p><span class="math inline">|p_2(\{v_1, \cdots, v_n\})| = \binom{n}{2}
+= \frac{n(n-1)}{2}</span></p>
+<h3 data-number="1.0.2" id="degree"><span
+class="header-section-number">1.0.2</span> degree</h3>
+<p>The degree of a vertex <span class="math inline">v</span> in <span
+class="math inline">G</span> is the number of edges containing <span
+class="math inline">v</span>. <span class="math inline">\deg_G(v) = |\{e
+\in E(a): v \in e\}|</span></p>
+<h3 data-number="1.0.3" id="handshaking"><span
+class="header-section-number">1.0.3</span> handshaking</h3>
+<p><span class="math inline">|E| = \frac{1}{2} \sum_{v \in V}
+\deg_G(v)</span></p>
+<h3 data-number="1.0.4" id="path"><span
+class="header-section-number">1.0.4</span> path</h3>
+<p>A path in a graph is a sequence of vertices <span
+class="math inline">(v_0, v_1, \cdots, v_k)</span> such that:</p>
 <ul>
-<li><span class="math inline">(\forall i = 0, \cdots, k-1)\{v_i, v_{i+1}\} \in E</span></li>
-<li><span class="math inline">(\forall 0 \le i, j \lt k) i \ne j \implies \{v_i, v_{i+1}\} \ne \{v_j, v_{j+1}\}</span></li>
-<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the path is called simple</li>
+<li><span class="math inline">(\forall i = 0, \cdots, k-1)\{v_i,
+v_{i+1}\} \in E</span></li>
+<li><span class="math inline">(\forall 0 \le i, j \lt k) i \ne j
+\implies \{v_i, v_{i+1}\} \ne \{v_j, v_{j+1}\}</span></li>
+<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the
+path is called simple</li>
 </ul>
-<h3 id="cycle"><span class="header-section-number">1.0.5</span> cycle</h3>
-<p>A cycle in <span class="math inline">G</span> is a path <span class="math inline">(v_0, \cdots, v_k, v_0)</span> such that</p>
+<h3 data-number="1.0.5" id="cycle"><span
+class="header-section-number">1.0.5</span> cycle</h3>
+<p>A cycle in <span class="math inline">G</span> is a path <span
+class="math inline">(v_0, \cdots, v_k, v_0)</span> such that</p>
 <ul>
 <li><span class="math inline">k \ge 2</span></li>
-<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the cycle is called simple</li>
+<li>If <span class="math inline">i \ne j \implies v_i \ne v_j</span> the
+cycle is called simple</li>
 </ul>
-<h3 id="connected"><span class="header-section-number">1.0.6</span> connected</h3>
-<p>A graph is said to be connected iff for every <span class="math inline">x, y \in V</span> there is a <span class="math inline">x-y</span> path in <span class="math inline">G</span>, i.e. a path <span class="math inline">(v_0, \cdots v_k)</span> such that <span class="math inline">v_0 = x</span>, <span class="math inline">v_k = y</span>. Otherwise it is called disconnected.</p>
-<h3 id="partition"><span class="header-section-number">1.0.7</span> partition</h3>
-<p>Graph is connected iff for every partition <span class="math inline">\{V_1, V_2\}</span> of <span class="math inline">V</span> such that <span class="math inline">V_1 \ne \emptyset</span> and <span class="math inline">V_2 \ne \emptyset</span> there exists <span class="math inline">v_1 \in V_1</span> and <span class="math inline">v_2 \in V_2</span> such that there is a <span class="math inline">v_1 - v_2</span> path in <span class="math inline">G</span></p>
-<h3 id="eulerian"><span class="header-section-number">1.0.8</span> Eulerian</h3>
+<h3 data-number="1.0.6" id="connected"><span
+class="header-section-number">1.0.6</span> connected</h3>
+<p>A graph is said to be connected iff for every <span
+class="math inline">x, y \in V</span> there is a <span
+class="math inline">x-y</span> path in <span
+class="math inline">G</span>, i.e. a path <span
+class="math inline">(v_0, \cdots v_k)</span> such that <span
+class="math inline">v_0 = x</span>, <span class="math inline">v_k =
+y</span>. Otherwise it is called disconnected.</p>
+<h3 data-number="1.0.7" id="partition"><span
+class="header-section-number">1.0.7</span> partition</h3>
+<p>Graph is connected iff for every partition <span
+class="math inline">\{V_1, V_2\}</span> of <span
+class="math inline">V</span> such that <span class="math inline">V_1 \ne
+\emptyset</span> and <span class="math inline">V_2 \ne \emptyset</span>
+there exists <span class="math inline">v_1 \in V_1</span> and <span
+class="math inline">v_2 \in V_2</span> such that there is a <span
+class="math inline">v_1 - v_2</span> path in <span
+class="math inline">G</span></p>
+<h3 data-number="1.0.8" id="eulerian"><span
+class="header-section-number">1.0.8</span> Eulerian</h3>
 <p><span class="math inline">G</span> is called Eulerian iff:</p>
 <ul>
 <li><span class="math inline">G</span> is connected, nontrivial</li>
-<li><span class="math inline">(\forall v \in V(G))(2 | \deg(v))</span></li>
+<li><span class="math inline">(\forall v \in V(G))(2 |
+\deg(v))</span></li>
 </ul>
-<h3 id="subgraphs"><span class="header-section-number">1.0.9</span> subgraphs</h3>
-<p><span class="math inline">G = (V, E)</span>, <span class="math inline">H = (W, F)</span> is called a subgraph of <span class="math inline">G</span> if <span class="math inline">W \subseteq V</span> and <span class="math inline">F \subseteq E</span>. Denoted as <span class="math inline">H \preccurlyeq G</span>, it is a <a href="./poset.html">poset</a>.</p>
-<h4 id="spanning"><span class="header-section-number">1.0.9.1</span> spanning</h4>
-<p>If <span class="math inline">W = V</span> then <span class="math inline">H</span> is called a spanning subgraph of <span class="math inline">G</span>.</p>
-<h4 id="induced"><span class="header-section-number">1.0.9.2</span> induced</h4>
-<p>If <span class="math inline">F = E \cap p_2(W)</span> then <span class="math inline">H</span> is called an induced subgraph of <span class="math inline">G</span>.</p>
-<h3 id="component"><span class="header-section-number">1.0.10</span> component</h3>
-<p>A component of <span class="math inline">G</span> is any maximal connected subgraph of <span class="math inline">G</span>.</p>
-<p>If <span class="math inline">G</span> is a disconnected graph, <span class="math inline">\bar{G}</span> is connected.</p>
-<h3 id="complement"><span class="header-section-number">1.0.11</span> complement</h3>
-<p>A complement of <span class="math inline">G = (V, E)</span> (denoted by <span class="math inline">\bar{G}</span>) is <span class="math inline">(V, \{u, v \in V : uv \notin E\})</span>. In other words the edges are flipped: If 2 vertices were adjacent in <span class="math inline">G</span>, they are not adjacent in <span class="math inline">\bar{G}</span> and the other way around.</p>
-<h3 id="isomorphic"><span class="header-section-number">1.0.12</span> isomorphic</h3>
-<p><em>graphs that have the same structure</em>. Hard to example mathematically. Please refer to <a href="https://en.wikipedia.org/wiki/Graph_isomorphism">wikipedia</a>.</p>
-<h3 id="self-complementary"><span class="header-section-number">1.0.13</span> self-complementary</h3>
-<p>If <span class="math inline">\bar{G}</span> is isomorphic to <span class="math inline">G</span> then the graph is self-complementary</p>
-<h3 id="bipartite"><span class="header-section-number">1.0.14</span> bipartite</h3>
-<p>A graph <span class="math inline">G</span> is called bipartite if the vertices can be divided into 2 disjoint and independent sets.</p>
-<h3 id="minmax-degree"><span class="header-section-number">1.0.15</span> min/max degree</h3>
-<p><span class="math inline">\delta(G) = \min(\{\deg(v) : v \in V\})</span></p>
-<p><span class="math inline">\Delta(G) = \max(\{\deg(v) : v \in V\})</span></p>
-<p>If <span class="math inline">\delta(G) \ge 2</span> then <span class="math inline">G</span> has a cycle</p>
-<h3 id="k-regular"><span class="header-section-number">1.0.16</span> k-regular</h3>
-<p><span class="math inline">G</span> is <span class="math inline">k</span>-regular iff <span class="math inline">(\forall v \in V)(\deg(v) = k)</span></p>
-<h3 id="trees"><span class="header-section-number">1.0.17</span> trees</h3>
+<h3 data-number="1.0.9" id="subgraphs"><span
+class="header-section-number">1.0.9</span> subgraphs</h3>
+<p><span class="math inline">G = (V, E)</span>, <span
+class="math inline">H = (W, F)</span> is called a subgraph of <span
+class="math inline">G</span> if <span class="math inline">W \subseteq
+V</span> and <span class="math inline">F \subseteq E</span>. Denoted as
+<span class="math inline">H \preccurlyeq G</span>, it is a <a
+href="./poset.html">poset</a>.</p>
+<h4 data-number="1.0.9.1" id="spanning"><span
+class="header-section-number">1.0.9.1</span> spanning</h4>
+<p>If <span class="math inline">W = V</span> then <span
+class="math inline">H</span> is called a spanning subgraph of <span
+class="math inline">G</span>.</p>
+<h4 data-number="1.0.9.2" id="induced"><span
+class="header-section-number">1.0.9.2</span> induced</h4>
+<p>If <span class="math inline">F = E \cap p_2(W)</span> then <span
+class="math inline">H</span> is called an induced subgraph of <span
+class="math inline">G</span>.</p>
+<h3 data-number="1.0.10" id="component"><span
+class="header-section-number">1.0.10</span> component</h3>
+<p>A component of <span class="math inline">G</span> is any maximal
+connected subgraph of <span class="math inline">G</span>.</p>
+<p>If <span class="math inline">G</span> is a disconnected graph, <span
+class="math inline">\bar{G}</span> is connected.</p>
+<h3 data-number="1.0.11" id="complement"><span
+class="header-section-number">1.0.11</span> complement</h3>
+<p>A complement of <span class="math inline">G = (V, E)</span> (denoted
+by <span class="math inline">\bar{G}</span>) is <span
+class="math inline">(V, \{u, v \in V : uv \notin E\})</span>. In other
+words the edges are flipped: If 2 vertices were adjacent in <span
+class="math inline">G</span>, they are not adjacent in <span
+class="math inline">\bar{G}</span> and the other way around.</p>
+<h3 data-number="1.0.12" id="isomorphic"><span
+class="header-section-number">1.0.12</span> isomorphic</h3>
+<p><em>graphs that have the same structure</em>. Hard to example
+mathematically. Please refer to <a
+href="https://en.wikipedia.org/wiki/Graph_isomorphism">wikipedia</a>.</p>
+<h3 data-number="1.0.13" id="self-complementary"><span
+class="header-section-number">1.0.13</span> self-complementary</h3>
+<p>If <span class="math inline">\bar{G}</span> is isomorphic to <span
+class="math inline">G</span> then the graph is self-complementary</p>
+<h3 data-number="1.0.14" id="bipartite"><span
+class="header-section-number">1.0.14</span> bipartite</h3>
+<p>A graph <span class="math inline">G</span> is called bipartite if the
+vertices can be divided into 2 disjoint and independent sets.</p>
+<h3 data-number="1.0.15" id="minmax-degree"><span
+class="header-section-number">1.0.15</span> min/max degree</h3>
+<p><span class="math inline">\delta(G) = \min(\{\deg(v) : v \in
+V\})</span></p>
+<p><span class="math inline">\Delta(G) = \max(\{\deg(v) : v \in
+V\})</span></p>
+<p>If <span class="math inline">\delta(G) \ge 2</span> then <span
+class="math inline">G</span> has a cycle</p>
+<h3 data-number="1.0.16" id="k-regular"><span
+class="header-section-number">1.0.16</span> k-regular</h3>
+<p><span class="math inline">G</span> is <span
+class="math inline">k</span>-regular iff <span
+class="math inline">(\forall v \in V)(\deg(v) = k)</span></p>
+<h3 data-number="1.0.17" id="trees"><span
+class="header-section-number">1.0.17</span> trees</h3>
 <p><span class="math inline">G</span> is called a tree iff:</p>
 <ul>
 <li><span class="math inline">G</span> is connected</li>
@@ -394,15 +626,27 @@
 <p>The following conditions are equivalent:</p>
 <ol type="1">
 <li><span class="math inline">G</span> is a tree</li>
-<li><span class="math inline">(\forall u, v \in V)</span> <span class="math inline">!\exists</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">u-v</span> path in <span class="math inline">G</span> and the path is simple</li>
-<li><span class="math inline">G</span> is connected and <span class="math inline">|V| = |E| + 1</span></li>
-<li><span class="math inline">G</span> has no cycles and <span class="math inline">|V| = |E| + 1</span></li>
-<li><span class="math inline">G</span> has no cycles and <span class="math inline">(\forall u, v \in V)(\{u, v\} \notin E \implies G^+ = (V, E \cup \{\{u, v\}\})</span> <span class="math inline">!\exists</span> cycle</li>
+<li><span class="math inline">(\forall u, v \in V)</span> <span
+class="math inline">!\exists</span><a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> <span
+class="math inline">u-v</span> path in <span
+class="math inline">G</span> and the path is simple</li>
+<li><span class="math inline">G</span> is connected and <span
+class="math inline">|V| = |E| + 1</span></li>
+<li><span class="math inline">G</span> has no cycles and <span
+class="math inline">|V| = |E| + 1</span></li>
+<li><span class="math inline">G</span> has no cycles and <span
+class="math inline">(\forall u, v \in V)(\{u, v\} \notin E \implies G^+
+= (V, E \cup \{\{u, v\}\})</span> <span
+class="math inline">!\exists</span> cycle</li>
 </ol>
-<h3 id="weightednetwork-graphs"><span class="header-section-number">1.0.18</span> weighted/network graphs</h3>
+<h3 data-number="1.0.18" id="weightednetwork-graphs"><span
+class="header-section-number">1.0.18</span> weighted/network graphs</h3>
 <p>For a connected graph <span class="math inline">G = (V, E)</span></p>
-<p><span class="math inline">N = ((V, E), w) w: E \to \mathbf{R}^+</span></p>
-<p>Find the cheapest spanning tree in <span class="math inline">N</span>. A greedy naive way:</p>
+<p><span class="math inline">N = ((V, E), w) w: E \to
+\mathbf{R}^+</span></p>
+<p>Find the cheapest spanning tree in <span
+class="math inline">N</span>. A greedy naive way:</p>
 <ol type="1">
 <li>take a cheapest edge</li>
 <li>take a new cheapest edge connected to current edges</li>
@@ -417,42 +661,86 @@
 <li>no: go to step 2</li>
 </ul></li>
 </ol>
-<h3 id="connectivity"><span class="header-section-number">1.0.19</span> connectivity</h3>
-<p><span class="math inline">\kappa(G) = min\{k :</span> there exists a k-element set <span class="math inline">S \subseteq V</span> such that <span class="math inline">G - S</span> is disconnected or trivial <span class="math inline">\}</span></p>
-<p>For example: A tree has connectivity of <span class="math inline">1</span>, a complete graph <span class="math inline">K_n</span> has connectivity of <span class="math inline">n-1</span></p>
-<p>We call a graph a <strong>k-connected</strong> one when <span class="math inline">\kappa(G) \ge k</span></p>
-<h4 id="connected-1"><span class="header-section-number">1.0.19.1</span> 2-connected</h4>
-<p><span class="math inline">G</span> is 2-connected iff for every <span class="math inline">x, y \in V(G)</span> there exists a simple cycle <span class="math inline">C</span> in <span class="math inline">G</span> such that <span class="math inline">x, y \in V(C)</span></p>
-<h3 id="hamiltonian"><span class="header-section-number">1.0.20</span> Hamiltonian</h3>
-<h4 id="cycle-1"><span class="header-section-number">1.0.20.1</span> cycle</h4>
-<p>A Hamiltonian cycle in <span class="math inline">G</span> is a spanning, simple cycle in <span class="math inline">G</span></p>
-<h4 id="graph"><span class="header-section-number">1.0.20.2</span> graph</h4>
-<p><span class="math inline">G</span> is a Hamiltonian graph iff <span class="math inline">G</span> has a Hamiltonian cycle.</p>
+<h3 data-number="1.0.19" id="connectivity"><span
+class="header-section-number">1.0.19</span> connectivity</h3>
+<p><span class="math inline">\kappa(G) = min\{k :</span> there exists a
+k-element set <span class="math inline">S \subseteq V</span> such that
+<span class="math inline">G - S</span> is disconnected or trivial <span
+class="math inline">\}</span></p>
+<p>For example: A tree has connectivity of <span
+class="math inline">1</span>, a complete graph <span
+class="math inline">K_n</span> has connectivity of <span
+class="math inline">n-1</span></p>
+<p>We call a graph a <strong>k-connected</strong> one when <span
+class="math inline">\kappa(G) \ge k</span></p>
+<h4 data-number="1.0.19.1" id="connected-1"><span
+class="header-section-number">1.0.19.1</span> 2-connected</h4>
+<p><span class="math inline">G</span> is 2-connected iff for every <span
+class="math inline">x, y \in V(G)</span> there exists a simple cycle
+<span class="math inline">C</span> in <span class="math inline">G</span>
+such that <span class="math inline">x, y \in V(C)</span></p>
+<h3 data-number="1.0.20" id="hamiltonian"><span
+class="header-section-number">1.0.20</span> Hamiltonian</h3>
+<h4 data-number="1.0.20.1" id="cycle-1"><span
+class="header-section-number">1.0.20.1</span> cycle</h4>
+<p>A Hamiltonian cycle in <span class="math inline">G</span> is a
+spanning, simple cycle in <span class="math inline">G</span></p>
+<h4 data-number="1.0.20.2" id="graph"><span
+class="header-section-number">1.0.20.2</span> graph</h4>
+<p><span class="math inline">G</span> is a Hamiltonian graph iff <span
+class="math inline">G</span> has a Hamiltonian cycle.</p>
 <p>If <span class="math inline">G</span> is Hamiltonian then:</p>
 <ul>
 <li><span class="math inline">G</span> is 2-connected</li>
-<li><span class="math inline">(\forall S \subseteq V(G))(G-S</span> has at most <span class="math inline">|S|</span> components<span class="math inline">)</span></li>
+<li><span class="math inline">(\forall S \subseteq V(G))(G-S</span> has
+at most <span class="math inline">|S|</span> components<span
+class="math inline">)</span></li>
 </ul>
-<h4 id="dirac"><span class="header-section-number">1.0.20.3</span> Dirac</h4>
-<p>If <span class="math inline">G</span> has <span class="math inline">p</span> vertices, <span class="math inline">p \ge 3</span>, and <span class="math inline">(\forall v \in V)(\deg(v) \ge \frac{p}{2})</span> then <span class="math inline">G</span> is Hamiltonian</p>
-<h5 id="corollary"><span class="header-section-number">1.0.20.3.1</span> corollary</h5>
-<p><span class="math inline">(\forall \{x, y\} \notin E \implies \deg(x) + \deg(y) \ge p) \implies G</span> is Hamiltonian</p>
-<h3 id="planar"><span class="header-section-number">1.0.21</span> planar</h3>
-<p><span class="math inline">G</span> is said to be planar iff <span class="math inline">G</span> can be represented by a drawing in which no two edges intersect.</p>
-<h4 id="facets"><span class="header-section-number">1.0.21.1</span> facets</h4>
-<p>“parts” of a planar graph (<span class="math inline">K_4</span> has 4 facets)</p>
-<h4 id="euler-formula-for-planar-graphs"><span class="header-section-number">1.0.21.2</span> Euler formula for planar graphs</h4>
-<p>Let <span class="math inline">G</span> be a connected planar graph with with <span class="math inline">n</span> vertices and <span class="math inline">k</span> edges. Then, in every planar representation of <span class="math inline">G</span> the number of facets, <span class="math inline">f</span> satisfies the formula <span class="math inline">f = k - n + 2</span></p>
-<h5 id="corollary-1"><span class="header-section-number">1.0.21.2.1</span> corollary</h5>
-<p>For every planar graph <span class="math inline">G</span> with <span class="math inline">k</span> edges, <span class="math inline">n</span> vertices, and <span class="math inline">f</span> facets we have:</p>
+<h4 data-number="1.0.20.3" id="dirac"><span
+class="header-section-number">1.0.20.3</span> Dirac</h4>
+<p>If <span class="math inline">G</span> has <span
+class="math inline">p</span> vertices, <span class="math inline">p \ge
+3</span>, and <span class="math inline">(\forall v \in V)(\deg(v) \ge
+\frac{p}{2})</span> then <span class="math inline">G</span> is
+Hamiltonian</p>
+<h5 data-number="1.0.20.3.1" id="corollary"><span
+class="header-section-number">1.0.20.3.1</span> corollary</h5>
+<p><span class="math inline">(\forall \{x, y\} \notin E \implies \deg(x)
++ \deg(y) \ge p) \implies G</span> is Hamiltonian</p>
+<h3 data-number="1.0.21" id="planar"><span
+class="header-section-number">1.0.21</span> planar</h3>
+<p><span class="math inline">G</span> is said to be planar iff <span
+class="math inline">G</span> can be represented by a drawing in which no
+two edges intersect.</p>
+<h4 data-number="1.0.21.1" id="facets"><span
+class="header-section-number">1.0.21.1</span> facets</h4>
+<p>“parts” of a planar graph (<span class="math inline">K_4</span> has 4
+facets)</p>
+<h4 data-number="1.0.21.2" id="euler-formula-for-planar-graphs"><span
+class="header-section-number">1.0.21.2</span> Euler formula for planar
+graphs</h4>
+<p>Let <span class="math inline">G</span> be a connected planar graph
+with with <span class="math inline">n</span> vertices and <span
+class="math inline">k</span> edges. Then, in every planar representation
+of <span class="math inline">G</span> the number of facets, <span
+class="math inline">f</span> satisfies the formula <span
+class="math inline">f = k - n + 2</span></p>
+<h5 data-number="1.0.21.2.1" id="corollary-1"><span
+class="header-section-number">1.0.21.2.1</span> corollary</h5>
+<p>For every planar graph <span class="math inline">G</span> with <span
+class="math inline">k</span> edges, <span class="math inline">n</span>
+vertices, and <span class="math inline">f</span> facets we have:</p>
 <ul>
 <li><span class="math inline">f \le \frac{2}{3}k</span></li>
 <li><span class="math inline">k \le 3n - 6</span></li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><span class="math inline">!\exists</span>: there exists exactly one<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><span
+class="math inline">!\exists</span>: there exists exactly one<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

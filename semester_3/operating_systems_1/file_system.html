@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>file_system</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,23 +455,51 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="file-system-fs"><span class="header-section-number">1</span> file system (FS)</h1>
-<p>A mapping of abstract view of directories/files and the physical representation on disk.</p>
-<h2 id="file"><span class="header-section-number">1.1</span> file</h2>
+<h1 data-number="1" id="file-system-fs"><span
+class="header-section-number">1</span> file system (FS)</h1>
+<p>A mapping of abstract view of directories/files and the physical
+representation on disk.</p>
+<h2 data-number="1.1" id="file"><span
+class="header-section-number">1.1</span> file</h2>
 <p>An object that can be written to and/or read from</p>
-<h3 id="file-attributes"><span class="header-section-number">1.1.1</span> file attributes</h3>
+<h3 data-number="1.1.1" id="file-attributes"><span
+class="header-section-number">1.1.1</span> file attributes</h3>
 <ul>
 <li>name - human readable name</li>
 <li>identifier - unique tag</li>
-<li>type - whether it’s a directory, file extension etc (meta data; what to do with this file)</li>
+<li>type - whether it’s a directory, file extension etc (meta data; what
+to do with this file)</li>
 <li>location - pointer to the location on disk</li>
 <li>size - current size</li>
 <li>protection - access control (who can read, write, execute)</li>
-<li>time, date, and user identification - last read, creation date etc</li>
+<li>time, date, and user identification - last read, creation date
+etc</li>
 </ul>
-<h3 id="file-operations"><span class="header-section-number">1.1.2</span> file operations</h3>
+<h3 data-number="1.1.2" id="file-operations"><span
+class="header-section-number">1.1.2</span> file operations</h3>
 <ul>
 <li>create – create file</li>
 <li>write – store data to file</li>
@@ -348,11 +507,16 @@
 <li>file seek – change current position</li>
 <li>delete – delete file</li>
 <li>truncate – change file size</li>
-<li><code>fd = open(</code><span class="math inline">F_i</span><code>)</code> – copies the entry to a <span class="math inline">F_i</span> file to main local memory</li>
-<li><code>close(fd)</code> – copies the local entry of the file <span class="math inline">F_i</span> to the FS catalogue</li>
+<li><code>fd = open(</code><span
+class="math inline">F_i</span><code>)</code> – copies the entry to a
+<span class="math inline">F_i</span> file to main local memory</li>
+<li><code>close(fd)</code> – copies the local entry of the file <span
+class="math inline">F_i</span> to the FS catalogue</li>
 </ul>
-<h2 id="directories"><span class="header-section-number">1.2</span> directories</h2>
-<h3 id="directory-structure"><span class="header-section-number">1.2.1</span> directory structure</h3>
+<h2 data-number="1.2" id="directories"><span
+class="header-section-number">1.2</span> directories</h2>
+<h3 data-number="1.2.1" id="directory-structure"><span
+class="header-section-number">1.2.1</span> directory structure</h3>
 <p>Nowadays a tree structure:</p>
 <ul>
 <li>efficient searching</li>
@@ -360,9 +524,14 @@
 <li>the idea of a current directory</li>
 <li>absolute and relative paths</li>
 </ul>
-<h3 id="links"><span class="header-section-number">1.2.2</span> links</h3>
+<h3 data-number="1.2.2" id="links"><span
+class="header-section-number">1.2.2</span> links</h3>
 <p>Directories can share files by hard and soft links.</p>
-<p>A hard link points to the same contents as the file we are linking with. Changing the contents of either files will change it for the other one too.</p>
-<p>Soft links (symlinks) are just a pointer to where the original file is. If the original file is removed, the symlink becomes a dangling pointer (points to something that no longer exists.)</p>
+<p>A hard link points to the same contents as the file we are linking
+with. Changing the contents of either files will change it for the other
+one too.</p>
+<p>Soft links (symlinks) are just a pointer to where the original file
+is. If the original file is removed, the symlink becomes a dangling
+pointer (points to something that no longer exists.)</p>
 </body>
 </html>

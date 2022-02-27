@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>introduction</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,42 +455,100 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="introduction"><span class="header-section-number">1</span> Introduction</h1>
-<h2 id="mathematical-induction"><span class="header-section-number">1.1</span> mathematical induction</h2>
-<p>Let <span class="math inline">W</span> be a condition concerning natural numbers</p>
+<h1 data-number="1" id="introduction"><span
+class="header-section-number">1</span> Introduction</h1>
+<h2 data-number="1.1" id="mathematical-induction"><span
+class="header-section-number">1.1</span> mathematical induction</h2>
+<p>Let <span class="math inline">W</span> be a condition concerning
+natural numbers</p>
 <p>If:</p>
 <ol type="1">
 <li><span class="math inline">W(0)</span> is satisfied for 0</li>
-<li><span class="math inline">\forall_{n\in \mathbb{N}} W(n) \implies W(n+1)</span></li>
+<li><span class="math inline">\forall_{n\in \mathbb{N}} W(n) \implies
+W(n+1)</span></li>
 </ol>
-<p>then for each <span class="math inline">n \in \mathbb{N}</span> <span class="math inline">W(n)</span></p>
-<h2 id="trees"><span class="header-section-number">1.2</span> trees</h2>
+<p>then for each <span class="math inline">n \in \mathbb{N}</span> <span
+class="math inline">W(n)</span></p>
+<h2 data-number="1.2" id="trees"><span
+class="header-section-number">1.2</span> trees</h2>
 <p>Connected graph without cycles, or:</p>
 <ol type="1">
-<li><span class="math inline">T = (\{v\}, \emptyset)</span> is the tree with the root <span class="math inline">v</span></li>
-<li>if <span class="math inline">T_1 = (V_1, E_1)</span>, <span class="math inline">T_2 = (V_2, E_2)</span>, <span class="math inline">\cdots</span>, <span class="math inline">T_m = (V_m, E_m)</span> are trees with roots <span class="math inline">v_1, v_2, \cdots, v_m</span> then <span class="math inline">T=(V_1 \cup \cdots V_m \cup \{v\}, E_1 \cup \cdots E_m \cup \{\{v, v_1\}, \cdots, \{v, v_m\}\})</span> is a tree with the root <span class="math inline">v</span></li>
-<li>tree is an object obtained by applying previous two steps finite amount of times</li>
+<li><span class="math inline">T = (\{v\}, \emptyset)</span> is the tree
+with the root <span class="math inline">v</span></li>
+<li>if <span class="math inline">T_1 = (V_1, E_1)</span>, <span
+class="math inline">T_2 = (V_2, E_2)</span>, <span
+class="math inline">\cdots</span>, <span class="math inline">T_m = (V_m,
+E_m)</span> are trees with roots <span class="math inline">v_1, v_2,
+\cdots, v_m</span> then <span class="math inline">T=(V_1 \cup \cdots V_m
+\cup \{v\}, E_1 \cup \cdots E_m \cup \{\{v, v_1\}, \cdots, \{v,
+v_m\}\})</span> is a tree with the root <span
+class="math inline">v</span></li>
+<li>tree is an object obtained by applying previous two steps finite
+amount of times</li>
 </ol>
-<h3 id="height"><span class="header-section-number">1.2.1</span> height</h3>
+<h3 data-number="1.2.1" id="height"><span
+class="header-section-number">1.2.1</span> height</h3>
 <ol type="1">
-<li><span class="math inline">h(T) = 0</span> for <span class="math inline">T = (\{v\}, \emptyset)</span></li>
-<li>assume the <span class="math inline">T_1, \cdots, T_m</span> are of height <span class="math inline">h_1, \cdots, h_m</span>, then <span class="math inline">h(T) = 1 + \max\{h_1, \cdots, h_m\}</span></li>
+<li><span class="math inline">h(T) = 0</span> for <span
+class="math inline">T = (\{v\}, \emptyset)</span></li>
+<li>assume the <span class="math inline">T_1, \cdots, T_m</span> are of
+height <span class="math inline">h_1, \cdots, h_m</span>, then <span
+class="math inline">h(T) = 1 + \max\{h_1, \cdots, h_m\}</span></li>
 </ol>
-<h3 id="k-tree"><span class="header-section-number">1.2.2</span> k-tree</h3>
-<p>k-tree is a tree where the maximal number of children of each vertex is <span class="math inline">k</span>, and at least one vertex has <span class="math inline">k</span> children</p>
-<h4 id="max-leaves"><span class="header-section-number">1.2.2.1</span> max leaves</h4>
-<p>Let <span class="math inline">leaves(T)</span> be the number of leaves of the tree <span class="math inline">T</span>.</p>
-<p>A k-tree with height <span class="math inline">h</span> has at most <span class="math inline">k^h</span> leaves</p>
+<h3 data-number="1.2.2" id="k-tree"><span
+class="header-section-number">1.2.2</span> k-tree</h3>
+<p>k-tree is a tree where the maximal number of children of each vertex
+is <span class="math inline">k</span>, and at least one vertex has <span
+class="math inline">k</span> children</p>
+<h4 data-number="1.2.2.1" id="max-leaves"><span
+class="header-section-number">1.2.2.1</span> max leaves</h4>
+<p>Let <span class="math inline">leaves(T)</span> be the number of
+leaves of the tree <span class="math inline">T</span>.</p>
+<p>A k-tree with height <span class="math inline">h</span> has at most
+<span class="math inline">k^h</span> leaves</p>
 <p><strong>Proof</strong>:</p>
 <ol type="1">
-<li><span class="math inline">T = (\{v\}, \emptyset)</span>, <span class="math inline">h(T) = 0</span>, <span class="math inline">leaves(T) = 1 = k^0</span></li>
-<li>we assume that <span class="math inline">leaves(T_1) \le k^{h_1}, \cdots, leaves(T_m) \le k^{h_m}</span>. Therefore <span class="math inline">leaves(T) \le k^{h_1} + k^{h_2} + \cdots + k^{h_m} \le k \cdot k^{\max\{h_1, \cdots, h_m\}} = k^{1+\max\{h_1, \cdots, h_m\}} = k^h</span></li>
+<li><span class="math inline">T = (\{v\}, \emptyset)</span>, <span
+class="math inline">h(T) = 0</span>, <span class="math inline">leaves(T)
+= 1 = k^0</span></li>
+<li>we assume that <span class="math inline">leaves(T_1) \le k^{h_1},
+\cdots, leaves(T_m) \le k^{h_m}</span>. Therefore <span
+class="math inline">leaves(T) \le k^{h_1} + k^{h_2} + \cdots + k^{h_m}
+\le k \cdot k^{\max\{h_1, \cdots, h_m\}} = k^{1+\max\{h_1, \cdots,
+h_m\}} = k^h</span></li>
 </ol>
-<h2 id="relation"><span class="header-section-number">1.3</span> relation</h2>
+<h2 data-number="1.3" id="relation"><span
+class="header-section-number">1.3</span> relation</h2>
 <p>See <em>semester 1 discrete math</em> for more info.</p>
-<h3 id="closure-of-relation"><span class="header-section-number">1.3.1</span> closure of relation</h3>
-<p><span class="math inline">R&#39;</span> is a <span class="math inline">P</span>-closure of <span class="math inline">R</span> if <span class="math inline">R \subset R&#39;</span> and <span class="math inline">R&#39;</span> is the smallest set with <span class="math inline">P</span>-property.</p>
+<h3 data-number="1.3.1" id="closure-of-relation"><span
+class="header-section-number">1.3.1</span> closure of relation</h3>
+<p><span class="math inline">R&#39;</span> is a <span
+class="math inline">P</span>-closure of <span
+class="math inline">R</span> if <span class="math inline">R \subset
+R&#39;</span> and <span class="math inline">R&#39;</span> is the
+smallest set with <span class="math inline">P</span>-property.</p>
 </body>
 </html>

@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>boolean_algebra</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,58 +455,115 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="boolean-algebra"><span class="header-section-number">1</span> Boolean algebra</h1>
-<h4 id="logical-statement"><span class="header-section-number">1.0.0.1</span> Logical statement</h4>
+<h1 data-number="1" id="boolean-algebra"><span
+class="header-section-number">1</span> Boolean algebra</h1>
+<h4 data-number="1.0.0.1" id="logical-statement"><span
+class="header-section-number">1.0.0.1</span> Logical statement</h4>
 <ul>
 <li><code>true</code> | <code>false</code></li>
 <li>no variables</li>
 </ul>
-<p><code>p</code>, <code>q</code>, <code>r</code> - propositional variables</p>
+<p><code>p</code>, <code>q</code>, <code>r</code> - propositional
+variables</p>
 <p><code>a</code>, <code>b</code>, <code>c</code> - values</p>
-<h4 id="logical-connectives"><span class="header-section-number">1.0.0.2</span> Logical connectives</h4>
+<h4 data-number="1.0.0.2" id="logical-connectives"><span
+class="header-section-number">1.0.0.2</span> Logical connectives</h4>
 <ul>
-<li>IF…THEN… (implication): <span class="math inline">p \implies q \equiv \neg p \lor q</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>IF…THEN… (implication): <span class="math inline">p \implies q
+\equiv \neg p \lor q</span><a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 <li>AND (conjunction): <span class="math inline">p \land q</span></li>
 <li>OR (disjunction): <span class="math inline">p \lor q</span></li>
-<li>XOR (exclusive disjunction): <span class="math inline">p \oplus q \equiv (p \lor q) \land \neg (p \land q)</span></li>
-<li>NOR (not or): <span class="math inline">p \downarrow q \equiv \neg (p \lor q)</span></li>
-<li>NAND (not and): <span class="math inline">p | q \equiv \neg (p \land q)</span></li>
-<li>IF AND ONLY IF (both are the same): <span class="math inline">p \iff q \equiv (p \implies q) \land (q \implies p)</span></li>
+<li>XOR (exclusive disjunction): <span class="math inline">p \oplus q
+\equiv (p \lor q) \land \neg (p \land q)</span></li>
+<li>NOR (not or): <span class="math inline">p \downarrow q \equiv \neg
+(p \lor q)</span></li>
+<li>NAND (not and): <span class="math inline">p | q \equiv \neg (p \land
+q)</span></li>
+<li>IF AND ONLY IF (both are the same): <span class="math inline">p \iff
+q \equiv (p \implies q) \land (q \implies p)</span></li>
 </ul>
-<h4 id="commutative-operation"><span class="header-section-number">1.0.0.3</span> Commutative operation</h4>
+<h4 data-number="1.0.0.3" id="commutative-operation"><span
+class="header-section-number">1.0.0.3</span> Commutative operation</h4>
 <p><span class="math inline">a + b = b + a</span> ✔</p>
 <p><span class="math inline">a - b = b - a</span> ✖</p>
-<h4 id="unary"><span class="header-section-number">1.0.0.4</span> Unary</h4>
+<h4 data-number="1.0.0.4" id="unary"><span
+class="header-section-number">1.0.0.4</span> Unary</h4>
 <p>NOT (negation)</p>
 <p><span class="math inline">\neg0 \equiv 1</span></p>
-<h4 id="contraposition-law"><span class="header-section-number">1.0.0.5</span> Contraposition law</h4>
-<p><span class="math inline">(p \implies q) \equiv (\neg q \implies \neg p)</span></p>
-<h4 id="de-morgans-law"><span class="header-section-number">1.0.0.6</span> De Morgan’s law</h4>
-<p><span class="math inline">\neg(p \land q) \equiv \neg p \lor \neg q</span></p>
-<p><span class="math inline">\neg(p \lor q) \equiv \neg p \land \neg q</span></p>
-<p><span class="math inline">\neg(\forall x \in \mathbb{R}\ \phi(x)) \equiv (\exists x \in \mathbb{R}\ \neg\phi(x))</span></p>
-<h4 id="tautology"><span class="header-section-number">1.0.0.7</span> Tautology</h4>
-<p><span class="math inline">\phi(p_1, \cdots,p_n)</span> is called a tautology iff<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="math inline">\phi(p_1, \cdots,p_n) \equiv 1</span></p>
-<h4 id="quantifiers"><span class="header-section-number">1.0.0.8</span> quantifiers</h4>
-<p>Assumption: <span class="math inline">x \in \{ 1, 2, \cdots, 10 \}</span></p>
+<h4 data-number="1.0.0.5" id="contraposition-law"><span
+class="header-section-number">1.0.0.5</span> Contraposition law</h4>
+<p><span class="math inline">(p \implies q) \equiv (\neg q \implies \neg
+p)</span></p>
+<h4 data-number="1.0.0.6" id="de-morgans-law"><span
+class="header-section-number">1.0.0.6</span> De Morgan’s law</h4>
+<p><span class="math inline">\neg(p \land q) \equiv \neg p \lor \neg
+q</span></p>
+<p><span class="math inline">\neg(p \lor q) \equiv \neg p \land \neg
+q</span></p>
+<p><span class="math inline">\neg(\forall x \in \mathbb{R}\ \phi(x))
+\equiv (\exists x \in \mathbb{R}\ \neg\phi(x))</span></p>
+<h4 data-number="1.0.0.7" id="tautology"><span
+class="header-section-number">1.0.0.7</span> Tautology</h4>
+<p><span class="math inline">\phi(p_1, \cdots,p_n)</span> is called a
+tautology iff<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> <span class="math inline">\phi(p_1,
+\cdots,p_n) \equiv 1</span></p>
+<h4 data-number="1.0.0.8" id="quantifiers"><span
+class="header-section-number">1.0.0.8</span> quantifiers</h4>
+<p>Assumption: <span class="math inline">x \in \{ 1, 2, \cdots, 10
+\}</span></p>
 <ul>
-<li>for every (all have to be true): <span class="math inline">\forall x\ \phi(x)</span>
+<li>for every (all have to be true): <span class="math inline">\forall
+x\ \phi(x)</span>
 <ul>
-<li>same as <span class="math inline">\{x \in \mathbb{R}: \phi(x)\} = \mathbb{R}</span></li>
+<li>same as <span class="math inline">\{x \in \mathbb{R}: \phi(x)\} =
+\mathbb{R}</span></li>
 </ul></li>
-<li>there exists (one has to be true): <span class="math inline">\exists x\ \phi(x)</span>
+<li>there exists (one has to be true): <span class="math inline">\exists
+x\ \phi(x)</span>
 <ul>
-<li>same as <span class="math inline">\{x \in \mathbb{R}: \phi(x)\} \ne \emptyset</span></li>
+<li>same as <span class="math inline">\{x \in \mathbb{R}: \phi(x)\} \ne
+\emptyset</span></li>
 </ul></li>
 </ul>
-<p><strong>Order matters</strong>: <span class="math inline">(\forall x)(\exists y)\ x &gt; y \equiv 1</span> while <span class="math inline">(\exists x)(\forall y)\ x &gt; y \equiv 0</span></p>
-<section class="footnotes" role="doc-endnotes">
+<p><strong>Order matters</strong>: <span class="math inline">(\forall
+x)(\exists y)\ x &gt; y \equiv 1</span> while <span
+class="math inline">(\exists x)(\forall y)\ x &gt; y \equiv 0</span></p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p><span class="math inline">\neg \equiv\ \sim</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>iff <span class="math inline">\equiv</span> if and only if <span class="math inline">\equiv \iff</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><span class="math inline">\neg
+\equiv\ \sim</span><a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>iff <span
+class="math inline">\equiv</span> if and only if <span
+class="math inline">\equiv \iff</span><a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

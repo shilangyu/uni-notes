@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>laplace_transforms</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,15 +455,41 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="laplace-transforms"><span class="header-section-number">1</span> Laplace transforms</h1>
-<p>Let <span class="math inline">u(t)</span> be a function defined on <span class="math inline">0 \le t &lt; \infty</span>. The Laplace transform of <span class="math inline">u(t)</span> is <span class="math inline">U(s)</span> defined as:</p>
+<h1 data-number="1" id="laplace-transforms"><span
+class="header-section-number">1</span> Laplace transforms</h1>
+<p>Let <span class="math inline">u(t)</span> be a function defined on
+<span class="math inline">0 \le t &lt; \infty</span>. The Laplace
+transform of <span class="math inline">u(t)</span> is <span
+class="math inline">U(s)</span> defined as:</p>
 <p><span class="math display">
 \mathcal{L}[u] = U(s) = \int_0^\infty u(t) e^{-st} dt
 </span></p>
 <p>Assuming the improper integral exists.</p>
-<h2 id="table"><span class="header-section-number">1.1</span> table</h2>
+<h2 data-number="1.1" id="table"><span
+class="header-section-number">1.1</span> table</h2>
 <table>
 <thead>
 <tr class="header">
@@ -343,19 +500,23 @@
 <tbody>
 <tr class="odd">
 <td><span class="math inline">1</span></td>
-<td><span class="math inline">\frac{1}{s}</span> for <span class="math inline">s &gt; 0</span></td>
+<td><span class="math inline">\frac{1}{s}</span> for <span
+class="math inline">s &gt; 0</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">t</span></td>
-<td><span class="math inline">\frac{1}{s^2}</span> for <span class="math inline">s &gt; 0</span></td>
+<td><span class="math inline">\frac{1}{s^2}</span> for <span
+class="math inline">s &gt; 0</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">e^{at}</span></td>
-<td><span class="math inline">\frac{1}{s - a}</span> for <span class="math inline">s &gt; a</span></td>
+<td><span class="math inline">\frac{1}{s - a}</span> for <span
+class="math inline">s &gt; a</span></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">h_a(t)</span></td>
-<td><span class="math inline">\frac{1}{s} e^{-as}</span> for <span class="math inline">s &gt; 0</span></td>
+<td><span class="math inline">\frac{1}{s} e^{-as}</span> for <span
+class="math inline">s &gt; 0</span></td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">h_a(t)u(t-a)</span></td>
@@ -375,8 +536,12 @@
 </tr>
 </tbody>
 </table>
-<h2 id="heavyside-function-unit-switching-function"><span class="header-section-number">1.2</span> Heavyside function (unit switching function)</h2>
-<p>Useful for defining functions of several formulae as a single formula</p>
+<h2 data-number="1.2"
+id="heavyside-function-unit-switching-function"><span
+class="header-section-number">1.2</span> Heavyside function (unit
+switching function)</h2>
+<p>Useful for defining functions of several formulae as a single
+formula</p>
 <p><span class="math display">
 h_a(t) = \begin{cases}
     0 &amp; \text{if} &amp; t &lt; a \\
@@ -391,36 +556,61 @@ f(t) = \begin{cases}
     t - 1 &amp; \text{if} &amp; 2 \le t \\
 \end{cases}
 </span></p>
-<p>Can be expressed as <span class="math inline">f(t) = t^2h_0(t) + (1-t^2)h_1(t) + (t-2)h_2(t)</span></p>
-<h2 id="condition"><span class="header-section-number">1.3</span> condition</h2>
-<p>If the function <span class="math inline">u(t)</span> is piecewise continuous and there exists a constant <span class="math inline">M &gt; 0</span> and <span class="math inline">\alpha</span> such that <span class="math inline">|u(t)| \le Me^{\alpha t}</span> then <span class="math inline">u(t)</span> has a Laplace transform.</p>
-<h2 id="theorems"><span class="header-section-number">1.4</span> theorems</h2>
+<p>Can be expressed as <span class="math inline">f(t) = t^2h_0(t) +
+(1-t^2)h_1(t) + (t-2)h_2(t)</span></p>
+<h2 data-number="1.3" id="condition"><span
+class="header-section-number">1.3</span> condition</h2>
+<p>If the function <span class="math inline">u(t)</span> is piecewise
+continuous and there exists a constant <span class="math inline">M &gt;
+0</span> and <span class="math inline">\alpha</span> such that <span
+class="math inline">|u(t)| \le Me^{\alpha t}</span> then <span
+class="math inline">u(t)</span> has a Laplace transform.</p>
+<h2 data-number="1.4" id="theorems"><span
+class="header-section-number">1.4</span> theorems</h2>
 <ul>
-<li><span class="math inline">\mathcal{L}[u&#39;] = sU(s) - u(0)</span></li>
-<li><span class="math inline">\mathcal{L}[u&#39;&#39;] = s^2U(s) - su(0) - u&#39;(0)</span></li>
+<li><span class="math inline">\mathcal{L}[u&#39;] = sU(s) -
+u(0)</span></li>
+<li><span class="math inline">\mathcal{L}[u&#39;&#39;] = s^2U(s) - su(0)
+- u&#39;(0)</span></li>
 </ul>
-<h2 id="properties"><span class="header-section-number">1.5</span> properties</h2>
+<h2 data-number="1.5" id="properties"><span
+class="header-section-number">1.5</span> properties</h2>
 <ul>
-<li>Linearity: <span class="math inline">\mathcal{L}[c_1u_1 + c_2u_2] = c_1\mathcal{L}[u_1] + c_2\mathcal{L}[u_2]</span></li>
-<li>Shift property: <span class="math inline">\mathcal{L}[u(t)e^{at}](s) = \mathcal{L}[u](s - a)</span></li>
-<li>Switching property: <span class="math inline">\mathcal{L}[h_a(t)u(t - a)] = \mathcal{L}[u](s) \cdot e^{-as}</span></li>
+<li>Linearity: <span class="math inline">\mathcal{L}[c_1u_1 + c_2u_2] =
+c_1\mathcal{L}[u_1] + c_2\mathcal{L}[u_2]</span></li>
+<li>Shift property: <span class="math inline">\mathcal{L}[u(t)e^{at}](s)
+= \mathcal{L}[u](s - a)</span></li>
+<li>Switching property: <span class="math inline">\mathcal{L}[h_a(t)u(t
+- a)] = \mathcal{L}[u](s) \cdot e^{-as}</span></li>
 </ul>
-<h2 id="convolution"><span class="header-section-number">1.6</span> convolution</h2>
-<p><span class="math inline">(u * v)(t) = \int_0^t u(\tau)v(t - \tau) d\tau</span></p>
-<p>When <span class="math inline">u</span> and <span class="math inline">v</span> are continuous on <span class="math inline">[0, \infty)</span> then <span class="math inline">(u * v)(t) = (v * u)(t)</span></p>
-<h2 id="delta-function"><span class="header-section-number">1.7</span> delta function</h2>
-<p>Let <span class="math inline">a &gt; 0</span>, <span class="math inline">\epsilon &gt; 0</span></p>
+<h2 data-number="1.6" id="convolution"><span
+class="header-section-number">1.6</span> convolution</h2>
+<p><span class="math inline">(u * v)(t) = \int_0^t u(\tau)v(t - \tau)
+d\tau</span></p>
+<p>When <span class="math inline">u</span> and <span
+class="math inline">v</span> are continuous on <span
+class="math inline">[0, \infty)</span> then <span class="math inline">(u
+* v)(t) = (v * u)(t)</span></p>
+<h2 data-number="1.7" id="delta-function"><span
+class="header-section-number">1.7</span> delta function</h2>
+<p>Let <span class="math inline">a &gt; 0</span>, <span
+class="math inline">\epsilon &gt; 0</span></p>
 <p><span class="math display">
 b_{a,\epsilon}(t) = \begin{cases}
-\frac{1}{\epsilon} &amp; \text{for } a - \frac{\epsilon}{2} \le t &lt; a + \frac{\epsilon}{2} \\
+\frac{1}{\epsilon} &amp; \text{for } a - \frac{\epsilon}{2} \le t &lt; a
++ \frac{\epsilon}{2} \\
 0 &amp; \text{otherwise}
-\end{cases} = \frac{1}{\epsilon}(h_{a - \frac{\epsilon}{2}}(t) - h_{a+\frac{\epsilon}{2}}(t))
+\end{cases} = \frac{1}{\epsilon}(h_{a - \frac{\epsilon}{2}}(t) -
+h_{a+\frac{\epsilon}{2}}(t))
 </span></p>
 <p>Delta function is a generalized function:</p>
-<p><span class="math inline">\delta_a(t) = \lim_{\epsilon \to 0} b_{a, \epsilon}(t)</span></p>
-<h3 id="properties-1"><span class="header-section-number">1.7.1</span> properties</h3>
+<p><span class="math inline">\delta_a(t) = \lim_{\epsilon \to 0} b_{a,
+\epsilon}(t)</span></p>
+<h3 data-number="1.7.1" id="properties-1"><span
+class="header-section-number">1.7.1</span> properties</h3>
 <ul>
-<li><span class="math inline">\int_0^\infty \delta_a(t)\phi(t) dt = \phi(a)</span> for <span class="math inline">a \ge 0</span></li>
+<li><span class="math inline">\int_0^\infty \delta_a(t)\phi(t) dt =
+\phi(a)</span> for <span class="math inline">a \ge 0</span></li>
 </ul>
 </body>
 </html>

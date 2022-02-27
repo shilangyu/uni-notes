@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>vector_spaces</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,44 +455,108 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="vector-spaces"><span class="header-section-number">1</span> vector spaces</h1>
-<p><span class="math inline">V</span> - vector space over some field <span class="math inline">\mathbb{K}</span> if:</p>
+<h1 data-number="1" id="vector-spaces"><span
+class="header-section-number">1</span> vector spaces</h1>
+<p><span class="math inline">V</span> - vector space over some field
+<span class="math inline">\mathbb{K}</span> if:</p>
 <ul>
-<li>for every <span class="math inline">u, v, w \in V</span> we have <span class="math inline">u + v = v + u</span> and <span class="math inline">u + (v + w) = (u + v) + w</span></li>
-<li>there is <span class="math inline">\mathbf{0} \in V</span> called the <em>zero vector</em> such that for any <span class="math inline">v \in V</span> we have <span class="math inline">v + 0 = 0 + v = v</span></li>
-<li>for ever <span class="math inline">v \in V</span> there is <span class="math inline">-v \in V</span> such that <span class="math inline">v + -v = -v + v = 0</span></li>
+<li>for every <span class="math inline">u, v, w \in V</span> we have
+<span class="math inline">u + v = v + u</span> and <span
+class="math inline">u + (v + w) = (u + v) + w</span></li>
+<li>there is <span class="math inline">\mathbf{0} \in V</span> called
+the <em>zero vector</em> such that for any <span class="math inline">v
+\in V</span> we have <span class="math inline">v + 0 = 0 + v =
+v</span></li>
+<li>for ever <span class="math inline">v \in V</span> there is <span
+class="math inline">-v \in V</span> such that <span
+class="math inline">v + -v = -v + v = 0</span></li>
 </ul>
 <ol type="1">
-<li><span class="math inline">(\forall v \in V) 0 \cdot v = \mathbf{0}</span></li>
-<li><span class="math inline">(\forall a \in F) a \cdot \mathbf{0} = \mathbf{0}</span></li>
-<li><span class="math inline">(\forall a \in F)(\forall v \in V) (-a)v = a(-v) = -(av)</span></li>
-<li><span class="math inline">(\forall a \in F)(\forall v \in V) av = \mathbf{0} \implies a = 0 \lor v \in \mathbf{0}</span></li>
+<li><span class="math inline">(\forall v \in V) 0 \cdot v =
+\mathbf{0}</span></li>
+<li><span class="math inline">(\forall a \in F) a \cdot \mathbf{0} =
+\mathbf{0}</span></li>
+<li><span class="math inline">(\forall a \in F)(\forall v \in V) (-a)v =
+a(-v) = -(av)</span></li>
+<li><span class="math inline">(\forall a \in F)(\forall v \in V) av =
+\mathbf{0} \implies a = 0 \lor v \in \mathbf{0}</span></li>
 </ol>
-<h3 id="subspaces"><span class="header-section-number">1.0.1</span> subspaces</h3>
-<p>A subset <span class="math inline">W \subseteq V</span> is called a subspace of <span class="math inline">V</span> if <span class="math inline">W</span> is a vector space over <span class="math inline">\mathbf{K}</span> under the same operations of vector addition and scalar multiplication.</p>
-<h3 id="linear-combination"><span class="header-section-number">1.0.2</span> linear combination</h3>
-<p>Let <span class="math inline">a_1, \cdots, a_n \in \mathbf{K}</span> and <span class="math inline">v_1, \cdots, v_n \in V</span>. The vector <span class="math inline">a_1v_1 + \cdots + a_nv_n \in V</span> is called a linear combination.</p>
-<h3 id="span"><span class="header-section-number">1.0.3</span> span</h3>
-<p>A span of <span class="math inline">S \subseteq V</span> is a set of all linear combinations of S. Let <span class="math inline">S \subseteq V</span> then <span class="math inline">span(S) \subseteq V</span> or <span class="math inline">span(S) = \{a_1v_1 + \cdots + a_nv_n : a_i \in \mathbb{K}</span> and <span class="math inline">v_i \in S\}</span>.</p>
-<h3 id="linear-independence"><span class="header-section-number">1.0.4</span> linear independence</h3>
-<p><span class="math inline">a_1v_1 + \cdots + a_nv_n = \mathbf{0} \implies a_1 = \cdots = a_n = 0</span><br />
+<h3 data-number="1.0.1" id="subspaces"><span
+class="header-section-number">1.0.1</span> subspaces</h3>
+<p>A subset <span class="math inline">W \subseteq V</span> is called a
+subspace of <span class="math inline">V</span> if <span
+class="math inline">W</span> is a vector space over <span
+class="math inline">\mathbf{K}</span> under the same operations of
+vector addition and scalar multiplication.</p>
+<h3 data-number="1.0.2" id="linear-combination"><span
+class="header-section-number">1.0.2</span> linear combination</h3>
+<p>Let <span class="math inline">a_1, \cdots, a_n \in \mathbf{K}</span>
+and <span class="math inline">v_1, \cdots, v_n \in V</span>. The vector
+<span class="math inline">a_1v_1 + \cdots + a_nv_n \in V</span> is
+called a linear combination.</p>
+<h3 data-number="1.0.3" id="span"><span
+class="header-section-number">1.0.3</span> span</h3>
+<p>A span of <span class="math inline">S \subseteq V</span> is a set of
+all linear combinations of S. Let <span class="math inline">S \subseteq
+V</span> then <span class="math inline">span(S) \subseteq V</span> or
+<span class="math inline">span(S) = \{a_1v_1 + \cdots + a_nv_n : a_i \in
+\mathbb{K}</span> and <span class="math inline">v_i \in S\}</span>.</p>
+<h3 data-number="1.0.4" id="linear-independence"><span
+class="header-section-number">1.0.4</span> linear independence</h3>
+<p><span class="math inline">a_1v_1 + \cdots + a_nv_n = \mathbf{0}
+\implies a_1 = \cdots = a_n = 0</span><br />
 otherwise it is called linearly dependent</p>
-<h3 id="basis"><span class="header-section-number">1.0.5</span> basis</h3>
-<p>We call <span class="math inline">B \subseteq V</span> a basis if:</p>
+<h3 data-number="1.0.5" id="basis"><span
+class="header-section-number">1.0.5</span> basis</h3>
+<p>We call <span class="math inline">B \subseteq V</span> a basis
+if:</p>
 <ul>
 <li><span class="math inline">B</span> is linearly independent</li>
 <li><span class="math inline">span(B) = V</span></li>
 </ul>
-<h3 id="dimension"><span class="header-section-number">1.0.6</span> dimension</h3>
-<p>Maximal amount of vectors that are together linearly independent. Size of a basis: <span class="math inline">\dim(V) = |B|</span>. For example: <span class="math inline">\dim(\mathbb{R}^3) = |\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}| = 3</span></p>
-<p>Let <span class="math inline">V</span> be a vector space and <span class="math inline">\dim(V) = n</span>. Finally, let <span class="math inline">S \subseteq V</span>. Then:</p>
+<h3 data-number="1.0.6" id="dimension"><span
+class="header-section-number">1.0.6</span> dimension</h3>
+<p>Maximal amount of vectors that are together linearly independent.
+Size of a basis: <span class="math inline">\dim(V) = |B|</span>. For
+example: <span class="math inline">\dim(\mathbb{R}^3) = |\{(1, 0, 0),
+(0, 1, 0), (0, 0, 1)\}| = 3</span></p>
+<p>Let <span class="math inline">V</span> be a vector space and <span
+class="math inline">\dim(V) = n</span>. Finally, let <span
+class="math inline">S \subseteq V</span>. Then:</p>
 <ul>
-<li>if <span class="math inline">span(S) = V</span> then <span class="math inline">|S| \ge n</span></li>
-<li>if <span class="math inline">S</span> is linearly independent and <span class="math inline">|S| = n</span> then <span class="math inline">S</span> is a basis</li>
-<li>if <span class="math inline">span(S) = V</span> and <span class="math inline">|S| = n</span> then <span class="math inline">S</span> is a basis</li>
-<li>if <span class="math inline">|S| &gt; n</span> then <span class="math inline">S</span> is linearly dependent</li>
+<li>if <span class="math inline">span(S) = V</span> then <span
+class="math inline">|S| \ge n</span></li>
+<li>if <span class="math inline">S</span> is linearly independent and
+<span class="math inline">|S| = n</span> then <span
+class="math inline">S</span> is a basis</li>
+<li>if <span class="math inline">span(S) = V</span> and <span
+class="math inline">|S| = n</span> then <span
+class="math inline">S</span> is a basis</li>
+<li>if <span class="math inline">|S| &gt; n</span> then <span
+class="math inline">S</span> is linearly dependent</li>
 </ul>
 </body>
 </html>

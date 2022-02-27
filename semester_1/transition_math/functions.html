@@ -6,22 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>functions</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
-    var mathElements = document.getElementsByClassName("math");
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
-    }}});</script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <style>
     html {
       font-size: 100%;
@@ -324,57 +455,138 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<h1 id="functions"><span class="header-section-number">1</span> functions</h1>
-<p><span class="math inline">X</span> is the domain of a function and Y is the range co-domain.</p>
+<h1 data-number="1" id="functions"><span
+class="header-section-number">1</span> functions</h1>
+<p><span class="math inline">X</span> is the domain of a function and Y
+is the range co-domain.</p>
 <p><span class="math inline">f : X \to Y</span></p>
-<h3 id="injective"><span class="header-section-number">1.0.1</span> injective</h3>
-<p>A function is injective if for any two arguments <span class="math inline">x_1, x_2 \in X</span> we have: <span class="math inline">f(x_1) = f(x_2) \implies x_1 = x_2</span>. In other words: a given <span class="math inline">y</span> can be obtained only through one <span class="math inline">x</span>.</p>
-<h3 id="surjective"><span class="header-section-number">1.0.2</span> surjective</h3>
-<p><span class="math inline">(\forall y \in Y)(\exists x \in X)(f(x) = y)</span>. In other words: All <span class="math inline">y \in Y</span> have to be obtainable.</p>
-<h3 id="inverse"><span class="header-section-number">1.0.3</span> inverse</h3>
-<p>The inverse of a function is denoted by <span class="math inline">f^{-1}: Y \to X</span>. The function has to be surjective and injective to be invertible: <span class="math inline">f^{-1}(b) = a</span> if <span class="math inline">f(a) = b</span>. Its also true that for <span class="math inline">(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) = x</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<h3 id="image"><span class="header-section-number">1.0.4</span> image</h3>
-<p>For some set <span class="math inline">A</span>, the image of <span class="math inline">A</span> by <span class="math inline">f</span> is <span class="math inline">f(A) = \{f(x): x \in A\}</span>. We can also define an inverse of an image even when the function itself isn’t invertible <span class="math inline">f^{-1}(A)</span>.</p>
-<h3 id="logarithm"><span class="header-section-number">1.0.5</span> logarithm</h3>
-<p><span class="math inline">\log_a(b) = c \equiv a^c = b</span> where <span class="math inline">a, b &gt; 0\ \cap a \neq 1\ \cap b \neq 1</span></p>
+<h3 data-number="1.0.1" id="injective"><span
+class="header-section-number">1.0.1</span> injective</h3>
+<p>A function is injective if for any two arguments <span
+class="math inline">x_1, x_2 \in X</span> we have: <span
+class="math inline">f(x_1) = f(x_2) \implies x_1 = x_2</span>. In other
+words: a given <span class="math inline">y</span> can be obtained only
+through one <span class="math inline">x</span>.</p>
+<h3 data-number="1.0.2" id="surjective"><span
+class="header-section-number">1.0.2</span> surjective</h3>
+<p><span class="math inline">(\forall y \in Y)(\exists x \in X)(f(x) =
+y)</span>. In other words: All <span class="math inline">y \in Y</span>
+have to be obtainable.</p>
+<h3 data-number="1.0.3" id="inverse"><span
+class="header-section-number">1.0.3</span> inverse</h3>
+<p>The inverse of a function is denoted by <span
+class="math inline">f^{-1}: Y \to X</span>. The function has to be
+surjective and injective to be invertible: <span
+class="math inline">f^{-1}(b) = a</span> if <span
+class="math inline">f(a) = b</span>. Its also true that for <span
+class="math inline">(f^{-1} \circ f)(x) = (f \circ f^{-1})(x) =
+x</span><a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<h3 data-number="1.0.4" id="image"><span
+class="header-section-number">1.0.4</span> image</h3>
+<p>For some set <span class="math inline">A</span>, the image of <span
+class="math inline">A</span> by <span class="math inline">f</span> is
+<span class="math inline">f(A) = \{f(x): x \in A\}</span>. We can also
+define an inverse of an image even when the function itself isn’t
+invertible <span class="math inline">f^{-1}(A)</span>.</p>
+<h3 data-number="1.0.5" id="logarithm"><span
+class="header-section-number">1.0.5</span> logarithm</h3>
+<p><span class="math inline">\log_a(b) = c \equiv a^c = b</span> where
+<span class="math inline">a, b &gt; 0\ \cap a \neq 1\ \cap b \neq
+1</span></p>
 <p><span class="math inline">\log_a(x^c) = c\log_a(x)</span></p>
 <p><span class="math inline">\log_a(b) = \frac{1}{\log_b(a)}</span></p>
-<p><span class="math inline">\log_{a^n}(b) = \frac{1}{n}\log_a(b)</span></p>
-<p><span class="math inline">\log_a(b) = \frac{\log_c(b)}{\log_c(a)}</span></p>
-<h3 id="asymptotes"><span class="header-section-number">1.0.6</span> asymptotes</h3>
+<p><span class="math inline">\log_{a^n}(b) =
+\frac{1}{n}\log_a(b)</span></p>
+<p><span class="math inline">\log_a(b) =
+\frac{\log_c(b)}{\log_c(a)}</span></p>
+<h3 data-number="1.0.6" id="asymptotes"><span
+class="header-section-number">1.0.6</span> asymptotes</h3>
 <figure>
-<img src="https://www.mathsisfun.com/algebra/images/asymptote-types.svg" style="filter: invert(1);" alt="" /><figcaption>asymptote types</figcaption>
+<img src="https://www.mathsisfun.com/algebra/images/asymptote-types.svg"
+style="filter: invert(1);" alt="asymptote types" />
+<figcaption aria-hidden="true">asymptote types</figcaption>
 </figure>
-<h4 id="horizontal"><span class="header-section-number">1.0.6.1</span> horizontal</h4>
-<p>The horizontal asymptote has a form of <span class="math inline">y = b</span> where:</p>
-<p><span class="math inline">\lim_{x \to \infty} f(x) = b</span> or <span class="math inline">\lim_{x \to -\infty} f(x) = b</span></p>
-<h4 id="vertical"><span class="header-section-number">1.0.6.2</span> vertical</h4>
-<p>The vertical line <span class="math inline">x = a</span> is an asymptote if:</p>
-<p><span class="math inline">\lim_{x \to a^-} f(x) = \pm \infty</span> or <span class="math inline">\lim_{x \to a^+} f(x) = \pm \infty</span></p>
-<h4 id="oblique"><span class="header-section-number">1.0.6.3</span> oblique</h4>
-<p>A line <span class="math inline">y = ax + b</span> is an oblique asymptote at <span class="math inline">\infty</span> where:</p>
+<h4 data-number="1.0.6.1" id="horizontal"><span
+class="header-section-number">1.0.6.1</span> horizontal</h4>
+<p>The horizontal asymptote has a form of <span class="math inline">y =
+b</span> where:</p>
+<p><span class="math inline">\lim_{x \to \infty} f(x) = b</span> or
+<span class="math inline">\lim_{x \to -\infty} f(x) = b</span></p>
+<h4 data-number="1.0.6.2" id="vertical"><span
+class="header-section-number">1.0.6.2</span> vertical</h4>
+<p>The vertical line <span class="math inline">x = a</span> is an
+asymptote if:</p>
+<p><span class="math inline">\lim_{x \to a^-} f(x) = \pm \infty</span>
+or <span class="math inline">\lim_{x \to a^+} f(x) = \pm
+\infty</span></p>
+<h4 data-number="1.0.6.3" id="oblique"><span
+class="header-section-number">1.0.6.3</span> oblique</h4>
+<p>A line <span class="math inline">y = ax + b</span> is an oblique
+asymptote at <span class="math inline">\infty</span> where:</p>
 <p><span class="math display">
 \begin{matrix}
     a = \lim_{x \to \infty} \frac{f(x)}{x} \\
     b = \lim_{x \to \infty} (f(x) - ax) \\
 \end{matrix}
 </span></p>
-<h3 id="continuity"><span class="header-section-number">1.0.7</span> continuity</h3>
-<p>A function is said to be continuous if at all points it is true that: <span class="math inline">f(x_0) = \lim_{x \to x_0^-}f(x) = \lim_{x \to x_0^+}f(x)</span></p>
-<h3 id="differentiability"><span class="header-section-number">1.0.8</span> differentiability</h3>
-<p>A function is said to be differentiable at some point <span class="math inline">x_0</span> if the <span class="math inline">f&#39;(x_0)</span> exists. It also means that the function is continuous at point <span class="math inline">x_0</span> but not the other way around.</p>
-<h3 id="extreme-values"><span class="header-section-number">1.0.9</span> extreme values</h3>
-<p>To find an extremum we can take a derivative and compare to zero (Make sure the derivative at <span class="math inline">x_0</span> exists): <span class="math inline">f&#39;(x_0) = 0</span>. Then using the found arguments <span class="math inline">f(x_0)</span> is an extremum.</p>
-<h4 id="local"><span class="header-section-number">1.0.9.1</span> local</h4>
-<p>A local maximum or minimum is a maximal or minimal value of a function in a given range</p>
-<h4 id="globalabsolute"><span class="header-section-number">1.0.9.2</span> global/absolute</h4>
-<p>A global maximum or minimum is a maximal or minimal value of a function in <span class="math inline">Y</span></p>
-<section class="footnotes" role="doc-endnotes">
+<h3 data-number="1.0.7" id="continuity"><span
+class="header-section-number">1.0.7</span> continuity</h3>
+<p>A function is said to be continuous if at all points it is true that:
+<span class="math inline">f(x_0) = \lim_{x \to x_0^-}f(x) = \lim_{x \to
+x_0^+}f(x)</span></p>
+<h3 data-number="1.0.8" id="differentiability"><span
+class="header-section-number">1.0.8</span> differentiability</h3>
+<p>A function is said to be differentiable at some point <span
+class="math inline">x_0</span> if the <span
+class="math inline">f&#39;(x_0)</span> exists. It also means that the
+function is continuous at point <span class="math inline">x_0</span> but
+not the other way around.</p>
+<h3 data-number="1.0.9" id="extreme-values"><span
+class="header-section-number">1.0.9</span> extreme values</h3>
+<p>To find an extremum we can take a derivative and compare to zero
+(Make sure the derivative at <span class="math inline">x_0</span>
+exists): <span class="math inline">f&#39;(x_0) = 0</span>. Then using
+the found arguments <span class="math inline">f(x_0)</span> is an
+extremum.</p>
+<h4 data-number="1.0.9.1" id="local"><span
+class="header-section-number">1.0.9.1</span> local</h4>
+<p>A local maximum or minimum is a maximal or minimal value of a
+function in a given range</p>
+<h4 data-number="1.0.9.2" id="globalabsolute"><span
+class="header-section-number">1.0.9.2</span> global/absolute</h4>
+<p>A global maximum or minimum is a maximal or minimal value of a
+function in <span class="math inline">Y</span></p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Composition operator: <span class="math inline">(g \circ f)(a) \equiv g(f(a))</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Composition operator: <span
+class="math inline">(g \circ f)(a) \equiv g(f(a))</span><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>
