@@ -20,6 +20,51 @@
 
 ⏲ contact on teams
 
+## Computer graphics
+
+### Pawel Aszklar (lectures)
+
+📧 pawel.aszklar@pw.edu.pl
+
+🌐 [http://pages.mini.pw.edu.pl/~aszklarp/cg.php](http://pages.mini.pw.edu.pl/~aszklarp/cg.php)
+
+<!--
+	user: CGHA
+	password: CG2022
+-->
+
+⏲ contact on teams, Monday 14:00
+
+### Piotr Pełka (tutorials)
+
+📧
+
+🌐 []()
+
+⏲
+
+## Linux for embedded systems
+
+### Wojciech Zabołotny (lectures&labs)
+
+📧 wojciech.zabolotny@pw.edu.pl (add `[LINES]` in the subject)
+
+🌐 []()
+
+⏲ room 225, EiTI
+
+## Introduction to natural language processing
+
+### Agnieszka Jastrzębska (lectures)
+
+📧
+
+🌐 [https://jastrzebska.mini.pw.edu.pl](https://jastrzebska.mini.pw.edu.pl)
+
+⏲
+
+<!-- password: 1q2w3e4r -->
+
 ---
 
 📧 : e-mail
