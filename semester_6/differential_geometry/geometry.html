@@ -528,5 +528,58 @@ open if</p>
 <p><span class="math display">
 \forall_{x_0 \in U} \exists_{r &lt; 0} B(x_0, r) \subseteq U
 </span></p>
+<h2 data-number="1.4" id="vector-fields"><span
+class="header-section-number">1.4</span> vector fields</h2>
+<ul>
+<li>A vector at point <span class="math inline">p</span> is a pair <span
+class="math inline">\vec v = (p, v)</span> where <span
+class="math inline">p, v \in \mathbb R^{n+1}</span></li>
+<li><span class="math inline">\vec v + \vec w = (p, v+w)</span> for
+<span class="math inline">\vec v = (p, v)</span>, <span
+class="math inline">\vec w = (p, w)</span></li>
+<li><span class="math inline">c \vec v = (p, c \cdot v)</span></li>
+<li>If <span class="math inline">\{v_1, \cdots, v_{n+1}\}</span> is the
+basis of <span class="math inline">\mathbb R^{n+1}</span> then <span
+class="math inline">\{(p, v_1), \cdots, (p, v_{n+1})\}</span> is the
+basis of <span class="math inline">\mathbb R^{n+1}_p</span></li>
+<li><span class="math inline">(p, v) \cdot (p, w) = v \cdot
+w</span></li>
+<li><span class="math inline">(p, v) \times (p, w) = (p, v \times
+w)</span> (Given <span class="math inline">\times</span> is defined for
+the size of vectors)</li>
+<li><span class="math inline">||\vec v|| = \sqrt{\vec v \cdot \vec
+v}</span></li>
+<li><span class="math inline">\cos \theta = \frac{\vec v \cdot \vec
+w}{||\vec v|| \cdot ||\vec w||}</span></li>
+</ul>
+<p><strong>Vector field</strong>: <span class="math inline">\vec X(p) =
+(p, X(p))</span> for <span class="math inline">X: U \to \mathbb
+R^{n+1}</span></p>
+<h3 data-number="1.4.1" id="parametrized-curve"><span
+class="header-section-number">1.4.1</span> parametrized curve</h3>
+<p>A smooth function <span class="math inline">\alpha: I \to \mathbb
+R^{n+1}</span> where <span class="math inline">I</span> is an open
+interval in <span class="math inline">\mathbb R</span></p>
+<h4 data-number="1.4.1.1" id="velocity-vector"><span
+class="header-section-number">1.4.1.1</span> velocity vector</h4>
+<p><span class="math display">
+\dot \alpha(t) = (\alpha(t), \frac{d\alpha}{dt}) = (\alpha(t),
+\frac{dx_1}{dt}, \cdots, \frac{dx_{n+1}}{dt})
+</span></p>
+<h4 data-number="1.4.1.2" id="integral-curve"><span
+class="header-section-number">1.4.1.2</span> integral curve</h4>
+<p><span class="math inline">\alpha</span> is an integral curve of the
+vector field <span class="math inline">\vec X</span> on an open set
+<span class="math inline">U</span> in <span class="math inline">\mathbb
+R^{n+1}</span> if <span class="math inline">\alpha(t) \in U</span> and
+<span class="math inline">X(\alpha(t)) = \dot \alpha(t)</span></p>
+<p><strong>Theorem</strong>: There exists a maximal integral curve,
+defined on <span class="math inline">I</span>, <span
+class="math inline">\alpha: I \to \mathbb R^{n+1}</span> of <span
+class="math inline">\vec X</span> such that <span
+class="math inline">\alpha(0) = p</span></p>
+<h2 data-number="1.5" id="tangent-space"><span
+class="header-section-number">1.5</span> tangent space</h2>
+<p>TODO</p>
 </body>
 </html>

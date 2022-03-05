@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>contact_info</title>
+  <title>raster</title>
   <style>
     html {
       line-height: 1.5;
@@ -455,70 +455,191 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="contact-info"><span
-class="header-section-number">1</span> contact info</h1>
-<h2 data-number="1.1" id="introduction-to-ai"><span
-class="header-section-number">1.1</span> Introduction to AI</h2>
-<h3 data-number="1.1.1" id="jerzy-balicki-lectures"><span
-class="header-section-number">1.1.1</span> Jerzy Balicki (lectures)</h3>
-<p>📧 j.balicki@mini.pw.edu.pl</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲ Wednesday 17:15-19:00 room 403 or MS teams</p>
-<h2 data-number="1.2" id="differential-geometry"><span
-class="header-section-number">1.2</span> Differential geometry</h2>
-<h3 data-number="1.2.1" id="jan-spalinski-lectures-tutorials"><span
-class="header-section-number">1.2.1</span> Jan Spalinski (lectures &amp;
-tutorials)</h3>
-<p>📧 jan.spalinski@pw.edu.pl</p>
-<p>🌐 <a
-href="https://pages.mini.pw.edu.pl/~spalinskij/www/?Differential_Geometry">https://pages.mini.pw.edu.pl/~spalinskij/www/?Differential_Geometry</a></p>
-<p>⏲ contact on teams</p>
-<h2 data-number="1.3" id="computer-graphics"><span
-class="header-section-number">1.3</span> Computer graphics</h2>
-<h3 data-number="1.3.1" id="pawel-aszklar-lectures"><span
-class="header-section-number">1.3.1</span> Pawel Aszklar (lectures)</h3>
-<p>📧 pawel.aszklar@pw.edu.pl</p>
-<p>🌐 <a
-href="http://pages.mini.pw.edu.pl/~aszklarp/cg.php">http://pages.mini.pw.edu.pl/~aszklarp/cg.php</a></p>
-<!--
-    user: CGHA
-    password: CG2022
--->
-<p>⏲ contact on teams, Monday 14:00</p>
-<h3 data-number="1.3.2" id="piotr-pełka-tutorials"><span
-class="header-section-number">1.3.2</span> Piotr Pełka (tutorials)</h3>
-<p>📧</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲</p>
-<h2 data-number="1.4" id="linux-for-embedded-systems"><span
-class="header-section-number">1.4</span> Linux for embedded systems</h2>
-<h3 data-number="1.4.1" id="wojciech-zabołotny-lectureslabs"><span
-class="header-section-number">1.4.1</span> Wojciech Zabołotny
-(lectures&amp;labs)</h3>
-<p>📧 wojciech.zabolotny@pw.edu.pl (add <code>[LINES]</code> in the
-subject)</p>
-<p>🌐 <a href=""></a></p>
-<p>⏲ room 225, EiTI</p>
-<h2 data-number="1.5"
-id="introduction-to-natural-language-processing"><span
-class="header-section-number">1.5</span> Introduction to natural
-language processing</h2>
-<h3 data-number="1.5.1" id="agnieszka-jastrzębska-lectures"><span
-class="header-section-number">1.5.1</span> Agnieszka Jastrzębska
-(lectures)</h3>
-<p>📧</p>
-<p>🌐 <a
-href="https://jastrzebska.mini.pw.edu.pl">https://jastrzebska.mini.pw.edu.pl</a></p>
-<p>⏲</p>
-<!-- password: 1q2w3e4r -->
-<hr />
-<p>📧 : e-mail</p>
-<p>🌐 : website</p>
-<p>⏲ : office hours</p>
+<h1 data-number="1" id="raster"><span
+class="header-section-number">1</span> raster</h1>
+<p>Grid of pixels</p>
+<ul>
+<li><strong>resolution</strong> - size of the raster in pixels</li>
+<li><strong>physical size</strong> - physical dimensions of the
+picture</li>
+<li><strong>PPI</strong> - pixels per inch, relation of physical size
+and its resolution</li>
+</ul>
+<h2 data-number="1.1" id="raster-graphics"><span
+class="header-section-number">1.1</span> raster graphics</h2>
+<ul>
+<li>Accurately represents realistic images</li>
+<li>File size depends on the image resolution</li>
+<li>Not suitable for image transformations</li>
+</ul>
+<h2 data-number="1.2" id="vector-graphics"><span
+class="header-section-number">1.2</span> vector graphics</h2>
+<ul>
+<li>Cannot represent realistic images</li>
+<li>File size independent of the resolution</li>
+<li>Suitable for image transformations</li>
+</ul>
+<h2 data-number="1.3" id="color-function"><span
+class="header-section-number">1.3</span> color function</h2>
+<p>Mapping colors of individual pixels of an image through a function:
+<span class="math inline">C_{out} = f(C_{in})</span></p>
+<ul>
+<li>Contrast: <span class="math inline">f(c) = (c - 0.5) \cdot \alpha +
+0.5</span></li>
+<li>Gamma correction: <span class="math inline">f(c) =
+c^\gamma</span></li>
+</ul>
+<h2 data-number="1.4" id="convolution-filters"><span
+class="header-section-number">1.4</span> convolution filters</h2>
+<p>Mapping colors of a matrix of pixels of an image through a
+kernel.</p>
+<p><span class="math display">
+I&#39;_{x, y} = I_{off} + \frac{\sum_i \sum_j M_{i, j} \cdot I_{x+i,
+y+j}}{D}
+</span></p>
+<p>Where <span class="math inline">M_{0,0}</span> is the anchor of the
+kernel.</p>
+<ul>
+<li><span class="math inline">I_{off}</span> - some offset</li>
+<li><span class="math inline">D</span> - divisor (usually <span
+class="math inline">\sum_i \sum_j M_{i, j}</span>)</li>
+</ul>
+<h3 data-number="1.4.1" id="edge-cases"><span
+class="header-section-number">1.4.1</span> edge cases</h3>
+<h4 data-number="1.4.1.1" id="kernel-on-the-edge-of-the-image"><span
+class="header-section-number">1.4.1.1</span> kernel on the edge of the
+image</h4>
+<ul>
+<li>treat missing pixels as black</li>
+<li>tile the image</li>
+<li>copy pixels on the edge</li>
+</ul>
+<h4 data-number="1.4.1.2" id="color-values-out-of-range"><span
+class="header-section-number">1.4.1.2</span> color values out of
+range</h4>
+<ul>
+<li>clamping</li>
+<li>change function to be normalized</li>
+</ul>
+<h3 data-number="1.4.2" id="filters"><span
+class="header-section-number">1.4.2</span> filters</h3>
+<h4 data-number="1.4.2.1" id="blur"><span
+class="header-section-number">1.4.2.1</span> blur</h4>
+<p><span class="math display">
+\begin{bmatrix}
+    1 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 1 \\
+    1 &amp; 1 &amp; 1 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.4.2.2" id="gaussian-smoothing"><span
+class="header-section-number">1.4.2.2</span> gaussian smoothing</h4>
+<p><span class="math inline">G(x,y) = \frac{1}{2 \pi \sigma^2}
+\exp{(-\frac{x^2 + y^2}{2\sigma^2})}</span></p>
+<p><span class="math display">
+\begin{bmatrix}
+    0 &amp; 1 &amp; 0 \\
+    1 &amp; 4 &amp; 1 \\
+    0 &amp; 1 &amp; 0 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.4.2.3" id="sharpen-filter"><span
+class="header-section-number">1.4.2.3</span> sharpen filter</h4>
+<p><span class="math display">
+\begin{bmatrix}
+    0 &amp; -\frac{a}{s} &amp; 0 \\
+    -\frac{a}{s} &amp; \frac{b}{s} &amp; -\frac{a}{s} \\
+    0 &amp; -\frac{a}{s} &amp; 0 \\
+\end{bmatrix}
+</span></p>
+<p>Where <span class="math inline">s = b - 4a</span></p>
+<h5 data-number="1.4.2.3.1" id="mean-removal"><span
+class="header-section-number">1.4.2.3.1</span> mean removal</h5>
+<p><span class="math display">
+\begin{bmatrix}
+    -1 &amp; -1 &amp; -1 \\
+    -1 &amp; 9 &amp; -1 \\
+    -1 &amp; -1 &amp; -1 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.4.2.4" id="horizontal-edge-detection"><span
+class="header-section-number">1.4.2.4</span> horizontal edge
+detection</h4>
+<p><span class="math display">
+\begin{bmatrix}
+    0 &amp; -1 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.4.2.5" id="vertical-edge-detection"><span
+class="header-section-number">1.4.2.5</span> vertical edge
+detection</h4>
+<p><span class="math display">
+\begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    -1 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.4.2.6" id="diagonal-edge-detection"><span
+class="header-section-number">1.4.2.6</span> diagonal edge
+detection</h4>
+<p><span class="math display">
+\begin{bmatrix}
+    -1 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+</span></p>
+<h5 data-number="1.4.2.6.1" id="laplacian-edge-detection"><span
+class="header-section-number">1.4.2.6.1</span> laplacian edge
+detection</h5>
+<p><span class="math display">
+\begin{bmatrix}
+    0 &amp; -1 &amp; 0 \\
+    -1 &amp; 4 &amp; -1 \\
+    0 &amp; -1 &amp; 0 \\
+\end{bmatrix}
+</span></p>
+<p><span class="math display">
+\begin{bmatrix}
+    -1 &amp; -1 &amp; -1 \\
+    -1 &amp; 8 &amp; -1 \\
+    -1 &amp; -1 &amp; -1 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.4.2.7" id="emboss"><span
+class="header-section-number">1.4.2.7</span> emboss</h4>
+<p><span class="math display">
+\begin{bmatrix}
+    -1 &amp; 0 &amp; 1 \\
+    -1 &amp; 1 &amp; 1 \\
+    -1 &amp; 0 &amp; 1 \\
+\end{bmatrix}
+</span></p>
 </body>
 </html>
