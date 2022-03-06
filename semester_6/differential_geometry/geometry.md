@@ -81,4 +81,20 @@ $\alpha$ is an integral curve of the vector field $\vec X$ on an open set $U$ in
 
 ## tangent space
 
-TODO
+Vector $p$ is said to be tangent to the level set $f^{-1}(c)$ if it is a velocity vector of a parametrized curve in $\mathbb R^{n+1}$ whose image is contained in $f^{-1}(c)$
+
+### gradient
+
+Gradient of $f$ at $p \in f^{-1}(c)$ is orthogonal to all vectors tangent to $f^{-1}(c)$ at $p$
+
+### regular point
+
+A point $p \in \mathbb R^{n+1}$ such that $\nabla f(p) \ne 0$ is called a regular point
+
+### perpendicular vectors
+
+Let $v, w$ be nonzero linearly independent vectors. Then $\tilde w = w - \frac{\langle w, v\rangle}{||v||^2}v$ is perpendicular to $v$ ($\langle v, \tilde w \rangle = 0$)
+
+### theorem
+
+Let $p$ be a regular point of $f$. Then the set of all vectors tangent to $f^{-1}(c)$ at $p$ is equal to $\nabla f(p)^\perp$
