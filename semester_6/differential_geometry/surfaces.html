@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>geometry</title>
+  <title>surfaces</title>
   <style>
     html {
       line-height: 1.5;
@@ -478,137 +478,16 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="geometry"><span
-class="header-section-number">1</span> geometry</h1>
-<p>Study of equivalence classes of certain transformation groups</p>
-<h2 data-number="1.1" id="euclidean-geometry"><span
-class="header-section-number">1.1</span> Euclidean geometry</h2>
-<p>Studies equivalence classes of rigid motions of the plane or three
-dimensional space</p>
-<h3 data-number="1.1.1" id="affine-geometry"><span
-class="header-section-number">1.1.1</span> affine geometry</h3>
-<p>Euclidean geometry where we allow for dilations</p>
-<p><span class="math display">
-d(f(x), f(y)) = rd(x, y)
-</span></p>
-<h2 data-number="1.2" id="topology"><span
-class="header-section-number">1.2</span> topology</h2>
-<p>Two spaces are equivalent if there are continuous maps <span
-class="math inline">f: X \to Y</span> and <span class="math inline">g: Y
-\to X</span> such that <span class="math inline">gf = id_X</span> and
-<span class="math inline">fg = id_Y</span></p>
-<h3 data-number="1.2.1" id="manifolds"><span
-class="header-section-number">1.2.1</span> manifolds</h3>
-<p>Objects are locally Euclidean: in the vicinity of any point it looks
-like a piece of <span class="math inline">\mathbb R^n</span>. We say it
-is a <span class="math inline">n</span>-manifold.</p>
-<h2 data-number="1.3" id="level-sets"><span
-class="header-section-number">1.3</span> level sets</h2>
-<p><span class="math display">
-f^{-1}(c) = \{(x_1, \cdots, x_{n+1}) \in U : f(x_1, \cdots, x_{n+1}) =
-c\}
-</span></p>
-<h3 data-number="1.3.1" id="metric-space"><span
-class="header-section-number">1.3.1</span> metric space</h3>
-<p>A metric space <span class="math inline">X</span> is a set equipped
-with a distance function <span class="math inline">d: X \times X \to
-R</span> such that</p>
-<p><span class="math display">
-    (\forall x,y \in X) d(x, y) \ge 0 \land d(x, y) \iff x = y \\
-    (\forall x,y \in X) d(x, y) = d(y, x) \\
-    (\forall x,y,z \in X) d(x, z) \le d(x, y) + d(y, z) \\
-</span></p>
-<h3 data-number="1.3.2" id="open-ball"><span
-class="header-section-number">1.3.2</span> open ball</h3>
-<p><span class="math display">
-B(x_0, r) = \{x \in X : d(x, x_0) &lt; r\}
-</span></p>
-<p>We say <span class="math inline">U \subset \mathbb R^{n+1}</span> is
-open if</p>
-<p><span class="math display">
-\forall_{x_0 \in U} \exists_{r &lt; 0} B(x_0, r) \subseteq U
-</span></p>
-<h2 data-number="1.4" id="vector-fields"><span
-class="header-section-number">1.4</span> vector fields</h2>
-<ul>
-<li>A vector at point <span class="math inline">p</span> is a pair <span
-class="math inline">\vec v = (p, v)</span> where <span
-class="math inline">p, v \in \mathbb R^{n+1}</span></li>
-<li><span class="math inline">\vec v + \vec w = (p, v+w)</span> for
-<span class="math inline">\vec v = (p, v)</span>, <span
-class="math inline">\vec w = (p, w)</span></li>
-<li><span class="math inline">c \vec v = (p, c \cdot v)</span></li>
-<li>If <span class="math inline">\{v_1, \cdots, v_{n+1}\}</span> is the
-basis of <span class="math inline">\mathbb R^{n+1}</span> then <span
-class="math inline">\{(p, v_1), \cdots, (p, v_{n+1})\}</span> is the
-basis of <span class="math inline">\mathbb R^{n+1}_p</span></li>
-<li><span class="math inline">(p, v) \cdot (p, w) = v \cdot
-w</span></li>
-<li><span class="math inline">(p, v) \times (p, w) = (p, v \times
-w)</span> (Given <span class="math inline">\times</span> is defined for
-the size of vectors)</li>
-<li><span class="math inline">||\vec v|| = \sqrt{\vec v \cdot \vec
-v}</span></li>
-<li><span class="math inline">\cos \theta = \frac{\vec v \cdot \vec
-w}{||\vec v|| \cdot ||\vec w||}</span></li>
-</ul>
-<p><strong>Vector field</strong>: <span class="math inline">\vec X(p) =
-(p, X(p))</span> for <span class="math inline">X: U \to \mathbb
-R^{n+1}</span></p>
-<h3 data-number="1.4.1" id="parametrized-curve"><span
-class="header-section-number">1.4.1</span> parametrized curve</h3>
-<p>A smooth function <span class="math inline">\alpha: I \to \mathbb
-R^{n+1}</span> where <span class="math inline">I</span> is an open
-interval in <span class="math inline">\mathbb R</span></p>
-<h4 data-number="1.4.1.1" id="velocity-vector"><span
-class="header-section-number">1.4.1.1</span> velocity vector</h4>
-<p><span class="math display">
-\dot \alpha(t) = (\alpha(t), \frac{d\alpha}{dt}) = (\alpha(t),
-\frac{dx_1}{dt}, \cdots, \frac{dx_{n+1}}{dt})
-</span></p>
-<h4 data-number="1.4.1.2" id="integral-curve"><span
-class="header-section-number">1.4.1.2</span> integral curve</h4>
-<p><span class="math inline">\alpha</span> is an integral curve of the
-vector field <span class="math inline">\vec X</span> on an open set
-<span class="math inline">U</span> in <span class="math inline">\mathbb
-R^{n+1}</span> if <span class="math inline">\alpha(t) \in U</span> and
-<span class="math inline">X(\alpha(t)) = \dot \alpha(t)</span></p>
-<p><strong>Theorem</strong>: There exists a maximal integral curve,
-defined on <span class="math inline">I</span>, <span
-class="math inline">\alpha: I \to \mathbb R^{n+1}</span> of <span
-class="math inline">\vec X</span> such that <span
-class="math inline">\alpha(0) = p</span></p>
-<h2 data-number="1.5" id="tangent-space"><span
-class="header-section-number">1.5</span> tangent space</h2>
-<p>Vector <span class="math inline">p</span> is said to be tangent to
-the level set <span class="math inline">f^{-1}(c)</span> if it is a
-velocity vector of a parametrized curve in <span
-class="math inline">\mathbb R^{n+1}</span> whose image is contained in
-<span class="math inline">f^{-1}(c)</span></p>
-<h3 data-number="1.5.1" id="gradient"><span
-class="header-section-number">1.5.1</span> gradient</h3>
-<p>Gradient of <span class="math inline">f</span> at <span
-class="math inline">p \in f^{-1}(c)</span> is orthogonal to all vectors
-tangent to <span class="math inline">f^{-1}(c)</span> at <span
-class="math inline">p</span></p>
-<h3 data-number="1.5.2" id="regular-point"><span
-class="header-section-number">1.5.2</span> regular point</h3>
-<p>A point <span class="math inline">p \in \mathbb R^{n+1}</span> such
-that <span class="math inline">\nabla f(p) \ne 0</span> is called a
-regular point</p>
-<h3 data-number="1.5.3" id="perpendicular-vectors"><span
-class="header-section-number">1.5.3</span> perpendicular vectors</h3>
-<p>Let <span class="math inline">v, w</span> be nonzero linearly
-independent vectors. Then <span class="math inline">\tilde w = w -
-\frac{\langle w, v\rangle}{||v||^2}v</span> is perpendicular to <span
-class="math inline">v</span> (<span class="math inline">\langle v,
-\tilde w \rangle = 0</span>)</p>
-<h3 data-number="1.5.4" id="theorem"><span
-class="header-section-number">1.5.4</span> theorem</h3>
-<p>Let <span class="math inline">p</span> be a regular point of <span
-class="math inline">f</span>. Then the set of all vectors tangent to
-<span class="math inline">f^{-1}(c)</span> at <span
-class="math inline">p</span> is equal to <span
-class="math inline">\nabla f(p)^\perp</span></p>
+<h1 data-number="1" id="surfaces"><span
+class="header-section-number">1</span> surfaces</h1>
+<p>Let <span class="math inline">U</span> be an open set in <span
+class="math inline">\mathbb R^{n+1}</span> and <span
+class="math inline">f: U \to \mathbb R</span> be a smooth function</p>
+<p>Surface <span class="math inline">S = f^{-1}(c)</span> where <span
+class="math inline">\forall_{p \in S} \nabla f(p) \ne 0</span>, that is,
+level sets where all points are regular.</p>
+<p>Let <span class="math inline">S_p</span> denote the tangent space to
+a surface <span class="math inline">S</span> at <span
+class="math inline">p</span>.</p>
 </body>
 </html>
