@@ -65,6 +65,24 @@
 
 <!-- password: 1q2w3e4r -->
 
+### Tomasz Piechula (tutorials)
+
+📧
+
+🌐 [nltk.org/book](https://nltk.org/book)
+
+⏲
+
+## French M5/A2
+
+### Anna Leśniewska (tutorials)
+
+📧 anna.lesniewska@pw.edu.pl
+
+🌐 []()
+
+⏲ teams friday 8:30-9:15
+
 ---
 
 📧 : e-mail
