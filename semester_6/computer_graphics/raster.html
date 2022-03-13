@@ -641,5 +641,82 @@ class="header-section-number">1.4.2.7</span> emboss</h4>
     -1 &amp; 0 &amp; 1 \\
 \end{bmatrix}
 </span></p>
+<h2 data-number="1.5" id="achromatic-light"><span
+class="header-section-number">1.5</span> achromatic light</h2>
+<p>Described only by intensity:</p>
+<ul>
+<li>luminance: measure of light intensity per unit area</li>
+<li>brightness: psychophysical sense of perceived intensity</li>
+</ul>
+<h3 data-number="1.5.1" id="weber-fechner-law"><span
+class="header-section-number">1.5.1</span> Weber-Fechner law</h3>
+<p><span class="math display">
+p = k \ln \frac{Y}{Y_0}
+</span></p>
+<p>where <span class="math inline">p</span> - perceived brightness,
+<span class="math inline">Y</span> - luminance, <span
+class="math inline">Y_0</span> - threshold luminance</p>
+<h4 data-number="1.5.1.1" id="contrast-ratio"><span
+class="header-section-number">1.5.1.1</span> contrast ratio</h4>
+<p>Ratio of luminous intensity of the brightest and darkest possible
+point on the screen (<span class="math inline">Y_0 : 1</span>)</p>
+<p>Typical LCD displays have between <span
+class="math inline">400:1</span> and <span
+class="math inline">2000:1</span></p>
+<h3 data-number="1.5.2" id="mach-bands"><span
+class="header-section-number">1.5.2</span> mach bands</h3>
+<p>Intensity at the vicinity of an edge is overestimated for light
+values and underestimated for dark values</p>
+<h3 data-number="1.5.3" id="halftoning"><span
+class="header-section-number">1.5.3</span> halftoning</h3>
+<p>Printing using dots of ink</p>
+<h4 data-number="1.5.3.1" id="cmyk"><span
+class="header-section-number">1.5.3.1</span> CMYK</h4>
+<p>Cyan Magenta Yellow (K)Black</p>
+<p>Each rotated to not overlap:</p>
+<ul>
+<li><span class="math inline">45^\circ</span> black</li>
+<li><span class="math inline">90^\circ</span> yellow</li>
+<li><span class="math inline">75^\circ</span> magenta</li>
+<li><span class="math inline">105^\circ</span> cyan</li>
+</ul>
+<h2 data-number="1.6" id="dithering"><span
+class="header-section-number">1.6</span> dithering</h2>
+<p>Impression of multiple levels of gray on a device capable of
+displaying limited number of levels</p>
+<h3 data-number="1.6.1" id="ordered-dithering"><span
+class="header-section-number">1.6.1</span> ordered dithering</h3>
+<p>Example dither matrices:</p>
+<p><span class="math display">
+D_2 = \begin{bmatrix}
+    1 &amp; 3 \\
+    4 &amp; 2 \\
+\end{bmatrix}
+</span></p>
+<p><span class="math display">
+D_3 = \begin{bmatrix}
+    3 &amp; 7 &amp; 4 \\
+    6 &amp; 1 &amp; 9 \\
+    2 &amp; 8 &amp; 5 \\
+\end{bmatrix}
+</span></p>
+<h4 data-number="1.6.1.1" id="bayer-matrix"><span
+class="header-section-number">1.6.1.1</span> Bayer matrix</h4>
+<p><span class="math display">
+B_n = \frac{1}{n^2 + 1}D_n
+</span></p>
+<h3 data-number="1.6.2" id="error-diffusion"><span
+class="header-section-number">1.6.2</span> error diffusion</h3>
+<p>Error being the difference between the approximated pixel value and
+the real value is distributed to neighboring pixels. So a weighted error
+diffusion can be applied, which modifies the pixels which will be
+processed next:</p>
+<p><span class="math display">
+\begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; \frac{7}{16} \\
+    \frac{3}{16} &amp; \frac{5}{16} &amp; \frac{1}{16} \\
+\end{bmatrix}
+</span></p>
 </body>
 </html>
