@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>color</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="color"><span
+class="header-section-number">1</span> color</h1>
+<h2 data-number="1.1" id="complementary-colors"><span
+class="header-section-number">1.1</span> complementary colors</h2>
+<p>Colors that when mixed together produce white. For example, in RGB
+model the following pairs of colors are complementary:</p>
+<ul>
+<li>blue, yellow</li>
+<li>red, cyan</li>
+<li>green, magenta</li>
+</ul>
+<h2 data-number="1.2" id="color-model"><span
+class="header-section-number">1.2</span> color model</h2>
+<ul>
+<li>Color is represented by a tuple of numbers</li>
+<li>Perceived color depends on the viewing device</li>
+</ul>
+<h3 data-number="1.2.1" id="rgb"><span
+class="header-section-number">1.2.1</span> RGB</h3>
+<p><span class="math inline">(R, G, B)</span> - three primary colors,
+Red, Green, Blue added together to produce colors.</p>
+<h3 data-number="1.2.2" id="cmy"><span
+class="header-section-number">1.2.2</span> CMY</h3>
+<p><span class="math inline">(C, M, Y)</span> - three primary colors,
+Cyan, Magenta, Yellow subtracted together to produce colors.</p>
+<p><span class="math display">
+\begin{bmatrix}
+    C \\
+    M \\
+    Y \\
+\end{bmatrix} = \begin{bmatrix}
+    1 \\
+    1 \\
+    1 \\
+\end{bmatrix} - \begin{bmatrix}
+    R \\
+    G \\
+    B \\
+\end{bmatrix}
+</span></p>
+<p>Used in printing, due to reliance on reflecting external light. Even
+though theory mixing cyan magenta and yellow should produce black, this
+is often not the case in the real world and thus black is introduced as
+a separate color.</p>
+<h3 data-number="1.2.3" id="yuv-yiq"><span
+class="header-section-number">1.2.3</span> Y’UV / Y’IQ</h3>
+<p>Encoding of RGB for analog or digital TV signal transmission</p>
+<ul>
+<li>Y’ - luma (brightness)</li>
+<li>UV, IQ - chrominance, two components describing the color (hue,
+saturation)</li>
+</ul>
+<p><span class="math inline">R,G,B,Y&#39; \in [0; 1]</span></p>
+<p><span class="math inline">U \in [−0.436; 0.436]</span>, <span
+class="math inline">V \in [−0.615; 0.615]</span></p>
+<p><span class="math display">
+\begin{bmatrix}
+    Y&#39; \\
+    U \\
+    V \\
+\end{bmatrix} = \begin{bmatrix}
+    0.299 &amp; 0.587 &amp; 0.114 \\
+    -0.14713 &amp; -0.28886 &amp; 0.436 \\
+    0.615 &amp; -0.51499 &amp; -0.10001 \\
+\end{bmatrix}\begin{bmatrix}
+    R \\
+    G \\
+    B \\
+\end{bmatrix}
+</span></p>
+<p><span class="math inline">I \in [−0.596; 0.596]</span>, <span
+class="math inline">Q \in [−0.523; 0.523]</span></p>
+<p><span class="math display">
+\begin{bmatrix}
+    Y&#39; \\
+    I \\
+    Q \\
+\end{bmatrix} = \begin{bmatrix}
+    0.299 &amp; 0.587 &amp; 0.114 \\
+    0.595716 &amp; -0.274453 &amp; -0.321263 \\
+    0.211456 &amp; -0.522591 &amp; 0.311135
+\end{bmatrix}\begin{bmatrix}
+    R \\
+    G \\
+    B \\
+\end{bmatrix}
+</span></p>
+<p>Conversion to grayscale: <span class="math inline">Y&#39; = 0.299R +
+0.587G + 0.114B</span></p>
+<h3 data-number="1.2.4" id="hsv-hsl"><span
+class="header-section-number">1.2.4</span> HSV / HSL</h3>
+<p>Hue, saturation, brightness/lightness</p>
+<p><span class="math inline">M = \max(R,G,B)</span>, <span
+class="math inline">m = \min(R,G,B)</span>, then</p>
+<p><span class="math display">
+H = 60^\circ \cdot \begin{cases}
+    0 &amp; \text{ if } M = m \\
+    \frac{G - B}{M - m} \mod 6 &amp; \text{ if } M = R \\
+    \frac{B - R}{M - m} + 2 &amp; \text{ if } M = G \\
+    \frac{R - G}{M - m} + 4 &amp; \text{ if } M = B \\
+\end{cases}
+</span></p>
+<p><span class="math display">
+S_{HSV} = \frac{\max(R, G, B) − \min(R, G, B)}{\max(R, G, B)}
+</span></p>
+<p><span class="math display">
+S_{HSL} = \frac{\max(R, G, B) − \min(R, G, B)}{1 - |\max(R, G, B) +
+\min(R, G, B) - 1|}
+</span></p>
+<p><span class="math display">
+V = \max(R, G, B)
+</span></p>
+<p><span class="math display">
+L = \frac{\max(R, G, B) + \min(R, G, B)}{2}
+</span></p>
+<h3 data-number="1.2.5" id="absolute-color-space"><span
+class="header-section-number">1.2.5</span> absolute color space</h3>
+<p>Color space where colors are unambiguous. For example RGB can become
+an absolute color space if we account for individual color profiles of
+devices.</p>
+<h4 data-number="1.2.5.1" id="cie-rgb-1931"><span
+class="header-section-number">1.2.5.1</span> CIE RGB 1931</h4>
+<p>International Commission on Illumination (CIE) defines standard
+absolute color spaces such as CIE RGB 1931. Primary colors are a set of
+monochromatic single wavelength colors:</p>
+<ul>
+<li><span class="math inline">R = 700nm</span></li>
+<li><span class="math inline">G = 546.1nm</span></li>
+<li><span class="math inline">B = 438.1nm</span></li>
+</ul>
+<p><img
+src="https://www.researchgate.net/profile/David-Nebouy/publication/325876976/figure/fig20/AS:651592764231687@1532363229643/Plot-of-the-CIE-RGB-color-matching-functions-for-the-1931-CIE-Standard-observer.png" /></p>
+<p><span class="math display">
+\begin{aligned}
+    R &amp; = \int_0^\infty I(\lambda)\bar r(\lambda) d\lambda \\
+    G &amp; = \int_0^\infty I(\lambda)\bar g(\lambda) d\lambda \\
+    B &amp; = \int_0^\infty I(\lambda)\bar b(\lambda) d\lambda \\
+\end{aligned}
+</span></p>
+<p>Where <span class="math inline">I(\lambda)</span> is the spectral
+power distribution.</p>
+<h4 data-number="1.2.5.2" id="cie-xyy-chromaticity-diagram"><span
+class="header-section-number">1.2.5.2</span> CIE xyY chromaticity
+diagram</h4>
+<figure>
+<img
+src="https://www.researchgate.net/profile/Octavio-Espinoza/publication/253910240/figure/fig2/AS:298057896873992@1448073948464/CIE-xy-chromaticity-diagram-Source-document.png"
+alt="Chromaticity Diagram" />
+<figcaption aria-hidden="true">Chromaticity Diagram</figcaption>
+</figure>
+<h5 data-number="1.2.5.2.1" id="white-point"><span
+class="header-section-number">1.2.5.2.1</span> white point</h5>
+<p>White Point defines a reference white color for image capture or
+reproduction. It can be specified either by <span
+class="math inline">(x, y)</span> coordinates on a chromaticity diagram
+or by color temperature. Where color temperature is the temperature of a
+black body which radiation is closest to the spectral power distribution
+of the surrounding ambient light.</p>
+</body>
+</html>
