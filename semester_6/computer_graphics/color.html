@@ -636,5 +636,33 @@ class="math inline">(x, y)</span> coordinates on a chromaticity diagram
 or by color temperature. Where color temperature is the temperature of a
 black body which radiation is closest to the spectral power distribution
 of the surrounding ambient light.</p>
+<h2 data-number="1.3" id="color-quantization"><span
+class="header-section-number">1.3</span> color quantization</h2>
+<p>Representing an image with a limited set of colors (color
+palette)</p>
+<h3 data-number="1.3.1" id="fixed-quantization"><span
+class="header-section-number">1.3.1</span> fixed quantization</h3>
+<p>Fixed color palette, fixed mapping. Causes color shifts, false
+contours.</p>
+<h4 data-number="1.3.1.1" id="uniform"><span
+class="header-section-number">1.3.1.1</span> uniform</h4>
+<p>Uniform subdivision of RGB cube for each coordinate, mapping done
+with some respect to some distance function (for example Euclidean
+distance).</p>
+<h3 data-number="1.3.2" id="adaptive-quantization"><span
+class="header-section-number">1.3.2</span> adaptive quantization</h3>
+<p>Image-dependent color palette.</p>
+<h4 data-number="1.3.2.1" id="popularity"><span
+class="header-section-number">1.3.2.1</span> popularity</h4>
+<p>We select <span class="math inline">k</span> most frequent occurring
+colors.</p>
+<h4 data-number="1.3.2.2" id="median-cut"><span
+class="header-section-number">1.3.2.2</span> median cut</h4>
+<p>Subdivide color space such that each cuboid has the same amount of
+pixels</p>
+<h4 data-number="1.3.2.3" id="k-means"><span
+class="header-section-number">1.3.2.3</span> k-means</h4>
+<p>k-colors as the k-centroids of the color space from k-means
+algorithm</p>
 </body>
 </html>
