@@ -148,3 +148,31 @@ Where $I(\lambda)$ is the spectral power distribution.
 ##### white point
 
 White Point defines a reference white color for image capture or reproduction. It can be specified either by $(x, y)$ coordinates on a chromaticity diagram or by color temperature. Where color temperature is the temperature of a black body which radiation is closest to the spectral power distribution of the surrounding ambient light.
+
+## color quantization
+
+Representing an image with a limited set of colors (color palette)
+
+### fixed quantization
+
+Fixed color palette, fixed mapping. Causes color shifts, false contours.
+
+#### uniform
+
+Uniform subdivision of RGB cube for each coordinate, mapping done with some respect to some distance function (for example Euclidean distance).
+
+### adaptive quantization
+
+Image-dependent color palette.
+
+#### popularity
+
+We select $k$ most frequent occurring colors.
+
+#### median cut
+
+Subdivide color space such that each cuboid has the same amount of pixels
+
+#### k-means
+
+k-colors as the k-centroids of the color space from k-means algorithm
