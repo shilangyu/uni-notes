@@ -33,7 +33,8 @@ $$
 A metric space $X$ is a set equipped with a distance function $d: X \times X \to R$ such that
 
 $$
-	(\forall x,y \in X) d(x, y) \ge 0 \land d(x, y) \iff x = y \\
+	(\forall x,y \in X) d(x, y) \ge 0 \\
+	(\forall x,y \in X) d(x, y) = 0 \iff x = y \\
 	(\forall x,y \in X) d(x, y) = d(y, x) \\
 	(\forall x,y,z \in X) d(x, z) \le d(x, y) + d(y, z) \\
 $$
@@ -47,7 +48,7 @@ $$
 We say $U \subset \mathbb R^{n+1}$ is open if
 
 $$
-\forall_{x_0 \in U} \exists_{r < 0} B(x_0, r) \subseteq U
+\forall_{x_0 \in U} \exists_{r > 0} B(x_0, r) \subseteq U
 $$
 
 ## vector fields

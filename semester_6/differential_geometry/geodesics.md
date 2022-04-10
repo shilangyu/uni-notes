@@ -6,7 +6,7 @@ A geodesic in an $n$-surface $S$ in $\mathbb R^{n+1}$ is a parametrized curve $\
 
 **Theorem**:
 
-Let $S$ be an $n$-surface, let $p \in S$ and let $v \in S_p$. Then there exists an open interval $I$ containing 0 and a geodesic $\alpha: I \to S$ such that:
+Let $S$ be an $n$-surface, let $p \in S$ and let $v \in S_p$. Then there exists an open interval $I$ containing $0$ and a geodesic $\alpha: I \to S$ such that:
 
 1. $\alpha(0) = p$ and $\dot \alpha(0) = v$
 2. $\alpha$ is maximal
