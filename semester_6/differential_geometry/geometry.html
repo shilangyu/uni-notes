@@ -514,7 +514,8 @@ class="header-section-number">1.3.1</span> metric space</h3>
 with a distance function <span class="math inline">d: X \times X \to
 R</span> such that</p>
 <p><span class="math display">
-    (\forall x,y \in X) d(x, y) \ge 0 \land d(x, y) \iff x = y \\
+    (\forall x,y \in X) d(x, y) \ge 0 \\
+    (\forall x,y \in X) d(x, y) = 0 \iff x = y \\
     (\forall x,y \in X) d(x, y) = d(y, x) \\
     (\forall x,y,z \in X) d(x, z) \le d(x, y) + d(y, z) \\
 </span></p>
@@ -526,7 +527,7 @@ B(x_0, r) = \{x \in X : d(x, x_0) &lt; r\}
 <p>We say <span class="math inline">U \subset \mathbb R^{n+1}</span> is
 open if</p>
 <p><span class="math display">
-\forall_{x_0 \in U} \exists_{r &lt; 0} B(x_0, r) \subseteq U
+\forall_{x_0 \in U} \exists_{r &gt; 0} B(x_0, r) \subseteq U
 </span></p>
 <h2 data-number="1.4" id="vector-fields"><span
 class="header-section-number">1.4</span> vector fields</h2>
