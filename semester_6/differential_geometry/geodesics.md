@@ -34,6 +34,7 @@ $$
 - $(X + Y)' = X' + Y'$
 - $(fX)' = f'X + fX'$
 - $(X \cdot Y)' = X' \cdot Y + X \cdot Y'$
+- A parametrized curve $\alpha$ is a geodesics in $S$ iff its covariant acceleration $(\dot \alpha)$' is zero along $\alpha$
 
 ### euclidean parallel
 
@@ -53,8 +54,12 @@ A smooth vector field $X$ tangent to $S$ along $\alpha$ is called Levi-Civita pa
 - If $X$ and $Y$ are parallel along $\alpha$ then so are $X + Y$ and $cX$ for $c \in \mathbb R$
 - The velocity vector field along $\alpha$ in $S$ is parallel iff $\alpha$ is a geodesic
 
-#### theorem
+#### theorems
+
+##### 1
 
 There exists a unique vector field $V$ tangent to $S$ along $\alpha$ which is parallel and has $V(t_0 \in I) = v \in S_{\alpha(t_0)}$
 
-Each parametrized curve $\alpha: [a; b] \to S$ from $p$ to $q$ determines a map $P_\alpha: S_p \to S_q$ given by $P_\alpha(v) = V(b)$. The vector $P_\alpha(v)$ is called the parallel transport of $v$ from $p$ to $q$ along $\alpha$.
+##### 2
+
+Each parametrized curve $\alpha: [a; b] \to S$ from $p$ to $q$ determines a map $P_\alpha: S_p \to S_q$ given by $P_\alpha(v) = V(b)$. Where $V$ is the unique parallel vector field along $\alpha$ with $V(a) = v$. The vector $P_\alpha(v)$ is called the parallel transport of $v$ from $p$ to $q$ along $\alpha$.

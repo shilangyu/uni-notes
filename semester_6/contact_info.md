@@ -59,7 +59,7 @@
 
 📧
 
-🌐 [https://jastrzebska.mini.pw.edu.pl](https://jastrzebska.mini.pw.edu.pl)
+🌐 [https://ajastrzebska.mini.pw.edu.pl](https://ajastrzebska.mini.pw.edu.pl)
 
 ⏲
 
