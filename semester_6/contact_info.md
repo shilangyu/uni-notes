@@ -39,9 +39,14 @@
 
 📧
 
-🌐 []()
+🌐 [pages.mini.pw.edu.pl/~pelkap/en/teaching/CG1/](pages.mini.pw.edu.pl/~pelkap/en/teaching/CG1/)
 
 ⏲
+
+<!--
+	user: cg12022
+	password: student2022
+-->
 
 ## Linux for embedded systems
 
