@@ -20,7 +20,7 @@ $$
 \nabla_v f = (f \circ \alpha)'(t_0)
 $$
 
-where $\alpha(t_0) = p$ and $\alpha'(t_0) = v$
+where $\alpha(t_0) = p$ and $\dot\alpha(t_0) = v$
 
 When $||v|| = 1$ it is called the directional derivative.
 
@@ -37,9 +37,17 @@ $$
 \nabla_vX = \dot{(X \circ \alpha)}(t_0)
 $$
 
-where $\alpha: I \to U$, $\alpha(t_0) = p$ and $\alpha'(t_0) = v$
+where $\alpha: I \to U$, $\alpha(t_0) = p$ and $\dot\alpha(t_0) = v$
 
-Let $N$ be an orientation of $S$. Then $\nabla_vN$ os tangent to $S$.
+Let $N$ be an orientation of $S$. Then $\nabla_vN$ is tangent to $S$.
+
+### covariant derivative
+
+When $X$ is a tangent vector field on $S$ then $D_vX$ is the tangential component of $\nabla_vX$:
+
+$$
+D_v X = \nabla_v X - (\nabla_vX \cdot N(p))N(p)
+$$
 
 ### theorems
 
@@ -58,3 +66,5 @@ The Weingarten map is self-adjoint, that is
 $$
 L_p(v) \cdot w = v \cdot L_p(w)
 $$
+
+for all $v, w \in S_p$
