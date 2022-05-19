@@ -504,7 +504,7 @@ class="math inline">v \in \mathbb R_p^{n+1}</span> then</p>
 \nabla_v f = (f \circ \alpha)&#39;(t_0)
 </span></p>
 <p>where <span class="math inline">\alpha(t_0) = p</span> and <span
-class="math inline">\alpha&#39;(t_0) = v</span></p>
+class="math inline">\dot\alpha(t_0) = v</span></p>
 <p>When <span class="math inline">||v|| = 1</span> it is called the
 directional derivative.</p>
 <p><strong>Properties</strong>:</p>
@@ -525,15 +525,24 @@ respect to <span class="math inline">v \in \mathbb R_p^{n+1}</span>,
 </span></p>
 <p>where <span class="math inline">\alpha: I \to U</span>, <span
 class="math inline">\alpha(t_0) = p</span> and <span
-class="math inline">\alpha&#39;(t_0) = v</span></p>
+class="math inline">\dot\alpha(t_0) = v</span></p>
 <p>Let <span class="math inline">N</span> be an orientation of <span
 class="math inline">S</span>. Then <span
-class="math inline">\nabla_vN</span> os tangent to <span
+class="math inline">\nabla_vN</span> is tangent to <span
 class="math inline">S</span>.</p>
-<h3 data-number="1.1.3" id="theorems"><span
-class="header-section-number">1.1.3</span> theorems</h3>
-<h4 data-number="1.1.3.1" id="theorem-1"><span
-class="header-section-number">1.1.3.1</span> theorem 1</h4>
+<h3 data-number="1.1.3" id="covariant-derivative"><span
+class="header-section-number">1.1.3</span> covariant derivative</h3>
+<p>When <span class="math inline">X</span> is a tangent vector field on
+<span class="math inline">S</span> then <span
+class="math inline">D_vX</span> is the tangential component of <span
+class="math inline">\nabla_vX</span>:</p>
+<p><span class="math display">
+D_v X = \nabla_v X - (\nabla_vX \cdot N(p))N(p)
+</span></p>
+<h3 data-number="1.1.4" id="theorems"><span
+class="header-section-number">1.1.4</span> theorems</h3>
+<h4 data-number="1.1.4.1" id="theorem-1"><span
+class="header-section-number">1.1.4.1</span> theorem 1</h4>
 <p>Let <span class="math inline">S</span> be an <span
 class="math inline">n</span>-surface in <span
 class="math inline">\mathbb R^{n+ 1}</span>, oriented by the unit normal
@@ -546,11 +555,91 @@ class="math inline">t_0 \in I</span>,</p>
 <p><span class="math display">
 \ddot \alpha(t_0) \cdot N(p) = L_p(v) \cdot v
 </span></p>
-<h4 data-number="1.1.3.2" id="theorem-2"><span
-class="header-section-number">1.1.3.2</span> theorem 2</h4>
+<h4 data-number="1.1.4.2" id="theorem-2"><span
+class="header-section-number">1.1.4.2</span> theorem 2</h4>
 <p>The Weingarten map is self-adjoint, that is</p>
 <p><span class="math display">
 L_p(v) \cdot w = v \cdot L_p(w)
 </span></p>
+<p>for all <span class="math inline">v, w \in S_p</span></p>
+<h2 data-number="1.2" id="plane-curves"><span
+class="header-section-number">1.2</span> plane curves</h2>
+<p>Let <span class="math inline">U</span> be an open subset of <span
+class="math inline">\mathbb R^2</span> and <span class="math inline">f:
+U \to \mathbb R</span> be a smooth function. A plane curve is a <span
+class="math inline">1</span>-surface <span class="math inline">C</span>
+oriented by <span class="math inline">\frac{\nabla f}{||\nabla
+f||}</span></p>
+<p>The weingarten <span class="math inline">l_p: C_p \to C_p</span> map
+is a linear transform on a 1-dimensional space. Let <span
+class="math inline">e_1</span> be the basis of <span
+class="math inline">C_p</span> and <span class="math inline">L_p(e_1) =
+me_1</span>. Then <span class="math inline">\forall_{v\in C_p} v = a_1
+e_1</span>, for some <span class="math inline">a_1 \in \mathbb
+R</span></p>
+<h3 data-number="1.2.1" id="curvature-of-plane-curves"><span
+class="header-section-number">1.2.1</span> curvature of plane
+curves</h3>
+<p><span class="math inline">\kappa(p) = \frac{L_p(v) \cdot
+v}{||v||^2}</span>, <span class="math inline">\kappa(\alpha(t)) =
+\frac{\ddot \alpha(t)\cdot N(\alpha(t))}{||\dot\alpha(t)||^2}</span> is
+the curvature in <span class="math inline">\mathbb R^2</span>.</p>
+<p>Thus <span class="math inline">L_p(v) = \kappa(p)v</span></p>
+<p>If:</p>
+<ul>
+<li><span class="math inline">\kappa(p) &gt; 0</span> - the curve at
+<span class="math inline">p</span> turns towards <span
+class="math inline">N</span></li>
+<li><span class="math inline">\kappa(p) &lt; 0</span> - the curve at
+<span class="math inline">p</span> turns away <span
+class="math inline">N</span></li>
+</ul>
+<h3 data-number="1.2.2" id="parametrization"><span
+class="header-section-number">1.2.2</span> parametrization</h3>
+<p>A parametrization of a segment of a plane curve <span
+class="math inline">C</span> containing <span class="math inline">p \in
+C</span> is a parametrized curve <span class="math inline">\alpha: I \to
+C</span> which:</p>
+<ol type="1">
+<li>is regular (<span class="math inline">\forall_{t \in I} \dot
+\alpha(t) \ne 0</span>)</li>
+<li>is oriented consistently with <span
+class="math inline">C</span></li>
+<li><span class="math inline">p \in Im(\alpha)</span></li>
+</ol>
+<p>If <span class="math inline">Im(\alpha) = C</span> then it is a
+global parametrization.</p>
+<h4 data-number="1.2.2.1" id="theorem"><span
+class="header-section-number">1.2.2.1</span> theorem</h4>
+<p>Let <span class="math inline">\alpha: I \to \mathbb R^{n+1}</span> be
+a parametrized curve with <span class="math inline">\dot \alpha(t) \ne
+0</span> for all <span class="math inline">t \in I</span> then there
+exists a unit speed parametrization <span
+class="math inline">\beta</span> of <span
+class="math inline">\alpha</span>.</p>
+<h3 data-number="1.2.3" id="circle-of-curvature"><span
+class="header-section-number">1.2.3</span> circle of curvature</h3>
+<p>For a plane curve <span class="math inline">C</span> with non-zero
+curvature <span class="math inline">\kappa</span> there exists a unique
+oriented circle <span class="math inline">O</span> at each <span
+class="math inline">p \in C</span> which</p>
+<ol type="1">
+<li>is tangent to <span class="math inline">C</span> at <span
+class="math inline">p</span> (<span class="math inline">O_p =
+C_p</span>)</li>
+<li>is oriented consistently with <span class="math inline">C</span>
+(<span class="math inline">N_O(p) = N_C(p)</span>)</li>
+<li>whose normal turns at the same rate at <span
+class="math inline">p</span> as does the normal to <span
+class="math inline">C</span> (<span class="math inline">\nabla_vN_O =
+\nabla_vN_C</span> for all <span class="math inline">v \in C_p =
+O_p</span>)</li>
+</ol>
+<ul>
+<li><span class="math inline">r(p) = \frac{1}{\kappa(p)}</span> is the
+radius of curvature</li>
+<li>the center of <span class="math inline">O</span> is the center of
+curvature</li>
+</ul>
 </body>
 </html>
