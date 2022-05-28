@@ -641,5 +641,124 @@ radius of curvature</li>
 <li>the center of <span class="math inline">O</span> is the center of
 curvature</li>
 </ul>
+<h2 data-number="1.3" id="arc-length"><span
+class="header-section-number">1.3</span> arc length</h2>
+<p>The length of a parametrized curve <span class="math inline">\alpha:
+I \to \mathbb R^{n+1}</span> is</p>
+<p><span class="math display">
+L(\alpha) = \int_a^b ||\dot \alpha(t)|| dt
+</span></p>
+<p>For <span class="math inline">a, b \in I</span>. Unit speed curves
+are parametrized by arc length, that is <span
+class="math inline">L(\alpha) = b - a</span> (when <span
+class="math inline">||\dot \alpha|| = 1</span>)</p>
+<h3 data-number="1.3.1" id="theorem-1-1"><span
+class="header-section-number">1.3.1</span> theorem 1</h3>
+<p>If <span class="math inline">C</span> is an oriented plane curve then
+there exists a global parametrization of <span
+class="math inline">C</span> iff <span class="math inline">C</span> is
+connected.</p>
+<h3 data-number="1.3.2" id="theorem-2-1"><span
+class="header-section-number">1.3.2</span> theorem 2</h3>
+<p>If <span class="math inline">C</span> is a connected oriented plane
+curve and <span class="math inline">\beta: I \to C</span> is a unit
+speed global parametrization of <span class="math inline">C</span> then,
+<span class="math inline">\beta</span> is either one to one or
+periodic.</p>
+<p><span class="math inline">\beta</span> is periodic iff <span
+class="math inline">C</span> is compact</p>
+<h2 data-number="1.4" id="forms"><span
+class="header-section-number">1.4</span> forms</h2>
+<p>If <span class="math inline">V</span> is a vector space over the
+field <span class="math inline">K</span>, then a linear map <span
+class="math inline">T: V \to K</span> is called a form</p>
+<h3 data-number="1.4.1" id="dual-vector-space"><span
+class="header-section-number">1.4.1</span> dual vector space</h3>
+<p>Let <span class="math inline">V</span> be a vector space over a field
+<span class="math inline">F</span>. Then the dual of <span
+class="math inline">V</span> is the space <span
+class="math inline">V^*</span> of linear maps <span
+class="math inline">T: V \to F</span>, <span class="math inline">T_1,
+T_2 \in V^*</span>.</p>
+<ul>
+<li><span class="math inline">(T_1 + T_2)v = T_1v + T_2v</span></li>
+<li><span class="math inline">(\lambda T)v = \lambda T v</span></li>
+</ul>
+<h3 data-number="1.4.2" id="differential-1-form"><span
+class="header-section-number">1.4.2</span> differential 1-form</h3>
+<p>A differential 1-form on an open set <span class="math inline">U
+\subset \mathbb R^{n+1}</span> is a function <span
+class="math inline">\omega: U \times \mathbb R^{n+1} \to \mathbb
+R</span> such that for all <span class="math inline">p \in U</span> the
+restriction <span class="math inline">\omega | p: \{p\} \times \mathbb
+R^{n+1}_p \to \mathbb R</span> is a linear map.</p>
+<h4 data-number="1.4.2.1" id="differential-of-f"><span
+class="header-section-number">1.4.2.1</span> differential of <span
+class="math inline">f</span></h4>
+<p>Let <span class="math inline">f: U \to \mathbb R</span> be a smooth
+function. Then the differential of <span class="math inline">f</span> is
+the 1-form:</p>
+<p><span class="math display">
+df(v) = \nabla_vf
+</span></p>
+<p>Let <span class="math inline">x_i: U \to \mathbb R</span> where <span
+class="math inline">x_i(a_1, a_2, \cdots, a_{n+1}) = a_i</span>. Then
+its differential is <span class="math inline">dx_i = v_i</span>.</p>
+<p>Given a vector field <span class="math inline">X</span> and a 1-form
+<span class="math inline">\omega</span> we define a function <span
+class="math inline">\omega(X): U \to \mathbb R</span></p>
+<p><span class="math display">
+\omega(X)(p) = \omega(X(p))
+</span></p>
+<h3 data-number="1.4.3" id="theorem-3"><span
+class="header-section-number">1.4.3</span> theorem</h3>
+<p>For every 1-form <span class="math inline">\omega</span> on <span
+class="math inline">U \subset \mathbb R^{n+1}</span> there exist unique
+functions <span class="math inline">f_i: U \to \mathbb R</span> such
+that</p>
+<p><span class="math display">
+\omega = \sum_{i=1}^{n+1} f_i dx_i
+</span></p>
+<p>Let <span class="math inline">U \subset \mathbb R^{n+1}</span> and
+<span class="math inline">f: U \to \mathbb R</span> be smooth them,</p>
+<p><span class="math display">
+df = \sum_{i=1}^{n+1} \frac{\partial f}{\partial x_i} dx_i
+</span></p>
+<h3 data-number="1.4.4" id="exact-and-closed"><span
+class="header-section-number">1.4.4</span> exact and closed</h3>
+<ul>
+<li>A 1-form which is a differential of a smooth function is called
+exact.</li>
+<li>A curve <span class="math inline">\alpha: [a, b] \to \mathbb
+R^{n+1}</span> with <span class="math inline">\alpha(a) =
+\alpha(b)</span>is called closed</li>
+</ul>
+<p>The integral of an exact 1-form over a closed connected oriented
+curve is always equal to zero.</p>
+<h2 data-number="1.5" id="line-integral"><span
+class="header-section-number">1.5</span> line integral</h2>
+<p>Let <span class="math inline">\alpha: [a,b] \to U</span> be a
+parametrized curve. We define the integral of a 1-form <span
+class="math inline">\omega</span> over <span
+class="math inline">\alpha</span> as</p>
+<p><span class="math display">
+\int_\alpha \omega = \int_a^b \omega(\dot\alpha(t))dt
+</span></p>
+<h2 data-number="1.6" id="winding-number"><span
+class="header-section-number">1.6</span> winding number</h2>
+<p>Let <span class="math inline">\eta</span> be the 1-form on <span
+class="math inline">\mathbb R^2 \setminus \{0\}</span> defined by</p>
+<p><span class="math display">
+\eta = -\frac{x_2}{x_1^2 + x_2^2}dx_1 + \frac{x_1}{x_1^2 + x_2^2}dx_2
+</span></p>
+<p>Then for a closed, piecewise smooth, parametrized curve <span
+class="math inline">\alpha: [a, b] \to \mathbb R^2 \setminus
+\{0\}</span> we have</p>
+<p><span class="math display">
+\int_\alpha \eta = 2\pi k
+</span></p>
+<p>For some integer <span class="math inline">k</span>. This number is
+called the winding number of <span class="math inline">alpha</span>
+about the origin.</p>
 </body>
 </html>
