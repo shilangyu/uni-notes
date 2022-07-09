@@ -146,6 +146,10 @@ Let $V$ be a vector space over a field $F$. Then the dual of $V$ is the space $V
 
 A differential 1-form on an open set $U \subset \mathbb R^{n+1}$ is a function $\omega: U \times \mathbb R^{n+1} \to \mathbb R$ such that for all $p \in U$ the restriction $\omega | p: \{p\} \times \mathbb R^{n+1}_p \to \mathbb R$ is a linear map.
 
+#### 1-form dual
+
+$\omega_X(p, v) = X(p) \cdot (p, v)$ is a 1-form dual to $X$
+
 #### differential of $f$
 
 Let $f: U \to \mathbb R$ be a smooth function. Then the differential of $f$ is the 1-form:
@@ -207,3 +211,51 @@ $$
 
 For some integer $k$. This number is called the winding number of $alpha$ about the origin.
 
+## curvature of surfaces
+
+### normal curvature
+
+Normal curvature of $S$ at $p$ in the direction of a unit length vector $v$ is the number $k(v) = L_p(v) \cdot v$
+
+- When $k(v) > 0$ then the surface bends towards $N$ in the direction of $v$
+- When $k(v) < 0$ then the surface bends away $N$ in the direction of $v$
+
+### normal section
+
+The normal section determined by a unit vector $\vec v = (p, v) \in S_p$ where $p \in S$ is the subset $\mathcal N(v)$ of $\mathbb R^{n+1}$ given by
+
+$$
+\mathcal N(v) = \{q \in \mathbb R^{n+1} : q = p + xv + yN(p) \text{ for some } (x, y) \in \mathbb R^2\}
+$$
+
+Or equivalently, a map
+
+$$
+i: \mathbb R^2 \to \mathbb R^{n+1}, (x, y) \mapsto p + xv + yN(p)
+$$
+
+### theorem 1
+
+There exists an open set $V$ containing $p$ such that $S \cap \mathcal N(v) \cap V$ is a plane curve.
+
+The curvature of at $p$ of this curve is equal to the normal curvature $k(v)$.
+
+### lemma 1
+
+Let $V$ be a finite dimensional vector space with a dot product and let $L: V \to V$ be a self-adjoint linear transformation on $V$. Let $S = \{v \in V: ||v|| = 1\}$ and define $f: S \to \mathbb R$ by $f(v) = L(v) \cdot v$. Suppose $f$ is stationary at $v_0 \in S$ ($v_0$ is a critical point of $f$). Then $L(v_0) = f(v_0)v_0$. So $v_0$ is an eigenvector of $L$ with eigenvalue $f(v_0)$.
+
+### theorem 2
+
+Let $V$ be a finite dimensional vector space with a dot product and let $L: V \to V$ be a self-adjoint linear transformation on $V$. Then there exists an orthonormal basis for $V$ consisting of eigenvectors of $L$.
+
+### second fundamental form
+
+$$
+\mathcal L_p(v) = L_p(v) \cdot v
+$$
+
+When $||v|| = 1$ then $\mathcal L_p$ is the normal curvatures
+
+#### theorem
+
+On each compact oriented $n$-surface $S$ in $\mathbb R^{n+1}$ there exists a point $p$ such that the second fundamental form at $p$ is definite.
