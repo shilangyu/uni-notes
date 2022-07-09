@@ -692,8 +692,12 @@ class="math inline">\omega: U \times \mathbb R^{n+1} \to \mathbb
 R</span> such that for all <span class="math inline">p \in U</span> the
 restriction <span class="math inline">\omega | p: \{p\} \times \mathbb
 R^{n+1}_p \to \mathbb R</span> is a linear map.</p>
-<h4 data-number="1.4.2.1" id="differential-of-f"><span
-class="header-section-number">1.4.2.1</span> differential of <span
+<h4 data-number="1.4.2.1" id="form-dual"><span
+class="header-section-number">1.4.2.1</span> 1-form dual</h4>
+<p><span class="math inline">\omega_X(p, v) = X(p) \cdot (p, v)</span>
+is a 1-form dual to <span class="math inline">X</span></p>
+<h4 data-number="1.4.2.2" id="differential-of-f"><span
+class="header-section-number">1.4.2.2</span> differential of <span
 class="math inline">f</span></h4>
 <p>Let <span class="math inline">f: U \to \mathbb R</span> be a smooth
 function. Then the differential of <span class="math inline">f</span> is
@@ -760,5 +764,82 @@ class="math inline">\alpha: [a, b] \to \mathbb R^2 \setminus
 <p>For some integer <span class="math inline">k</span>. This number is
 called the winding number of <span class="math inline">alpha</span>
 about the origin.</p>
+<h2 data-number="1.7" id="curvature-of-surfaces"><span
+class="header-section-number">1.7</span> curvature of surfaces</h2>
+<h3 data-number="1.7.1" id="normal-curvature"><span
+class="header-section-number">1.7.1</span> normal curvature</h3>
+<p>Normal curvature of <span class="math inline">S</span> at <span
+class="math inline">p</span> in the direction of a unit length vector
+<span class="math inline">v</span> is the number <span
+class="math inline">k(v) = L_p(v) \cdot v</span></p>
+<ul>
+<li>When <span class="math inline">k(v) &gt; 0</span> then the surface
+bends towards <span class="math inline">N</span> in the direction of
+<span class="math inline">v</span></li>
+<li>When <span class="math inline">k(v) &lt; 0</span> then the surface
+bends away <span class="math inline">N</span> in the direction of <span
+class="math inline">v</span></li>
+</ul>
+<h3 data-number="1.7.2" id="normal-section"><span
+class="header-section-number">1.7.2</span> normal section</h3>
+<p>The normal section determined by a unit vector <span
+class="math inline">\vec v = (p, v) \in S_p</span> where <span
+class="math inline">p \in S</span> is the subset <span
+class="math inline">\mathcal N(v)</span> of <span
+class="math inline">\mathbb R^{n+1}</span> given by</p>
+<p><span class="math display">
+\mathcal N(v) = \{q \in \mathbb R^{n+1} : q = p + xv + yN(p) \text{ for
+some } (x, y) \in \mathbb R^2\}
+</span></p>
+<p>Or equivalently, a map</p>
+<p><span class="math display">
+i: \mathbb R^2 \to \mathbb R^{n+1}, (x, y) \mapsto p + xv + yN(p)
+</span></p>
+<h3 data-number="1.7.3" id="theorem-1-2"><span
+class="header-section-number">1.7.3</span> theorem 1</h3>
+<p>There exists an open set <span class="math inline">V</span>
+containing <span class="math inline">p</span> such that <span
+class="math inline">S \cap \mathcal N(v) \cap V</span> is a plane
+curve.</p>
+<p>The curvature of at <span class="math inline">p</span> of this curve
+is equal to the normal curvature <span
+class="math inline">k(v)</span>.</p>
+<h3 data-number="1.7.4" id="lemma-1"><span
+class="header-section-number">1.7.4</span> lemma 1</h3>
+<p>Let <span class="math inline">V</span> be a finite dimensional vector
+space with a dot product and let <span class="math inline">L: V \to
+V</span> be a self-adjoint linear transformation on <span
+class="math inline">V</span>. Let <span class="math inline">S = \{v \in
+V: ||v|| = 1\}</span> and define <span class="math inline">f: S \to
+\mathbb R</span> by <span class="math inline">f(v) = L(v) \cdot
+v</span>. Suppose <span class="math inline">f</span> is stationary at
+<span class="math inline">v_0 \in S</span> (<span
+class="math inline">v_0</span> is a critical point of <span
+class="math inline">f</span>). Then <span class="math inline">L(v_0) =
+f(v_0)v_0</span>. So <span class="math inline">v_0</span> is an
+eigenvector of <span class="math inline">L</span> with eigenvalue <span
+class="math inline">f(v_0)</span>.</p>
+<h3 data-number="1.7.5" id="theorem-2-2"><span
+class="header-section-number">1.7.5</span> theorem 2</h3>
+<p>Let <span class="math inline">V</span> be a finite dimensional vector
+space with a dot product and let <span class="math inline">L: V \to
+V</span> be a self-adjoint linear transformation on <span
+class="math inline">V</span>. Then there exists an orthonormal basis for
+<span class="math inline">V</span> consisting of eigenvectors of <span
+class="math inline">L</span>.</p>
+<h3 data-number="1.7.6" id="second-fundamental-form"><span
+class="header-section-number">1.7.6</span> second fundamental form</h3>
+<p><span class="math display">
+\mathcal L_p(v) = L_p(v) \cdot v
+</span></p>
+<p>When <span class="math inline">||v|| = 1</span> then <span
+class="math inline">\mathcal L_p</span> is the normal curvatures</p>
+<h4 data-number="1.7.6.1" id="theorem-4"><span
+class="header-section-number">1.7.6.1</span> theorem</h4>
+<p>On each compact oriented <span class="math inline">n</span>-surface
+<span class="math inline">S</span> in <span class="math inline">\mathbb
+R^{n+1}</span> there exists a point <span class="math inline">p</span>
+such that the second fundamental form at <span
+class="math inline">p</span> is definite.</p>
 </body>
 </html>
