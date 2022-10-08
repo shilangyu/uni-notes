@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>computability</title>
+  <title>point_set_in_rn</title>
   <style>
     html {
       line-height: 1.5;
@@ -478,179 +478,70 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="computability"><span
-class="header-section-number">1</span> computability</h1>
-<p>See <a
-href="../../semester_5/automata_theory_and_formal_languages/">formal
-languages and automata theory</a> for prerequisite material.</p>
-<h2 data-number="1.1" id="language"><span
-class="header-section-number">1.1</span> language</h2>
-<p>Let <span class="math inline">L_1, L_2 \subseteq \Sigma^*</span> be
-two languages.</p>
-<h3 data-number="1.1.1" id="concatenation"><span
-class="header-section-number">1.1.1</span> concatenation</h3>
-<p><span class="math inline">L_1 \circ L_2 = \{uv: u \in L_1, v \in
-L_2\}</span></p>
-<h3 data-number="1.1.2" id="power"><span
-class="header-section-number">1.1.2</span> power</h3>
+<h1 data-number="1" id="point-set-topology-in-mathbb-rn"><span
+class="header-section-number">1</span> point-set topology in <span
+class="math inline">\mathbb R^n</span></h1>
+<p>Working in real euclidean space:</p>
 <ul>
-<li><span class="math inline">L^0 = \{\varepsilon\}</span></li>
-<li><span class="math inline">L_n = L^{n-1} \circ L</span></li>
-<li><span class="math inline">L^* = \bigcup_{n=0}^\infty L^n</span></li>
-<li><span class="math inline">L^+ = \bigcup_{n=1}^\infty L^n</span></li>
+<li><span class="math inline">\mathbb R^n = \{(x_1, \cdots, x_n) : x_1
+\in \mathbb R\}</span></li>
+<li><span class="math inline">||x - y|| = \sqrt{(x_1 - y_1)^2 + \cdots +
+(x_n - y_n)^2}</span></li>
+<li><span class="math inline">D^n(x, r) = \{y \in \mathbb R^n : ||x -
+y|| &lt; r\}</span></li>
 </ul>
-<h2 data-number="1.2" id="grammar"><span
-class="header-section-number">1.2</span> grammar</h2>
-<p>Let <span class="math inline">G = (V, T, P, S)</span> be a
-grammar.</p>
-<p>let <span class="math inline">\eta, \xi \in (V \cup T)^*</span></p>
-<h3 data-number="1.2.1" id="relation-implies-direct-derivation"><span
-class="header-section-number">1.2.1</span> relation <span
-class="math inline">\implies</span> (direct derivation)</h3>
-<p><span class="math inline">\eta \implies \xi \iff \exists_{\alpha,
-\beta, \gamma, \delta \in (V \cup T)^*} \eta = \gamma\alpha\delta, \xi =
-\gamma\beta\delta \land \alpha \to \beta \in P</span></p>
-<h3 data-number="1.2.2" id="relation-implies-derivation"><span
-class="header-section-number">1.2.2</span> relation <span
-class="math inline">\implies{}^*</span> (derivation)</h3>
-<p><span class="math inline">\eta \implies{}^* \xi \iff
-\exists_{n\in\mathbb N} \exists_{\eta_1, \eta_2, \cdots, \eta_n} \eta =
-\eta_1 \implies \eta_2 \implies \cdots \implies \eta_n = \xi</span></p>
-<h2 data-number="1.3" id="turing-machine"><span
-class="header-section-number">1.3</span> turing machine</h2>
-<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_o, B,
-F)</span></p>
-<p>We can imagine a TM as a machine consisting of a couple of:</p>
+<h2 data-number="1.1" id="point-classification"><span
+class="header-section-number">1.1</span> point classification</h2>
+<p>Let <span class="math inline">A \subseteq \mathbb R^n</span></p>
 <ol type="1">
-<li><strong>a tape</strong> which is bounded from the left side and
-unbounded from the right side, it is divided into cells</li>
-<li><strong>a head</strong> which can read from and write to the
-tape</li>
-<li><strong>a finite control</strong> (state register) which is in some
-state and can change during the computation</li>
+<li><span class="math inline">x</span> is an interior point of <span
+class="math inline">A</span> if there is an open ball <span
+class="math inline">B</span> such that <span class="math inline">x \in B
+\subseteq A</span></li>
+<li><span class="math inline">x</span> is an exterior point of <span
+class="math inline">A</span> if there is an open ball <span
+class="math inline">B</span> such that <span class="math inline">x \in B
+\subseteq (\mathbb R^n \setminus A)</span></li>
+<li><span class="math inline">x</span> is a limit point of <span
+class="math inline">A</span> if every ball <span
+class="math inline">B</span> around <span class="math inline">x</span>
+contains point of <span class="math inline">A</span>: <span
+class="math inline">\forall_{r &gt; 0} B^n(x, r) \cap A \neq
+\emptyset</span></li>
+<li><span class="math inline">x</span> is a frontier point of <span
+class="math inline">A</span> if every ball <span
+class="math inline">B</span> around <span class="math inline">x</span>
+contains both points of <span class="math inline">A</span> and points of
+<span class="math inline">\mathbb R^n \setminus A</span>: <span
+class="math inline">\forall_{r &gt; 0} (B^n(x, r) \cap A \neq \emptyset
+\land B^n(x, r) \cap (\mathbb R^n \setminus A) \neq
+\emptyset)</span></li>
 </ol>
-<p>Suppose that the control is in a state <span
-class="math inline">p</span>, the head reads a symbol <span
-class="math inline">X</span> and <span class="math inline">\delta(p, X)
-= (q, Y, ?)</span> where <span class="math inline">? \in \{L, R\}</span>
-(left/right). Then the control changes its state to <span
-class="math inline">q</span>, the head write <span
-class="math inline">Y</span> on the tape in the observed cell and moves
-one cell to the lef if <span class="math inline">? = L</span> or to the
-right if <span class="math inline">? = R</span></p>
-<p>A <strong>configuration</strong> of a TM M is a sequence <span
-class="math inline">\alpha_1 q \alpha_2</span> where</p>
+<p>A point is always one of the above, and always only one of them.</p>
+<h2 data-number="1.2" id="set-properties"><span
+class="header-section-number">1.2</span> set properties</h2>
+<p>Let <span class="math inline">A \subseteq \mathbb R^n</span></p>
 <ul>
-<li><span class="math inline">q \in Q</span> is the current state of the
-control</li>
-<li><span class="math inline">\alpha_1</span> is the sequence of symbols
-on the tape starting from the first cell ending in the cell preceding
-the cell observed by the head</li>
-<li><span class="math inline">\alpha_2</span> is the sequence of symbols
-on the tape starting from the cell observed by the head ending in the
-last cell to the right that does not contain the blank symbol</li>
+<li>a set <span class="math inline">A</span> is open if every <span
+class="math inline">x \in A</span> is an interior point</li>
+<li>a set <span class="math inline">A</span> is closed if every <span
+class="math inline">x \notin A</span> is an exterior point</li>
+<li>a set <span class="math inline">A</span> is bounded if <span
+class="math inline">A \subseteq D^n(0, r)</span> for some <span
+class="math inline">r</span></li>
 </ul>
-<p>Basic model of TM “<span class="math inline">\iff</span>” TM holts
-after reading an accepting state “<span class="math inline">\iff</span>”
-TM with multitrack tape “<span class="math inline">\iff</span>”
-multi-tape TM “<span class="math inline">\iff</span>” nondeterministic
-turing machines</p>
-<p>Here, “<span class="math inline">\iff</span>” refers to equivalence
-in the sense that they recognize the same set of languages.</p>
-<h3 data-number="1.3.1" id="tm-with-stop-property"><span
-class="header-section-number">1.3.1</span> TM with stop property</h3>
-<p><span class="math inline">M = (Q, \Sigma, \Gamma, \delta, q_0, B,
-q_{acc}, q_{rej})</span> + the assumption that M halts on any input
-string and after finishing the computation <span
-class="math inline">M</span> is either in <span
-class="math inline">q_{acc}</span> or <span
-class="math inline">q_{rej}</span>.</p>
-<p>TM with stop property is not equivalent with basic model TM. TM with
-stop property is also simply called “an algorithm”. Set of languages
-accepted by TMs with stop property <span
-class="math inline">\subsetneq</span> set of languages accepted by
-TMs.</p>
-<p>A language <span class="math inline">L</span> is called recursive if
-there exists a TM with stop property <span class="math inline">M</span>
-such that <span class="math inline">L(M) = L</span>. Class R.</p>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 31%" />
-<col style="width: 36%" />
-<col style="width: 7%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>grammars</th>
-<th>languages</th>
-<th>machines</th>
-<th>class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>regular</td>
-<td>regular</td>
-<td>finite state automatons</td>
-<td>Rg</td>
-</tr>
-<tr class="even">
-<td>context-free</td>
-<td>context-free</td>
-<td>push-down automatons</td>
-<td>Cf</td>
-</tr>
-<tr class="odd">
-<td>context-sensitive</td>
-<td>context-sensitive</td>
-<td>linear-bounded automatons</td>
-<td>Cs</td>
-</tr>
-<tr class="even">
-<td>?</td>
-<td>recursive</td>
-<td>TMs with stop property</td>
-<td>R</td>
-</tr>
-<tr class="odd">
-<td>unrestricted</td>
-<td>recursively enumerable</td>
-<td>TMs</td>
-<td>Re</td>
-</tr>
-</tbody>
-</table>
-<p>All - all languages</p>
-<h3 data-number="1.3.2" id="binary-encoding"><span
-class="header-section-number">1.3.2</span> binary encoding</h3>
-<p>Encoding of a TM into a binary sequence</p>
-<p><span class="math inline">M = (\{q_1, \cdots, q_n\}, \{0, 1\}, \{0,
-1, B\}, \delta, q_1, B, \{q_2\})</span>. For convenience we set <span
-class="math inline">X_1 = 0</span> <span class="math inline">X_2 =
-1</span>, <span class="math inline">X_3 = B</span> <span
-class="math inline">K_1 = L</span>, <span class="math inline">K_2 =
-R</span>.</p>
-<p>We will encode the moves of <span class="math inline">M</span> <span
-class="math inline">\iff</span> we will encode <span
-class="math inline">\delta</span>.</p>
-<p><span class="math inline">\delta(q_i, X_j) = (q_k, X_m, K_l) \mapsto
-0^i10^j10^k10^m10^l</span>. The code of <span
-class="math inline">M</span> is <span
-class="math inline">111\text{code}_111\text{code}_211\cdots
-11\text{code}_r111</span> where <span class="math inline">\text{code}_1,
-\cdots, \text{code}_r</span> are the codes of all moves of <span
-class="math inline">M</span>.</p>
-<p>Encoding is not a bijection. One <span class="math inline">TM</span>
-can produce many codes. One code can produce one or more TM.</p>
+<h3 data-number="1.2.1" id="set-functions"><span
+class="header-section-number">1.2.1</span> set functions</h3>
 <ul>
-<li><span class="math inline">\left\langle M \right\rangle</span> - any
-code of <span class="math inline">M</span></li>
-<li><span class="math inline">\left\langle M, w \right\rangle =
-\left\langle M \right\rangle w</span></li>
+<li>interior of a set <span class="math inline">A</span> denoted by
+<span class="math inline">Int(A)</span> is the set of all interior
+points of <span class="math inline">A</span></li>
+<li>frontier of a set <span class="math inline">A</span> denoted by
+<span class="math inline">Fr(A)</span> is the set of all frontier points
+of <span class="math inline">A</span></li>
+<li>closure of a set <span class="math inline">A</span> denoted by <span
+class="math inline">Cl(A)</span> is the set <span class="math inline">A
+\cup Fr(A)</span></li>
 </ul>
-<p>We assume that if <span class="math inline">\left\langle M
-\right\rangle</span> is not a correct code of a TM then <span
-class="math inline">L(M) = \emptyset</span></p>
 </body>
 </html>
