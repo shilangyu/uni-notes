@@ -1,7 +1,5 @@
 # computability
 
-\newcommand{Bracket}[\left\langle #0 \right\rangle]
-
 See [formal languages and automata theory](../../semester_5/automata_theory_and_formal_languages/) for prerequisite material.
 
 ## language
@@ -85,7 +83,7 @@ $\delta(q_i, X_j) = (q_k, X_m, K_l) \mapsto 0^i10^j10^k10^m10^l$. The code of $M
 
 Encoding is not a bijection. One $TM$ can produce many codes. One code can produce one or more TM.
 
-- $\Bracket{M}$ - any code of $M$
-- $\Bracket{{M, w}} = \Bracket{M}w$
+- $\left\langle M \right\rangle$ - any code of $M$
+- $\left\langle M, w \right\rangle = \left\langle M \right\rangle w$
 
-We assume that if $\Bracket{M}$ is not a correct code of a TM then $L(M) = \emptyset$
+We assume that if $\left\langle M \right\rangle$ is not a correct code of a TM then $L(M) = \emptyset$
