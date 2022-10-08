@@ -32,7 +32,17 @@
 
 ### Władysław Homenda (labs)
 
-📧
+📧 homenda@mini.pw.edu.pl
+
+🌐 [https://homenda.mini.pw.edu.pl](https://homenda.mini.pw.edu.pl)
+
+⏲ room 552
+
+## Diploma Seminars
+
+### Felicja Okulicka-Dłużewska
+
+📧 felicja.dluzewska@pw.edu.pl
 
 🌐 []()
 
