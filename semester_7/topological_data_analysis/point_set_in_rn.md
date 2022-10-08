@@ -15,7 +15,7 @@ Let $A \subseteq \mathbb R^n$
 3. $x$ is a limit point of $A$ if every ball $B$ around $x$ contains point of $A$: $\forall_{r > 0} B^n(x, r) \cap A \neq \emptyset$
 4. $x$ is a frontier point of $A$ if every ball $B$ around $x$ contains both points of $A$ and points of $\mathbb R^n \setminus A$: $\forall_{r > 0} (B^n(x, r) \cap A \neq \emptyset \land B^n(x, r) \cap (\mathbb R^n \setminus A) \neq \emptyset)$
 
-A point is always one of the above, and always only one of them.
+A point is always one of the 1., 2., or 3., and always only one of them.
 
 ## set properties
 
