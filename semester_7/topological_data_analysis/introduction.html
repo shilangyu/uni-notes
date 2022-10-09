@@ -479,7 +479,7 @@
 </head>
 <body>
 <h1 data-number="1" id="topological-data-analysis-tda"><span
-class="header-section-number">1</span> Topological Data Analysis
+class="header-section-number">1</span> topological Data Analysis
 (TDA)</h1>
 <h2 data-number="1.1" id="betti-numbers"><span
 class="header-section-number">1.1</span> Betti numbers</h2>
@@ -492,13 +492,17 @@ different loops in the space</li>
 space</li>
 </ul>
 <h3 data-number="1.1.1" id="examples"><span
-class="header-section-number">1.1.1</span> Examples</h3>
+class="header-section-number">1.1.1</span> examples</h3>
 <ol type="1">
 <li>Closed disk <span class="math inline">b_0 = 1</span>, <span
 class="math inline">b_1 = 0</span>, <span class="math inline">b_2 =
 0</span></li>
-<li>TODO</li>
-<li>TODO</li>
+<li>Two disjoint closed disks <span class="math inline">b_0 = 2</span>,
+<span class="math inline">b_1 = 0</span>, <span class="math inline">b_2
+= 0</span></li>
+<li>The circle <span class="math inline">b_0 = 1</span>, <span
+class="math inline">b_1 = 1</span>, <span class="math inline">b_2 =
+0</span></li>
 <li>Sphere <span class="math inline">b_0 = 1</span>, <span
 class="math inline">b_1 = 0</span>, <span class="math inline">b_2 =
 1</span></li>
@@ -507,13 +511,13 @@ class="math inline">b_1 = 2</span>, <span class="math inline">b_2 =
 1</span></li>
 </ol>
 <h2 data-number="1.2" id="persistent-homology"><span
-class="header-section-number">1.2</span> Persistent homology</h2>
+class="header-section-number">1.2</span> persistent homology</h2>
 <p>By introducing a proximity parameter (say <span class="math inline">r
 &gt; 0</span>), to any data set (finite metric space) we may assign an
 evolving family of spaces. To these we can find topological descriptors
 - Betti numbers.</p>
 <h2 data-number="1.3" id="topological-entropy"><span
-class="header-section-number">1.3</span> Topological entropy</h2>
+class="header-section-number">1.3</span> topological entropy</h2>
 <p>Let <span class="math inline">P_1 = (b_i, d_i)</span> for <span
 class="math inline">i = 1, \cdots, n</span>.</p>
 <p>Let <span class="math inline">p_i = \frac{d_i - b_i}{\sum_{i=1}^n
@@ -523,12 +527,21 @@ class="math inline">i = 1, \cdots, n</span>.</p>
 <p>The vector of entropies forms a topological descriptor of the point
 cloud TODO.</p>
 <h2 data-number="1.4" id="the-mapper-algorithm"><span
-class="header-section-number">1.4</span> The mapper algorithm</h2>
+class="header-section-number">1.4</span> the mapper algorithm</h2>
 <ol type="1">
 <li>divide the dataset into overlapping parts</li>
 <li>to each part apply a clustering algorithm</li>
 <li>if clusters from different parts have sufficient overlap, connect
 the vertices by an edge</li>
 </ol>
+<h2 data-number="1.5" id="homeomorphism-equivalence"><span
+class="header-section-number">1.5</span> homeomorphism
+(equivalence)</h2>
+<p>Two spaces <span class="math inline">A</span> and <span
+class="math inline">B</span> are said to be equivalent (homeomorphic) if
+there is a continuous map of spaces <span class="math inline">f: A \to
+B</span> with a continuous inverse map <span class="math inline">f^{-1}:
+B \to A</span>, then <span class="math inline">f</span> is called the
+homeomorphism.</p>
 </body>
 </html>
