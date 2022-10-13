@@ -544,5 +544,73 @@ of <span class="math inline">A</span></li>
 class="math inline">Cl(A)</span> is the set <span class="math inline">A
 \cup Fr(A)</span></li>
 </ul>
+<h2 data-number="1.3" id="limit-points-of-sequences"><span
+class="header-section-number">1.3</span> limit points of sequences</h2>
+<p>A point <span class="math inline">p \in \mathbb R^n</span> is a limit
+point of a sequence <span
+class="math inline">\{x_i\}_{i=1}^\infty</span> if every neighborhood of
+<span class="math inline">p</span> contains an infinite number of <span
+class="math inline">x_i</span>.</p>
+<p>If <span class="math inline">p</span> is a limit point of a set <span
+class="math inline">A \subseteq \mathbb R^n</span> then there exists a
+sequence of points <span class="math inline">\{x_i\}_{i=1}^\infty</span>
+where <span class="math inline">x_i \in A</span> such that <span
+class="math inline">p</span> is a limit point of the sequence.</p>
+<p>If <span class="math inline">\{x_i\}_{i=1}^\infty</span> is a
+sequence with each <span class="math inline">x_i \in A</span> and <span
+class="math inline">p</span> is a limit point of the sequence then <span
+class="math inline">p</span> is a limit point of <span
+class="math inline">A</span>.</p>
+<h2 data-number="1.4" id="relative-neighborhoods"><span
+class="header-section-number">1.4</span> relative neighborhoods</h2>
+<p>A neighborhood of a point <span class="math inline">x \in A</span>
+relative to <span class="math inline">A</span> is a set of the form
+<span class="math inline">D^n(x, r) \cap A</span>.</p>
+<p>Let <span class="math inline">B \subseteq A</span>. The set <span
+class="math inline">B</span> is open relative to <span
+class="math inline">A</span> if every <span class="math inline">x \in
+B</span> is an interior point relative to <span
+class="math inline">A</span>.</p>
+<p>Let <span class="math inline">B \subseteq A \subseteq \mathbb
+R^n</span>:</p>
+<ul>
+<li><span class="math inline">B</span> is open relative to <span
+class="math inline">A</span> iff <span class="math inline">B = A \cap
+U</span> for some open set <span class="math inline">U \subseteq \mathbb
+R^n</span></li>
+<li><span class="math inline">B</span> is closed relative to <span
+class="math inline">A</span> iff <span class="math inline">B = A \cap
+C</span> for some closed set <span class="math inline">C \subseteq
+\mathbb R^n</span></li>
+</ul>
+<h2 data-number="1.5" id="continuity"><span
+class="header-section-number">1.5</span> continuity</h2>
+<ul>
+<li>Let <span class="math inline">D \subseteq \mathbb R^n</span> and
+<span class="math inline">R \subseteq \mathbb R^m</span>. A function
+<span class="math inline">f: D \to R</span> is continuous if whenever
+<span class="math inline">U</span> is open in <span
+class="math inline">R</span>, the set <span
+class="math inline">f^{-1}(U)</span> is an open set in <span
+class="math inline">D</span></li>
+<li>A function <span class="math inline">f: D \to R</span> is continuous
+iff if <span class="math inline">x</span> is a limit point of a set
+<span class="math inline">B \subseteq D</span> then <span
+class="math inline">f(x)</span> is a limit point of <span
+class="math inline">f(B)</span> in <span
+class="math inline">R</span></li>
+<li>A function <span class="math inline">f: D \to R</span> is continuous
+iff for every <span class="math inline">x \in D</span> and every <span
+class="math inline">\varepsilon &gt; 0</span> there exists a <span
+class="math inline">\delta &gt; 0</span> such that if <span
+class="math inline">y \in D</span> and <span class="math inline">||y -
+x|| &lt; \delta</span> then <span class="math inline">||f(y) - f(x)||
+&lt; \varepsilon</span></li>
+</ul>
+<p>A function <span class="math inline">f: X \to Y</span> is a
+homeomorphism if <span class="math inline">f</span> is continuous and
+<span class="math inline">f^{-1}</span> is continuous. The spaces <span
+class="math inline">X</span> and <span class="math inline">Y</span> are
+called topologically equivalent (homeomorphic).</p>
 </body>
 </html>
