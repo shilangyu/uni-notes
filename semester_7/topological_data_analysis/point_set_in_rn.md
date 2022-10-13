@@ -30,3 +30,30 @@ Let $A \subseteq \mathbb R^n$
 - interior of a set $A$ denoted by $Int(A)$ is the set of all interior points of $A$
 - frontier of a set $A$ denoted by $Fr(A)$ is the set of all frontier points of $A$
 - closure of a set $A$ denoted by $Cl(A)$ is the set $A \cup Fr(A)$
+
+## limit points of sequences
+
+A point $p \in \mathbb R^n$ is a limit point of a sequence $\{x_i\}_{i=1}^\infty$ if every neighborhood of $p$ contains an infinite number of $x_i$.
+
+If $p$ is a limit point of a set $A \subseteq \mathbb R^n$ then there exists a sequence of points $\{x_i\}_{i=1}^\infty$ where $x_i \in A$ such that $p$ is a limit point of the sequence.
+
+If $\{x_i\}_{i=1}^\infty$ is a sequence with each $x_i \in A$ and $p$ is a limit point of the sequence then $p$ is a limit point of $A$.
+
+## relative neighborhoods
+
+A neighborhood of a point $x \in A$ relative to $A$ is a set of the form $D^n(x, r) \cap A$.
+
+Let $B \subseteq A$. The set $B$ is open relative to $A$ if every $x \in B$ is an interior point relative to $A$.
+
+Let $B \subseteq A \subseteq \mathbb R^n$:
+
+- $B$ is open relative to $A$ iff $B = A \cap U$ for some open set $U \subseteq \mathbb R^n$
+- $B$ is closed relative to $A$ iff $B = A \cap C$ for some closed set $C \subseteq \mathbb R^n$
+
+## continuity
+
+- Let $D \subseteq \mathbb R^n$ and $R \subseteq \mathbb R^m$. A function $f: D \to R$ is continuous if whenever $U$ is open in $R$, the set $f^{-1}(U)$ is an open set in $D$
+- A function $f: D \to R$ is continuous iff if $x$ is a limit point of a set $B \subseteq D$ then $f(x)$ is a limit point of $f(B)$ in $R$
+- A function $f: D \to R$ is continuous iff for every $x \in D$ and every $\varepsilon > 0$ there exists a $\delta > 0$ such that if $y \in D$ and $||y - x|| < \delta$ then $||f(y) - f(x)|| < \varepsilon$
+
+A function $f: X \to Y$ is a homeomorphism if $f$ is continuous and $f^{-1}$ is continuous. The spaces $X$ and $Y$ are called topologically equivalent (homeomorphic).
