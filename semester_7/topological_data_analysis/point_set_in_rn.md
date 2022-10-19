@@ -52,8 +52,10 @@ Let $B \subseteq A \subseteq \mathbb R^n$:
 
 ## continuity
 
-- Let $D \subseteq \mathbb R^n$ and $R \subseteq \mathbb R^m$. A function $f: D \to R$ is continuous if whenever $U$ is open in $R$, the set $f^{-1}(U)$ is an open set in $D$
-- A function $f: D \to R$ is continuous iff if $x$ is a limit point of a set $B \subseteq D$ then $f(x)$ is a limit point of $f(B)$ in $R$
+Let $D \subseteq \mathbb R^n$ and $R \subseteq \mathbb R^m$.
+
+- A function $f: D \to R$ is continuous if whenever $U$ is open in $R$, the set $f^{-1}(U)$ is an open set in $D$
+- A function $f: D \to R$ is continuous iff $x$ is a limit point of a set $B \subseteq D$ then $f(x)$ is a limit point of $f(B)$ in $R$
 - A function $f: D \to R$ is continuous iff for every $x \in D$ and every $\varepsilon > 0$ there exists a $\delta > 0$ such that if $y \in D$ and $||y - x|| < \delta$ then $||f(y) - f(x)|| < \varepsilon$
 
 A function $f: X \to Y$ is a homeomorphism if $f$ is continuous and $f^{-1}$ is continuous. The spaces $X$ and $Y$ are called topologically equivalent (homeomorphic).
