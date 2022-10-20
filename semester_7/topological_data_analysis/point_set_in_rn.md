@@ -59,3 +59,13 @@ Let $D \subseteq \mathbb R^n$ and $R \subseteq \mathbb R^m$.
 - A function $f: D \to R$ is continuous iff for every $x \in D$ and every $\varepsilon > 0$ there exists a $\delta > 0$ such that if $y \in D$ and $||y - x|| < \delta$ then $||f(y) - f(x)|| < \varepsilon$
 
 A function $f: X \to Y$ is a homeomorphism if $f$ is continuous and $f^{-1}$ is continuous. The spaces $X$ and $Y$ are called topologically equivalent (homeomorphic).
+
+## compactness
+
+A subset $A$ of $\mathbb R^n$ is compact if every sequence of points in $A$ has a convergent subsequence to a point in $A$.
+
+Let $A \subseteq \mathbb R^n$ be a compact subset, and let $f: A \to \mathbb R^m$ be a continuous map. Then $f(A)$ is a compact set.
+
+### Heine-Borel theorem
+
+A subset $A$ of $\mathbb R^n$ is compact iff it is closed and bounded.
