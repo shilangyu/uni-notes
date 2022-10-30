@@ -60,6 +60,10 @@ Let $D \subseteq \mathbb R^n$ and $R \subseteq \mathbb R^m$.
 
 A function $f: X \to Y$ is a homeomorphism if $f$ is continuous and $f^{-1}$ is continuous. The spaces $X$ and $Y$ are called topologically equivalent (homeomorphic).
 
+## topological property
+
+$P$ is a topological property if whenever set $A$ has property $P$ and set $B$ is topologically equivalent to $A$, then $B$ has property $P$.
+
 ## compactness
 
 A subset $A$ of $\mathbb R^n$ is compact if every sequence of points in $A$ has a convergent subsequence to a point in $A$.
@@ -69,3 +73,11 @@ Let $A \subseteq \mathbb R^n$ be a compact subset, and let $f: A \to \mathbb R^m
 ### Heine-Borel theorem
 
 A subset $A$ of $\mathbb R^n$ is compact iff it is closed and bounded.
+
+## connectedness
+
+A set $S$ is connected if whenever $S$ is divided into two nonempty disjoint sets, one contains a limit point of the other.
+
+The set $S$ is connected iff $S$ cannot be written as a union of two nonempty disjoint sets which are open relative to $S$.
+
+If $f: D \to R$ is a continuous function from a connected set $D$ onto a set $R$, then $R$ is connected.
