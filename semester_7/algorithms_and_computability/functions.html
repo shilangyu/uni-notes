@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>point_set_in_rn</title>
+  <title>functions</title>
   <style>
     html {
       line-height: 1.5;
@@ -478,175 +478,150 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="point-set-topology-in-mathbb-rn"><span
-class="header-section-number">1</span> point-set topology in <span
-class="math inline">\mathbb R^n</span></h1>
-<p>Working in real euclidean space:</p>
-<ul>
-<li><span class="math inline">\mathbb R^n = \{(x_1, \cdots, x_n) : x_1
-\in \mathbb R\}</span></li>
-<li><span class="math inline">||x - y|| = \sqrt{(x_1 - y_1)^2 + \cdots +
-(x_n - y_n)^2}</span></li>
-<li><span class="math inline">D^n(x, r) = \{y \in \mathbb R^n : ||x -
-y|| &lt; r\}</span></li>
-</ul>
-<h2 data-number="1.1" id="point-classification"><span
-class="header-section-number">1.1</span> point classification</h2>
-<p>Let <span class="math inline">A \subseteq \mathbb R^n</span></p>
+<h1 data-number="1" id="functions"><span
+class="header-section-number">1</span> functions</h1>
+<h2 data-number="1.1" id="total"><span
+class="header-section-number">1.1</span> total</h2>
+<p><span class="math inline">f: N^n \to N</span> is a total functions if
+it is defined for all elements of <span
+class="math inline">N^n</span>.</p>
+<h2 data-number="1.2" id="partial"><span
+class="header-section-number">1.2</span> partial</h2>
+<p>If a function is not total it is a partial function.</p>
+<h2 data-number="1.3" id="primitive-recursive-functions"><span
+class="header-section-number">1.3</span> primitive recursive
+functions</h2>
+<p>Let <span class="math inline">N = \mathbb N</span></p>
 <ol type="1">
-<li><span class="math inline">x</span> is an interior point of <span
-class="math inline">A</span> if there is an open ball <span
-class="math inline">B</span> such that <span class="math inline">x \in B
-\subseteq A</span></li>
-<li><span class="math inline">x</span> is an exterior point of <span
-class="math inline">A</span> if there is an open ball <span
-class="math inline">B</span> such that <span class="math inline">x \in B
-\subseteq (\mathbb R^n \setminus A)</span></li>
-<li><span class="math inline">x</span> is a limit point of <span
-class="math inline">A</span> if every ball <span
-class="math inline">B</span> around <span class="math inline">x</span>
-contains point of <span class="math inline">A</span>: <span
-class="math inline">\forall_{r &gt; 0} B^n(x, r) \cap A \neq
-\emptyset</span></li>
-<li><span class="math inline">x</span> is a frontier point of <span
-class="math inline">A</span> if every ball <span
-class="math inline">B</span> around <span class="math inline">x</span>
-contains both points of <span class="math inline">A</span> and points of
-<span class="math inline">\mathbb R^n \setminus A</span>: <span
-class="math inline">\forall_{r &gt; 0} (B^n(x, r) \cap A \neq \emptyset
-\land B^n(x, r) \cap (\mathbb R^n \setminus A) \neq
-\emptyset)</span></li>
+<li>zero function <span class="math inline">Z: N \to N</span> <span
+class="math inline">Z(x) = 0</span></li>
+<li>successor function <span class="math inline">S: N \to N</span> <span
+class="math inline">S(x) = x+1</span></li>
+<li>projection functions <span class="math inline">P_i^n: N^n \to
+N</span> <span class="math inline">P_i^n(x_1, \cdots, x_n) =
+x_i</span></li>
 </ol>
-<p>A point is always one of the 1., 2., or 3., and always only one of
-them.</p>
-<h2 data-number="1.2" id="set-properties"><span
-class="header-section-number">1.2</span> set properties</h2>
-<p>Let <span class="math inline">A \subseteq \mathbb R^n</span></p>
-<ul>
-<li>a set <span class="math inline">A</span> is open if every <span
-class="math inline">x \in A</span> is an interior point</li>
-<li>a set <span class="math inline">A</span> is closed if every <span
-class="math inline">x \notin A</span> is an exterior point</li>
-<li>a set <span class="math inline">A</span> is bounded if <span
-class="math inline">A \subseteq D^n(0, r)</span> for some <span
-class="math inline">r</span></li>
-</ul>
-<h3 data-number="1.2.1" id="set-functions"><span
-class="header-section-number">1.2.1</span> set functions</h3>
-<ul>
-<li>interior of a set <span class="math inline">A</span> denoted by
-<span class="math inline">Int(A)</span> is the set of all interior
-points of <span class="math inline">A</span></li>
-<li>frontier of a set <span class="math inline">A</span> denoted by
-<span class="math inline">Fr(A)</span> is the set of all frontier points
-of <span class="math inline">A</span></li>
-<li>closure of a set <span class="math inline">A</span> denoted by <span
-class="math inline">Cl(A)</span> is the set <span class="math inline">A
-\cup Fr(A)</span></li>
-</ul>
-<h2 data-number="1.3" id="limit-points-of-sequences"><span
-class="header-section-number">1.3</span> limit points of sequences</h2>
-<p>A point <span class="math inline">p \in \mathbb R^n</span> is a limit
-point of a sequence <span
-class="math inline">\{x_i\}_{i=1}^\infty</span> if every neighborhood of
-<span class="math inline">p</span> contains an infinite number of <span
-class="math inline">x_i</span>.</p>
-<p>If <span class="math inline">p</span> is a limit point of a set <span
-class="math inline">A \subseteq \mathbb R^n</span> then there exists a
-sequence of points <span class="math inline">\{x_i\}_{i=1}^\infty</span>
-where <span class="math inline">x_i \in A</span> such that <span
-class="math inline">p</span> is a limit point of the sequence.</p>
-<p>If <span class="math inline">\{x_i\}_{i=1}^\infty</span> is a
-sequence with each <span class="math inline">x_i \in A</span> and <span
-class="math inline">p</span> is a limit point of the sequence then <span
-class="math inline">p</span> is a limit point of <span
-class="math inline">A</span>.</p>
-<h2 data-number="1.4" id="relative-neighborhoods"><span
-class="header-section-number">1.4</span> relative neighborhoods</h2>
-<p>A neighborhood of a point <span class="math inline">x \in A</span>
-relative to <span class="math inline">A</span> is a set of the form
-<span class="math inline">D^n(x, r) \cap A</span>.</p>
-<p>Let <span class="math inline">B \subseteq A</span>. The set <span
-class="math inline">B</span> is open relative to <span
-class="math inline">A</span> if every <span class="math inline">x \in
-B</span> is an interior point relative to <span
-class="math inline">A</span>.</p>
-<p>Let <span class="math inline">B \subseteq A \subseteq \mathbb
-R^n</span>:</p>
-<ul>
-<li><span class="math inline">B</span> is open relative to <span
-class="math inline">A</span> iff <span class="math inline">B = A \cap
-U</span> for some open set <span class="math inline">U \subseteq \mathbb
-R^n</span></li>
-<li><span class="math inline">B</span> is closed relative to <span
-class="math inline">A</span> iff <span class="math inline">B = A \cap
-C</span> for some closed set <span class="math inline">C \subseteq
-\mathbb R^n</span></li>
-</ul>
-<h2 data-number="1.5" id="continuity"><span
-class="header-section-number">1.5</span> continuity</h2>
-<p>Let <span class="math inline">D \subseteq \mathbb R^n</span> and
-<span class="math inline">R \subseteq \mathbb R^m</span>.</p>
-<ul>
-<li>A function <span class="math inline">f: D \to R</span> is continuous
-if whenever <span class="math inline">U</span> is open in <span
-class="math inline">R</span>, the set <span
-class="math inline">f^{-1}(U)</span> is an open set in <span
-class="math inline">D</span></li>
-<li>A function <span class="math inline">f: D \to R</span> is continuous
-iff <span class="math inline">x</span> is a limit point of a set <span
-class="math inline">B \subseteq D</span> then <span
-class="math inline">f(x)</span> is a limit point of <span
-class="math inline">f(B)</span> in <span
-class="math inline">R</span></li>
-<li>A function <span class="math inline">f: D \to R</span> is continuous
-iff for every <span class="math inline">x \in D</span> and every <span
-class="math inline">\varepsilon &gt; 0</span> there exists a <span
-class="math inline">\delta &gt; 0</span> such that if <span
-class="math inline">y \in D</span> and <span class="math inline">||y -
-x|| &lt; \delta</span> then <span class="math inline">||f(y) - f(x)||
-&lt; \varepsilon</span></li>
-</ul>
-<p>A function <span class="math inline">f: X \to Y</span> is a
-homeomorphism if <span class="math inline">f</span> is continuous and
-<span class="math inline">f^{-1}</span> is continuous. The spaces <span
-class="math inline">X</span> and <span class="math inline">Y</span> are
-called topologically equivalent (homeomorphic).</p>
-<h2 data-number="1.6" id="topological-property"><span
-class="header-section-number">1.6</span> topological property</h2>
-<p><span class="math inline">P</span> is a topological property if
-whenever set <span class="math inline">A</span> has property <span
-class="math inline">P</span> and set <span class="math inline">B</span>
-is topologically equivalent to <span class="math inline">A</span>, then
-<span class="math inline">B</span> has property <span
-class="math inline">P</span>.</p>
-<h2 data-number="1.7" id="compactness"><span
-class="header-section-number">1.7</span> compactness</h2>
-<p>A subset <span class="math inline">A</span> of <span
-class="math inline">\mathbb R^n</span> is compact if every sequence of
-points in <span class="math inline">A</span> has a convergent
-subsequence to a point in <span class="math inline">A</span>.</p>
-<p>Let <span class="math inline">A \subseteq \mathbb R^n</span> be a
-compact subset, and let <span class="math inline">f: A \to \mathbb
-R^m</span> be a continuous map. Then <span
-class="math inline">f(A)</span> is a compact set.</p>
-<h3 data-number="1.7.1" id="heine-borel-theorem"><span
-class="header-section-number">1.7.1</span> Heine-Borel theorem</h3>
-<p>A subset <span class="math inline">A</span> of <span
-class="math inline">\mathbb R^n</span> is compact iff it is closed and
-bounded.</p>
-<h2 data-number="1.8" id="connectedness"><span
-class="header-section-number">1.8</span> connectedness</h2>
-<p>A set <span class="math inline">S</span> is connected if whenever
-<span class="math inline">S</span> is divided into two nonempty disjoint
-sets, one contains a limit point of the other.</p>
-<p>The set <span class="math inline">S</span> is connected iff <span
-class="math inline">S</span> cannot be written as a union of two
-nonempty disjoint sets which are open relative to <span
-class="math inline">S</span>.</p>
-<p>If <span class="math inline">f: D \to R</span> is a continuous
-function from a connected set <span class="math inline">D</span> onto a
-set <span class="math inline">R</span>, then <span
-class="math inline">R</span> is connected.</p>
+<h3 data-number="1.3.1" id="operations"><span
+class="header-section-number">1.3.1</span> operations</h3>
+<ol type="1">
+<li>composition <span class="math inline">f(x_1, \cdots, x_n) =
+h(g_1(x_1, \cdots, x_n), \cdots, g_m(x_1, \cdots, x_n))</span> for <span
+class="math inline">f,g_1,\cdots,g_m: N^n \to N</span>, <span
+class="math inline">h: N^m \to N</span></li>
+<li>primitive recursion:</li>
+</ol>
+<p><span class="math display">
+\begin{aligned}
+    f(x_1, \cdots, x_n, 0) &amp;= g(x_1, \cdots, x_n) \\
+    f(x_1, \cdots, x_n, y+1) &amp;= h(x_1, \cdots, x_n, y, f(x_1,
+\cdots, x_n, y)) \\
+\end{aligned}
+</span></p>
+<p>where <span class="math inline">g: N^n \to N</span>, <span
+class="math inline">h: N^{n+2} \to N</span>, <span
+class="math inline">f: N^{n+1} \to N</span></p>
+<p>A function <span class="math inline">f</span> is a primitive
+recursive function if:</p>
+<ol type="1">
+<li><span class="math inline">f</span> is a zero function or a successor
+function or a projection function</li>
+<li><span class="math inline">f</span> is defined as a composition of
+primitive recursive functions</li>
+<li><span class="math inline">f</span> is defined by primitive recursion
+with primitive recursive functions</li>
+</ol>
+<p>Every recursive function is a total function.</p>
+<h2 data-number="1.4" id="primitive-recursive-functions-1"><span
+class="header-section-number">1.4</span> primitive recursive
+functions</h2>
+<h3 data-number="1.4.1" id="simple"><span
+class="header-section-number">1.4.1</span> simple</h3>
+<ol type="1">
+<li>addition <span class="math inline">add(x, y) = x + y</span></li>
+<li>multiplication <span class="math inline">mult(x, y) = x \cdot
+y</span></li>
+<li>power <span class="math inline">exp(x, y) = x^y</span></li>
+<li>factorial <span class="math inline">fact(x) = x!</span></li>
+<li>predecessor <span class="math inline">pd(y) = \{0 \text{ if } y = 0,
+y-1 \text{ otherwise }\}</span></li>
+<li>sign <span class="math inline">sg(y) = \{1 \text{ if } y &gt; 0, 0
+\text{ otherwise }\}</span></li>
+<li>bounded difference <span class="math inline">ld(y) = \{x-y \text{ if
+} x \ge y, 0 \text{ otherwise }\}</span></li>
+<li>absolute difference <span class="math inline">abs(y) = \{x-y \text{
+if } x \ge y, y-x \text{ otherwise }\}</span></li>
+<li>comparing <span class="math inline">ls(x,y)</span>, <span
+class="math inline">gr(x,y)</span>, <span
+class="math inline">eq(x,y)</span></li>
+<li>bounded sum, for some <span class="math inline">p: N^{n+1} \to
+N</span> primitive recursive function <span class="math inline">f(x_1,
+\cdots, x_n, y) = \sum_{i=0}^y p(x_1, \cdots, x_n, i)</span></li>
+<li>bounded product, for some <span class="math inline">p: N^{n+1} \to
+N</span> primitive recursive function <span class="math inline">f(x_1,
+\cdots, x_n, y) = \prod_{i=0}^y p(x_1, \cdots, x_n, i)</span></li>
+<li>division <span class="math inline">quo(x, y) = \{x / y \text{ if } x
+\ne 0, 0 \text{ otherwise }\}</span></li>
+<li>remainder <span class="math inline">rem(x, y) = \{y - quo(x, y)
+\text{ if } x \ne 0, 0 \text{ otherwise }\}</span></li>
+<li>divisibility <span class="math inline">div(x, y) = \{1 \text{ if } x
+\ne 0 \land y \ne 0 \land x|y, 0 \text{ otherwise }\}</span></li>
+<li>number of divisors <span class="math inline">ndiv(y)</span></li>
+<li>is prime <span class="math inline">pr(x) = \{1 \text{ if } x \text{
+is prime}, 0 \text{ otherwise }\}</span></li>
+<li>i-th prime <span class="math inline">pn(i)</span></li>
+</ol>
+<h3 data-number="1.4.2" id="bounded-minimum"><span
+class="header-section-number">1.4.2</span> bounded minimum</h3>
+<p>For some <span class="math inline">p: N^{n+1} \to N</span> primitive
+recursive function we define <span class="math inline">\mu[p(x_1,
+\cdots, x_n, y) = 0]: N^{n+1} \to N</span> where</p>
+<p><span class="math display">
+\mu[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n, j) = \begin{cases}
+    \text{the smallest } y \le j \text{ such that } p(x_1, \cdots, x_n,
+y) = 0 &amp;\text{if such } y \text{ exists} \\
+    0 &amp;\text{otherwise}
+\end{cases}
+</span></p>
+<h4 data-number="1.4.2.1" id="alternative-definition"><span
+class="header-section-number">1.4.2.1</span> alternative definition</h4>
+<p>For some <span class="math inline">\omega: N^n \to N</span> primitive
+recursive function we define <span class="math inline">\mu_{y \le
+\omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0]: N^{n+1} \to
+N</span> where</p>
+<p><span class="math display">
+\mu_{y \le \omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0](x_1,
+\cdots, x_n, j) = \mu[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n,
+\omega(x_1, \cdots, x_n))
+</span></p>
+<h3 data-number="1.4.3" id="cantor-enumeration"><span
+class="header-section-number">1.4.3</span> cantor enumeration</h3>
+<p>Returns the index of a pair in the Cantor enumeration.</p>
+<p><span class="math display">
+\Pi : N^2 \to N,\ \Pi(x,y) = \frac{(x+y)(x+y+1)}{2} + x
+</span></p>
+<h4 data-number="1.4.3.1" id="decoding"><span
+class="header-section-number">1.4.3.1</span> decoding</h4>
+<p>let <span class="math inline">\sigma_1, \sigma_2: N \to N</span>
+where <span class="math inline">\Pi(\sigma_1(z), \sigma_2(z)) =
+z</span></p>
+<h3 data-number="1.4.4" id="cantor-tuple-function"><span
+class="header-section-number">1.4.4</span> cantor tuple function</h3>
+<p><span class="math inline">\Pi^2 \stackrel{\text{def}}{=} \Pi</span>,
+<span class="math inline">\sigma_i^2 \stackrel{\text{def}}{=}
+\sigma_i</span></p>
+<p><span class="math display">
+\Pi^{n+1}(x_1, \cdots, x_n, x_{n+1}) = \Pi^2(\Pi^n(x_1, \cdots, x_n),
+x_{n+1})
+</span></p>
+<p><span class="math display">
+\sigma_k^{n+1}(z) = \sigma_k^n(\sigma_1^2(z))
+</span></p>
+<h3 data-number="1.4.5" id="godel-numbering"><span
+class="header-section-number">1.4.5</span> Godel numbering</h3>
+<p><span class="math display">
+(x_0, \cdots, x_n) \mapsto p_0^{x_0}p_1^{x_1}\cdots p_n^{x_n}
+</span></p>
+<p>where <span class="math inline">p_i</span> is the i-th prime number,
+<span class="math inline">p_i = pn(i)</span></p>
 </body>
 </html>
