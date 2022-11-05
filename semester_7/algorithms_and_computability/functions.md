@@ -110,3 +110,85 @@ $$
 $$
 
 where $p_i$ is the i-th prime number, $p_i = pn(i)$
+
+## Ackermann function
+
+It is not a primitive recursive function.
+
+$$
+\begin{cases}
+	A(0, y) = y + 1 \\
+	A(x+1, 0) = A(x, 1) \\
+	A(x+1, y+1) = A(x, A(x+1, y)) \\
+\end{cases}
+$$
+
+### properties
+
+$\forall_{x, y \in \mathbb N}$
+
+1. $A(x, y) > y$
+2. $A(x, y+1) > A(x, y)$
+3. if $y_2 > y_1$ then $A(x, y_2) > A(x, y_1)$
+4. $A(x+1, y) \ge A(x, y+1)$
+5. $A(x+1, y) > A(x, y)$
+6. if $x_2 > x_1$ then $A(x_2, y) > A(x_1, y)$
+7. $A(x, y) > x$
+8. $A(x + 2, y) > A(x, 2y)$
+
+### theorem
+
+For every primitive recursive function $f: N^n \to N$ there exists a constant $k \in N$ such that $\forall_{x_1, \cdots, x_n \in N} A(k, \max(x_1, \cdots, x_n)) > f(x_1, \cdots, x_n)$
+
+## unbounded minimum
+
+For some $p: N^{n+1} \to N$ we define $\mu_y[p(x_1, \cdots, x_n, y) = 0]: N^{n+1} \to N$ where
+
+$$
+\mu_y[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n) = \begin{cases}
+	\text{the smallest } y \le j \text{ such that } p(x_1, \cdots, x_n, y) = 0 &\text{if such } y \text{ exists} \\
+	0 &\text{otherwise}
+\end{cases}
+$$
+
+$\mu_y$ is a partial function called unbounded minimum.
+
+## regular function
+
+A function $f: N^{n+1} \to N$ is called regular if $\forall_{x_1, \cdots, x_n \in N}\exists_{y \in N} f(x_1, \cdots, x_n, y) = 0$
+
+## recursive function
+
+A function $f$ is a recursive function if:
+
+1. $f$ is the zero function or the successor function or a projection function
+2. $f$ is defined as a composition of recursive functions
+3. $f$ is defined by primitive recursion with recursive functions
+4. $f$ is defined by unbounded minimum on a total regular recursive function
+
+Every recursive function is a total function
+
+## partial recursive function
+
+A function $f$ is a partial recursive function if:
+
+1. $f$ is the zero function of the successor function or a projection function
+2. $f$ is defined as a composition of partial recursive functions
+3. $f$ is defined by primitive recursion with partial recursive function
+4. $f$ is defined by unbounded minimum on a total partial recursive function
+
+## computable functions
+
+A function $f: N^n \to N$ is computable by a TM if there exists a TM $M$ such that for the input arguments $x_1, \cdots, x_n$ written on the tape:
+
+1. $M$ halts and $f(x_1, \cdots, x_n)$ is written on the tape if $f(x_1, \cdots, x_n)$ is defined
+2. $M$ does not halt if $f(x_1, \cdots, x_n)$ is undefined
+
+Every partial recursive function is computable by a TM. Every recursive function is computable by a TM with stop property.
+
+For every TM $M$ there exists a partial recursive function $f_M$ such that:
+
+- if for the given input arguments $M$ halts, then the value of $f_M$ for these arguments is the output of $M$
+- if for the given input arguments $M$ does not halt, then the value of $f_M$ of these arguments is undefined
+
+If $M$ is a TM with stop property then $f_M$ is a recursive function.

@@ -81,3 +81,27 @@ A set $S$ is connected if whenever $S$ is divided into two nonempty disjoint set
 The set $S$ is connected iff $S$ cannot be written as a union of two nonempty disjoint sets which are open relative to $S$.
 
 If $f: D \to R$ is a continuous function from a connected set $D$ onto a set $R$, then $R$ is connected.
+
+## fixed point
+
+If $f: X \to X$ a point $x_0 \in X$ such that $f(x_0) = x_0$ is called a fixed point of $f$
+
+If $f: [0; 1] \to [0; 1]$ is a continuous function, then there is a fixed point of $f$, ie a point $x_0 \in [0; 1]$ such that $f(x_0) = x_0$
+
+A space $X$ has the fixed point property if every continuous map $f: X \to X$ has a fixed point.
+
+The fixed point property is a topological property.
+
+## antipodes
+
+The points on an n-sphere $x = (x_1, \cdots, x_n)$ and $-x = (-x_1, \cdots, -x_n)$ are called antipodal.
+
+### Borsuk-Ulam
+
+If $f: S^1 \to \mathbb R$ is continuous, then there exists an $x_0 \in S^1$ such that $f(x_0) = f(-x_0)$.
+
+At any one point there are two diametrically opposite points with the same temperature.
+
+## sandwich theorem
+
+Let $A, B$ be bounded connected open subsets in $\mathbb R^2$ which may overlap. There exists a line which divides each region in half.

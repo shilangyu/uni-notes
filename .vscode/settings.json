@@ -1,6 +1,7 @@
 {
   "deno.enable": true,
   "cSpell.words": [
+    "Ackermann",
     "Agnieszka",
     "alef",
     "Aleksander",
@@ -24,6 +25,7 @@
     "bivariate",
     "bmatrix",
     "Borel",
+    "Borsuk",
     "Br",
     "Bródka",
     "Bry",
@@ -216,6 +218,7 @@
     "Trigonidi",
     "Tuczyński",
     "ukasz",
+    "Ulam",
     "underdamped",
     "universum",
     "uvwxy",
