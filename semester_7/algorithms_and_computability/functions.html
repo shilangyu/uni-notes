@@ -623,5 +623,112 @@ class="header-section-number">1.4.5</span> Godel numbering</h3>
 </span></p>
 <p>where <span class="math inline">p_i</span> is the i-th prime number,
 <span class="math inline">p_i = pn(i)</span></p>
+<h2 data-number="1.5" id="ackermann-function"><span
+class="header-section-number">1.5</span> Ackermann function</h2>
+<p>It is not a primitive recursive function.</p>
+<p><span class="math display">
+\begin{cases}
+    A(0, y) = y + 1 \\
+    A(x+1, 0) = A(x, 1) \\
+    A(x+1, y+1) = A(x, A(x+1, y)) \\
+\end{cases}
+</span></p>
+<h3 data-number="1.5.1" id="properties"><span
+class="header-section-number">1.5.1</span> properties</h3>
+<p><span class="math inline">\forall_{x, y \in \mathbb N}</span></p>
+<ol type="1">
+<li><span class="math inline">A(x, y) &gt; y</span></li>
+<li><span class="math inline">A(x, y+1) &gt; A(x, y)</span></li>
+<li>if <span class="math inline">y_2 &gt; y_1</span> then <span
+class="math inline">A(x, y_2) &gt; A(x, y_1)</span></li>
+<li><span class="math inline">A(x+1, y) \ge A(x, y+1)</span></li>
+<li><span class="math inline">A(x+1, y) &gt; A(x, y)</span></li>
+<li>if <span class="math inline">x_2 &gt; x_1</span> then <span
+class="math inline">A(x_2, y) &gt; A(x_1, y)</span></li>
+<li><span class="math inline">A(x, y) &gt; x</span></li>
+<li><span class="math inline">A(x + 2, y) &gt; A(x, 2y)</span></li>
+</ol>
+<h3 data-number="1.5.2" id="theorem"><span
+class="header-section-number">1.5.2</span> theorem</h3>
+<p>For every primitive recursive function <span class="math inline">f:
+N^n \to N</span> there exists a constant <span class="math inline">k \in
+N</span> such that <span class="math inline">\forall_{x_1, \cdots, x_n
+\in N} A(k, \max(x_1, \cdots, x_n)) &gt; f(x_1, \cdots, x_n)</span></p>
+<h2 data-number="1.6" id="unbounded-minimum"><span
+class="header-section-number">1.6</span> unbounded minimum</h2>
+<p>For some <span class="math inline">p: N^{n+1} \to N</span> we define
+<span class="math inline">\mu_y[p(x_1, \cdots, x_n, y) = 0]: N^{n+1} \to
+N</span> where</p>
+<p><span class="math display">
+\mu_y[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n) = \begin{cases}
+    \text{the smallest } y \le j \text{ such that } p(x_1, \cdots, x_n,
+y) = 0 &amp;\text{if such } y \text{ exists} \\
+    0 &amp;\text{otherwise}
+\end{cases}
+</span></p>
+<p><span class="math inline">\mu_y</span> is a partial function called
+unbounded minimum.</p>
+<h2 data-number="1.7" id="regular-function"><span
+class="header-section-number">1.7</span> regular function</h2>
+<p>A function <span class="math inline">f: N^{n+1} \to N</span> is
+called regular if <span class="math inline">\forall_{x_1, \cdots, x_n
+\in N}\exists_{y \in N} f(x_1, \cdots, x_n, y) = 0</span></p>
+<h2 data-number="1.8" id="recursive-function"><span
+class="header-section-number">1.8</span> recursive function</h2>
+<p>A function <span class="math inline">f</span> is a recursive function
+if:</p>
+<ol type="1">
+<li><span class="math inline">f</span> is the zero function or the
+successor function or a projection function</li>
+<li><span class="math inline">f</span> is defined as a composition of
+recursive functions</li>
+<li><span class="math inline">f</span> is defined by primitive recursion
+with recursive functions</li>
+<li><span class="math inline">f</span> is defined by unbounded minimum
+on a total regular recursive function</li>
+</ol>
+<p>Every recursive function is a total function</p>
+<h2 data-number="1.9" id="partial-recursive-function"><span
+class="header-section-number">1.9</span> partial recursive function</h2>
+<p>A function <span class="math inline">f</span> is a partial recursive
+function if:</p>
+<ol type="1">
+<li><span class="math inline">f</span> is the zero function of the
+successor function or a projection function</li>
+<li><span class="math inline">f</span> is defined as a composition of
+partial recursive functions</li>
+<li><span class="math inline">f</span> is defined by primitive recursion
+with partial recursive function</li>
+<li><span class="math inline">f</span> is defined by unbounded minimum
+on a total partial recursive function</li>
+</ol>
+<h2 data-number="1.10" id="computable-functions"><span
+class="header-section-number">1.10</span> computable functions</h2>
+<p>A function <span class="math inline">f: N^n \to N</span> is
+computable by a TM if there exists a TM <span
+class="math inline">M</span> such that for the input arguments <span
+class="math inline">x_1, \cdots, x_n</span> written on the tape:</p>
+<ol type="1">
+<li><span class="math inline">M</span> halts and <span
+class="math inline">f(x_1, \cdots, x_n)</span> is written on the tape if
+<span class="math inline">f(x_1, \cdots, x_n)</span> is defined</li>
+<li><span class="math inline">M</span> does not halt if <span
+class="math inline">f(x_1, \cdots, x_n)</span> is undefined</li>
+</ol>
+<p>Every partial recursive function is computable by a TM. Every
+recursive function is computable by a TM with stop property.</p>
+<p>For every TM <span class="math inline">M</span> there exists a
+partial recursive function <span class="math inline">f_M</span> such
+that:</p>
+<ul>
+<li>if for the given input arguments <span class="math inline">M</span>
+halts, then the value of <span class="math inline">f_M</span> for these
+arguments is the output of <span class="math inline">M</span></li>
+<li>if for the given input arguments <span class="math inline">M</span>
+does not halt, then the value of <span class="math inline">f_M</span> of
+these arguments is undefined</li>
+</ul>
+<p>If <span class="math inline">M</span> is a TM with stop property then
+<span class="math inline">f_M</span> is a recursive function.</p>
 </body>
 </html>
