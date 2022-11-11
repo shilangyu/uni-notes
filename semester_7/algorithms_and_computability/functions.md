@@ -192,3 +192,7 @@ For every TM $M$ there exists a partial recursive function $f_M$ such that:
 - if for the given input arguments $M$ does not halt, then the value of $f_M$ of these arguments is undefined
 
 If $M$ is a TM with stop property then $f_M$ is a recursive function.
+
+$$
+\text{the set of primitive recursive functions} \subsetneq \text{the set of recursive functions} \subsetneq \text{the set of partial recursive functions}
+$$

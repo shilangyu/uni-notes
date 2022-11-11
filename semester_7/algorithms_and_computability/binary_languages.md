@@ -93,39 +93,3 @@ We can construct algorithm $B$ such that $L(B) = L_u$.
 $$
 \langle M, w \rangle \in L(B) \iff \langle M' \rangle \in L(M_S) \iff \langle M' \rangle \in L_S \iff L(M') \in S \iff L(M') = L \iff w \in L(M) \iff \langle M, w \rangle \in L_u
 $$
-
-## decision problem
-
-A decision problem is a problem for which the answer is YES or NO. It can be defined as a finite set of parameters.
-
-- $\Pi$ - a decision problem
-- $D_\Pi$ - set of instances of $\Pi$
-- $Y_\Pi \subseteq D_\Pi$ - the set of YES instances
-
-### instance of the problem
-
-If we fix the values of the parameters we get an instance of the problem.
-
-### encoding
-
-Encoding of a decision problem $\Pi$ is a function $e: D_\Pi \to \Sigma^*$ where $\Sigma$ is an alphabet. For a decision problem $\Pi$ and an encoding $e$ fo $\Pi$ there is a corresponding language
-
-$$
-L(\Pi,e) = L_\Pi = \{e(I) \in \Sigma^* : I \in Y_\Pi\}
-$$
-
-$\Pi$ is called decidable if $L_\Pi \in R$ otherwise $\Pi$ is called undecidable.
-
-### post correspondence problem (PCP)
-
-Instance: two lists $A = w_1, w_2, \cdots, w_k$ and $B = x_1, x_2, \cdots, x_k$ of strings over $\Sigma$. A solution is a finite sequence of indices $i_1, i_2, \cdots, i_m$ $m \ge 1$ such that $w_{i_1} \circ w_{i_2} \circ \cdots \circ w_{i_m} = x_{i_1} \circ x_{i_2} \circ \cdots \circ x_{i_m}$
-
-### modified post correspondence problem (MPCP)
-
-It is the standard PCP but with the condition that $i_1 = 1$
-
-**lemma**: if PCP is decidable then MPCP is decidable.
-
-If there exists an algorithm for solving PCP then there exists an algorithm for solving MPCP.
-
-**theorem**: PCP is undecidable. By lemma it suffices to show that if MPCP is decidable then $L_u \in R$.
