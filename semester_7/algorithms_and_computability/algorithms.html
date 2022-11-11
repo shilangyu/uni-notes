@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>algorithms</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="algorithms"><span
+class="header-section-number">1</span> algorithms</h1>
+<h2 data-number="1.1" id="decision-problem"><span
+class="header-section-number">1.1</span> decision problem</h2>
+<p>A decision problem is a problem for which the answer is YES or NO. It
+can be defined as a finite set of parameters.</p>
+<ul>
+<li><span class="math inline">\Pi</span> - a decision problem</li>
+<li><span class="math inline">D_\Pi</span> - set of instances of <span
+class="math inline">\Pi</span></li>
+<li><span class="math inline">Y_\Pi \subseteq D_\Pi</span> - the set of
+YES instances</li>
+<li><span class="math inline">\bar \Pi</span> - the complementary
+problem to <span class="math inline">\Pi</span> (<span
+class="math inline">D_{\bar\Pi} = D_\Pi</span>, <span
+class="math inline">Y_{\bar\Pi} = D_{\Pi} \setminus Y_\Pi</span>)</li>
+</ul>
+<h3 data-number="1.1.1" id="instance-of-the-problem"><span
+class="header-section-number">1.1.1</span> instance of the problem</h3>
+<p>If we fix the values of the parameters we get an instance of the
+problem.</p>
+<h3 data-number="1.1.2" id="encoding"><span
+class="header-section-number">1.1.2</span> encoding</h3>
+<p>Encoding of a decision problem <span class="math inline">\Pi</span>
+is a function <span class="math inline">e: D_\Pi \to \Sigma^*</span>
+where <span class="math inline">\Sigma</span> is an alphabet. For a
+decision problem <span class="math inline">\Pi</span> and an encoding
+<span class="math inline">e</span> fo <span
+class="math inline">\Pi</span> there is a corresponding language</p>
+<p><span class="math display">
+L(\Pi,e) = L_\Pi = \{e(I) \in \Sigma^* : I \in Y_\Pi\}
+</span></p>
+<p><span class="math inline">\Pi</span> is called decidable if <span
+class="math inline">L_\Pi \in R</span> otherwise <span
+class="math inline">\Pi</span> is called undecidable.</p>
+<h4 data-number="1.1.2.1" id="reasonable-encodings"><span
+class="header-section-number">1.1.2.1</span> reasonable encodings</h4>
+<p>Example: encoding of natural number <span
+class="math inline">n</span> on the tape of a TM:</p>
+<ul>
+<li><span class="math inline">\Sigma = \{0, 1\}</span> - reasonable
+encoding (length of <span class="math inline">\log n</span>)</li>
+<li><span class="math inline">\Sigma = \{0, 1, \cdots, 9\}</span> -
+reasonable encoding (length of <span class="math inline">\log_{10}
+n</span>)</li>
+<li><span class="math inline">\Sigma = \{1\}</span> - not reasonable
+encoding (length of <span class="math inline">n</span>)</li>
+</ul>
+<p>subjective</p>
+<h3 data-number="1.1.3" id="post-correspondence-problem-pcp"><span
+class="header-section-number">1.1.3</span> post correspondence problem
+(PCP)</h3>
+<p>Instance: two lists <span class="math inline">A = w_1, w_2, \cdots,
+w_k</span> and <span class="math inline">B = x_1, x_2, \cdots,
+x_k</span> of strings over <span class="math inline">\Sigma</span>. A
+solution is a finite sequence of indices <span class="math inline">i_1,
+i_2, \cdots, i_m</span> <span class="math inline">m \ge 1</span> such
+that <span class="math inline">w_{i_1} \circ w_{i_2} \circ \cdots \circ
+w_{i_m} = x_{i_1} \circ x_{i_2} \circ \cdots \circ x_{i_m}</span></p>
+<h3 data-number="1.1.4"
+id="modified-post-correspondence-problem-mpcp"><span
+class="header-section-number">1.1.4</span> modified post correspondence
+problem (MPCP)</h3>
+<p>It is the standard PCP but with the condition that <span
+class="math inline">i_1 = 1</span></p>
+<p><strong>lemma</strong>: if PCP is decidable then MPCP is
+decidable.</p>
+<p>If there exists an algorithm for solving PCP then there exists an
+algorithm for solving MPCP.</p>
+<p><strong>theorem</strong>: PCP is undecidable. By lemma it suffices to
+show that if MPCP is decidable then <span class="math inline">L_u \in
+R</span>.</p>
+<h2 data-number="1.2" id="optimization-problem"><span
+class="header-section-number">1.2</span> optimization problem</h2>
+<p>A problem of finding a minimum/maximum of a objective function.</p>
+<h3 data-number="1.2.1"
+id="decision-problem---optimization-problem"><span
+class="header-section-number">1.2.1</span> decision problem &lt;-&gt;
+optimization problem</h3>
+<p><span class="math inline">G</span> - graph,</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>optimization problem</th>
+<th>decision problem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\chi(G) =\ ?</span></td>
+<td>does exist a proper vertex coloring of <span
+class="math inline">G</span> with <span class="math inline">k</span>
+colors?</td>
+</tr>
+</tbody>
+</table>
+<h2 data-number="1.3" id="encoding-1"><span
+class="header-section-number">1.3</span> encoding</h2>
+<ul>
+<li><span class="math inline">\Pi</span> - a decision problem</li>
+<li><span class="math inline">|\cdot|: D_\Pi \to N</span> instance size
+function, should be independent of reasonable encodings</li>
+</ul>
+<p>For <span class="math inline">I \in D_\Pi</span> <span
+class="math inline">|I| =</span> size of <span
+class="math inline">I</span>.</p>
+<p>For every reasonable encoding <span class="math inline">e</span>
+there exist polynomials <span class="math inline">p, p&#39;</span> such
+that <span class="math inline">|I| \le p(|e(I)|)</span> and <span
+class="math inline">|e(I)| \le p&#39;(|I|)</span> for every <span
+class="math inline">I \in D_\Pi</span>.</p>
+<p>Example of standard encoding scheme:</p>
+<p><span class="math inline">\Sigma = \{0, 1, -, [, ], (, ),
+,\}</span></p>
+<p>We recursively define structured strings</p>
+<ol type="1">
+<li><span class="math inline">k\in \mathbb Z</span> is represented as a
+binary string (preceded with <span class="math inline">-</span> if <span
+class="math inline">k &lt; 0</span>)</li>
+<li>if <span class="math inline">x</span> is a structured string then
+<span class="math inline">[x]</span> is a structured string that can be
+used as a name of some object</li>
+<li>if <span class="math inline">x_1, \cdots, x_n</span> are structured
+string representing objects <span class="math inline">X_1, \cdots,
+X_n</span> then <span class="math inline">(x_1, \cdots, x_n)</span> is a
+structured string</li>
+</ol>
+<h2 data-number="1.4" id="complexity"><span
+class="header-section-number">1.4</span> complexity</h2>
+<p><span class="math inline">A</span> - algorithm, <span
+class="math inline">I \in D_\Pi</span>, $|I| = $ input size = the number
+of cells of <span class="math inline">A</span> used to input <span
+class="math inline">I</span> (<span
+class="math inline">|e(I)|</span>)</p>
+<p>The time complexity of <span class="math inline">A</span> is a
+function <span class="math inline">T_A: N \to N</span></p>
+<p><span class="math display">
+T_A(n) = \max_{I \in D_\Pi, |I| = n}\{\text{the number of steps
+performed by A during the computation on input I}\}
+</span></p>
+<h3 data-number="1.4.1" id="non-deterministic-algorithm"><span
+class="header-section-number">1.4.1</span> non-deterministic
+algorithm</h3>
+<p>NTM with stop property. The tree of computation is finite. Halts for
+every sequence of choices.</p>
+<p>Let <span class="math inline">A</span> be a non-deterministic
+algorithm for solving <span class="math inline">\Pi</span>.</p>
+<p>The time complexity of <span class="math inline">A</span> is a
+function <span class="math inline">T_A: N \to N</span></p>
+<p><span class="math display">
+T_A(n) = \max_{I \in D_\Pi, |I| = n}\{\sup(\text{number of moves in
+every path from root to a leaf in the computation tree of A on input
+I})\}
+</span></p>
+<h3 data-number="1.4.2" id="asymptotic-notation"><span
+class="header-section-number">1.4.2</span> asymptotic notation</h3>
+<h4 data-number="1.4.2.1" id="big-o"><span
+class="header-section-number">1.4.2.1</span> big O</h4>
+<p><span class="math inline">f, g: N \to \mathbb R</span> (increasing
+functions)</p>
+<p><span class="math inline">f(n) = O(g(n))</span> if <span
+class="math inline">\exists_{C &gt; 0} \exists_{n_0 \in N} \forall_{n
+\ge n_0} f(n) \le C \cdot g(n)</span></p>
+<p><span class="math inline">A</span> is called a polynomial time
+algorithm if there exists a polynomial <span
+class="math inline">p</span> such that <span class="math inline">T_A(n)
+= O(p(n))</span>. Otherwise <span class="math inline">A</span> is called
+an exponential time algorithm.</p>
+<h2 data-number="1.5" id="polynomial-time-transformation"><span
+class="header-section-number">1.5</span> polynomial time
+transformation</h2>
+<h3 data-number="1.5.1" id="of-languages"><span
+class="header-section-number">1.5.1</span> of languages</h3>
+<p><span class="math inline">L_1 \subseteq \Sigma_1^*</span>, <span
+class="math inline">L_2 \subseteq \Sigma_2^*</span> - languages</p>
+<p>A polynomial time transformation from <span
+class="math inline">L_1</span> to <span class="math inline">L_2</span>
+is a function <span class="math inline">f: \Sigma_1^* \to
+\Sigma_2^*</span> such that</p>
+<ol type="1">
+<li>there exists a deterministic polynomial time algorithm computing
+<span class="math inline">f</span></li>
+<li><span class="math inline">\forall_{x \in \Sigma_1^*} x\in L_1 \iff
+f(x) \in L_2</span></li>
+</ol>
+<p>denoted by <span class="math inline">l_1 \alpha L_2</span></p>
+<h3 data-number="1.5.2" id="of-decision-problems"><span
+class="header-section-number">1.5.2</span> of decision problems</h3>
+<p><span class="math inline">\Pi_1, \Pi_2</span> - decision problems</p>
+<p>A polynomial time transformation from <span
+class="math inline">\Pi_1</span> to <span
+class="math inline">\Pi_2</span> is a function <span
+class="math inline">f: D_{\Pi_1} \to D_{\Pi_2}</span> such that</p>
+<ol type="1">
+<li>there exists a deterministic polynomial time algorithm computing
+<span class="math inline">f</span></li>
+<li><span class="math inline">\forall_{I \in D_{\Pi_1}} I \in Y_{\Pi_1}
+\iff f(I) \in Y_{D_{\Pi_2}}</span></li>
+</ol>
+<p>denoted by <span class="math inline">\Pi_1 \alpha \Pi_2</span></p>
+<p>This relation is reflexive and transitive.</p>
+<h2 data-number="1.6" id="polynomial-equivalence"><span
+class="header-section-number">1.6</span> polynomial equivalence</h2>
+<ul>
+<li><span class="math inline">L_1, L_2</span> are polynomial equivalent
+if <span class="math inline">L_1 \alpha L_2</span> and <span
+class="math inline">L_2 \alpha L_1</span></li>
+<li><span class="math inline">\Pi_1, \Pi_2</span> are polynomial
+equivalent if <span class="math inline">\Pi_1 \alpha \Pi_2</span> and
+<span class="math inline">\Pi_2 \alpha \Pi_1</span></li>
+</ul>
+<h2 data-number="1.7" id="classes"><span
+class="header-section-number">1.7</span> classes</h2>
+<ul>
+<li><span class="math inline">P</span> - the class of problems that can
+be solved by a deterministic polynomial time algorithms</li>
+<li><span class="math inline">NP</span> - the class of problems that can
+be solved by a non-deterministic polynomial time algorithm</li>
+<li><span class="math inline">coNP = \{\bar\Pi: \Pi \in NP\}</span></li>
+<li><span class="math inline">NPC = \{\Pi \in NP : \forall_{\Pi&#39; \in
+NP} \Pi&#39; \alpha \Pi\}</span> (NP-complete)</li>
+</ul>
+<hr />
+<ul>
+<li>polynomial time - fast</li>
+<li>exponential time - slow</li>
+<li>problems from P - easy</li>
+<li>problems not from P - hard</li>
+<li>problems from NP - solve by non-deterministic algorithm in
+polynomial time <span class="math inline">\lor</span> check the solution
+by deterministic algorithm in polynomial time</li>
+</ul>
+<p>Theorem: <span class="math inline">L \in NP \iff</span> there exists
+a language <span class="math inline">L_{\text{check}} \in P</span> and a
+polynomial <span class="math inline">p</span> such that <span
+class="math inline">L = \{x : \exists_{y} (x, y) \in L_{\text{check}}
+\land |y| \le p(|x|)\}</span>. <span class="math inline">y</span> is
+called a certificate for <span class="math inline">x</span>.</p>
+<p>Proof:</p>
+<p><span class="math inline">\impliedby</span></p>
+<p>Let <span class="math inline">M</span> be a deterministic algorithm
+such that <span class="math inline">L(M) = L_{\text{check}}</span>. We
+construct a non-deterministic algorithm <span
+class="math inline">M&#39;</span> such that <span
+class="math inline">L(M&#39;) = L</span>. First <span
+class="math inline">M&#39;</span> guesses <span
+class="math inline">y</span> (the number of candidates is bounded
+because <span class="math inline">|y| \le p(|x|)</span>). Then <span
+class="math inline">M&#39;</span> runs <span
+class="math inline">M</span> on <span class="math inline">(x, y)</span>
+and checks the answer.</p>
+<p><span class="math inline">\implies</span></p>
+<p>Let <span class="math inline">M</span> be a nondeterministic
+algorithm such that <span class="math inline">L(M) = L</span>.
+Computation of <span class="math inline">M</span> on input string <span
+class="math inline">x</span>. Any path from the root in the tree of
+computation of <span class="math inline">M</span> on input <span
+class="math inline">x</span> has length <span class="math inline">\le
+p(|x|)</span> for some polynomial <span class="math inline">p</span>. We
+define <span class="math inline">L_{\text{check}}</span>. <span
+class="math inline">(x, y) \in L_{\text{check}} \iff y</span> is a code
+of computation path of <span class="math inline">M</span> on input <span
+class="math inline">x</span> which ends in accepting state. Now we show
+that <span class="math inline">L_{\text{check}} \in P</span>. We
+construct a deterministic algorithm <span
+class="math inline">M&#39;</span> such that <span
+class="math inline">L(M&#39;) = L_{\text{check}}</span>. <span
+class="math inline">M&#39;</span> check if <span
+class="math inline">y</span> is a correct code of computation path of
+<span class="math inline">M</span> on input <span
+class="math inline">x</span> and checks if it ends in accepting
+state.</p>
+<h2 data-number="1.8" id="npc"><span
+class="header-section-number">1.8</span> NPC</h2>
+<p>If <span class="math inline">\Pi_1, \Pi_2 \in NP</span>, <span
+class="math inline">\Pi_1 \in NPC</span> and <span
+class="math inline">\Pi_1 \alpha \Pi_2</span> then <span
+class="math inline">\Pi_2 \in NPC</span>.</p>
+<p>If <span class="math inline">\Pi \in NP</span> then <span
+class="math inline">\Pi</span> can be solved on DTM in exponential time.
+Question: if <span class="math inline">\Pi \in NP</span> then can <span
+class="math inline">\Pi</span> be solved on DTM in polynomial time?</p>
+</body>
+</html>

@@ -607,57 +607,5 @@ that <span class="math inline">L(B) = L_u</span>.</p>
 \iff \langle M&#39; \rangle \in L_S \iff L(M&#39;) \in S \iff L(M&#39;)
 = L \iff w \in L(M) \iff \langle M, w \rangle \in L_u
 </span></p>
-<h2 data-number="2.2" id="decision-problem"><span
-class="header-section-number">2.2</span> decision problem</h2>
-<p>A decision problem is a problem for which the answer is YES or NO. It
-can be defined as a finite set of parameters.</p>
-<ul>
-<li><span class="math inline">\Pi</span> - a decision problem</li>
-<li><span class="math inline">D_\Pi</span> - set of instances of <span
-class="math inline">\Pi</span></li>
-<li><span class="math inline">Y_\Pi \subseteq D_\Pi</span> - the set of
-YES instances</li>
-</ul>
-<h3 data-number="2.2.1" id="instance-of-the-problem"><span
-class="header-section-number">2.2.1</span> instance of the problem</h3>
-<p>If we fix the values of the parameters we get an instance of the
-problem.</p>
-<h3 data-number="2.2.2" id="encoding"><span
-class="header-section-number">2.2.2</span> encoding</h3>
-<p>Encoding of a decision problem <span class="math inline">\Pi</span>
-is a function <span class="math inline">e: D_\Pi \to \Sigma^*</span>
-where <span class="math inline">\Sigma</span> is an alphabet. For a
-decision problem <span class="math inline">\Pi</span> and an encoding
-<span class="math inline">e</span> fo <span
-class="math inline">\Pi</span> there is a corresponding language</p>
-<p><span class="math display">
-L(\Pi,e) = L_\Pi = \{e(I) \in \Sigma^* : I \in Y_\Pi\}
-</span></p>
-<p><span class="math inline">\Pi</span> is called decidable if <span
-class="math inline">L_\Pi \in R</span> otherwise <span
-class="math inline">\Pi</span> is called undecidable.</p>
-<h3 data-number="2.2.3" id="post-correspondence-problem-pcp"><span
-class="header-section-number">2.2.3</span> post correspondence problem
-(PCP)</h3>
-<p>Instance: two lists <span class="math inline">A = w_1, w_2, \cdots,
-w_k</span> and <span class="math inline">B = x_1, x_2, \cdots,
-x_k</span> of strings over <span class="math inline">\Sigma</span>. A
-solution is a finite sequence of indices <span class="math inline">i_1,
-i_2, \cdots, i_m</span> <span class="math inline">m \ge 1</span> such
-that <span class="math inline">w_{i_1} \circ w_{i_2} \circ \cdots \circ
-w_{i_m} = x_{i_1} \circ x_{i_2} \circ \cdots \circ x_{i_m}</span></p>
-<h3 data-number="2.2.4"
-id="modified-post-correspondence-problem-mpcp"><span
-class="header-section-number">2.2.4</span> modified post correspondence
-problem (MPCP)</h3>
-<p>It is the standard PCP but with the condition that <span
-class="math inline">i_1 = 1</span></p>
-<p><strong>lemma</strong>: if PCP is decidable then MPCP is
-decidable.</p>
-<p>If there exists an algorithm for solving PCP then there exists an
-algorithm for solving MPCP.</p>
-<p><strong>theorem</strong>: PCP is undecidable. By lemma it suffices to
-show that if MPCP is decidable then <span class="math inline">L_u \in
-R</span>.</p>
 </body>
 </html>
