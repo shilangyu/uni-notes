@@ -173,3 +173,71 @@ Let $M$ be a nondeterministic algorithm such that $L(M) = L$. Computation of $M$
 If $\Pi_1, \Pi_2 \in NP$, $\Pi_1 \in NPC$ and $\Pi_1 \alpha \Pi_2$ then $\Pi_2 \in NPC$.
 
 If $\Pi \in NP$ then $\Pi$ can be solved on DTM in exponential time. Question: if $\Pi \in NP$ then can $\Pi$ be solved on DTM in polynomial time?
+
+### $\text{SAT}$ problem (satisfiability)
+
+Logic formula in CNF = a conjunction of clauses, each clause is a disjunction of literals, a literal is a variable or negated variable.
+
+Example: $F = (x_1 \lor \neg x_2 \lor x_3) \;and (\neg x_1 \lor x_2) \land (\neg x_2 \lor x_3 \lor \neg x_4)$
+
+$X = \{x_1, \cdots, x_n\}$ a set of variables, $F$ - a formula in CNF with variables from $X$. An assignment is $v: X \to \{0, 1\}$. There are $2^n$ assignments.
+
+Question: does there exist an assignment $v$ that satisfies $F$? Such assignment is called a satisfying assignment. $v$ satisfies $F$ $\iff$ $v$ satisfies every clause of $F$.
+
+#### Cook theorem
+
+$\text{SAT} \in NPC$.
+
+##### proof
+
+1. $\text{SAT} \in NP$
+
+We construct a NTM with stop property $M$ for solving $\text{SAT}$. FIrst $M$ guesses an assignment ($O(n)$) and then checks if this assignment satisfies every clause (polynomial time).
+
+2. Let $L \in NP$. We will show $L \alpha \text{SAT}$
+
+Let $M$ be a NTM with stop property such that $L(M) = L$. Let $w$ be an input string. We will construct $f(w)$ - an instance of $\text{SAT}$ such that $w \in L \implies f(w)$ is satisfiable. We assume $M$ has one tape. Let $p(n)$ be a polynomial such that $T_M(n) \le p(n)$. We can assume that $p(n) \ge n$. $M = (Q, \Sigma, \Gamma, \delta, B, q_1, \{q_s\}, \{q_{s-q}\})$ with $Q = \{q_1, \cdots, q_s\}$, $\Gamma = \{X_1, \cdots, X_m\}$, $B = X_m$, $s, m$ - const. Let $|w| = n$. We assume that if $M$ finishes the computation before $p(n)$ steps then it stays in the accepting state or the rejecting state and halts in moment $p(n)$, so the computation of $M$ always takes $p(n)$ steps. Variables:
+
+- $C(i, j, t)$: $C(i, j, t) = 1 \iff$ on the tape of $M$ there is symbol $X_j$ in the $i$-th cell in moment $t$. $1 \le i \le p(n)$, $1 \le j \le m$, $0 \le t \le p(n)$. Otherwise the value is 0.
+- $S(k, t)$: $S(k, t) = 1 \iff$ $M$ is in state $q_k$ in moment $t$. $1 \le k \le s$, $0 \le t \le p(n)$. Otherwise the value is 0.
+- $H(i, t)$: $H(i, t) = 1 \iff$ the head of $M$ observes $i$-th cell in moment $t$. $1 \le i \le p(n)$, $0 \le t \le p(n)$.
+
+There are $p(n) \cdot m \cdot (p(n) + 1) + s \cdot (p(n) + 1) + p(n) \cdot (p(n) + 1) = \Theta(p^2(n))$ variables. By $|F|$ we denote the length of the formula = the number of literals in $F$. Let $U(x_1, \cdots, x_r) = (x_1 \lor x_2 \lor \cdots \lor x_r) \land (\neg x_1 \lor \neg x_2) \land (\neg x_1 \lor \neg x_3) \land \cdots \land (\neg x_{r-1} \lor \neg x_r)$. So $U(x_1, \cdots, x_r) = 1 \iff$ for exactly one $i \in \{1, \cdots, r\}$, $x_i = 1$. $|U| = O(r^2)$. There will be 7 types of clauses in $f(w)$ describing conditions.
+
+1. in every moment $t$ the head observes exactly one cell. $F_1 = \bigwedge_{0 \le t \le p(n)} A_t$ where $A_t = U(H(1, t), \cdots, H(p(n), t))$. $|A_t| = O(p^2(n))$, $|F_1| = p(n+1) \cdot O(p^2(n)) = O(p^3(n))$.
+2. in every moment $t$ there is exactly one symbol in every cell. $F_2 = \bigwedge_{0 \le t \le p(n), 1 \le i \le p(n)} B_{i, t}$ where $B_{i, t} = U(C(i, 1, t), \cdots, C(i, m, t))$. $|B_{i,t}| = O(m^2) =$ const, $|F_2| = (p(n) + 1)p(n) \cdot O(1) = O(p^2(n))$
+3. in every moment $t$ $M$ is in exactly one state. $F_3 = \bigwedge_{0 \le t \le p(n)}U(S(1, t), \cdots, S(s, t))$. $|F_3| = (p(n) + 1) \cdot O(s^2) = O(p(n))$
+4. in every moment $t$ a symbol changes in at most one cell. $F_4 = \bigwedge_{0 \le t \le p(n), 1 \le i \le p(n), 1 \le j \le m} D_{i, j, t}$. We want $D_{i, j, t} \iff ((C(i, j,t) \implies C(i, j, t+1)) \lor H(i, t))$. $|F_4| = O(p^2(n))$
+5. in every moment $t$ the computation of $M$ is described by $\delta$. $F_5 = \bigwedge_{0 \le t \le p(n), 1 \le i \le p(n), 1 \le j \le m, 1 \le k \le s} E_{i, j, k, t}$. Let $\delta(q_k, X_j) = \{(q_{k_1}, X_{j_1}, K_{i_1}), \cdots, (q_{k_{x(k, j)}}, X_{j_{x(k, j)}}, K_{i_{x(k, j)}})\}$. We want $E_{i,j,k,t} = ((C(i, j, t) \land H(i, t) \land S(k, t)) \implies \bigvee_{1 \le l \le x(k, j)}(C(i, j_l, t+1) \land H(i_l, t+1) \land S(k_l, t+1)))$. $|E_{i,j,k,t}| = O(3^{2sm} \cdot 2sm + 3) =$ const. $|F_5| = (p(n) + 1) \cdot p(n) \cdot m \cdot s \cdot O(1) = O(p^2(n))$.
+6. in $t=0$ $M$ is in initial state. $F_6 = S(1, 0) \land H(1, 0) \land \bigwedge_{1 \le i \le n} C(i, j_i, 0) \land \bigwedge_{n < i \le p(n)}C(i, m, 0)$ where $w = X_{j_1}X_{j_2}\cdots X_{j_n}$. $|F_6| = O(p(n))$.
+7. in moment $p(n)$ $M$ is in accepting state or rejecting state $F_7 = S(s, p(n))$. $|F_7| = O(1)$.
+
+So $f(w) = F_1 \land F_2 \land F_3 \land F_4 \land F_5 \land F_6 \land F_7$. The number of literals in $f(w)$ is $O(p^3(n))$. There are $\Theta(p^2(n))$ variables $\implies$ the length of variable is $O(\beta\log n)$ where $\beta$ depends on $p$. The length of $|f(w)| = O(p^3(n) \beta \log n) = O(p^4(n))$. $f(w) = 1 \iff$ $M$ halts in accepting state $\iff w \in L(M) = L$. $f(w)$ can be constructed in polynomial time. $\square$
+
+### list of NPC problems
+
+1. $\text{SAT}$
+2. $3\text{SAT}$ ($\text{SAT}$ where each clause has exactly 3 literals)
+
+## random access machine (RAM)
+
+$\Sigma = \{a_1, \cdots, a_k\}$ - a language. RAM has an infinite set of registers $R1, R2, \cdots$. Each register stores a string from $\Sigma^*$. There is an infinite set of line names $N1, N2, \cdots$. There are 7 types of instructions: $N1$ - a line name or nothing, $RX, RY$ - registers. $N2' \in \{N2a, N2b\}$ (a - above, b - below).
+
+1. $N1$ addj $RX$ -- adds aj to the right end of the string in $RX$ ($1 \le j \le k$)
+2. $N1$ del $RX$ -- deletes the first from left symbol of the string stored in $RX$
+3. $N1$ clr $RX$ -- changes the string in $RX$ into $\varepsilon$
+4. $N1$ $RX \leftarrow RY$ -- copies the string in $RY$ into $RX$
+5. $N1$ jmp $N2'$ -- jumps to the closest instruction with line name $N2$ above if $N2' = N2a$ or below if $N2' = N2b$
+6. $N1$ $RX$ jmpj $N2'$ -- jumps if the first symbol of the string in $RX$ is aj ($1 \le j \le k$)
+7. $N1$ continue -- does nothing
+
+Instructions are executed in order in which they are written except jumps.
+
+A RAM program is a finite sequence of instructions such that each jump is executable and the last instruction is continue. A RAM program halts when it reaches the final continue instruction.
+
+A partial function $f: N^n \to N$ is computable on RAM if there exists a RAM program $P$ such that if it starts in the following configuration: for $i = 1, \cdots, n$ $x_i$ is in $R_i$ and all the other registers are empty ($\varepsilon$) and:
+
+- $P$ halts $\iff f(x_1, \cdots, x_n)$ is defined
+- if $P$ halts then there is $f(x_1, \cdots, x_n)$ in R1 and the other registers are empty
+
+Lemma: Instructions 3,4,5 can be eliminated from the set of instructions.
