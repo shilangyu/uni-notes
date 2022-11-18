@@ -764,5 +764,235 @@ class="math inline">\Pi_2 \in NPC</span>.</p>
 class="math inline">\Pi</span> can be solved on DTM in exponential time.
 Question: if <span class="math inline">\Pi \in NP</span> then can <span
 class="math inline">\Pi</span> be solved on DTM in polynomial time?</p>
+<h3 data-number="1.8.1" id="textsat-problem-satisfiability"><span
+class="header-section-number">1.8.1</span> <span
+class="math inline">\text{SAT}</span> problem (satisfiability)</h3>
+<p>Logic formula in CNF = a conjunction of clauses, each clause is a
+disjunction of literals, a literal is a variable or negated
+variable.</p>
+<p>Example: <span class="math inline">F = (x_1 \lor \neg x_2 \lor x_3)
+\;and (\neg x_1 \lor x_2) \land (\neg x_2 \lor x_3 \lor \neg
+x_4)</span></p>
+<p><span class="math inline">X = \{x_1, \cdots, x_n\}</span> a set of
+variables, <span class="math inline">F</span> - a formula in CNF with
+variables from <span class="math inline">X</span>. An assignment is
+<span class="math inline">v: X \to \{0, 1\}</span>. There are <span
+class="math inline">2^n</span> assignments.</p>
+<p>Question: does there exist an assignment <span
+class="math inline">v</span> that satisfies <span
+class="math inline">F</span>? Such assignment is called a satisfying
+assignment. <span class="math inline">v</span> satisfies <span
+class="math inline">F</span> <span class="math inline">\iff</span> <span
+class="math inline">v</span> satisfies every clause of <span
+class="math inline">F</span>.</p>
+<h4 data-number="1.8.1.1" id="cook-theorem"><span
+class="header-section-number">1.8.1.1</span> Cook theorem</h4>
+<p><span class="math inline">\text{SAT} \in NPC</span>.</p>
+<h5 data-number="1.8.1.1.1" id="proof"><span
+class="header-section-number">1.8.1.1.1</span> proof</h5>
+<ol type="1">
+<li><span class="math inline">\text{SAT} \in NP</span></li>
+</ol>
+<p>We construct a NTM with stop property <span
+class="math inline">M</span> for solving <span
+class="math inline">\text{SAT}</span>. FIrst <span
+class="math inline">M</span> guesses an assignment (<span
+class="math inline">O(n)</span>) and then checks if this assignment
+satisfies every clause (polynomial time).</p>
+<ol start="2" type="1">
+<li>Let <span class="math inline">L \in NP</span>. We will show <span
+class="math inline">L \alpha \text{SAT}</span></li>
+</ol>
+<p>Let <span class="math inline">M</span> be a NTM with stop property
+such that <span class="math inline">L(M) = L</span>. Let <span
+class="math inline">w</span> be an input string. We will construct <span
+class="math inline">f(w)</span> - an instance of <span
+class="math inline">\text{SAT}</span> such that <span
+class="math inline">w \in L \implies f(w)</span> is satisfiable. We
+assume <span class="math inline">M</span> has one tape. Let <span
+class="math inline">p(n)</span> be a polynomial such that <span
+class="math inline">T_M(n) \le p(n)</span>. We can assume that <span
+class="math inline">p(n) \ge n</span>. <span class="math inline">M = (Q,
+\Sigma, \Gamma, \delta, B, q_1, \{q_s\}, \{q_{s-q}\})</span> with <span
+class="math inline">Q = \{q_1, \cdots, q_s\}</span>, <span
+class="math inline">\Gamma = \{X_1, \cdots, X_m\}</span>, <span
+class="math inline">B = X_m</span>, <span class="math inline">s,
+m</span> - const. Let <span class="math inline">|w| = n</span>. We
+assume that if <span class="math inline">M</span> finishes the
+computation before <span class="math inline">p(n)</span> steps then it
+stays in the accepting state or the rejecting state and halts in moment
+<span class="math inline">p(n)</span>, so the computation of <span
+class="math inline">M</span> always takes <span
+class="math inline">p(n)</span> steps. Variables:</p>
+<ul>
+<li><span class="math inline">C(i, j, t)</span>: <span
+class="math inline">C(i, j, t) = 1 \iff</span> on the tape of <span
+class="math inline">M</span> there is symbol <span
+class="math inline">X_j</span> in the <span
+class="math inline">i</span>-th cell in moment <span
+class="math inline">t</span>. <span class="math inline">1 \le i \le
+p(n)</span>, <span class="math inline">1 \le j \le m</span>, <span
+class="math inline">0 \le t \le p(n)</span>. Otherwise the value is
+0.</li>
+<li><span class="math inline">S(k, t)</span>: <span
+class="math inline">S(k, t) = 1 \iff</span> <span
+class="math inline">M</span> is in state <span
+class="math inline">q_k</span> in moment <span
+class="math inline">t</span>. <span class="math inline">1 \le k \le
+s</span>, <span class="math inline">0 \le t \le p(n)</span>. Otherwise
+the value is 0.</li>
+<li><span class="math inline">H(i, t)</span>: <span
+class="math inline">H(i, t) = 1 \iff</span> the head of <span
+class="math inline">M</span> observes <span
+class="math inline">i</span>-th cell in moment <span
+class="math inline">t</span>. <span class="math inline">1 \le i \le
+p(n)</span>, <span class="math inline">0 \le t \le p(n)</span>.</li>
+</ul>
+<p>There are <span class="math inline">p(n) \cdot m \cdot (p(n) + 1) + s
+\cdot (p(n) + 1) + p(n) \cdot (p(n) + 1) = \Theta(p^2(n))</span>
+variables. By <span class="math inline">|F|</span> we denote the length
+of the formula = the number of literals in <span
+class="math inline">F</span>. Let <span class="math inline">U(x_1,
+\cdots, x_r) = (x_1 \lor x_2 \lor \cdots \lor x_r) \land (\neg x_1 \lor
+\neg x_2) \land (\neg x_1 \lor \neg x_3) \land \cdots \land (\neg
+x_{r-1} \lor \neg x_r)</span>. So <span class="math inline">U(x_1,
+\cdots, x_r) = 1 \iff</span> for exactly one <span class="math inline">i
+\in \{1, \cdots, r\}</span>, <span class="math inline">x_i = 1</span>.
+<span class="math inline">|U| = O(r^2)</span>. There will be 7 types of
+clauses in <span class="math inline">f(w)</span> describing
+conditions.</p>
+<ol type="1">
+<li>in every moment <span class="math inline">t</span> the head observes
+exactly one cell. <span class="math inline">F_1 = \bigwedge_{0 \le t \le
+p(n)} A_t</span> where <span class="math inline">A_t = U(H(1, t),
+\cdots, H(p(n), t))</span>. <span class="math inline">|A_t| =
+O(p^2(n))</span>, <span class="math inline">|F_1| = p(n+1) \cdot
+O(p^2(n)) = O(p^3(n))</span>.</li>
+<li>in every moment <span class="math inline">t</span> there is exactly
+one symbol in every cell. <span class="math inline">F_2 = \bigwedge_{0
+\le t \le p(n), 1 \le i \le p(n)} B_{i, t}</span> where <span
+class="math inline">B_{i, t} = U(C(i, 1, t), \cdots, C(i, m, t))</span>.
+<span class="math inline">|B_{i,t}| = O(m^2) =</span> const, <span
+class="math inline">|F_2| = (p(n) + 1)p(n) \cdot O(1) =
+O(p^2(n))</span></li>
+<li>in every moment <span class="math inline">t</span> <span
+class="math inline">M</span> is in exactly one state. <span
+class="math inline">F_3 = \bigwedge_{0 \le t \le p(n)}U(S(1, t), \cdots,
+S(s, t))</span>. <span class="math inline">|F_3| = (p(n) + 1) \cdot
+O(s^2) = O(p(n))</span></li>
+<li>in every moment <span class="math inline">t</span> a symbol changes
+in at most one cell. <span class="math inline">F_4 = \bigwedge_{0 \le t
+\le p(n), 1 \le i \le p(n), 1 \le j \le m} D_{i, j, t}</span>. We want
+<span class="math inline">D_{i, j, t} \iff ((C(i, j,t) \implies C(i, j,
+t+1)) \lor H(i, t))</span>. <span class="math inline">|F_4| =
+O(p^2(n))</span></li>
+<li>in every moment <span class="math inline">t</span> the computation
+of <span class="math inline">M</span> is described by <span
+class="math inline">\delta</span>. <span class="math inline">F_5 =
+\bigwedge_{0 \le t \le p(n), 1 \le i \le p(n), 1 \le j \le m, 1 \le k
+\le s} E_{i, j, k, t}</span>. Let <span class="math inline">\delta(q_k,
+X_j) = \{(q_{k_1}, X_{j_1}, K_{i_1}), \cdots, (q_{k_{x(k, j)}},
+X_{j_{x(k, j)}}, K_{i_{x(k, j)}})\}</span>. We want <span
+class="math inline">E_{i,j,k,t} = ((C(i, j, t) \land H(i, t) \land S(k,
+t)) \implies \bigvee_{1 \le l \le x(k, j)}(C(i, j_l, t+1) \land H(i_l,
+t+1) \land S(k_l, t+1)))</span>. <span class="math inline">|E_{i,j,k,t}|
+= O(3^{2sm} \cdot 2sm + 3) =</span> const. <span
+class="math inline">|F_5| = (p(n) + 1) \cdot p(n) \cdot m \cdot s \cdot
+O(1) = O(p^2(n))</span>.</li>
+<li>in <span class="math inline">t=0</span> <span
+class="math inline">M</span> is in initial state. <span
+class="math inline">F_6 = S(1, 0) \land H(1, 0) \land \bigwedge_{1 \le i
+\le n} C(i, j_i, 0) \land \bigwedge_{n &lt; i \le p(n)}C(i, m, 0)</span>
+where <span class="math inline">w = X_{j_1}X_{j_2}\cdots X_{j_n}</span>.
+<span class="math inline">|F_6| = O(p(n))</span>.</li>
+<li>in moment <span class="math inline">p(n)</span> <span
+class="math inline">M</span> is in accepting state or rejecting state
+<span class="math inline">F_7 = S(s, p(n))</span>. <span
+class="math inline">|F_7| = O(1)</span>.</li>
+</ol>
+<p>So <span class="math inline">f(w) = F_1 \land F_2 \land F_3 \land F_4
+\land F_5 \land F_6 \land F_7</span>. The number of literals in <span
+class="math inline">f(w)</span> is <span
+class="math inline">O(p^3(n))</span>. There are <span
+class="math inline">\Theta(p^2(n))</span> variables <span
+class="math inline">\implies</span> the length of variable is <span
+class="math inline">O(\beta\log n)</span> where <span
+class="math inline">\beta</span> depends on <span
+class="math inline">p</span>. The length of <span
+class="math inline">|f(w)| = O(p^3(n) \beta \log n) = O(p^4(n))</span>.
+<span class="math inline">f(w) = 1 \iff</span> <span
+class="math inline">M</span> halts in accepting state <span
+class="math inline">\iff w \in L(M) = L</span>. <span
+class="math inline">f(w)</span> can be constructed in polynomial time.
+<span class="math inline">\square</span></p>
+<h3 data-number="1.8.2" id="list-of-npc-problems"><span
+class="header-section-number">1.8.2</span> list of NPC problems</h3>
+<ol type="1">
+<li><span class="math inline">\text{SAT}</span></li>
+<li><span class="math inline">3\text{SAT}</span> (<span
+class="math inline">\text{SAT}</span> where each clause has exactly 3
+literals)</li>
+</ol>
+<h2 data-number="1.9" id="random-access-machine-ram"><span
+class="header-section-number">1.9</span> random access machine
+(RAM)</h2>
+<p><span class="math inline">\Sigma = \{a_1, \cdots, a_k\}</span> - a
+language. RAM has an infinite set of registers <span
+class="math inline">R1, R2, \cdots</span>. Each register stores a string
+from <span class="math inline">\Sigma^*</span>. There is an infinite set
+of line names <span class="math inline">N1, N2, \cdots</span>. There are
+7 types of instructions: <span class="math inline">N1</span> - a line
+name or nothing, <span class="math inline">RX, RY</span> - registers.
+<span class="math inline">N2&#39; \in \{N2a, N2b\}</span> (a - above, b
+- below).</p>
+<ol type="1">
+<li><span class="math inline">N1</span> addj <span
+class="math inline">RX</span> – adds aj to the right end of the string
+in <span class="math inline">RX</span> (<span class="math inline">1 \le
+j \le k</span>)</li>
+<li><span class="math inline">N1</span> del <span
+class="math inline">RX</span> – deletes the first from left symbol of
+the string stored in <span class="math inline">RX</span></li>
+<li><span class="math inline">N1</span> clr <span
+class="math inline">RX</span> – changes the string in <span
+class="math inline">RX</span> into <span
+class="math inline">\varepsilon</span></li>
+<li><span class="math inline">N1</span> <span class="math inline">RX
+\leftarrow RY</span> – copies the string in <span
+class="math inline">RY</span> into <span
+class="math inline">RX</span></li>
+<li><span class="math inline">N1</span> jmp <span
+class="math inline">N2&#39;</span> – jumps to the closest instruction
+with line name <span class="math inline">N2</span> above if <span
+class="math inline">N2&#39; = N2a</span> or below if <span
+class="math inline">N2&#39; = N2b</span></li>
+<li><span class="math inline">N1</span> <span
+class="math inline">RX</span> jmpj <span
+class="math inline">N2&#39;</span> – jumps if the first symbol of the
+string in <span class="math inline">RX</span> is aj (<span
+class="math inline">1 \le j \le k</span>)</li>
+<li><span class="math inline">N1</span> continue – does nothing</li>
+</ol>
+<p>Instructions are executed in order in which they are written except
+jumps.</p>
+<p>A RAM program is a finite sequence of instructions such that each
+jump is executable and the last instruction is continue. A RAM program
+halts when it reaches the final continue instruction.</p>
+<p>A partial function <span class="math inline">f: N^n \to N</span> is
+computable on RAM if there exists a RAM program <span
+class="math inline">P</span> such that if it starts in the following
+configuration: for <span class="math inline">i = 1, \cdots, n</span>
+<span class="math inline">x_i</span> is in <span
+class="math inline">R_i</span> and all the other registers are empty
+(<span class="math inline">\varepsilon</span>) and:</p>
+<ul>
+<li><span class="math inline">P</span> halts <span
+class="math inline">\iff f(x_1, \cdots, x_n)</span> is defined</li>
+<li>if <span class="math inline">P</span> halts then there is <span
+class="math inline">f(x_1, \cdots, x_n)</span> in R1 and the other
+registers are empty</li>
+</ul>
+<p>Lemma: Instructions 3,4,5 can be eliminated from the set of
+instructions.</p>
 </body>
 </html>
