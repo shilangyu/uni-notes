@@ -932,7 +932,233 @@ class="header-section-number">1.8.2</span> list of NPC problems</h3>
 <li><span class="math inline">3\text{SAT}</span> (<span
 class="math inline">\text{SAT}</span> where each clause has exactly 3
 literals)</li>
+<li>Vertex Cover (VC), Clique, Independent Set (IS)</li>
+<li>Hamiltonian Cycle (HC)</li>
 </ol>
+<h4 data-number="1.8.2.1" id="vc-clique-is"><span
+class="header-section-number">1.8.2.1</span> VC, Clique, IS</h4>
+<ol type="1">
+<li><strong>VC</strong>: Instance: <span class="math inline">G = (V, E),
+k \in N</span>. Question: Does there exist a vertex cover <span
+class="math inline">W</span> of <span class="math inline">G</span> such
+that <span class="math inline">|W| \le k</span>?</li>
+<li><strong>Clique</strong>: Instance: <span class="math inline">G = (V,
+E), l \in N</span>. Question: Does there exist a clique <span
+class="math inline">W</span> in <span class="math inline">G</span> such
+that <span class="math inline">|W| \ge l</span>?</li>
+<li><strong>IS</strong>: Instance: <span class="math inline">G = (V, E),
+j \in N</span>. Question: Does there exist an independent set <span
+class="math inline">W</span> in <span class="math inline">G</span> such
+that <span class="math inline">|W| \ge j</span>?</li>
+</ol>
+<p>For <span class="math inline">W \subseteq V</span> the following
+conditions are equivalent:</p>
+<ul>
+<li><span class="math inline">W</span> is a vertex cover of <span
+class="math inline">G</span></li>
+<li><span class="math inline">V \setminus W</span> is an independent set
+in <span class="math inline">G</span></li>
+<li><span class="math inline">V \setminus W</span> is a clique in <span
+class="math inline">\bar G = (V, \binom{V}{2} \setminus E)</span></li>
+</ul>
+<p>So these 3 problems can be seen as different versions of the same
+problem. Any of these problems can be easily transformed to either of
+the others. For instance, to transform VC to Clique: let <span
+class="math inline">(G = (V, E), k)</span> be an instance of VC. The
+corresponding instance of Clique is <span class="math inline">(\bar G,
+|V| - k)</span> which can be obtained with a transformation in
+polynomial time. Thus if one of the problems is NPC, then other are
+too.</p>
+<h4 data-number="1.8.2.2" id="vc-is-npc"><span
+class="header-section-number">1.8.2.2</span> VC is NPC</h4>
+<ol type="1">
+<li>VC <span class="math inline">\in\text{NP}</span></li>
+</ol>
+<p>A nondeterministic algorithm guesses a subset of vertices and checks
+in polynomial time whether this subset is a VC and has correct
+cardinality.</p>
+<ol start="2" type="1">
+<li><span class="math inline">\text{3SAT} \alpha \text{VC}</span></li>
+</ol>
+<p>Let <span class="math inline">X = \{x_1, \cdots, x_n\}</span> and let
+<span class="math inline">F = c_1 \land \cdots \land c_m</span> be a
+<span class="math inline">\text{3SAT}</span> instance. We will construct
+a graph <span class="math inline">G = (V, E)</span> and a natural number
+<span class="math inline">k \le |V|</span> such that <span
+class="math inline">G</span> has a vertex cover of cardinality at most
+<span class="math inline">k \iff F</span> is satisfiable.</p>
+<p>Components: truth-setting components + satisfaction testing
+components + communication edges.</p>
+<p>For every variable <span class="math inline">x_i</span> there is a
+truth-setting component <span class="math inline">T_i = (V_i,
+E_i)</span> where <span class="math inline">V_i = \{x_i, \neg
+x_i\}</span> and <span class="math inline">E_i = \{\{x_i, \neg
+x_i\}\}</span>, so it is a <span class="math inline">K_2</span>. Note
+that any vertex cover will have to contain at least one of the two
+vertices of <span class="math inline">E_i</span> in order to cover this
+edge.</p>
+<p>For every clause <span class="math inline">c_j</span> in <span
+class="math inline">F</span> there is a satisfaction testing component
+<span class="math inline">S_j = (V_j&#39;, E_j&#39;)</span> where <span
+class="math inline">V_j&#39; = \{a_1(j), a_2(j), a_3(j)\}</span> and
+<span class="math inline">E_j&#39; = \{\{a_1(j), a_2(j)\},\{a_1(j),
+a_3(j)\},\{a_2(j), a_3(j)\}\}</span> so it is a <span
+class="math inline">K_3</span>. Note that any vertex cover will have to
+contain at least two vertices from <span
+class="math inline">V_j&#39;</span> to cover the edges of <span
+class="math inline">E_j&#39;</span>.</p>
+<p>For <span class="math inline">c_j</span> in <span
+class="math inline">F</span> let the three literals in <span
+class="math inline">c_j</span> be denoted by <span
+class="math inline">y_j, z_j, w_j</span>. So <span
+class="math inline">c_j = (y_j \lor z_j \lor w_j)</span>. The
+communication edges for <span class="math inline">S_j</span> are <span
+class="math inline">E_j&#39;&#39; = \{\{a_1(j), y_j\}, \{a_2(j), z_j\},
+\{a_3(j), w_j\}\}</span>. Out instance of VC is <span
+class="math inline">G = (V, E)</span> where <span class="math inline">V
+= \bigcup_{i=1}^nV_i \cup \bigcup_{j=1}^m V_j&#39;</span> and <span
+class="math inline">E = \bigcup_{i=1}^n E_i \cup \bigcup_{j=1}^m
+E_j&#39; \cup \bigcup_{j=1}^m E_j&#39;&#39;</span> and <span
+class="math inline">k = n + 2m</span>.</p>
+<p>One can see that <span class="math inline">(G, k)</span> can be
+constructed in polynomial time.</p>
+<p><span class="math inline">F</span> is satisfiable <span
+class="math inline">\iff</span> <span class="math inline">G</span> has a
+vertex cover of cardinality <span class="math inline">\le k</span>.</p>
+<p><span class="math inline">\impliedby</span> Suppose that <span
+class="math inline">W \subseteq V</span> is a vertex cover of <span
+class="math inline">G</span> and <span class="math inline">|W| \le
+k</span>. By our previous remarks <span class="math inline">W</span> has
+to contain at least one vertex from every <span
+class="math inline">T_i</span> and at least two vertices from every
+<span class="math inline">S_j</span>. Since it gives a total of at least
+<span class="math inline">n + 2m = k</span> vertices, <span
+class="math inline">|W| = k</span> and <span
+class="math inline">W</span> must contain exactly one vertex from every
+<span class="math inline">T_i</span> and exactly two vertices from every
+<span class="math inline">S_j</span>. We use the vertices of <span
+class="math inline">W</span> contained in <span
+class="math inline">T_i</span>s to define an assignment <span
+class="math inline">V: X \to \{0, 1\}</span>. We set <span
+class="math inline">v(x_i) = 1</span> if <span class="math inline">x_i
+\in W</span> and <span class="math inline">v(x_i) = 0</span> otherwise.
+We will show that <span class="math inline">v</span> satisfies every
+clause <span class="math inline">c_j</span> in <span
+class="math inline">F</span>. Consider three communication edges in
+<span class="math inline">E&#39;&#39;_j</span>. Only two of these edges
+can be covered by vertices from <span class="math inline">V_j&#39; \cap
+W</span>, so one of them must be covered by a vertex from <span
+class="math inline">V_i \cap W</span> for some <span
+class="math inline">i</span>. But that implies that the corresponding
+literal (<span class="math inline">x_i</span> or <span
+class="math inline">\neg x_i</span>) is true under assignment <span
+class="math inline">v</span>, so <span class="math inline">c_j</span> is
+satisfied by <span class="math inline">v</span>. Because it holds for
+every clause <span class="math inline">c_j</span> in <span
+class="math inline">F</span>, <span class="math inline">v</span> is a
+satisfying assignment for <span class="math inline">F</span>.</p>
+<p><span class="math inline">\implies</span> Suppose that <span
+class="math inline">v: X \to \{0, 1\}</span> is a satisfying assignment
+for <span class="math inline">F</span>. THe corresponding vertex cover
+<span class="math inline">W</span> will contain one vertex from every
+<span class="math inline">T_i</span> and two vertices from every <span
+class="math inline">S_j</span> (<span class="math inline">n + 2m = k \le
+k</span> vertices). The vertex from <span class="math inline">T_i</span>
+in <span class="math inline">W</span> is <span
+class="math inline">x_i</span> if <span class="math inline">v(x_i) =
+1</span> and <span class="math inline">\neg x_i</span> otherwise. This
+ensures that at least one of the three edges in every <span
+class="math inline">E&#39;&#39;_j</span> is covered, because <span
+class="math inline">v</span> satisfies every clause <span
+class="math inline">c_j</span>. Therefore we need to include in <span
+class="math inline">W</span> the ends in <span
+class="math inline">V&#39;_j</span> of the other two edges from <span
+class="math inline">E_j&#39;&#39;</span> (which may or may not be also
+covered by vertices from <span class="math inline">T_i</span>s. <span
+class="math inline">\square</span></p>
+<h4 data-number="1.8.2.3" id="hc-is-npc"><span
+class="header-section-number">1.8.2.3</span> HC is NPC</h4>
+<ol type="1">
+<li>HC <span class="math inline">\in \text{NP}</span></li>
+</ol>
+<p>A non-deterministic algorithm guesses a permutation of the vertices
+and checks in polynomial time whether it is a hamiltonian cycle.</p>
+<ol start="2" type="1">
+<li>VC <span class="math inline">\alpha</span> HC</li>
+</ol>
+<p>Let <span class="math inline">G = (V, E)</span> and <span
+class="math inline">k \in N</span> be an instance of VC. we will
+construct a graph <span class="math inline">G&#39;=(V&#39;,
+E&#39;)</span> such that <span class="math inline">G</span> contains a
+vertex cover of cardinality <span class="math inline">\le k</span> <span
+class="math inline">\iff</span> <span class="math inline">G&#39;</span>
+has a hamiltonian cycle.</p>
+<p>Components: selector vertices + cover testing components +
+communication edges</p>
+<p><span class="math inline">G&#39;</span> will contain <span
+class="math inline">k</span> selector vertices <span
+class="math inline">S = \{a_1, \cdots, a_k\}</span>.</p>
+<p>For every edge <span class="math inline">e = \{u, v\} \in E</span>
+there is a cover testing component <span class="math inline">C_e =
+(V_e&#39;, E_e&#39;)</span> where <span class="math inline">V_e&#39; =
+\{(u, e, i), (v, e, i) : 1 \le i \le 6\}</span> and <span
+class="math inline">E&#39;_e = \{\{(u, e, i), (u, e, i+1)\}, \{(v, e,
+i), (v, e, i+1)\}: 1 \le i \le 5\} \cup \{\{(u, e, 3), (v, e, 1)\},
+\{(v, e, 3), (u, e, 1)\}, \{(u, e, 6), (v, e, 4)\}, \{(v, e, 6), (u, e,
+4)\}\}</span>.</p>
+<p>In the completed construction only vertices of this component that
+will be incident with communication edges are <span
+class="math inline">(u, e, 1), (u, e, 6), (v, e, 1), (v, e, 6)</span>.
+Any Hamiltonian cycle in <span class="math inline">G&#39;</span> will
+have to traverse this cover testing component in exactly one of three
+configuration. For every vertex <span class="math inline">v \in V</span>
+let the edges incident with <span class="math inline">v</span> be
+ordered (arbitrarily) as <span class="math inline">e_{v(1)}, e_{v(2)},
+\cdots, e_{v(d(v))}</span> where <span class="math inline">d(v) =</span>
+degree of <span class="math inline">v</span>. All the cover testing
+components corresponding to these edges are joined with the following
+communication edges <span class="math inline">E_v&#39; = \{\{(v,
+e_{v(i)}, 6), (v, e_{v(i+1)}, 1)\}: 1 \le i &lt; d(v)\}</span>. The
+final communication edges join the ends of these paths to every one of
+the selector vertices. These are the following edges <span
+class="math inline">E&#39;&#39; = \{\{a_i, (v, e_{v(1)}, 1)\}, \{a_i,
+(v, e_{d(v)}, 6)\}: 1 \le i \le k, v \in V\}</span>. Our instance of HC
+is <span class="math inline">G&#39;=(V&#39;, E&#39;)</span> where <span
+class="math inline">V&#39; = S \cup \bigcup_{e \in E} V_e&#39;</span>
+and <span class="math inline">E&#39; = \bigcup_{e \in E} E_e&#39; \cup
+\bigcup_{v \in V} E_v&#39; \cup E&#39;&#39;</span>. One can see that we
+can construct <span class="math inline">G&#39;</span> from <span
+class="math inline">G</span> and <span class="math inline">k</span> in
+polynomial time.</p>
+<p><span class="math inline">G</span> has a vertex cover of cardinality
+<span class="math inline">\le k</span> <span
+class="math inline">\iff</span> <span class="math inline">G&#39;</span>
+has a Hamiltonian cycle.</p>
+<p><span class="math inline">\impliedby</span> Suppose <span
+class="math inline">v_1, v_2, \cdots, v_n, v_1</span> where <span
+class="math inline">n = |V&#39;|</span> is a Hamiltonian cycle in <span
+class="math inline">G&#39;</span>. Consider any minimal subpath of the
+cycle that begins and ends in a vertex from <span
+class="math inline">S</span>. Because of the previously described
+restrictions on the way in which the Hamiltonian cycle can pass through
+a cover testing component, this fragment of our cycle must pass through
+a set of cover testing components corresponding to exactly these edges
+from <span class="math inline">E</span> which are incident with some one
+particular vertex <span class="math inline">v \in V</span>. Each of the
+cover testing components is traversed in one of the three ways and no
+vertex from any other cover testing component is visited. Thus the <span
+class="math inline">k</span> selector vertices divide our Hamiltonian
+cycle into <span class="math inline">k</span> paths, each path
+corresponding to a different vertex <span class="math inline">v \in
+V</span>. Since the Hamiltonian cycle must visit all vertices from all
+cover testing components and since vertices from the cover testing
+component corresponding to and edge <span class="math inline">e \in
+E</span> can be traversed only by a path corresponding to one of the
+ends of <span class="math inline">e</span>, every edge <span
+class="math inline">e \in E</span> must have at least one end among
+those selected vertices from <span class="math inline">V</span>.
+Therefore this set of <span class="math inline">k</span> vertices forms
+a vertex cover of <span class="math inline">G</span>.</p>
 <h2 data-number="1.9" id="random-access-machine-ram"><span
 class="header-section-number">1.9</span> random access machine
 (RAM)</h2>
