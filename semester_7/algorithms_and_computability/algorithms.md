@@ -218,6 +218,70 @@ So $f(w) = F_1 \land F_2 \land F_3 \land F_4 \land F_5 \land F_6 \land F_7$. The
 
 1. $\text{SAT}$
 2. $3\text{SAT}$ ($\text{SAT}$ where each clause has exactly 3 literals)
+3. Vertex Cover (VC), Clique, Independent Set (IS)
+4. Hamiltonian Cycle (HC)
+
+#### VC, Clique, IS
+
+1. **VC**: Instance: $G = (V, E), k \in N$. Question: Does there exist a vertex cover $W$ of $G$ such that $|W| \le k$?
+2. **Clique**: Instance: $G = (V, E), l \in N$. Question: Does there exist a clique $W$ in $G$ such that $|W| \ge l$?
+3. **IS**: Instance: $G = (V, E), j \in N$. Question: Does there exist an independent set $W$ in $G$ such that $|W| \ge j$?
+
+For $W \subseteq V$ the following conditions are equivalent:
+
+- $W$ is a vertex cover of $G$
+- $V \setminus W$ is an independent set in $G$
+- $V \setminus W$ is a clique in $\bar G = (V, \binom{V}{2} \setminus E)$
+
+So these 3 problems can be seen as different versions of the same problem. Any of these problems can be easily transformed to either of the others. For instance, to transform VC to Clique: let $(G = (V, E), k)$ be an instance of VC. The corresponding instance of Clique is $(\bar G, |V| - k)$ which can be obtained with a transformation in polynomial time. Thus if one of the problems is NPC, then other are too.
+
+#### VC is NPC
+
+1. VC $\in\text{NP}$
+
+A nondeterministic algorithm guesses a subset of vertices and checks in polynomial time whether this subset is a VC and has correct cardinality.
+
+2. $\text{3SAT} \alpha \text{VC}$
+
+Let $X = \{x_1, \cdots, x_n\}$ and let $F = c_1 \land \cdots \land c_m$ be a $\text{3SAT}$ instance. We will construct a graph $G = (V, E)$ and a natural number $k \le |V|$ such that $G$ has a vertex cover of cardinality at most $k \iff F$ is satisfiable.
+
+Components: truth-setting components + satisfaction testing components + communication edges.
+
+For every variable $x_i$ there is a truth-setting component $T_i = (V_i, E_i)$ where $V_i = \{x_i, \neg x_i\}$ and $E_i = \{\{x_i, \neg x_i\}\}$, so it is a $K_2$. Note that any vertex cover will have to contain at least one of the two vertices of $E_i$ in order to cover this edge.
+
+For every clause $c_j$ in $F$ there is a satisfaction testing component $S_j = (V_j', E_j')$ where $V_j' = \{a_1(j), a_2(j), a_3(j)\}$ and $E_j' = \{\{a_1(j), a_2(j)\},\{a_1(j), a_3(j)\},\{a_2(j), a_3(j)\}\}$ so it is a $K_3$. Note that any vertex cover will have to contain at least two vertices from $V_j'$ to cover the edges of $E_j'$.
+
+For $c_j$ in $F$ let the three literals in $c_j$ be denoted by $y_j, z_j, w_j$. So $c_j = (y_j \lor z_j \lor w_j)$. The communication edges for $S_j$ are $E_j'' = \{\{a_1(j), y_j\}, \{a_2(j), z_j\}, \{a_3(j), w_j\}\}$. Out instance of VC is $G = (V, E)$ where $V = \bigcup_{i=1}^nV_i \cup \bigcup_{j=1}^m V_j'$ and $E = \bigcup_{i=1}^n E_i \cup \bigcup_{j=1}^m E_j' \cup \bigcup_{j=1}^m E_j''$ and $k = n + 2m$.
+
+One can see that $(G, k)$ can be constructed in polynomial time.
+
+$F$ is satisfiable $\iff$ $G$ has a vertex cover of cardinality $\le k$.
+
+$\impliedby$ Suppose that $W \subseteq V$ is a vertex cover of $G$ and $|W| \le k$. By our previous remarks $W$ has to contain at least one vertex from every $T_i$ and at least two vertices from every $S_j$. Since it gives a total of at least $n + 2m = k$ vertices, $|W| = k$ and $W$ must contain exactly one vertex from every $T_i$ and exactly two vertices from every $S_j$. We use the vertices of $W$ contained in $T_i$s to define an assignment $V: X \to \{0, 1\}$. We set $v(x_i) = 1$ if $x_i \in W$ and $v(x_i) = 0$ otherwise. We will show that $v$ satisfies every clause $c_j$ in $F$. Consider three communication edges in $E''_j$. Only two of these edges can be covered by vertices from $V_j' \cap W$, so one of them must be covered by a vertex from $V_i \cap W$ for some $i$. But that implies that the corresponding literal ($x_i$ or $\neg x_i$) is true under assignment $v$, so $c_j$ is satisfied by $v$. Because it holds for every clause $c_j$ in $F$, $v$ is a satisfying assignment for $F$.
+
+$\implies$ Suppose that $v: X \to \{0, 1\}$ is a satisfying assignment for $F$. THe corresponding vertex cover $W$ will contain one vertex from every $T_i$ and two vertices from every $S_j$ ($n + 2m = k \le k$ vertices). The vertex from $T_i$ in $W$ is $x_i$ if $v(x_i) = 1$ and $\neg x_i$ otherwise. This ensures that at least one of the three edges in every $E''_j$ is covered, because $v$ satisfies every clause $c_j$. Therefore we need to include in $W$ the ends in $V'_j$ of the other two edges from $E_j''$ (which may or may not be also covered by vertices from $T_i$s. $\square$
+
+#### HC is NPC
+
+1. HC $\in \text{NP}$
+
+A non-deterministic algorithm guesses a permutation of the vertices and checks in polynomial time whether it is a hamiltonian cycle.
+
+2. VC $\alpha$ HC
+
+Let $G = (V, E)$ and $k \in N$ be an instance of VC. we will construct a graph $G'=(V', E')$ such that $G$ contains a vertex cover of cardinality $\le k$ $\iff$ $G'$ has a hamiltonian cycle.
+
+Components: selector vertices + cover testing components + communication edges
+
+$G'$ will contain $k$ selector vertices $S = \{a_1, \cdots, a_k\}$.
+
+For every edge $e = \{u, v\} \in E$ there is a cover testing component $C_e = (V_e', E_e')$ where $V_e' = \{(u, e, i), (v, e, i) : 1 \le i \le 6\}$ and $E'_e = \{\{(u, e, i), (u, e, i+1)\}, \{(v, e, i), (v, e, i+1)\}: 1 \le i \le 5\} \cup \{\{(u, e, 3), (v, e, 1)\}, \{(v, e, 3), (u, e, 1)\}, \{(u, e, 6), (v, e, 4)\}, \{(v, e, 6), (u, e, 4)\}\}$.
+
+In the completed construction only vertices of this component that will be incident with communication edges are $(u, e, 1), (u, e, 6), (v, e, 1), (v, e, 6)$. Any Hamiltonian cycle in $G'$ will have to traverse this cover testing component in exactly one of three configuration. For every vertex $v \in V$ let the edges incident with $v$ be ordered (arbitrarily) as $e_{v(1)}, e_{v(2)}, \cdots, e_{v(d(v))}$ where $d(v) =$ degree of $v$. All the cover testing components corresponding to these edges are joined with the following communication edges $E_v' = \{\{(v, e_{v(i)}, 6), (v, e_{v(i+1)}, 1)\}: 1 \le i < d(v)\}$. The final communication edges join the ends of these paths to every one of the selector vertices. These are the following edges $E'' = \{\{a_i, (v, e_{v(1)}, 1)\}, \{a_i, (v, e_{d(v)}, 6)\}: 1 \le i \le k, v \in V\}$. Our instance of HC is $G'=(V', E')$ where $V' = S \cup \bigcup_{e \in E} V_e'$ and $E' = \bigcup_{e \in E} E_e' \cup \bigcup_{v \in V} E_v' \cup E''$. One can see that we can construct $G'$ from $G$ and $k$ in polynomial time.
+
+$G$ has a vertex cover of cardinality $\le k$ $\iff$ $G'$ has a Hamiltonian cycle.
+
+$\impliedby$ Suppose $v_1, v_2, \cdots, v_n, v_1$ where $n = |V'|$ is a Hamiltonian cycle in $G'$. Consider any minimal subpath of the cycle that begins and ends in a vertex from $S$. Because of the previously described restrictions on the way in which the Hamiltonian cycle can pass through a cover testing component, this fragment of our cycle must pass through a set of cover testing components corresponding to exactly these edges from $E$ which are incident with some one particular vertex $v \in V$. Each of the cover testing components is traversed in one of the three ways and no vertex from any other cover testing component is visited. Thus the $k$ selector vertices divide our Hamiltonian cycle into $k$ paths, each path corresponding to a different vertex $v \in V$. Since the Hamiltonian cycle must visit all vertices from all cover testing components and since vertices from the cover testing component corresponding to and edge $e \in E$ can be traversed only by a path corresponding to one of the ends of $e$, every edge $e \in E$ must have at least one end among those selected vertices from $V$. Therefore this set of $k$ vertices forms a vertex cover of $G$.
 
 ## random access machine (RAM)
 
