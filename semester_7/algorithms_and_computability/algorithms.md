@@ -178,7 +178,7 @@ If $\Pi \in NP$ then $\Pi$ can be solved on DTM in exponential time. Question: i
 
 Logic formula in CNF = a conjunction of clauses, each clause is a disjunction of literals, a literal is a variable or negated variable.
 
-Example: $F = (x_1 \lor \neg x_2 \lor x_3) \;and (\neg x_1 \lor x_2) \land (\neg x_2 \lor x_3 \lor \neg x_4)$
+Example: $F = (x_1 \lor \neg x_2 \lor x_3) \land (\neg x_1 \lor x_2) \land (\neg x_2 \lor x_3 \lor \neg x_4)$
 
 $X = \{x_1, \cdots, x_n\}$ a set of variables, $F$ - a formula in CNF with variables from $X$. An assignment is $v: X \to \{0, 1\}$. There are $2^n$ assignments.
 
