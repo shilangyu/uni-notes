@@ -82,6 +82,8 @@ The set $S$ is connected iff $S$ cannot be written as a union of two nonempty di
 
 If $f: D \to R$ is a continuous function from a connected set $D$ onto a set $R$, then $R$ is connected.
 
+$[0; 1]$ is compact and connected.
+
 ## fixed point
 
 If $f: X \to X$ a point $x_0 \in X$ such that $f(x_0) = x_0$ is called a fixed point of $f$
