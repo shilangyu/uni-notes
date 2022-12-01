@@ -2,7 +2,7 @@
 
 Working in real euclidean space:
 
-- $\mathbb R^n = \{(x_1, \cdots, x_n) : x_1 \in \mathbb R\}$
+- $\mathbb R^n = \{(x_1, \cdots, x_n) : x_i \in \mathbb R\}$
 - $||x - y|| = \sqrt{(x_1 - y_1)^2 + \cdots + (x_n - y_n)^2}$
 - $D^n(x, r) = \{y \in \mathbb R^n : ||x - y|| < r\}$
 
@@ -15,7 +15,7 @@ Let $A \subseteq \mathbb R^n$
 3. $x$ is a limit point of $A$ if every ball $B$ around $x$ contains point of $A$: $\forall_{r > 0} B^n(x, r) \cap A \neq \emptyset$
 4. $x$ is a frontier point of $A$ if every ball $B$ around $x$ contains both points of $A$ and points of $\mathbb R^n \setminus A$: $\forall_{r > 0} (B^n(x, r) \cap A \neq \emptyset \land B^n(x, r) \cap (\mathbb R^n \setminus A) \neq \emptyset)$
 
-A point is always one of the 1., 2., or 3., and always only one of them.
+A point is always one of the 1., 2., or 4., and always only one of them.
 
 ## set properties
 

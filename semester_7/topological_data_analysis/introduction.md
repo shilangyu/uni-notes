@@ -20,13 +20,13 @@ By introducing a proximity parameter (say $r > 0$), to any data set (finite metr
 
 ## topological entropy
 
-Let $P_1 = (b_i, d_i)$ for $i = 1, \cdots, n$.
+Let $P_i = (b_i, d_i)$ for $i = 1, \cdots, n$.
 
 Let $p_i = \frac{d_i - b_i}{\sum_{i=1}^n (d_i - b_i)}$
 
 Then entropy is defined as $E = - \sum_{i=1}^n p_i \ln p_i$
 
-The vector of entropies forms a topological descriptor of the point cloud TODO.
+The vector of entropies forms a topological descriptor of the point cloud.
 
 ## the mapper algorithm
 

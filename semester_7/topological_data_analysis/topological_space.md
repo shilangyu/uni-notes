@@ -23,3 +23,25 @@ A topological space is Hausdorff if $\forall_{p,q \in X, p \ne q}\exist_{U, V} p
 ## continuity
 
 Let $f: X \to Y$ be a continuous bijection between subsets of Euclidean space. If $X$ then $f$ is a homeomorphism.
+
+## homotopy
+
+Let $f,g : X \to Y$ be continuous maps. By a homotopy from $f$ to $g$ we mean a continuous map $H : X \times [0; 1] \to Y$ such that $H(x, 0) = f(x)$ and $H(x, 1) = g(x)$.
+
+When $f$ and $g$ are homotopic we write $f \simeq g$.
+
+### homotopy equivalence
+
+A map $f: X \to Y$ is a homotopy equivalence if there exists a map $g: Y \to X$ such that $f \circ g \simeq \text{id}_Y$ and $g \circ f \simeq \text{id}_X$. Then the two spaces are called homotopy equivalent.
+
+## fundamental group
+
+Given $(X, x_0)$ the fundamental group is
+
+$$
+\pi_1(X, x_0) = [(S^1, 1), (X, x_0)]
+$$
+
+## quotient topology
+
+Let $\sim$ be an equivalence relation on $X$. We define the quotient topology $X / \sim$ to consist of all sets $U$ in $X / \sim$ for which $\pi^{-1}(U)$ is open in $X$ where $\pi : X \to X/\sim$ is the quotient map given by $x \mapsto [x]_\sim$

@@ -220,6 +220,33 @@ So $f(w) = F_1 \land F_2 \land F_3 \land F_4 \land F_5 \land F_6 \land F_7$. The
 2. $3\text{SAT}$ ($\text{SAT}$ where each clause has exactly 3 literals)
 3. Vertex Cover (VC), Clique, Independent Set (IS)
 4. Hamiltonian Cycle (HC)
+5. Partition
+6. Traveling Salesman Problem (TSP)
+7. Dominating Set (DS)
+
+#### DS
+
+A dominating set in a graph $G$ is a set $W \subseteq V$ such that $\forall_{v \in V \setminus W}$ $v$ has at least one neighbor in $W$.
+
+Instance: $G=(V, E), k \in N$
+
+Question: Does there exist a dominating set $W$ in $G$ such that $|W| \le k$?
+
+#### TSP
+
+$K_n$ - complete graph, $w: E(K_n) \to N$ - a weight function, $b \in N$
+
+Instance: $K_n, w, b$
+
+Question: Does there exist a Hamiltonian cycle $v_1v_2\cdots v_nv_1$ in $K_n$ such that $\sum_{i=1}^{n-1}w(v_iv_{i+1}) + w(v_nv_1) \le b$.
+
+#### Partition
+
+$X = \{x_1, \cdots, x_n\}$ $f: X \to N$ - a weight function.
+
+Instance: $X, f$
+
+Question: Does there exist a set $X' \subseteq X$ such that $\sum_{x_i \in X'}f(x_i) = \sum_{x_i \in X \setminus X'}f(x_i)$
 
 #### VC, Clique, IS
 
@@ -283,6 +310,44 @@ $G$ has a vertex cover of cardinality $\le k$ $\iff$ $G'$ has a Hamiltonian cycl
 
 $\impliedby$ Suppose $v_1, v_2, \cdots, v_n, v_1$ where $n = |V'|$ is a Hamiltonian cycle in $G'$. Consider any minimal subpath of the cycle that begins and ends in a vertex from $S$. Because of the previously described restrictions on the way in which the Hamiltonian cycle can pass through a cover testing component, this fragment of our cycle must pass through a set of cover testing components corresponding to exactly these edges from $E$ which are incident with some one particular vertex $v \in V$. Each of the cover testing components is traversed in one of the three ways and no vertex from any other cover testing component is visited. Thus the $k$ selector vertices divide our Hamiltonian cycle into $k$ paths, each path corresponding to a different vertex $v \in V$. Since the Hamiltonian cycle must visit all vertices from all cover testing components and since vertices from the cover testing component corresponding to and edge $e \in E$ can be traversed only by a path corresponding to one of the ends of $e$, every edge $e \in E$ must have at least one end among those selected vertices from $V$. Therefore this set of $k$ vertices forms a vertex cover of $G$.
 
+$\implies$ Suppose $W \subseteq V$ is a vertex cover of $G$ and $|W| \le k$. We can assume that $|W| = k$ (otherwise we can just add some vertices to $W$). We choose the edges of a Hamiltonian cycle in $G'$. From the cover testing components corresponding to the edge $\{u, v\} \in E$ we choose the edges specified by $(a), (b)$, or $(c)$ depending on whether $\{u, v\} \cap W$ equals $\{u\}$, $\{u, v\}$, or $\{v\}$ respectively, one of those must occur because $W$ is a vertex cover of $G$. Next we choose the edges in $E_{v_i}'$ for $1 \le i \le k$. Finally we choose the edges $\{\{a_i, (v_i, e_{v_i(1)}, 1)\}: 1 \le i \le k\}$, $\{\{a_{i+1}, (v_i, e_{v_i(d(v_i))}, 6)\}: 1 \le i < k\}$, and $\{a_1, (v_k, e_{v_k(d(v_k))}, 6)\}$. The subgraph of $G'$ induced by these edges is a hamiltonian cycle.
+
+#### TSP is NPC
+
+1. TSP $\in NP$
+
+A non-deterministic algorithm guesses a permutation of vertices and checks in polynomial time if the sum weights of the corresponding Hamiltonian cycle is $\le b$.
+
+2. restriction: if $w(e) \in \{1, n+1\}$ for every $e \in E$ and $b = n$ then we obtain HC problem
+
+#### DS is NPC
+
+1. DS $\in NP$
+
+A non-deterministic algorithm guesses a subset of vertices and checks in polynomial time whether this subset is a dominating set and has cardinality $\le k$.
+
+2. VC $\alpha$ DS
+
+Let $G = (V, E), k$ be an instance of VC. We will construct an instance $G' = (V', E'), k'$ of DS such that $G$ has a vertex cover of cardinality $\le k$ $\iff G'$ has a dominating set of cardinality $\le k'$. For every edge $uv \in E$ let $w_{uv}$ be a new vertex. Let $v' = v \cup \{w_{uv} : uv \in E\}$, $E' = E \cup \{uw_{uv}, vw_{uv} : uv \in E\}$ and $k' = k$. $G'$ and $k'$ can be constructed from $G, k$ in polynomial time.
+
+$G$ has a vertex cover of cardinality $\le k$ $\iff$ $G'$ has a dominating set of cardinality $\le k'$
+
+$\implies$ Suppose $W \subseteq V$ is a vertex cover of $G$ and $|W| \le k$. $W$ is a dominating set in $G'$.
+
+$\impliedby$ Suppose $W' \subseteq V'$ is a dominating set of $G'$ and $|W'| \le k' = k$. We run the following procedure:
+
+1. $W \leftarrow W'$
+2. for every $uv \in E$
+3. if $w_{uv} \in W'$ then $W \leftarrow W \setminus \{w_{uv}\} \cup \{u\}$
+
+Then $W \subseteq V$ is a vertex cover of $G$ and $|W| \le |W'| \le k$
+
+### methods for proving NPC
+
+1. restriction - we show that our problem contains a known NPC problem as a special case (TSP problem)
+2. local replacement - the transformation is non-trivial, but relatively not complicated (DS problem)
+3. component design - as done in proofs for VC, HC
+
 ## random access machine (RAM)
 
 $\Sigma = \{a_1, \cdots, a_k\}$ - a language. RAM has an infinite set of registers $R1, R2, \cdots$. Each register stores a string from $\Sigma^*$. There is an infinite set of line names $N1, N2, \cdots$. There are 7 types of instructions: $N1$ - a line name or nothing, $RX, RY$ - registers. $N2' \in \{N2a, N2b\}$ (a - above, b - below).
@@ -305,3 +370,41 @@ A partial function $f: N^n \to N$ is computable on RAM if there exists a RAM pro
 - if $P$ halts then there is $f(x_1, \cdots, x_n)$ in R1 and the other registers are empty
 
 Lemma: Instructions 3,4,5 can be eliminated from the set of instructions.
+
+### every RAM program can be simulated on a TM
+
+Suppose RAM program $P$ uses only the registers $R1, \cdots, Rm$. Before the execution of $P$, $Ri$ contains string $r_i$ for all $i$. $P$ consists only of instructions of type 1, 2, 6, or 7. We assume $P$ contains only one instruction of type 7. Construction of a TM $M$ simulating $P$:
+
+Let $n$ be the number of instructions of $P$. $M$ consists of $n$ blocks - each block corresponds to one instruction of $P$. Blocks are joined in a way that the instructions of $P$ will be executed in the same order as in $P$. On the input $M$ has $r_1, r_2, \cdots, r_m$ on the tape (commas are in the string).
+
+1. $N$ addi $Rj$ - $M$ finds the end of the string stored in $Rj$ in the tape ($M$ finds j-th comma) $M$ writes $a_i$ on the tape and moves all symbols on the right of the head one cell to the right.
+2. $N$ del $Rj$ - $M$ finds the string stored in $Rj$ on the tape ($M$ finds (j-1)-th comma). $M$ writes $B$ (blank symbol) to the cell observed by the head and moves all symbols on the right of the head one cell to the left.
+3. $N$ $Rj$ jmpi $N'$ - $M$ finds the string stored in $Rj$ ($M$ finds (j-1)-th comma) checks the first symbol of this string and goes to proper block
+4. $N$ continue - $M$ clears the tape except the string stored in $R1$ (because it is the output) (before th first comma) and halts.
+
+### The computation of any TM M can be simulated on RAM
+
+Let $M = (Q, \Sigma, \Gamma, \delta, B, q_1, F)$. Let $Q = \{q_1, \cdots, q_s\}$. Let $m = |\Gamma| + 1$. We encode the symbols from $\Gamma$ with $0, 1, \cdots, m-1$ in a way that $B$ is encoded with $0$ and $m-1$ is the code of a special end of tape symbol. We construct a RAM program $P$ that simulates the computation of $M$. $P$ will use three registers $R\text{-}1$ (string before the head), $R0$ (character under the head), $R1$ (string after the head). $b_i$ is the code of the symbol in $i$-th cell.
+
+- $R\text{-}1$ contains $l = b_{k-1} + b_{k-2}m + \cdots + b_{-1}m^k$
+- $R0$ contains $s = b_k$
+- $R1$ contains $r = b_{k+1} + b_{k+2}m + \cdots$ (well defined because B is encoded with 0)
+
+P:
+
+[read input string and initialize the registers]\
+N1 [moves of $M$ from the state $q_1$]\
+N2 [moves of $M$ from the state $q_2$]\
+$\vdots$\
+Ns [moves of $M$ from the state $q_s$]
+
+Each $Nj$:
+
+```
+R0 jmp0 Nj,0b
+R0 jmp1 Nj,1b
+...
+R0 jmpm-2 Nj,m-2b
+```
+
+I give up
