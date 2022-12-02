@@ -934,9 +934,42 @@ class="math inline">\text{SAT}</span> where each clause has exactly 3
 literals)</li>
 <li>Vertex Cover (VC), Clique, Independent Set (IS)</li>
 <li>Hamiltonian Cycle (HC)</li>
+<li>Partition</li>
+<li>Traveling Salesman Problem (TSP)</li>
+<li>Dominating Set (DS)</li>
 </ol>
-<h4 data-number="1.8.2.1" id="vc-clique-is"><span
-class="header-section-number">1.8.2.1</span> VC, Clique, IS</h4>
+<h4 data-number="1.8.2.1" id="ds"><span
+class="header-section-number">1.8.2.1</span> DS</h4>
+<p>A dominating set in a graph <span class="math inline">G</span> is a
+set <span class="math inline">W \subseteq V</span> such that <span
+class="math inline">\forall_{v \in V \setminus W}</span> <span
+class="math inline">v</span> has at least one neighbor in <span
+class="math inline">W</span>.</p>
+<p>Instance: <span class="math inline">G=(V, E), k \in N</span></p>
+<p>Question: Does there exist a dominating set <span
+class="math inline">W</span> in <span class="math inline">G</span> such
+that <span class="math inline">|W| \le k</span>?</p>
+<h4 data-number="1.8.2.2" id="tsp"><span
+class="header-section-number">1.8.2.2</span> TSP</h4>
+<p><span class="math inline">K_n</span> - complete graph, <span
+class="math inline">w: E(K_n) \to N</span> - a weight function, <span
+class="math inline">b \in N</span></p>
+<p>Instance: <span class="math inline">K_n, w, b</span></p>
+<p>Question: Does there exist a Hamiltonian cycle <span
+class="math inline">v_1v_2\cdots v_nv_1</span> in <span
+class="math inline">K_n</span> such that <span
+class="math inline">\sum_{i=1}^{n-1}w(v_iv_{i+1}) + w(v_nv_1) \le
+b</span>.</p>
+<h4 data-number="1.8.2.3" id="partition"><span
+class="header-section-number">1.8.2.3</span> Partition</h4>
+<p><span class="math inline">X = \{x_1, \cdots, x_n\}</span> <span
+class="math inline">f: X \to N</span> - a weight function.</p>
+<p>Instance: <span class="math inline">X, f</span></p>
+<p>Question: Does there exist a set <span class="math inline">X&#39;
+\subseteq X</span> such that <span class="math inline">\sum_{x_i \in
+X&#39;}f(x_i) = \sum_{x_i \in X \setminus X&#39;}f(x_i)</span></p>
+<h4 data-number="1.8.2.4" id="vc-clique-is"><span
+class="header-section-number">1.8.2.4</span> VC, Clique, IS</h4>
 <ol type="1">
 <li><strong>VC</strong>: Instance: <span class="math inline">G = (V, E),
 k \in N</span>. Question: Does there exist a vertex cover <span
@@ -969,8 +1002,8 @@ corresponding instance of Clique is <span class="math inline">(\bar G,
 |V| - k)</span> which can be obtained with a transformation in
 polynomial time. Thus if one of the problems is NPC, then other are
 too.</p>
-<h4 data-number="1.8.2.2" id="vc-is-npc"><span
-class="header-section-number">1.8.2.2</span> VC is NPC</h4>
+<h4 data-number="1.8.2.5" id="vc-is-npc"><span
+class="header-section-number">1.8.2.5</span> VC is NPC</h4>
 <ol type="1">
 <li>VC <span class="math inline">\in\text{NP}</span></li>
 </ol>
@@ -1076,8 +1109,8 @@ class="math inline">V&#39;_j</span> of the other two edges from <span
 class="math inline">E_j&#39;&#39;</span> (which may or may not be also
 covered by vertices from <span class="math inline">T_i</span>s. <span
 class="math inline">\square</span></p>
-<h4 data-number="1.8.2.3" id="hc-is-npc"><span
-class="header-section-number">1.8.2.3</span> HC is NPC</h4>
+<h4 data-number="1.8.2.6" id="hc-is-npc"><span
+class="header-section-number">1.8.2.6</span> HC is NPC</h4>
 <ol type="1">
 <li>HC <span class="math inline">\in \text{NP}</span></li>
 </ol>
@@ -1159,6 +1192,103 @@ class="math inline">e \in E</span> must have at least one end among
 those selected vertices from <span class="math inline">V</span>.
 Therefore this set of <span class="math inline">k</span> vertices forms
 a vertex cover of <span class="math inline">G</span>.</p>
+<p><span class="math inline">\implies</span> Suppose <span
+class="math inline">W \subseteq V</span> is a vertex cover of <span
+class="math inline">G</span> and <span class="math inline">|W| \le
+k</span>. We can assume that <span class="math inline">|W| = k</span>
+(otherwise we can just add some vertices to <span
+class="math inline">W</span>). We choose the edges of a Hamiltonian
+cycle in <span class="math inline">G&#39;</span>. From the cover testing
+components corresponding to the edge <span class="math inline">\{u, v\}
+\in E</span> we choose the edges specified by <span
+class="math inline">(a), (b)</span>, or <span
+class="math inline">(c)</span> depending on whether <span
+class="math inline">\{u, v\} \cap W</span> equals <span
+class="math inline">\{u\}</span>, <span class="math inline">\{u,
+v\}</span>, or <span class="math inline">\{v\}</span> respectively, one
+of those must occur because <span class="math inline">W</span> is a
+vertex cover of <span class="math inline">G</span>. Next we choose the
+edges in <span class="math inline">E_{v_i}&#39;</span> for <span
+class="math inline">1 \le i \le k</span>. Finally we choose the edges
+<span class="math inline">\{\{a_i, (v_i, e_{v_i(1)}, 1)\}: 1 \le i \le
+k\}</span>, <span class="math inline">\{\{a_{i+1}, (v_i,
+e_{v_i(d(v_i))}, 6)\}: 1 \le i &lt; k\}</span>, and <span
+class="math inline">\{a_1, (v_k, e_{v_k(d(v_k))}, 6)\}</span>. The
+subgraph of <span class="math inline">G&#39;</span> induced by these
+edges is a hamiltonian cycle.</p>
+<h4 data-number="1.8.2.7" id="tsp-is-npc"><span
+class="header-section-number">1.8.2.7</span> TSP is NPC</h4>
+<ol type="1">
+<li>TSP <span class="math inline">\in NP</span></li>
+</ol>
+<p>A non-deterministic algorithm guesses a permutation of vertices and
+checks in polynomial time if the sum weights of the corresponding
+Hamiltonian cycle is <span class="math inline">\le b</span>.</p>
+<ol start="2" type="1">
+<li>restriction: if <span class="math inline">w(e) \in \{1, n+1\}</span>
+for every <span class="math inline">e \in E</span> and <span
+class="math inline">b = n</span> then we obtain HC problem</li>
+</ol>
+<h4 data-number="1.8.2.8" id="ds-is-npc"><span
+class="header-section-number">1.8.2.8</span> DS is NPC</h4>
+<ol type="1">
+<li>DS <span class="math inline">\in NP</span></li>
+</ol>
+<p>A non-deterministic algorithm guesses a subset of vertices and checks
+in polynomial time whether this subset is a dominating set and has
+cardinality <span class="math inline">\le k</span>.</p>
+<ol start="2" type="1">
+<li>VC <span class="math inline">\alpha</span> DS</li>
+</ol>
+<p>Let <span class="math inline">G = (V, E), k</span> be an instance of
+VC. We will construct an instance <span class="math inline">G&#39; =
+(V&#39;, E&#39;), k&#39;</span> of DS such that <span
+class="math inline">G</span> has a vertex cover of cardinality <span
+class="math inline">\le k</span> <span class="math inline">\iff
+G&#39;</span> has a dominating set of cardinality <span
+class="math inline">\le k&#39;</span>. For every edge <span
+class="math inline">uv \in E</span> let <span
+class="math inline">w_{uv}</span> be a new vertex. Let <span
+class="math inline">v&#39; = v \cup \{w_{uv} : uv \in E\}</span>, <span
+class="math inline">E&#39; = E \cup \{uw_{uv}, vw_{uv} : uv \in
+E\}</span> and <span class="math inline">k&#39; = k</span>. <span
+class="math inline">G&#39;</span> and <span
+class="math inline">k&#39;</span> can be constructed from <span
+class="math inline">G, k</span> in polynomial time.</p>
+<p><span class="math inline">G</span> has a vertex cover of cardinality
+<span class="math inline">\le k</span> <span
+class="math inline">\iff</span> <span class="math inline">G&#39;</span>
+has a dominating set of cardinality <span class="math inline">\le
+k&#39;</span></p>
+<p><span class="math inline">\implies</span> Suppose <span
+class="math inline">W \subseteq V</span> is a vertex cover of <span
+class="math inline">G</span> and <span class="math inline">|W| \le
+k</span>. <span class="math inline">W</span> is a dominating set in
+<span class="math inline">G&#39;</span>.</p>
+<p><span class="math inline">\impliedby</span> Suppose <span
+class="math inline">W&#39; \subseteq V&#39;</span> is a dominating set
+of <span class="math inline">G&#39;</span> and <span
+class="math inline">|W&#39;| \le k&#39; = k</span>. We run the following
+procedure:</p>
+<ol type="1">
+<li><span class="math inline">W \leftarrow W&#39;</span></li>
+<li>for every <span class="math inline">uv \in E</span></li>
+<li>if <span class="math inline">w_{uv} \in W&#39;</span> then <span
+class="math inline">W \leftarrow W \setminus \{w_{uv}\} \cup
+\{u\}</span></li>
+</ol>
+<p>Then <span class="math inline">W \subseteq V</span> is a vertex cover
+of <span class="math inline">G</span> and <span class="math inline">|W|
+\le |W&#39;| \le k</span></p>
+<h3 data-number="1.8.3" id="methods-for-proving-npc"><span
+class="header-section-number">1.8.3</span> methods for proving NPC</h3>
+<ol type="1">
+<li>restriction - we show that our problem contains a known NPC problem
+as a special case (TSP problem)</li>
+<li>local replacement - the transformation is non-trivial, but
+relatively not complicated (DS problem)</li>
+<li>component design - as done in proofs for VC, HC</li>
+</ol>
 <h2 data-number="1.9" id="random-access-machine-ram"><span
 class="header-section-number">1.9</span> random access machine
 (RAM)</h2>
@@ -1220,5 +1350,99 @@ registers are empty</li>
 </ul>
 <p>Lemma: Instructions 3,4,5 can be eliminated from the set of
 instructions.</p>
+<h3 data-number="1.9.1"
+id="every-ram-program-can-be-simulated-on-a-tm"><span
+class="header-section-number">1.9.1</span> every RAM program can be
+simulated on a TM</h3>
+<p>Suppose RAM program <span class="math inline">P</span> uses only the
+registers <span class="math inline">R1, \cdots, Rm</span>. Before the
+execution of <span class="math inline">P</span>, <span
+class="math inline">Ri</span> contains string <span
+class="math inline">r_i</span> for all <span
+class="math inline">i</span>. <span class="math inline">P</span>
+consists only of instructions of type 1, 2, 6, or 7. We assume <span
+class="math inline">P</span> contains only one instruction of type 7.
+Construction of a TM <span class="math inline">M</span> simulating <span
+class="math inline">P</span>:</p>
+<p>Let <span class="math inline">n</span> be the number of instructions
+of <span class="math inline">P</span>. <span
+class="math inline">M</span> consists of <span
+class="math inline">n</span> blocks - each block corresponds to one
+instruction of <span class="math inline">P</span>. Blocks are joined in
+a way that the instructions of <span class="math inline">P</span> will
+be executed in the same order as in <span class="math inline">P</span>.
+On the input <span class="math inline">M</span> has <span
+class="math inline">r_1, r_2, \cdots, r_m</span> on the tape (commas are
+in the string).</p>
+<ol type="1">
+<li><span class="math inline">N</span> addi <span
+class="math inline">Rj</span> - <span class="math inline">M</span> finds
+the end of the string stored in <span class="math inline">Rj</span> in
+the tape (<span class="math inline">M</span> finds j-th comma) <span
+class="math inline">M</span> writes <span class="math inline">a_i</span>
+on the tape and moves all symbols on the right of the head one cell to
+the right.</li>
+<li><span class="math inline">N</span> del <span
+class="math inline">Rj</span> - <span class="math inline">M</span> finds
+the string stored in <span class="math inline">Rj</span> on the tape
+(<span class="math inline">M</span> finds (j-1)-th comma). <span
+class="math inline">M</span> writes <span class="math inline">B</span>
+(blank symbol) to the cell observed by the head and moves all symbols on
+the right of the head one cell to the left.</li>
+<li><span class="math inline">N</span> <span
+class="math inline">Rj</span> jmpi <span
+class="math inline">N&#39;</span> - <span class="math inline">M</span>
+finds the string stored in <span class="math inline">Rj</span> (<span
+class="math inline">M</span> finds (j-1)-th comma) checks the first
+symbol of this string and goes to proper block</li>
+<li><span class="math inline">N</span> continue - <span
+class="math inline">M</span> clears the tape except the string stored in
+<span class="math inline">R1</span> (because it is the output) (before
+th first comma) and halts.</li>
+</ol>
+<h3 data-number="1.9.2"
+id="the-computation-of-any-tm-m-can-be-simulated-on-ram"><span
+class="header-section-number">1.9.2</span> The computation of any TM M
+can be simulated on RAM</h3>
+<p>Let <span class="math inline">M = (Q, \Sigma, \Gamma, \delta, B, q_1,
+F)</span>. Let <span class="math inline">Q = \{q_1, \cdots,
+q_s\}</span>. Let <span class="math inline">m = |\Gamma| + 1</span>. We
+encode the symbols from <span class="math inline">\Gamma</span> with
+<span class="math inline">0, 1, \cdots, m-1</span> in a way that <span
+class="math inline">B</span> is encoded with <span
+class="math inline">0</span> and <span class="math inline">m-1</span> is
+the code of a special end of tape symbol. We construct a RAM program
+<span class="math inline">P</span> that simulates the computation of
+<span class="math inline">M</span>. <span class="math inline">P</span>
+will use three registers <span class="math inline">R\text{-}1</span>
+(string before the head), <span class="math inline">R0</span> (character
+under the head), <span class="math inline">R1</span> (string after the
+head). <span class="math inline">b_i</span> is the code of the symbol in
+<span class="math inline">i</span>-th cell.</p>
+<ul>
+<li><span class="math inline">R\text{-}1</span> contains <span
+class="math inline">l = b_{k-1} + b_{k-2}m + \cdots +
+b_{-1}m^k</span></li>
+<li><span class="math inline">R0</span> contains <span
+class="math inline">s = b_k</span></li>
+<li><span class="math inline">R1</span> contains <span
+class="math inline">r = b_{k+1} + b_{k+2}m + \cdots</span> (well defined
+because B is encoded with 0)</li>
+</ul>
+<p>P:</p>
+<p>[read input string and initialize the registers]<br />
+N1 [moves of <span class="math inline">M</span> from the state <span
+class="math inline">q_1</span>]<br />
+N2 [moves of <span class="math inline">M</span> from the state <span
+class="math inline">q_2</span>]<br />
+<span class="math inline">\vdots</span><br />
+Ns [moves of <span class="math inline">M</span> from the state <span
+class="math inline">q_s</span>]</p>
+<p>Each <span class="math inline">Nj</span>:</p>
+<pre><code>R0 jmp0 Nj,0b
+R0 jmp1 Nj,1b
+...
+R0 jmpm-2 Nj,m-2b</code></pre>
+<p>I give up</p>
 </body>
 </html>
