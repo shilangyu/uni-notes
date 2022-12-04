@@ -493,7 +493,7 @@ class="math inline">X \in U</span></li>
 <p>The family <span class="math inline">U</span> of open sets is called
 a topology on <span class="math inline">X</span>. A subset <span
 class="math inline">C</span> in <span class="math inline">X</span> is
-closed in <span class="math inline">X \setminus C</span> is open.</p>
+closed if <span class="math inline">X \setminus C</span> is open.</p>
 <h2 data-number="1.1" id="discrete-topology"><span
 class="header-section-number">1.1</span> discrete topology</h2>
 <p>Let <span class="math inline">X</span> be any set. Let <span
@@ -523,17 +523,18 @@ class="math inline">g</span> we mean a continuous map <span
 class="math inline">H : X \times [0; 1] \to Y</span> such that <span
 class="math inline">H(x, 0) = f(x)</span> and <span
 class="math inline">H(x, 1) = g(x)</span>.</p>
-<p>When <span class="math inline">f</span> and <span
-class="math inline">g</span> are homotopic we write <span
-class="math inline">f \simeq g</span>.</p>
+<p>If a homotopy exists then <span class="math inline">f</span> and
+<span class="math inline">g</span> are homotopic which is denoted by
+<span class="math inline">f \simeq g</span>.</p>
 <h3 data-number="1.5.1" id="homotopy-equivalence"><span
 class="header-section-number">1.5.1</span> homotopy equivalence</h3>
-<p>A map <span class="math inline">f: X \to Y</span> is a homotopy
-equivalence if there exists a map <span class="math inline">g: Y \to
-X</span> such that <span class="math inline">f \circ g \simeq
-\text{id}_Y</span> and <span class="math inline">g \circ f \simeq
-\text{id}_X</span>. Then the two spaces are called homotopy
-equivalent.</p>
+<p>Given two topological spaces <span class="math inline">X</span> and
+<span class="math inline">Y</span>, a homotopy equivalence between those
+spaces are two continuous maps <span class="math inline">f: X \to
+Y</span> and <span class="math inline">g: Y \to X</span> such that <span
+class="math inline">f \circ g \simeq \text{id}_Y</span> and <span
+class="math inline">g \circ f \simeq \text{id}_X</span>. Then the two
+spaces are called homotopy equivalent.</p>
 <h2 data-number="1.6" id="fundamental-group"><span
 class="header-section-number">1.6</span> fundamental group</h2>
 <p>Given <span class="math inline">(X, x_0)</span> the fundamental group
@@ -541,6 +542,8 @@ is</p>
 <p><span class="math display">
 \pi_1(X, x_0) = [(S^1, 1), (X, x_0)]
 </span></p>
+<p>Which is a group of the equivalence classes under the homotopy of
+loops based at <span class="math inline">x_0</span>.</p>
 <h2 data-number="1.7" id="quotient-topology"><span
 class="header-section-number">1.7</span> quotient topology</h2>
 <p>Let <span class="math inline">\sim</span> be an equivalence relation
