@@ -6,7 +6,7 @@ A topological space is a pair $(X, U)$ where $X$ is a set and $U$ is a family of
 2. The union of an arbitrary collection of open sets is open
 3. The intersection of a finite collection of open sets is open
 
-The family $U$ of open sets is called a topology on $X$. A subset $C$ in $X$ is closed in $X \setminus C$ is open.
+The family $U$ of open sets is called a topology on $X$. A subset $C$ in $X$ is closed if $X \setminus C$ is open.
 
 ## discrete topology
 
@@ -28,11 +28,11 @@ Let $f: X \to Y$ be a continuous bijection between subsets of Euclidean space. I
 
 Let $f,g : X \to Y$ be continuous maps. By a homotopy from $f$ to $g$ we mean a continuous map $H : X \times [0; 1] \to Y$ such that $H(x, 0) = f(x)$ and $H(x, 1) = g(x)$.
 
-When $f$ and $g$ are homotopic we write $f \simeq g$.
+If a homotopy exists then $f$ and $g$ are homotopic which is denoted by $f \simeq g$.
 
 ### homotopy equivalence
 
-A map $f: X \to Y$ is a homotopy equivalence if there exists a map $g: Y \to X$ such that $f \circ g \simeq \text{id}_Y$ and $g \circ f \simeq \text{id}_X$. Then the two spaces are called homotopy equivalent.
+Given two topological spaces $X$ and $Y$, a homotopy equivalence between those spaces are two continuous maps $f: X \to Y$ and $g: Y \to X$ such that $f \circ g \simeq \text{id}_Y$ and $g \circ f \simeq \text{id}_X$. Then the two spaces are called homotopy equivalent.
 
 ## fundamental group
 
@@ -41,6 +41,8 @@ Given $(X, x_0)$ the fundamental group is
 $$
 \pi_1(X, x_0) = [(S^1, 1), (X, x_0)]
 $$
+
+Which is a group of the equivalence classes under the homotopy of loops based at $x_0$.
 
 ## quotient topology
 
