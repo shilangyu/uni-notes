@@ -531,11 +531,8 @@ primitive recursive functions</li>
 with primitive recursive functions</li>
 </ol>
 <p>Every recursive function is a total function.</p>
-<h2 data-number="1.4" id="primitive-recursive-functions-1"><span
-class="header-section-number">1.4</span> primitive recursive
-functions</h2>
-<h3 data-number="1.4.1" id="simple"><span
-class="header-section-number">1.4.1</span> simple</h3>
+<h3 data-number="1.3.2" id="simple"><span
+class="header-section-number">1.3.2</span> simple</h3>
 <ol type="1">
 <li>addition <span class="math inline">add(x, y) = x + y</span></li>
 <li>multiplication <span class="math inline">mult(x, y) = x \cdot
@@ -546,10 +543,10 @@ y</span></li>
 y-1 \text{ otherwise }\}</span></li>
 <li>sign <span class="math inline">sg(y) = \{1 \text{ if } y &gt; 0, 0
 \text{ otherwise }\}</span></li>
-<li>bounded difference <span class="math inline">ld(y) = \{x-y \text{ if
-} x \ge y, 0 \text{ otherwise }\}</span></li>
-<li>absolute difference <span class="math inline">abs(y) = \{x-y \text{
-if } x \ge y, y-x \text{ otherwise }\}</span></li>
+<li>bounded difference <span class="math inline">ld(x, y) = \{x-y \text{
+if } x \ge y, 0 \text{ otherwise }\}</span></li>
+<li>absolute difference <span class="math inline">abs(x, y) = \{x-y
+\text{ if } x \ge y, y-x \text{ otherwise }\}</span></li>
 <li>comparing <span class="math inline">ls(x,y)</span>, <span
 class="math inline">gr(x,y)</span>, <span
 class="math inline">eq(x,y)</span></li>
@@ -559,7 +556,7 @@ N</span> primitive recursive function <span class="math inline">f(x_1,
 <li>bounded product, for some <span class="math inline">p: N^{n+1} \to
 N</span> primitive recursive function <span class="math inline">f(x_1,
 \cdots, x_n, y) = \prod_{i=0}^y p(x_1, \cdots, x_n, i)</span></li>
-<li>division <span class="math inline">quo(x, y) = \{x / y \text{ if } x
+<li>division <span class="math inline">quo(x, y) = \{y / x \text{ if } x
 \ne 0, 0 \text{ otherwise }\}</span></li>
 <li>remainder <span class="math inline">rem(x, y) = \{y - quo(x, y)
 \text{ if } x \ne 0, 0 \text{ otherwise }\}</span></li>
@@ -570,8 +567,8 @@ N</span> primitive recursive function <span class="math inline">f(x_1,
 is prime}, 0 \text{ otherwise }\}</span></li>
 <li>i-th prime <span class="math inline">pn(i)</span></li>
 </ol>
-<h3 data-number="1.4.2" id="bounded-minimum"><span
-class="header-section-number">1.4.2</span> bounded minimum</h3>
+<h3 data-number="1.3.3" id="bounded-minimum"><span
+class="header-section-number">1.3.3</span> bounded minimum</h3>
 <p>For some <span class="math inline">p: N^{n+1} \to N</span> primitive
 recursive function we define <span class="math inline">\mu[p(x_1,
 \cdots, x_n, y) = 0]: N^{n+1} \to N</span> where</p>
@@ -582,8 +579,8 @@ y) = 0 &amp;\text{if such } y \text{ exists} \\
     0 &amp;\text{otherwise}
 \end{cases}
 </span></p>
-<h4 data-number="1.4.2.1" id="alternative-definition"><span
-class="header-section-number">1.4.2.1</span> alternative definition</h4>
+<h4 data-number="1.3.3.1" id="alternative-definition"><span
+class="header-section-number">1.3.3.1</span> alternative definition</h4>
 <p>For some <span class="math inline">\omega: N^n \to N</span> primitive
 recursive function we define <span class="math inline">\mu_{y \le
 \omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0]: N^{n+1} \to
@@ -593,19 +590,19 @@ N</span> where</p>
 \cdots, x_n, j) = \mu[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n,
 \omega(x_1, \cdots, x_n))
 </span></p>
-<h3 data-number="1.4.3" id="cantor-enumeration"><span
-class="header-section-number">1.4.3</span> cantor enumeration</h3>
+<h3 data-number="1.3.4" id="cantor-enumeration"><span
+class="header-section-number">1.3.4</span> cantor enumeration</h3>
 <p>Returns the index of a pair in the Cantor enumeration.</p>
 <p><span class="math display">
 \Pi : N^2 \to N,\ \Pi(x,y) = \frac{(x+y)(x+y+1)}{2} + x
 </span></p>
-<h4 data-number="1.4.3.1" id="decoding"><span
-class="header-section-number">1.4.3.1</span> decoding</h4>
+<h4 data-number="1.3.4.1" id="decoding"><span
+class="header-section-number">1.3.4.1</span> decoding</h4>
 <p>let <span class="math inline">\sigma_1, \sigma_2: N \to N</span>
 where <span class="math inline">\Pi(\sigma_1(z), \sigma_2(z)) =
 z</span></p>
-<h3 data-number="1.4.4" id="cantor-tuple-function"><span
-class="header-section-number">1.4.4</span> cantor tuple function</h3>
+<h3 data-number="1.3.5" id="cantor-tuple-function"><span
+class="header-section-number">1.3.5</span> cantor tuple function</h3>
 <p><span class="math inline">\Pi^2 \stackrel{\text{def}}{=} \Pi</span>,
 <span class="math inline">\sigma_i^2 \stackrel{\text{def}}{=}
 \sigma_i</span></p>
@@ -616,15 +613,15 @@ x_{n+1})
 <p><span class="math display">
 \sigma_k^{n+1}(z) = \sigma_k^n(\sigma_1^2(z))
 </span></p>
-<h3 data-number="1.4.5" id="godel-numbering"><span
-class="header-section-number">1.4.5</span> Godel numbering</h3>
+<h3 data-number="1.3.6" id="godel-numbering"><span
+class="header-section-number">1.3.6</span> Godel numbering</h3>
 <p><span class="math display">
 (x_0, \cdots, x_n) \mapsto p_0^{x_0}p_1^{x_1}\cdots p_n^{x_n}
 </span></p>
 <p>where <span class="math inline">p_i</span> is the i-th prime number,
 <span class="math inline">p_i = pn(i)</span></p>
-<h2 data-number="1.5" id="ackermann-function"><span
-class="header-section-number">1.5</span> Ackermann function</h2>
+<h2 data-number="1.4" id="ackermann-function"><span
+class="header-section-number">1.4</span> Ackermann function</h2>
 <p>It is not a primitive recursive function.</p>
 <p><span class="math display">
 \begin{cases}
@@ -633,8 +630,8 @@ class="header-section-number">1.5</span> Ackermann function</h2>
     A(x+1, y+1) = A(x, A(x+1, y)) \\
 \end{cases}
 </span></p>
-<h3 data-number="1.5.1" id="properties"><span
-class="header-section-number">1.5.1</span> properties</h3>
+<h3 data-number="1.4.1" id="properties"><span
+class="header-section-number">1.4.1</span> properties</h3>
 <p><span class="math inline">\forall_{x, y \in \mathbb N}</span></p>
 <ol type="1">
 <li><span class="math inline">A(x, y) &gt; y</span></li>
@@ -648,14 +645,14 @@ class="math inline">A(x_2, y) &gt; A(x_1, y)</span></li>
 <li><span class="math inline">A(x, y) &gt; x</span></li>
 <li><span class="math inline">A(x + 2, y) &gt; A(x, 2y)</span></li>
 </ol>
-<h3 data-number="1.5.2" id="theorem"><span
-class="header-section-number">1.5.2</span> theorem</h3>
+<h3 data-number="1.4.2" id="theorem"><span
+class="header-section-number">1.4.2</span> theorem</h3>
 <p>For every primitive recursive function <span class="math inline">f:
 N^n \to N</span> there exists a constant <span class="math inline">k \in
 N</span> such that <span class="math inline">\forall_{x_1, \cdots, x_n
 \in N} A(k, \max(x_1, \cdots, x_n)) &gt; f(x_1, \cdots, x_n)</span></p>
-<h2 data-number="1.6" id="unbounded-minimum"><span
-class="header-section-number">1.6</span> unbounded minimum</h2>
+<h2 data-number="1.5" id="unbounded-minimum"><span
+class="header-section-number">1.5</span> unbounded minimum</h2>
 <p>For some <span class="math inline">p: N^{n+1} \to N</span> we define
 <span class="math inline">\mu_y[p(x_1, \cdots, x_n, y) = 0]: N^{n+1} \to
 N</span> where</p>
@@ -668,13 +665,13 @@ y) = 0 &amp;\text{if such } y \text{ exists} \\
 </span></p>
 <p><span class="math inline">\mu_y</span> is a partial function called
 unbounded minimum.</p>
-<h2 data-number="1.7" id="regular-function"><span
-class="header-section-number">1.7</span> regular function</h2>
+<h2 data-number="1.6" id="regular-function"><span
+class="header-section-number">1.6</span> regular function</h2>
 <p>A function <span class="math inline">f: N^{n+1} \to N</span> is
 called regular if <span class="math inline">\forall_{x_1, \cdots, x_n
 \in N}\exists_{y \in N} f(x_1, \cdots, x_n, y) = 0</span></p>
-<h2 data-number="1.8" id="recursive-function"><span
-class="header-section-number">1.8</span> recursive function</h2>
+<h2 data-number="1.7" id="recursive-function"><span
+class="header-section-number">1.7</span> recursive function</h2>
 <p>A function <span class="math inline">f</span> is a recursive function
 if:</p>
 <ol type="1">
@@ -688,8 +685,8 @@ with recursive functions</li>
 on a total regular recursive function</li>
 </ol>
 <p>Every recursive function is a total function</p>
-<h2 data-number="1.9" id="partial-recursive-function"><span
-class="header-section-number">1.9</span> partial recursive function</h2>
+<h2 data-number="1.8" id="partial-recursive-function"><span
+class="header-section-number">1.8</span> partial recursive function</h2>
 <p>A function <span class="math inline">f</span> is a partial recursive
 function if:</p>
 <ol type="1">
@@ -702,8 +699,8 @@ with partial recursive function</li>
 <li><span class="math inline">f</span> is defined by unbounded minimum
 on a total partial recursive function</li>
 </ol>
-<h2 data-number="1.10" id="computable-functions"><span
-class="header-section-number">1.10</span> computable functions</h2>
+<h2 data-number="1.9" id="computable-functions"><span
+class="header-section-number">1.9</span> computable functions</h2>
 <p>A function <span class="math inline">f: N^n \to N</span> is
 computable by a TM if there exists a TM <span
 class="math inline">M</span> such that for the input arguments <span
