@@ -38,8 +38,6 @@ A function $f$ is a primitive recursive function if:
 
 Every recursive function is a total function.
 
-## primitive recursive functions
-
 ### simple
 
 1. addition $add(x, y) = x + y$
@@ -48,12 +46,12 @@ Every recursive function is a total function.
 4. factorial $fact(x) = x!$
 5. predecessor $pd(y) = \{0 \text{ if } y = 0, y-1 \text{ otherwise }\}$
 6. sign $sg(y) = \{1 \text{ if } y > 0, 0 \text{ otherwise }\}$
-7. bounded difference $ld(y) = \{x-y \text{ if } x \ge y, 0 \text{ otherwise }\}$
-8. absolute difference $abs(y) = \{x-y \text{ if } x \ge y, y-x \text{ otherwise }\}$
+7. bounded difference $ld(x, y) = \{x-y \text{ if } x \ge y, 0 \text{ otherwise }\}$
+8. absolute difference $abs(x, y) = \{x-y \text{ if } x \ge y, y-x \text{ otherwise }\}$
 9. comparing $ls(x,y)$, $gr(x,y)$, $eq(x,y)$
 10. bounded sum, for some $p: N^{n+1} \to N$ primitive recursive function $f(x_1, \cdots, x_n, y) = \sum_{i=0}^y p(x_1, \cdots, x_n, i)$
 11. bounded product, for some $p: N^{n+1} \to N$ primitive recursive function $f(x_1, \cdots, x_n, y) = \prod_{i=0}^y p(x_1, \cdots, x_n, i)$
-12. division $quo(x, y) = \{x / y \text{ if } x \ne 0, 0 \text{ otherwise }\}$
+12. division $quo(x, y) = \{y / x \text{ if } x \ne 0, 0 \text{ otherwise }\}$
 13. remainder $rem(x, y) = \{y - quo(x, y) \text{ if } x \ne 0, 0 \text{ otherwise }\}$
 14. divisibility $div(x, y) = \{1 \text{ if } x \ne 0 \land y \ne 0 \land x|y, 0 \text{ otherwise }\}$
 15. number of divisors $ndiv(y)$
@@ -73,10 +71,10 @@ $$
 
 #### alternative definition
 
-For some $\omega: N^n \to N$ primitive recursive function we define $\mu_{y \le \omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0]: N^{n+1} \to N$ where
+For some $\omega: N^n \to N$ primitive recursive function we define $\mu_{y \le \omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0]: N^n \to N$ where
 
 $$
-\mu_{y \le \omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n, j) = \mu[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n, \omega(x_1, \cdots, x_n))
+\mu_{y \le \omega(x_1, \cdots, x_n)}[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n) = \mu[p(x_1, \cdots, x_n, y) = 0](x_1, \cdots, x_n, \omega(x_1, \cdots, x_n))
 $$
 
 ### cantor enumeration

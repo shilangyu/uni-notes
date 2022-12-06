@@ -49,7 +49,7 @@ A **configuration** of a TM M is a sequence $\alpha_1 q \alpha_2$ where
 - $\alpha_1$ is the sequence of symbols on the tape starting from the first cell ending in the cell preceding the cell observed by the head
 - $\alpha_2$ is the sequence of symbols on the tape starting from the cell observed by the head ending in the last cell to the right that does not contain the blank symbol
 
-Basic model of TM "$\iff$" TM holts after reading an accepting state "$\iff$" TM with multitrack tape "$\iff$" multi-tape TM "$\iff$" nondeterministic turing machines
+Basic model of TM "$\iff$" TM halts after reading an accepting state "$\iff$" TM with multitrack tape "$\iff$" multi-tape TM "$\iff$" nondeterministic turing machines
 
 Here, "$\iff$" refers to equivalence in the sense that they recognize the same set of languages.
 
