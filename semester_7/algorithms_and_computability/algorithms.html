@@ -612,8 +612,9 @@ structured string</li>
 <h2 data-number="1.4" id="complexity"><span
 class="header-section-number">1.4</span> complexity</h2>
 <p><span class="math inline">A</span> - algorithm, <span
-class="math inline">I \in D_\Pi</span>, $|I| = $ input size = the number
-of cells of <span class="math inline">A</span> used to input <span
+class="math inline">I \in D_\Pi</span>, <span class="math inline">|I|
+=</span> input size = the number of cells of <span
+class="math inline">A</span> used to input <span
 class="math inline">I</span> (<span
 class="math inline">|e(I)|</span>)</p>
 <p>The time complexity of <span class="math inline">A</span> is a
@@ -667,7 +668,7 @@ is a function <span class="math inline">f: \Sigma_1^* \to
 <li><span class="math inline">\forall_{x \in \Sigma_1^*} x\in L_1 \iff
 f(x) \in L_2</span></li>
 </ol>
-<p>denoted by <span class="math inline">l_1 \alpha L_2</span></p>
+<p>denoted by <span class="math inline">L_1 \alpha L_2</span></p>
 <h3 data-number="1.5.2" id="of-decision-problems"><span
 class="header-section-number">1.5.2</span> of decision problems</h3>
 <p><span class="math inline">\Pi_1, \Pi_2</span> - decision problems</p>
@@ -679,7 +680,7 @@ class="math inline">f: D_{\Pi_1} \to D_{\Pi_2}</span> such that</p>
 <li>there exists a deterministic polynomial time algorithm computing
 <span class="math inline">f</span></li>
 <li><span class="math inline">\forall_{I \in D_{\Pi_1}} I \in Y_{\Pi_1}
-\iff f(I) \in Y_{D_{\Pi_2}}</span></li>
+\iff f(I) \in Y_{\Pi_2}</span></li>
 </ol>
 <p>denoted by <span class="math inline">\Pi_1 \alpha \Pi_2</span></p>
 <p>This relation is reflexive and transitive.</p>
@@ -795,7 +796,7 @@ class="header-section-number">1.8.1.1.1</span> proof</h5>
 </ol>
 <p>We construct a NTM with stop property <span
 class="math inline">M</span> for solving <span
-class="math inline">\text{SAT}</span>. FIrst <span
+class="math inline">\text{SAT}</span>. First <span
 class="math inline">M</span> guesses an assignment (<span
 class="math inline">O(n)</span>) and then checks if this assignment
 satisfies every clause (polynomial time).</p>
@@ -1222,7 +1223,7 @@ class="header-section-number">1.8.2.7</span> TSP is NPC</h4>
 <li>TSP <span class="math inline">\in NP</span></li>
 </ol>
 <p>A non-deterministic algorithm guesses a permutation of vertices and
-checks in polynomial time if the sum weights of the corresponding
+checks in polynomial time if the sum of weights of the corresponding
 Hamiltonian cycle is <span class="math inline">\le b</span>.</p>
 <ol start="2" type="1">
 <li>restriction: if <span class="math inline">w(e) \in \{1, n+1\}</span>
@@ -1249,8 +1250,8 @@ G&#39;</span> has a dominating set of cardinality <span
 class="math inline">\le k&#39;</span>. For every edge <span
 class="math inline">uv \in E</span> let <span
 class="math inline">w_{uv}</span> be a new vertex. Let <span
-class="math inline">v&#39; = v \cup \{w_{uv} : uv \in E\}</span>, <span
-class="math inline">E&#39; = E \cup \{uw_{uv}, vw_{uv} : uv \in
+class="math inline">V&#39; = V \cup \{w_{uv} : uv \in E\}</span>, <span
+class="math inline">E&#39; = E \cup \{uw_{uv}, w_{uv}v : uv \in
 E\}</span> and <span class="math inline">k&#39; = k</span>. <span
 class="math inline">G&#39;</span> and <span
 class="math inline">k&#39;</span> can be constructed from <span
