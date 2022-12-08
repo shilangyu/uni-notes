@@ -80,7 +80,7 @@ We recursively define structured strings
 
 ## complexity
 
-$A$ - algorithm, $I \in D_\Pi$, $|I| = $ input size = the number of cells of $A$ used to input $I$ ($|e(I)|$)
+$A$ - algorithm, $I \in D_\Pi$, $|I| =$ input size = the number of cells of $A$ used to input $I$ ($|e(I)|$)
 
 The time complexity of $A$ is a function $T_A: N \to N$
 
@@ -121,7 +121,7 @@ A polynomial time transformation from $L_1$ to $L_2$ is a function $f: \Sigma_1^
 1. there exists a deterministic polynomial time algorithm computing $f$
 2. $\forall_{x \in \Sigma_1^*} x\in L_1 \iff f(x) \in L_2$
 
-denoted by $l_1 \alpha L_2$
+denoted by $L_1 \alpha L_2$
 
 ### of decision problems
 
@@ -130,7 +130,7 @@ $\Pi_1, \Pi_2$ - decision problems
 A polynomial time transformation from $\Pi_1$ to $\Pi_2$ is a function $f: D_{\Pi_1} \to D_{\Pi_2}$ such that
 
 1. there exists a deterministic polynomial time algorithm computing $f$
-2. $\forall_{I \in D_{\Pi_1}} I \in Y_{\Pi_1} \iff f(I) \in Y_{D_{\Pi_2}}$
+2. $\forall_{I \in D_{\Pi_1}} I \in Y_{\Pi_1} \iff f(I) \in Y_{\Pi_2}$
 
 denoted by $\Pi_1 \alpha \Pi_2$
 
@@ -192,7 +192,7 @@ $\text{SAT} \in NPC$.
 
 1. $\text{SAT} \in NP$
 
-We construct a NTM with stop property $M$ for solving $\text{SAT}$. FIrst $M$ guesses an assignment ($O(n)$) and then checks if this assignment satisfies every clause (polynomial time).
+We construct a NTM with stop property $M$ for solving $\text{SAT}$. First $M$ guesses an assignment ($O(n)$) and then checks if this assignment satisfies every clause (polynomial time).
 
 2. Let $L \in NP$. We will show $L \alpha \text{SAT}$
 
@@ -316,7 +316,7 @@ $\implies$ Suppose $W \subseteq V$ is a vertex cover of $G$ and $|W| \le k$. We 
 
 1. TSP $\in NP$
 
-A non-deterministic algorithm guesses a permutation of vertices and checks in polynomial time if the sum weights of the corresponding Hamiltonian cycle is $\le b$.
+A non-deterministic algorithm guesses a permutation of vertices and checks in polynomial time if the sum of weights of the corresponding Hamiltonian cycle is $\le b$.
 
 2. restriction: if $w(e) \in \{1, n+1\}$ for every $e \in E$ and $b = n$ then we obtain HC problem
 
@@ -328,7 +328,7 @@ A non-deterministic algorithm guesses a subset of vertices and checks in polynom
 
 2. VC $\alpha$ DS
 
-Let $G = (V, E), k$ be an instance of VC. We will construct an instance $G' = (V', E'), k'$ of DS such that $G$ has a vertex cover of cardinality $\le k$ $\iff G'$ has a dominating set of cardinality $\le k'$. For every edge $uv \in E$ let $w_{uv}$ be a new vertex. Let $v' = v \cup \{w_{uv} : uv \in E\}$, $E' = E \cup \{uw_{uv}, vw_{uv} : uv \in E\}$ and $k' = k$. $G'$ and $k'$ can be constructed from $G, k$ in polynomial time.
+Let $G = (V, E), k$ be an instance of VC. We will construct an instance $G' = (V', E'), k'$ of DS such that $G$ has a vertex cover of cardinality $\le k$ $\iff G'$ has a dominating set of cardinality $\le k'$. For every edge $uv \in E$ let $w_{uv}$ be a new vertex. Let $V' = V \cup \{w_{uv} : uv \in E\}$, $E' = E \cup \{uw_{uv}, w_{uv}v : uv \in E\}$ and $k' = k$. $G'$ and $k'$ can be constructed from $G, k$ in polynomial time.
 
 $G$ has a vertex cover of cardinality $\le k$ $\iff$ $G'$ has a dominating set of cardinality $\le k'$
 
