@@ -1,6 +1,7 @@
 {
   "deno.enable": true,
   "cSpell.words": [
+    "abelian",
     "Ackermann",
     "addi",
     "addj",
@@ -23,6 +24,7 @@
     "bel",
     "bigcap",
     "bigcup",
+    "bijective",
     "binom",
     "bivariate",
     "bmatrix",
@@ -30,6 +32,7 @@
     "Borsuk",
     "Br",
     "Bródka",
+    "Brouwer's",
     "Bry",
     "Bryś",
     "Buli",
@@ -236,6 +239,7 @@
     "uvwxy",
     "varepsilon",
     "vertchar",
+    "Vietoris",
     "Vizing",
     "vmatrix",
     "Weingarten",
