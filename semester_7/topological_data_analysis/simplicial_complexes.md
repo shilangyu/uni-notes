@@ -60,3 +60,13 @@ where $\hat v_i$ denotes omitting that term (for example $(v_0, v_1, \hat v_2, v
 ## Vietoris-Rips complex
 
 Let $Z$ be a finite subset of $\mathbb R^n$ (point cloud). The Vietoris-Rips complex at scale $\varepsilon > 0$ is a simplicial complex with vertex set $Z$ for which a family $\{z_0, \cdots, z_k\}$ spans a simplex if $d(z_i, z_j) \le \varepsilon$ for $0 \le i < j \le k$. Denoted by $\text{VR}(Z, \varepsilon)$.
+
+## Čech complex
+
+[See here](./algorithms.html) for a definition of a covering and a nerve.
+
+Given a point cloud $Z \subset \mathbb R^n$ at scale $\epsilon$ we define the covering $U_\epsilon^{\text{Cech}}$ to be $\{B(z, \epsilon)\}_{z \in Z}$. The Čech complex is the nerve $N(U_\epsilon^{\text{Cech}})$, denoted by $C^{\text{Cech}}(Z, \epsilon)$.
+
+## Delaunay complex
+
+Given a finite subset $X \subset \mathbb R^n$ the Voronoi cell of $x \in X$ is the set $V(x) = \{p \in \mathbb R^n : \forall_{z \in X} d(p, x) \le d(p, z)\}$. $\{V(x)\}_{x \in X}$ forms a covering of $\mathbb R^n$ called the Voronoi covering denoted by $U_X^{\text{Vor}}$. The nerve $N(U_X^{\text{Vor}})$ is the Delaunay complex.
