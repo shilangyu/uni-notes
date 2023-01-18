@@ -1,4 +1,4 @@
-# topological Data Analysis (TDA)
+# topological data analysis (TDA)
 
 ## Betti numbers
 

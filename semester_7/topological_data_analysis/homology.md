@@ -3,7 +3,7 @@
 The n-th homology group of a chain complex $C_*$ is the group
 
 $$
-H_n = \ker(\partial_n)/\text{Im}(\partial_{i-1})
+H_n = \ker(\partial_n)/\text{Im}(\partial_{n+1})
 $$
 
 For an abstract simplicial complex $\Sigma$, its homology with coefficients in a field $\mathbb k$ is the homology
