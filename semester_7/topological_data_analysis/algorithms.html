@@ -547,8 +547,55 @@ class="math inline">X</span> in Euclidean space</p>
 X = \bigcup_{i=1}^n U_i
 </span></p>
 <p>if each of the intersections <span class="math inline">U_{i_0} \cap
-\cdots \cap U_{i_s}</span> is either empty or contractible[^1] then
-<span class="math inline">X</span> is homotopy equivalent to <span
+\cdots \cap U_{i_s}</span> is either empty or contractible<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+then <span class="math inline">X</span> is homotopy equivalent to <span
 class="math inline">N(U)</span>.</p>
+<h2 data-number="1.4" id="mapper-construction"><span
+class="header-section-number">1.4</span> Mapper construction</h2>
+<p>Given a point cloud <span class="math inline">X</span> and a covering
+<span class="math inline">U</span> of <span class="math inline">X</span>
+we can use the nerve asa model of the data. By using a low dimensional
+skeleton we can embed the result in <span class="math inline">\mathbb
+R^2</span> or <span class="math inline">\mathbb R^3</span>.</p>
+<p>The Mapper is a way of encoding the above idea.</p>
+<p>Let <span class="math inline">f: X \to \mathbb R</span> be a
+continuous map where <span class="math inline">X</span> is a topological
+space. Given <span class="math inline">x, x&#39; \in X</span> we let
+<span class="math inline">x \simeq x&#39;</span> if</p>
+<ol type="1">
+<li><span class="math inline">f(x) = f(x&#39;)</span></li>
+<li><span class="math inline">x</span> and <span
+class="math inline">x&#39;</span> belong to the same connected component
+of <span class="math inline">f^{-1}(f(x))</span></li>
+</ol>
+<h3 data-number="1.4.1" id="reeb-graph"><span
+class="header-section-number">1.4.1</span> Reeb graph</h3>
+<p>The Reeb graph <span class="math inline">R(f)</span> is the quotient
+of <span class="math inline">X</span> by this equivalence relation.</p>
+<p>Let <span class="math inline">f: X \to B</span> be a continuous map
+and <span class="math inline">U = \{U_1, \cdots, U_n\}</span> be a
+finite open covering of <span class="math inline">B</span>. For each
+<span class="math inline">\alpha \in \{1, \cdots, b\}</span> we may
+consider the collection of connected components of <span
+class="math inline">f^{-1}(U_\alpha)</span> given the subspace topology.
+They are open sets in <span class="math inline">X</span> and we will
+denote the covering consisting of all of them by <span
+class="math inline">U^{Reeb}(f)</span>.</p>
+<p>The nerve of <span class="math inline">U^{Reeb}(f)</span> is equipped
+with a natural map of chain complexes:</p>
+<p><span class="math display">
+N(U^{Reeb}(f)) \to N(U)
+</span></p>
+<p>To apply the above to a point cloud, we replace <em>connected
+components</em> by some clustering algorithm.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>contractible - homotopy equivalent to a single point<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body>
 </html>
