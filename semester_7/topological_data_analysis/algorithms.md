@@ -1,31 +1,5 @@
 # algorithms
 
-## exact sequence
-
-Given a diagram of linear transformations
-
-$$
-U \stackrel{L}{\longrightarrow} V \stackrel{M}{\longrightarrow} W
-$$
-
-the sequence of linear transformations is exact if $\text{im}(L) = \ker(M)$ (which means $M \circ L = 0$)
-
-### Mayer–Vietoris long exact sequence
-
-Given a simplicial complex $X$ which is the union of two subcomplexes $Y$ and $Z$ (note that $Y \cap Z$ is also a subcomplex of $X$). The long exact sequence is
-
-$$
-\cdots \longrightarrow H_i(Y \cap Z) \stackrel{\alpha_i}{\longrightarrow} H_i(Y) \oplus H_i(Z) \longrightarrow H_i(X) \stackrel{\delta}{\longrightarrow} H_{i-1}(Y \cap Z) \stackrel{\alpha_{i_1}}{\longrightarrow} \cdots
-$$
-
-With $\alpha_i(\xi) = (H_i(i_0)(\xi), -H_i(i_1)(\xi))$ where $i_0 : Y \cap Z \hookrightarrow Y$ and $i_1 : Y \cap Z \hookrightarrow Z$.
-
-The dimension of $H_i(X)$ is
-
-$$
-\dim(H_i(Y)) + \dim(H_i(Z)) + \dim(H_{i-1}(Y \cap Z)) - \text{rank}(\alpha_i) - \text{rank}(\alpha_{i-1})
-$$
-
 ## covering
 
 A covering $U$ of $X$ is a collection of nonempty subsets of $X$ such that $X$ is the union of the sets in $U$.
