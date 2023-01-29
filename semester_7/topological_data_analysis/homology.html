@@ -536,5 +536,68 @@ unit interval (1-simplex).</p>
 D_*</span> is a graded map of degree 1 <span class="math inline">s_*:
 C_* \to D_*</span> such that <span class="math inline">\partial_*s_* +
 s_*\partial_* = g_* - f_*</span></p>
+<h2 data-number="1.4" id="brouwers-theorem"><span
+class="header-section-number">1.4</span> Brouwer’s theorem</h2>
+<p>Every continuous map <span class="math inline">f: D^n \to D^n</span>
+has a fixed point.</p>
+<p>Where <span class="math inline">D^n = \{x \in \mathbb R^n : ||x|| \le
+1\}</span></p>
+<h2 data-number="1.5" id="exact-sequence"><span
+class="header-section-number">1.5</span> exact sequence</h2>
+<p>Given a diagram of linear transformations</p>
+<p><span class="math display">
+U \stackrel{L}{\longrightarrow} V \stackrel{M}{\longrightarrow} W
+</span></p>
+<p>the sequence of linear transformations is exact if <span
+class="math inline">\text{im}(L) = \ker(M)</span> and <span
+class="math inline">M \circ L = 0</span>.</p>
+<p>It is exact iff <span class="math inline">\dim(V) = \text{rank}(L) +
+\text{rank}(M)</span>.</p>
+<h3 data-number="1.5.1" id="mayervietoris-long-exact-sequence"><span
+class="header-section-number">1.5.1</span> Mayer–Vietoris long exact
+sequence</h3>
+<p>Given a simplicial complex <span class="math inline">X</span> which
+is the union of two subcomplexes <span class="math inline">Y</span> and
+<span class="math inline">Z</span> (note that <span
+class="math inline">Y \cap Z</span> is also a subcomplex of <span
+class="math inline">X</span>). The long exact sequence is</p>
+<p><span class="math display">
+\cdots \longrightarrow H_i(Y \cap Z)
+\stackrel{\alpha_i}{\longrightarrow} H_i(Y) \oplus H_i(Z)
+\longrightarrow H_i(X) \stackrel{\delta}{\longrightarrow} H_{i-1}(Y \cap
+Z) \stackrel{\alpha_{i_1}}{\longrightarrow} \cdots
+</span></p>
+<p>With <span class="math inline">\alpha_i(\xi) = (H_i(i_0)(\xi),
+-H_i(i_1)(\xi))</span> where <span class="math inline">i_0 : Y \cap Z
+\hookrightarrow Y</span> and <span class="math inline">i_1 : Y \cap Z
+\hookrightarrow Z</span>.</p>
+<p>The dimension of <span class="math inline">H_i(X)</span> is</p>
+<p><span class="math display">
+\dim(H_i(Y)) + \dim(H_i(Z)) + \dim(H_{i-1}(Y \cap Z)) -
+\text{rank}(\alpha_i) - \text{rank}(\alpha_{i-1})
+</span></p>
+<h2 data-number="1.6" id="relative-homology"><span
+class="header-section-number">1.6</span> relative homology</h2>
+<p>Given a simplicial complex <span class="math inline">X</span> and its
+subcomplex <span class="math inline">Y</span> we have we have chain
+complexes <span class="math inline">C_*(X)</span> and <span
+class="math inline">C_*(Y)</span> which form a quotient vector spaces
+<span class="math inline">C_i(X)/C_i(Y)</span> denoted by <span
+class="math inline">C_i(X, Y)</span>. This induces boundary maps <span
+class="math inline">\partial: C_i(X, Y) \to C_{i-1}(X, Y)</span>. With
+those we can compute homology <span class="math inline">H_i(X, Y)</span>
+called the <em>relative homology</em> of <span
+class="math inline">X</span> with respect to <span
+class="math inline">Y</span>. This creates a long exact sequence:</p>
+<p><span class="math display">
+\cdots \longrightarrow H_{i+1}(X, Y) \longrightarrow H_i(Y)
+\longrightarrow H_i(X) \longrightarrow H_i(X, Y)\longrightarrow
+H_{i-1}(Y) \longrightarrow \cdots
+</span></p>
+<h2 data-number="1.7" id="natural-chain-map"><span
+class="header-section-number">1.7</span> natural chain map</h2>
+<p>Let <span class="math inline">Z \subseteq Y \subseteq X</span> be
+inclusions of subcomplexes. The natural chain map induces an isomorphism
+<span class="math inline">H_*(X, Y) \simeq H_*(X - Z, Y - Z)</span>.</p>
 </body>
 </html>

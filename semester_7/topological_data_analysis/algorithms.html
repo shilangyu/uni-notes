@@ -485,40 +485,8 @@
 <body>
 <h1 data-number="1" id="algorithms"><span
 class="header-section-number">1</span> algorithms</h1>
-<h2 data-number="1.1" id="exact-sequence"><span
-class="header-section-number">1.1</span> exact sequence</h2>
-<p>Given a diagram of linear transformations</p>
-<p><span class="math display">
-U \stackrel{L}{\longrightarrow} V \stackrel{M}{\longrightarrow} W
-</span></p>
-<p>the sequence of linear transformations is exact if <span
-class="math inline">\text{im}(L) = \ker(M)</span> (which means <span
-class="math inline">M \circ L = 0</span>)</p>
-<h3 data-number="1.1.1" id="mayervietoris-long-exact-sequence"><span
-class="header-section-number">1.1.1</span> Mayer–Vietoris long exact
-sequence</h3>
-<p>Given a simplicial complex <span class="math inline">X</span> which
-is the union of two subcomplexes <span class="math inline">Y</span> and
-<span class="math inline">Z</span> (note that <span
-class="math inline">Y \cap Z</span> is also a subcomplex of <span
-class="math inline">X</span>). The long exact sequence is</p>
-<p><span class="math display">
-\cdots \longrightarrow H_i(Y \cap Z)
-\stackrel{\alpha_i}{\longrightarrow} H_i(Y) \oplus H_i(Z)
-\longrightarrow H_i(X) \stackrel{\delta}{\longrightarrow} H_{i-1}(Y \cap
-Z) \stackrel{\alpha_{i_1}}{\longrightarrow} \cdots
-</span></p>
-<p>With <span class="math inline">\alpha_i(\xi) = (H_i(i_0)(\xi),
--H_i(i_1)(\xi))</span> where <span class="math inline">i_0 : Y \cap Z
-\hookrightarrow Y</span> and <span class="math inline">i_1 : Y \cap Z
-\hookrightarrow Z</span>.</p>
-<p>The dimension of <span class="math inline">H_i(X)</span> is</p>
-<p><span class="math display">
-\dim(H_i(Y)) + \dim(H_i(Z)) + \dim(H_{i-1}(Y \cap Z)) -
-\text{rank}(\alpha_i) - \text{rank}(\alpha_{i-1})
-</span></p>
-<h2 data-number="1.2" id="covering"><span
-class="header-section-number">1.2</span> covering</h2>
+<h2 data-number="1.1" id="covering"><span
+class="header-section-number">1.1</span> covering</h2>
 <p>A covering <span class="math inline">U</span> of <span
 class="math inline">X</span> is a collection of nonempty subsets of
 <span class="math inline">X</span> such that <span
@@ -526,8 +494,8 @@ class="math inline">X</span> is the union of the sets in <span
 class="math inline">U</span>.</p>
 <p>The covering of <span class="math inline">X</span> is given by the
 sets <span class="math inline">X = \bigcup_{i=1}^n U_i</span></p>
-<h2 data-number="1.3" id="nerve"><span
-class="header-section-number">1.3</span> nerve</h2>
+<h2 data-number="1.2" id="nerve"><span
+class="header-section-number">1.2</span> nerve</h2>
 <p>The nerve of <span class="math inline">U</span> is an abstract
 simplicial complex <span class="math inline">(V_U, \Sigma_U)</span>
 where <span class="math inline">V_U = \{1, \cdots, n\}</span> and <span
@@ -539,8 +507,8 @@ U_{i_0} \cap \cdots \cap U_{i_s} \ne \emptyset
 </span></p>
 <p>We denote the nerve construction by <span
 class="math inline">N(U)</span></p>
-<h3 data-number="1.3.1" id="nerve-lemma"><span
-class="header-section-number">1.3.1</span> nerve lemma</h3>
+<h3 data-number="1.2.1" id="nerve-lemma"><span
+class="header-section-number">1.2.1</span> nerve lemma</h3>
 <p>Suppose we are given an open covering of a topological space <span
 class="math inline">X</span> in Euclidean space</p>
 <p><span class="math display">
@@ -551,8 +519,8 @@ X = \bigcup_{i=1}^n U_i
 class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
 then <span class="math inline">X</span> is homotopy equivalent to <span
 class="math inline">N(U)</span>.</p>
-<h2 data-number="1.4" id="mapper-construction"><span
-class="header-section-number">1.4</span> Mapper construction</h2>
+<h2 data-number="1.3" id="mapper-construction"><span
+class="header-section-number">1.3</span> Mapper construction</h2>
 <p>Given a point cloud <span class="math inline">X</span> and a covering
 <span class="math inline">U</span> of <span class="math inline">X</span>
 we can use the nerve asa model of the data. By using a low dimensional
@@ -569,8 +537,8 @@ space. Given <span class="math inline">x, x&#39; \in X</span> we let
 class="math inline">x&#39;</span> belong to the same connected component
 of <span class="math inline">f^{-1}(f(x))</span></li>
 </ol>
-<h3 data-number="1.4.1" id="reeb-graph"><span
-class="header-section-number">1.4.1</span> Reeb graph</h3>
+<h3 data-number="1.3.1" id="reeb-graph"><span
+class="header-section-number">1.3.1</span> Reeb graph</h3>
 <p>The Reeb graph <span class="math inline">R(f)</span> is the quotient
 of <span class="math inline">X</span> by this equivalence relation.</p>
 <p>Let <span class="math inline">f: X \to B</span> be a continuous map
