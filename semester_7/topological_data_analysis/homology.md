@@ -74,6 +74,17 @@ $$
 \dim(H_i(Y)) + \dim(H_i(Z)) + \dim(H_{i-1}(Y \cap Z)) - \text{rank}(\alpha_i) - \text{rank}(\alpha_{i-1})
 $$
 
+## reduced homology
+
+Denoted by $\tilde H_n$
+
+$$
+H_n(X) = \begin{cases}
+	\tilde H_n(X) & \text{ for } n > 0 \\
+	\tilde H_0(X) \oplus \mathbb Z & \text{ for } n = 0 \\
+\end{cases}
+$$
+
 ## relative homology
 
 Given a simplicial complex $X$ and its subcomplex $Y$ we have we have chain complexes $C_*(X)$ and $C_*(Y)$ which form a quotient vector spaces $C_i(X)/C_i(Y)$ denoted by $C_i(X, Y)$. This induces boundary maps $\partial: C_i(X, Y) \to C_{i-1}(X, Y)$. With those we can compute homology $H_i(X, Y)$ called the _relative homology_ of $X$ with respect to $Y$. This creates a long exact sequence:
@@ -81,6 +92,8 @@ Given a simplicial complex $X$ and its subcomplex $Y$ we have we have chain comp
 $$
 \cdots \longrightarrow H_{i+1}(X, Y) \longrightarrow H_i(Y) \longrightarrow H_i(X) \longrightarrow H_i(X, Y)\longrightarrow H_{i-1}(Y) \longrightarrow \cdots
 $$
+
+Also: $\tilde H_*(X / A) \simeq H_*(X, A)$
 
 ## natural chain map
 
