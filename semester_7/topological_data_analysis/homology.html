@@ -576,8 +576,17 @@ Z) \stackrel{\alpha_{i_1}}{\longrightarrow} \cdots
 \dim(H_i(Y)) + \dim(H_i(Z)) + \dim(H_{i-1}(Y \cap Z)) -
 \text{rank}(\alpha_i) - \text{rank}(\alpha_{i-1})
 </span></p>
-<h2 data-number="1.6" id="relative-homology"><span
-class="header-section-number">1.6</span> relative homology</h2>
+<h2 data-number="1.6" id="reduced-homology"><span
+class="header-section-number">1.6</span> reduced homology</h2>
+<p>Denoted by <span class="math inline">\tilde H_n</span></p>
+<p><span class="math display">
+H_n(X) = \begin{cases}
+    \tilde H_n(X) &amp; \text{ for } n &gt; 0 \\
+    \tilde H_0(X) \oplus \mathbb Z &amp; \text{ for } n = 0 \\
+\end{cases}
+</span></p>
+<h2 data-number="1.7" id="relative-homology"><span
+class="header-section-number">1.7</span> relative homology</h2>
 <p>Given a simplicial complex <span class="math inline">X</span> and its
 subcomplex <span class="math inline">Y</span> we have we have chain
 complexes <span class="math inline">C_*(X)</span> and <span
@@ -594,8 +603,10 @@ class="math inline">Y</span>. This creates a long exact sequence:</p>
 \longrightarrow H_i(X) \longrightarrow H_i(X, Y)\longrightarrow
 H_{i-1}(Y) \longrightarrow \cdots
 </span></p>
-<h2 data-number="1.7" id="natural-chain-map"><span
-class="header-section-number">1.7</span> natural chain map</h2>
+<p>Also: <span class="math inline">\tilde H_*(X / A) \simeq H_*(X,
+A)</span></p>
+<h2 data-number="1.8" id="natural-chain-map"><span
+class="header-section-number">1.8</span> natural chain map</h2>
 <p>Let <span class="math inline">Z \subseteq Y \subseteq X</span> be
 inclusions of subcomplexes. The natural chain map induces an isomorphism
 <span class="math inline">H_*(X, Y) \simeq H_*(X - Z, Y - Z)</span>.</p>
