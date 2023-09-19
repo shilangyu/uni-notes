@@ -93,7 +93,9 @@ $$
 \cdots \longrightarrow H_{i+1}(X, Y) \longrightarrow H_i(Y) \longrightarrow H_i(X) \longrightarrow H_i(X, Y)\longrightarrow H_{i-1}(Y) \longrightarrow \cdots
 $$
 
-Also: $\tilde H_*(X / A) \simeq H_*(X, A)$
+## excision theorem
+
+$\tilde H_*(X / A) \simeq H_*(X, A)$
 
 ## natural chain map
 
