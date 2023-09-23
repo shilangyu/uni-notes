@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>introduction</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="introduction"><span
+class="header-section-number">1</span> introduction</h1>
+<h2 data-number="1.1" id="probabilities"><span
+class="header-section-number">1.1</span> probabilities</h2>
+<h3 data-number="1.1.1" id="combinatorics"><span
+class="header-section-number">1.1.1</span> combinatorics</h3>
+<ul>
+<li>permutations <span class="math inline">P^k_n = \frac{n!}{(n -
+k)!}</span></li>
+<li>combinations <span class="math inline">C^k_n = \binom{n}{k} =
+\frac{n!}{(n - k)!k!}</span></li>
+<li>combinations with repetitions <span class="math inline">\binom{n + k
+- 1}{k}</span></li>
+</ul>
+<h3 data-number="1.1.2" id="random-variables-rv"><span
+class="header-section-number">1.1.2</span> random variables (rv)</h3>
+<p><span class="math inline">S</span> is the appropriate support of an
+rv</p>
+<ul>
+<li>independence of <span class="math inline">X</span> and <span
+class="math inline">Y</span>, <span class="math inline">P[X = x, Y = y]
+= P[X = x]P[Y = y]</span></li>
+<li>conditional probability <span class="math inline">P[X = x | Y = y] =
+\frac{P[X = x, Y = y]}{P[Y = y]}</span></li>
+<li>total probability <span class="math inline">P[X = x | Y = y] =
+\frac{P[Y = y | X = x]P[X = x]}{P[Y = y]}</span>
+<ul>
+<li><span class="math inline">P[X = x] = \sum_{y \in S} P[X = x | Y =
+y]P[Y = y]</span></li>
+</ul></li>
+<li>inclusion exclusion principle <span class="math inline">P[X = x \lor
+Y = y] = P[X = x] + P[Y = y] - P[X = x, Y = y]</span></li>
+<li>expected value <span class="math inline">E(X) = \sum_{x \in S} x P[X
+= x]</span>
+<ul>
+<li>linearity <span class="math inline">E(c \cdot X + Y) = c \cdot E(X)
++ E(Y)</span></li>
+<li>when <span class="math inline">X</span>, <span
+class="math inline">Y</span> independent, <span class="math inline">E(X
+\cdot Y) = E(X)E(Y)</span></li>
+<li><span class="math inline">E(f(X)) = \sum_{x \in S} f(x)P[X =
+x]</span></li>
+</ul></li>
+<li>variance <span class="math inline">Var(X) = E((X - E(X))^2) = E(X^2)
+- E(X)^2</span>
+<ul>
+<li><span class="math inline">Var(a \cdot X + b) = a^2Var(X)</span></li>
+<li>when <span class="math inline">X</span>, <span
+class="math inline">Y</span> independent, <span
+class="math inline">Var(X + Y) = Var(X) + Var(Y)</span></li>
+</ul></li>
+</ul>
+<h3 data-number="1.1.3" id="common-distributions"><span
+class="header-section-number">1.1.3</span> common distributions</h3>
+<ul>
+<li>Bernoulli: <span class="math inline">S = \{0, 1\}</span> for <span
+class="math inline">0 \le p \le 1</span> <span
+class="math inline">Ber(p)</span> where <span class="math inline">P[X =
+1] = p</span> and <span class="math inline">P[X = 0] = 1 - p</span>.
+<span class="math inline">E(X) = p</span>, <span
+class="math inline">Var(X) = p(1 - p)</span></li>
+<li>Binomial: <span class="math inline">S = \{0, \cdots, n\}</span> for
+<span class="math inline">0 \le p \le 1</span> <span
+class="math inline">Bin(n, p)</span> where <span class="math inline">P[X
+= k] = \binom{n}{k}p^k(1 - p)^{n-k}</span>. <span
+class="math inline">E(X) = np</span>, <span class="math inline">Var(X) =
+np(1 - p)</span></li>
+<li>Geometric: <span class="math inline">S = \mathbb N</span> for <span
+class="math inline">0 \le p \le 1</span> <span
+class="math inline">Geo(p)</span> where <span class="math inline">P[X =
+k] = (1 - p)^{k-1}p</span>. <span class="math inline">E(X) =
+\frac{1}{p}</span>, <span class="math inline">Var(X) = \frac{1 -
+p}{p^2}</span></li>
+</ul>
+<h3 data-number="1.1.4" id="indicator-function"><span
+class="header-section-number">1.1.4</span> indicator function</h3>
+<p><span class="math display">
+1_{p(X)} = \begin{cases}
+  1 &amp; \text{if } p(X) = \text{true} \\
+  0 &amp; \text{otherwise} \\
+\end{cases}
+</span></p>
+<p><span class="math inline">E(1_{p(X)}) = P[p(x) =
+\text{true}]</span></p>
+<h2 data-number="1.2" id="algebra"><span
+class="header-section-number">1.2</span> Algebra</h2>
+<h3 data-number="1.2.1" id="greatest-common-denominator-gcd"><span
+class="header-section-number">1.2.1</span> greatest common denominator
+(gcd)</h3>
+<p>For <span class="math inline">a, b \in \mathbb Z</span> and wlog
+assume <span class="math inline">b \ne 0</span>. <span
+class="math inline">d = gcd(a, b)</span> is the greatest common divisor
+of <span class="math inline">a</span> and <span
+class="math inline">b</span> iff for any <span class="math inline">c \in
+\mathbb Z</span> that divides both <span class="math inline">a</span>
+and <span class="math inline">b</span> it also divides <span
+class="math inline">d</span>.</p>
+<p>In other words, <span class="math inline">gcd(a, b) = \max\{k \in
+\mathbb Z : k \mid a \land k \mid b\}</span></p>
+<p>Properties (<span class="math inline">a, b, c \ne 0</span>)</p>
+<ul>
+<li><span class="math inline">gcd(a, 0) = a</span></li>
+<li><span class="math inline">gcd(a, 1) = 1</span></li>
+<li><span class="math inline">gcd(ca, cb) = c \cdot gcd(a,
+b)</span></li>
+<li><span class="math inline">a \mid b \iff gcd(a, b) = a</span></li>
+<li><span class="math inline">gcd(a, b) \mid gcd(a, cb)</span></li>
+<li><span class="math inline">gcd(a, b) = gcd(a, b + ca)</span></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> gcd<span class="op">(</span><span class="dt">int</span> m<span class="op">,</span> <span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>n <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> m<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> gcd<span class="op">(</span>n<span class="op">,</span> m <span class="op">%</span> n<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 data-number="1.2.2" id="congruent-modulo"><span
+class="header-section-number">1.2.2</span> congruent modulo</h3>
+<p><span class="math inline">a \in \mathbb Z</span> is congruent to
+<span class="math inline">b \in \mathbb Z</span> modulo <span
+class="math inline">n \in \mathbb N_+</span> when <span
+class="math inline">a \equiv b \pmod n \implies \exists_{k \in \mathbb
+Z} a = b + k \cdot n</span></p>
+<p>Linear congruence: given <span class="math inline">a, b, n \in
+\mathbb Z</span>, <span class="math inline">a \cdot x \equiv b \pmod
+n</span>. There isn’t always a solution:</p>
+<ul>
+<li>if <span class="math inline">gcd(a, n) = 1</span> then there is
+exactly one solution in the set <span class="math inline">\{0, \cdots,
+n-1\}:</span> <span class="math inline">x = b \cdot a^{-1} \bmod
+n</span></li>
+<li>if <span class="math inline">gcd(a, n) &gt; 1</span> and <span
+class="math inline">d \nmid b</span> then there is no solution</li>
+<li>if <span class="math inline">gcd(a, n) &gt; 1</span> and <span
+class="math inline">d \mid b</span> then there are <span
+class="math inline">d</span> solutions in the set <span
+class="math inline">\{0, \cdots, n-1\}:</span> we solve the congruence
+<span class="math inline">\frac{a}{d} \cdot x&#39; \equiv \frac{b}{d}
+\pmod{\frac{n}{d}}</span> as in the first case, and find solutions
+modulo <span class="math inline">n</span> as <span class="math inline">x
+= x&#39; + k \cdot \frac{n}{d}</span> for <span class="math inline">k
+\in \{0, \cdots, d-1\}</span>.</li>
+</ul>
+<h4 data-number="1.2.2.1" id="multiplicative-inverse"><span
+class="header-section-number">1.2.2.1</span> multiplicative inverse</h4>
+<p><span class="math inline">a^{-1} \bmod n</span> is an integer called
+the multiplicative inverse of <span class="math inline">a</span> modulo
+<span class="math inline">n</span>. It is defined as <span
+class="math inline">a \cdot a^{-1} \equiv 1 \pmod n</span>.</p>
+<h4 data-number="1.2.2.2" id="extended-euclidean-algorithm-eea"><span
+class="header-section-number">1.2.2.2</span> Extended Euclidean
+Algorithm (EEA)</h4>
+<p>For two integers <span class="math inline">a</span> and <span
+class="math inline">b</span> it computes <span
+class="math inline">gcd(a, b)</span> and integers <span
+class="math inline">u</span> and <span class="math inline">v</span> such
+that <span class="math inline">a \cdot u + b \cdot v = gcd(a,
+b)</span></p>
+<h2 data-number="1.3" id="algebraic-structures"><span
+class="header-section-number">1.3</span> algebraic structures</h2>
+<h3 data-number="1.3.1" id="groups"><span
+class="header-section-number">1.3.1</span> groups</h3>
+<p>A group is a set <span class="math inline">G</span> together with a
+mapping <span class="math inline">\odot: G \times G \to G</span> such
+that</p>
+<ol type="1">
+<li>(closure) <span class="math inline">\forall_{a, b \in G} a \odot b
+\in G</span></li>
+<li>(associativity) <span class="math inline">\forall_{a, b, c \in G} (a
+\odot b) \odot c = a \odot (b \odot c)</span></li>
+<li>(neutral element) <span class="math inline">\exists_{e \in
+G}\forall_{a \in G} a \odot e = e \odot a = a</span></li>
+<li>(invertibility) <span class="math inline">\forall_{a \in
+G}\exists_{b \in G} a \odot b = b \odot a = e</span></li>
+</ol>
+<p>Example: <span class="math inline">(\mathbb Z, +)</span>, <span
+class="math inline">(\mathbb Q \setminus\{0\}, \times)</span></p>
+<p>Order of a group is <span class="math inline">|G|</span>.</p>
+<p>Order of an element <span class="math inline">a \in G</span> in a
+finite group is the smallest positive integer <span
+class="math inline">d</span> such that <span class="math inline">a^d =
+1</span>. In other words, <span class="math inline">ord(a) = \min\{d :
+a^d = 1 \land d \ge 1\}</span>.</p>
+<h4 data-number="1.3.1.1" id="abelian-groups"><span
+class="header-section-number">1.3.1.1</span> abelian groups</h4>
+<p>A group where <span class="math inline">\odot</span> is commutative,
+<span class="math inline">\forall_{a, b \in G} a \odot b = b \odot
+a</span></p>
+<h4 data-number="1.3.1.2" id="lagrange-theorem"><span
+class="header-section-number">1.3.1.2</span> Lagrange theorem</h4>
+<p>Let <span class="math inline">G</span> be a finite group. Then <span
+class="math inline">\forall_{g \in G} ord(g) \mid |G|</span>.</p>
+<p>This implies <span class="math inline">g^{|G|} = 1</span> and <span
+class="math inline">g^n = g^{n \bmod |G|}</span> for <span
+class="math inline">n \in \mathbb Z</span>.</p>
+<h4 data-number="1.3.1.3" id="cyclic-groups-and-generators"><span
+class="header-section-number">1.3.1.3</span> cyclic groups and
+generators</h4>
+<p>If there exists an element <span class="math inline">g</span> in a
+finite group <span class="math inline">G</span> such that for all <span
+class="math inline">h \in G</span> we can write <span
+class="math inline">h = g^i</span> for some <span class="math inline">i
+\in \mathbb Z</span> then we call <span class="math inline">G</span> a
+cyclic group and <span class="math inline">g</span> a generator of <span
+class="math inline">G</span>. Then <span class="math inline">ord(g) =
+|G|</span>. All cyclic groups are Abelian.</p>
+<h3 data-number="1.3.2" id="rings"><span
+class="header-section-number">1.3.2</span> rings</h3>
+<p>A ring is an Abelian group <span class="math inline">(R, +)</span>
+together with a second mapping <span class="math inline">\cdot: R \times
+R \to R</span> such that <span class="math inline">\cdot</span> is a
+closure, associative, has a neutral element and is distributive.</p>
+<p>A commutative ring is a ring where <span
+class="math inline">\cdot</span> is commutative. For instance, <span
+class="math inline">(\mathbb Z, +, \times)</span> is a commutative
+ring.</p>
+<h4 data-number="1.3.2.1" id="ideal"><span
+class="header-section-number">1.3.2.1</span> ideal</h4>
+<p>Given a commutative ring <span class="math inline">(R, +,
+\cdot)</span> we call <span class="math inline">I \subseteq R</span> and
+ideal of <span class="math inline">R</span> if <span
+class="math inline">I</span> itself is a ring with respect to the
+original operations and if additionally <span class="math inline">a
+\cdot i \in I</span> for every <span class="math inline">a \in R</span>
+and <span class="math inline">i \in I</span>.</p>
+<h3 data-number="1.3.3" id="fields"><span
+class="header-section-number">1.3.3</span> fields</h3>
+<p>A field is a commutative ring <span class="math inline">(K, +,
+\times)</span> such that</p>
+<ul>
+<li>(commutativity of <span class="math inline">\times</span>) <span
+class="math inline">\forall_{a, b \in K} ab = ba</span></li>
+<li>(invertibility of <span class="math inline">\times</span>) <span
+class="math inline">\forall_{a \in K \setminus \{0\}} \exists_{b =
+a^{-1}} ab = ba = 1</span> where <span class="math inline">0</span> is
+the neutral element of addition</li>
+</ul>
+<p>Example: <span class="math inline">(\mathbb R, +, \times)</span></p>
+<h3 data-number="1.3.4" id="homomorphism"><span
+class="header-section-number">1.3.4</span> homomorphism</h3>
+<p>Given two groups <span class="math inline">(G, \odot)</span> and
+<span class="math inline">(H, \boxdot)</span>, <span
+class="math inline">f: G \to H</span> is a group homomorphism if for all
+<span class="math inline">g, g&#39; \in G</span> we have <span
+class="math inline">f(g \odot g&#39;) = f(g) \boxdot f(g&#39;)</span>.
+If <span class="math inline">f</span> is also a bijection then <span
+class="math inline">f</span> is a group isomorphism.</p>
+<ul>
+<li>Example of homomorphism: the sign function for <span
+class="math inline">(\mathbb Q \setminus \{0\}, \times)</span> and <span
+class="math inline">(\{-1, 1\}, \times)</span></li>
+<li>Example of isomorphism: <span class="math inline">\ln</span>
+(natural logarithm)</li>
+</ul>
+<h2 data-number="1.4" id="little-fermat-theorem"><span
+class="header-section-number">1.4</span> little fermat theorem</h2>
+<p>For a prime <span class="math inline">p</span> and an <span
+class="math inline">a \in \mathbb Z</span> such that <span
+class="math inline">gcd(a, p) = 1</span> we have <span
+class="math inline">a^{p-1} \equiv 1 \pmod p</span></p>
+<h3 data-number="1.4.1" id="euler-theorem-generalization"><span
+class="header-section-number">1.4.1</span> Euler theorem
+(generalization)</h3>
+<p>For <span class="math inline">n \in \mathbb N_+</span> and an <span
+class="math inline">a \in \mathbb Z</span> such that <span
+class="math inline">gcd(a, n) = 1</span> we have <span
+class="math inline">a^{\varphi(n)} \equiv 1 \pmod n</span></p>
+<p>Where <span class="math inline">\varphi(n)</span> returns the amount
+of coprimes to <span class="math inline">n</span> smaller than <span
+class="math inline">n</span>.</p>
+<p><span class="math display">
+  \varphi(n) = \begin{cases}
+    p^{\alpha - 1}(p - 1) &amp; \text{ if } n = p^\alpha \text{ with p
+prime and }\alpha \ge 1 \\
+    \prod_{i = 1}^r \varphi(p_i^{\alpha_i}) &amp; \text{ for } n =
+\prod_{i = 1}^r p_i^{\alpha_i} \text{ with } p_1, \cdots, p_r \text{
+pairwise different primes} \\
+  \end{cases}
+</span></p>
+</body>
+</html>

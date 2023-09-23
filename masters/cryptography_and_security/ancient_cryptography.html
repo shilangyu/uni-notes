@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ancient_cryptography</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="ancient-cryptography"><span
+class="header-section-number">1</span> ancient cryptography</h1>
+<p>Used for privacy of communication (confidentiality).</p>
+<h2 data-number="1.1" id="cryptography-vs"><span
+class="header-section-number">1.1</span> Cryptography vs</h2>
+<p><strong>vs security</strong></p>
+<ul>
+<li>cryptography: a toolbox for settings up security infra</li>
+<li>security experts assume cryptography does a good job</li>
+<li>cryptography tools are pretty good, but not for everything some can
+easily be misused</li>
+<li>proper usage of cryptography still requires to master it</li>
+</ul>
+<p><strong>vs coding theory</strong></p>
+<ul>
+<li>no notion of confidentiality in coding theory</li>
+<li>coding theory is about sending information in a reliable and
+efficient way (dummy adversary)</li>
+<li>cryptography is the science of secret codes (malicious
+adversary)</li>
+</ul>
+<p><strong>vs cryptanalysis</strong></p>
+<ul>
+<li>cryptographic analysis, theory of security analysis of cryptographic
+systems</li>
+<li>to cryptanalyze a cryptosystem is to prove or to disprove the
+security provided by a cryptosystem</li>
+<li>to break a cryptosystem is to prove its insecurity</li>
+</ul>
+<h2 data-number="1.2" id="main-problem"><span
+class="header-section-number">1.2</span> main problem</h2>
+<p>For a message X</p>
+<ul>
+<li>confidentiality (C) - only the legitimate receiver can get X</li>
+<li>authentication + integrity (A + I) - only the legitimate sender can
+insert X and the received message must be equal to X</li>
+</ul>
+<h2 data-number="1.3" id="symmetric-encryption"><span
+class="header-section-number">1.3</span> symmetric encryption</h2>
+<p>Key is the same for the sender and receiver. The keys have to be
+confidentially shared. A message authentication code is used to ensure
+authentication and integrity.</p>
+<p><strong>Problem:</strong> we must establish a symmetric key. Key
+agreement protocol.</p>
+<h2 data-number="1.4" id="public-key-crypto-system"><span
+class="header-section-number">1.4</span> public key crypto system</h2>
+<p>Public key is shared with A + I from receiver to sender. Only
+receiver can decrypt.</p>
+<p><strong>Problem:</strong> we must authenticate the public key.</p>
+<h2 data-number="1.5" id="simple-substitutions"><span
+class="header-section-number">1.5</span> simple substitutions</h2>
+<h3 data-number="1.5.1" id="caesar-cipher"><span
+class="header-section-number">1.5.1</span> caesar cipher</h3>
+<p>Offset the alphabet by some amount</p>
+<h3 data-number="1.5.2" id="random-substitution"><span
+class="header-section-number">1.5.2</span> random substitution</h3>
+<p>Rather than offsetting the alphabet by a fixed amount, permute the
+whole alphabet. This gives <span class="math inline">|\Sigma|!</span>
+permutations. This is still susceptible to statistical attacks (for
+example in english some letters are more common than others).</p>
+<h3 data-number="1.5.3" id="viginère-cipher"><span
+class="header-section-number">1.5.3</span> Viginère cipher</h3>
+<p>Establish a key. Slide it over the text to encode and “add” letters.
+This is essentially addition modulo <span
+class="math inline">|\Sigma|</span>. Group <span
+class="math inline">\mathbb Z_{|\Sigma|}</span>. Now both the key length
+and key content has to be found to decipher.</p>
+<p>Example: <span class="math inline">\text{f} + \text{c} =
+\text{h}</span> or <span class="math inline">\text{x} + \text{d} =
+\text{a}</span></p>
+<h4 data-number="1.5.3.1" id="kasiski-test"><span
+class="header-section-number">1.5.3.1</span> Kasiski test</h4>
+<p>Explore repeated n-grams and check likeliness of them occurring.</p>
+<p>Say in a string (<span class="math inline">x_1x_2 \cdots
+x_{313}</span>) of 313 characters where <span
+class="math inline">|\Sigma| = 26</span> the same trigram appears 5
+times. The string has <span class="math inline">n = 311</span> trigrams.
+Let <span class="math inline">t_i = x_ix_{i+1}x_{i+2}</span>. The number
+of occurrences of some trigram <span class="math inline">n_{abc} =
+\sum_{i = 1}^n 1_{t_i = abc}</span>.</p>
+<p>Let <span class="math inline">t_i</span> be independent and uniformly
+distributed. There are <span class="math inline">\frac{1}{p} = 26^3 =
+17576</span> possibilities. <span class="math inline">P[n_{abc} = t] =
+\binom{n}{t} p^t (1 - p)^{n-t}</span>. By approximation with Poisson
+distribution we get <span class="math inline">P[n_{abc} \ge 5] \approx
+2.42 \cdot 10^{-7}</span>. Which is very unlikely for a random string.
+This can be used to conclude that the string isn’t exactly random.</p>
+<p>The position of appearance of repeating n-grams can tell us about the
+length of the key. The <span class="math inline">gcd</span> of positions
+is a good indicator.</p>
+<h4 data-number="1.5.3.2" id="index-of-coincidence"><span
+class="header-section-number">1.5.3.2</span> index of coincidence</h4>
+<p><span class="math display">
+\begin{aligned}
+    \text{Index}(x_1, \cdots, x_n) &amp;= P_{I, J}[x_I = x_J | I \ne J]
+\\
+                                                                 &amp;=
+\frac{1}{n(n - 1)} \sum_{1 \le i, j \le n, i \ne j} 1_{x_i = x_j} \\
+                                                                 &amp;=
+\sum_{c \in Z} \frac{n_c(n_c - 1)}{n(n - 1)} \\
+\end{aligned}
+</span></p>
+<p>where <span class="math inline">I, J \in \{1, \cdots, n\}</span> are
+independent and uniformly distributed.</p>
+<p>The index of coincidence is invariant over substitution and
+transposition</p>
+<p><span class="math display">
+\text{Index}(x_1, \cdots, x_n) = \text{Index}(\sigma(x_1), \cdots,
+\sigma(x_n)) = \text{Index}(x_{\rho(1)}, \cdots, x_{\rho(n)})
+</span></p>
+<p>For some permutation <span class="math inline">\sigma</span> over
+<span class="math inline">Z</span> and permutation <span
+class="math inline">\rho</span> of <span class="math inline">\{1,
+\cdots, n\}</span></p>
+<h5 data-number="1.5.3.2.1" id="expected-value"><span
+class="header-section-number">1.5.3.2.1</span> expected value</h5>
+<p><span class="math display">
+\begin{aligned}
+    E(\text{Index}(x_1, \cdots, x_n)) &amp;= \frac{1}{n(n - 1)} \sum_{1
+\le i, j \le n, i \ne j} P[x_i = x_j]
+    &amp;= \sum_{c \in Z} f_c^2
+\end{aligned}
+</span></p>
+<p>if all <span class="math inline">x_i</span> have iid distribution
+with frequency table <span class="math inline">f_c</span>. For a random
+string over a 26 letter alphabet the value tends to <span
+class="math inline">0.038</span>, while for english it tends to <span
+class="math inline">0.065</span>. This fact can be used to detect the
+correctness of our chosen key length.</p>
+<h2 data-number="1.6" id="enigma"><span
+class="header-section-number">1.6</span> enigma</h2>
+<p>Electro-mechanical encryption device. The description of the machine
+was public. First computers where constructed to break the enigma
+machine.</p>
+<p>Given a permutation <span class="math inline">\sigma</span> over
+<span class="math inline">Z = \{A, B, \cdots, Z\}</span></p>
+<ul>
+<li>a fixed point is an element <span class="math inline">x \in Z</span>
+such that <span class="math inline">\sigma(x) = x</span>.</li>
+<li>an involution is a permutation <span
+class="math inline">\sigma</span> such that <span
+class="math inline">\sigma(\sigma(x)) = x</span> for all <span
+class="math inline">x</span></li>
+<li>a rotor <span class="math inline">\sigma</span> defines a set of
+permutations <span class="math inline">\sigma_0, \cdots,
+\sigma_{25}</span> over <span class="math inline">Z</span> the rotor in
+position <span class="math inline">i</span> implements permutation <span
+class="math inline">\sigma_i</span> such that <span
+class="math inline">\sigma_i = \rho^i \circ \sigma \circ
+\rho^{-i}</span> where <span class="math inline">\rho(A) = B, \rho(B) =
+C, \cdots \rho(Z) = A</span></li>
+</ul>
+<h3 data-number="1.6.1" id="mathematic-definition-of-cipher"><span
+class="header-section-number">1.6.1</span> mathematic definition of
+cipher</h3>
+<p>The secret key consists of:</p>
+<ul>
+<li><span class="math inline">\sigma</span> (involution made of 6
+pairs)</li>
+<li>an ordered choice <span class="math inline">\alpha, \beta, \gamma
+\in S</span> of pairwise different permutations (from a box of 5
+rotors)</li>
+<li>a number <span class="math inline">a</span> (initial position of
+rotors)</li>
+</ul>
+<p>The encryption of a character is then as follows:</p>
+<p><span class="math display">
+y_i = \sigma^{-1} \circ \alpha^{-1}_{i_1} \circ \beta^{-1}_{i_2} \circ
+\gamma^{-1}_{i_3} \circ \pi \circ \gamma_{i_3} \circ \beta_{i_2} \circ
+\alpha_{i_1} \circ \sigma(x_i)
+</span></p>
+<p>where <span class="math inline">i_3i_2i_1</span> are the last three
+digits of the basis 26 numeration of <span class="math inline">i +
+a</span>.</p>
+<p>The entropy of enigma is 57 bits.</p>
+<h2 data-number="1.7" id="modern-cryptography-laws"><span
+class="header-section-number">1.7</span> modern cryptography laws</h2>
+<ol type="1">
+<li>(Kerckhoffs principle) security should not rely on the secrecy of
+the cryptosystem itself <em>or</em> security should rely on the secrecy
+of the key only. Does <strong>not</strong> mean that the cryptosystem
+has to be public.</li>
+<li>(scalability - <span class="math inline">n^2</span> problem) in a
+network of <span class="math inline">n</span> users, there is a number
+of potential pairs of users within the order of magnitude of <span
+class="math inline">n^2</span>. We cannot assume that every pair of
+users share a secret key. We must find a way for any pair of users to
+establish a shared secret key.</li>
+<li>(Moore law) the speed of CPUs doubles every 2 years. We need to
+assess how long a system can remain secure, estimate the CPU time to
+break our system against brute force attacks.</li>
+</ol>
+<h2 data-number="1.8" id="information-theory"><span
+class="header-section-number">1.8</span> information theory</h2>
+<h3 data-number="1.8.1" id="vernam-cipher"><span
+class="header-section-number">1.8.1</span> Vernam cipher</h3>
+<ul>
+<li>we use a uniformly distributed random key <span
+class="math inline">K</span> (a bitstring)</li>
+<li>every message <span class="math inline">X</span> requires a new
+<span class="math inline">K</span> of the same size as the message
+(one-time pad)</li>
+<li>to encrypt: <span class="math inline">Y = X \oplus K</span></li>
+<li>to decrypt: <span class="math inline">X = Y \oplus K</span></li>
+</ul>
+</body>
+</html>
