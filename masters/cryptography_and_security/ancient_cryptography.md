@@ -135,9 +135,46 @@ The entropy of enigma is 57 bits.
 
 ## information theory
 
-### Vernam cipher
+### Vernam cipher (one-time pad)
 
 - we use a uniformly distributed random key $K$ (a bitstring)
 - every message $X$ requires a new $K$ of the same size as the message (one-time pad)
 - to encrypt: $Y = X \oplus K$
 - to decrypt: $X = Y \oplus K$
+
+For any distribution of $X$ over an abelian group $G$, $Y$ is independent from $X$ and is uniformly distributed.
+
+### Shannon entropy
+
+Number of bits of information to represent a value $X$ is $H(X)$
+
+$$
+  H(X) = -\sum_{x \in X} P[X = x]\log_2P[X = x]
+$$
+
+$$
+	H(X, Y) = -\sum_{x \in X}\sum_{y \in Y} P[X = x, Y = y]\log_2P[X = x, Y = y]
+$$
+
+$$
+	H(X | Y) = -\sum_{x \in X}\sum_{y \in Y} P[X = x, Y = y]\log_2P[X = x | Y = y]
+$$
+
+### Shannon encryption model
+
+![encryption model](https://media.springernature.com/lw685/springer-static/image/prt%3A978-1-4419-5906-5%2F19/MediaObjects/978-1-4419-5906-5_19_Part_Fig1-3_HTML.gif)
+
+- a message is a random variable with a given priori distribution
+- key is random variable with a distribution independent from the message
+- **correctness property**: $P[E_k(D_k(m)) = m] = 1$
+- adversary gets the random variable $Y = E_k(m)$
+
+### perfect secrecy
+
+$\forall_{x, y} P[Y = y] \ne 0 \implies P[X = x | Y = y] = P[X = x]$
+
+Can be also stated as saying that $X$ and $Y$ are independent. Or can be stated as $H(X|Y) = H(X)$.
+
+So the adversary learns nothing about $X$ by intercepting $Y$. Vernam cipher provides perfect secrecy.
+
+Perfect secrecy implies $H(K) \ge H(X)$. This means to achieve perfect secrecy the number of possible keys has to be as large as the number of possible messages. This means we cannot do anything better than the Vernam cipher. This also means that $X$ have a finite support.
