@@ -677,8 +677,9 @@ break our system against brute force attacks.</li>
 </ol>
 <h2 data-number="1.8" id="information-theory"><span
 class="header-section-number">1.8</span> information theory</h2>
-<h3 data-number="1.8.1" id="vernam-cipher"><span
-class="header-section-number">1.8.1</span> Vernam cipher</h3>
+<h3 data-number="1.8.1" id="vernam-cipher-one-time-pad"><span
+class="header-section-number">1.8.1</span> Vernam cipher (one-time
+pad)</h3>
 <ul>
 <li>we use a uniformly distributed random key <span
 class="math inline">K</span> (a bitstring)</li>
@@ -688,5 +689,59 @@ class="math inline">K</span> (a bitstring)</li>
 <li>to encrypt: <span class="math inline">Y = X \oplus K</span></li>
 <li>to decrypt: <span class="math inline">X = Y \oplus K</span></li>
 </ul>
+<p>For any distribution of <span class="math inline">X</span> over an
+abelian group <span class="math inline">G</span>, <span
+class="math inline">Y</span> is independent from <span
+class="math inline">X</span> and is uniformly distributed.</p>
+<h3 data-number="1.8.2" id="shannon-entropy"><span
+class="header-section-number">1.8.2</span> Shannon entropy</h3>
+<p>Number of bits of information to represent a value <span
+class="math inline">X</span> is <span
+class="math inline">H(X)</span></p>
+<p><span class="math display">
+  H(X) = -\sum_{x \in X} P[X = x]\log_2P[X = x]
+</span></p>
+<p><span class="math display">
+    H(X, Y) = -\sum_{x \in X}\sum_{y \in Y} P[X = x, Y = y]\log_2P[X =
+x, Y = y]
+</span></p>
+<p><span class="math display">
+    H(X | Y) = -\sum_{x \in X}\sum_{y \in Y} P[X = x, Y = y]\log_2P[X =
+x | Y = y]
+</span></p>
+<h3 data-number="1.8.3" id="shannon-encryption-model"><span
+class="header-section-number">1.8.3</span> Shannon encryption model</h3>
+<figure>
+<img
+src="https://media.springernature.com/lw685/springer-static/image/prt%3A978-1-4419-5906-5%2F19/MediaObjects/978-1-4419-5906-5_19_Part_Fig1-3_HTML.gif"
+alt="encryption model" />
+<figcaption aria-hidden="true">encryption model</figcaption>
+</figure>
+<ul>
+<li>a message is a random variable with a given priori distribution</li>
+<li>key is random variable with a distribution independent from the
+message</li>
+<li><strong>correctness property</strong>: <span
+class="math inline">P[E_k(D_k(m)) = m] = 1</span></li>
+<li>adversary gets the random variable <span class="math inline">Y =
+E_k(m)</span></li>
+</ul>
+<h3 data-number="1.8.4" id="perfect-secrecy"><span
+class="header-section-number">1.8.4</span> perfect secrecy</h3>
+<p><span class="math inline">\forall_{x, y} P[Y = y] \ne 0 \implies P[X
+= x | Y = y] = P[X = x]</span></p>
+<p>Can be also stated as saying that <span class="math inline">X</span>
+and <span class="math inline">Y</span> are independent. Or can be stated
+as <span class="math inline">H(X|Y) = H(X)</span>.</p>
+<p>So the adversary learns nothing about <span
+class="math inline">X</span> by intercepting <span
+class="math inline">Y</span>. Vernam cipher provides perfect
+secrecy.</p>
+<p>Perfect secrecy implies <span class="math inline">H(K) \ge
+H(X)</span>. This means to achieve perfect secrecy the number of
+possible keys has to be as large as the number of possible messages.
+This means we cannot do anything better than the Vernam cipher. This
+also means that <span class="math inline">X</span> have a finite
+support.</p>
 </body>
 </html>
