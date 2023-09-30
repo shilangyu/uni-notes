@@ -9,7 +9,7 @@ Inference step $((P_1, \cdots, P_n), C) \in \text{Infer}$ by $\frac{P_1 \cdots P
 
 ## provable
 
-We say $F \in \mathcal F$ is provable from assumptions $A$ iff there exists a derivation from $A$ in $\text{Infer}$ that contains an inference step whose conclusion is $F$. Denoted by $A \vdash_{\text{Infer}} F$
+We say $F \in \mathcal F$ is provable from assumptions (axioms) $A$ iff there exists a derivation from $A$ in $\text{Infer}$ that contains an inference step whose conclusion is $F$. Denoted by $A \vdash_{\text{Infer}} F$
 
 ## semantic consequence
 
@@ -20,3 +20,55 @@ For $A \subseteq \mathcal F$ and $C \in \mathcal F$ we say $C$ is a semantic con
 A step $((P_1, \cdots, P_n), C) \in \text{Infer}$ is sound iff $\{P_1, \cdots, P_n\} \mid= C$. A proof system $\text{Infer}$ is sound if every inference rule is sound.
 
 If $\text{Infer}$ is sound then $A \vdash_{\text{Infer}}F \implies A \mid= F$
+
+## completeness
+
+A proof system is complete if it derives all formulas we want it to derive.
+
+## decision and simplification (resolution)
+
+Consider propositional formulas with $\lor$, $\land$, $\neg$
+
+- "case analysis" proof rule $\frac{F \quad G}{F[x := 0] \lor G[x := 1]}$
+- simplification rules where the inference is $\{((F), F') : F' \text{ is simplified } F\}$
+  - $0 \land F \leadsto 0$
+  - $1 \land F \leadsto F$
+  - $0 \lor F \leadsto F$
+  - $1 \lor F \leadsto 1$
+  - $\neg 0 \leadsto 1$
+  - $\neg 1 \leadsto 0$
+
+We call it $\text{Infer}_D$
+
+## satisfiability
+
+A set $A$ of formulas is satisfiable if there exists $e$ such that for every $F \in A$, $e \mid= F$.
+
+### soundness consequence
+
+If $A \vdash_{\text{Infer}_D} 0$ then $A$ is unsatisfiable.
+
+### refutation completeness
+
+If a finite set $A$ is unsatisfiable then $A \vdash_{\text{Infer}_D} 0$.
+
+## conjunction form
+
+A propositional _literal_ is either a variable ($x$) or its negation ($\neg x$). A _clause_ is a disjunction of literals. We can represent a clause as a finite set of literals. For example $a \lor \neg b \lor c$ is represented as $\{a, \neg b, c\}$. Zero is represented as an empty clause. A formula is a finite set of clauses interpreted as a conjunction. This is a conjunctive normal form. For example $a \land b \land (\neg a \lor \neg b)$ is represented as $A = \{\{a\}, \{b\}, \{\neg a, \neg b\}\}$.
+
+If $C$ is a clause then $\llbracket C \rrbracket_e = 1$ iff there exists a literal $L \in C$ such that $\llbracket L \rrbracket_e = 1$.
+
+### clausal resolution rule
+
+We can represent the case analysis rule from resolution as $\frac{C_1 \cup \{x\} \quad C_2 \cup \{\neg x\}}{C_1 \cup C_2}$. This is called the clausal resolution rule.
+
+A finite set of clauses $A$ is unsatisfiable iff there exists a derivation of the empty clause from $A$ using clausal resolution.
+
+### unit resolution
+
+A unit clause is a clause with exactly one literal. Given a literal $L$ its complement is $\bar L$ defined by $\overline x = \neg x$, $\overline{\neg x} = x$. Unit resolution is $\frac{C \quad \{L\}}{C \setminus \{\bar L\}}$.
+
+## equivalence and equisatisfiability
+
+- $F_1$ and $F_2$ are equivalent when $\forall_e \llbracket F_1 \rrbracket_e = \llbracket F_2 \rrbracket_e$
+- $F_1$ and $F_2$ are equisatisfiable when $F_1$ is satisfiable whenever $F_2$ is satisfiable
