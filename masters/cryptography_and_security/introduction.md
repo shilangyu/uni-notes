@@ -42,7 +42,7 @@ $$
 
 $E(1_{p(X)}) = P[p(x) = \text{true}]$
 
-## Algebra
+## algebra
 
 ### greatest common denominator (gcd)
 
@@ -101,6 +101,8 @@ Order of a group is $|G|$.
 
 Order of an element $a \in G$ in a finite group is the smallest positive integer $d$ such that $a^d = 1$. In other words, $ord(a) = \min\{d : a^d = 1 \land d \ge 1\}$.
 
+If $H$ is a subgroup of $Z$ and $H \ne \{0\}$ then $H = nZ = \{\cdots, -2n, -n, 0, n, 2n, \cdots\}$ where $n$ is the smallest positive element of $H$
+
 #### abelian groups
 
 A group where $\odot$ is commutative, $\forall_{a, b \in G} a \odot b = b \odot a$
@@ -114,6 +116,24 @@ This implies $g^{|G|} = 1$ and $g^n = g^{n \bmod |G|}$ for $n \in \mathbb Z$.
 #### cyclic groups and generators
 
 If there exists an element $g$ in a finite group $G$ such that for all $h \in G$ we can write $h = g^i$ for some $i \in \mathbb Z$ then we call $G$ a cyclic group and $g$ a generator of $G$. Then $ord(g) = |G|$. All cyclic groups are Abelian.
+
+If $|G|$ is prime then all elements except the neutral element are generators.
+
+For $g \in G$, $\langle g \rangle = \{\cdots, g^{-2}, g^{-1}, g^{0}, g^{1}, g^{2}, \cdots\}$ spans a subgroup
+
+$i \mapsto g^i$ is a group isomorphism between $Z_n$ and $\langle g \rangle$.
+
+#### quotient group
+
+Given an abelian group $G$ and a subgroup $H$ the set of equivalence classes of $G / H$ for the relation of congruence modulo $H$ is a quotient group.
+
+- $a, b \in G$ are congruent modulo $H$ if $b - a \in H$, denoted by $a \equiv b \pmod H$
+- for $a \in G$, $a + H$ is the set of all $G$ elements which can be written as $a + h$ for some $h \in H$ (elements congruent to $a$)
+- every equivalence class can be written as $a + H$ for some $a \in G$. $a$ is called a representative for the class
+
+#### prime order
+
+If group $G$ has prime order then all elements except 1 are generators.
 
 ### rings
 
@@ -136,7 +156,7 @@ Example: $(\mathbb R, +, \times)$
 
 ### homomorphism
 
-Given two groups $(G, \odot)$ and $(H, \boxdot)$, $f: G \to H$ is a group homomorphism if for all $g, g' \in G$ we have $f(g \odot g') = f(g) \boxdot f(g')$. If $f$ is also a bijection then $f$ is a group isomorphism.
+Given two groups $(G, \odot)$ and $(H, \boxdot)$, $f: G \to H$ is a group homomorphism if for all $g, g' \in G$ we have $f(g \odot g') = f(g) \boxdot f(g')$. If $f$ is also a bijection then $f$ is a group isomorphism. $\forall_{a \in G_1} f(a) \text{ neutral in } G_2 \implies a \text{ neutral in } G_1 \iff f \text{ is injective}$.
 
 - Example of homomorphism: the sign function for $(\mathbb Q \setminus \{0\}, \times)$ and $(\{-1, 1\}, \times)$
 - Example of isomorphism: $\ln$ (natural logarithm)
