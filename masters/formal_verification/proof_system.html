@@ -509,8 +509,8 @@ inference step, each premise is a conclusion of a previous step.</p>
 <h2 data-number="1.1" id="provable"><span
 class="header-section-number">1.1</span> provable</h2>
 <p>We say <span class="math inline">F \in \mathcal F</span> is provable
-from assumptions <span class="math inline">A</span> iff there exists a
-derivation from <span class="math inline">A</span> in <span
+from assumptions (axioms) <span class="math inline">A</span> iff there
+exists a derivation from <span class="math inline">A</span> in <span
 class="math inline">\text{Infer}</span> that contains an inference step
 whose conclusion is <span class="math inline">F</span>. Denoted by <span
 class="math inline">A \vdash_{\text{Infer}} F</span></p>
@@ -534,5 +534,92 @@ is sound.</p>
 <p>If <span class="math inline">\text{Infer}</span> is sound then <span
 class="math inline">A \vdash_{\text{Infer}}F \implies A \mid=
 F</span></p>
+<h2 data-number="1.4" id="completeness"><span
+class="header-section-number">1.4</span> completeness</h2>
+<p>A proof system is complete if it derives all formulas we want it to
+derive.</p>
+<h2 data-number="1.5" id="decision-and-simplification-resolution"><span
+class="header-section-number">1.5</span> decision and simplification
+(resolution)</h2>
+<p>Consider propositional formulas with <span
+class="math inline">\lor</span>, <span class="math inline">\land</span>,
+<span class="math inline">\neg</span></p>
+<ul>
+<li>“case analysis” proof rule <span class="math inline">\frac{F \quad
+G}{F[x := 0] \lor G[x := 1]}</span></li>
+<li>simplification rules where the inference is <span
+class="math inline">\{((F), F&#39;) : F&#39; \text{ is simplified }
+F\}</span>
+<ul>
+<li><span class="math inline">0 \land F \leadsto 0</span></li>
+<li><span class="math inline">1 \land F \leadsto F</span></li>
+<li><span class="math inline">0 \lor F \leadsto F</span></li>
+<li><span class="math inline">1 \lor F \leadsto 1</span></li>
+<li><span class="math inline">\neg 0 \leadsto 1</span></li>
+<li><span class="math inline">\neg 1 \leadsto 0</span></li>
+</ul></li>
+</ul>
+<p>We call it <span class="math inline">\text{Infer}_D</span></p>
+<h2 data-number="1.6" id="satisfiability"><span
+class="header-section-number">1.6</span> satisfiability</h2>
+<p>A set <span class="math inline">A</span> of formulas is satisfiable
+if there exists <span class="math inline">e</span> such that for every
+<span class="math inline">F \in A</span>, <span class="math inline">e
+\mid= F</span>.</p>
+<h3 data-number="1.6.1" id="soundness-consequence"><span
+class="header-section-number">1.6.1</span> soundness consequence</h3>
+<p>If <span class="math inline">A \vdash_{\text{Infer}_D} 0</span> then
+<span class="math inline">A</span> is unsatisfiable.</p>
+<h3 data-number="1.6.2" id="refutation-completeness"><span
+class="header-section-number">1.6.2</span> refutation completeness</h3>
+<p>If a finite set <span class="math inline">A</span> is unsatisfiable
+then <span class="math inline">A \vdash_{\text{Infer}_D} 0</span>.</p>
+<h2 data-number="1.7" id="conjunction-form"><span
+class="header-section-number">1.7</span> conjunction form</h2>
+<p>A propositional <em>literal</em> is either a variable (<span
+class="math inline">x</span>) or its negation (<span
+class="math inline">\neg x</span>). A <em>clause</em> is a disjunction
+of literals. We can represent a clause as a finite set of literals. For
+example <span class="math inline">a \lor \neg b \lor c</span> is
+represented as <span class="math inline">\{a, \neg b, c\}</span>. Zero
+is represented as an empty clause. A formula is a finite set of clauses
+interpreted as a conjunction. This is a conjunctive normal form. For
+example <span class="math inline">a \land b \land (\neg a \lor \neg
+b)</span> is represented as <span class="math inline">A = \{\{a\},
+\{b\}, \{\neg a, \neg b\}\}</span>.</p>
+<p>If <span class="math inline">C</span> is a clause then <span
+class="math inline">\llbracket C \rrbracket_e = 1</span> iff there
+exists a literal <span class="math inline">L \in C</span> such that
+<span class="math inline">\llbracket L \rrbracket_e = 1</span>.</p>
+<h3 data-number="1.7.1" id="clausal-resolution-rule"><span
+class="header-section-number">1.7.1</span> clausal resolution rule</h3>
+<p>We can represent the case analysis rule from resolution as <span
+class="math inline">\frac{C_1 \cup \{x\} \quad C_2 \cup \{\neg x\}}{C_1
+\cup C_2}</span>. This is called the clausal resolution rule.</p>
+<p>A finite set of clauses <span class="math inline">A</span> is
+unsatisfiable iff there exists a derivation of the empty clause from
+<span class="math inline">A</span> using clausal resolution.</p>
+<h3 data-number="1.7.2" id="unit-resolution"><span
+class="header-section-number">1.7.2</span> unit resolution</h3>
+<p>A unit clause is a clause with exactly one literal. Given a literal
+<span class="math inline">L</span> its complement is <span
+class="math inline">\bar L</span> defined by <span
+class="math inline">\overline x = \neg x</span>, <span
+class="math inline">\overline{\neg x} = x</span>. Unit resolution is
+<span class="math inline">\frac{C \quad \{L\}}{C \setminus \{\bar
+L\}}</span>.</p>
+<h2 data-number="1.8" id="equivalence-and-equisatisfiability"><span
+class="header-section-number">1.8</span> equivalence and
+equisatisfiability</h2>
+<ul>
+<li><span class="math inline">F_1</span> and <span
+class="math inline">F_2</span> are equivalent when <span
+class="math inline">\forall_e \llbracket F_1 \rrbracket_e = \llbracket
+F_2 \rrbracket_e</span></li>
+<li><span class="math inline">F_1</span> and <span
+class="math inline">F_2</span> are equisatisfiable when <span
+class="math inline">F_1</span> is satisfiable whenever <span
+class="math inline">F_2</span> is satisfiable</li>
+</ul>
 </body>
 </html>

@@ -631,7 +631,7 @@ class="header-section-number">1.1.4</span> indicator function</h3>
 <p><span class="math inline">E(1_{p(X)}) = P[p(x) =
 \text{true}]</span></p>
 <h2 data-number="1.2" id="algebra"><span
-class="header-section-number">1.2</span> Algebra</h2>
+class="header-section-number">1.2</span> algebra</h2>
 <h3 data-number="1.2.1" id="greatest-common-denominator-gcd"><span
 class="header-section-number">1.2.1</span> greatest common denominator
 (gcd)</h3>
@@ -726,6 +726,11 @@ finite group is the smallest positive integer <span
 class="math inline">d</span> such that <span class="math inline">a^d =
 1</span>. In other words, <span class="math inline">ord(a) = \min\{d :
 a^d = 1 \land d \ge 1\}</span>.</p>
+<p>If <span class="math inline">H</span> is a subgroup of <span
+class="math inline">Z</span> and <span class="math inline">H \ne
+\{0\}</span> then <span class="math inline">H = nZ = \{\cdots, -2n, -n,
+0, n, 2n, \cdots\}</span> where <span class="math inline">n</span> is
+the smallest positive element of <span class="math inline">H</span></p>
 <h4 data-number="1.3.1.1" id="abelian-groups"><span
 class="header-section-number">1.3.1.1</span> abelian groups</h4>
 <p>A group where <span class="math inline">\odot</span> is commutative,
@@ -749,6 +754,41 @@ class="math inline">h = g^i</span> for some <span class="math inline">i
 cyclic group and <span class="math inline">g</span> a generator of <span
 class="math inline">G</span>. Then <span class="math inline">ord(g) =
 |G|</span>. All cyclic groups are Abelian.</p>
+<p>If <span class="math inline">|G|</span> is prime then all elements
+except the neutral element are generators.</p>
+<p>For <span class="math inline">g \in G</span>, <span
+class="math inline">\langle g \rangle = \{\cdots, g^{-2}, g^{-1}, g^{0},
+g^{1}, g^{2}, \cdots\}</span> spans a subgroup</p>
+<p><span class="math inline">i \mapsto g^i</span> is a group isomorphism
+between <span class="math inline">Z_n</span> and <span
+class="math inline">\langle g \rangle</span>.</p>
+<h4 data-number="1.3.1.4" id="quotient-group"><span
+class="header-section-number">1.3.1.4</span> quotient group</h4>
+<p>Given an abelian group <span class="math inline">G</span> and a
+subgroup <span class="math inline">H</span> the set of equivalence
+classes of <span class="math inline">G / H</span> for the relation of
+congruence modulo <span class="math inline">H</span> is a quotient
+group.</p>
+<ul>
+<li><span class="math inline">a, b \in G</span> are congruent modulo
+<span class="math inline">H</span> if <span class="math inline">b - a
+\in H</span>, denoted by <span class="math inline">a \equiv b \pmod
+H</span></li>
+<li>for <span class="math inline">a \in G</span>, <span
+class="math inline">a + H</span> is the set of all <span
+class="math inline">G</span> elements which can be written as <span
+class="math inline">a + h</span> for some <span class="math inline">h
+\in H</span> (elements congruent to <span
+class="math inline">a</span>)</li>
+<li>every equivalence class can be written as <span
+class="math inline">a + H</span> for some <span class="math inline">a
+\in G</span>. <span class="math inline">a</span> is called a
+representative for the class</li>
+</ul>
+<h4 data-number="1.3.1.5" id="prime-order"><span
+class="header-section-number">1.3.1.5</span> prime order</h4>
+<p>If group <span class="math inline">G</span> has prime order then all
+elements except 1 are generators.</p>
 <h3 data-number="1.3.2" id="rings"><span
 class="header-section-number">1.3.2</span> rings</h3>
 <p>A ring is an Abelian group <span class="math inline">(R, +)</span>
@@ -789,7 +829,10 @@ class="math inline">f: G \to H</span> is a group homomorphism if for all
 <span class="math inline">g, g&#39; \in G</span> we have <span
 class="math inline">f(g \odot g&#39;) = f(g) \boxdot f(g&#39;)</span>.
 If <span class="math inline">f</span> is also a bijection then <span
-class="math inline">f</span> is a group isomorphism.</p>
+class="math inline">f</span> is a group isomorphism. <span
+class="math inline">\forall_{a \in G_1} f(a) \text{ neutral in } G_2
+\implies a \text{ neutral in } G_1 \iff f \text{ is
+injective}</span>.</p>
 <ul>
 <li>Example of homomorphism: the sign function for <span
 class="math inline">(\mathbb Q \setminus \{0\}, \times)</span> and <span
