@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>introduction</title>
+  <title>registers</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,161 +483,46 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="introduction"><span
-class="header-section-number">1</span> introduction</h1>
+<h1 data-number="1" id="registers"><span
+class="header-section-number">1</span> registers</h1>
+<p>Have read and write operations. They store integers. Initial state is
+0.</p>
+<h2 data-number="1.1" id="dimensions"><span
+class="header-section-number">1.1</span> dimensions</h2>
 <ul>
-<li><strong>reliable broadcast</strong> - ensure that a message is
-received by receivers, or that no one has received it</li>
-<li><strong>atomic commit</strong> - ensure that all processes agree
-that a transaction should be committed or aborted</li>
-<li><strong>process</strong> - separate computers, communicate through
-links. Two failures are distinguished
+<li>dimension 1: binary / multivalued</li>
+<li>dimension 2:
 <ul>
-<li><strong>omission</strong> - the process omits to send a message</li>
-<li><strong>arbitrary</strong> - the process sends something it was not
-supposed to</li>
-<li><strong>crash-stop</strong></li>
-<li><strong>correct</strong> - a process is correct when it never
-fails</li>
+<li>SRSW (single reader, single writer)</li>
+<li>MRSW (multiple readers, single writer)</li>
+<li>MRMW (multiple readers, multiple writes)</li>
 </ul></li>
-<li><strong>channels</strong> - communication network. Messages are
-uniquely identified
-<ul>
-<li><strong>fair-loss link</strong> - similar to UDP</li>
-<li><strong>stubborn link</strong> - a message that was sent is
-delivered an infinite amount of times</li>
-<li><strong>perfect (reliable) link</strong> - similar to TCP</li>
-</ul></li>
-<li><strong>failure detectors</strong> - detection of failing processes
-(for example by timing assumptions). Defined by completeness and
-accuracy.
-<ul>
-<li><strong>perfect</strong> - Strong completeness (eventually every
-process that crashed is detected to have crashed). Strong accuracy (no
-process is suspected before it crashes).</li>
-<li><strong>eventually perfect</strong> - Strong completeness. Eventual
-Strong accuracy.</li>
-</ul></li>
-<li><strong>safety</strong> - property that nothing bad will happen</li>
-<li><strong>liveness</strong> - property that something good will
-happen</li>
+<li>dimension 3: sage / regular / atomic</li>
 </ul>
-<h2 data-number="1.1" id="broadcast"><span
-class="header-section-number">1.1</span> broadcast</h2>
-<p>Sending some message to all other processes.</p>
-<h3 data-number="1.1.1" id="best-effort-beb"><span
-class="header-section-number">1.1.1</span> best-effort (beb)</h3>
-<ul>
-<li>request: <code>&lt;bebBroadcast, m&gt;</code></li>
-<li>indication: <code>&lt;bebDeliver, src, m&gt;</code></li>
-</ul>
-<ol type="1">
-<li><strong>validity</strong>: If <span class="math inline">p_i</span>
-and <span class="math inline">p_j</span> are correct, then every message
-broadcast by <span class="math inline">p_i</span> is eventually
-delivered to <span class="math inline">p_j</span></li>
-<li><strong>no duplication</strong>: no message is delivered more than
-once</li>
-<li><strong>no creation</strong>: no message is delivered unless it was
-broadcast</li>
-</ol>
-<pre><code>Implements: beb
-Uses: PerfectLinks (pp2p)
+<h3 data-number="1.1.1" id="safe-execution"><span
+class="header-section-number">1.1.1</span> safe execution</h3>
+<p>Reads return the value from the last finished write.</p>
+<h3 data-number="1.1.2" id="regular-execution"><span
+class="header-section-number">1.1.2</span> regular execution</h3>
+<p>Reads return the value from the last finished write or the value
+concurrently written.</p>
+<h3 data-number="1.1.3" id="atomic-execution"><span
+class="header-section-number">1.1.3</span> atomic execution</h3>
+<p>Each operation executes in a particular point in time.</p>
+<h2 data-number="1.2" id="theorem"><span
+class="header-section-number">1.2</span> theorem</h2>
+<p>A multivalued MRMW atomic register can be wait-free implemented with
+binary SRSW safe registers.</p>
+<h3 data-number="1.2.1" id="safe-binary-srsw-to-safe-binary-mrsw"><span
+class="header-section-number">1.2.1</span> safe binary SRSW <span
+class="math inline">\to</span> safe binary MRSW</h3>
+<p>Let Reg[1, .., N] be an array of SRSW registers.</p>
+<pre><code>fn read()
+    return Reg[i].read()
 
-upon event &lt;bebBroadcast, m&gt;
-  for p in S
-    trigger &lt;pp2pSend, p, m&gt;
-
-upon event &lt;pp2pDeliver, pi, m&gt;
-  trigger &lt;bebDeliver, pi, m&gt;</code></pre>
-<h3 data-number="1.1.2" id="reliable-broadcast-rb"><span
-class="header-section-number">1.1.2</span> reliable broadcast (rb)</h3>
-<ul>
-<li>request: <code>&lt;rbBroadcast, m&gt;</code></li>
-<li>indication: <code>&lt;rbDeliver, src, m&gt;</code></li>
-</ul>
-<ol type="1">
-<li><strong>validity</strong></li>
-<li><strong>no duplication</strong></li>
-<li><strong>no creation</strong></li>
-<li><strong>agreement</strong>: for any message <span
-class="math inline">m</span> if any correct process delivers <span
-class="math inline">m</span> then every correct process delivers <span
-class="math inline">m</span></li>
-</ol>
-<pre><code>Implements: rb
-Uses:
-  - beb
-  - PerfectFailureDetector
-
-upon event &lt;Init&gt;
-  delivered = ∅
-  correct = S
-  for p in S
-    from[p] = ∅
-
-upon event &lt;rbBroadcast, m&gt;
-  delivered = delivered ∪ {m}
-  trigger &lt;rbDelivered, self, m&gt;
-  trigger &lt;bebBroadcast, [Data, self, m]&gt;
-
-upon event &lt;crash, pi&gt;
-  correct = correct \ {pi}
-
-  for [pj, m] in from[pi]
-    trigger &lt;bebBroadcast, [Data, pj, m]&gt;
-
-upon event &lt;bebDeliver, pi, [Data, pj, m]&gt;
-  if m not in delivered
-    delivered = delivered ∪ {m}
-    trigger &lt;rbDeliver, pj, m&gt;
-    if pi not in correct
-      trigger &lt;bebBroadcast, [Data, pj, m]&gt;
-    else
-      from[pi] = from[pi] ∪ {[pj, m]}</code></pre>
-<p><span class="math inline">\cup</span></p>
-<h3 data-number="1.1.3" id="uniform-broadcast-urb"><span
-class="header-section-number">1.1.3</span> uniform broadcast (urb)</h3>
-<ul>
-<li>request: <code>&lt;urbBroadcast, m&gt;</code></li>
-<li>indication: <code>&lt;urbDeliver, src, m&gt;</code></li>
-</ul>
-<ol type="1">
-<li><strong>validity</strong></li>
-<li><strong>no duplication</strong></li>
-<li><strong>no creation</strong></li>
-<li><strong>uniform agreement</strong>: for any message <span
-class="math inline">m</span> if any process delivers <span
-class="math inline">m</span> then every correct process delivers <span
-class="math inline">m</span></li>
-</ol>
-<pre><code>Implements: urb
-Uses:
-  - beb
-  - PerfectFailureDetector
-
-upon event &lt;Init&gt;
-  delivered = ∅
-  forward = ∅
-  correct = S
-  ack[Message] = ∅
-
-upon event &lt;crash, pi&gt;
-  correct = correct \ {pi}
-
-upon event &lt;urbBroadcast, m&gt;
-  forward = forward ∪ {[self, m]}
-  trigger &lt;bebBroadcast, [Data, self, m]&gt;
-
-upon event &lt;bebDelivered, pi, [Data, pj, m]&gt;
-  ack[m] = ack[m] ∪ {pi}
-
-  if [pj, m] not in forward
-    forward = forward ∪ {[pj, m]}
-    trigger &lt;bebBroadcast, [Data, pj, m]&gt;
-
-upon event (for any [pj, m] in forward) &lt;correct ⊆ ack[m]&gt; and &lt;m not in delivered&gt;
-  delivered = delivered ∪ {m}
-  trigger &lt;urbDelivered, pj, m&gt;</code></pre>
+fn write(v)
+    for j in 1:N
+        Reg[j].write(v)</code></pre>
+<p>This also works for multi-valued registers and regular ones.</p>
 </body>
 </html>
