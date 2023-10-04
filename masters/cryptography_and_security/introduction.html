@@ -720,6 +720,8 @@ G}\exists_{b \in G} a \odot b = b \odot a = e</span></li>
 </ol>
 <p>Example: <span class="math inline">(\mathbb Z, +)</span>, <span
 class="math inline">(\mathbb Q \setminus\{0\}, \times)</span></p>
+<h4 data-number="1.3.1.1" id="order"><span
+class="header-section-number">1.3.1.1</span> order</h4>
 <p>Order of a group is <span class="math inline">|G|</span>.</p>
 <p>Order of an element <span class="math inline">a \in G</span> in a
 finite group is the smallest positive integer <span
@@ -730,21 +732,41 @@ a^d = 1 \land d \ge 1\}</span>.</p>
 class="math inline">Z</span> and <span class="math inline">H \ne
 \{0\}</span> then <span class="math inline">H = nZ = \{\cdots, -2n, -n,
 0, n, 2n, \cdots\}</span> where <span class="math inline">n</span> is
-the smallest positive element of <span class="math inline">H</span></p>
-<h4 data-number="1.3.1.1" id="abelian-groups"><span
-class="header-section-number">1.3.1.1</span> abelian groups</h4>
+the smallest positive element of <span class="math inline">H</span>.
+<span class="math inline">a^i = 1 \iff n \text{ divides } i</span>.</p>
+<h4 data-number="1.3.1.2" id="exponent"><span
+class="header-section-number">1.3.1.2</span> exponent</h4>
+<p><span class="math inline">\{i \in \Z : \forall_{a \in G} a^i = 1\} =
+\lambda \Z</span>. <span class="math inline">\lambda</span> is the group
+exponent. <span class="math inline">(\forall_{a \in G} a^i = 1) \iff
+(\lambda \text{ divides } i)</span>. <span
+class="math inline">\forall_{a \in G} ord(a) | \lambda \land \lambda |
+|G|</span>.</p>
+<p>The group exponent is the least common multiple (lcm) of all <span
+class="math inline">ord(x)</span>.</p>
+<h4 data-number="1.3.1.3" id="z_n"><span
+class="header-section-number">1.3.1.3</span> <span
+class="math inline">Z_n^*</span></h4>
+<ul>
+<li><span class="math inline">|Z_n^*| = \varphi(n)</span></li>
+<li>the exponent of <span class="math inline">Z_n^*</span> is <span
+class="math inline">\lambda(n) = lcm(\lambda(p_1^{\alpha_1}), \cdots,
+\lambda(p_r^{\alpha_r}))</span></li>
+</ul>
+<h4 data-number="1.3.1.4" id="abelian-groups"><span
+class="header-section-number">1.3.1.4</span> abelian groups</h4>
 <p>A group where <span class="math inline">\odot</span> is commutative,
 <span class="math inline">\forall_{a, b \in G} a \odot b = b \odot
 a</span></p>
-<h4 data-number="1.3.1.2" id="lagrange-theorem"><span
-class="header-section-number">1.3.1.2</span> Lagrange theorem</h4>
+<h4 data-number="1.3.1.5" id="lagrange-theorem"><span
+class="header-section-number">1.3.1.5</span> Lagrange theorem</h4>
 <p>Let <span class="math inline">G</span> be a finite group. Then <span
 class="math inline">\forall_{g \in G} ord(g) \mid |G|</span>.</p>
 <p>This implies <span class="math inline">g^{|G|} = 1</span> and <span
 class="math inline">g^n = g^{n \bmod |G|}</span> for <span
 class="math inline">n \in \mathbb Z</span>.</p>
-<h4 data-number="1.3.1.3" id="cyclic-groups-and-generators"><span
-class="header-section-number">1.3.1.3</span> cyclic groups and
+<h4 data-number="1.3.1.6" id="cyclic-groups-and-generators"><span
+class="header-section-number">1.3.1.6</span> cyclic groups and
 generators</h4>
 <p>If there exists an element <span class="math inline">g</span> in a
 finite group <span class="math inline">G</span> such that for all <span
@@ -762,8 +784,8 @@ g^{1}, g^{2}, \cdots\}</span> spans a subgroup</p>
 <p><span class="math inline">i \mapsto g^i</span> is a group isomorphism
 between <span class="math inline">Z_n</span> and <span
 class="math inline">\langle g \rangle</span>.</p>
-<h4 data-number="1.3.1.4" id="quotient-group"><span
-class="header-section-number">1.3.1.4</span> quotient group</h4>
+<h4 data-number="1.3.1.7" id="quotient-group"><span
+class="header-section-number">1.3.1.7</span> quotient group</h4>
 <p>Given an abelian group <span class="math inline">G</span> and a
 subgroup <span class="math inline">H</span> the set of equivalence
 classes of <span class="math inline">G / H</span> for the relation of
@@ -785,8 +807,8 @@ class="math inline">a + H</span> for some <span class="math inline">a
 \in G</span>. <span class="math inline">a</span> is called a
 representative for the class</li>
 </ul>
-<h4 data-number="1.3.1.5" id="prime-order"><span
-class="header-section-number">1.3.1.5</span> prime order</h4>
+<h4 data-number="1.3.1.8" id="prime-order"><span
+class="header-section-number">1.3.1.8</span> prime order</h4>
 <p>If group <span class="math inline">G</span> has prime order then all
 elements except 1 are generators.</p>
 <h3 data-number="1.3.2" id="rings"><span
@@ -808,13 +830,17 @@ class="math inline">I</span> itself is a ring with respect to the
 original operations and if additionally <span class="math inline">a
 \cdot i \in I</span> for every <span class="math inline">a \in R</span>
 and <span class="math inline">i \in I</span>.</p>
+<h4 data-number="1.3.2.2" id="group-of-units"><span
+class="header-section-number">1.3.2.2</span> group of units</h4>
+<p>For a ring <span class="math inline">R</span> we denote <span
+class="math inline">R^*</span> the set of elements having a
+multiplicative inverse. Those elements are called units. <span
+class="math inline">R^*</span> is a group with multiplication.</p>
 <h3 data-number="1.3.3" id="fields"><span
 class="header-section-number">1.3.3</span> fields</h3>
 <p>A field is a commutative ring <span class="math inline">(K, +,
 \times)</span> such that</p>
 <ul>
-<li>(commutativity of <span class="math inline">\times</span>) <span
-class="math inline">\forall_{a, b \in K} ab = ba</span></li>
 <li>(invertibility of <span class="math inline">\times</span>) <span
 class="math inline">\forall_{a \in K \setminus \{0\}} \exists_{b =
 a^{-1}} ab = ba = 1</span> where <span class="math inline">0</span> is
