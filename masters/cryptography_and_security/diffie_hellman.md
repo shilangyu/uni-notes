@@ -8,5 +8,5 @@ The security requirement is that given $(g, g^x, g^y)$ it is hard to compute $g^
 
 Example Diffie-Hellman groups:
 
-- $Z_p^* = (Z_p, \cdot)$ (compute $g^x \bmod p$) for large primes $p$
+- $Z_p^*$ (compute $g^x \bmod p$) for large primes $p$
 - elliptic curves

@@ -97,11 +97,24 @@ A group is a set $G$ together with a mapping $\odot: G \times G \to G$ such that
 
 Example: $(\mathbb Z, +)$, $(\mathbb Q \setminus\{0\}, \times)$
 
+#### order
+
 Order of a group is $|G|$.
 
 Order of an element $a \in G$ in a finite group is the smallest positive integer $d$ such that $a^d = 1$. In other words, $ord(a) = \min\{d : a^d = 1 \land d \ge 1\}$.
 
-If $H$ is a subgroup of $Z$ and $H \ne \{0\}$ then $H = nZ = \{\cdots, -2n, -n, 0, n, 2n, \cdots\}$ where $n$ is the smallest positive element of $H$
+If $H$ is a subgroup of $Z$ and $H \ne \{0\}$ then $H = nZ = \{\cdots, -2n, -n, 0, n, 2n, \cdots\}$ where $n$ is the smallest positive element of $H$. $a^i = 1 \iff n \text{ divides } i$.
+
+#### exponent
+
+$\{i \in \Z : \forall_{a \in G} a^i = 1\} = \lambda \Z$. $\lambda$ is the group exponent. $(\forall_{a \in G} a^i = 1) \iff (\lambda \text{ divides } i)$. $\forall_{a \in G} ord(a) | \lambda \land \lambda | |G|$.
+
+The group exponent is the least common multiple (lcm) of all $ord(x)$.
+
+#### $Z_n^*$
+
+- $|Z_n^*| = \varphi(n)$
+- the exponent of $Z_n^*$ is $\lambda(n) = lcm(\lambda(p_1^{\alpha_1}), \cdots, \lambda(p_r^{\alpha_r}))$
 
 #### abelian groups
 
@@ -145,11 +158,14 @@ A commutative ring is a ring where $\cdot$ is commutative. For instance, $(\math
 
 Given a commutative ring $(R, +, \cdot)$ we call $I \subseteq R$ and ideal of $R$ if $I$ itself is a ring with respect to the original operations and if additionally $a \cdot i \in I$ for every $a \in R$ and $i \in I$.
 
+#### group of units
+
+For a ring $R$ we denote $R^*$ the set of elements having a multiplicative inverse. Those elements are called units. $R^*$ is a group with multiplication.
+
 ### fields
 
 A field is a commutative ring $(K, +, \times)$ such that
 
-- (commutativity of $\times$) $\forall_{a, b \in K} ab = ba$
 - (invertibility of $\times$) $\forall_{a \in K \setminus \{0\}} \exists_{b = a^{-1}} ab = ba = 1$ where $0$ is the neutral element of addition
 
 Example: $(\mathbb R, +, \times)$
