@@ -72,3 +72,49 @@ A unit clause is a clause with exactly one literal. Given a literal $L$ its comp
 
 - $F_1$ and $F_2$ are equivalent when $\forall_e \llbracket F_1 \rrbracket_e = \llbracket F_2 \rrbracket_e$
 - $F_1$ and $F_2$ are equisatisfiable when $F_1$ is satisfiable whenever $F_2$ is satisfiable
+
+## flattening
+
+Let $F$ and $G$ be formulas and let $x \notin FV(F)$. Then $F$ is equisatisfiable with $(x \iff G) \land F[G := x]$
+
+## SAT solvers
+
+Takes as input a set of clauses and determines whether it is satisfiable.
+
+## first-order logic
+
+FOL has predicates and functions. Their meaning is constrained through axioms,
+
+To prove whether a property holds, we can proceed with:
+
+- describe the property using a formula $F$
+- describe the functions and relations in $F$ using a sequence of axioms $S$
+- check if the sequence $(\neg F; S)$ is contradictory. If yes, then $F$ follows from $S$
+
+Example FOL formula:
+
+$$
+(\forall_x\exists_y R(x, y)) \land \\
+(\forall_x\forall_y(R(x, y) \implies \forall_z R(x, f(y, z)))) \land \\
+(\forall_x (P(x) \lor P(f(x, a)))) \implies \\
+\forall_x\exists_y (R(x, y) \land P(y))
+$$
+
+A signature (language) of FOL system is $\mathcal Z$ a countable set of function symbols (constants are functions with arity 0 ($ar(c) = 0$)) and predicate symbols,
+
+### interpretation
+
+A first order interpretation is $I = (D, e)$ where $D \ne \emptyset$ and $e$ maps constants, function and predicate symbols as follows:
+
+- each predicate symbol $p$ with $ar(p) = n$ into $e(p) : D^n \to \{0, 1\}$
+- each function symbol $f$ with $ar(f) = n$ into a total function of $n$ arguments, $e(f) : D^n \to D$
+- maps each variable $x$ to element of $D$, ie $e(x) \in D$
+
+We define $\llbracket F \rrbracket_I \in \{0, 1\}$ to denote whether $F$ is true or false.
+
+- $F$ is **valid** if for all interpretations $I$, $\llbracket F \rrbracket_I = 1$
+- $F$ is **satisfiable** if there exists an interpretation $I$, $\llbracket F \rrbracket_I = 1$
+
+### Skolem function
+
+In a formula that is in negation normal form, replace a subformula $\exists_y F(x_1, \cdots, x_n, y)$ with $F(x_1, \cdots, x_n, g(x_1, \cdots, x_n))$ where $g$ is the Skolem function.
