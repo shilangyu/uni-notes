@@ -85,8 +85,6 @@ upon event <bebDeliver, pi, [Data, pj, m]>
       from[pi] = from[pi] ∪ {[pj, m]}
 ```
 
-$\cup$
-
 ### uniform broadcast (urb)
 
 - request: `<urbBroadcast, m>`
@@ -127,3 +125,14 @@ upon event (for any [pj, m] in forward) <correct ⊆ ack[m]> and <m not in deliv
   delivered = delivered ∪ {m}
   trigger <urbDelivered, pj, m>
 ```
+
+### causal broadcast (cb)
+
+- request: `<coBroadcast, m>`
+- indication: `<coDeliver, src, m>`
+
+Let m1 and m2 be any two messages. m1 $\prec$ m2
+
+1. **FIFO order**: some process pi broadcasts m1 before broadcasting m2
+2. **local order**: some process pi delivers m1 and then broadcasts m2
+3. **transitivity**: there is a message m3 such that m1 $\prec$ m3 and m3 $\prec$ m2
