@@ -595,7 +595,6 @@ upon event &lt;bebDeliver, pi, [Data, pj, m]&gt;
       trigger &lt;bebBroadcast, [Data, pj, m]&gt;
     else
       from[pi] = from[pi] ∪ {[pj, m]}</code></pre>
-<p><span class="math inline">\cup</span></p>
 <h3 data-number="1.1.3" id="uniform-broadcast-urb"><span
 class="header-section-number">1.1.3</span> uniform broadcast (urb)</h3>
 <ul>
@@ -639,5 +638,22 @@ upon event &lt;bebDelivered, pi, [Data, pj, m]&gt;
 upon event (for any [pj, m] in forward) &lt;correct ⊆ ack[m]&gt; and &lt;m not in delivered&gt;
   delivered = delivered ∪ {m}
   trigger &lt;urbDelivered, pj, m&gt;</code></pre>
+<h3 data-number="1.1.4" id="causal-broadcast-cb"><span
+class="header-section-number">1.1.4</span> causal broadcast (cb)</h3>
+<ul>
+<li>request: <code>&lt;coBroadcast, m&gt;</code></li>
+<li>indication: <code>&lt;coDeliver, src, m&gt;</code></li>
+</ul>
+<p>Let m1 and m2 be any two messages. m1 <span
+class="math inline">\prec</span> m2</p>
+<ol type="1">
+<li><strong>FIFO order</strong>: some process pi broadcasts m1 before
+broadcasting m2</li>
+<li><strong>local order</strong>: some process pi delivers m1 and then
+broadcasts m2</li>
+<li><strong>transitivity</strong>: there is a message m3 such that m1
+<span class="math inline">\prec</span> m3 and m3 <span
+class="math inline">\prec</span> m2</li>
+</ol>
 </body>
 </html>

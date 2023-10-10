@@ -518,11 +518,50 @@ class="header-section-number">1.2.1</span> safe binary SRSW <span
 class="math inline">\to</span> safe binary MRSW</h3>
 <p>Let Reg[1, .., N] be an array of SRSW registers.</p>
 <pre><code>fn read()
-    return Reg[i].read()
+    return Reg[i]
 
 fn write(v)
     for j in 1:N
-        Reg[j].write(v)</code></pre>
+        Reg[j] = v</code></pre>
 <p>This also works for multi-valued registers and regular ones.</p>
+<h3 data-number="1.2.2"
+id="safe-binary-mrsw-to-regular-binary-mrsw"><span
+class="header-section-number">1.2.2</span> safe binary MRSW <span
+class="math inline">\to</span> regular binary MRSW</h3>
+<p>Let Reg be a safe register</p>
+<pre><code>fn read()
+    return Reg
+
+fn write(v)
+    if old != v
+        Reg = v
+        old = v</code></pre>
+<h3 data-number="1.2.3" id="binary-mrsw-to-m-valued-mrsw"><span
+class="header-section-number">1.2.3</span> binary MRSW <span
+class="math inline">\to</span> M-valued MRSW</h3>
+<p>Let Reg[1, …, M] init to [1, 0, …, 0]</p>
+<pre><code>fn read()
+    for j in 1:M
+        if Reg[j] == 1
+            return j
+
+fn write(v)
+    Reg[v] = 1
+    for j in rev(1:(v-1))
+        Reg[j] = 0</code></pre>
+<h3 data-number="1.2.4" id="srsw-regular-to-srsw-atomic"><span
+class="header-section-number">1.2.4</span> SRSW regular <span
+class="math inline">\to</span> SRSW atomic</h3>
+<p>Let Reg be a regular SRSW</p>
+<pre><code>fn read()
+    (t&#39;, x&#39;) = Reg
+    if t’ &gt; t
+        t = t&#39;
+        x = x&#39;
+    return x
+
+fn write(v)
+    t = t+1
+    Reg = (t, v)</code></pre>
 </body>
 </html>
