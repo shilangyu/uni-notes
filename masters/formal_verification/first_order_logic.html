@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>values</title>
+  <title>first_order_logic</title>
   <style>
     html {
       line-height: 1.5;
@@ -460,27 +460,185 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="values"><span
-class="header-section-number">1</span> values</h1>
-<p>Ways of speaking about values</p>
+<h1 data-number="1" id="first-order-logic"><span
+class="header-section-number">1</span> first-order logic</h1>
+<p>FOL has predicates and functions. Their meaning is constrained
+through axioms,</p>
+<p>To prove whether a property holds, we can proceed with:</p>
 <ul>
-<li>Values as abstractions (“properties”) - liberty, equality,
-beauty</li>
-<li>Values as quasi-quantities - comparative</li>
-<li>Values as attitudes - personal. One may prioritize liberty over
-equality</li>
+<li>describe the property using a formula <span
+class="math inline">F</span></li>
+<li>describe the functions and relations in <span
+class="math inline">F</span> using a sequence of axioms <span
+class="math inline">S</span></li>
+<li>check if the sequence <span class="math inline">(\neg F; S)</span>
+is contradictory. If yes, then <span class="math inline">F</span>
+follows from <span class="math inline">S</span></li>
 </ul>
-<p>a value has can be characterized by two quantitative criterions:</p>
+<p>Example FOL formula:</p>
+<p><span class="math display">
+(\forall_x\exists_y R(x, y)) \land \\
+(\forall_x\forall_y(R(x, y) \implies \forall_z R(x, f(y, z)))) \land \\
+(\forall_x (P(x) \lor P(f(x, a)))) \implies \\
+\forall_x\exists_y (R(x, y) \land P(y))
+</span></p>
+<p>A signature (language) of FOL system is <span
+class="math inline">\mathcal Z</span> a countable set of function
+symbols (constants are functions with arity 0 (<span
+class="math inline">ar(c) = 0</span>)) and predicate symbols,</p>
+<h2 data-number="1.1" id="interpretation"><span
+class="header-section-number">1.1</span> interpretation</h2>
+<p>A first order interpretation is <span class="math inline">I = (D,
+e)</span> where <span class="math inline">D \ne \emptyset</span> and
+<span class="math inline">e</span> maps constants, function and
+predicate symbols as follows:</p>
 <ul>
-<li>a property F such as liberty is a positive value if the more our
-world contains of it the better our world is</li>
-<li>a property F such as alienation is a negative value if the more our
-world contains of it the worse our world is</li>
+<li>each predicate symbol <span class="math inline">p</span> with <span
+class="math inline">ar(p) = n</span> into <span class="math inline">e(p)
+: D^n \to \{0, 1\}</span></li>
+<li>each function symbol <span class="math inline">f</span> with <span
+class="math inline">ar(f) = n</span> into a total function of <span
+class="math inline">n</span> arguments, <span class="math inline">e(f) :
+D^n \to D</span></li>
+<li>maps each variable <span class="math inline">x</span> to element of
+<span class="math inline">D</span>, ie <span class="math inline">e(x)
+\in D</span></li>
 </ul>
+<p>We define <span class="math inline">\llbracket F \rrbracket_I \in
+\{0, 1\}</span> to denote whether <span class="math inline">F</span> is
+true or false.</p>
+<ul>
+<li><span class="math inline">F</span> is <strong>valid</strong> if for
+all interpretations <span class="math inline">I</span>, <span
+class="math inline">\llbracket F \rrbracket_I = 1</span></li>
+<li><span class="math inline">F</span> is <strong>satisfiable</strong>
+if there exists an interpretation <span class="math inline">I</span>,
+<span class="math inline">\llbracket F \rrbracket_I = 1</span></li>
+</ul>
+<h2 data-number="1.2" id="negation-normal-form"><span
+class="header-section-number">1.2</span> negation normal form</h2>
+<p>An equivalent representation of a formula where only <span
+class="math inline">\lor</span> and <span
+class="math inline">\land</span> are used as propositional connectives
+and all negations can appear only in front of literals/predicates. We
+replace <span class="math inline">\iff</span>, <span
+class="math inline">\implies</span> etc with <span
+class="math inline">\lor</span> and <span
+class="math inline">\land</span>. Then we push all <span
+class="math inline">\neg</span> down to literals/predicates using
+DeMorgan’s.</p>
+<h2 data-number="1.3" id="skolem-function"><span
+class="header-section-number">1.3</span> Skolem function</h2>
+<p>In a formula that is in negation normal form, replace a subformula
+<span class="math inline">\exists_y F(x_1, \cdots, x_n, y)</span> with
+<span class="math inline">F(x_1, \cdots, x_n, g(x_1, \cdots,
+x_n))</span> where <span class="math inline">g</span> is the Skolem
+function which takes as arguments all FV of the subformula.</p>
+<h2 data-number="1.4" id="prenex-normal-form"><span
+class="header-section-number">1.4</span> prenex normal form</h2>
+<p>We can transform a formula by putting all quantifiers in order on the
+outside of a formula.</p>
+<h2 data-number="1.5" id="resolution-on-fol-clauses"><span
+class="header-section-number">1.5</span> resolution on FOL clauses</h2>
+<p>Simple</p>
+<p><span class="math display">
+\frac{C_1 \lor L \quad \neg L \lor C_2}{C_1 \lor C_2}
+</span></p>
+<p>With instantiation</p>
+<p><span class="math display">
+\frac{\frac{C_1&#39; \lor L&#39;}{C_1 \lor L} \quad \frac{\neg
+L&#39;&#39; \lor C_2&#39;&#39;}{\neg L \lor C_2}}{C_1 \lor C_2}
+</span></p>
+<p>To check if we can find a substitution to make <span
+class="math inline">L&#39;</span> and <span
+class="math inline">L&#39;&#39;</span> identical we can use
+<strong>unification</strong> which has a linear time algorithm.</p>
+<h2 data-number="1.6" id="term-models"><span
+class="header-section-number">1.6</span> term models</h2>
+<p>A model of a formula is its interpretation that makes a formula
+true.</p>
+<p>We denote the domain as <span class="math inline">D</span> and n-ary
+relations as <span class="math inline">r \subseteq D^n</span>.</p>
+<h3 data-number="1.6.1" id="smaller-model"><span
+class="header-section-number">1.6.1</span> smaller model</h3>
+<p>We look for substructures (sub-interpretations) <span
+class="math inline">(D&#39;, \alpha&#39;)</span> of <span
+class="math inline">(D, \alpha)</span> such that</p>
+<ul>
+<li><span class="math inline">D&#39; \subseteq D</span></li>
+<li><span class="math inline">\alpha&#39;</span>
+<ul>
+<li><span class="math inline">\alpha&#39;(R) = \alpha(R) \cap
+(D&#39;)^{ar(R)}</span></li>
+<li><span class="math inline">\alpha&#39;(f)(x_1, \cdots, x_{ar(f)}) =
+\alpha(f)(x_1, \cdots, x_{ar(f)})</span></li>
+</ul></li>
+</ul>
+<p><span class="math inline">D&#39;</span> defines a substructure iff it
+is closed under the interpretations of all function symbols. If a set of
+universal FOL formulas is true in a structure, it is true in all
+substructures.</p>
+<h3 data-number="1.6.2" id="smallest-substructure"><span
+class="header-section-number">1.6.2</span> smallest substructure</h3>
+<p>Let <span class="math inline">\mathcal L</span> be the language and
+<span class="math inline">\mathcal L_F \subseteq \mathcal L</span> be
+the function symbols</p>
+<p><span class="math display">
+\begin{aligned}
+    D_0 &amp;= \emptyset \\
+    D_{i+1} &amp;= \bigcup_{f \in \mathcal L_F} \{\alpha(f)(x_1, \cdots,
+x_n) : x_1, \cdots, x_n \in D_i\} \\
+    D^* &amp;= \bigcup_{i \ge 0} D_i \\
+\end{aligned}
+</span></p>
+<p><span class="math inline">D^*</span> is the domain of the smallest
+substructure of <span class="math inline">(D, \alpha)</span>. It is
+countable.</p>
+<h3 data-number="1.6.3" id="ground-term"><span
+class="header-section-number">1.6.3</span> ground term</h3>
+<p>A formula containing no variables. <span
+class="math inline">GT_{\mathcal L}</span> is the set of all ground
+terms in language <span class="math inline">\mathcal L</span></p>
+<h3 data-number="1.6.4" id="herbrand-model"><span
+class="header-section-number">1.6.4</span> Herbrand model</h3>
+<p><span class="math inline">D^* = \{\llbracket t \rrbracket^\alpha : t
+\in GT_{\mathcal L}\}</span></p>
+<p><span class="math inline">GT^{i+1} = \{f(t_1, \cdots, t_n) : f \in
+\mathcal L \land t_1, \cdots, t_n \in GT^i\}</span> with <span
+class="math inline">GT^0 = \emptyset</span>.</p>
+<p>Given a language <span class="math inline">\mathcal L</span> we
+define an interpretation <span class="math inline">(GT_{\mathcal L},
+\alpha_H)</span>, if there are no constants we add a new one to <span
+class="math inline">\mathcal L</span>. <span
+class="math inline">\alpha_H(f)(t_1, \cdots, t_n) = f(t_1, \cdots,
+t_n)</span>. <span class="math inline">\alpha_H(R) = \{(t_1, \cdots,
+t_n) : (\llbracket t_1 \rrbracket^\alpha, \cdots, \llbracket t_n
+\rrbracket^\alpha) \in \alpha(R)\}</span></p>
+<p>A set of FOL formulas is unsatisfiable iff for its skolemization
+there is a finite subset of ground instances which resolution derives
+empty clause.</p>
 </body>
 </html>
