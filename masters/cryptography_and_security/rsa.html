@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>rsa</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="rsa"><span
+class="header-section-number">1</span> RSA</h1>
+<h2 data-number="1.1" id="euler-totient-function"><span
+class="header-section-number">1.1</span> Euler totient function</h2>
+<p><span class="math inline">\varphi(n)</span> is the number of coprimes
+to <span class="math inline">n</span>.</p>
+<ol type="1">
+<li><span class="math inline">|Z^*_n| = \varphi(n)</span></li>
+<li>for all <span class="math inline">x \in Z_n</span> we have <span
+class="math inline">x \in Z_n^* \iff gcd(x, n) = 1</span></li>
+<li><span class="math inline">Z_n</span> is a field <span
+class="math inline">\iff Z_n \setminus \{0\} \iff \varphi(n) = n - 1
+\iff n</span> is prime</li>
+<li>for all <span class="math inline">x \in Z_n^*</span> we have <span
+class="math inline">x^{\varphi(n)} \equiv 1 \pmod n</span></li>
+<li>if <span class="math inline">e</span> such that <span
+class="math inline">gcd(e, \varphi(n)) = 1</span> we let <span
+class="math inline">d = e^{-1} \bmod \varphi(n)</span>. For all <span
+class="math inline">y \in Z_n^*</span>, <span class="math inline">y^d
+\bmod n</span> is the only e’th root of <span
+class="math inline">y</span> modulo <span
+class="math inline">n</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\varphi(p) = p - 1</span> when <span
+class="math inline">p</span> is prime</li>
+<li><span class="math inline">\varphi(mn) = \varphi(m)\varphi(n)</span>
+when <span class="math inline">m</span> and <span
+class="math inline">n</span> are coprime</li>
+<li><span class="math inline">\varphi(p^a) = (p - 1)p^{a-1}</span> when
+<span class="math inline">p</span> is prime</li>
+<li><span class="math inline">\varphi(p_1^{a_1}, \cdots, p_r^{a_r}) =
+(p_1 - 1)p_1^{a_1-1} \cdot \cdots \cdot (p_r - 1)p_r^{a_r-1}</span></li>
+</ul>
+<h2 data-number="1.2" id="chinese-remainder-theorem-crt"><span
+class="header-section-number">1.2</span> chinese remainder theorem
+(CRT)</h2>
+<p>Let <span class="math inline">m</span> and <span
+class="math inline">n</span> be two integers such that <span
+class="math inline">gcd(m, n) = 1</span>. For any <span
+class="math inline">a, b \in \Z</span> there exists <span
+class="math inline">x \in \Z</span> such that</p>
+<p><span class="math display">
+x \equiv a \pmod m
+</span></p>
+<p><span class="math display">
+x \equiv b \pmod n
+</span></p>
+<p>For all such solutions, <span class="math inline">x \bmod (mn)</span>
+is unique.</p>
+<p><span class="math inline">f: Z_{mn} \to Z_m \times Z_n</span> is a
+group isomorphism <span class="math inline">f(x) = (x \bmod m, x \bmod
+n)</span>. Then <span class="math inline">f^{-1}(a, b) = an(n^{-1} \bmod
+m) + bm(m^{-1} \bmod n) \pmod{mn}</span></p>
+<h3 data-number="1.2.1" id="equality-modulo-composite-numbers"><span
+class="header-section-number">1.2.1</span> equality modulo composite
+numbers</h3>
+<p>For any <span class="math inline">a, b, m, n \in \Z</span> such that
+<span class="math inline">gcd(m, n) = 1</span> then</p>
+<p><span class="math display">
+\begin{cases}
+    a \equiv b \pmod m \\
+    a \equiv b \pmod n \\
+\end{cases} \iff a \equiv b \pmod{mn}
+</span></p>
+<h3 data-number="1.2.2" id="crt-backwards"><span
+class="header-section-number">1.2.2</span> CRT backwards</h3>
+<p>Let <span class="math inline">m, n</span> be two integers such that
+<span class="math inline">gcd(m, n) = 1</span>. Let <span
+class="math inline">u = n(n^{-1} \bmod m)</span> and <span
+class="math inline">v = m(m^{-1} \bmod n)</span> then <span
+class="math inline">g: (a, b) \mapsto au + bv \bmod{mn}</span> is a ring
+isomorphism.</p>
+<h2 data-number="1.3" id="trial-division"><span
+class="header-section-number">1.3</span> trial division</h2>
+<p>Given an integer we output a list of primes whose product is equal to
+n.</p>
+<pre><code>i = 2
+x = n
+for _ in 2:sqrt(n)
+    while i divides x
+        output i
+        x = x / i
+    i = i + 1
+
+if x &gt; 1
+    output x</code></pre>
+<h2 data-number="1.4" id="fermat-test"><span
+class="header-section-number">1.4</span> fermat test</h2>
+<p>Utilizing the little fermat theorem. Might call something a prime
+that isn’t a prime.</p>
+<pre><code>for _ in 1:k
+    b = random(1, n)
+    x = b^(n-1) mod n
+    if x != 1
+        return &quot;not prime&quot;
+
+return &quot;maybe prime&quot;</code></pre>
+<h2 data-number="1.5" id="carmichael-numbers"><span
+class="header-section-number">1.5</span> carmichael numbers</h2>
+<p><span class="math inline">n</span> is a carmichael number iff it is
+composite and <span class="math inline">\forall_{\{a : gcd(a, n) = 1\}}
+a^{n-1} \equiv 1 \pmod n</span></p>
+<h2 data-number="1.6" id="miller-rabin-test"><span
+class="header-section-number">1.6</span> miller-rabin test</h2>
+<p>We can write <span class="math inline">n - 1</span> as <span
+class="math inline">2^st</span> for t odd. When <span
+class="math inline">n</span> is prime then <span
+class="math inline">b^{n-1} \bmod n = ((b^t)^2\cdots)^2 \bmod n =
+1</span></p>
+<pre><code>if n = 2
+    return &quot;prime&quot;
+
+if n is even
+    return &quot;composite&quot;
+
+n === 2^s * t + 1
+
+for _ in 1:k
+    b = random(1, n)
+    x = b^t mod n
+    i = 0
+    if x != 1
+        while x != n - 1
+            x = x^2 mod n
+            i = i + 1
+            if i == s or x == 1
+                return &quot;composite&quot;
+
+return &quot;maybe prime&quot;</code></pre>
+<p>An integer is prime iff it passes the miller-rabin test for all <span
+class="math inline">b \in Z_n^*</span>. If more than a quarter of <span
+class="math inline">b \in Z_n^*</span> pass the miller-rabin then all
+<span class="math inline">b \in Z_n^*</span> do.</p>
+<h2 data-number="1.7" id="prime-number-generation"><span
+class="header-section-number">1.7</span> prime number generation</h2>
+<p>Let <span class="math inline">p(N)</span> denote the number of prime
+numbers up till <span class="math inline">N</span>. Then <span
+class="math inline">p(N) \sim \frac{N}{\ln N}</span>. So the chance of a
+<span class="math inline">\ell</span> bit number to be prime is <span
+class="math inline">\frac{1}{\ell \ln 2}</span></p>
+<figure>
+<img src="assets/rsa.png" alt="RSA cryptosystem" />
+<figcaption aria-hidden="true">RSA cryptosystem</figcaption>
+</figure>
+</body>
+</html>
