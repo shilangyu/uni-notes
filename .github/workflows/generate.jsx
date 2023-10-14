@@ -1,5 +1,6 @@
 import renderToString from "https://cdn.skypack.dev/preact-render-to-string";
 import { h } from "https://cdn.skypack.dev/preact@^10.11.3";
+import { walk, walkSync } from "https://deno.land/std@0.204.0/fs/walk.ts";
 
 const React = { createElement: h }; // I don't want to create a jsconfig just to change the jsx factory...
 
@@ -21,7 +22,12 @@ function filesAndDirs(path) {
       files.push(f.name);
     }
     if (f.isDirectory && !excludedDirs.has(f.name)) {
-      dirs.push(f.name);
+      // ignore directories which do not have markdown files
+      const hasMd =
+        [...walkSync(path + "/" + f.name, { match: [/\.md$/] })].length != 0;
+      if (hasMd) {
+        dirs.push(f.name);
+      }
     }
   }
 
@@ -44,9 +50,8 @@ function Summary({ path }) {
 
   pandocExec.push(
     ...files.map((filename) =>
-      Deno.run({
-        cmd: [
-          "pandoc",
+      new Deno.Command("pandoc", {
+        args: [
           base + filename,
           "-s",
           "--number-sections",
@@ -58,7 +63,7 @@ function Summary({ path }) {
           "-H",
           ".github/workflows/headers.html",
         ],
-      }).status()
+      }).output()
     )
   );
 
@@ -150,3 +155,13 @@ await Promise.all(
 );
 
 await Promise.all(pandocExec);
+
+// copy over all other supported non-markdown files
+for await (const file of walk(".", { match: [/\.png$/, /\.jpg$/] })) {
+  if (!file.isFile) continue;
+
+  await Deno.mkdir(outFolder + "/" + file.path.slice(0, -file.name.length), {
+    recursive: true,
+  });
+  await Deno.copyFile(file.path, outFolder + "/" + file.path);
+}
