@@ -486,8 +486,6 @@
 <h1 data-number="1" id="introduction"><span
 class="header-section-number">1</span> introduction</h1>
 <ul>
-<li><strong>reliable broadcast</strong> - ensure that a message is
-received by receivers, or that no one has received it</li>
 <li><strong>atomic commit</strong> - ensure that all processes agree
 that a transaction should be committed or aborted</li>
 <li><strong>process</strong> - separate computers, communicate through
@@ -500,33 +498,70 @@ supposed to</li>
 <li><strong>correct</strong> - a process is correct when it never
 fails</li>
 </ul></li>
-<li><strong>channels</strong> - communication network. Messages are
-uniquely identified
-<ul>
-<li><strong>fair-loss link</strong> - similar to UDP</li>
-<li><strong>stubborn link</strong> - a message that was sent is
-delivered an infinite amount of times</li>
-<li><strong>perfect (reliable) link</strong> - similar to TCP</li>
-</ul></li>
-<li><strong>failure detectors</strong> - detection of failing processes
-(for example by timing assumptions). Defined by completeness and
-accuracy.
-<ul>
-<li><strong>perfect</strong> - Strong completeness (eventually every
-process that crashed is detected to have crashed). Strong accuracy (no
-process is suspected before it crashes).</li>
-<li><strong>eventually perfect</strong> - Strong completeness. Eventual
-Strong accuracy.</li>
-</ul></li>
 <li><strong>safety</strong> - property that nothing bad will happen</li>
 <li><strong>liveness</strong> - property that something good will
 happen</li>
 </ul>
-<h2 data-number="1.1" id="broadcast"><span
-class="header-section-number">1.1</span> broadcast</h2>
+<h2 data-number="1.1" id="channels"><span
+class="header-section-number">1.1</span> channels</h2>
+<p>Communication network. Messages are uniquely identified.</p>
+<h3 data-number="1.1.1" id="fair-loss-links"><span
+class="header-section-number">1.1.1</span> fair-loss links</h3>
+<p>Similar to UDP</p>
+<ol type="1">
+<li><strong>Fair-loss</strong>: if a message is sent infinitely often by
+pi to pj, and neither pi or pj crashes, then m is delivered infinitely
+often by pj</li>
+<li><strong>Finite duplication</strong>: if a message m is sent a finite
+number of times by pi to pj then m is delivered a finite number of times
+by pj</li>
+<li><strong>No creation</strong>: no message is delivered unless it was
+sent</li>
+</ol>
+<h3 data-number="1.1.2" id="stubborn-links"><span
+class="header-section-number">1.1.2</span> stubborn links</h3>
+<ol type="1">
+<li><strong>Stubborn delivery</strong>: if a process pi sends a message
+m to a correct process pj, and pi does not crash, then pj delivers m an
+infinite number of times</li>
+<li><strong>No creation</strong>: no message is delivered unless it was
+sent</li>
+</ol>
+<h3 data-number="1.1.3" id="reliable-perfect-links"><span
+class="header-section-number">1.1.3</span> reliable (perfect) links</h3>
+<ol type="1">
+<li><strong>Validity</strong>: if pi and pj are correct, then every
+message sent by pi to pj is eventually delivered by pj</li>
+<li><strong>No duplication</strong>: no message is delivered more than
+once</li>
+<li><strong>No creation</strong>: no message is delivered unless it was
+sent</li>
+</ol>
+<h2 data-number="1.2" id="failure-detectors"><span
+class="header-section-number">1.2</span> failure detectors</h2>
+<p>Detection of failing processes (for example by timing assumptions).
+Defined by completeness and accuracy.</p>
+<h3 data-number="1.2.1" id="perfect"><span
+class="header-section-number">1.2.1</span> perfect</h3>
+<ul>
+<li><strong>Strong completeness</strong>: eventually, every process that
+crashes is permanently suspected by every correct process</li>
+<li><strong>Strong accuracy</strong>: no process is suspected before it
+crashes</li>
+</ul>
+<h3 data-number="1.2.2" id="eventually-perfect"><span
+class="header-section-number">1.2.2</span> eventually perfect</h3>
+<ul>
+<li><strong>Strong completeness</strong>: eventually, every process that
+crashes is permanently suspected by every correct process</li>
+<li><strong>Eventual strong accuracy</strong>: eventually, no correct
+process is ever suspected</li>
+</ul>
+<h2 data-number="1.3" id="broadcast"><span
+class="header-section-number">1.3</span> broadcast</h2>
 <p>Sending some message to all other processes.</p>
-<h3 data-number="1.1.1" id="best-effort-beb"><span
-class="header-section-number">1.1.1</span> best-effort (beb)</h3>
+<h3 data-number="1.3.1" id="best-effort-beb"><span
+class="header-section-number">1.3.1</span> best-effort (beb)</h3>
 <ul>
 <li>request: <code>&lt;bebBroadcast, m&gt;</code></li>
 <li>indication: <code>&lt;bebDeliver, src, m&gt;</code></li>
@@ -550,8 +585,8 @@ upon event &lt;bebBroadcast, m&gt;
 
 upon event &lt;pp2pDeliver, pi, m&gt;
   trigger &lt;bebDeliver, pi, m&gt;</code></pre>
-<h3 data-number="1.1.2" id="reliable-broadcast-rb"><span
-class="header-section-number">1.1.2</span> reliable broadcast (rb)</h3>
+<h3 data-number="1.3.2" id="reliable-broadcast-rb"><span
+class="header-section-number">1.3.2</span> reliable broadcast (rb)</h3>
 <ul>
 <li>request: <code>&lt;rbBroadcast, m&gt;</code></li>
 <li>indication: <code>&lt;rbDeliver, src, m&gt;</code></li>
@@ -578,7 +613,7 @@ upon event &lt;Init&gt;
 
 upon event &lt;rbBroadcast, m&gt;
   delivered = delivered ∪ {m}
-  trigger &lt;rbDelivered, self, m&gt;
+  trigger &lt;rbDeliver, self, m&gt;
   trigger &lt;bebBroadcast, [Data, self, m]&gt;
 
 upon event &lt;crash, pi&gt;
@@ -595,8 +630,8 @@ upon event &lt;bebDeliver, pi, [Data, pj, m]&gt;
       trigger &lt;bebBroadcast, [Data, pj, m]&gt;
     else
       from[pi] = from[pi] ∪ {[pj, m]}</code></pre>
-<h3 data-number="1.1.3" id="uniform-broadcast-urb"><span
-class="header-section-number">1.1.3</span> uniform broadcast (urb)</h3>
+<h3 data-number="1.3.3" id="uniform-broadcast-urb"><span
+class="header-section-number">1.3.3</span> uniform broadcast (urb)</h3>
 <ul>
 <li>request: <code>&lt;urbBroadcast, m&gt;</code></li>
 <li>indication: <code>&lt;urbDeliver, src, m&gt;</code></li>
@@ -638,8 +673,8 @@ upon event &lt;bebDelivered, pi, [Data, pj, m]&gt;
 upon event (for any [pj, m] in forward) &lt;correct ⊆ ack[m]&gt; and &lt;m not in delivered&gt;
   delivered = delivered ∪ {m}
   trigger &lt;urbDelivered, pj, m&gt;</code></pre>
-<h3 data-number="1.1.4" id="causal-broadcast-cb"><span
-class="header-section-number">1.1.4</span> causal broadcast (cb)</h3>
+<h3 data-number="1.3.4" id="causal-broadcast-co"><span
+class="header-section-number">1.3.4</span> causal broadcast (co)</h3>
 <ul>
 <li>request: <code>&lt;coBroadcast, m&gt;</code></li>
 <li>indication: <code>&lt;coDeliver, src, m&gt;</code></li>
@@ -655,5 +690,84 @@ broadcasts m2</li>
 <span class="math inline">\prec</span> m3 and m3 <span
 class="math inline">\prec</span> m2</li>
 </ol>
+<h4 data-number="1.3.4.1" id="reliable-causal-broadcast-rcb"><span
+class="header-section-number">1.3.4.1</span> reliable causal broadcast
+(rcb)</h4>
+<h5 data-number="1.3.4.1.1" id="algorithm-1"><span
+class="header-section-number">1.3.4.1.1</span> Algorithm 1</h5>
+<pre><code>Implements: ReliableCausalOrderBroadcast (rco)
+Uses: rb
+
+upon event &lt;Init&gt;
+  delivered = ∅
+  past = ∅
+
+upon event &lt;rcoBroadcast, m&gt;
+  trigger &lt;rbBroadcast, [Data, past, m]&gt;
+  past = past ∪ {[self, m]}
+
+upon event &lt;rbDeliver, pi, [Data, past_m, m]&gt;
+  if m not in delivered
+    for [sn, n] in past_m
+      if n not in delivered
+        trigger &lt;rcoDeliver, sn, n&gt;
+        delivered = delivered ∪ {n}
+        past = past ∪ {[sn, n]}
+    trigger &lt;rcoDeliver, pi, m&gt;
+    delivered = delivered ∪ {m}
+    past = past ∪ {[pi, m]}</code></pre>
+<pre><code>Implements ReliableCausalOrderBroadcastWithGarbageCollection (rco)
+Extends: rco
+Uses:
+  - rb
+  - PerfectFailureDetector
+
+upon event &lt;Init&gt;
+  delivered = ∅
+  past = ∅
+  correct = S
+  ack[m] = ∅ for all m
+
+upon event &lt;crash, pi&gt;
+  correct = correct \ {pi}
+
+upon for some m in delivered and self not in ack[m]
+  ack[m] = ack[m] ∪ {self}
+  trigger &lt;rbBroadcast, [ACK, m]&gt;
+
+upon event &lt;rbDeliver, pi, [ACK, m]&gt;
+  ack[m] = ack[m] ∪ {pi}
+  if correct ⊆ ack[m]
+    past = past \ {[sm, m]}</code></pre>
+<h5 data-number="1.3.4.1.2" id="algorithm-2"><span
+class="header-section-number">1.3.4.1.2</span> Algorithm 2</h5>
+<pre><code>Implements: ReliableCausalOrderBroadcast (rco)
+Uses: rb
+
+upon event &lt;Init&gt;
+  for pi in S
+    VC[pi] = 0
+  pending = ∅
+
+upon event &lt;rcoBroadcast, m&gt;
+  trigger &lt;rcoDeliver, self, m&gt;
+  trigger &lt;rbBroadcast, [Data, VC, m]&gt;
+  VC[self] = VC[self] + 1
+
+upon event &lt;rbDeliver, pj, [Data, VC_m, m]&gt;
+  if pj != self
+    pending = pending ∪ {(pj, [Data, VC_m, m])}
+    deliver-pending()
+
+function deliver-pending
+  while (s, [Data, VC_m, m]) in pending and forall pk: (VC[pk] &gt;= VC_m[pk])
+    pending = pending \ {(pj, [Data, VC_m, m])}
+    trigger &lt;rcoDeliver, self, m&gt;
+    VC[s] = VC[s] + 1</code></pre>
+<h4 data-number="1.3.4.2" id="uniform-causal-broadcast-ucb"><span
+class="header-section-number">1.3.4.2</span> uniform causal broadcast
+(ucb)</h4>
+<p>Using algorithms for rcb but with an underlying urb instead of a
+rb.</p>
 </body>
 </html>
