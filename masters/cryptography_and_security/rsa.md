@@ -1,5 +1,7 @@
 # RSA
 
+![RSA cryptosystem](assets/rsa.png)
+
 ## Euler totient function
 
 $\varphi(n)$ is the number of coprimes to $n$.
@@ -113,5 +115,3 @@ An integer is prime iff it passes the miller-rabin test for all $b \in Z_n^*$. I
 ## prime number generation
 
 Let $p(N)$ denote the number of prime numbers up till $N$. Then $p(N) \sim \frac{N}{\ln N}$. So the chance of a $\ell$ bit number to be prime is $\frac{1}{\ell \ln 2}$
-
-![RSA cryptosystem](assets/rsa.png)
