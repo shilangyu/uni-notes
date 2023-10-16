@@ -563,5 +563,40 @@ class="math inline">\to</span> SRSW atomic</h3>
 fn write(v)
     t = t+1
     Reg = (t, v)</code></pre>
+<h3 data-number="1.2.5" id="srsw-atomic-to-mrsw-atomic"><span
+class="header-section-number">1.2.5</span> SRSW atomic <span
+class="math inline">\to</span> MRSW atomic</h3>
+<p>We assume there are N readers. Let RReg[(1, 1), (1, 2), …, (N, N)] be
+N*N SRSW atomic registers for readers to communicate. Let WReg[1, …, N]
+be SRSW atomic registers.</p>
+<pre><code>fn read()
+    for j in 1:N
+        (t[j], x[j]) = RReg[i, j]
+    (t[0], x[0]) = WReg[i]
+    (t, x) = highest(t[..], x[..])
+    for j in 1:N
+        RReg[j, i] = (t, x)
+    return x
+
+fn write(v)
+    t1 = t1 + 1
+    for j in 1:N
+        WReg[j] = (t1, v)</code></pre>
+<h3 data-number="1.2.6" id="mrsw-atomic-to-mrmw-atomic"><span
+class="header-section-number">1.2.6</span> MRSW atomic <span
+class="math inline">\to</span> MRMW atomic</h3>
+<p>Let Reg[1, …, N] be MRSW atomic registers.</p>
+<pre><code>fn read()
+    for j in 1:N
+        (t[j], x[j]) = Reg[j]
+    (t, x) = highest(t[..], x[..])
+    return x
+
+fn write(v)
+    for j in 1:N
+        (t[j], x[j]) = Reg[j]
+    (t, x) = highest(t[..], x[..])
+    t = t + 1
+    Reg[i] = (t, v)</code></pre>
 </body>
 </html>
