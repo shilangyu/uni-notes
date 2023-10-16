@@ -88,3 +88,42 @@ fn write(v)
 	t = t+1
 	Reg = (t, v)
 ```
+
+### SRSW atomic $\to$ MRSW atomic
+
+We assume there are N readers. Let RReg[(1, 1), (1, 2), ..., (N, N)] be N\*N SRSW atomic registers for readers to communicate. Let WReg[1, ..., N] be SRSW atomic registers.
+
+```
+fn read()
+	for j in 1:N
+		(t[j], x[j]) = RReg[i, j]
+	(t[0], x[0]) = WReg[i]
+	(t, x) = highest(t[..], x[..])
+	for j in 1:N
+		RReg[j, i] = (t, x)
+	return x
+
+fn write(v)
+	t1 = t1 + 1
+	for j in 1:N
+		WReg[j] = (t1, v)
+```
+
+### MRSW atomic $\to$ MRMW atomic
+
+Let Reg[1, ..., N] be MRSW atomic registers.
+
+```
+fn read()
+	for j in 1:N
+		(t[j], x[j]) = Reg[j]
+	(t, x) = highest(t[..], x[..])
+	return x
+
+fn write(v)
+	for j in 1:N
+		(t[j], x[j]) = Reg[j]
+	(t, x) = highest(t[..], x[..])
+	t = t + 1
+	Reg[i] = (t, v)
+```
