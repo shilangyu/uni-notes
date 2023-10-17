@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>broadcast</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="broadcast"><span
+class="header-section-number">1</span> broadcast</h1>
+<p>Sending some message to all other processes.</p>
+<h2 data-number="1.1" id="best-effort-beb"><span
+class="header-section-number">1.1</span> best-effort (beb)</h2>
+<ul>
+<li>request: <code>&lt;bebBroadcast, m&gt;</code></li>
+<li>indication: <code>&lt;bebDeliver, src, m&gt;</code></li>
+</ul>
+<ol type="1">
+<li><strong>validity</strong>: If <span class="math inline">p_i</span>
+and <span class="math inline">p_j</span> are correct, then every message
+broadcast by <span class="math inline">p_i</span> is eventually
+delivered to <span class="math inline">p_j</span></li>
+<li><strong>no duplication</strong>: no message is delivered more than
+once</li>
+<li><strong>no creation</strong>: no message is delivered unless it was
+broadcast</li>
+</ol>
+<pre><code>Implements: beb
+Uses: PerfectLinks (pp2p)
+
+upon event &lt;bebBroadcast, m&gt;
+  for p in S
+    trigger &lt;pp2pSend, p, m&gt;
+
+upon event &lt;pp2pDeliver, pi, m&gt;
+  trigger &lt;bebDeliver, pi, m&gt;</code></pre>
+<h2 data-number="1.2" id="reliable-broadcast-rb"><span
+class="header-section-number">1.2</span> reliable broadcast (rb)</h2>
+<ul>
+<li>request: <code>&lt;rbBroadcast, m&gt;</code></li>
+<li>indication: <code>&lt;rbDeliver, src, m&gt;</code></li>
+</ul>
+<ol type="1">
+<li><strong>validity</strong></li>
+<li><strong>no duplication</strong></li>
+<li><strong>no creation</strong></li>
+<li><strong>agreement</strong>: for any message <span
+class="math inline">m</span> if any correct process delivers <span
+class="math inline">m</span> then every correct process delivers <span
+class="math inline">m</span></li>
+</ol>
+<pre><code>Implements: rb
+Uses:
+  - beb
+  - PerfectFailureDetector
+
+upon event &lt;Init&gt;
+  delivered = ∅
+  correct = S
+  for p in S
+    from[p] = ∅
+
+upon event &lt;rbBroadcast, m&gt;
+  delivered = delivered ∪ {m}
+  trigger &lt;rbDeliver, self, m&gt;
+  trigger &lt;bebBroadcast, [Data, self, m]&gt;
+
+upon event &lt;crash, pi&gt;
+  correct = correct \ {pi}
+
+  for [pj, m] in from[pi]
+    trigger &lt;bebBroadcast, [Data, pj, m]&gt;
+
+upon event &lt;bebDeliver, pi, [Data, pj, m]&gt;
+  if m not in delivered
+    delivered = delivered ∪ {m}
+    trigger &lt;rbDeliver, pj, m&gt;
+    if pi not in correct
+      trigger &lt;bebBroadcast, [Data, pj, m]&gt;
+    else
+      from[pi] = from[pi] ∪ {[pj, m]}</code></pre>
+<h2 data-number="1.3" id="uniform-broadcast-urb"><span
+class="header-section-number">1.3</span> uniform broadcast (urb)</h2>
+<ul>
+<li>request: <code>&lt;urbBroadcast, m&gt;</code></li>
+<li>indication: <code>&lt;urbDeliver, src, m&gt;</code></li>
+</ul>
+<ol type="1">
+<li><strong>validity</strong></li>
+<li><strong>no duplication</strong></li>
+<li><strong>no creation</strong></li>
+<li><strong>uniform agreement</strong>: for any message <span
+class="math inline">m</span> if any process delivers <span
+class="math inline">m</span> then every correct process delivers <span
+class="math inline">m</span></li>
+</ol>
+<pre><code>Implements: urb
+Uses:
+  - beb
+  - PerfectFailureDetector
+
+upon event &lt;Init&gt;
+  delivered = ∅
+  forward = ∅
+  correct = S
+  ack[Message] = ∅
+
+upon event &lt;crash, pi&gt;
+  correct = correct \ {pi}
+
+upon event &lt;urbBroadcast, m&gt;
+  forward = forward ∪ {[self, m]}
+  trigger &lt;bebBroadcast, [Data, self, m]&gt;
+
+upon event &lt;bebDelivered, pi, [Data, pj, m]&gt;
+  ack[m] = ack[m] ∪ {pi}
+
+  if [pj, m] not in forward
+    forward = forward ∪ {[pj, m]}
+    trigger &lt;bebBroadcast, [Data, pj, m]&gt;
+
+upon event (for any [pj, m] in forward) &lt;correct ⊆ ack[m]&gt; and &lt;m not in delivered&gt;
+  delivered = delivered ∪ {m}
+  trigger &lt;urbDelivered, pj, m&gt;</code></pre>
+<h2 data-number="1.4" id="causal-broadcast-co"><span
+class="header-section-number">1.4</span> causal broadcast (co)</h2>
+<ul>
+<li><p>request: <code>&lt;coBroadcast, m&gt;</code></p></li>
+<li><p>indication: <code>&lt;coDeliver, src, m&gt;</code></p></li>
+<li><p><strong>Causal order</strong>: if any process pi delivers a
+message m2, then pi must have delivered all message m1 such that m1
+<span class="math inline">\prec</span> m2.</p></li>
+</ul>
+<h3 data-number="1.4.1" id="causality"><span
+class="header-section-number">1.4.1</span> causality</h3>
+<p>Let m1 and m2 be any two messages. m1 <span
+class="math inline">\prec</span> m2 (m1 precedes m2) iff:</p>
+<ol type="1">
+<li><strong>FIFO order</strong>: some process pi broadcasts m1 before
+broadcasting m2</li>
+<li><strong>local order</strong>: some process pi delivers m1 and then
+broadcasts m2</li>
+<li><strong>transitivity</strong>: there is a message m3 such that m1
+<span class="math inline">\prec</span> m3 and m3 <span
+class="math inline">\prec</span> m2</li>
+</ol>
+<h3 data-number="1.4.2" id="reliable-causal-broadcast-rcb"><span
+class="header-section-number">1.4.2</span> reliable causal broadcast
+(rcb)</h3>
+<h4 data-number="1.4.2.1" id="algorithm-1"><span
+class="header-section-number">1.4.2.1</span> Algorithm 1</h4>
+<pre><code>Implements: ReliableCausalOrderBroadcast (rco)
+Uses: rb
+
+upon event &lt;Init&gt;
+  delivered = ∅
+  past = ∅
+
+upon event &lt;rcoBroadcast, m&gt;
+  trigger &lt;rbBroadcast, [Data, past, m]&gt;
+  past = past ∪ {[self, m]}
+
+upon event &lt;rbDeliver, pi, [Data, past_m, m]&gt;
+  if m not in delivered
+    for [sn, n] in past_m
+      if n not in delivered
+        trigger &lt;rcoDeliver, sn, n&gt;
+        delivered = delivered ∪ {n}
+        past = past ∪ {[sn, n]}
+    trigger &lt;rcoDeliver, pi, m&gt;
+    delivered = delivered ∪ {m}
+    past = past ∪ {[pi, m]}</code></pre>
+<pre><code>Implements ReliableCausalOrderBroadcastWithGarbageCollection (rco)
+Extends: rco
+Uses:
+  - rb
+  - PerfectFailureDetector
+
+upon event &lt;Init&gt;
+  delivered = ∅
+  past = ∅
+  correct = S
+  ack[] = ∅
+
+upon event &lt;crash, pi&gt;
+  correct = correct \ {pi}
+
+upon for some m in delivered and self not in ack[m]
+  ack[m] = ack[m] ∪ {self}
+  trigger &lt;rbBroadcast, [ACK, m]&gt;
+
+upon event &lt;rbDeliver, pi, [ACK, m]&gt;
+  ack[m] = ack[m] ∪ {pi}
+  if correct ⊆ ack[m]
+    past = past \ {[sm, m]}</code></pre>
+<h4 data-number="1.4.2.2" id="algorithm-2"><span
+class="header-section-number">1.4.2.2</span> Algorithm 2</h4>
+<pre><code>Implements: ReliableCausalOrderBroadcast (rco)
+Uses: rb
+
+upon event &lt;Init&gt;
+  for pi in S
+    VC[pi] = 0
+  pending = ∅
+
+upon event &lt;rcoBroadcast, m&gt;
+  trigger &lt;rcoDeliver, self, m&gt;
+  trigger &lt;rbBroadcast, [Data, VC, m]&gt;
+  VC[self] = VC[self] + 1
+
+upon event &lt;rbDeliver, pj, [Data, VC_m, m]&gt;
+  if pj != self
+    pending = pending ∪ {(pj, [Data, VC_m, m])}
+    deliver-pending()
+
+function deliver-pending
+  while (s, [Data, VC_m, m]) in pending such that forall pk: (VC[pk] &gt;= VC_m[pk])
+    pending = pending \ {(pj, [Data, VC_m, m])}
+    trigger &lt;rcoDeliver, self, m&gt;
+    VC[s] = VC[s] + 1</code></pre>
+<h3 data-number="1.4.3" id="uniform-causal-broadcast-ucb"><span
+class="header-section-number">1.4.3</span> uniform causal broadcast
+(ucb)</h3>
+<p>Using algorithms for rcb but with an underlying urb instead of a
+rb.</p>
+<h2 data-number="1.5" id="total-order-broadcast-tob"><span
+class="header-section-number">1.5</span> total order broadcast
+(tob)</h2>
+<p>Processes must deliver all messages according to the same order.</p>
+<ul>
+<li>request: <code>&lt;tobBroadcast, m&gt;</code></li>
+<li>indication: <code>&lt;tobDeliver, src, m&gt;</code></li>
+</ul>
+<ol type="1">
+<li><strong>validity</strong></li>
+<li><strong>no duplication</strong></li>
+<li><strong>no creation</strong></li>
+<li><strong>(uniform) agreement</strong>: for any message <span
+class="math inline">m</span> if a correct (any) process delivers <span
+class="math inline">m</span> then every correct process delivers <span
+class="math inline">m</span></li>
+<li><strong>(uniform) total order</strong>: let m1 and m2 be two
+messages. Let pi be correct (any) process that delivers m1 without
+having delivered m2. Then no correct (any) process delivers m2 before
+m1.</li>
+</ol>
+<pre><code>Implements: TotalOrder (to)
+Uses:
+  - rb
+  - Consensus (cons)
+
+upon event &lt;Init&gt;
+  unordered = ∅
+  delivered = ∅
+  wait = false
+  sn = 1
+
+upon event &lt;toBroadcast, m&gt;
+  trigger &lt;rbBroadcast, m&gt;
+
+upon event &lt;rbDeliver, sm, m&gt; and m not in delivered
+  unordered = unordered ∪ {[sm, m]}
+
+upon unordered != ∅ and not(wait)
+  wait = true
+  trigger &lt;Propose, unordered&gt;_sn
+
+upon event &lt;Decide, decided&gt;_sn
+  unordered = unordered \ decided
+  ordered = deterministicSort(decided)
+  for [sm, m] in ordered
+    trigger &lt;toDeliver, sm, m&gt;
+    delivered = delivered ∪ {m}
+  sn = sn + 1
+  wait = false</code></pre>
+<h2 data-number="1.6" id="uniform-consensus"><span
+class="header-section-number">1.6</span> (uniform) consensus</h2>
+<p>Processes propose values and must agree on one among these
+values.</p>
+<ul>
+<li>request: <code>&lt;Propose, v&gt;</code></li>
+<li>indication: <code>&lt;Decide, v'&gt;</code></li>
+</ul>
+<ol type="1">
+<li><strong>validity</strong>: any value decided is a value
+proposed</li>
+<li><strong>(uniform) agreement</strong>: no two correct (any) processes
+decide differently</li>
+<li><strong>termination</strong>: every correct process eventually
+decides</li>
+<li><strong>integrity</strong>: every process decides at most once</li>
+</ol>
+<h3 data-number="1.6.1" id="algorithm-1-1"><span
+class="header-section-number">1.6.1</span> algorithm 1</h3>
+<p>The leader of each round is picked sequentially for each process (p1
+is leader of first round, p2 is leader of second round etc). Leader
+decides using its own proposal and broadcasts it to all.</p>
+<pre><code>Implements: Consensus (cons)
+Uses:
+  - beb
+  - PerfectFailureDetector
+
+upon event &lt;Init&gt;
+  suspected = ∅
+  currentProposal = nil
+  round = 1
+  broadcast = false
+  delivered[] = false
+
+upon event &lt;crash, pi&gt;
+  suspected = suspected ∪ {pi}
+
+upon event &lt;Proposal, v&gt;
+  if currentProposal == nil
+    currentProposal = v
+
+upon event &lt;bebDeliver, p_round, value&gt;
+  currentProposal = value
+  delivered[round] = true
+
+upon event delivered[round] == true or p_round in suspected
+  round = round + 1
+
+upon event p_round == self and broadcast == false and currentProposal != nil
+  trigger &lt;Decide, currentProposal&gt;
+  trigger &lt;bebBroadcast, currentProposal&gt;
+  broadcast = true</code></pre>
+</body>
+</html>
