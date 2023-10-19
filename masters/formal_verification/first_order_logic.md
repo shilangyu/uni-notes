@@ -104,3 +104,61 @@ $GT^{i+1} = \{f(t_1, \cdots, t_n) : f \in \mathcal L \land t_1, \cdots, t_n \in 
 Given a language $\mathcal L$ we define an interpretation $(GT_{\mathcal L}, \alpha_H)$, if there are no constants we add a new one to $\mathcal L$. $\alpha_H(f)(t_1, \cdots, t_n) = f(t_1, \cdots, t_n)$. $\alpha_H(R) = \{(t_1, \cdots, t_n) : (\llbracket t_1 \rrbracket^\alpha, \cdots, \llbracket t_n \rrbracket^\alpha) \in \alpha(R)\}$
 
 A set of FOL formulas is unsatisfiable iff for its skolemization there is a finite subset of ground instances which resolution derives empty clause.
+
+## verification-condition generation
+
+Given a program and a specification how to express program correctness as a verification condition (a formula implying that program satisfies the specification)? Programs are formulas. Specifications are formulas.
+
+- program: $x = x + 2$; $y = x + 10$
+- relation: $\{((x, y), (x', y')) : x' = x + 2 \land y' = x + 12\}$
+- formula: $x' = x + 2 \land y' = x + 12$
+
+An example specification is $x > 0 \implies (x' > 2 \land y' > 12)$. We express that the program satisfies the specification as relation subset:
+
+$$
+\{((x, y), (x', y')) : x' = x + 2 \land y' = x + 12\} \subseteq \{((x, y), (x', y')) : x > 0 \implies (x' > 2 \land y' > 12)\}
+$$
+
+Which reduces to
+
+$$
+x' = x + 2 \land y' = x + 12 \implies (x > 0 \implies (x' > 2 \land y' > 12))
+$$
+
+### simple imperative programs
+
+- $F$ - formulas
+- $t$ - terms (pure mathematical operations)
+- $V = \{x_1, \cdots, x_n\}$ - mutable variables
+
+#### construction
+
+- $c$ - imperative command
+- $R(c)$ - formula describing relation between initial and final states of execution $c$
+- $\rho(c) = \{(\bar x, \bar x') : R(c)\}$
+
+1. $R(x = t)$: $x' = t \land \bigwedge_{v \in V \setminus \{x\}} v' = v$
+2. $R(\text{if}(b)\ c_1\ \text{else}\ c_2)$: $(b \land R(c_1)) \lor (\neg b \land R(c_2))$
+3. $R(c_1;c_2)$: $\exists_{\bar x''} R(c_1)[\bar x' := \bar x''] \land R(c_2)[\bar x := \bar x'']$
+4. $R(havoc(x))$: $\bigwedge_{v \in V \setminus \{x\}} v' = v$
+5. $R(\text{if}(*)\ c_1\ \text{else}\ c_2)$: $R(c_1) \lor R(c_2)$
+6. $R(assume(F))$: $F \land \bigwedge_{v \in V} v' = v$
+
+Transforms:
+
+- $\text{if}(b)\ c_1\ \text{else}\ c_2 \equiv \text{if}(*)\ (assume(b); c_1)\ \text{else}\ (assume(\neg b); c_2)$
+- $x = e \equiv (havoc(x); assume(x == e))$ given that $x \notin FV(e)$
+
+Alternative syntax:
+
+- $\text{if}(*)\ c_1\ \text{else}\ c_2 \equiv c_1 [] c_2$
+- $assume(F) \equiv [F]$
+
+### loop-free programs as relations
+
+| command c                             | $\rho(c)$                                                                            |
+| ------------------------------------- | ------------------------------------------------------------------------------------ |
+| $x = t$                               | $\{((x_1, \cdots, x_i, \cdots, x_n), (x_1, \cdots, x_i', \cdots, x_n)) : x_i' = t\}$ |
+| $c_1;c_2$                             | $\rho(c_1) \circ \rho(c_2)$                                                          |
+| $\text{if}(*)\ c_1\ \text{else}\ c_2$ | $\rho(c_1) \cup \rho(c_2)$                                                           |
+| $assume(F)$                           | $\Delta_{\{\bar x : F\}}$                                                            |
