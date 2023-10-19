@@ -640,5 +640,121 @@ t_n) : (\llbracket t_1 \rrbracket^\alpha, \cdots, \llbracket t_n
 <p>A set of FOL formulas is unsatisfiable iff for its skolemization
 there is a finite subset of ground instances which resolution derives
 empty clause.</p>
+<h2 data-number="1.7" id="verification-condition-generation"><span
+class="header-section-number">1.7</span> verification-condition
+generation</h2>
+<p>Given a program and a specification how to express program
+correctness as a verification condition (a formula implying that program
+satisfies the specification)? Programs are formulas. Specifications are
+formulas.</p>
+<ul>
+<li>program: <span class="math inline">x = x + 2</span>; <span
+class="math inline">y = x + 10</span></li>
+<li>relation: <span class="math inline">\{((x, y), (x&#39;, y&#39;)) :
+x&#39; = x + 2 \land y&#39; = x + 12\}</span></li>
+<li>formula: <span class="math inline">x&#39; = x + 2 \land y&#39; = x +
+12</span></li>
+</ul>
+<p>An example specification is <span class="math inline">x &gt; 0
+\implies (x&#39; &gt; 2 \land y&#39; &gt; 12)</span>. We express that
+the program satisfies the specification as relation subset:</p>
+<p><span class="math display">
+\{((x, y), (x&#39;, y&#39;)) : x&#39; = x + 2 \land y&#39; = x + 12\}
+\subseteq \{((x, y), (x&#39;, y&#39;)) : x &gt; 0 \implies (x&#39; &gt;
+2 \land y&#39; &gt; 12)\}
+</span></p>
+<p>Which reduces to</p>
+<p><span class="math display">
+x&#39; = x + 2 \land y&#39; = x + 12 \implies (x &gt; 0 \implies (x&#39;
+&gt; 2 \land y&#39; &gt; 12))
+</span></p>
+<h3 data-number="1.7.1" id="simple-imperative-programs"><span
+class="header-section-number">1.7.1</span> simple imperative
+programs</h3>
+<ul>
+<li><span class="math inline">F</span> - formulas</li>
+<li><span class="math inline">t</span> - terms (pure mathematical
+operations)</li>
+<li><span class="math inline">V = \{x_1, \cdots, x_n\}</span> - mutable
+variables</li>
+</ul>
+<h4 data-number="1.7.1.1" id="construction"><span
+class="header-section-number">1.7.1.1</span> construction</h4>
+<ul>
+<li><span class="math inline">c</span> - imperative command</li>
+<li><span class="math inline">R(c)</span> - formula describing relation
+between initial and final states of execution <span
+class="math inline">c</span></li>
+<li><span class="math inline">\rho(c) = \{(\bar x, \bar x&#39;) :
+R(c)\}</span></li>
+</ul>
+<ol type="1">
+<li><span class="math inline">R(x = t)</span>: <span
+class="math inline">x&#39; = t \land \bigwedge_{v \in V \setminus \{x\}}
+v&#39; = v</span></li>
+<li><span class="math inline">R(\text{if}(b)\ c_1\ \text{else}\
+c_2)</span>: <span class="math inline">(b \land R(c_1)) \lor (\neg b
+\land R(c_2))</span></li>
+<li><span class="math inline">R(c_1;c_2)</span>: <span
+class="math inline">\exists_{\bar x&#39;&#39;} R(c_1)[\bar x&#39; :=
+\bar x&#39;&#39;] \land R(c_2)[\bar x := \bar x&#39;&#39;]</span></li>
+<li><span class="math inline">R(havoc(x))</span>: <span
+class="math inline">\bigwedge_{v \in V \setminus \{x\}} v&#39; =
+v</span></li>
+<li><span class="math inline">R(\text{if}(*)\ c_1\ \text{else}\
+c_2)</span>: <span class="math inline">R(c_1) \lor R(c_2)</span></li>
+<li><span class="math inline">R(assume(F))</span>: <span
+class="math inline">F \land \bigwedge_{v \in V} v&#39; = v</span></li>
+</ol>
+<p>Transforms:</p>
+<ul>
+<li><span class="math inline">\text{if}(b)\ c_1\ \text{else}\ c_2 \equiv
+\text{if}(*)\ (assume(b); c_1)\ \text{else}\ (assume(\neg b);
+c_2)</span></li>
+<li><span class="math inline">x = e \equiv (havoc(x); assume(x ==
+e))</span> given that <span class="math inline">x \notin
+FV(e)</span></li>
+</ul>
+<p>Alternative syntax:</p>
+<ul>
+<li><span class="math inline">\text{if}(*)\ c_1\ \text{else}\ c_2 \equiv
+c_1 [] c_2</span></li>
+<li><span class="math inline">assume(F) \equiv [F]</span></li>
+</ul>
+<h3 data-number="1.7.2" id="loop-free-programs-as-relations"><span
+class="header-section-number">1.7.2</span> loop-free programs as
+relations</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>command c</th>
+<th><span class="math inline">\rho(c)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">x = t</span></td>
+<td><span class="math inline">\{((x_1, \cdots, x_i, \cdots, x_n), (x_1,
+\cdots, x_i&#39;, \cdots, x_n)) : x_i&#39; = t\}</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">c_1;c_2</span></td>
+<td><span class="math inline">\rho(c_1) \circ \rho(c_2)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\text{if}(*)\ c_1\ \text{else}\
+c_2</span></td>
+<td><span class="math inline">\rho(c_1) \cup \rho(c_2)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">assume(F)</span></td>
+<td><span class="math inline">\Delta_{\{\bar x : F\}}</span></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
