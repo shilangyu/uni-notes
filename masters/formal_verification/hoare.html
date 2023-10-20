@@ -527,5 +527,90 @@ class="header-section-number">1.3</span> Hoare triple</h2>
 <li><span class="math inline">P \subseteq wp(r, Q)</span></li>
 <li><span class="math inline">sp(P, r) \subseteq Q</span></li>
 </ol>
+<h2 data-number="1.4" id="presburger-logic"><span
+class="header-section-number">1.4</span> Presburger logic</h2>
+<p>The arithmetic has logical operations, quantifiers, &lt; and = for
+relation, and only addition as arithmetic operation. We can also
+introduce subtraction (which is addition of a negative number),
+multiplication by a constant (which is addition n times), and
+divisibility check (which is <span class="math inline">\exists_y x = K
+\cdot y</span>)</p>
+<h3 data-number="1.4.1" id="one-point-rule"><span
+class="header-section-number">1.4.1</span> one-point rule</h3>
+<p>If <span class="math inline">\bar y</span> is a tuple of variables
+not containing x, then <span class="math inline">\exists_x (x = t(\bar
+y) \land F(x, \bar y)) \iff F(t(\bar y), \bar y)</span> or the dual
+<span class="math inline">\forall_x (x = t(\bar y) \implies F(x, \bar
+y)) \iff F(t(\bar y), \bar y)</span></p>
+<h3 data-number="1.4.2" id="quantifier-elimination-qe"><span
+class="header-section-number">1.4.2</span> quantifier elimination
+(QE)</h3>
+<p>Given a formula <span class="math inline">F</span> containing
+quantifiers find an equivalent quantifier-free formula <span
+class="math inline">G</span> such that <span class="math inline">FV(G)
+\subseteq FV(F)</span>.</p>
+<p>We can check satisfiability of <span class="math inline">H(\bar
+y)</span> by evaluating <span class="math inline">\exists_{\bar y}
+H(\bar y)</span> which has no free variables. We can check validity of
+<span class="math inline">H(\bar y)</span> by evaluating <span
+class="math inline">\forall_{\bar y} H(\bar y)</span> which has no free
+variables.</p>
+<p>We consider elimination of existential conjunction of literals <span
+class="math inline">\exists_y L_1 \land \cdots \land L_n</span>.</p>
+<p>Elimination of <span class="math inline">\exists_x</span> from an
+arbitrary quantifier-free formula <span class="math inline">F(x, \bar
+y)</span>:</p>
+<ol type="1">
+<li>transform into DNF <span class="math inline">F \iff \bigvee_{i =
+1}^m C_i</span> (<span class="math inline">C_i</span> are conjunction of
+literals)</li>
+<li>push existential inside <span class="math inline">[\exists_x
+\bigvee_{i = 1}^m C_i] \iff [\bigvee_{i = 1}^m \exists_x
+C_i]</span></li>
+</ol>
+<p>Elimination of <span class="math inline">\forall_x</span> from an
+arbitrary quantifier-free formula <span class="math inline">F(x, \bar
+y)</span>:</p>
+<ol type="1">
+<li><span class="math inline">\forall_x F(x, \bar y) \iff \neg
+[\exists_x \neg F(x, \bar y)]</span></li>
+<li>apply elimination of <span class="math inline">\exists_x \neg F
+\leadsto F_1</span> and keep <span class="math inline">\neg
+F_1</span></li>
+</ol>
+<p>Note that:</p>
+<ul>
+<li><span class="math inline">\neg(t_1 &lt; t_2) \iff t_2 \le
+t_1</span></li>
+<li><span class="math inline">t_1 \le t_2 \iff t_1 &lt; t_2 +
+1</span></li>
+<li><span class="math inline">t_1 = t_2 \iff t_1 &lt; t_2 + 1 \land t_2
+&lt; t_1 + 1</span></li>
+<li><span class="math inline">\neg(K|t) \iff \bigvee_{i=1}^{K-1}
+K|t+i</span></li>
+<li><span class="math inline">t_1 &lt; t_2 \iff 0 &lt; t_2 -
+t_1</span></li>
+</ul>
+<p>To apply one-point rule on some variable we first need to make sure
+the variable is used has the same coefficient in a formula. This can be
+enforced by computing the lcm and applying it. Then when applying
+one-point rule we add a conjunct of the substitution being divisible by
+that lcm: <span class="math inline">\exists_y F(M \cdot y) \iff
+\exists_x F(x) \land M|x</span></p>
+<p>For each variable we can find its bounds by transforming its literals
+into the following form:</p>
+<p><span class="math display">
+\bigwedge_{i=1}^L a_i &lt; x \land \bigwedge_{i=1}^U x &lt; b_i \land
+\bigwedge_{i=1}^D K_i | x + t_i
+</span></p>
+<p>When <span class="math inline">D = 0</span> this can be seen as <span
+class="math inline">\bigvee_{i=1}^{L} F_1(a_i + 1)</span>. When <span
+class="math inline">D &gt; 0</span> we have <span
+class="math inline">\bigvee_{i=1}^{L} \bigvee_{d=1}^{lcm(K_1, \cdots,
+K_D)} F_1(a_i + d)</span>. When <span class="math inline">L = 0</span>
+we let <span class="math inline">F_2(x) = \bigwedge_{i=1}^D K_i | x +
+t_i</span> which then can be seen as <span
+class="math inline">\bigvee_{d=1}^{lcm(K_1, \cdots, K_D)}
+F_2(d)</span></p>
 </body>
 </html>
