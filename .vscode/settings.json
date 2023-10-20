@@ -202,6 +202,7 @@
     "posteriori",
     "preccurlyeq",
     "prenex",
+    "Presburger",
     "printf",
     "propto",
     "quantile",
