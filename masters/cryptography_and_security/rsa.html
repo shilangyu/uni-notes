@@ -519,7 +519,7 @@ class="math inline">n</span> are coprime</li>
 <li><span class="math inline">\varphi(p^a) = (p - 1)p^{a-1}</span> when
 <span class="math inline">p</span> is prime</li>
 <li><span class="math inline">\varphi(p_1^{a_1}, \cdots, p_r^{a_r}) =
-(p_1 - 1)p_1^{a_1-1} \cdot \cdots \cdot (p_r - 1)p_r^{a_r-1}</span></li>
+(p_1 - 1)p_1^{a_1-1} \cdot \ldots \cdot (p_r - 1)p_r^{a_r-1}</span></li>
 </ul>
 <h2 data-number="1.2" id="chinese-remainder-theorem-crt"><span
 class="header-section-number">1.2</span> chinese remainder theorem
@@ -617,16 +617,245 @@ for _ in 1:k
                 return &quot;composite&quot;
 
 return &quot;maybe prime&quot;</code></pre>
+<p>Complexity: <span class="math inline">O(k\ell^3)</span></p>
 <p>An integer is prime iff it passes the miller-rabin test for all <span
 class="math inline">b \in Z_n^*</span>. If more than a quarter of <span
 class="math inline">b \in Z_n^*</span> pass the miller-rabin then all
 <span class="math inline">b \in Z_n^*</span> do.</p>
+<p>So <span class="math inline">P[\text{output maybe prime}|\text{n
+composite}] \le 4^{-k}</span>.</p>
 <h2 data-number="1.7" id="prime-number-generation"><span
 class="header-section-number">1.7</span> prime number generation</h2>
 <p>Let <span class="math inline">p(N)</span> denote the number of prime
 numbers up till <span class="math inline">N</span>. Then <span
 class="math inline">p(N) \sim \frac{N}{\ln N}</span>. So the chance of a
 <span class="math inline">\ell</span> bit number to be prime is <span
-class="math inline">\frac{1}{\ell \ln 2}</span></p>
+class="math inline">\frac{1}{\ell \ln 2}</span>. We then apply
+miller-rabin test to check if the number is prime. If not, try again.
+Complexity: <span class="math inline">O(\ell^4)</span>.</p>
+<p>If we let <span class="math inline">k = \frac{1}{2}(\log_2\ell -
+\log_2\varepsilon)</span> then <span class="math inline">P[\text{output
+is not prime}] \le O(\ell) \cdot 4^{-k} = O(\varepsilon)</span></p>
+<h2 data-number="1.8" id="rsa-cryptosystem"><span
+class="header-section-number">1.8</span> RSA cryptosystem</h2>
+<ul>
+<li>Public parameter: <span class="math inline">\ell</span></li>
+<li>find two random different prime numbers <span
+class="math inline">p</span> and <span class="math inline">q</span> of
+size <span class="math inline">\frac{\ell}{2}</span> bits. Set <span
+class="math inline">N = pq</span>. Select <span
+class="math inline">e</span> such that <span class="math inline">gcd(e,
+(p - 1)(q - 1)) = 1</span>
+<ul>
+<li>pick <span class="math inline">e</span> random until it is
+valid</li>
+<li>popular choice are <span class="math inline">e = 17</span> and <span
+class="math inline">e = 2^{16} + 1</span>. They are prime (so likely to
+be coprime with (p-1)(q-1)) and have a simple bit representation for
+raising power when encrypting</li>
+</ul></li>
+<li>an element <span class="math inline">x \in Z_N</span></li>
+<li><span class="math inline">pk = (e, N)</span></li>
+<li><span class="math inline">sk = (d, N)</span> where <span
+class="math inline">d = e^{-1} \bmod \varphi(N)</span></li>
+<li><span class="math inline">y = x^e \bmod N</span></li>
+<li><span class="math inline">x = y^d \bmod N</span></li>
+</ul>
+<p>For any <span class="math inline">x \in \{0, \cdots, N-1\}</span> and
+any <span class="math inline">k</span> we have <span
+class="math inline">x^{k \varphi(N)+1} \bmod N = x</span></p>
+<h3 data-number="1.8.1" id="complexities"><span
+class="header-section-number">1.8.1</span> complexities</h3>
+<p>RSA with modulus of <span class="math inline">\ell</span> bits:</p>
+<ul>
+<li>Generation: <span class="math inline">O(\ell^4)</span></li>
+<li>Encryption: <span class="math inline">O(\ell^3)</span> (or <span
+class="math inline">O(\ell^2)</span> if <span
+class="math inline">e</span> is constant)</li>
+<li>Decryption: <span class="math inline">O(\ell^3)</span></li>
+</ul>
+<h2 data-number="1.9" id="quadratic-residuosity"><span
+class="header-section-number">1.9</span> quadratic residuosity</h2>
+<h3 data-number="1.9.1" id="square-roots-in-finite-fields"><span
+class="header-section-number">1.9.1</span> square roots in finite
+fields</h3>
+<p>Let <span class="math inline">K</span> be a finite field. For any
+<span class="math inline">x \in K</span> we have <span
+class="math inline">x^2 = 1 \implies x = 1 \lor x = -1</span>.</p>
+<h3 data-number="1.9.2" id="existence"><span
+class="header-section-number">1.9.2</span> existence</h3>
+<p>Let <span class="math inline">p</span> be an odd prime number. Then
+<span class="math inline">b \in Z_p^*</span> has a square root if and
+only if <span class="math inline">b^{\frac{p-1}{2}} \bmod p = 1</span>.
+Then <span class="math inline">b</span> is called a quadratic
+residue.</p>
+<h3 data-number="1.9.3" id="z_p-when-p-equiv-3-pmod-4"><span
+class="header-section-number">1.9.3</span> <span
+class="math inline">Z_p</span> when <span class="math inline">p \equiv 3
+\pmod 4</span></h3>
+<p>Let <span class="math inline">p</span> be a prime number such that
+<span class="math inline">p \equiv 3 \pmod 4</span>. For any <span
+class="math inline">x \in Z_p</span> we have <span
+class="math inline">y^2 \equiv x \pmod p \implies y \equiv
+x^{\frac{p+1}{4}} \pmod p \lor y \equiv -x^{\frac{p+1}{4}} \pmod
+p</span>.</p>
+<h3 data-number="1.9.4" id="z_n-when-n-pq"><span
+class="header-section-number">1.9.4</span> <span
+class="math inline">Z_n</span> when <span class="math inline">n =
+pq</span></h3>
+<p>let <span class="math inline">p</span> and <span
+class="math inline">q</span> be two different prime numbers and <span
+class="math inline">n = pq</span>. Let <span class="math inline">x \in
+Z_n</span> and <span class="math inline">a</span> and <span
+class="math inline">b</span> such that</p>
+<p><span class="math display">
+\begin{aligned}
+x \equiv a^2 \pmod p \\
+x \equiv b^2 \pmod q \\
+\end{aligned}
+</span></p>
+<p>We have</p>
+<p><span class="math display">
+x \equiv y^2 \pmod n \iff \begin{cases}
+    y \equiv \pm a \pmod p \\
+    y \equiv \pm b \pmod q \\
+\end{cases}
+</span></p>
+<h3 data-number="1.9.5" id="legendre-symbol"><span
+class="header-section-number">1.9.5</span> legendre symbol</h3>
+<p>For <span class="math inline">p</span> an odd prime</p>
+<p><span class="math display">
+\left(\frac{b}{p}\right) = \begin{cases}
+    0 &amp; \text{if } b \bmod p = 0 \\
+    1 &amp; \text{if b is a quadratic residue in } Z_p^* \\
+    -1 &amp; \text{if b is not a quadratic residue in } Z_p^* \\
+\end{cases}
+</span></p>
+<h3 data-number="1.9.6" id="jacobi-symbol"><span
+class="header-section-number">1.9.6</span> jacobi symbol</h3>
+<p>For <span class="math inline">n</span> odd</p>
+<p><span class="math display">
+\left(\frac{b}{n}\right) = \left(\frac{b}{p_1}\right)^{\alpha_1} \cdot
+\ldots \cdot \left(\frac{b}{p_r}\right)^{\alpha_r}
+</span></p>
+<p>For the factorization of <span class="math inline">n</span>.</p>
+<p>So <span class="math inline">b \in Z_p^*</span> is a quadratic
+residue <span class="math inline">\iff \left(\frac{b}{p}\right) =
+1</span>. So <span class="math inline">b \in Z_n^*</span> is a quadratic
+residue <span class="math inline">\implies \left(\frac{b}{n}\right) =
+1</span>.</p>
+<p>Properties:</p>
+<ul>
+<li><span class="math inline">\left(\frac{1}{b}\right) = 1</span> for
+<span class="math inline">b</span> odd</li>
+<li><span class="math inline">\left(\frac{a}{b}\right) = \left(\frac{a
+\bmod b}{b}\right)</span> for <span class="math inline">b</span>
+odd</li>
+<li><span class="math inline">\left(\frac{ab}{c}\right) =
+\left(\frac{a}{c}\right)\left(\frac{b}{c}\right)</span> for <span
+class="math inline">c</span> odd</li>
+<li><span class="math inline">\left(\frac{2}{a}\right) = 1</span> if
+<span class="math inline">a \equiv \pm 1 \pmod 8</span> and <span
+class="math inline">\left(\frac{2}{a}\right) = -1</span> if <span
+class="math inline">a \equiv \pm 3 \pmod 8</span> for <span
+class="math inline">a</span> odd</li>
+<li><span class="math inline">\left(\frac{a}{b}\right) =
+-\left(\frac{b}{a}\right)</span> if <span class="math inline">a \equiv b
+\equiv 3 \pmod 4</span> and <span
+class="math inline">\left(\frac{a}{b}\right) =
+\left(\frac{b}{a}\right)</span> otherwise for <span
+class="math inline">a</span> and <span class="math inline">b</span>
+odd</li>
+</ul>
+<p>Algorithm to compute is in <span
+class="math inline">O(\ell^2)</span></p>
+<h3 data-number="1.9.7" id="the-group-of-quadratic-residues-qr"><span
+class="header-section-number">1.9.7</span> the group of quadratic
+residues (QR)</h3>
+<p>Let <span class="math inline">QR_n</span> be the subgroup of <span
+class="math inline">Z_n^*</span> of all quadratic residues.</p>
+<ul>
+<li><span class="math inline">x \in QR_n \implies
+\left(\frac{x}{n}\right) = 1</span></li>
+<li><span class="math inline">x, y \in QR_n \implies xy \in
+QR_n</span></li>
+<li><span class="math inline">x \in QR_n, y \in Z_n^* \setminus QR_n
+\implies xy \in Z_n^* \setminus QR_n</span></li>
+<li>for <span class="math inline">p</span> prime <span
+class="math inline">x, y \in Z_p^* \setminus QR_p \implies xy \in
+QR_p</span></li>
+</ul>
+<h2 data-number="1.10" id="factoring-problem"><span
+class="header-section-number">1.10</span> factoring problem</h2>
+<ol type="1">
+<li>Gen(<span class="math inline">1^\lambda</span>) <span
+class="math inline">\to n</span></li>
+<li><span class="math inline">\mathcal A(n) \to (p, q)</span></li>
+<li>return<span class="math inline">_{p\cdot q = n \land p, q \in \{2,
+\cdots, n-1\}}</span></li>
+</ol>
+<h3 data-number="1.10.1" id="rsa-factoring-rsa-square-roots"><span
+class="header-section-number">1.10.1</span> RSA factoring / RSA square
+roots</h3>
+<ol type="1">
+<li>RSA-Gen(<span class="math inline">1^\lambda</span>) <span
+class="math inline">\to n</span></li>
+<li><span class="math inline">\mathcal A(n) \to (p, q)</span></li>
+<li>return<span class="math inline">_{p\cdot q = n \land p, q \in \{2,
+\cdots, n-1\}}</span></li>
+</ol>
+<p><span class="math display">
+\iff
+</span></p>
+<ol type="1">
+<li>RSA-Gen(<span class="math inline">1^\lambda</span>) <span
+class="math inline">\to n</span></li>
+<li>pick <span class="math inline">x \in QR_n</span></li>
+<li><span class="math inline">\mathcal A(n, x) \to y</span></li>
+<li>return<span class="math inline">_{y^2 \bmod n = x}</span></li>
+</ol>
+<h3 data-number="1.10.2" id="lemma"><span
+class="header-section-number">1.10.2</span> lemma</h3>
+<p><span class="math inline">y_0, y_1 \in Z_n</span></p>
+<p><span class="math display">
+\begin{cases}
+    y_0^2 &amp;\equiv y_1^2 \pmod n \\
+    y_0 &amp;\not\equiv y_1 \pmod n \\
+    y_0 &amp;\not\equiv -y_1 \pmod n \\
+\end{cases} \implies gcd(y_0 - y_1, n) \notin \{1, n\}
+</span></p>
+<h2 data-number="1.11" id="rsa-problems"><span
+class="header-section-number">1.11</span> RSA problems</h2>
+<p>Note: <span class="math inline">\lambda(n)</span> is the exponent of
+the group <span class="math inline">Z_n^*</span>.</p>
+<p>RSA-Full <span class="math inline">\lambda</span>-factoring <span
+class="math inline">\implies</span> RSA-Computing order in <span
+class="math inline">Z_n^*</span> <span
+class="math inline">\implies</span> RSA-Computing <span
+class="math inline">\lambda(n)</span> <span
+class="math inline">\iff</span> RSA-Factoring.</p>
+<p><span class="math display">
+\begin{gather*}
+    \text{RSADP} \impliedby &amp;\text{RSAKRP}&amp; \impliedby
+&amp;\text{GOP}&amp;   \\
+                                                    &amp;\Downarrow&amp;              &amp;\Updownarrow&amp;  \\
+                                          &amp;\text{EMP}&amp;     \implies  &amp;\text{RSAFP}&amp;
+\\
+\end{gather*}
+</span></p>
+<ol type="1">
+<li>RSADP - decryption problem. Given <span class="math inline">n, e,
+y</span> find <span class="math inline">x</span></li>
+<li>RSAKRP - key recovery problem. Given <span class="math inline">n,
+e</span> find <span class="math inline">d</span></li>
+<li>GOP - group order problem. Given <span class="math inline">n</span>
+find <span class="math inline">\varphi(n)</span></li>
+<li>EMP - exponent multiple problem. Given <span
+class="math inline">n</span> find a multiple of <span
+class="math inline">\lambda(n)</span></li>
+<li>RSAFP - factorization problem. Given <span
+class="math inline">n</span> find <span class="math inline">p</span> and
+<span class="math inline">q</span></li>
+</ol>
 </body>
 </html>
