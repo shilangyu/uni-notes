@@ -802,5 +802,51 @@ upon event p_round == self and broadcast == false and currentProposal != nil
   trigger &lt;Decide, currentProposal&gt;
   trigger &lt;bebBroadcast, currentProposal&gt;
   broadcast = true</code></pre>
+<h2 data-number="1.7" id="asynchronous-model"><span
+class="header-section-number">1.7</span> asynchronous model</h2>
+<p>Let M denote the message pool of outstanding messages. M is
+initialized to <span class="math inline">\{(p, \bot), (p, \text{crash})
+: \text{for every message } p\}</span>. The environment can be seen
+as:</p>
+<pre><code>while true
+  pick (p, m) in M
+  deliver m to p
+  p can add any number of messages to M</code></pre>
+<p>Rules:</p>
+<ul>
+<li>at most f crash messages are received</li>
+<li>every non-crash message is received, except potentially for those
+sent by the faulty processes</li>
+<li>once a process has crashed it adds no messages to M</li>
+<li>the first message received by any process is <span
+class="math inline">\bot</span> or <span
+class="math inline">\text{crash}</span></li>
+</ul>
+<h3 data-number="1.7.1" id="flp-impossibility-result"><span
+class="header-section-number">1.7.1</span> FLP impossibility result</h3>
+<p>For <span class="math inline">n \ge 2</span> processes, even with f =
+1, no deterministic protocol for binary consensus exists.</p>
+<p><a
+href="https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/">Good
+explanation here.</a></p>
+<p>Proof by lemma 1 + lemma 2: Start with a bivalent initial
+configuration by lemma 1. Take the oldest message in the message pool.
+We can reach a bivalent state where that message is delivered last by
+lemma 2. We repeat that indefinitely never reaching a consensus while
+ensuring messages are eventually</p>
+<h4 data-number="1.7.1.1" id="lemma-1"><span
+class="header-section-number">1.7.1.1</span> lemma 1</h4>
+<p>There exists a bivalent initial configuration.</p>
+<h4 data-number="1.7.1.2" id="lemma-2"><span
+class="header-section-number">1.7.1.2</span> lemma 2</h4>
+<p>Given <span class="math inline">C_i</span> a bivalent configuration
+and (p, m) in its message pool, there exists a sequence of message
+deliveries such that:</p>
+<ol type="1">
+<li>the last step of the sequence of deliveries is the delivery of (p,
+m)</li>
+<li>the end of the sequence is a bivalent configuration <span
+class="math inline">C_{i+1}</span></li>
+</ol>
 </body>
 </html>
