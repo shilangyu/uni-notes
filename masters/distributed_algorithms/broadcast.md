@@ -301,3 +301,40 @@ upon event p_round == self and broadcast == false and currentProposal != nil
   trigger <bebBroadcast, currentProposal>
   broadcast = true
 ```
+
+## asynchronous model
+
+Let M denote the message pool of outstanding messages. M is initialized to $\{(p, \bot), (p, \text{crash}) : \text{for every message } p\}$. The environment can be seen as:
+
+```
+while true
+  pick (p, m) in M
+  deliver m to p
+  p can add any number of messages to M
+```
+
+Rules:
+
+- at most f crash messages are received
+- every non-crash message is received, except potentially for those sent by the faulty processes
+- once a process has crashed it adds no messages to M
+- the first message received by any process is $\bot$ or $\text{crash}$
+
+### FLP impossibility result
+
+For $n \ge 2$ processes, even with f = 1, no deterministic protocol for binary consensus exists.
+
+[Good explanation here.](https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/)
+
+Proof by lemma 1 + lemma 2: Start with a bivalent initial configuration by lemma 1. Take the oldest message in the message pool. We can reach a bivalent state where that message is delivered last by lemma 2. We repeat that indefinitely never reaching a consensus while ensuring messages are eventually
+
+#### lemma 1
+
+There exists a bivalent initial configuration.
+
+#### lemma 2
+
+Given $C_i$ a bivalent configuration and (p, m) in its message pool, there exists a sequence of message deliveries such that:
+
+1. the last step of the sequence of deliveries is the delivery of (p, m)
+2. the end of the sequence is a bivalent configuration $C_{i+1}$

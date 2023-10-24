@@ -127,3 +127,14 @@ fn write(v)
 	t = t + 1
 	Reg[i] = (t, v)
 ```
+
+## limitations of registers
+
+**Theorem**: there is no wait-free algorithm that implements a SRSW atomic register that uses a finite number of bounded SRSW regular registers where the base registers are only written by the writer.
+
+To prove we simplify the problem WLOG:
+
+1. the higher-level register is binary
+2. instead of many SRSW regular registers we will use only one
+
+**Theorem**: there is no wait-free algorithm that implements a MRSW atomic register using many SRSW atomic registers where the base registers can only be written by the writer.
