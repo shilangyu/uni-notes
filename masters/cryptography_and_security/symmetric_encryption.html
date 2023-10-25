@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>symmetric_encryption</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="symmetric-encryption"><span
+class="header-section-number">1</span> symmetric encryption</h1>
+<h2 data-number="1.1" id="cryptographic-primitive"><span
+class="header-section-number">1.1</span> cryptographic primitive</h2>
+<ol type="1">
+<li>components (alice, bob, key generator, encrypt, decrypt)</li>
+<li>functionality (correctness)</li>
+<li>security (confidentiality is preserved, perfect secrecy)</li>
+</ol>
+<h3 data-number="1.1.1" id="security-notions"><span
+class="header-section-number">1.1.1</span> security notions</h3>
+<p>Adversary objective: learn confidential information. Typically it is
+key recovery.</p>
+<ul>
+<li><strong>ciphertext only attack</strong>: using ciphertexts in
+transit only.</li>
+<li><strong>known plaintext attack</strong>: same + known (or guess) the
+corresponding plaintexts</li>
+<li><strong>chosen plaintext attack</strong>: force the sender to
+encrypt some messages selected by the adversary</li>
+<li><strong>chosen ciphertext attack</strong>: force the receiver to
+decrypt some messages selected by the adversary</li>
+</ul>
+<h2 data-number="1.2" id="block-ciphers"><span
+class="header-section-number">1.2</span> block ciphers</h2>
+<h3 data-number="1.2.1" id="data-encryption-standard-des"><span
+class="header-section-number">1.2.1</span> data encryption standard
+(DES)</h3>
+<p>Encrypts blocks of 64 bits. Key of length 64 bits, but 8 bits are
+parity bits. We use key schedule to get 16 rounds of 48 bit keys from
+the main key. We split the plaintext block into two 32 bit parts. We
+apply the Feistel scheme.</p>
+<p>Susceptible to exhaustive search due to small key. There exist keys
+which produce very weak ciphers.</p>
+<h4 data-number="1.2.1.1" id="feistel-scheme"><span
+class="header-section-number">1.2.1.1</span> Feistel scheme</h4>
+<p><span class="math inline">\Psi(F^{K_1}, \cdots, F^{K_k}) =
+\Psi^{-1}(F^{K_k}, \cdots, F^{K_1})</span></p>
+<ul>
+<li>uses a function over <span class="math inline">\{0,
+1\}^{\frac{n}{2}}</span> to be a function transforming into permutations
+over <span class="math inline">\{0, 1\}^n</span></li>
+<li>inverse permutations have same structure</li>
+<li>alternate round functions and halve swaps</li>
+<li>final halve swap omitted</li>
+</ul>
+<figure>
+<img src="./assets/feistel_scheme.png" alt="Feistel scheme" />
+<figcaption aria-hidden="true">Feistel scheme</figcaption>
+</figure>
+<h3 data-number="1.2.2" id="advanced-encryption-standard-aes"><span
+class="header-section-number">1.2.2</span> advanced encryption standard
+(AES)</h3>
+<p>Encrypts blocks of 128 bits. Uses key of length 128, 192, or 256.</p>
+<ul>
+<li>transform the block to a <span class="math inline">4 \times 4</span>
+matrix of bytes</li>
+<li>number of rounds 10, 12, or 14 depending on key length</li>
+<li>non-terminal round:
+<ul>
+<li><strong>SubBytes</strong>: map each byte in matrix through a
+table</li>
+<li><strong>ShiftRows</strong>: shift rows by 0, 1, 2, 3 cells to the
+left (wrapping)</li>
+<li><strong>MixColumns</strong>: each column <span
+class="math inline">c</span> we replace with <span
+class="math inline">Mc</span> (<span class="math inline">M</span>
+defined below)</li>
+<li><strong>AddRoundKey</strong>: cell-wise XOR between round key</li>
+</ul></li>
+<li>last round skips <strong>MixColumns</strong></li>
+</ul>
+<p><span class="math display">
+M = \begin{pmatrix}
+    0x02 &amp; 0x03 &amp; 0x01 &amp; 0x01 \\
+    0x01 &amp; 0x02 &amp; 0x03 &amp; 0x01 \\
+    0x01 &amp; 0x01 &amp; 0x02 &amp; 0x03 \\
+    0x03 &amp; 0x01 &amp; 0x01 &amp; 0x02 \\
+\end{pmatrix}
+</span></p>
+<p>All operations are invertible. We however also need the inverse of
+<span class="math inline">M</span>:</p>
+<p><span class="math display">
+M^{-1} = \begin{pmatrix}
+    0x0e &amp; 0x0b &amp; 0x0d &amp; 0x09 \\
+    0x09 &amp; 0x0e &amp; 0x0b &amp; 0x0d \\
+    0x0d &amp; 0x09 &amp; 0x0e &amp; 0x0b \\
+    0x0b &amp; 0x0d &amp; 0x09 &amp; 0x0e \\
+\end{pmatrix}
+</span></p>
+<p>Arithmetics happens in <span class="math inline">GF(2^8)</span>. We
+reduce everything modulo 2 and modulo <span class="math inline">x^8 +
+x^4 + x^3 + x + 1</span>.</p>
+<h4 data-number="1.2.2.1" id="ecb-mode"><span
+class="header-section-number">1.2.2.1</span> ECB mode</h4>
+<p>Encrypt each block of a larger plaintext independently with the same
+key. Can leak information on repeating blocks.</p>
+<h4 data-number="1.2.2.2" id="ccb-mode"><span
+class="header-section-number">1.2.2.2</span> CCB mode</h4>
+<p>Start with an initialization vector (IV). We XOR it with first block
+and cipher it. Then, the result is XORed with the next block and then
+encrypted, this continues. So instead of just encrypting the block, we
+first mix the block with the cipher text from the previous block.</p>
+<p>Three ways to handle IV:</p>
+<ol type="1">
+<li>use a non-secret constant IV (bad idea)</li>
+<li>use secret IV which is part of the key (ok if not reused)</li>
+<li>random IV that is sent in clear together with ciphertext</li>
+</ol>
+<h4 data-number="1.2.2.3" id="ofb-mode"><span
+class="header-section-number">1.2.2.3</span> OFB mode</h4>
+<p>TODO</p>
+</body>
+</html>
