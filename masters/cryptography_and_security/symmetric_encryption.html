@@ -580,8 +580,8 @@ x^4 + x^3 + x + 1</span>.</p>
 class="header-section-number">1.2.2.1</span> ECB mode</h4>
 <p>Encrypt each block of a larger plaintext independently with the same
 key. Can leak information on repeating blocks.</p>
-<h4 data-number="1.2.2.2" id="ccb-mode"><span
-class="header-section-number">1.2.2.2</span> CCB mode</h4>
+<h4 data-number="1.2.2.2" id="cbc-mode"><span
+class="header-section-number">1.2.2.2</span> CBC mode</h4>
 <p>Start with an initialization vector (IV). We XOR it with first block
 and cipher it. Then, the result is XORed with the next block and then
 encrypted, this continues. So instead of just encrypting the block, we
@@ -592,8 +592,57 @@ first mix the block with the cipher text from the previous block.</p>
 <li>use secret IV which is part of the key (ok if not reused)</li>
 <li>random IV that is sent in clear together with ciphertext</li>
 </ol>
+<p>If a block of ciphertext is corrupted only this and the next block of
+plaintext is corrupted.</p>
 <h4 data-number="1.2.2.3" id="ofb-mode"><span
 class="header-section-number">1.2.2.3</span> OFB mode</h4>
-<p>TODO</p>
+<p>We encrypt IV and XOR with a block. The result of IV encryption is
+passed to next encryption for the next block. We must have a new IV for
+every plaintext. IV is a <strong>nonce</strong> (<strong>n</strong>umber
+used <strong>once</strong>).</p>
+<h4 data-number="1.2.2.4" id="ctr-mode"><span
+class="header-section-number">1.2.2.4</span> CTR mode</h4>
+<p>Have a counter <span class="math inline">t_i</span> and increment for
+each block. We encrypt the counter and XOR with the block. <span
+class="math inline">t_i</span> must be a nonce but also across every
+block across every message. This means each block can be independently
+computed.</p>
+<h4 data-number="1.2.2.5" id="xts-mode"><span
+class="header-section-number">1.2.2.5</span> XTS mode</h4>
+<p>Used for hard disk encryption.</p>
+<h5 data-number="1.2.2.5.1" id="ciphertext-stealing"><span
+class="header-section-number">1.2.2.5.1</span> ciphertext stealing</h5>
+<p>Method for encrypting messages that cannot be evenly divided into
+blocks.</p>
+<p>Let <span class="math inline">x</span> and <span
+class="math inline">x&#39;</span> be the last two blocks where <span
+class="math inline">x&#39;</span> is shorter than block length.</p>
+<ol type="1">
+<li>let <span class="math inline">Enc(x) = y&#39; || u</span> where
+<span class="math inline">y&#39;</span> has same length as <span
+class="math inline">x&#39;</span></li>
+<li><span class="math inline">y = Enc&#39;(x&#39;||u)</span></li>
+<li>return <span class="math inline">y</span> and <span
+class="math inline">y&#39;</span></li>
+</ol>
+<h2 data-number="1.3" id="stream-ciphers"><span
+class="header-section-number">1.3</span> stream ciphers</h2>
+<p>Use a PRNG to generate a key stream. We seed the PRN with a fixed
+secret key and a nonce.</p>
+<p>We can:</p>
+<ol type="1">
+<li>synchronize participants to a nonce (requires being stateful)</li>
+<li>send the nonce in clear with ciphertext (requires nonce being
+visible by an adversary)</li>
+</ol>
+<h3 data-number="1.3.1" id="rc4"><span
+class="header-section-number">1.3.1</span> RC4</h3>
+<p>Key length from 40 to 256 bits.</p>
+<p>Weaknesses:</p>
+<ul>
+<li>there are some correlations between some output bytes and key bytes
+when the nonce is known</li>
+<li>output bytes are not uniformly distributed</li>
+</ul>
 </body>
 </html>
