@@ -73,7 +73,7 @@ Arithmetics happens in $GF(2^8)$. We reduce everything modulo 2 and modulo $x^8 
 
 Encrypt each block of a larger plaintext independently with the same key. Can leak information on repeating blocks.
 
-#### CCB mode
+#### CBC mode
 
 Start with an initialization vector (IV). We XOR it with first block and cipher it. Then, the result is XORed with the next block and then encrypted, this continues. So instead of just encrypting the block, we first mix the block with the cipher text from the previous block.
 
@@ -83,6 +83,44 @@ Three ways to handle IV:
 2. use secret IV which is part of the key (ok if not reused)
 3. random IV that is sent in clear together with ciphertext
 
+If a block of ciphertext is corrupted only this and the next block of plaintext is corrupted.
+
 #### OFB mode
 
-TODO
+We encrypt IV and XOR with a block. The result of IV encryption is passed to next encryption for the next block. We must have a new IV for every plaintext. IV is a **nonce** (**n**umber used **once**).
+
+#### CTR mode
+
+Have a counter $t_i$ and increment for each block. We encrypt the counter and XOR with the block. $t_i$ must be a nonce but also across every block across every message. This means each block can be independently computed.
+
+#### XTS mode
+
+Used for hard disk encryption.
+
+##### ciphertext stealing
+
+Method for encrypting messages that cannot be evenly divided into blocks.
+
+Let $x$ and $x'$ be the last two blocks where $x'$ is shorter than block length.
+
+1. let $Enc(x) = y' || u$ where $y'$ has same length as $x'$
+2. $y = Enc'(x'||u)$
+3. return $y$ and $y'$
+
+## stream ciphers
+
+Use a PRNG to generate a key stream. We seed the PRN with a fixed secret key and a nonce.
+
+We can:
+
+1. synchronize participants to a nonce (requires being stateful)
+2. send the nonce in clear with ciphertext (requires nonce being visible by an adversary)
+
+### RC4
+
+Key length from 40 to 256 bits.
+
+Weaknesses:
+
+- there are some correlations between some output bytes and key bytes when the nonce is known
+- output bytes are not uniformly distributed

@@ -207,6 +207,7 @@
     "prenex",
     "Presburger",
     "printf",
+    "PRNG",
     "propto",
     "quantile",
     "quantiles",
