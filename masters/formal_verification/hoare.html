@@ -612,5 +612,49 @@ we let <span class="math inline">F_2(x) = \bigwedge_{i=1}^D K_i | x +
 t_i</span> which then can be seen as <span
 class="math inline">\bigvee_{d=1}^{lcm(K_1, \cdots, K_D)}
 F_2(d)</span></p>
+<h2 data-number="1.5" id="abstract-interpretation"><span
+class="header-section-number">1.5</span> abstract interpretation</h2>
+<p>Abstract domains which approximate concrete domains of programs.
+Abstract interpretation is used for constructing induction invariants.
+Programs are seen as control flow graphs (CFG) where possible values are
+represented as ranges.</p>
+<p>Transfer function <span class="math inline">T(S, c) = sp(S,
+\rho(c))</span>. We denote <span class="math inline">T(S, skip) =
+S</span> for an edge with no label.</p>
+<ul>
+<li><span class="math inline">[a, b] \sqcup [c, d] = [\min(a, c),
+\max(b, d)]</span></li>
+</ul>
+<p>Interpreting the CFG and updating edges with the approximating
+transfer function we get a program annotated in a fashion where all
+Hoare triples hold.</p>
+<h3 data-number="1.5.1" id="lattices"><span
+class="header-section-number">1.5.1</span> lattices</h3>
+<p>A lattice is a poset where every pair of elements have a unique
+supremum and infimum.</p>
+<h4 data-number="1.5.1.1" id="least-upper-bound-supremum"><span
+class="header-section-number">1.5.1.1</span> least upper bound
+(supremum)</h4>
+<p>For a poset <span class="math inline">(A, \le)</span> the supremum of
+<span class="math inline">S \subseteq A</span> is an element <span
+class="math inline">M \in A</span> that is the least element of the set
+<span class="math inline">\{x | x \text{ is upper bound on } S\}</span>.
+We denote a binary operation by <span class="math inline">a_1 \sqcup a_2
+= \inf\{a_1, a_2\}</span>. It is associative, commutative, and
+idempotent.</p>
+<h3 data-number="1.5.2" id="partial-orders-using-maps"><span
+class="header-section-number">1.5.2</span> partial orders using
+maps</h3>
+<p>Let <span class="math inline">A</span> be a set of propositional
+formulas containing only variables <span class="math inline">p</span>
+and <span class="math inline">q</span>. For <span class="math inline">F
+\in A</span> we define</p>
+<p><span class="math display">
+[F] = \{(u, v) \in \{0, 1\}^2: F[p := u, q := v]\}
+</span></p>
+<p>so it is the set of assignments that makes <span
+class="math inline">F</span> true. Then we can say <span
+class="math inline">F \le G \iff [F] \subseteq [G]</span> to form a
+poset.</p>
 </body>
 </html>
