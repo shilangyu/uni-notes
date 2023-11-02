@@ -140,7 +140,7 @@ For the public key:
 
 ## non-deterministic encryption
 
-Ciphertext space is larger than plaintext space. Encryption is probabilistic, description is deterministic.
+Ciphertext space is larger than plaintext space. Encryption is probabilistic, decryption is deterministic.
 
 ## semi-static-DH public key encryption
 

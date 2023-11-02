@@ -138,3 +138,41 @@ To prove we simplify the problem WLOG:
 2. instead of many SRSW regular registers we will use only one
 
 **Theorem**: there is no wait-free algorithm that implements a MRSW atomic register using many SRSW atomic registers where the base registers can only be written by the writer.
+
+## counter
+
+```
+fn read()
+	sum = 0
+	for j in 1:N
+		sum = sum + Reg[j]
+	return sum
+
+fn inc()
+	Reg[i] = Reg[i] + 1
+```
+
+## snapshot
+
+```
+fn collect()
+	for j in 1:N
+		x[j] = Reg[j]
+	return x
+
+fn scan()
+	t1 = collect()
+	t2 = t1
+	while true
+		t3 = collect()
+		if t3 == t2
+			return t3
+		for j in 1:N
+			if t3[j].2 >= t1[j].2 + 2
+				return t3[j].3
+		t2 = t3
+
+fn update(v)
+	ts = ts + 1
+	Reg[i] = (v, ts, scan())
+```
