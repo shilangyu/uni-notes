@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>registers</title>
+  <title>elliptic_curves</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,166 +483,101 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="registers"><span
-class="header-section-number">1</span> registers</h1>
-<p>Have read and write operations. They store integers. Initial state is
-0.</p>
-<h2 data-number="1.1" id="dimensions"><span
-class="header-section-number">1.1</span> dimensions</h2>
+<h1 data-number="1" id="elliptic-curves"><span
+class="header-section-number">1</span> elliptic curves</h1>
+<h2 data-number="1.1" id="galois-fields"><span
+class="header-section-number">1.1</span> galois fields</h2>
+<p>Finite fields. Denoted by <span class="math inline">GF(p^k)</span>,
+the set of all polynomials in <span class="math inline">Z_p[x]</span> of
+degree at most <span class="math inline">k-1</span>. Addition is modulo
+<span class="math inline">p</span>. Multiplication reduced modulo <span
+class="math inline">P(x)</span>. <span class="math inline">P(x)</span>
+is a monic irreducible polynomial of degree <span
+class="math inline">k</span> in <span
+class="math inline">Z_p[x]</span>.</p>
+<p>Properties:</p>
 <ul>
-<li>dimension 1: binary / multivalued</li>
-<li>dimension 2:
-<ul>
-<li>SRSW (single reader, single writer)</li>
-<li>MRSW (multiple readers, single writer)</li>
-<li>MRMW (multiple readers, multiple writes)</li>
-</ul></li>
-<li>dimension 3: sage / regular / atomic</li>
+<li>the cardinality of any finite field is a prime power <span
+class="math inline">p^k</span></li>
+<li>for any prime power <span class="math inline">p^k</span> there
+exists a finite field of cardinality <span
+class="math inline">p^k</span>, <span class="math inline">p</span> is
+called the characteristic of the field</li>
+<li>two finite fields of same cardinality is isomorphic. We denote <span
+class="math inline">GF(p^k)</span> as Galois field of cardinality <span
+class="math inline">p^k</span></li>
+<li><span class="math inline">GF(p^k)</span> is isomorphic to a subfield
+of <span class="math inline">GF(p^{k \cdot \ell})</span></li>
+<li><span class="math inline">GF(p^k)</span> can be defined as the
+quotient of ring of polynomial with coefficients in <span
+class="math inline">Z_p</span> by a principal ideal spanned by an
+irreducible polynomial of degree <span class="math inline">k</span>:
+<span class="math inline">Z_p[x] / (P(x))</span></li>
 </ul>
-<h3 data-number="1.1.1" id="safe-execution"><span
-class="header-section-number">1.1.1</span> safe execution</h3>
-<p>Reads return the value from the last finished write.</p>
-<h3 data-number="1.1.2" id="regular-execution"><span
-class="header-section-number">1.1.2</span> regular execution</h3>
-<p>Reads return the value from the last finished write or the value
-concurrently written.</p>
-<h3 data-number="1.1.3" id="atomic-execution"><span
-class="header-section-number">1.1.3</span> atomic execution</h3>
-<p>Each operation executes in a particular point in time.</p>
-<h2 data-number="1.2" id="theorem"><span
-class="header-section-number">1.2</span> theorem</h2>
-<p>A multivalued MRMW atomic register can be wait-free implemented with
-binary SRSW safe registers.</p>
-<h3 data-number="1.2.1" id="safe-binary-srsw-to-safe-binary-mrsw"><span
-class="header-section-number">1.2.1</span> safe binary SRSW <span
-class="math inline">\to</span> safe binary MRSW</h3>
-<p>Let Reg[1, .., N] be an array of SRSW registers.</p>
-<pre><code>fn read()
-    return Reg[i]
-
-fn write(v)
-    for j in 1:N
-        Reg[j] = v</code></pre>
-<p>This also works for multi-valued registers and regular ones.</p>
-<h3 data-number="1.2.2"
-id="safe-binary-mrsw-to-regular-binary-mrsw"><span
-class="header-section-number">1.2.2</span> safe binary MRSW <span
-class="math inline">\to</span> regular binary MRSW</h3>
-<p>Let Reg be a safe register</p>
-<pre><code>fn read()
-    return Reg
-
-fn write(v)
-    if old != v
-        Reg = v
-        old = v</code></pre>
-<h3 data-number="1.2.3" id="binary-mrsw-to-m-valued-mrsw"><span
-class="header-section-number">1.2.3</span> binary MRSW <span
-class="math inline">\to</span> M-valued MRSW</h3>
-<p>Let Reg[1, …, M] init to [1, 0, …, 0]</p>
-<pre><code>fn read()
-    for j in 1:M
-        if Reg[j] == 1
-            return j
-
-fn write(v)
-    Reg[v] = 1
-    for j in rev(1:(v-1))
-        Reg[j] = 0</code></pre>
-<h3 data-number="1.2.4" id="srsw-regular-to-srsw-atomic"><span
-class="header-section-number">1.2.4</span> SRSW regular <span
-class="math inline">\to</span> SRSW atomic</h3>
-<p>Let Reg be a regular SRSW</p>
-<pre><code>fn read()
-    (t&#39;, x&#39;) = Reg
-    if t’ &gt; t
-        t = t&#39;
-        x = x&#39;
-    return x
-
-fn write(v)
-    t = t+1
-    Reg = (t, v)</code></pre>
-<h3 data-number="1.2.5" id="srsw-atomic-to-mrsw-atomic"><span
-class="header-section-number">1.2.5</span> SRSW atomic <span
-class="math inline">\to</span> MRSW atomic</h3>
-<p>We assume there are N readers. Let RReg[(1, 1), (1, 2), …, (N, N)] be
-N*N SRSW atomic registers for readers to communicate. Let WReg[1, …, N]
-be SRSW atomic registers.</p>
-<pre><code>fn read()
-    for j in 1:N
-        (t[j], x[j]) = RReg[i, j]
-    (t[0], x[0]) = WReg[i]
-    (t, x) = highest(t[..], x[..])
-    for j in 1:N
-        RReg[j, i] = (t, x)
-    return x
-
-fn write(v)
-    t1 = t1 + 1
-    for j in 1:N
-        WReg[j] = (t1, v)</code></pre>
-<h3 data-number="1.2.6" id="mrsw-atomic-to-mrmw-atomic"><span
-class="header-section-number">1.2.6</span> MRSW atomic <span
-class="math inline">\to</span> MRMW atomic</h3>
-<p>Let Reg[1, …, N] be MRSW atomic registers.</p>
-<pre><code>fn read()
-    for j in 1:N
-        (t[j], x[j]) = Reg[j]
-    (t, x) = highest(t[..], x[..])
-    return x
-
-fn write(v)
-    for j in 1:N
-        (t[j], x[j]) = Reg[j]
-    (t, x) = highest(t[..], x[..])
-    t = t + 1
-    Reg[i] = (t, v)</code></pre>
-<h2 data-number="1.3" id="limitations-of-registers"><span
-class="header-section-number">1.3</span> limitations of registers</h2>
-<p><strong>Theorem</strong>: there is no wait-free algorithm that
-implements a SRSW atomic register that uses a finite number of bounded
-SRSW regular registers where the base registers are only written by the
-writer.</p>
-<p>To prove we simplify the problem WLOG:</p>
-<ol type="1">
-<li>the higher-level register is binary</li>
-<li>instead of many SRSW regular registers we will use only one</li>
-</ol>
-<p><strong>Theorem</strong>: there is no wait-free algorithm that
-implements a MRSW atomic register using many SRSW atomic registers where
-the base registers can only be written by the writer.</p>
-<h2 data-number="1.4" id="counter"><span
-class="header-section-number">1.4</span> counter</h2>
-<pre><code>fn read()
-    sum = 0
-    for j in 1:N
-        sum = sum + Reg[j]
-    return sum
-
-fn inc()
-    Reg[i] = Reg[i] + 1</code></pre>
-<h2 data-number="1.5" id="snapshot"><span
-class="header-section-number">1.5</span> snapshot</h2>
-<pre><code>fn collect()
-    for j in 1:N
-        x[j] = Reg[j]
-    return x
-
-fn scan()
-    t1 = collect()
-    t2 = t1
-    while true
-        t3 = collect()
-        if t3 == t2
-            return t3
-        for j in 1:N
-            if t3[j].2 &gt;= t1[j].2 + 2
-                return t3[j].3
-        t2 = t3
-
-fn update(v)
-    ts = ts + 1
-    Reg[i] = (v, ts, scan())</code></pre>
+<p>Properties of <span class="math inline">GF(2^k)</span>:</p>
+<ul>
+<li><span class="math inline">1 + 1 = 0</span></li>
+<li><span class="math inline">-a = a</span></li>
+<li><span class="math inline">(a + b)^2 = a^2 + b^2</span></li>
+<li><span class="math inline">2^i</span> is linear</li>
+<li>for <span class="math inline">k &gt; 1</span>, <span
+class="math inline">a^{2^{k-1}}</span> is the unique square root of
+<span class="math inline">a</span></li>
+<li>trace function - <span class="math inline">Tr(a) = a + a^2 + a^{2^2}
++ \cdots + a^{2^{k-1}}</span>
+<ul>
+<li>it is linear <span class="math inline">Tr(a + b) = Tr(a) +
+Tr(b)</span></li>
+<li><span class="math inline">Tr(a^2) = Tr(a)</span></li>
+</ul></li>
+</ul>
+<h2 data-number="1.2" id="elliptic-curves-1"><span
+class="header-section-number">1.2</span> elliptic curves</h2>
+<p><span class="math display">
+E_{a,b} = \{\mathcal O\} \cup \{(x, y) : y^2 = x^3 + ax + b\}
+</span></p>
+<p>For an elliptic curve to be non-singular, we have to fulfill <span
+class="math inline">4a^3 + 27b^2 \ne 0</span>. <span
+class="math inline">\lambda = \frac{y_Q - y_P}{x_Q - x_P}</span> is the
+chord slope. <span class="math inline">\lambda = \frac{3x_P^2 +
+a}{2y_P}</span> is the tangent slope.</p>
+<h3 data-number="1.2.1" id="group-structure"><span
+class="header-section-number">1.2.1</span> group structure</h3>
+<p>Let <span class="math inline">P = (x_P, y_P)</span>, <span
+class="math inline">Q = (x_Q, y_Q)</span>, and <span
+class="math inline">R = (x_R, y_R)</span></p>
+<ul>
+<li><p><span class="math inline">-P = (x_P, -y_P)</span>, <span
+class="math inline">-\mathcal O = \mathcal O</span></p></li>
+<li><p>if <span class="math inline">P = -Q</span> then <span
+class="math inline">P + Q = \mathcal O</span></p></li>
+<li><p><span class="math inline">P + Q = R</span>:</p>
+<p><span class="math display">
+\begin{aligned}
+  \lambda &amp;= \begin{cases}
+      \frac{y_Q - y_P}{x_Q - x_P} &amp; \text{ if } x_P = x_Q \\
+      \frac{3x_P^2 + a}{2y_P} &amp; \text{ if } x_P \ne x_Q \\
+  \end{cases} \\
+  x_R &amp;= \lambda^2 - x_P - x_Q \\
+  x_Y &amp;= (x_P - x_R)\lambda - y_P \\
+\end{aligned}
+</span></p></li>
+<li><p><span class="math inline">\mathcal O</span> is the neutral
+element in the group for addition</p></li>
+</ul>
+<p><span class="math inline">E_{a, b}(K)</span> is an abelian group of
+an elliptic curve over a field <span class="math inline">x, y \in
+K</span>. The characteristic should be larger than 3.</p>
+<h3 data-number="1.2.2" id="points-of-order-2"><span
+class="header-section-number">1.2.2</span> points of order 2</h3>
+<p>If a point <span class="math inline">P = (x, y)</span> is of order 2,
+then <span class="math inline">P + P = 0</span>, then <span
+class="math inline">P = -P</span> so <span class="math inline">y =
+0</span>. So <span class="math inline">P</span> is the solution of <span
+class="math inline">x^3 + ax + b = 0</span>. As there are at most three
+solutions, there are at most 3 elements of order 2 in <span
+class="math inline">E_{a,b}</span>. If <span
+class="math inline">E_{a,b}</span> is cyclic then there can be only one
+or zero elements of order 2.</p>
 </body>
 </html>
