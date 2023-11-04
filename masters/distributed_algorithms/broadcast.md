@@ -302,6 +302,49 @@ upon event p_round == self and broadcast == false and currentProposal != nil
   broadcast = true
 ```
 
+### algorithm 2
+
+```
+Implements: Uniform Consensus (ucons)
+Uses:
+  - beb
+  - PerfectFailureDetector
+
+upon event <Init>
+  suspected = ∅
+  round = 1
+  currentProposal = nil
+  broadcast = false
+  delivered[] = false
+  decided = false
+
+upon event <crash, pi>
+  suspected = suspected ∪ {pi}
+
+upon event <Proposal, v>
+  if currentProposal == nil
+    currentProposal = v
+
+upon event <bebDeliver, p_round, value>
+  currentProposal = value
+  delivered[round] = true
+
+upon event delivered[round] == true or p_round in suspected
+  if round == n and decided == false
+    trigger <Decide, currentProposal>
+    decided = true
+  else
+    round = round + 1
+
+upon event p_round == self and broadcast == false and currentProposal != nil
+  trigger <bebBroadcast, currentProposal>
+  broadcast = true
+```
+
+### algorithm 3
+
+Uses an eventually perfect failure detector and a correct majority to reach a consensus.
+
 ## asynchronous model
 
 Let M denote the message pool of outstanding messages. M is initialized to $\{(p, \bot), (p, \text{crash}) : \text{for every message } p\}$. The environment can be seen as:
