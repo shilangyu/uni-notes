@@ -802,6 +802,46 @@ upon event p_round == self and broadcast == false and currentProposal != nil
   trigger &lt;Decide, currentProposal&gt;
   trigger &lt;bebBroadcast, currentProposal&gt;
   broadcast = true</code></pre>
+<h3 data-number="1.6.2" id="algorithm-2-1"><span
+class="header-section-number">1.6.2</span> algorithm 2</h3>
+<pre><code>Implements: Uniform Consensus (ucons)
+Uses:
+  - beb
+  - PerfectFailureDetector
+
+upon event &lt;Init&gt;
+  suspected = ∅
+  round = 1
+  currentProposal = nil
+  broadcast = false
+  delivered[] = false
+  decided = false
+
+upon event &lt;crash, pi&gt;
+  suspected = suspected ∪ {pi}
+
+upon event &lt;Proposal, v&gt;
+  if currentProposal == nil
+    currentProposal = v
+
+upon event &lt;bebDeliver, p_round, value&gt;
+  currentProposal = value
+  delivered[round] = true
+
+upon event delivered[round] == true or p_round in suspected
+  if round == n and decided == false
+    trigger &lt;Decide, currentProposal&gt;
+    decided = true
+  else
+    round = round + 1
+
+upon event p_round == self and broadcast == false and currentProposal != nil
+  trigger &lt;bebBroadcast, currentProposal&gt;
+  broadcast = true</code></pre>
+<h3 data-number="1.6.3" id="algorithm-3"><span
+class="header-section-number">1.6.3</span> algorithm 3</h3>
+<p>Uses an eventually perfect failure detector and a correct majority to
+reach a consensus.</p>
 <h2 data-number="1.7" id="asynchronous-model"><span
 class="header-section-number">1.7</span> asynchronous model</h2>
 <p>Let M denote the message pool of outstanding messages. M is
