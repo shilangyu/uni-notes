@@ -82,31 +82,3 @@ $$
 $$
 
 When $D = 0$ this can be seen as $\bigvee_{i=1}^{L} F_1(a_i + 1)$. When $D > 0$ we have $\bigvee_{i=1}^{L} \bigvee_{d=1}^{lcm(K_1, \cdots, K_D)} F_1(a_i + d)$. When $L = 0$ we let $F_2(x) = \bigwedge_{i=1}^D K_i | x + t_i$ which then can be seen as $\bigvee_{d=1}^{lcm(K_1, \cdots, K_D)} F_2(d)$
-
-## abstract interpretation
-
-Abstract domains which approximate concrete domains of programs. Abstract interpretation is used for constructing induction invariants. Programs are seen as control flow graphs (CFG) where possible values are represented as ranges.
-
-Transfer function $T(S, c) = sp(S, \rho(c))$. We denote $T(S, skip) = S$ for an edge with no label.
-
-- $[a, b] \sqcup [c, d] = [\min(a, c), \max(b, d)]$
-
-Interpreting the CFG and updating edges with the approximating transfer function we get a program annotated in a fashion where all Hoare triples hold.
-
-### lattices
-
-A lattice is a poset where every pair of elements have a unique supremum and infimum.
-
-#### least upper bound (supremum)
-
-For a poset $(A, \le)$ the supremum of $S \subseteq A$ is an element $M \in A$ that is the least element of the set $\{x | x \text{ is upper bound on } S\}$. We denote a binary operation by $a_1 \sqcup a_2 = \inf\{a_1, a_2\}$. It is associative, commutative, and idempotent.
-
-### partial orders using maps
-
-Let $A$ be a set of propositional formulas containing only variables $p$ and $q$. For $F \in A$ we define
-
-$$
-[F] = \{(u, v) \in \{0, 1\}^2: F[p := u, q := v]\}
-$$
-
-so it is the set of assignments that makes $F$ true. Then we can say $F \le G \iff [F] \subseteq [G]$ to form a poset.
