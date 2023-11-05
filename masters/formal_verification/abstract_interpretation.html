@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>hoare</title>
+  <title>abstract_interpretation</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,134 +483,125 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="hoare"><span
-class="header-section-number">1</span> Hoare</h1>
-<h2 data-number="1.1" id="strength-and-weakness"><span
-class="header-section-number">1.1</span> strength and weakness</h2>
-<p>condition <span class="math inline">P_1</span> is stronger than <span
-class="math inline">P_2</span> means that:</p>
+<h1 data-number="1" id="abstract-interpretation"><span
+class="header-section-number">1</span> abstract interpretation</h1>
+<p>Abstract domains which approximate concrete domains of programs.
+Abstract interpretation is used for constructing induction invariants.
+Programs are seen as control flow graphs (CFG) where possible values are
+represented as ranges.</p>
+<p>Transfer function <span class="math inline">T(S, c) = sp(S,
+\rho(c))</span>. We denote <span class="math inline">T(S, skip) =
+S</span> for an edge with no label.</p>
 <ul>
-<li><span class="math inline">\forall_{\bar x} P_1 \implies
-P_2</span></li>
-<li><span class="math inline">\{\bar x : P_1\} \subseteq \{\bar x :
-P_2\}</span></li>
+<li><span class="math inline">[a, b] \sqcup [c, d] = [\min(a, c),
+\max(b, d)]</span></li>
 </ul>
-<p>A strongest possible condition is the smallest set, <span
-class="math inline">\emptyset</span>. The weakest possible condition is
-the biggest set, the set of all tuples.</p>
-<h2 data-number="1.2" id="hoare-logic"><span
-class="header-section-number">1.2</span> Hoare logic</h2>
-<p>Let <span class="math inline">P, Q \subseteq S</span> and <span
-class="math inline">r \subseteq S \times S</span></p>
+<p>Interpreting the CFG and updating edges with the approximating
+transfer function we get a program annotated in a fashion where all
+Hoare triples hold.</p>
+<h2 data-number="1.1" id="lattices"><span
+class="header-section-number">1.1</span> lattices</h2>
+<p>A lattice is a poset where every pair of elements have a unique
+supremum and infimum. Total order sets are lattices.</p>
+<h3 data-number="1.1.1" id="least-upper-bound-supremum"><span
+class="header-section-number">1.1.1</span> least upper bound
+(supremum)</h3>
+<p>For a poset <span class="math inline">(A, \le)</span> the supremum of
+<span class="math inline">S \subseteq A</span> is an element <span
+class="math inline">M \in A</span> that is the least element of the set
+<span class="math inline">\{x | x \text{ is upper bound on } S\}</span>.
+We denote a binary operation by <span class="math inline">a_1 \sqcup a_2
+= \inf\{a_1, a_2\}</span>. It is associative, commutative, and
+idempotent.</p>
+<p>Similarly <span class="math inline">a_1 \sqcap a_2 = \sup\{a_1,
+a_2\}</span> is the greatest lower bound (infimum).</p>
+<h3 data-number="1.1.2" id="partial-orders-using-maps"><span
+class="header-section-number">1.1.2</span> partial orders using
+maps</h3>
+<p>Let <span class="math inline">A</span> be a set of propositional
+formulas containing only variables <span class="math inline">p</span>
+and <span class="math inline">q</span>. For <span class="math inline">F
+\in A</span> we define</p>
 <p><span class="math display">
-\{P\} r \{Q\} \iff \forall_{s, s&#39; \in S} (s \in P \land (s, s&#39;)
-\in r \implies s&#39; \in Q)
+[F] = \{(u, v) \in \{0, 1\}^2: F[p := u, q := v]\}
 </span></p>
-<p>Note <span class="math inline">\{P\}r\{Q\}</span> is syntax, not a
-relation between two singleton sets.</p>
-<h3 data-number="1.2.1" id="strongest-post-condition"><span
-class="header-section-number">1.2.1</span> strongest post-condition</h3>
-<p><span class="math display">
-sp(P, r) = \{s&#39; : \exists_s s \in P \land (s, s&#39;) \in r\}
-</span></p>
-<h3 data-number="1.2.2" id="weakest-pre-condition"><span
-class="header-section-number">1.2.2</span> weakest pre-condition</h3>
-<p><span class="math display">
-wp(r, Q) = \{s : \forall_{s&#39;} (s, s&#39;) \in r \implies s&#39; \in
-Q\}
-</span></p>
-<h2 data-number="1.3" id="hoare-triple"><span
-class="header-section-number">1.3</span> Hoare triple</h2>
-<p>The following are equivalent:</p>
-<ol type="1">
-<li><span class="math inline">\{P\} r \{Q\}</span></li>
-<li><span class="math inline">P \subseteq wp(r, Q)</span></li>
-<li><span class="math inline">sp(P, r) \subseteq Q</span></li>
-</ol>
-<h2 data-number="1.4" id="presburger-logic"><span
-class="header-section-number">1.4</span> Presburger logic</h2>
-<p>The arithmetic has logical operations, quantifiers, &lt; and = for
-relation, and only addition as arithmetic operation. We can also
-introduce subtraction (which is addition of a negative number),
-multiplication by a constant (which is addition n times), and
-divisibility check (which is <span class="math inline">\exists_y x = K
-\cdot y</span>)</p>
-<h3 data-number="1.4.1" id="one-point-rule"><span
-class="header-section-number">1.4.1</span> one-point rule</h3>
-<p>If <span class="math inline">\bar y</span> is a tuple of variables
-not containing x, then <span class="math inline">\exists_x (x = t(\bar
-y) \land F(x, \bar y)) \iff F(t(\bar y), \bar y)</span> or the dual
-<span class="math inline">\forall_x (x = t(\bar y) \implies F(x, \bar
-y)) \iff F(t(\bar y), \bar y)</span></p>
-<h3 data-number="1.4.2" id="quantifier-elimination-qe"><span
-class="header-section-number">1.4.2</span> quantifier elimination
-(QE)</h3>
-<p>Given a formula <span class="math inline">F</span> containing
-quantifiers find an equivalent quantifier-free formula <span
-class="math inline">G</span> such that <span class="math inline">FV(G)
-\subseteq FV(F)</span>.</p>
-<p>We can check satisfiability of <span class="math inline">H(\bar
-y)</span> by evaluating <span class="math inline">\exists_{\bar y}
-H(\bar y)</span> which has no free variables. We can check validity of
-<span class="math inline">H(\bar y)</span> by evaluating <span
-class="math inline">\forall_{\bar y} H(\bar y)</span> which has no free
-variables.</p>
-<p>We consider elimination of existential conjunction of literals <span
-class="math inline">\exists_y L_1 \land \cdots \land L_n</span>.</p>
-<p>Elimination of <span class="math inline">\exists_x</span> from an
-arbitrary quantifier-free formula <span class="math inline">F(x, \bar
-y)</span>:</p>
-<ol type="1">
-<li>transform into DNF <span class="math inline">F \iff \bigvee_{i =
-1}^m C_i</span> (<span class="math inline">C_i</span> are conjunction of
-literals)</li>
-<li>push existential inside <span class="math inline">[\exists_x
-\bigvee_{i = 1}^m C_i] \iff [\bigvee_{i = 1}^m \exists_x
-C_i]</span></li>
-</ol>
-<p>Elimination of <span class="math inline">\forall_x</span> from an
-arbitrary quantifier-free formula <span class="math inline">F(x, \bar
-y)</span>:</p>
-<ol type="1">
-<li><span class="math inline">\forall_x F(x, \bar y) \iff \neg
-[\exists_x \neg F(x, \bar y)]</span></li>
-<li>apply elimination of <span class="math inline">\exists_x \neg F
-\leadsto F_1</span> and keep <span class="math inline">\neg
-F_1</span></li>
-</ol>
-<p>Note that:</p>
+<p>so it is the set of assignments that makes <span
+class="math inline">F</span> true. Then we can say <span
+class="math inline">F \le G \iff [F] \subseteq [G]</span> to form a
+poset.</p>
+<p>Let <span class="math inline">(C, \le)</span> be a lattice. Let <span
+class="math inline">\gamma: A \to C</span> be the injective
+concretization function. Let <span class="math inline">a \sqsubseteq
+b</span> on A be defined as <span class="math inline">\gamma(a) \le
+\gamma(b)</span>. Then <span class="math inline">(A, \sqsubseteq)</span>
+is a partial order.</p>
+<h3 data-number="1.1.3" id="complete-lattice"><span
+class="header-section-number">1.1.3</span> complete lattice</h3>
+<p>A complete lattice is a lattice where every set (including empty and
+infinite sets) has supremum and infimum.</p>
+<h2 data-number="1.2" id="monotonic-function"><span
+class="header-section-number">1.2</span> monotonic function</h2>
+<p>A function <span class="math inline">\alpha : C \to A</span> is
+monotonic when <span class="math inline">x \le y \implies \alpha(x)
+\sqsubseteq \alpha(y)</span> for <span class="math inline">x, y \in
+C</span>.</p>
+<h2 data-number="1.3" id="fixed-point"><span
+class="header-section-number">1.3</span> fixed point</h2>
+<p>A fixed point of <span class="math inline">f : A \to A</span> is a
+point <span class="math inline">x</span> such that <span
+class="math inline">f(x) = x</span>. Also called fixpoint.</p>
+<p>For a poset <span class="math inline">(A, \le)</span> and a monotonic
+function <span class="math inline">f : A \to A</span>, we define the set
+of fixpoints <span class="math inline">S = \{x : f(x) = x\}</span>. If
+<span class="math inline">S</span> has a least element then it is called
+the least fixpoint. If <span class="math inline">S</span> has a greatest
+element then it is called the greatest fixpoint.</p>
 <ul>
-<li><span class="math inline">\neg(t_1 &lt; t_2) \iff t_2 \le
-t_1</span></li>
-<li><span class="math inline">t_1 \le t_2 \iff t_1 &lt; t_2 +
-1</span></li>
-<li><span class="math inline">t_1 = t_2 \iff t_1 &lt; t_2 + 1 \land t_2
-&lt; t_1 + 1</span></li>
-<li><span class="math inline">\neg(K|t) \iff \bigvee_{i=1}^{K-1}
-K|t+i</span></li>
-<li><span class="math inline">t_1 &lt; t_2 \iff 0 &lt; t_2 -
-t_1</span></li>
+<li><span class="math inline">Post = \{x : f(x) \le x\}</span> set of
+postfix points of <span class="math inline">f</span></li>
+<li><span class="math inline">Pre = \{x : x \le f(x)\}</span> set of
+prefix points of <span class="math inline">f</span></li>
+<li><span class="math inline">Fix = \{x : f(x) = x\}</span> set of fix
+points of <span class="math inline">f</span></li>
 </ul>
-<p>To apply one-point rule on some variable we first need to make sure
-the variable is used has the same coefficient in a formula. This can be
-enforced by computing the lcm and applying it. Then when applying
-one-point rule we add a conjunct of the substitution being divisible by
-that lcm: <span class="math inline">\exists_y F(M \cdot y) \iff
-\exists_x F(x) \land M|x</span></p>
-<p>For each variable we can find its bounds by transforming its literals
-into the following form:</p>
+<h3 data-number="1.3.1" id="tarski-fixed-point-theorem"><span
+class="header-section-number">1.3.1</span> Tarski fixed point
+theorem</h3>
+<p><span class="math inline">\sqcap Post</span> is the least element of
+<span class="math inline">Fix</span>. <span class="math inline">\sqcup
+Pre</span> is the greatest element of <span
+class="math inline">Fix</span>. So complete lattices have fixpoints.</p>
 <p><span class="math display">
-\bigwedge_{i=1}^L a_i &lt; x \land \bigwedge_{i=1}^U x &lt; b_i \land
-\bigwedge_{i=1}^D K_i | x + t_i
+\begin{aligned}
+    a_0 &amp;= \bot \\
+    a_{n+1} &amp;= f(a_n) \\
+\end{aligned}
 </span></p>
-<p>When <span class="math inline">D = 0</span> this can be seen as <span
-class="math inline">\bigvee_{i=1}^{L} F_1(a_i + 1)</span>. When <span
-class="math inline">D &gt; 0</span> we have <span
-class="math inline">\bigvee_{i=1}^{L} \bigvee_{d=1}^{lcm(K_1, \cdots,
-K_D)} F_1(a_i + d)</span>. When <span class="math inline">L = 0</span>
-we let <span class="math inline">F_2(x) = \bigwedge_{i=1}^D K_i | x +
-t_i</span> which then can be seen as <span
-class="math inline">\bigvee_{d=1}^{lcm(K_1, \cdots, K_D)}
-F_2(d)</span></p>
+<p>then <span class="math inline">a_* = \bigsqcup_{n \le 0} a_n</span>.
+<span class="math inline">a_*</span> is a prefix point.</p>
+<h2 data-number="1.4" id="omega-continuity"><span
+class="header-section-number">1.4</span> <span
+class="math inline">\omega</span>-continuity</h2>
+<p>A function <span class="math inline">G</span> is <span
+class="math inline">\omega</span>-continuous if for every chain <span
+class="math inline">x_0 \sqsubseteq x_1 \sqsubseteq \cdots \sqsubseteq
+x_n \sqsubseteq \cdots</span></p>
+<p><span class="math display">
+G(\bigsqcup_{i \ge 0} x_i) = \bigsqcup_{i \ge 0} G(x_i)
+</span></p>
+<p>For an <span class="math inline">\omega</span>-continuous function
+<span class="math inline">G</span>, <span class="math inline">a_*</span>
+is the least fixpoint of <span class="math inline">G</span>.</p>
+<h2 data-number="1.5" id="galois-connection"><span
+class="header-section-number">1.5</span> galois connection</h2>
+<p><span class="math inline">\alpha : C \to A</span> and <span
+class="math inline">\gamma : A \to C</span> between partial orders are a
+Galois connection such that</p>
+<p><span class="math display">
+\forall_{c,a} \alpha(c) \sqsubseteq a \iff c \le \gamma(a)
+</span></p>
+<p>Equivalently it is a Galois connection iff <span
+class="math inline">c \le \gamma(\alpha(c))</span> and <span
+class="math inline">\alpha(\gamma(a)) \sqsubseteq a</span></p>
 </body>
 </html>
