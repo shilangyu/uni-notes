@@ -644,5 +644,47 @@ fn scan()
 fn update(v)
     ts = ts + 1
     Reg[i] = (v, ts, scan())</code></pre>
+<h2 data-number="1.6" id="fetchincrement"><span
+class="header-section-number">1.6</span> fetch&amp;increment</h2>
+<p>A counter containing an integer. The operation
+<code>fetch&amp;inc()</code> increments the counter and returns the new
+value.</p>
+<p>Consensus can be implemented among two processes with
+fetch&amp;increment and registers. Since consensus is impossible, then
+fetch&amp;increment is impossible.</p>
+<p>Reg[1, 2] = [0, 0], C initialized to zero</p>
+<pre><code>propose(v)
+    R[i] = v
+    val = C.fetch&amp;inc()
+    if val == 1
+        return v
+    else
+        return R[1]</code></pre>
+<h2 data-number="1.7" id="queue"><span
+class="header-section-number">1.7</span> queue</h2>
+<p>A queue has two operations <code>enq(v)</code> and
+<code>deq()</code>.</p>
+<p>Consensus can be implemented among two processes with queue and
+registers. Since consensus is impossible, then queue is impossible.</p>
+<p>Reg[1, 2] = [0, 0], Q initialized to [winner, loser]</p>
+<pre><code>propose(v)
+    R[i] = v
+    item = Q.deq()
+    if item == winner
+        return v
+    else
+        return R[1]</code></pre>
+<h2 data-number="1.8" id="consensus-impossibility"><span
+class="header-section-number">1.8</span> consensus impossibility</h2>
+<p>Proof by lemma 1 + lemma 2. As adversary we start at a bivalent
+configuration and can always takes steps to another bivalent
+configuration never reaching a consensus.</p>
+<h3 data-number="1.8.1" id="lemma-1"><span
+class="header-section-number">1.8.1</span> lemma 1</h3>
+<p>There exists a bivalent initial configuration.</p>
+<h3 data-number="1.8.2" id="lemma-2"><span
+class="header-section-number">1.8.2</span> lemma 2</h3>
+<p>Given a bivalent configuration, there exists an arbitrarily long
+sequence of steps that lead to a bivalent configuration.</p>
 </body>
 </html>
