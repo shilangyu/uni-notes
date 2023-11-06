@@ -66,7 +66,7 @@ upon event <bebDeliver, pi, [Data, pj, m]>
       from[pi] = from[pi] ∪ {[pj, m]}
 ```
 
-## uniform broadcast (urb)
+## uniform reliable broadcast (urb)
 
 - request: `<urbBroadcast, m>`
 - indication: `<urbDeliver, src, m>`
@@ -381,3 +381,81 @@ Given $C_i$ a bivalent configuration and (p, m) in its message pool, there exist
 
 1. the last step of the sequence of deliveries is the delivery of (p, m)
 2. the end of the sequence is a bivalent configuration $C_{i+1}$
+
+## terminating reliable broadcast (trb)
+
+- request: `<trbBroadcast, m>`
+- indication: `<trbDeliver, src, m>`
+
+1. **integrity**: if a process delivers $m$ then $m$ is either $\varphi$ or a message broadcasted by a process
+2. **validity**: if the sender _src_ is correct and broadcasts a message m, then _src_ eventually delivers m
+3. **(uniform) agreement**: for any message $m$ if a correct (any) process delivers $m$ then every correct process delivers $m$
+4. **termination**: every correct process eventually delivers exactly one message
+
+```
+Implements: Terminating reliable broadcast (trb)
+Uses:
+  - beb
+  - PerfectFailureDetector
+  - Consensus (cons)
+
+upon event <Init>
+  prop = ⊥
+
+upon event <crash, pi> and prop == ⊥
+  prop = φ
+
+upon event <Proposal, v>
+  if currentProposal == nil
+    currentProposal = v
+
+upon event <trbBroadcast, m>
+  trigger <bebBroadcast, m>
+
+upon event <bebDeliver, src, m> and prop == ⊥
+  prop = m
+
+upon event prop != ⊥
+  trigger <Propose, prop>
+
+upon event <Decide, decision>
+  trigger <trbDeliver, src, decision>
+```
+
+## non-blocking atomic commit
+
+1. **agreement**: no two processes decide differently
+2. **termination**: every correct process eventually decides
+3. **commit-validity**: 1 can only be decided if all processes propose 1
+4. **abort-validity**: 0 can only be decided if some process crashes or proposes 0
+
+```
+Implements: NonBlockingAtomicCommit (nbac)
+Uses:
+  - beb
+  - PerfectFailureDetector
+  - UniformConsensus (ucons)
+
+upon event <Init>
+  prop = 1
+  delivered = ∅
+  correct = S
+
+upon event <crash, pi>
+  correct = correct \ {pi}
+
+upon event <Propose, v>
+  trigger <bebBroadcast, v>
+
+upon event <bebDeliver, pi, v>
+  delivered = delivered ∪ {pi}
+  prop = prop * v
+
+upon event correct \ delivered == ∅
+  if correct != S
+    prop = 0
+  trigger <uconsPropose, prop>
+
+upon event <uconsDecide, decision>
+  trigger <Decide, decision>
+```
