@@ -176,3 +176,51 @@ fn update(v)
 	ts = ts + 1
 	Reg[i] = (v, ts, scan())
 ```
+
+## fetch&increment
+
+A counter containing an integer. The operation `fetch&inc()` increments the counter and returns the new value.
+
+Consensus can be implemented among two processes with fetch&increment and registers. Since consensus is impossible, then fetch&increment is impossible.
+
+Reg[1, 2] = [0, 0], C initialized to zero
+
+```
+propose(v)
+	R[i] = v
+	val = C.fetch&inc()
+	if val == 1
+		return v
+	else
+		return R[1]
+```
+
+## queue
+
+A queue has two operations `enq(v)` and `deq()`.
+
+Consensus can be implemented among two processes with queue and registers. Since consensus is impossible, then queue is impossible.
+
+Reg[1, 2] = [0, 0], Q initialized to [winner, loser]
+
+```
+propose(v)
+	R[i] = v
+	item = Q.deq()
+	if item == winner
+		return v
+	else
+		return R[1]
+```
+
+## consensus impossibility
+
+Proof by lemma 1 + lemma 2. As adversary we start at a bivalent configuration and can always takes steps to another bivalent configuration never reaching a consensus.
+
+### lemma 1
+
+There exists a bivalent initial configuration.
+
+### lemma 2
+
+Given a bivalent configuration, there exists an arbitrarily long sequence of steps that lead to a bivalent configuration.
