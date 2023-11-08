@@ -534,7 +534,7 @@ Tr(b)</span></li>
 <h2 data-number="1.2" id="elliptic-curves-1"><span
 class="header-section-number">1.2</span> elliptic curves</h2>
 <p><span class="math display">
-E_{a,b} = \{\mathcal O\} \cup \{(x, y) : y^2 = x^3 + ax + b\}
+E_{a,b} = \{\mathcal O\} \cup \{(x, y) \in K^2 : y^2 = x^3 + ax + b\}
 </span></p>
 <p>For an elliptic curve to be non-singular, we have to fulfill <span
 class="math inline">4a^3 + 27b^2 \ne 0</span>. <span
@@ -555,8 +555,8 @@ class="math inline">P + Q = \mathcal O</span></p></li>
 <p><span class="math display">
 \begin{aligned}
   \lambda &amp;= \begin{cases}
-      \frac{y_Q - y_P}{x_Q - x_P} &amp; \text{ if } x_P = x_Q \\
-      \frac{3x_P^2 + a}{2y_P} &amp; \text{ if } x_P \ne x_Q \\
+      \frac{y_Q - y_P}{x_Q - x_P} &amp; \text{ if } x_P \ne x_Q \\
+      \frac{3x_P^2 + a}{2y_P} &amp; \text{ if } x_P = x_Q \\
   \end{cases} \\
   x_R &amp;= \lambda^2 - x_P - x_Q \\
   x_Y &amp;= (x_P - x_R)\lambda - y_P \\
@@ -579,5 +579,73 @@ solutions, there are at most 3 elements of order 2 in <span
 class="math inline">E_{a,b}</span>. If <span
 class="math inline">E_{a,b}</span> is cyclic then there can be only one
 or zero elements of order 2.</p>
+<h2 data-number="1.3" id="over-z_p-for-p-3"><span
+class="header-section-number">1.3</span> over <span
+class="math inline">Z_p</span> for <span class="math inline">p &gt;
+3</span></h2>
+<p>Same as before, but the discriminant is now <span
+class="math inline">\Delta = -16(4a^3 + 27b^2) \ne 0</span></p>
+<p><span class="math inline">E_{a,b} \simeq E_{u^4a,u^6b}</span> by
+<span class="math inline">(x, y) \mapsto (u^2x, u^3y)</span>.</p>
+<h3 data-number="1.3.1" id="twist"><span
+class="header-section-number">1.3.1</span> twist</h3>
+<p><span class="math inline">E_{a,b}</span> and <span
+class="math inline">E_{v^2a,v^3b}</span> are twist of each other if
+<span class="math inline">u^2 = x</span> has no solution (ie <span
+class="math inline">u</span> is not a square). They can become
+isomorphic in the extension field <span
+class="math inline">K[\theta]/(\theta^2 - v)</span>, because <span
+class="math inline">v = \theta^2</span> becomes a square.</p>
+<h3 data-number="1.3.2" id="hasse-theorem"><span
+class="header-section-number">1.3.2</span> Hasse theorem</h3>
+<p><span class="math inline">q+1-2\sqrt{q} \le |E_{a,b}| \le
+q+1+2\sqrt{q}</span> where <span class="math inline">q</span> is the
+cardinality of <span class="math inline">K</span>.</p>
+<h3 data-number="1.3.3" id="j-invariant"><span
+class="header-section-number">1.3.3</span> j-invariant</h3>
+<p><span class="math inline">j = 1728 \frac{4a^3}{4a^3 + 27b^2}</span>.
+Isomorphic groups have always the same <span
+class="math inline">j</span>. Alternatively, if <span
+class="math inline">\frac{a^3}{b^2}</span> are equal, then the curves
+are isomorphic.</p>
+<h2 data-number="1.4" id="over-z_2"><span
+class="header-section-number">1.4</span> over <span
+class="math inline">Z_2</span></h2>
+<p><span class="math display">
+E_{a_2,a_6} = \{\mathcal O\} \cup \{(x, y) \in K^2: y^2 + xy = x^3 +
+a_2x^2 + a_6\}
+</span></p>
+<p>Discriminant <span class="math inline">\Delta = a_6 \ne 0</span></p>
+<p>Let <span class="math inline">P = (x_P, y_P)</span>, <span
+class="math inline">Q = (x_Q, y_Q)</span>, and <span
+class="math inline">R = (x_R, y_R)</span></p>
+<ul>
+<li><p><span class="math inline">-P = (x_P, x_P + y_P)</span>, <span
+class="math inline">-\mathcal O = \mathcal O</span></p></li>
+<li><p>if <span class="math inline">P = -Q</span> then <span
+class="math inline">P + Q = \mathcal O</span></p></li>
+<li><p><span class="math inline">P + Q = R</span>:</p>
+<p><span class="math display">
+\begin{aligned}
+  \lambda &amp;= \begin{cases}
+      \frac{y_Q + y_P}{x_Q + x_P} &amp; \text{ if } x_P \ne x_Q \\
+      \frac{x_P^2 + y_P}{x_P} &amp; \text{ if } x_P = x_Q \\
+  \end{cases} \\
+  x_R &amp;= \lambda^2 + \lambda + a_2 + x_P + x_Q \\
+  x_Y &amp;= (x_P + x_R)\lambda + y_P + x_R\\
+\end{aligned}
+</span></p></li>
+<li><p><span class="math inline">\mathcal O</span> is the neutral
+element in the group for addition</p></li>
+</ul>
+<p><span class="math inline">E_{a_2,a_6} \simeq E_{a_2+u^2 + y,
+a_6}</span> by <span class="math inline">(x, y) \mapsto (x, ux +
+y)</span>.</p>
+<p>j-invariant: <span class="math inline">1 \over \Delta</span></p>
+<h2 data-number="1.5" id="ecm-elliptic-curve-factorization-method"><span
+class="header-section-number">1.5</span> ECM (elliptic-curve
+factorization method)</h2>
+<p>The Pollard’s <span class="math inline">p-1</span> factorization
+method can be used on elliptic curves</p>
 </body>
 </html>
