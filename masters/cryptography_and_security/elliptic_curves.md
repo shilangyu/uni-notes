@@ -26,7 +26,7 @@ Properties of $GF(2^k)$:
 ## elliptic curves
 
 $$
-E_{a,b} = \{\mathcal O\} \cup \{(x, y) : y^2 = x^3 + ax + b\}
+E_{a,b} = \{\mathcal O\} \cup \{(x, y) \in K^2 : y^2 = x^3 + ax + b\}
 $$
 
 For an elliptic curve to be non-singular, we have to fulfill $4a^3 + 27b^2 \ne 0$. $\lambda = \frac{y_Q - y_P}{x_Q - x_P}$ is the chord slope. $\lambda = \frac{3x_P^2 + a}{2y_P}$ is the tangent slope.
@@ -42,8 +42,8 @@ Let $P = (x_P, y_P)$, $Q = (x_Q, y_Q)$, and $R = (x_R, y_R)$
   $$
   \begin{aligned}
   	\lambda &= \begin{cases}
-  		\frac{y_Q - y_P}{x_Q - x_P} & \text{ if } x_P = x_Q \\
-  		\frac{3x_P^2 + a}{2y_P} & \text{ if } x_P \ne x_Q \\
+  		\frac{y_Q - y_P}{x_Q - x_P} & \text{ if } x_P \ne x_Q \\
+  		\frac{3x_P^2 + a}{2y_P} & \text{ if } x_P = x_Q \\
   	\end{cases} \\
   	x_R &= \lambda^2 - x_P - x_Q \\
   	x_Y &= (x_P - x_R)\lambda - y_P \\
@@ -57,3 +57,56 @@ $E_{a, b}(K)$ is an abelian group of an elliptic curve over a field $x, y \in K$
 ### points of order 2
 
 If a point $P = (x, y)$ is of order 2, then $P + P = 0$, then $P = -P$ so $y = 0$. So $P$ is the solution of $x^3 + ax + b = 0$. As there are at most three solutions, there are at most 3 elements of order 2 in $E_{a,b}$. If $E_{a,b}$ is cyclic then there can be only one or zero elements of order 2.
+
+## over $Z_p$ for $p > 3$
+
+Same as before, but the discriminant is now $\Delta = -16(4a^3 + 27b^2) \ne 0$
+
+$E_{a,b} \simeq  E_{u^4a,u^6b}$ by $(x, y) \mapsto (u^2x, u^3y)$.
+
+### twist
+
+$E_{a,b}$ and $E_{v^2a,v^3b}$ are twist of each other if $u^2 = x$ has no solution (ie $u$ is not a square). They can become isomorphic in the extension field $K[\theta]/(\theta^2 - v)$, because $v = \theta^2$ becomes a square.
+
+### Hasse theorem
+
+$q+1-2\sqrt{q} \le |E_{a,b}| \le q+1+2\sqrt{q}$ where $q$ is the cardinality of $K$.
+
+### j-invariant
+
+$j = 1728 \frac{4a^3}{4a^3 + 27b^2}$. Isomorphic groups have always the same $j$. Alternatively, if $\frac{a^3}{b^2}$ are equal, then the curves are isomorphic.
+
+## over $Z_2$
+
+$$
+E_{a_2,a_6} = \{\mathcal O\} \cup \{(x, y) \in K^2: y^2 + xy = x^3 + a_2x^2 + a_6\}
+$$
+
+Discriminant $\Delta = a_6 \ne 0$
+
+Let $P = (x_P, y_P)$, $Q = (x_Q, y_Q)$, and $R = (x_R, y_R)$
+
+- $-P = (x_P, x_P + y_P)$, $-\mathcal O = \mathcal O$
+- if $P = -Q$ then $P + Q = \mathcal O$
+- $P + Q = R$:
+
+  $$
+  \begin{aligned}
+  	\lambda &= \begin{cases}
+  		\frac{y_Q + y_P}{x_Q + x_P} & \text{ if } x_P \ne x_Q \\
+  		\frac{x_P^2 + y_P}{x_P} & \text{ if } x_P = x_Q \\
+  	\end{cases} \\
+  	x_R &= \lambda^2 + \lambda + a_2 + x_P + x_Q \\
+  	x_Y &= (x_P + x_R)\lambda + y_P + x_R\\
+  \end{aligned}
+  $$
+
+- $\mathcal O$ is the neutral element in the group for addition
+
+$E_{a_2,a_6} \simeq  E_{a_2+u^2 + y, a_6}$ by $(x, y) \mapsto (x, ux + y)$.
+
+j-invariant: $1 \over \Delta$
+
+## ECM (elliptic-curve factorization method)
+
+The Pollard's $p-1$ factorization method can be used on elliptic curves
