@@ -110,3 +110,51 @@ j-invariant: $1 \over \Delta$
 ## ECM (elliptic-curve factorization method)
 
 The Pollard's $p-1$ factorization method can be used on elliptic curves
+
+## point compression
+
+For a prime field case, a single $x$ leads to two possible $y$ values. Given $x$ and the parity of $y$ we have a point (which is cheaper than storing both and $x$ and $y$).
+
+## domain parameters
+
+- a field either a prime $p$ or a power $q$ of 2 together with an irreducible polynomial over GF(2) of degree $\log_2q$
+- coefficients defining the elliptic curve E
+- a point $G$ on E
+- the order $n$ of $G$ on $E$
+- for pseudorandom curves a seed $s$ for generating the j-invariant
+
+## elliptic curve cryptography
+
+### ECDH (elliptic curve diffie hellman)
+
+1. Alice (U) and Bob (V) agree on domain parameters $T = (p, a, b, G, n, h)$ or $T = (m, f(x), a, b, G, n, h)$ where $f(x)$ is an irreducible polynomial over $GF(2^m)$. $h$ is the cofactor $\frac{1}{n} \#E(GF(q))$ for $q = p$ or $q = 2^m$
+2. $U$ and $V$ select their secret key $d_U \in Z_n^*$ and $d_V \in Z_n^*$ and compute their public keys $Q_U = d_U \cdot G$, $Q_V = d_V \cdot G$
+3. exchange public keys
+4. both check if $Q \in E(GF(p))$, $Q \ne \mathcal O$, $nQ = \mathcal O$
+5. both compute $P = d_VQ_U = d_UQ_V$
+6. set $z = P_x$, use KDF to derive $K$
+
+If $n$ is prime and is coprime with $h$ then $\langle G \rangle = \{Q \in \text{group} : nQ = \mathcal O\}$
+
+## pairing of elliptic curves
+
+For some pairs of elliptic curves $G_1$ and $G_2$ we can construct a function $e: G_1 \times G_2 \to G_T$ which maps a pair to a group with multiplicative notation such that
+
+- $e$ is **bilinear**: $e(aP, bQ) = e(P, Q)^{ab}$, $e(P + P', Q) = e(P, Q)e(P', Q)$, $e(P, Q + Q') = e(P, Q)e(P, Q')$
+- $e$ is **non-degenerate**: $e(P, Q) \ne 1$
+
+### types
+
+- type-1 pairing: $G_1 = G_2$
+- type-2 pairing: $G_1 \ne G_2$ and there exists an efficiently computable homomorphism from $G_2$ to $G_1$
+- type-3 pairing: $G_1 \ne G_2$ and there exists no efficiently computable homomorphism from $G_2$ to $G_1$
+- type-4 pairing: same as type-2 with efficient hashing into $G_2$
+
+### three party DH
+
+Let $G$ generate a subgroup of order $p$ of $G_1 = G_2$ such that $e(G, G) \ne 1$
+
+- Alice picks $a \in Z_p^*$ and broadcasts $A = aG$
+- Bob picks $b \in Z_p^*$ and broadcasts $B = bG$
+- Charlie picks $c \in Z_p^*$ and broadcasts $C = cG$
+- everyone computes $e(B, C)^a = e(A, C)^b = e(A, B)^c = e(G, G)^{abc} = K$
