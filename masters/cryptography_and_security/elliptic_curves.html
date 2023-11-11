@@ -647,5 +647,107 @@ class="header-section-number">1.5</span> ECM (elliptic-curve
 factorization method)</h2>
 <p>The Pollard’s <span class="math inline">p-1</span> factorization
 method can be used on elliptic curves</p>
+<h2 data-number="1.6" id="point-compression"><span
+class="header-section-number">1.6</span> point compression</h2>
+<p>For a prime field case, a single <span class="math inline">x</span>
+leads to two possible <span class="math inline">y</span> values. Given
+<span class="math inline">x</span> and the parity of <span
+class="math inline">y</span> we have a point (which is cheaper than
+storing both and <span class="math inline">x</span> and <span
+class="math inline">y</span>).</p>
+<h2 data-number="1.7" id="domain-parameters"><span
+class="header-section-number">1.7</span> domain parameters</h2>
+<ul>
+<li>a field either a prime <span class="math inline">p</span> or a power
+<span class="math inline">q</span> of 2 together with an irreducible
+polynomial over GF(2) of degree <span
+class="math inline">\log_2q</span></li>
+<li>coefficients defining the elliptic curve E</li>
+<li>a point <span class="math inline">G</span> on E</li>
+<li>the order <span class="math inline">n</span> of <span
+class="math inline">G</span> on <span class="math inline">E</span></li>
+<li>for pseudorandom curves a seed <span class="math inline">s</span>
+for generating the j-invariant</li>
+</ul>
+<h2 data-number="1.8" id="elliptic-curve-cryptography"><span
+class="header-section-number">1.8</span> elliptic curve
+cryptography</h2>
+<h3 data-number="1.8.1" id="ecdh-elliptic-curve-diffie-hellman"><span
+class="header-section-number">1.8.1</span> ECDH (elliptic curve diffie
+hellman)</h3>
+<ol type="1">
+<li>Alice (U) and Bob (V) agree on domain parameters <span
+class="math inline">T = (p, a, b, G, n, h)</span> or <span
+class="math inline">T = (m, f(x), a, b, G, n, h)</span> where <span
+class="math inline">f(x)</span> is an irreducible polynomial over <span
+class="math inline">GF(2^m)</span>. <span class="math inline">h</span>
+is the cofactor <span class="math inline">\frac{1}{n} \#E(GF(q))</span>
+for <span class="math inline">q = p</span> or <span
+class="math inline">q = 2^m</span></li>
+<li><span class="math inline">U</span> and <span
+class="math inline">V</span> select their secret key <span
+class="math inline">d_U \in Z_n^*</span> and <span
+class="math inline">d_V \in Z_n^*</span> and compute their public keys
+<span class="math inline">Q_U = d_U \cdot G</span>, <span
+class="math inline">Q_V = d_V \cdot G</span></li>
+<li>exchange public keys</li>
+<li>both check if <span class="math inline">Q \in E(GF(p))</span>, <span
+class="math inline">Q \ne \mathcal O</span>, <span
+class="math inline">nQ = \mathcal O</span></li>
+<li>both compute <span class="math inline">P = d_VQ_U =
+d_UQ_V</span></li>
+<li>set <span class="math inline">z = P_x</span>, use KDF to derive
+<span class="math inline">K</span></li>
+</ol>
+<p>If <span class="math inline">n</span> is prime and is coprime with
+<span class="math inline">h</span> then <span
+class="math inline">\langle G \rangle = \{Q \in \text{group} : nQ =
+\mathcal O\}</span></p>
+<h2 data-number="1.9" id="pairing-of-elliptic-curves"><span
+class="header-section-number">1.9</span> pairing of elliptic curves</h2>
+<p>For some pairs of elliptic curves <span
+class="math inline">G_1</span> and <span class="math inline">G_2</span>
+we can construct a function <span class="math inline">e: G_1 \times G_2
+\to G_T</span> which maps a pair to a group with multiplicative notation
+such that</p>
+<ul>
+<li><span class="math inline">e</span> is <strong>bilinear</strong>:
+<span class="math inline">e(aP, bQ) = e(P, Q)^{ab}</span>, <span
+class="math inline">e(P + P&#39;, Q) = e(P, Q)e(P&#39;, Q)</span>, <span
+class="math inline">e(P, Q + Q&#39;) = e(P, Q)e(P, Q&#39;)</span></li>
+<li><span class="math inline">e</span> is
+<strong>non-degenerate</strong>: <span class="math inline">e(P, Q) \ne
+1</span></li>
+</ul>
+<h3 data-number="1.9.1" id="types"><span
+class="header-section-number">1.9.1</span> types</h3>
+<ul>
+<li>type-1 pairing: <span class="math inline">G_1 = G_2</span></li>
+<li>type-2 pairing: <span class="math inline">G_1 \ne G_2</span> and
+there exists an efficiently computable homomorphism from <span
+class="math inline">G_2</span> to <span
+class="math inline">G_1</span></li>
+<li>type-3 pairing: <span class="math inline">G_1 \ne G_2</span> and
+there exists no efficiently computable homomorphism from <span
+class="math inline">G_2</span> to <span
+class="math inline">G_1</span></li>
+<li>type-4 pairing: same as type-2 with efficient hashing into <span
+class="math inline">G_2</span></li>
+</ul>
+<h3 data-number="1.9.2" id="three-party-dh"><span
+class="header-section-number">1.9.2</span> three party DH</h3>
+<p>Let <span class="math inline">G</span> generate a subgroup of order
+<span class="math inline">p</span> of <span class="math inline">G_1 =
+G_2</span> such that <span class="math inline">e(G, G) \ne 1</span></p>
+<ul>
+<li>Alice picks <span class="math inline">a \in Z_p^*</span> and
+broadcasts <span class="math inline">A = aG</span></li>
+<li>Bob picks <span class="math inline">b \in Z_p^*</span> and
+broadcasts <span class="math inline">B = bG</span></li>
+<li>Charlie picks <span class="math inline">c \in Z_p^*</span> and
+broadcasts <span class="math inline">C = cG</span></li>
+<li>everyone computes <span class="math inline">e(B, C)^a = e(A, C)^b =
+e(A, B)^c = e(G, G)^{abc} = K</span></li>
+</ul>
 </body>
 </html>
