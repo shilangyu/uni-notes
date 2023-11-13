@@ -937,44 +937,5 @@ upon event prop != ⊥
 
 upon event &lt;Decide, decision&gt;
   trigger &lt;trbDeliver, src, decision&gt;</code></pre>
-<h2 data-number="1.9" id="non-blocking-atomic-commit"><span
-class="header-section-number">1.9</span> non-blocking atomic commit</h2>
-<ol type="1">
-<li><strong>agreement</strong>: no two processes decide differently</li>
-<li><strong>termination</strong>: every correct process eventually
-decides</li>
-<li><strong>commit-validity</strong>: 1 can only be decided if all
-processes propose 1</li>
-<li><strong>abort-validity</strong>: 0 can only be decided if some
-process crashes or proposes 0</li>
-</ol>
-<pre><code>Implements: NonBlockingAtomicCommit (nbac)
-Uses:
-  - beb
-  - PerfectFailureDetector
-  - UniformConsensus (ucons)
-
-upon event &lt;Init&gt;
-  prop = 1
-  delivered = ∅
-  correct = S
-
-upon event &lt;crash, pi&gt;
-  correct = correct \ {pi}
-
-upon event &lt;Propose, v&gt;
-  trigger &lt;bebBroadcast, v&gt;
-
-upon event &lt;bebDeliver, pi, v&gt;
-  delivered = delivered ∪ {pi}
-  prop = prop * v
-
-upon event correct \ delivered == ∅
-  if correct != S
-    prop = 0
-  trigger &lt;uconsPropose, prop&gt;
-
-upon event &lt;uconsDecide, decision&gt;
-  trigger &lt;Decide, decision&gt;</code></pre>
 </body>
 </html>

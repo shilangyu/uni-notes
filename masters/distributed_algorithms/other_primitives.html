@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>registers</title>
+  <title>other_primitives</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,227 +483,197 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="registers"><span
-class="header-section-number">1</span> registers</h1>
-<p>Have read and write operations. They store integers. Initial state is
-0.</p>
-<h2 data-number="1.1" id="dimensions"><span
-class="header-section-number">1.1</span> dimensions</h2>
-<ul>
-<li>dimension 1: binary / multivalued</li>
-<li>dimension 2:
-<ul>
-<li>SRSW (single reader, single writer)</li>
-<li>MRSW (multiple readers, single writer)</li>
-<li>MRMW (multiple readers, multiple writes)</li>
-</ul></li>
-<li>dimension 3: sage / regular / atomic</li>
-</ul>
-<h3 data-number="1.1.1" id="safe-execution"><span
-class="header-section-number">1.1.1</span> safe execution</h3>
-<p>Reads return the value from the last finished write.</p>
-<h3 data-number="1.1.2" id="regular-execution"><span
-class="header-section-number">1.1.2</span> regular execution</h3>
-<p>Reads return the value from the last finished write or the value
-concurrently written.</p>
-<h3 data-number="1.1.3" id="atomic-execution"><span
-class="header-section-number">1.1.3</span> atomic execution</h3>
-<p>Each operation executes in a particular point in time.</p>
-<h2 data-number="1.2" id="theorem"><span
-class="header-section-number">1.2</span> theorem</h2>
-<p>A multivalued MRMW atomic register can be wait-free implemented with
-binary SRSW safe registers.</p>
-<h3 data-number="1.2.1" id="safe-binary-srsw-to-safe-binary-mrsw"><span
-class="header-section-number">1.2.1</span> safe binary SRSW <span
-class="math inline">\to</span> safe binary MRSW</h3>
-<p>Let Reg[1, .., N] be an array of SRSW registers.</p>
-<pre><code>fn read()
-    return Reg[i]
-
-fn write(v)
-    for j in 1:N
-        Reg[j] = v</code></pre>
-<p>This also works for multi-valued registers and regular ones.</p>
-<h3 data-number="1.2.2"
-id="safe-binary-mrsw-to-regular-binary-mrsw"><span
-class="header-section-number">1.2.2</span> safe binary MRSW <span
-class="math inline">\to</span> regular binary MRSW</h3>
-<p>Let Reg be a safe register</p>
-<pre><code>fn read()
-    return Reg
-
-fn write(v)
-    if old != v
-        Reg = v
-        old = v</code></pre>
-<h3 data-number="1.2.3" id="binary-mrsw-to-m-valued-mrsw"><span
-class="header-section-number">1.2.3</span> binary MRSW <span
-class="math inline">\to</span> M-valued MRSW</h3>
-<p>Let Reg[1, …, M] init to [1, 0, …, 0]</p>
-<pre><code>fn read()
-    for j in 1:M
-        if Reg[j] == 1
-            return j
-
-fn write(v)
-    Reg[v] = 1
-    for j in rev(1:(v-1))
-        Reg[j] = 0</code></pre>
-<h3 data-number="1.2.4" id="srsw-regular-to-srsw-atomic"><span
-class="header-section-number">1.2.4</span> SRSW regular <span
-class="math inline">\to</span> SRSW atomic</h3>
-<p>Let Reg be a regular SRSW</p>
-<pre><code>fn read()
-    (t&#39;, x&#39;) = Reg
-    if t’ &gt; t
-        t = t&#39;
-        x = x&#39;
-    return x
-
-fn write(v)
-    t = t+1
-    Reg = (t, v)</code></pre>
-<h3 data-number="1.2.5" id="srsw-atomic-to-mrsw-atomic"><span
-class="header-section-number">1.2.5</span> SRSW atomic <span
-class="math inline">\to</span> MRSW atomic</h3>
-<p>We assume there are N readers. Let RReg[(1, 1), (1, 2), …, (N, N)] be
-N*N SRSW atomic registers for readers to communicate. Let WReg[1, …, N]
-be SRSW atomic registers.</p>
-<pre><code>fn read()
-    for j in 1:N
-        (t[j], x[j]) = RReg[i, j]
-    (t[0], x[0]) = WReg[i]
-    (t, x) = highest(t[..], x[..])
-    for j in 1:N
-        RReg[j, i] = (t, x)
-    return x
-
-fn write(v)
-    t1 = t1 + 1
-    for j in 1:N
-        WReg[j] = (t1, v)</code></pre>
-<h3 data-number="1.2.6" id="mrsw-atomic-to-mrmw-atomic"><span
-class="header-section-number">1.2.6</span> MRSW atomic <span
-class="math inline">\to</span> MRMW atomic</h3>
-<p>Let Reg[1, …, N] be MRSW atomic registers.</p>
-<pre><code>fn read()
-    for j in 1:N
-        (t[j], x[j]) = Reg[j]
-    (t, x) = highest(t[..], x[..])
-    return x
-
-fn write(v)
-    for j in 1:N
-        (t[j], x[j]) = Reg[j]
-    (t, x) = highest(t[..], x[..])
-    t = t + 1
-    Reg[i] = (t, v)</code></pre>
-<h2 data-number="1.3" id="limitations-of-registers"><span
-class="header-section-number">1.3</span> limitations of registers</h2>
-<p><strong>Theorem</strong>: there is no wait-free algorithm that
-implements a SRSW atomic register that uses a finite number of bounded
-SRSW regular registers where the base registers are only written by the
-writer.</p>
-<p>To prove we simplify the problem WLOG:</p>
+<h1 data-number="1" id="other-primitives"><span
+class="header-section-number">1</span> other primitives</h1>
+<h2 data-number="1.1" id="non-blocking-atomic-commit"><span
+class="header-section-number">1.1</span> non-blocking atomic commit</h2>
 <ol type="1">
-<li>the higher-level register is binary</li>
-<li>instead of many SRSW regular registers we will use only one</li>
+<li><strong>agreement</strong>: no two processes decide differently</li>
+<li><strong>termination</strong>: every correct process eventually
+decides</li>
+<li><strong>commit-validity</strong>: 1 can only be decided if all
+processes propose 1</li>
+<li><strong>abort-validity</strong>: 0 can only be decided if some
+process crashes or proposes 0</li>
 </ol>
-<p><strong>Theorem</strong>: there is no wait-free algorithm that
-implements a MRSW atomic register using many SRSW atomic registers where
-the base registers can only be written by the writer.</p>
-<h2 data-number="1.4" id="counter"><span
-class="header-section-number">1.4</span> counter</h2>
-<pre><code>fn read()
-    sum = 0
-    for j in 1:N
-        sum = sum + Reg[j]
-    return sum
+<pre><code>Implements: NonBlockingAtomicCommit (nbac)
+Uses:
+  - beb
+  - PerfectFailureDetector
+  - UniformConsensus (ucons)
 
-fn inc()
-    Reg[i] = Reg[i] + 1</code></pre>
-<h2 data-number="1.5" id="snapshot"><span
-class="header-section-number">1.5</span> snapshot</h2>
-<pre><code>fn collect()
-    for j in 1:N
-        x[j] = Reg[j]
-    return x
+upon event &lt;Init&gt;
+  prop = 1
+  delivered = ∅
+  correct = S
 
-fn scan()
-    t1 = collect()
-    t2 = t1
-    while true
-        t3 = collect()
-        if t3 == t2
-            return t3
-        for j in 1:N
-            if t3[j].2 &gt;= t1[j].2 + 2
-                return t3[j].3
-        t2 = t3
+upon event &lt;crash, pi&gt;
+  correct = correct \ {pi}
 
-fn update(v)
-    ts = ts + 1
-    Reg[i] = (v, ts, scan())</code></pre>
-<h2 data-number="1.6" id="fetchincrement"><span
-class="header-section-number">1.6</span> fetch&amp;increment</h2>
-<p>A counter containing an integer. The operation
-<code>fetch&amp;inc()</code> increments the counter and returns the new
-value.</p>
-<p>Consensus can be implemented among two processes with
-fetch&amp;increment and registers. Since consensus is impossible, then
-fetch&amp;increment is impossible.</p>
-<p>Reg[1, 2] = [0, 0], C initialized to zero</p>
-<pre><code>propose(v)
-    R[i] = v
-    val = C.fetch&amp;inc()
-    if val == 1
-        return v
-    else
-        return R[1]</code></pre>
-<h2 data-number="1.7" id="queue"><span
-class="header-section-number">1.7</span> queue</h2>
-<p>A queue has two operations <code>enq(v)</code> and
-<code>deq()</code>.</p>
-<p>Consensus can be implemented among two processes with queue and
-registers. Since consensus is impossible, then queue is impossible.</p>
-<p>Reg[1, 2] = [0, 0], Q initialized to [winner, loser]</p>
-<pre><code>propose(v)
-    R[i] = v
-    item = Q.deq()
-    if item == winner
-        return v
-    else
-        return R[1]</code></pre>
-<h2 data-number="1.8" id="consensus-impossibility"><span
-class="header-section-number">1.8</span> consensus impossibility</h2>
-<p>Proof by lemma 1 + lemma 2. As adversary we start at a bivalent
-configuration and can always takes steps to another bivalent
-configuration never reaching a consensus.</p>
-<h3 data-number="1.8.1" id="lemma-1"><span
-class="header-section-number">1.8.1</span> lemma 1</h3>
-<p>There exists a bivalent initial configuration.</p>
-<h3 data-number="1.8.2" id="lemma-2"><span
-class="header-section-number">1.8.2</span> lemma 2</h3>
-<p>Given a bivalent configuration, there exists an arbitrarily long
-sequence of steps that lead to a bivalent configuration.</p>
-<h2 data-number="1.9" id="universality"><span
-class="header-section-number">1.9</span> universality</h2>
-<p>A type T is <strong>universal</strong> if together with other
-registers instance of T can be used to provide a wait-free linearizable
-implementation of any other type.</p>
-<h3 data-number="1.9.1" id="consensus-number"><span
-class="header-section-number">1.9.1</span> consensus number</h3>
-<p>A construction has consensus number <span
-class="math inline">n</span> if that construction can solve consensus
-for <span class="math inline">n</span> processes, but not for <span
-class="math inline">n+1</span>.</p>
-<ul>
-<li>Compare&amp;Swap has consensus number <span
-class="math inline">\infty</span></li>
-<li>Test&amp;Set has consensus number <span
-class="math inline">2</span></li>
-<li>Register has consensus number <span
-class="math inline">1</span></li>
-</ul>
+upon event &lt;Propose, v&gt;
+  trigger &lt;bebBroadcast, v&gt;
+
+upon event &lt;bebDeliver, pi, v&gt;
+  delivered = delivered ∪ {pi}
+  prop = prop * v
+
+upon event correct \ delivered == ∅
+  if correct != S
+    prop = 0
+  trigger &lt;uconsPropose, prop&gt;
+
+upon event &lt;uconsDecide, decision&gt;
+  trigger &lt;Decide, decision&gt;</code></pre>
+<h2 data-number="1.2" id="group-memberships"><span
+class="header-section-number">1.2</span> group memberships</h2>
+<p>To know who is participating in an exchange. Similar to failure
+detector.</p>
+<ol type="1">
+<li><strong>local monotonicity</strong>: if a process installs view (j,
+M) after installing (k, N) then j &gt; k and N <span
+class="math inline">\subseteq</span> M</li>
+<li><strong>agreement</strong>: no two processes install views (j, M)
+and (j, M’) such that M <span class="math inline">\ne</span> M’</li>
+<li><strong>completeness</strong>: if a process p crashes, then there is
+an integer j such that every correct process eventually installs view
+(j, M) such that p <span class="math inline">\notin</span> M</li>
+<li><strong>accuracy</strong>: if some process installs a view (i, M)
+and p <span class="math inline">\notin</span> M, then p has crashed</li>
+</ol>
+<pre><code>Implements: GroupMembership (gmp)
+Uses:
+    - PerfectFailureDetector (P)
+    - UniformConsensus (ucons)
+
+upon event &lt;Init&gt;
+  view = (id: 0, memb: S)
+  correct = S
+  wait = false
+
+upon event &lt;crash, pi&gt;
+  correct = correct \ {pi}
+
+upon event (correct ⊊ view.memb) and (wait == false)
+  wait = true
+  trigger &lt;uconsPropose, (view.id + 1, correct)&gt;
+
+upon event &lt;uconsDecided, (id, memb)&gt;
+  view = (id, memb)
+  wait = false
+  trigger &lt;membView, view&gt;</code></pre>
+<h3 data-number="1.2.1" id="with-joiningleaving"><span
+class="header-section-number">1.2.1</span> with joining/leaving</h3>
+<p>Group membership but we can coordinate leaving/joining.</p>
+<h2 data-number="1.3" id="view-synchrony"><span
+class="header-section-number">1.3</span> view synchrony</h2>
+<p>Properties of group membership plus reliable broadcast plus a new
+property:</p>
+<ol type="1">
+<li><strong>view synchrony</strong>: a message is vsDelivered in the
+view where it was vsBroadcast</li>
+</ol>
+<p>While deciding on a view broadcasting is blocked.</p>
+<pre><code>Implements: ViewSynchrony (vs)
+Uses:
+  - GroupMembership (gmp)
+  - TerminatingReliableBroadcast (trb)
+  - BestEffortBroadcast (beb)
+
+upon event &lt;Init&gt;
+  view = (id: 0, memb: S)
+  nextView = ⊥
+  pending = ∅
+  delivered = ∅
+  trbDone = ∅
+  flushing = false
+  blocked = false
+
+upon event &lt;vsBroadcast, m&gt; and (blocked == false)
+  delivered = delivered ∪ {m}
+  trigger &lt;vsDeliver, self, m&gt;
+  trigger &lt;bebBroadcast, [Data, view.id, m]&gt;
+
+upon event &lt;bebDeliver, src, [Data, vid, m]&gt;
+  if (view.id == vid) and (m not in delivered) and (blocked == false)
+    delivered = delivered ∪ {m}
+    trigger &lt;vsDeliver, src, m&gt;
+
+upon event &lt;membView, V&gt;
+  addToTail(pending, V)
+
+upon (pending != ∅) and (flushing == false)
+  nextView = removeFromHead(pending)
+  flushing = true
+  trigger &lt;vsBlock&gt;
+
+upon event &lt;vsBlockOk&gt;
+  blocked = true
+  trbDone = ∅
+  trigger &lt;trbBroadcast, (view,id, delivered)&gt;
+
+upon event &lt;trbDeliver, p, (vid, deli)&gt;
+  trbDone = trbDone ∪ {p}
+  for (m in deli) and (m not in delivered)
+    delivered = delivered ∪ {m}
+    trigger &lt;vsDeliver, p, m&gt;
+
+upon event (trbDone == view.memb) and (blocked == true)
+  view = nextView
+  flushing = false
+  blocked = false
+  delivered = ∅
+  trigger &lt;vsView, view&gt;</code></pre>
+<h3 data-number="1.3.1" id="consensus-based"><span
+class="header-section-number">1.3.1</span> consensus based</h3>
+<pre><code>Implements: ViewSynchrony (vsc)
+Uses:
+  - UniformConsensus (gmp)
+  - PerfectFailureDetector (P)
+  - BestEffortBroadcast (beb)
+
+upon event &lt;Init&gt;
+  view = (id: 0, memb: S)
+  correct = S
+  flushing = false
+  blocked = false
+  delivered = ∅
+  dSet = ∅
+
+upon event &lt;vsBroadcast, m&gt; and (blocked == false)
+  delivered = delivered ∪ {m}
+  trigger &lt;vsDeliver, self, m&gt;
+  trigger &lt;bebBroadcast, [Data, view.id, m]&gt;
+
+upon event &lt;bebDeliver, src, [Data, vid, m]&gt;
+  if (view.id == vid) and (m not in delivered) and (blocked == false)
+    delivered = delivered ∪ {m}
+    trigger &lt;vsDeliver, src, m&gt;
+
+upon event &lt;crash, p&gt;
+  correct = correct \ {p}
+  if flushing == false
+    flushing = true
+    trigger &lt;vsBlock&gt;
+
+upon event &lt;vsBlockOk&gt;
+  blocked = true
+  trigger &lt;bebBroadcast, [DSET, view.id, delivered]&gt;
+
+upon event &lt;bebDeliver, src, [DSET, vid, deli]&gt;
+  dSet = dSet ∪ {(src, deli)}
+  if forall p in correct, (p, mSet) in dSet
+    trigger &lt;uconsPropose, (view.id+1, correct, dSet)&gt;
+
+upon event &lt;uconsDecided, (id, memb, vsdset)&gt;
+  for (p, mSet) in vsdset such that p in memb
+    for (src, m) in mSet such that m not in delivered
+      delivered = delivered ∪ {m}
+      trigger &lt;vsDeliver, src, m&gt;
+  view = (id, memb)
+  flushing = false
+  blocked = false
+  dSet = ∅
+  delivered = ∅
+  trigger &lt;vsView, view&gt;</code></pre>
 </body>
 </html>
