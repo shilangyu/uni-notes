@@ -224,3 +224,15 @@ There exists a bivalent initial configuration.
 ### lemma 2
 
 Given a bivalent configuration, there exists an arbitrarily long sequence of steps that lead to a bivalent configuration.
+
+## universality
+
+A type T is **universal** if together with other registers instance of T can be used to provide a wait-free linearizable implementation of any other type.
+
+### consensus number
+
+A construction has consensus number $n$ if that construction can solve consensus for $n$ processes, but not for $n+1$.
+
+- Compare&Swap has consensus number $\infty$
+- Test&Set has consensus number $2$
+- Register has consensus number $1$
