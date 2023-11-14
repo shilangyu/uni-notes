@@ -405,10 +405,6 @@ upon event <Init>
 upon event <crash, pi> and prop == ⊥
   prop = φ
 
-upon event <Proposal, v>
-  if currentProposal == nil
-    currentProposal = v
-
 upon event <trbBroadcast, m>
   trigger <bebBroadcast, m>
 
