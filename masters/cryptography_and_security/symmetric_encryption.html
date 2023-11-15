@@ -628,7 +628,7 @@ class="math inline">y&#39;</span></li>
 <h2 data-number="1.3" id="stream-ciphers"><span
 class="header-section-number">1.3</span> stream ciphers</h2>
 <p>Use a PRNG to generate a key stream. We seed the PRN with a fixed
-secret key and a nonce.</p>
+secret key and a nonce. Optimized for hardware, efficient.</p>
 <p>We can:</p>
 <ol type="1">
 <li>synchronize participants to a nonce (requires being stateful)</li>
@@ -643,6 +643,101 @@ class="header-section-number">1.3.1</span> RC4</h3>
 <li>there are some correlations between some output bytes and key bytes
 when the nonce is known</li>
 <li>output bytes are not uniformly distributed</li>
+</ul>
+<h2 data-number="1.4" id="bruteforce-inversion"><span
+class="header-section-number">1.4</span> bruteforce inversion</h2>
+<h3 data-number="1.4.1" id="opening-a-safe"><span
+class="header-section-number">1.4.1</span> opening a safe</h3>
+<p>Asking the safe if a key is correct. By bruteforce we can find the
+correct key.</p>
+<h4 data-number="1.4.1.1" id="uniform-distribution"><span
+class="header-section-number">1.4.1.1</span> uniform distribution</h4>
+<p>Exhaustive search for all keys. Expected value of iterations is <span
+class="math inline">\frac{N + 1}{2}</span> for <span
+class="math inline">N</span> keys.</p>
+<h4 data-number="1.4.1.2" id="known-distribution"><span
+class="header-section-number">1.4.1.2</span> known distribution</h4>
+<p>Start search with the most probable keys (ordered by a permutation
+<span class="math inline">\sigma</span>). Expected value of iterations
+is <span class="math inline">\min_\sigma(\sum_{i=1}^N P[K =
+k_{\sigma(i)}]i)</span> for a permutation (order of tested keys) <span
+class="math inline">\sigma</span>. This expected value is called the
+<strong>guesswork entropy</strong> of the distribution.</p>
+<h4 data-number="1.4.1.3" id="unknown-distribution"><span
+class="header-section-number">1.4.1.3</span> unknown distribution</h4>
+<p>We choose a random permutation and start testing. Expected value of
+iterations is <span class="math inline">\frac{N + 1}{2}</span> for <span
+class="math inline">N</span> keys.</p>
+<h4 data-number="1.4.1.4" id="key-recovery-game-online-attack"><span
+class="header-section-number">1.4.1.4</span> key recovery game (online
+attack)</h4>
+<p>Online because we need to directly ask an oracle if a key is
+correct.</p>
+<p>Game:</p>
+<ol type="1">
+<li>pick <span class="math inline">K \in_D \mathcal K</span></li>
+<li><span class="math inline">\mathcal A^{\mathcal O} \to k</span></li>
+<li>return <span class="math inline">1_{K = k}</span></li>
+</ol>
+<h5 data-number="1.4.1.4.1" id="with-a-clue"><span
+class="header-section-number">1.4.1.4.1</span> with a clue</h5>
+<p>Game:</p>
+<ol type="1">
+<li>pick <span class="math inline">K \in_D \mathcal K</span></li>
+<li><span class="math inline">W \leftarrow</span> clue about <span
+class="math inline">K</span></li>
+<li><span class="math inline">\mathcal A^{\mathcal O}(W) \to
+k</span></li>
+<li>return <span class="math inline">1_{K = k}</span></li>
+</ol>
+<h3 data-number="1.4.2" id="access-control"><span
+class="header-section-number">1.4.2</span> access control</h3>
+<ul>
+<li>enrolment: enter user id and password. Register user id and a clue
+about password.</li>
+<li>access control: enter user id and password. Verify using the
+clue.</li>
+</ul>
+<p>Example clue: the hash of a password.</p>
+<h3 data-number="1.4.3" id="offline-attack"><span
+class="header-section-number">1.4.3</span> offline attack</h3>
+<p>We use a stop test function to test whether the key candidate is
+consistent with the witness.</p>
+<p>Offline key recovery:</p>
+<ol type="1">
+<li>pick <span class="math inline">K \in_D \mathcal K</span></li>
+<li><span class="math inline">W \leftarrow F(K)</span></li>
+<li><span class="math inline">\mathcal A(W) \to k</span></li>
+<li>return <span class="math inline">1_{K = k}</span></li>
+</ol>
+<p>Inversion:</p>
+<ol type="1">
+<li>pick <span class="math inline">K \in_D \mathcal K</span></li>
+<li><span class="math inline">W \leftarrow F(K)</span></li>
+<li><span class="math inline">\mathcal A(W) \to k</span></li>
+<li>return <span class="math inline">1_{F(k) = W}</span></li>
+</ol>
+<h4 data-number="1.4.3.1" id="inversion-by-exhaustive-search"><span
+class="header-section-number">1.4.3.1</span> inversion by exhaustive
+search</h4>
+<p>For <span class="math inline">F : K \to Y</span> let <span
+class="math inline">N = |K|</span> and <span class="math inline">M =
+|Y|</span>. Finds the pre-image (key) of some clue <span
+class="math inline">w \in_U Y</span>. Try keys until <span
+class="math inline">F(k) = w</span>.</p>
+<p><span class="math inline">E_F(P[\text{iterations} &gt; i]) = (1 -
+\frac{1}{M})^i</span>. Expected number of iterations is <span
+class="math inline">M(1 - e^{-\frac{N}{M}})</span> or just <span
+class="math inline">M</span> when <span class="math inline">N \gg
+M</span>.</p>
+<h3 data-number="1.4.4" id="metrics-of-attacks"><span
+class="header-section-number">1.4.4</span> metrics of attacks</h3>
+<ul>
+<li>pre-computation time</li>
+<li>memory complexity</li>
+<li>time complexity</li>
+<li>number of online queries</li>
+<li>probability of success</li>
 </ul>
 </body>
 </html>
