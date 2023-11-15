@@ -109,7 +109,7 @@ Let $x$ and $x'$ be the last two blocks where $x'$ is shorter than block length.
 
 ## stream ciphers
 
-Use a PRNG to generate a key stream. We seed the PRN with a fixed secret key and a nonce.
+Use a PRNG to generate a key stream. We seed the PRN with a fixed secret key and a nonce. Optimized for hardware, efficient.
 
 We can:
 
@@ -124,3 +124,79 @@ Weaknesses:
 
 - there are some correlations between some output bytes and key bytes when the nonce is known
 - output bytes are not uniformly distributed
+
+## bruteforce inversion
+
+### opening a safe
+
+Asking the safe if a key is correct. By bruteforce we can find the correct key.
+
+#### uniform distribution
+
+Exhaustive search for all keys. Expected value of iterations is $\frac{N + 1}{2}$ for $N$ keys.
+
+#### known distribution
+
+Start search with the most probable keys (ordered by a permutation $\sigma$). Expected value of iterations is $\min_\sigma(\sum_{i=1}^N P[K = k_{\sigma(i)}]i)$ for a permutation (order of tested keys) $\sigma$. This expected value is called the **guesswork entropy** of the distribution.
+
+#### unknown distribution
+
+We choose a random permutation and start testing. Expected value of iterations is $\frac{N + 1}{2}$ for $N$ keys.
+
+#### key recovery game (online attack)
+
+Online because we need to directly ask an oracle if a key is correct.
+
+Game:
+
+1. pick $K \in_D \mathcal K$
+2. $\mathcal A^{\mathcal O} \to k$
+3. return $1_{K = k}$
+
+##### with a clue
+
+Game:
+
+1. pick $K \in_D \mathcal K$
+2. $W \leftarrow$ clue about $K$
+3. $\mathcal A^{\mathcal O}(W) \to k$
+4. return $1_{K = k}$
+
+### access control
+
+- enrolment: enter user id and password. Register user id and a clue about password.
+- access control: enter user id and password. Verify using the clue.
+
+Example clue: the hash of a password.
+
+### offline attack
+
+We use a stop test function to test whether the key candidate is consistent with the witness.
+
+Offline key recovery:
+
+1. pick $K \in_D \mathcal K$
+2. $W \leftarrow F(K)$
+3. $\mathcal A(W) \to k$
+4. return $1_{K = k}$
+
+Inversion:
+
+1. pick $K \in_D \mathcal K$
+2. $W \leftarrow F(K)$
+3. $\mathcal A(W) \to k$
+4. return $1_{F(k) = W}$
+
+#### inversion by exhaustive search
+
+For $F : K \to Y$ let $N = |K|$ and $M = |Y|$. Finds the pre-image (key) of some clue $w \in_U Y$. Try keys until $F(k) = w$.
+
+$E_F(P[\text{iterations} > i]) = (1 - \frac{1}{M})^i$. Expected number of iterations is $M(1 - e^{-\frac{N}{M}})$ or just $M$ when $N \gg M$.
+
+### metrics of attacks
+
+- pre-computation time
+- memory complexity
+- time complexity
+- number of online queries
+- probability of success
