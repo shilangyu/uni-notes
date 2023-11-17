@@ -739,5 +739,146 @@ class="header-section-number">1.4.4</span> metrics of attacks</h3>
 <li>number of online queries</li>
 <li>probability of success</li>
 </ul>
+<h3 data-number="1.4.5" id="grovers-algorithm"><span
+class="header-section-number">1.4.5</span> grover’s algorithm</h3>
+<p>Runs on a quantum computer and does bruteforce in <span
+class="math inline">O(\sqrt N)</span>.</p>
+<h2 data-number="1.5" id="double-encryption"><span
+class="header-section-number">1.5</span> double encryption</h2>
+<p>We run encryption twice with two different keys. This is not much
+more secure. The security is only the sum of both encryptions rather
+than their product.</p>
+<h3 data-number="1.5.1" id="meet-in-the-middle-attack"><span
+class="header-section-number">1.5.1</span> meet in the middle
+attack</h3>
+<p>Let <span class="math inline">y =
+C&#39;&#39;_{k_2}(C&#39;_{k_1}(x))</span> be a double encryption of two
+(possibly different) encryptions <span
+class="math inline">C&#39;&#39;</span> and <span
+class="math inline">C&#39;</span> with keys from their respective key
+spaces <span class="math inline">\mathcal K&#39;&#39;, \mathcal
+K&#39;</span>. We compute the encryption dictionary for <span
+class="math inline">\mathcal K&#39;</span> for <span
+class="math inline">x</span>. Then we look for the middle encryption by
+checking keys from <span class="math inline">\mathcal K&#39;&#39;</span>
+by doing decryption of the cipher text <span
+class="math inline">y</span>.</p>
+<h2 data-number="1.6" id="security"><span
+class="header-section-number">1.6</span> security</h2>
+<ul>
+<li>CPA-breaking <span class="math inline">\implies</span>
+CPCA-breaking</li>
+<li>CPCA-secure <span class="math inline">\implies</span>
+CPA-secure</li>
+</ul>
+<h3 data-number="1.6.1" id="key-recovery"><span
+class="header-section-number">1.6.1</span> key recovery</h3>
+<h4 data-number="1.6.1.1" id="cpa-chosen-plaintext-attacks"><span
+class="header-section-number">1.6.1.1</span> CPA (chosen plaintext
+attacks)</h4>
+<p>Game:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li>Used <span class="math inline">\leftarrow \emptyset</span></li>
+<li><span class="math inline">W \leftarrow F(K)</span></li>
+<li><span class="math inline">\mathcal A^{OEnc} \to K&#39;</span></li>
+<li>return <span class="math inline">1_{K = K&#39;}</span></li>
+</ol>
+<p>OEnc(N, X):</p>
+<ol type="1">
+<li>if <span class="math inline">N \in</span> Used then return <span
+class="math inline">\bot</span></li>
+<li>Used <span class="math inline">\leftarrow</span> Used <span
+class="math inline">\cup</span> {N}</li>
+<li>return Enc(K, N, X)</li>
+</ol>
+<h4 data-number="1.6.1.2"
+id="cpca-chosen-plaintextciphertext-attacks"><span
+class="header-section-number">1.6.1.2</span> CPCA (chosen
+plaintext/ciphertext attacks)</h4>
+<p>Game:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li>Used <span class="math inline">\leftarrow \emptyset</span></li>
+<li><span class="math inline">W \leftarrow F(K)</span></li>
+<li><span class="math inline">\mathcal A^{OEnc, ODec} \to
+K&#39;</span></li>
+<li>return <span class="math inline">1_{K = K&#39;}</span></li>
+</ol>
+<p>OEnc(N, X):</p>
+<ol type="1">
+<li>if <span class="math inline">N \in</span> Used then return <span
+class="math inline">\bot</span></li>
+<li>Used <span class="math inline">\leftarrow</span> Used <span
+class="math inline">\cup</span> {N}</li>
+<li>return Enc(K, N, X)</li>
+</ol>
+<p>ODec(N, Y):</p>
+<ol start="3" type="1">
+<li>return Dec(K, N, Y)</li>
+</ol>
+<h3 data-number="1.6.2" id="decryption"><span
+class="header-section-number">1.6.2</span> decryption</h3>
+<h4 data-number="1.6.2.1" id="cpa-chosen-plaintext-attacks-1"><span
+class="header-section-number">1.6.2.1</span> CPA (chosen plaintext
+attacks)</h4>
+<p>Game:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li><span class="math inline">X_0 \stackrel{\$}{\leftarrow} \mathcal
+D</span>, <span class="math inline">N_0 \stackrel{\$}{\leftarrow}
+\mathcal N</span></li>
+<li>Used <span class="math inline">\leftarrow \{N_0\}</span></li>
+<li><span class="math inline">Y_0 \leftarrow</span> Enc(<span
+class="math inline">K, N_0, X_0</span>)</li>
+<li><span class="math inline">W \leftarrow F(K)</span></li>
+<li><span class="math inline">\mathcal A^{OEnc}(N_0, Y_0) \to
+X</span></li>
+<li>return <span class="math inline">1_{X_0 = X}</span></li>
+</ol>
+<p>OEnc(N, X):</p>
+<ol type="1">
+<li>if <span class="math inline">N \in</span> Used then return <span
+class="math inline">\bot</span></li>
+<li>Used <span class="math inline">\leftarrow</span> Used <span
+class="math inline">\cup</span> {N}</li>
+<li>return Enc(K, N, X)</li>
+</ol>
+<h4 data-number="1.6.2.2"
+id="cpca-chosen-plaintextciphertext-attacks-1"><span
+class="header-section-number">1.6.2.2</span> CPCA (chosen
+plaintext/ciphertext attacks)</h4>
+<p>Game:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li><span class="math inline">X_0 \stackrel{\$}{\leftarrow} \mathcal
+D</span>, <span class="math inline">N_0 \stackrel{\$}{\leftarrow}
+\mathcal N</span></li>
+<li>Used <span class="math inline">\leftarrow \{N_0\}</span></li>
+<li><span class="math inline">Y_0 \leftarrow</span> Enc(<span
+class="math inline">K, N_0, X_0</span>)</li>
+<li><span class="math inline">W \leftarrow F(K)</span></li>
+<li><span class="math inline">\mathcal A^{OEnc, ODec}(N_0, Y_0) \to
+X</span></li>
+<li>return <span class="math inline">1_{X_0 = X}</span></li>
+</ol>
+<p>OEnc(N, X):</p>
+<ol type="1">
+<li>if <span class="math inline">N \in</span> Used then return <span
+class="math inline">\bot</span></li>
+<li>Used <span class="math inline">\leftarrow</span> Used <span
+class="math inline">\cup</span> {N}</li>
+<li>return Enc(K, N, X)</li>
+</ol>
+<p>ODec(N, Y):</p>
+<ol type="1">
+<li>if <span class="math inline">(N, Y) = (N_0, Y_0)</span> then return
+<span class="math inline">\bot</span></li>
+<li>return Dec(K, N, Y)</li>
+</ol>
 </body>
 </html>
