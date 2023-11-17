@@ -200,3 +200,101 @@ $E_F(P[\text{iterations} > i]) = (1 - \frac{1}{M})^i$. Expected number of iterat
 - time complexity
 - number of online queries
 - probability of success
+
+### grover's algorithm
+
+Runs on a quantum computer and does bruteforce in $O(\sqrt N)$.
+
+## double encryption
+
+We run encryption twice with two different keys. This is not much more secure. The security is only the sum of both encryptions rather than their product.
+
+### meet in the middle attack
+
+Let $y = C''_{k_2}(C'_{k_1}(x))$ be a double encryption of two (possibly different) encryptions $C''$ and $C'$ with keys from their respective key spaces $\mathcal K'', \mathcal K'$. We compute the encryption dictionary for $\mathcal K'$ for $x$. Then we look for the middle encryption by checking keys from $\mathcal K''$ by doing decryption of the cipher text $y$.
+
+## security
+
+- CPA-breaking $\implies$ CPCA-breaking
+- CPCA-secure $\implies$ CPA-secure
+
+### key recovery
+
+#### CPA (chosen plaintext attacks)
+
+Game:
+
+1. $K \stackrel{\$}{\leftarrow} \{0, 1\}^k$
+2. Used $\leftarrow \emptyset$
+3. $W \leftarrow F(K)$
+4. $\mathcal A^{OEnc} \to K'$
+5. return $1_{K = K'}$
+
+OEnc(N, X):
+
+1. if $N \in$ Used then return $\bot$
+2. Used $\leftarrow$ Used $\cup$ {N}
+3. return Enc(K, N, X)
+
+#### CPCA (chosen plaintext/ciphertext attacks)
+
+Game:
+
+1. $K \stackrel{\$}{\leftarrow} \{0, 1\}^k$
+2. Used $\leftarrow \emptyset$
+3. $W \leftarrow F(K)$
+4. $\mathcal A^{OEnc, ODec} \to K'$
+5. return $1_{K = K'}$
+
+OEnc(N, X):
+
+1. if $N \in$ Used then return $\bot$
+2. Used $\leftarrow$ Used $\cup$ {N}
+3. return Enc(K, N, X)
+
+ODec(N, Y):
+
+3. return Dec(K, N, Y)
+
+### decryption
+
+#### CPA (chosen plaintext attacks)
+
+Game:
+
+1. $K \stackrel{\$}{\leftarrow} \{0, 1\}^k$
+1. $X_0 \stackrel{\$}{\leftarrow} \mathcal D$, $N_0 \stackrel{\$}{\leftarrow} \mathcal N$
+1. Used $\leftarrow \{N_0\}$
+1. $Y_0 \leftarrow$ Enc($K, N_0, X_0$)
+1. $W \leftarrow F(K)$
+1. $\mathcal A^{OEnc}(N_0, Y_0) \to X$
+1. return $1_{X_0 = X}$
+
+OEnc(N, X):
+
+1. if $N \in$ Used then return $\bot$
+2. Used $\leftarrow$ Used $\cup$ {N}
+3. return Enc(K, N, X)
+
+#### CPCA (chosen plaintext/ciphertext attacks)
+
+Game:
+
+1. $K \stackrel{\$}{\leftarrow} \{0, 1\}^k$
+1. $X_0 \stackrel{\$}{\leftarrow} \mathcal D$, $N_0 \stackrel{\$}{\leftarrow} \mathcal N$
+1. Used $\leftarrow \{N_0\}$
+1. $Y_0 \leftarrow$ Enc($K, N_0, X_0$)
+1. $W \leftarrow F(K)$
+1. $\mathcal A^{OEnc, ODec}(N_0, Y_0) \to X$
+1. return $1_{X_0 = X}$
+
+OEnc(N, X):
+
+1. if $N \in$ Used then return $\bot$
+2. Used $\leftarrow$ Used $\cup$ {N}
+3. return Enc(K, N, X)
+
+ODec(N, Y):
+
+1. if $(N, Y) = (N_0, Y_0)$ then return $\bot$
+2. return Dec(K, N, Y)
