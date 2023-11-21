@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>other_primitives</title>
+  <title>shared_memory</title>
   <style>
     html {
       line-height: 1.5;
@@ -460,220 +460,23 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
-  <script defer=""
-  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="other-primitives"><span
-class="header-section-number">1</span> other primitives</h1>
-<h2 data-number="1.1" id="non-blocking-atomic-commit"><span
-class="header-section-number">1.1</span> non-blocking atomic commit</h2>
-<ol type="1">
-<li><strong>agreement</strong>: no two processes decide differently</li>
-<li><strong>termination</strong>: every correct process eventually
-decides</li>
-<li><strong>commit-validity</strong>: 1 can only be decided if all
-processes propose 1</li>
-<li><strong>abort-validity</strong>: 0 can only be decided if some
-process crashes or proposes 0</li>
-</ol>
-<pre><code>Implements: NonBlockingAtomicCommit (nbac)
-Uses:
-  - beb
-  - PerfectFailureDetector
-  - UniformConsensus (ucons)
-
-upon event &lt;Init&gt;
-  prop = 1
-  delivered = ∅
-  correct = S
-
-upon event &lt;crash, pi&gt;
-  correct = correct \ {pi}
-
-upon event &lt;Propose, v&gt;
-  trigger &lt;bebBroadcast, v&gt;
-
-upon event &lt;bebDeliver, pi, v&gt;
-  delivered = delivered ∪ {pi}
-  prop = prop * v
-
-upon event correct \ delivered == ∅
-  if correct != S
-    prop = 0
-  trigger &lt;uconsPropose, prop&gt;
-
-upon event &lt;uconsDecide, decision&gt;
-  trigger &lt;Decide, decision&gt;</code></pre>
-<h2 data-number="1.2" id="group-memberships"><span
-class="header-section-number">1.2</span> group memberships</h2>
-<p>To know who is participating in an exchange. Similar to failure
-detector.</p>
-<ol type="1">
-<li><strong>local monotonicity</strong>: if a process installs view (j,
-M) after installing (k, N) then j &gt; k and m <span
-class="math inline">\subseteq</span> N</li>
-<li><strong>agreement</strong>: no two processes install views (j, M)
-and (j, M’) such that M <span class="math inline">\ne</span> M’</li>
-<li><strong>completeness</strong>: if a process p crashes, then there is
-an integer j such that every correct process eventually installs view
-(j, M) such that p <span class="math inline">\notin</span> M</li>
-<li><strong>accuracy</strong>: if some process installs a view (i, M)
-and p <span class="math inline">\notin</span> M, then p has crashed</li>
-</ol>
-<pre><code>Implements: GroupMembership (gmp)
-Uses:
-    - PerfectFailureDetector (P)
-    - UniformConsensus (ucons)
-
-upon event &lt;Init&gt;
-  view = (id: 0, memb: S)
-  correct = S
-  wait = false
-
-upon event &lt;crash, pi&gt;
-  correct = correct \ {pi}
-
-upon event (correct ⊊ view.memb) and (wait == false)
-  wait = true
-  trigger &lt;uconsPropose, (view.id + 1, correct)&gt;
-
-upon event &lt;uconsDecided, (id, memb)&gt;
-  view = (id, memb)
-  wait = false
-  trigger &lt;membView, view&gt;</code></pre>
-<h3 data-number="1.2.1" id="with-joiningleaving"><span
-class="header-section-number">1.2.1</span> with joining/leaving</h3>
-<p>Group membership but we can coordinate leaving/joining.</p>
-<h2 data-number="1.3" id="view-synchrony"><span
-class="header-section-number">1.3</span> view synchrony</h2>
-<p>Properties of group membership plus reliable broadcast plus a new
-property:</p>
-<ol type="1">
-<li><strong>view synchrony</strong>: a message is vsDelivered in the
-view where it was vsBroadcast</li>
-</ol>
-<p>While deciding on a view broadcasting is blocked.</p>
-<pre><code>Implements: ViewSynchrony (vs)
-Uses:
-  - GroupMembership (gmp)
-  - TerminatingReliableBroadcast (trb)
-  - BestEffortBroadcast (beb)
-
-upon event &lt;Init&gt;
-  view = (id: 0, memb: S)
-  nextView = ⊥
-  pending = ∅
-  delivered = ∅
-  trbDone = ∅
-  flushing = false
-  blocked = false
-
-upon event &lt;vsBroadcast, m&gt; and (blocked == false)
-  delivered = delivered ∪ {m}
-  trigger &lt;vsDeliver, self, m&gt;
-  trigger &lt;bebBroadcast, [Data, view.id, m]&gt;
-
-upon event &lt;bebDeliver, src, [Data, vid, m]&gt;
-  if (view.id == vid) and (m not in delivered) and (blocked == false)
-    delivered = delivered ∪ {m}
-    trigger &lt;vsDeliver, src, m&gt;
-
-upon event &lt;membView, V&gt;
-  addToTail(pending, V)
-
-upon (pending != ∅) and (flushing == false)
-  nextView = removeFromHead(pending)
-  flushing = true
-  trigger &lt;vsBlock&gt;
-
-upon event &lt;vsBlockOk&gt;
-  blocked = true
-  trbDone = ∅
-  trigger &lt;trbBroadcast, (view,id, delivered)&gt;
-
-upon event &lt;trbDeliver, p, (vid, deli)&gt;
-  trbDone = trbDone ∪ {p}
-  for (m in deli) and (m not in delivered)
-    delivered = delivered ∪ {m}
-    trigger &lt;vsDeliver, p, m&gt;
-
-upon event (trbDone == view.memb) and (blocked == true)
-  view = nextView
-  flushing = false
-  blocked = false
-  delivered = ∅
-  trigger &lt;vsView, view&gt;</code></pre>
-<h3 data-number="1.3.1" id="consensus-based"><span
-class="header-section-number">1.3.1</span> consensus based</h3>
-<pre><code>Implements: ViewSynchrony (vsc)
-Uses:
-  - UniformConsensus (gmp)
-  - PerfectFailureDetector (P)
-  - BestEffortBroadcast (beb)
-
-upon event &lt;Init&gt;
-  view = (id: 0, memb: S)
-  correct = S
-  flushing = false
-  blocked = false
-  delivered = ∅
-  dSet = ∅
-
-upon event &lt;vsBroadcast, m&gt; and (blocked == false)
-  delivered = delivered ∪ {m}
-  trigger &lt;vsDeliver, self, m&gt;
-  trigger &lt;bebBroadcast, [Data, view.id, m]&gt;
-
-upon event &lt;bebDeliver, src, [Data, vid, m]&gt;
-  if (view.id == vid) and (m not in delivered) and (blocked == false)
-    delivered = delivered ∪ {m}
-    trigger &lt;vsDeliver, src, m&gt;
-
-upon event &lt;crash, p&gt;
-  correct = correct \ {p}
-  if flushing == false
-    flushing = true
-    trigger &lt;vsBlock&gt;
-
-upon event &lt;vsBlockOk&gt;
-  blocked = true
-  trigger &lt;bebBroadcast, [DSET, view.id, delivered]&gt;
-
-upon event &lt;bebDeliver, src, [DSET, vid, deli]&gt;
-  dSet = dSet ∪ {(src, deli)}
-  if forall p in correct, (p, mSet) in dSet
-    trigger &lt;uconsPropose, (view.id+1, correct, dSet)&gt;
-
-upon event &lt;uconsDecided, (id, memb, vsdset)&gt;
-  for (p, mSet) in vsdset such that p in memb
-    for (src, m) in mSet such that m not in delivered
-      delivered = delivered ∪ {m}
-      trigger &lt;vsDeliver, src, m&gt;
-  view = (id, memb)
-  flushing = false
-  blocked = false
-  dSet = ∅
-  delivered = ∅
-  trigger &lt;vsView, view&gt;</code></pre>
+<h1 data-number="1" id="shared-memory"><span
+class="header-section-number">1</span> shared memory</h1>
+<p>Registers local to a process. See <a
+href="../concurrent_computing/registers.md">concurrent computing</a> for
+definitions.</p>
+<h2 data-number="1.1" id="regular-register-single-writer"><span
+class="header-section-number">1.1</span> regular register (single
+writer)</h2>
+<p>Regular register implemented as message passing. Write is global
+(broadcast information of a write), read is local (read the cached
+value).</p>
+<p>If we do not have a failure detector we can use the majority and
+timestamps instead.</p>
 </body>
 </html>
