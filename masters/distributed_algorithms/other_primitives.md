@@ -42,7 +42,7 @@ upon event <uconsDecide, decision>
 
 To know who is participating in an exchange. Similar to failure detector.
 
-1. **local monotonicity**: if a process installs view (j, M) after installing (k, N) then j > k and N $\subseteq$ M
+1. **local monotonicity**: if a process installs view (j, M) after installing (k, N) then j > k and m $\subseteq$ N
 2. **agreement**: no two processes install views (j, M) and (j, M') such that M $\ne$ M'
 3. **completeness**: if a process p crashes, then there is an integer j such that every correct process eventually installs view (j, M) such that p $\notin$ M
 4. **accuracy**: if some process installs a view (i, M) and p $\notin$ M, then p has crashed
