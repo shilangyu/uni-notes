@@ -298,3 +298,63 @@ ODec(N, Y):
 
 1. if $(N, Y) = (N_0, Y_0)$ then return $\bot$
 2. return Dec(K, N, Y)
+
+### distinguisher
+
+#### ideal cipher
+
+An ideal cipher is a cipher taking a random key K and returning a permutation over the domain.
+
+#### CPA (against distinguisher)
+
+$$
+Adv = Pr[\Gamma_1 \text{ returns } 1] - Pr[\Gamma_0 \text{ returns } 1]
+$$
+
+Game $\Gamma_b$:
+
+1. $K \stackrel{\$}{\leftarrow} \{0, 1\}^k$
+2. for every N, pick a length-preserving permutation $\Pi_N$ over D
+3. Used $\leftarrow \{\}$
+4. $\mathcal A^{OEnc} \to z$
+5. return $z$
+
+OEnc(N, X):
+
+1. if $N \in$ Used then return $\bot$
+2. Used $\leftarrow$ Used $\cup$ {N}
+3. if b = 0 then return $\Pi_N(X)$
+4. return Enc(K, N, X)
+
+#### CPCA (against distinguisher)
+
+Game $\Gamma_b$:
+
+1. $K \stackrel{\$}{\leftarrow} \{0, 1\}^k$
+2. for every N, pick a length-preserving permutation $\Pi_N$ over D
+3. Used $\leftarrow \{\}$
+4. $\mathcal A^{OEnc, ODec} \to z$
+5. return $z$
+
+OEnc(N, X):
+
+1. if $N \in$ Used then return $\bot$
+2. Used $\leftarrow$ Used $\cup$ {N}
+3. if b = 0 then return $\Pi_N(X)$
+4. return Enc(K, N, X)
+
+ODec(N, Y):
+
+1. if b = 0 then return $\Pi_N^{-1}(Y)$
+2. return Dec(K, N, Y)
+
+### notions
+
+|      | key recovery     | decryption | distinguisher      |
+| ---- | ---------------- | ---------- | ------------------ |
+| CPA  | weakest security |            |                    |
+| CPCA |                  |            | strongest security |
+
+- if we can recover the key, we can decrypt
+- if we can decrypt we can recognize from the ideal cipher
+- if we can break without chosen ciphertext, then we can also beak with
