@@ -603,5 +603,38 @@ Galois connection such that</p>
 <p>Equivalently it is a Galois connection iff <span
 class="math inline">c \le \gamma(\alpha(c))</span> and <span
 class="math inline">\alpha(\gamma(a)) \sqsubseteq a</span></p>
+<h2 data-number="1.6" id="abstract-interpretation-1"><span
+class="header-section-number">1.6</span> abstract interpretation</h2>
+<p>Given a CFG <span class="math inline">(V, E, r)</span> where</p>
+<ul>
+<li><span class="math inline">V = \{v_1, \cdots, v_n\}</span> is the set
+of program points (vertices)</li>
+<li><span class="math inline">E \subseteq V \times V</span> are
+control-flow graph edges (edges)</li>
+<li><span class="math inline">r : E \to 2^{S \times S}</span> so that
+each <span class="math inline">r(v, v&#39;) \subseteq S \times S</span>
+is relation describing the meaning of command between <span
+class="math inline">v</span> and <span
+class="math inline">v&#39;</span></li>
+</ul>
+<p>Steps:</p>
+<ol type="1">
+<li>design abstract domain <span class="math inline">A</span> that
+represents sets of program states</li>
+<li>define the concretization function <span class="math inline">\gamma
+: A \to C</span></li>
+<li>define lattice ordering <span class="math inline">\sqsubseteq</span>
+on <span class="math inline">A</span> such that <span
+class="math inline">a_1 \sqsubseteq a_2 \implies \gamma(a_1) \subseteq
+\gamma(a_2)</span></li>
+<li>define <span class="math inline">sp^\# : A \times 2^{S \times S} \to
+A</span> that maps an abstract element and a CFG statement to a new
+abstract element such that <span class="math inline">sp(\gamma(a), r)
+\subseteq \gamma(sp^\#(a, r))</span>. For example by defining an
+abstraction function <span class="math inline">\alpha</span> such that
+<span class="math inline">(\alpha, \gamma)</span> becomes a Galois
+connection. Then <span class="math inline">sp^\#(a, r) =
+\alpha(sp(\gamma(a), r))</span></li>
+</ol>
 </body>
 </html>
