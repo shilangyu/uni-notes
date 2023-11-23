@@ -80,3 +80,18 @@ $$
 $$
 
 Equivalently it is a Galois connection iff $c \le \gamma(\alpha(c))$ and $\alpha(\gamma(a)) \sqsubseteq a$
+
+## abstract interpretation
+
+Given a CFG $(V, E, r)$ where
+
+- $V = \{v_1, \cdots, v_n\}$ is the set of program points (vertices)
+- $E \subseteq V \times V$ are control-flow graph edges (edges)
+- $r : E \to 2^{S \times S}$ so that each $r(v, v') \subseteq S \times S$ is relation describing the meaning of command between $v$ and $v'$
+
+Steps:
+
+1. design abstract domain $A$ that represents sets of program states
+2. define the concretization function $\gamma : A \to C$
+3. define lattice ordering $\sqsubseteq$ on $A$ such that $a_1 \sqsubseteq a_2 \implies \gamma(a_1) \subseteq \gamma(a_2)$
+4. define $sp^\# : A \times 2^{S \times S} \to A$ that maps an abstract element and a CFG statement to a new abstract element such that $sp(\gamma(a), r) \subseteq \gamma(sp^\#(a, r))$. For example by defining an abstraction function $\alpha$ such that $(\alpha, \gamma)$ becomes a Galois connection. Then $sp^\#(a, r) = \alpha(sp(\gamma(a), r))$
