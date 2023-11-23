@@ -880,5 +880,96 @@ class="math inline">\cup</span> {N}</li>
 <span class="math inline">\bot</span></li>
 <li>return Dec(K, N, Y)</li>
 </ol>
+<h3 data-number="1.6.3" id="distinguisher"><span
+class="header-section-number">1.6.3</span> distinguisher</h3>
+<h4 data-number="1.6.3.1" id="ideal-cipher"><span
+class="header-section-number">1.6.3.1</span> ideal cipher</h4>
+<p>An ideal cipher is a cipher taking a random key K and returning a
+permutation over the domain.</p>
+<h4 data-number="1.6.3.2" id="cpa-against-distinguisher"><span
+class="header-section-number">1.6.3.2</span> CPA (against
+distinguisher)</h4>
+<p><span class="math display">
+Adv = Pr[\Gamma_1 \text{ returns } 1] - Pr[\Gamma_0 \text{ returns } 1]
+</span></p>
+<p>Game <span class="math inline">\Gamma_b</span>:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li>for every N, pick a length-preserving permutation <span
+class="math inline">\Pi_N</span> over D</li>
+<li>Used <span class="math inline">\leftarrow \{\}</span></li>
+<li><span class="math inline">\mathcal A^{OEnc} \to z</span></li>
+<li>return <span class="math inline">z</span></li>
+</ol>
+<p>OEnc(N, X):</p>
+<ol type="1">
+<li>if <span class="math inline">N \in</span> Used then return <span
+class="math inline">\bot</span></li>
+<li>Used <span class="math inline">\leftarrow</span> Used <span
+class="math inline">\cup</span> {N}</li>
+<li>if b = 0 then return <span class="math inline">\Pi_N(X)</span></li>
+<li>return Enc(K, N, X)</li>
+</ol>
+<h4 data-number="1.6.3.3" id="cpca-against-distinguisher"><span
+class="header-section-number">1.6.3.3</span> CPCA (against
+distinguisher)</h4>
+<p>Game <span class="math inline">\Gamma_b</span>:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li>for every N, pick a length-preserving permutation <span
+class="math inline">\Pi_N</span> over D</li>
+<li>Used <span class="math inline">\leftarrow \{\}</span></li>
+<li><span class="math inline">\mathcal A^{OEnc, ODec} \to z</span></li>
+<li>return <span class="math inline">z</span></li>
+</ol>
+<p>OEnc(N, X):</p>
+<ol type="1">
+<li>if <span class="math inline">N \in</span> Used then return <span
+class="math inline">\bot</span></li>
+<li>Used <span class="math inline">\leftarrow</span> Used <span
+class="math inline">\cup</span> {N}</li>
+<li>if b = 0 then return <span class="math inline">\Pi_N(X)</span></li>
+<li>return Enc(K, N, X)</li>
+</ol>
+<p>ODec(N, Y):</p>
+<ol type="1">
+<li>if b = 0 then return <span
+class="math inline">\Pi_N^{-1}(Y)</span></li>
+<li>return Dec(K, N, Y)</li>
+</ol>
+<h3 data-number="1.6.4" id="notions"><span
+class="header-section-number">1.6.4</span> notions</h3>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>key recovery</th>
+<th>decryption</th>
+<th>distinguisher</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CPA</td>
+<td>weakest security</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>CPCA</td>
+<td></td>
+<td></td>
+<td>strongest security</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>if we can recover the key, we can decrypt</li>
+<li>if we can decrypt we can recognize from the ideal cipher</li>
+<li>if we can break without chosen ciphertext, then we can also beak
+with</li>
+</ul>
 </body>
 </html>
