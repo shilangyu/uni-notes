@@ -68,6 +68,10 @@ A construction has consensus number $n$ if that construction can solve consensus
 - Test&Set has consensus number $2$
 - Register has consensus number $1$
 
+## <>synchronous
+
+There is a time after which there is a lower and upper bound on the delay for a process to execute its action.
+
 ## obstruction-freedom
 
 If a process executes alone (no concurrence) it will complete its operation.
