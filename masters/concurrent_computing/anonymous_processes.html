@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>consensus</title>
+  <title>anonymous_processes</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,182 +483,57 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="consensus"><span
-class="header-section-number">1</span> consensus</h1>
-<ol type="1">
-<li><strong>wait-free-termination</strong>: if a correct process
-proposes, then it eventually decides</li>
-<li><strong>agreement</strong>: no two processes decide differently</li>
-<li><strong>validity</strong>: any value decided must have been
-proposed</li>
-</ol>
-<h2 data-number="1.1" id="consensus-impossibility"><span
-class="header-section-number">1.1</span> consensus impossibility</h2>
-<p>Proof by lemma 1 + lemma 2. As adversary we start at a bivalent
-configuration and can always takes steps to another bivalent
-configuration never reaching a consensus.</p>
-<h3 data-number="1.1.1" id="lemma-1"><span
-class="header-section-number">1.1.1</span> lemma 1</h3>
-<p>There exists a bivalent initial configuration.</p>
-<h3 data-number="1.1.2" id="lemma-2"><span
-class="header-section-number">1.1.2</span> lemma 2</h3>
-<p>Given a bivalent configuration, there exists an arbitrarily long
-sequence of steps that lead to a bivalent configuration.</p>
-<h2 data-number="1.2" id="fetchincrement"><span
-class="header-section-number">1.2</span> fetch&amp;increment</h2>
-<p>A counter containing an integer. The operation
-<code>fetch&amp;inc()</code> increments the counter and returns the new
-value.</p>
-<p>Consensus can be implemented among two processes with
-fetch&amp;increment and registers. Since consensus is impossible (with
-r/w registers), then fetch&amp;increment is impossible.</p>
-<p>Reg[1, 2] = [0, 0], C initialized to zero</p>
-<pre><code>propose(v)
-    R[i] = v
-    val = C.fetch&amp;inc()
-    if val == 1
-        return v
-    else
-        return R[1]</code></pre>
-<h2 data-number="1.3" id="queue"><span
-class="header-section-number">1.3</span> queue</h2>
-<p>A queue has two operations <code>enq(v)</code> and
-<code>deq()</code>.</p>
-<p>Consensus can be implemented among two processes with queue and
-registers. Since consensus is impossible (with r/w registers), then
-queue is impossible.</p>
-<p>Reg[1, 2] = [0, 0], Q initialized to [winner, loser]</p>
-<pre><code>propose(v)
-    R[i] = v
-    item = Q.deq()
-    if item == winner
-        return v
-    else
-        return R[1]</code></pre>
-<h2 data-number="1.4" id="universality"><span
-class="header-section-number">1.4</span> universality</h2>
-<p>A type T is <strong>universal</strong> if together with other
-registers instance of T can be used to provide a wait-free linearizable
-implementation of any other type.</p>
-<h3 data-number="1.4.1" id="universal-construction"><span
-class="header-section-number">1.4.1</span> universal construction</h3>
-<p>Given a consensus object we can implement all other deterministic
-objects. Processes publish the operation they would like to perform to a
-shared <code>requests</code> object. Then the perform consensus on the
-collected requests minus those that the process has already executed.
-The consensus decides on a request that will be performed next. This
-ensures all processes simulate execution of all other processes in the
-exactly same way.</p>
-<h3 data-number="1.4.2" id="consensus-number"><span
-class="header-section-number">1.4.2</span> consensus number</h3>
-<p>A construction has consensus number <span
-class="math inline">n</span> if that construction can solve consensus
-for <span class="math inline">n</span> processes, but not for <span
-class="math inline">n+1</span>.</p>
-<ul>
-<li>Compare&amp;Swap has consensus number <span
-class="math inline">\infty</span></li>
-<li>Test&amp;Set has consensus number <span
-class="math inline">2</span></li>
-<li>Register has consensus number <span
-class="math inline">1</span></li>
-</ul>
-<h2 data-number="1.5" id="synchronous"><span
-class="header-section-number">1.5</span> &lt;&gt;synchronous</h2>
-<p>There is a time after which there is a lower and upper bound on the
-delay for a process to execute its action.</p>
-<h2 data-number="1.6" id="obstruction-freedom"><span
-class="header-section-number">1.6</span> obstruction-freedom</h2>
-<p>If a process executes alone (no concurrence) it will complete its
-operation.</p>
-<h3 data-number="1.6.1" id="o-consensus"><span
-class="header-section-number">1.6.1</span> o-consensus</h3>
-<p>Consensus with:</p>
-<ul>
-<li><strong>obstruction-free-termination</strong>: if a correct process
-proposes and eventually executes alone, then the process eventually
-decides</li>
-</ul>
-<p>Reg[1, .., N] array of registers Reg[i].T is a timestamp, Reg[i].V is
-a pair (value, timestamp). <code>ts</code> is initialized to
-<code>i</code> (process number).</p>
+<h1 data-number="1" id="anonymous-processes"><span
+class="header-section-number">1</span> anonymous processes</h1>
+<h2 data-number="1.1" id="weak-counter"><span
+class="header-section-number">1.1</span> weak counter</h2>
+<p>A counter with the regular property.</p>
+<p>correctness: if an operation p1 precedes another op2, then op2
+returns a value that is larger than op1</p>
+<pre><code>fn wInc()
+    i = 0
+    while Reg[i] != 0
+        if L has been updated n times
+            return the largest value seen in L
+        i = i + 1
+
+    L = i
+    Reg[i] = 1
+    return 1</code></pre>
+<h2 data-number="1.2" id="snapshot"><span
+class="header-section-number">1.2</span> snapshot</h2>
+<p>The same way as non-anonymous snapshot, but using the anonymous
+counter.</p>
+<h2 data-number="1.3" id="consensus"><span
+class="header-section-number">1.3</span> consensus</h2>
+<h3 data-number="1.3.1" id="binary-obstruction-free"><span
+class="header-section-number">1.3.1</span> binary obstruction-free</h3>
+<p>An infinite list of registers Reg{0}[..] and Reg{1} for value 0 and 1
+respectively. Initialized to <span class="math inline">\bot</span>.</p>
 <pre><code>fn propose(v)
+    i = 1
     while true
-        Reg[i].T = ts
-        val = highestTspValue(Reg[..])
-        if val = ⊥
-            val = v
-        Reg[i].V = (val, ts)
-        if ts = highestTsp(Reg[..])
-            return val
-        ts = ts + N</code></pre>
-<h2 data-number="1.7" id="lock-freedom"><span
-class="header-section-number">1.7</span> lock-freedom</h2>
-<p>Individual processes may starve, but there is system wide
-progress.</p>
-<h3 data-number="1.7.1" id="l-consensus"><span
-class="header-section-number">1.7.1</span> l-consensus</h3>
-<p>Consensus with:</p>
-<ul>
-<li><strong>lock-free-termination</strong>: if a correct process
-proposes, then at least one correct process eventually decides</li>
-</ul>
-<p>We need a &lt;&gt;leader.</p>
+        if Reg{1-v}[i] == 0
+            Reg{v}[i] = 1
+            if i &gt; 1 and Reg{1-v}[i-1] == 0
+                return v
+        else
+            v = 1 - v
+        i = i + 1</code></pre>
+<h3 data-number="1.3.2" id="binary-lock-free"><span
+class="header-section-number">1.3.2</span> binary lock-free</h3>
+<p>In a &lt;&gt;synchronous environment.</p>
 <pre><code>fn propose(v)
-    while true
-        if leader()
-            Reg[i].T = ts
-            val = highestTspValue(Reg[..])
-            if val = ⊥
-                val = v
-            Reg[i].V = (val, ts)
-            if ts = highestTsp(Reg[..])
-                return val
-            ts = ts + N</code></pre>
-<p>If the process that decided would write the result into register
-<code>Res</code> and the loop condition was changed to
-<code>while Res == ⊥</code> and we would return <code>Res</code>, then
-the algorithm would be wait-free with timing assumptions. The execution
-that makes it not fully wait-free are processes exponentially slowing
-down. So consensus is possible in an &lt;&gt;synchronous
-environment.</p>
-<h4 data-number="1.7.1.1" id="leader"><span
-class="header-section-number">1.7.1.1</span> leader</h4>
-<p>It has an operation <code>leader()</code> returning a boolean. If
-true is return to a process, it is a leader. If a correct process
-invokes <code>leader()</code>, then the invocation returns and
-eventually, some correct process is permanently the only leader.</p>
-<p><code>check</code> and <code>delay</code> is initialized to 1.
-<code>last[1, .., N]</code> and <code>Reg[1, .., N]</code> initialized
-to zero. The ask <code>update</code> is started in the background of
-processes using &lt;&gt;leader.</p>
-<pre><code>fn leader()
-    return leader == self
+    white true
+        if Reg{1-v}[i] = 0
+            Reg{v}[i] = 1
+            if i &gt; 1 and Reg{1-v}[i-1] == 0
+                return v
+        else if Reg{v}[i] = 0
+            v = 1 - v
 
-task update
-    clock = 0
-    while true
-        if leader == self
-            Reg[i] = Reg[i] + 1
-        clock = clock + 1
-        if clock == check
-            elect()
-
-priv fn elect()
-    no_leader = true
-
-    for j in 1:(i-1)
-        if Reg[j] &gt; last[j]
-            last[j] = Reg[j]
-            if leader != pj
-                delay = delay * 2
-            leader = pj
-            no_leader = false
-            break
-
-    check = check + delay
-
-    if no_leader
-        leader = self</code></pre>
+        if v == 1
+            wait(2*i)
+        i = i + 1</code></pre>
 </body>
 </html>
