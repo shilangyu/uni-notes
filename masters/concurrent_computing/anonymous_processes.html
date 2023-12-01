@@ -460,24 +460,6 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
-  <script defer=""
-  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -508,8 +490,8 @@ counter.</p>
 class="header-section-number">1.3</span> consensus</h2>
 <h3 data-number="1.3.1" id="binary-obstruction-free"><span
 class="header-section-number">1.3.1</span> binary obstruction-free</h3>
-<p>An infinite list of registers Reg{0}[..] and Reg{1} for value 0 and 1
-respectively. Initialized to <span class="math inline">\bot</span>.</p>
+<p>An infinite list of registers Reg{0}[..] and Reg{1}[..] for value 0
+and 1 respectively. Initialized to 0.</p>
 <pre><code>fn propose(v)
     i = 1
     while true

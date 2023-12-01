@@ -584,5 +584,193 @@ class="header-section-number">1.5.2.1</span> merkle-damgard
 extension</h4>
 <p>For padding messages. pad = <span class="math inline">|1|0\cdots 0
 |\textit{length}|</span> where <em>length</em> is a 64-bit number.</p>
+<h3 data-number="1.5.3" id="davis-meyer-scheme"><span
+class="header-section-number">1.5.3</span> davis-meyer scheme</h3>
+<figure>
+<img src="assets/davis-meyer.png" alt="Davis-Meyer scheme" />
+<figcaption aria-hidden="true">Davis-Meyer scheme</figcaption>
+</figure>
+<h2 data-number="1.6" id="mac-message-authentication-codes"><span
+class="header-section-number">1.6</span> MAC (message authentication
+codes)</h2>
+<p>Authentication and verification of messages.</p>
+<p><strong>security</strong>: unforgeability</p>
+<h3 data-number="1.6.1" id="hmac"><span
+class="header-section-number">1.6.1</span> HMAC</h3>
+<p>Given a hash function <span class="math inline">H</span> create a
+MAC. First key is padded (or truncated) with zeros to the fixed length.
+Then:</p>
+<p><span class="math display">
+\text{HMAC}_K(X) = H((K \oplus \text{opad}) || H((K \oplus
+\text{ipad})||X))
+</span></p>
+<p>Where opad is repeated <code>0x5c</code> and ipad is repeated
+<code>0x36</code>.</p>
+<p>If compression function is PRF then HMAC is PRF.</p>
+<h3 data-number="1.6.2" id="cbcmac"><span
+class="header-section-number">1.6.2</span> CBCMAC</h3>
+<p>CBC mode of operation. MAC is the result of the last block of
+encryption. We use and IV equal to 0.</p>
+<p>It is not secure as an attacker can engineer same MAC by appending
+something to the message. It is secure if the message length is
+fixed.</p>
+<h4 data-number="1.6.2.1" id="emac"><span
+class="header-section-number">1.6.2.1</span> EMAC</h4>
+<p>CBCMAC but we additionally encrypt the final output.</p>
+<h4 data-number="1.6.2.2" id="cmac"><span
+class="header-section-number">1.6.2.2</span> CMAC</h4>
+<p>CBCMAC but last block is XORed with <span
+class="math inline">k_{case}</span> before encryption. Output is
+truncated.</p>
+<h4 data-number="1.6.2.3" id="pmac"><span
+class="header-section-number">1.6.2.3</span> PMAC</h4>
+<p>It exists.</p>
+<h3 data-number="1.6.3" id="universal-hash-function"><span
+class="header-section-number">1.6.3</span> universal hash function</h3>
+<p>Let <span class="math inline">(h_K)_{K \in_U \mathcal K}</span> be a
+family of hash functions from <span class="math inline">D</span> to
+<span class="math inline">\{0, 1\}^m</span> defined by a random key
+<span class="math inline">K</span> which is chosen uniformly from a key
+space <span class="math inline">\mathcal K</span>. This family is <span
+class="math inline">\varepsilon</span>-XOR-universal if for any <span
+class="math inline">a</span> and <span class="math inline">x \ne
+y</span> in <span class="math inline">D</span>,</p>
+<p><span class="math display">
+P[h_K(x) \oplus h_K(y) = 1] \le \varepsilon
+</span></p>
+<h3 data-number="1.6.4" id="wc-mac"><span
+class="header-section-number">1.6.4</span> WC-MAC</h3>
+<p>MAC<span class="math inline">_{K, K_i}(i, x) = h_K(x) \oplus
+K_i</span> for a <span
+class="math inline">\varepsilon</span>-XOR-universal hash function and
+unique <span class="math inline">K_i</span> (cannot be reused).</p>
+<h3 data-number="1.6.5" id="authentication-modes"><span
+class="header-section-number">1.6.5</span> authentication modes</h3>
+<table>
+<thead>
+<tr class="header">
+<th>mode</th>
+<th>comment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CCM</td>
+<td>CTR + CBCMAC</td>
+</tr>
+<tr class="even">
+<td>GCM</td>
+<td>CTR + WC-MAC</td>
+</tr>
+<tr class="odd">
+<td>GCM-SIV</td>
+<td>CTR + WC-MAC</td>
+</tr>
+<tr class="even">
+<td>ChaCha20-Poly1305</td>
+<td>stream cipher + WC-MAC</td>
+</tr>
+</tbody>
+</table>
+<h4 data-number="1.6.5.1" id="ccm"><span
+class="header-section-number">1.6.5.1</span> CCM</h4>
+<ol type="1">
+<li>select nonce N</li>
+<li>T = CBCMAC(message)</li>
+<li>encrypt T||message in CTR using N</li>
+</ol>
+<h4 data-number="1.6.5.2" id="gcm"><span
+class="header-section-number">1.6.5.2</span> GCM</h4>
+<p>Takes plaintext plus extra data.</p>
+<h3 data-number="1.6.6" id="one-wayness"><span
+class="header-section-number">1.6.6</span> one-wayness</h3>
+<p>Game:</p>
+<ol type="1">
+<li>pick x <span class="math inline">\in</span> D</li>
+<li>y <span class="math inline">\leftarrow</span> h(x)</li>
+<li><span class="math inline">\mathcal A(y) \to x&#39;</span></li>
+<li>return 1<span class="math inline">_{h(x&#39;) = y}</span></li>
+</ol>
+<h3 data-number="1.6.7" id="mac-key-recovery"><span
+class="header-section-number">1.6.7</span> MAC key-recovery</h3>
+<p>Game:</p>
+<ol type="1">
+<li>K <span class="math inline">\stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li><span class="math inline">\mathcal A^{\text{OMac}} \to
+K&#39;</span></li>
+<li>return 1<span class="math inline">_{K = K&#39;}</span></li>
+</ol>
+<p>Oracle OMac(X):</p>
+<ol type="1">
+<li>return MAC(K, X)</li>
+</ol>
+<h3 data-number="1.6.8" id="mac-forgery"><span
+class="header-section-number">1.6.8</span> MAC forgery</h3>
+<p>Game:</p>
+<ol type="1">
+<li>K <span class="math inline">\stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li>Queried <span class="math inline">\leftarrow \emptyset</span></li>
+<li><span class="math inline">\mathcal A^{\text{OMac}} \to (X,
+t)</span></li>
+<li>if <span class="math inline">X \in</span> Queried then return 0</li>
+<li>return 1<span class="math inline">_{\text{MAC}(K, X) =
+t}</span></li>
+</ol>
+<p>Oracle OMac(X):</p>
+<ol type="1">
+<li>Queried = Queried <span class="math inline">\cup \{X\}</span></li>
+<li>return MAC(K, X)</li>
+</ol>
+<p>secure against forgeries <span class="math inline">\implies</span>
+secure against key recovery</p>
+<h3 data-number="1.6.9" id="mac-distinguisher"><span
+class="header-section-number">1.6.9</span> MAC distinguisher</h3>
+<p><span class="math display">
+Adv = Pr[\Gamma_1 \text{ returns } 1] - Pr[\Gamma_0 \text{ returns } 1]
+</span></p>
+<p>Game <span class="math inline">\Gamma_b</span>:</p>
+<ol type="1">
+<li><span class="math inline">K \stackrel{\$}{\leftarrow} \{0,
+1\}^k</span></li>
+<li>pick <span class="math inline">F : D \to \{0, 1\}^\tau</span></li>
+<li><span class="math inline">\mathcal A^{O} \to z</span></li>
+<li>return <span class="math inline">z</span></li>
+</ol>
+<p>O(X):</p>
+<ol type="1">
+<li>if b = 0 then return <span class="math inline">F(X)</span></li>
+<li>return MAC(K, X)</li>
+</ol>
+<p>secure against distinguisher <span
+class="math inline">\implies</span> secure against forgeries</p>
+<h2 data-number="1.7" id="birthday-paradox"><span
+class="header-section-number">1.7</span> birthday paradox</h2>
+<p>The probability of picking the same number twice from <span
+class="math inline">\{1, \cdots, N\}</span> when picking n times with
+uniform probability is <span class="math inline">p = 1 - \frac{N!}{N^n(N
+- n)!}</span></p>
+<p>For <span class="math inline">\theta = \frac{n}{\sqrt{N}}</span>,
+<span class="math inline">p \stackrel{N \to \infty}{\longrightarrow} 1 -
+e^{-\frac{\theta^2}{2}}</span></p>
+<h3 data-number="1.7.1" id="collision-search"><span
+class="header-section-number">1.7.1</span> collision search</h3>
+<ol type="1">
+<li>for <span class="math inline">\theta \sqrt{N}</span> times pick x,
+compute y = h(x). If y is in the hash map, return x and x’. Otherwise
+insert into hash map.</li>
+</ol>
+<h2 data-number="1.8" id="rho-effect"><span
+class="header-section-number">1.8</span> rho effect</h2>
+<p>If we start with x that is outside of a cycle and then continuously
+hash x, h(x), h(h(x)), etc, we eventually reach enter a cycle. Let <span
+class="math inline">h_t(x)</span> be the point where we enter the cycle.
+If we continue hashing, eventually <span class="math inline">h^k(x) =
+h_t(x)</span> where <span class="math inline">k \ne l</span> (because we
+are in a cycle and we entered to it from a different side). This means
+<span class="math inline">h^{k-1}(x)</span> and <span
+class="math inline">h_{t-1}(x)</span> are two different values that hash
+to the same thing: a collision.</p>
 </body>
 </html>
