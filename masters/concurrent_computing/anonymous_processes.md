@@ -27,7 +27,7 @@ The same way as non-anonymous snapshot, but using the anonymous counter.
 
 ### binary obstruction-free
 
-An infinite list of registers Reg{0}[..] and Reg{1} for value 0 and 1 respectively. Initialized to $\bot$.
+An infinite list of registers Reg{0}[..] and Reg{1}[..] for value 0 and 1 respectively. Initialized to 0.
 
 ```
 fn propose(v)
