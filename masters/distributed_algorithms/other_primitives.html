@@ -675,5 +675,120 @@ upon event &lt;uconsDecided, (id, memb, vsdset)&gt;
   dSet = ∅
   delivered = ∅
   trigger &lt;vsView, view&gt;</code></pre>
+<h2 data-number="1.4" id="byzantine-failures"><span
+class="header-section-number">1.4</span> byzantine failures</h2>
+<p>In crash-stop model, a process that crashed does not receive nor send
+any more messages and cannot be resurrected. In a byzantine model a
+faulty process can:</p>
+<ul>
+<li>“lie”</li>
+<li>broadcast different messages to different targets</li>
+<li>stay quiet</li>
+<li>impersonate other processes</li>
+</ul>
+<p>By <span class="math inline">f</span> we denote the upper bound of
+number of processes that can be faulty. We can deem a message to be true
+if received from <span class="math inline">f + 1</span> processes (then
+at least one was sent from a correct process). We can deem a decision to
+be true if received from <span class="math inline">2f + 1</span>
+processes.</p>
+<h3 data-number="1.4.1" id="byzantine-consistent-broadcast"><span
+class="header-section-number">1.4.1</span> byzantine consistent
+broadcast</h3>
+<p>We can tolerate at most <span class="math inline">f =
+\frac{|\Pi|}{3}</span> faulty processes.</p>
+<ol type="1">
+<li><strong>validity</strong>: if S is correct and it broadcasts a
+message m, then every correct process eventually delivers m</li>
+<li><strong>agreement</strong>: no two correct processes deliver
+different messages</li>
+<li><strong>no duplication</strong>: no correct process delivers more
+than one message</li>
+<li><strong>integrity</strong>: if a correct process delivers m and S is
+correct, then m was broadcasted by S</li>
+</ol>
+<pre><code>Implements: ByzantineConsistentBroadcast (bcb)
+Uses:
+    - AuthPerfectPointToPointLinks (al)
+
+upon event &lt;Init&gt;
+  sentEcho = false
+  delivered = false
+  echos = [⊥..⊥]
+
+upon event &lt;bcbBroadcast | m&gt;
+  for q in Π
+    trigger &lt;alSend | q, [SEND, m]&gt;
+
+upon event &lt;alDeliver | p, [SEND, m]&gt; such that p = s and sentEcho = false
+  sentEcho = true
+  for q in Π
+    trigger &lt;alSend | q, [ECHO, m]&gt;
+
+upon event &lt;alDeliver | p, [ECHO, m]&gt;
+  if echos[p] = ⊥
+    echos[p] = m
+
+upon exists m != ⊥ such that |{p : echos[p] = m}| &gt; (|Π|+f)/2 and delivered = false
+  delivered = true
+  trigger &lt;bcbDeliver | s, m&gt;</code></pre>
+<h3 data-number="1.4.2" id="byzantine-reliable-broadcast"><span
+class="header-section-number">1.4.2</span> byzantine reliable
+broadcast</h3>
+<p>We can tolerate at most <span class="math inline">f =
+\frac{|\Pi|}{3}</span> faulty processes.</p>
+<ol type="1">
+<li><strong>validity</strong>: if S is correct and it broadcasts a
+message m, then S eventually delivers m</li>
+<li><strong>agreement</strong>: no two correct processes deliver
+different messages</li>
+<li><strong>no duplication</strong>: no correct process delivers more
+than one message</li>
+<li><strong>integrity</strong>: if a correct process delivers m and S is
+correct, then m was broadcasted by S</li>
+<li><strong>totality</strong>: if a correct process delivers a message,
+then every correct process eventually delivers a message</li>
+</ol>
+<pre><code>Implements: ByzantineReliableBroadcast (brb)
+Uses:
+    - AuthPerfectPointToPointLinks (al)
+
+upon event &lt;Init&gt;
+  sentEcho = false
+  sentReady = false
+  delivered = false
+  echos = [⊥..⊥]
+  readys = [⊥..⊥]
+
+upon event &lt;brbBroadcast | m&gt;
+  for q in Π
+    trigger &lt;alSend | q, [SEND, m]&gt;
+
+upon event &lt;alDeliver | p, [SEND, m]&gt; such that p = s and sentEcho = false
+  sentEcho = true
+  for q in Π
+    trigger &lt;alSend | q, [ECHO, m]&gt;
+
+upon event &lt;alDeliver | p, [ECHO, m]&gt;
+  if echos[p] = ⊥
+    echos[p] = m
+
+upon exists m != ⊥ such that |{p : echos[p] = m}| &gt; (|Π|+f)/2 and sentReady = false
+  sentReady = true
+  for q in Π
+    trigger &lt;alSend | q, [READY, m]&gt;
+
+upon event &lt;alDeliver | p, [READY, m]&gt;
+  if readys[p] = ⊥
+    readys[p] = m
+
+upon exists m != ⊥ such that |{p : readys[p] = m}| &gt; f and sentReady = false
+  sentReady = true
+  for q in Π
+    trigger &lt;alSend | q, [READY, m]&gt;
+
+upon exists m != ⊥ such that |{p : readys[p] = m}| &gt; 2f and delivered = false
+  delivered = true
+  trigger &lt;alDeliver | s, m&gt;</code></pre>
 </body>
 </html>
