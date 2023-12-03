@@ -190,3 +190,105 @@ upon event <uconsDecided, (id, memb, vsdset)>
   delivered = ∅
   trigger <vsView, view>
 ```
+
+## byzantine failures
+
+In crash-stop model, a process that crashed does not receive nor send any more messages and cannot be resurrected. In a byzantine model a faulty process can:
+
+- "lie"
+- broadcast different messages to different targets
+- stay quiet
+- impersonate other processes
+
+By $f$ we denote the upper bound of number of processes that can be faulty. We can deem a message to be true if received from $f + 1$ processes (then at least one was sent from a correct process). We can deem a decision to be true if received from $2f + 1$ processes.
+
+### byzantine consistent broadcast
+
+We can tolerate at most $f = \frac{|\Pi|}{3}$ faulty processes.
+
+1. **validity**: if S is correct and it broadcasts a message m, then every correct process eventually delivers m
+2. **agreement**: no two correct processes deliver different messages
+3. **no duplication**: no correct process delivers more than one message
+4. **integrity**: if a correct process delivers m and S is correct, then m was broadcasted by S
+
+```
+Implements: ByzantineConsistentBroadcast (bcb)
+Uses:
+	- AuthPerfectPointToPointLinks (al)
+
+upon event <Init>
+  sentEcho = false
+  delivered = false
+  echos = [⊥..⊥]
+
+upon event <bcbBroadcast | m>
+  for q in Π
+    trigger <alSend | q, [SEND, m]>
+
+upon event <alDeliver | p, [SEND, m]> such that p = s and sentEcho = false
+  sentEcho = true
+  for q in Π
+    trigger <alSend | q, [ECHO, m]>
+
+upon event <alDeliver | p, [ECHO, m]>
+  if echos[p] = ⊥
+    echos[p] = m
+
+upon exists m != ⊥ such that |{p : echos[p] = m}| > (|Π|+f)/2 and delivered = false
+  delivered = true
+  trigger <bcbDeliver | s, m>
+```
+
+### byzantine reliable broadcast
+
+We can tolerate at most $f = \frac{|\Pi|}{3}$ faulty processes.
+
+1. **validity**: if S is correct and it broadcasts a message m, then S eventually delivers m
+2. **agreement**: no two correct processes deliver different messages
+3. **no duplication**: no correct process delivers more than one message
+4. **integrity**: if a correct process delivers m and S is correct, then m was broadcasted by S
+5. **totality**: if a correct process delivers a message, then every correct process eventually delivers a message
+
+```
+Implements: ByzantineReliableBroadcast (brb)
+Uses:
+	- AuthPerfectPointToPointLinks (al)
+
+upon event <Init>
+  sentEcho = false
+  sentReady = false
+  delivered = false
+  echos = [⊥..⊥]
+  readys = [⊥..⊥]
+
+upon event <brbBroadcast | m>
+  for q in Π
+    trigger <alSend | q, [SEND, m]>
+
+upon event <alDeliver | p, [SEND, m]> such that p = s and sentEcho = false
+  sentEcho = true
+  for q in Π
+    trigger <alSend | q, [ECHO, m]>
+
+upon event <alDeliver | p, [ECHO, m]>
+  if echos[p] = ⊥
+    echos[p] = m
+
+upon exists m != ⊥ such that |{p : echos[p] = m}| > (|Π|+f)/2 and sentReady = false
+  sentReady = true
+  for q in Π
+    trigger <alSend | q, [READY, m]>
+
+upon event <alDeliver | p, [READY, m]>
+  if readys[p] = ⊥
+    readys[p] = m
+
+upon exists m != ⊥ such that |{p : readys[p] = m}| > f and sentReady = false
+  sentReady = true
+  for q in Π
+    trigger <alSend | q, [READY, m]>
+
+upon exists m != ⊥ such that |{p : readys[p] = m}| > 2f and delivered = false
+  delivered = true
+  trigger <alDeliver | s, m>
+```
