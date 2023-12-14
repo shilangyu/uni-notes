@@ -536,5 +536,72 @@ q</span></li>
 <h3 data-number="1.3.2" id="ecdsa"><span
 class="header-section-number">1.3.2</span> ECDSA</h3>
 <p>Like DSA, but over elliptic curves.</p>
+<h2 data-number="1.4" id="ind-cpa-security"><span
+class="header-section-number">1.4</span> IND-CPA security</h2>
+<p>A PKC (public key cryptosystem) is secure under chosen plaintext
+attacks and indistinguishability with advantage <span
+class="math inline">Adv = P[\Gamma_1 \text{ returns } 1] - P[\Gamma_0
+\text{ returns } 1]</span></p>
+<p>Game <span class="math inline">\Gamma_b</span>:</p>
+<ol type="1">
+<li>Gen <span class="math inline">\stackrel{\$}{\to} (pk,
+sk)</span></li>
+<li><span class="math inline">\mathcal A_1(pk) \to (pt_0, pt_1,
+st)</span></li>
+<li>if <span class="math inline">|pt_0| \ne |pt_1|</span> then return
+0</li>
+<li>Enc(<span class="math inline">pt_b</span>) <span
+class="math inline">\stackrel{\$}{\to} ct</span></li>
+<li><span class="math inline">\mathcal A_2(st, ct) \to z</span></li>
+<li>return z</li>
+</ol>
+<h2 data-number="1.5" id="ind-cca-security"><span
+class="header-section-number">1.5</span> IND-CCA security</h2>
+<p><span class="math inline">Adv = P[\Gamma_1 \text{ returns } 1] -
+P[\Gamma_0 \text{ returns } 1]</span></p>
+<p>Game <span class="math inline">\Gamma_b</span>:</p>
+<ol type="1">
+<li>Gen <span class="math inline">\stackrel{\$}{\to} (pk,
+sk)</span></li>
+<li><span class="math inline">\mathcal A_1^{ODec_1}(pk) \to (pt_0, pt_1,
+st)</span></li>
+<li>if <span class="math inline">|pt_0| \ne |pt_1|</span> then return
+0</li>
+<li>Enc(<span class="math inline">pt_b</span>) <span
+class="math inline">\stackrel{\$}{\to} ct^*</span></li>
+<li><span class="math inline">\mathcal A_2^{ODec_2}(st, ct^*) \to
+z</span></li>
+<li>return z</li>
+</ol>
+<p>ODec<span class="math inline">_1</span>(ct):</p>
+<ol type="1">
+<li>return Dec(sk, st)</li>
+</ol>
+<p>ODec<span class="math inline">_2</span>(ct):</p>
+<ol type="1">
+<li>if <span class="math inline">ct = ct^*</span> then return <span
+class="math inline">\bot</span></li>
+<li>return Dec(sk, st)</li>
+</ol>
+<h2 data-number="1.6" id="ef-cma-security"><span
+class="header-section-number">1.6</span> EF-CMA security</h2>
+<p>Adv = P[Game returns 1]</p>
+<p>Game:</p>
+<ol type="1">
+<li>Gen <span class="math inline">\stackrel{\$}{\to} (pk,
+sk)</span></li>
+<li>Queries <span class="math inline">\leftarrow \emptyset</span></li>
+<li><span class="math inline">\mathcal A^{OSig}(pk) \to (X,
+\sigma)</span></li>
+<li>if <span class="math inline">X \in</span> Queries then return 0</li>
+<li>return <span class="math inline">1_{Ver(pk, X, \sigma)}</span></li>
+</ol>
+<p>OSig(X):</p>
+<ol type="1">
+<li><span class="math inline">\sigma \leftarrow</span> Sig(sk, X)</li>
+<li>Queries <span class="math inline">\leftarrow</span> Queries <span
+class="math inline">\cup</span> {X}</li>
+<li>return <span class="math inline">\sigma</span></li>
+</ol>
 </body>
 </html>
