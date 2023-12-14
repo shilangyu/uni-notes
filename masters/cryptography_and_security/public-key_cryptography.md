@@ -29,3 +29,56 @@ Similar to MAC where we want to authenticate a message. However, instead we use 
 ### ECDSA
 
 Like DSA, but over elliptic curves.
+
+## IND-CPA security
+
+A PKC (public key cryptosystem) is secure under chosen plaintext attacks and indistinguishability with advantage $Adv = P[\Gamma_1 \text{ returns } 1] - P[\Gamma_0 \text{ returns } 1]$
+
+Game $\Gamma_b$:
+
+1. Gen $\stackrel{\$}{\to} (pk, sk)$
+2. $\mathcal A_1(pk) \to (pt_0, pt_1, st)$
+3. if $|pt_0| \ne |pt_1|$ then return 0
+4. Enc($pt_b$) $\stackrel{\$}{\to} ct$
+5. $\mathcal A_2(st, ct) \to z$
+6. return z
+
+## IND-CCA security
+
+$Adv = P[\Gamma_1 \text{ returns } 1] - P[\Gamma_0 \text{ returns } 1]$
+
+Game $\Gamma_b$:
+
+1. Gen $\stackrel{\$}{\to} (pk, sk)$
+2. $\mathcal A_1^{ODec_1}(pk) \to (pt_0, pt_1, st)$
+3. if $|pt_0| \ne |pt_1|$ then return 0
+4. Enc($pt_b$) $\stackrel{\$}{\to} ct^*$
+5. $\mathcal A_2^{ODec_2}(st, ct^*) \to z$
+6. return z
+
+ODec$_1$(ct):
+
+1. return Dec(sk, st)
+
+ODec$_2$(ct):
+
+1. if $ct = ct^*$ then return $\bot$
+2. return Dec(sk, st)
+
+## EF-CMA security
+
+Adv = P[Game returns 1]
+
+Game:
+
+1. Gen $\stackrel{\$}{\to} (pk, sk)$
+2. Queries $\leftarrow \emptyset$
+3. $\mathcal A^{OSig}(pk) \to (X, \sigma)$
+4. if $X \in$ Queries then return 0
+5. return $1_{Ver(pk, X, \sigma)}$
+
+OSig(X):
+
+1. $\sigma \leftarrow$ Sig(sk, X)
+2. Queries $\leftarrow$ Queries $\cup$ {X}
+3. return $\sigma$
