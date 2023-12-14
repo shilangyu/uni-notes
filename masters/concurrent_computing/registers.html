@@ -644,5 +644,47 @@ fn scan()
 fn update(v)
     ts = ts + 1
     Reg[i] = (v, ts, scan())</code></pre>
+<h2 data-number="1.6" id="faulty-registers"><span
+class="header-section-number">1.6</span> faulty registers</h2>
+<ol type="1">
+<li>responsive: if enters a <span class="math inline">\bot</span> state
+(all reads return <span class="math inline">\bot</span>) then it stays
+in this state</li>
+<li>non-responsive: might never reply. Impossible to distinguish from a
+slow register in the asynchronous model</li>
+</ol>
+<h3 data-number="1.6.1" id="responsive-mrsw-to-mrsw"><span
+class="header-section-number">1.6.1</span> responsive MRSW <span
+class="math inline">\to</span> MRSW</h3>
+<p>Given that <span class="math inline">t</span> registers might
+fail.</p>
+<p>Reg[1..t+1] MRSW responsive registers.</p>
+<pre><code>fn write(v)
+    for j in 1:t+1
+        Reg[j] = v
+
+fn read()
+    for j in t+1 to 1
+        v = Reg[j]
+        if v != ⊥
+            return v</code></pre>
+<h3 data-number="1.6.2" id="non-responsive-srsw-to-srsw"><span
+class="header-section-number">1.6.2</span> non-responsive SRSW <span
+class="math inline">\to</span> SRSW</h3>
+<p>Given that <span class="math inline">t</span> registers might
+fail.</p>
+<p>Reg[1..2t+1] MRSW non-responsive registers. seq initially set to 1.
+sn initially set to -1. val initially set to ⊥</p>
+<pre><code>fn write(v)
+    seq = seq + 1
+    parallel for j in 1:2t+1
+        Reg[j] = (seq, v)
+    &lt;&lt;wait for majority of ACKs&gt;&gt;
+
+fn read()
+    parallel for j in 1:2t+1
+        (s, v) = Reg[j]
+    (sn, val) = &quot;(s,v) with the highest s from majority, including old (sn, val)&quot;
+    return val</code></pre>
 </body>
 </html>
