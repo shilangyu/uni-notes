@@ -176,3 +176,46 @@ fn update(v)
 	ts = ts + 1
 	Reg[i] = (v, ts, scan())
 ```
+
+## faulty registers
+
+1. responsive: if enters a $\bot$ state (all reads return $\bot$) then it stays in this state
+2. non-responsive: might never reply. Impossible to distinguish from a slow register in the asynchronous model
+
+### responsive MRSW $\to$ MRSW
+
+Given that $t$ registers might fail.
+
+Reg[1..t+1] MRSW responsive registers.
+
+```
+fn write(v)
+	for j in 1:t+1
+		Reg[j] = v
+
+fn read()
+	for j in t+1 to 1
+		v = Reg[j]
+		if v != ⊥
+			return v
+```
+
+### non-responsive SRSW $\to$ SRSW
+
+Given that $t$ registers might fail.
+
+Reg[1..2t+1] MRSW non-responsive registers. seq initially set to 1. sn initially set to -1. val initially set to ⊥
+
+```
+fn write(v)
+	seq = seq + 1
+	parallel for j in 1:2t+1
+		Reg[j] = (seq, v)
+	<<wait for majority of ACKs>>
+
+fn read()
+	parallel for j in 1:2t+1
+		(s, v) = Reg[j]
+	(sn, val) = "(s,v) with the highest s from majority, including old (sn, val)"
+	return val
+```
