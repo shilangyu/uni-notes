@@ -82,3 +82,7 @@ OSig(X):
 1. $\sigma \leftarrow$ Sig(sk, X)
 2. Queries $\leftarrow$ Queries $\cup$ {X}
 3. return $\sigma$
+
+## key and data encapsulation mechanisms (KEM)
+
+PKC producing an encrypted key
