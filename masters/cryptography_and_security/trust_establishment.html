@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>public-key_cryptography</title>
+  <title>trust_establishment</title>
   <style>
     html {
       line-height: 1.5;
@@ -460,153 +460,35 @@
     href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
   />
   <meta name="theme-color" content="#252525" />
-  <script defer=""
-  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="public-key-cryptography"><span
-class="header-section-number">1</span> public-key cryptography</h1>
-<p>Gen <span class="math inline">\to (sk, pk)</span>, <span
-class="math inline">\text{Dec}_{\text{sk}}(\text{Enc}_{\text{pk}}(X)) =
-X</span></p>
-<ul>
-<li>key exchange/key agreement: exchange of data used to derive a common
-key with no prior secrets</li>
-<li>key transfer: one participant chooses a key and sends it to the
-other participant</li>
-</ul>
-<h2 data-number="1.1" id="ephemeral-diffie-hellman"><span
-class="header-section-number">1.1</span> ephemeral Diffie-Hellman</h2>
-<p>Erase <span class="math inline">x</span> and <span
-class="math inline">y</span> after <span class="math inline">K</span> is
-derived. Erase <span class="math inline">K</span> after the
-communication is over. This provides <strong>forward
-secrecy</strong>.</p>
-<h2 data-number="1.2" id="problems-with-plain-rsa"><span
-class="header-section-number">1.2</span> problems with plain RSA</h2>
-<ul>
-<li>messages are not elements of <span
-class="math inline">\Z_N</span></li>
-<li>encryption has homomorphic properties (Enc(ab) = Enc(a)Enc(b))</li>
-<li>susceptible to side channel attacks</li>
-</ul>
-<h2 data-number="1.3" id="signatures"><span
-class="header-section-number">1.3</span> signatures</h2>
-<p>Similar to MAC where we want to authenticate a message. However,
-instead we use a public key for verification rather than a private
-symmetric one like in MAC.</p>
-<h3 data-number="1.3.1" id="dsa"><span
-class="header-section-number">1.3.1</span> DSA</h3>
-<ul>
-<li>public parameters (p, q, g): pick random prime of 160 bits q, a
-prime <span class="math inline">p = aq + 1</span>, <span
-class="math inline">h</span> of <span class="math inline">\Z_p^*</span>
-raised to the power of <span class="math inline">a</span>, <span
-class="math inline">g = h^a \bmod p</span> such that <span
-class="math inline">g \ne 1</span>.</li>
-<li>pick secret <span class="math inline">x \in \Z_q</span> and compute
-public <span class="math inline">y = g^x \bmod p</span></li>
-<li>to sign, pick <span class="math inline">k \in \Z_q^*</span> and
-compute <span class="math inline">r = (g^k \bmod p) \bmod q</span> and
-<span class="math inline">s = \frac{H(M) + xr}{k} \bmod q</span>. The
-signature is <span class="math inline">\sigma = (r, s)</span></li>
-<li>verification: <span class="math inline">r \stackrel{?}{=}
-(g^{\frac{H(M)}{s} \bmod q}y^{\frac{r}{s} \bmod q}\bmod p) \bmod
-q</span></li>
-</ul>
-<h3 data-number="1.3.2" id="ecdsa"><span
-class="header-section-number">1.3.2</span> ECDSA</h3>
-<p>Like DSA, but over elliptic curves.</p>
-<h2 data-number="1.4" id="ind-cpa-security"><span
-class="header-section-number">1.4</span> IND-CPA security</h2>
-<p>A PKC (public key cryptosystem) is secure under chosen plaintext
-attacks and indistinguishability with advantage <span
-class="math inline">Adv = P[\Gamma_1 \text{ returns } 1] - P[\Gamma_0
-\text{ returns } 1]</span></p>
-<p>Game <span class="math inline">\Gamma_b</span>:</p>
+<h1 data-number="1" id="trust-establishment"><span
+class="header-section-number">1</span> trust establishment</h1>
+<h2 data-number="1.1" id="access-control"><span
+class="header-section-number">1.1</span> access control</h2>
+<h3 data-number="1.1.1" id="password-authentication"><span
+class="header-section-number">1.1.1</span> password authentication</h3>
+<p>Client sends their ID and password to the server. We store the
+passwords passed through a one way function to avoid leaking information
+about passwords. We store passwords with a salt to avoid multi-target
+inversion attacks.</p>
+<p>We need a secure communication channel.</p>
+<h3 data-number="1.1.2" id="challenge-response"><span
+class="header-section-number">1.1.2</span> challenge-response</h3>
+<p>Server keeps pairs (ID, secret). The secret known by the server and
+client only.</p>
 <ol type="1">
-<li>Gen <span class="math inline">\stackrel{\$}{\to} (pk,
-sk)</span></li>
-<li><span class="math inline">\mathcal A_1(pk) \to (pt_0, pt_1,
-st)</span></li>
-<li>if <span class="math inline">|pt_0| \ne |pt_1|</span> then return
-0</li>
-<li>Enc(<span class="math inline">pt_b</span>) <span
-class="math inline">\stackrel{\$}{\to} ct</span></li>
-<li><span class="math inline">\mathcal A_2(st, ct) \to z</span></li>
-<li>return z</li>
+<li>client prompts the server with its ID</li>
+<li>server sends a challenge with a random <code>c</code></li>
+<li>client runs <code>c</code> through a PRF seeded by the secret and
+returns it as a response</li>
+<li>server also computes with PRF and secret and checks if the values
+match</li>
 </ol>
-<h2 data-number="1.5" id="ind-cca-security"><span
-class="header-section-number">1.5</span> IND-CCA security</h2>
-<p><span class="math inline">Adv = P[\Gamma_1 \text{ returns } 1] -
-P[\Gamma_0 \text{ returns } 1]</span></p>
-<p>Game <span class="math inline">\Gamma_b</span>:</p>
-<ol type="1">
-<li>Gen <span class="math inline">\stackrel{\$}{\to} (pk,
-sk)</span></li>
-<li><span class="math inline">\mathcal A_1^{ODec_1}(pk) \to (pt_0, pt_1,
-st)</span></li>
-<li>if <span class="math inline">|pt_0| \ne |pt_1|</span> then return
-0</li>
-<li>Enc(<span class="math inline">pt_b</span>) <span
-class="math inline">\stackrel{\$}{\to} ct^*</span></li>
-<li><span class="math inline">\mathcal A_2^{ODec_2}(st, ct^*) \to
-z</span></li>
-<li>return z</li>
-</ol>
-<p>ODec<span class="math inline">_1</span>(ct):</p>
-<ol type="1">
-<li>return Dec(sk, st)</li>
-</ol>
-<p>ODec<span class="math inline">_2</span>(ct):</p>
-<ol type="1">
-<li>if <span class="math inline">ct = ct^*</span> then return <span
-class="math inline">\bot</span></li>
-<li>return Dec(sk, st)</li>
-</ol>
-<h2 data-number="1.6" id="ef-cma-security"><span
-class="header-section-number">1.6</span> EF-CMA security</h2>
-<p>Adv = P[Game returns 1]</p>
-<p>Game:</p>
-<ol type="1">
-<li>Gen <span class="math inline">\stackrel{\$}{\to} (pk,
-sk)</span></li>
-<li>Queries <span class="math inline">\leftarrow \emptyset</span></li>
-<li><span class="math inline">\mathcal A^{OSig}(pk) \to (X,
-\sigma)</span></li>
-<li>if <span class="math inline">X \in</span> Queries then return 0</li>
-<li>return <span class="math inline">1_{Ver(pk, X, \sigma)}</span></li>
-</ol>
-<p>OSig(X):</p>
-<ol type="1">
-<li><span class="math inline">\sigma \leftarrow</span> Sig(sk, X)</li>
-<li>Queries <span class="math inline">\leftarrow</span> Queries <span
-class="math inline">\cup</span> {X}</li>
-<li>return <span class="math inline">\sigma</span></li>
-</ol>
-<h2 data-number="1.7"
-id="key-and-data-encapsulation-mechanisms-kem"><span
-class="header-section-number">1.7</span> key and data encapsulation
-mechanisms (KEM)</h2>
-<p>PKC producing an encrypted key</p>
+<p>We need very strong security of the database. Vulnerable to relay
+attacks.</p>
 </body>
 </html>
