@@ -530,8 +530,8 @@ class="header-section-number">1.2</span> group memberships</h2>
 detector.</p>
 <ol type="1">
 <li><strong>local monotonicity</strong>: if a process installs view (j,
-M) after installing (k, N) then j &gt; k and m <span
-class="math inline">\subseteq</span> N</li>
+M) after installing (k, N) then j &gt; k and M <span
+class="math inline">\subsetneq</span> N</li>
 <li><strong>agreement</strong>: no two processes install views (j, M)
 and (j, M’) such that M <span class="math inline">\ne</span> M’</li>
 <li><strong>completeness</strong>: if a process p crashes, then there is
@@ -700,7 +700,7 @@ broadcast</h3>
 <ol type="1">
 <li><strong>validity</strong>: if S is correct and it broadcasts a
 message m, then every correct process eventually delivers m</li>
-<li><strong>agreement</strong>: no two correct processes deliver
+<li><strong>consistency</strong>: no two correct processes deliver
 different messages</li>
 <li><strong>no duplication</strong>: no correct process delivers more
 than one message</li>
@@ -740,7 +740,7 @@ broadcast</h3>
 <ol type="1">
 <li><strong>validity</strong>: if S is correct and it broadcasts a
 message m, then S eventually delivers m</li>
-<li><strong>agreement</strong>: no two correct processes deliver
+<li><strong>consistency</strong>: no two correct processes deliver
 different messages</li>
 <li><strong>no duplication</strong>: no correct process delivers more
 than one message</li>
