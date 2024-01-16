@@ -42,7 +42,7 @@ upon event <uconsDecide, decision>
 
 To know who is participating in an exchange. Similar to failure detector.
 
-1. **local monotonicity**: if a process installs view (j, M) after installing (k, N) then j > k and m $\subseteq$ N
+1. **local monotonicity**: if a process installs view (j, M) after installing (k, N) then j > k and M $\subsetneq$ N
 2. **agreement**: no two processes install views (j, M) and (j, M') such that M $\ne$ M'
 3. **completeness**: if a process p crashes, then there is an integer j such that every correct process eventually installs view (j, M) such that p $\notin$ M
 4. **accuracy**: if some process installs a view (i, M) and p $\notin$ M, then p has crashed
@@ -207,7 +207,7 @@ By $f$ we denote the upper bound of number of processes that can be faulty. We c
 We can tolerate at most $f = \frac{|\Pi|}{3}$ faulty processes.
 
 1. **validity**: if S is correct and it broadcasts a message m, then every correct process eventually delivers m
-2. **agreement**: no two correct processes deliver different messages
+2. **consistency**: no two correct processes deliver different messages
 3. **no duplication**: no correct process delivers more than one message
 4. **integrity**: if a correct process delivers m and S is correct, then m was broadcasted by S
 
@@ -244,7 +244,7 @@ upon exists m != ⊥ such that |{p : echos[p] = m}| > (|Π|+f)/2 and delivered =
 We can tolerate at most $f = \frac{|\Pi|}{3}$ faulty processes.
 
 1. **validity**: if S is correct and it broadcasts a message m, then S eventually delivers m
-2. **agreement**: no two correct processes deliver different messages
+2. **consistency**: no two correct processes deliver different messages
 3. **no duplication**: no correct process delivers more than one message
 4. **integrity**: if a correct process delivers m and S is correct, then m was broadcasted by S
 5. **totality**: if a correct process delivers a message, then every correct process eventually delivers a message
