@@ -18,3 +18,15 @@ Server keeps pairs (ID, secret). The secret known by the server and client only.
 4. server also computes with PRF and secret and checks if the values match
 
 We need very strong security of the database. Vulnerable to relay attacks.
+
+## authentication means
+
+1. **what you know**: password
+   - pro: always available
+   - con: must address the human factor
+2. **what you possess**: secure token
+   - pro: tamper proof, can perform cryptographic operations
+   - con: can be stolen, lost, forgotten
+3. **what you are**: biometrics
+   - pro: always available
+   - con: fuzzy, threat to humankind, impossible to change
