@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>categories</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="categories"><span
+class="header-section-number">1</span> categories</h1>
+<p>A category <span class="math inline">C</span> is a directed graph
+<span class="math inline">(C_0, C_1)</span> (objects and morphisms)
+equipped with composition maps</p>
+<p><span class="math display">
+\gamma_{a,b,c} : C(a, b) \times C(b, c) \to C(a, c) : (f, g) \mapsto g
+\circ f
+</span></p>
+<p>For <span class="math inline">\forall_{a, b, c} \in C_0</span>
+satisfying the following axioms:</p>
+<ol type="1">
+<li><strong>existence of identities</strong> - there is a map <span
+class="math inline">\text{Id} : C_0 \to C_1 : c \mapsto
+\text{Id}_c</span> such that <span class="math inline">\text{Id}_c \in
+C(c, c)</span> and <span class="math inline">f \circ \text{Id}_a = f =
+\text{Id}_b \circ f</span> <span class="math inline">\forall_{f \in
+C_1(a, b)} \forall_{a, b \in C_0}</span></li>
+<li><strong>associativity</strong> - for any <span
+class="math inline">a, b, c, d \in C_0</span> and <span
+class="math inline">f \in C(a, b)</span>, <span class="math inline">g
+\in C(b, c)</span>, and <span class="math inline">h \in C(c, d)</span>
+it holds that <span class="math inline">(h \circ g) \circ f = h \circ (g
+\circ f) \in C(a, d)</span></li>
+</ol>
+<h2 data-number="1.1" id="directed-graph-quiver"><span
+class="header-section-number">1.1</span> directed graph (quiver)</h2>
+<p>A directed graph <span class="math inline">G</span> consists of a
+pair of classes <span class="math inline">G_0</span> (vertices) and
+<span class="math inline">G_1</span> (edges) equipped with two maps
+<span class="math inline">\text{dom} : G_1 \to G_0</span> and <span
+class="math inline">\text{cod} : G_1 \to G_0</span>.</p>
+<p>So for a directed graph <span class="math inline">x
+\stackrel{f}{\longrightarrow} y</span>, <span
+class="math inline">\text{dom}(f) = x</span> and <span
+class="math inline">\text{cod}(f) = y</span></p>
+<h3 data-number="1.1.1" id="subgraph"><span
+class="header-section-number">1.1.1</span> subgraph</h3>
+<p>A subgraph <span class="math inline">G&#39;</span> of a directed
+graph <span class="math inline">G</span> consists of a pair of
+subclasses <span class="math inline">G&#39;_0 \subseteq G_0</span> and
+<span class="math inline">G&#39;_1 \subseteq G_1</span> such that <span
+class="math inline">\text{dom}[G_1&#39;] \cup \text{cod}[G&#39;_1]
+\subseteq G_0&#39;</span></p>
+<h2 data-number="1.2" id="small-category"><span
+class="header-section-number">1.2</span> small category</h2>
+<p>When objects and morphisms are sets then the category is called
+small.</p>
+<h2 data-number="1.3" id="subcategory"><span
+class="header-section-number">1.3</span> subcategory</h2>
+<p>A subcategory <span class="math inline">C&#39;</span> of a category
+<span class="math inline">C</span> consists of a subgraph <span
+class="math inline">(C_0&#39;, C_1&#39;)</span> that is closed under
+composition of morphisms and such that <span
+class="math inline">\text{Id}_c \in C_1&#39;</span> for all <span
+class="math inline">c \in C_0&#39;</span>. It is <em>full</em> if <span
+class="math inline">C&#39;(a, b) = C(a, b)</span> for all <span
+class="math inline">a, b \in C_0&#39;</span> and is <em>wide</em> if
+<span class="math inline">C&#39;_0 = \text{Ob}~C</span></p>
+<h2 data-number="1.4" id="examples"><span
+class="header-section-number">1.4</span> examples</h2>
+<ol type="1">
+<li><span class="math inline">\textsf{Set}</span> - objects are all sets
+and morphisms are all set maps</li>
+<li><span class="math inline">\textsf{Top}</span> - objects are all
+topological spaces and morphisms are all continues maps
+<ol type="1">
+<li><span class="math inline">\textsf{Top}_\star</span> - objects are
+all based topological spaces and morphisms are all based continues
+maps</li>
+</ol></li>
+<li><span class="math inline">\textsf{Gr}</span> - objects are all
+groups and morphisms are all group homomorphisms</li>
+<li><span class="math inline">\textsf{Ab}</span> - objects are all
+abelian groups and morphisms are all group homomorphisms with abelian
+domain and codomain</li>
+<li><span class="math inline">\textsf{Ch}_{\mathbb{k}}</span> - where
+<span class="math inline">\mathbb{k}</span> is a commutative ring,
+objects are all chain complexes of <span
+class="math inline">\mathbb{k}</span>-modules and morphisms are all
+<span class="math inline">\mathbb{k}</span>-linear chain maps</li>
+</ol>
+<h2 data-number="1.5" id="products"><span
+class="header-section-number">1.5</span> products</h2>
+<p>Given two categories <span class="math inline">C</span> and <span
+class="math inline">D</span>, their product is a category <span
+class="math inline">C \times D</span> and specified by</p>
+<p><span class="math display">
+\text{Ob}(C \times D) = \text{Ob}~C \times \text{Ob}~D
+</span></p>
+<p>and</p>
+<p><span class="math display">
+\forall_{c, c&#39; \in \text{Ob}~C}\forall_{d, d&#39; \in \text{Ob}~D}
+(C \times D)((c, d), (c&#39;, d&#39;)) = C(c, c&#39;) \times D(d,
+d&#39;)
+</span></p>
+<p>Then <span class="math inline">\text{Id}_{(c, d)} = (\text{Id}_c,
+\text{Id}_d)</span></p>
+<h2 data-number="1.6" id="category-of-morphisms"><span
+class="header-section-number">1.6</span> category of morphisms</h2>
+<p>Given a category <span class="math inline">C</span> we define a
+category of morphisms <span class="math inline">C^\to</span> where <span
+class="math inline">\text{Ob}~C^\to = \text{Mor}~C</span> and where for
+every couple <span class="math inline">f : a \to b</span>, <span
+class="math inline">g : c \to d</span> of morphisms of <span
+class="math inline">C</span>,</p>
+<p><span class="math display">
+C^\to(f, g) = \{(h : a \to c, k : b \to d) \in \text{Mor}~C \times
+\text{Mor}~C | g \circ h = k \circ f : a \to d\}
+</span></p>
+<h2 data-number="1.7" id="opposite-category"><span
+class="header-section-number">1.7</span> opposite category</h2>
+<p>For a category <span class="math inline">C</span> its opposite
+category <span class="math inline">C^{op}</span> is <span
+class="math inline">\text{Ob}~C^{op} = \text{Ob}~C</span> and <span
+class="math inline">C^{op}(a, b) = C(b, a)</span></p>
+<h2 data-number="1.8" id="isomorphism"><span
+class="header-section-number">1.8</span> isomorphism</h2>
+<p>Given a morphism <span class="math inline">f : a \to b</span> in C is
+an <em>isomorphism</em>, denoted <span
+class="math inline">\stackrel{\simeq}{\to}</span> if it admits an
+inverse, ie there is a morphism <span class="math inline">g : b \to
+a</span> such that <span class="math inline">g \circ f =
+\text{Id}_a</span> and <span class="math inline">f \circ g =
+\text{Id}_b</span>. <span class="math inline">a</span> and <span
+class="math inline">b</span> are called isomorphic.</p>
+</body>
+</html>
