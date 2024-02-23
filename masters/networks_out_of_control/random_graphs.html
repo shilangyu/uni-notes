@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>categories</title>
+  <title>random_graphs</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,177 +483,67 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="categories"><span
-class="header-section-number">1</span> categories</h1>
-<p>A category <span class="math inline">C</span> is a directed graph
-<span class="math inline">(C_0, C_1)</span> (objects and morphisms)
-equipped with composition maps</p>
+<h1 data-number="1" id="random-graphs"><span
+class="header-section-number">1</span> random graphs</h1>
+<h2 data-number="1.1" id="erdos-renyi-er-random-graph"><span
+class="header-section-number">1.1</span> Erdos-Renyi (ER) random
+graph</h2>
+<p><span class="math inline">G(n, p)</span> - <span
+class="math inline">n</span> number of vertices, <span
+class="math inline">p</span> probability of there being an edge between
+two vertices</p>
+<ul>
+<li>#edges ~ Binom(<span class="math inline">\binom{n}{2},
+p</span>)</li>
+<li>degree ~ Binom(<span class="math inline">n-1, p</span>), not
+independent, expected number <span
+class="math inline">p(n-1)</span></li>
+<li><span class="math inline">P[G = G(n, p)] = p^3(1 - p)^{\binom{n}{2}
+- 3}</span></li>
+</ul>
+<p><strong>Thm</strong>: almost all <span class="math inline">G(n,
+p)</span> are connected for a fixed <span class="math inline">p</span>.
+<span class="math inline">P[G(n, p) \text{ connected}]
+\stackrel{n\to\infty}{\longrightarrow} 1</span></p>
+<p><strong>Proof</strong>:</p>
+<p>Let <span class="math inline">V = S \cup \bar S</span> be a vertex
+partition such that <span class="math inline">s = |S| \le
+\frac{n}{2}</span> and <span class="math inline">n-s = |\bar S| &gt;
+\frac{n}{2}</span>.</p>
 <p><span class="math display">
-\gamma_{a,b,c} : C(a, b) \times C(b, c) \to C(a, c) : (f, g) \mapsto g
-\circ f
+\begin{aligned}
+    P[\text{no edge }S \leftrightarrow \bar S] &amp;= (1 - p)^{s(n-s)}
+\\
+    P[G(n, p) \text{ disconnected}] &amp;\le \sum_{\text{all possible }
+(s, \bar s)} P[\text{no edge } s \leftrightarrow \bar s] \\
+        &amp;= \sum_{s=1}^{\frac{n}{2}} \binom{n}{s} (1-p)^{s(n-s)} \\
+        &amp;&lt; \sum_{s=1}^{\frac{n}{2}} (n(1-p)^{\frac{n}{2}})^s \\
+        &amp;&lt; \sum_{s=1}^{\infty} x^s = \frac{x}{1-x} \to
+0~\square\\
+\end{aligned}
 </span></p>
-<p>For <span class="math inline">\forall_{a, b, c} \in C_0</span>
-satisfying the following axioms:</p>
-<ol type="1">
-<li><strong>existence of identities</strong> - there is a map <span
-class="math inline">\text{Id} : C_0 \to C_1 : c \mapsto
-\text{Id}_c</span> such that <span class="math inline">\text{Id}_c \in
-C(c, c)</span> and <span class="math inline">f \circ \text{Id}_a = f =
-\text{Id}_b \circ f</span> <span class="math inline">\forall_{f \in
-C_1(a, b)} \forall_{a, b \in C_0}</span></li>
-<li><strong>associativity</strong> - for any <span
-class="math inline">a, b, c, d \in C_0</span> and <span
-class="math inline">f \in C(a, b)</span>, <span class="math inline">g
-\in C(b, c)</span>, and <span class="math inline">h \in C(c, d)</span>
-it holds that <span class="math inline">(h \circ g) \circ f = h \circ (g
-\circ f) \in C(a, d)</span></li>
-</ol>
-<h2 data-number="1.1" id="directed-graph-quiver"><span
-class="header-section-number">1.1</span> directed graph (quiver)</h2>
-<p>A directed graph <span class="math inline">G</span> consists of a
-pair of classes <span class="math inline">G_0</span> (vertices) and
-<span class="math inline">G_1</span> (edges) equipped with two maps
-<span class="math inline">\text{dom} : G_1 \to G_0</span> and <span
-class="math inline">\text{cod} : G_1 \to G_0</span>.</p>
-<p>So for a directed graph <span class="math inline">x
-\stackrel{f}{\longrightarrow} y</span>, <span
-class="math inline">\text{dom}(f) = x</span> and <span
-class="math inline">\text{cod}(f) = y</span></p>
-<h3 data-number="1.1.1" id="subgraph"><span
-class="header-section-number">1.1.1</span> subgraph</h3>
-<p>A subgraph <span class="math inline">G&#39;</span> of a directed
-graph <span class="math inline">G</span> consists of a pair of
-subclasses <span class="math inline">G&#39;_0 \subseteq G_0</span> and
-<span class="math inline">G&#39;_1 \subseteq G_1</span> such that <span
-class="math inline">\text{dom}[G_1&#39;] \cup \text{cod}[G&#39;_1]
-\subseteq G_0&#39;</span></p>
-<h2 data-number="1.2" id="small-category"><span
-class="header-section-number">1.2</span> small category</h2>
-<p>When objects and morphisms are sets then the category is called
-small.</p>
-<h2 data-number="1.3" id="subcategory"><span
-class="header-section-number">1.3</span> subcategory</h2>
-<p>A subcategory <span class="math inline">C&#39;</span> of a category
-<span class="math inline">C</span> consists of a subgraph <span
-class="math inline">(C_0&#39;, C_1&#39;)</span> that is closed under
-composition of morphisms and such that <span
-class="math inline">\text{Id}_c \in C_1&#39;</span> for all <span
-class="math inline">c \in C_0&#39;</span>. It is <em>full</em> if <span
-class="math inline">C&#39;(a, b) = C(a, b)</span> for all <span
-class="math inline">a, b \in C_0&#39;</span> and is <em>wide</em> if
-<span class="math inline">C&#39;_0 = \text{Ob}~C</span></p>
-<h2 data-number="1.4" id="examples"><span
-class="header-section-number">1.4</span> examples</h2>
-<ol type="1">
-<li><span class="math inline">\textsf{Set}</span> - objects are all sets
-and morphisms are all set maps</li>
-<li><span class="math inline">\textsf{Top}</span> - objects are all
-topological spaces and morphisms are all continues maps
-<ol type="1">
-<li><span class="math inline">\textsf{Top}_\star</span> - objects are
-all based topological spaces and morphisms are all based continues
-maps</li>
-</ol></li>
-<li><span class="math inline">\textsf{Gr}</span> - objects are all
-groups and morphisms are all group homomorphisms</li>
-<li><span class="math inline">\textsf{Ab}</span> - objects are all
-abelian groups and morphisms are all group homomorphisms with abelian
-domain and codomain</li>
-<li><span class="math inline">\textsf{Ch}_{\mathbb{k}}</span> - where
-<span class="math inline">\mathbb{k}</span> is a commutative ring,
-objects are all chain complexes of <span
-class="math inline">\mathbb{k}</span>-modules and morphisms are all
-<span class="math inline">\mathbb{k}</span>-linear chain maps</li>
-<li><span class="math inline">\textsf{Cat}</span> - objects are all
-small categories and morphisms are all functors of between small
-categories</li>
-</ol>
-<h2 data-number="1.5" id="products"><span
-class="header-section-number">1.5</span> products</h2>
-<p>Given two categories <span class="math inline">C</span> and <span
-class="math inline">D</span>, their product is a category <span
-class="math inline">C \times D</span> and specified by</p>
-<p><span class="math display">
-\text{Ob}(C \times D) = \text{Ob}~C \times \text{Ob}~D
-</span></p>
-<p>and</p>
-<p><span class="math display">
-\forall_{c, c&#39; \in \text{Ob}~C}\forall_{d, d&#39; \in \text{Ob}~D}
-(C \times D)((c, d), (c&#39;, d&#39;)) = C(c, c&#39;) \times D(d,
-d&#39;)
-</span></p>
-<p>Then <span class="math inline">\text{Id}_{(c, d)} = (\text{Id}_c,
-\text{Id}_d)</span></p>
-<h2 data-number="1.6" id="category-of-morphisms"><span
-class="header-section-number">1.6</span> category of morphisms</h2>
-<p>Given a category <span class="math inline">C</span> we define a
-category of morphisms <span class="math inline">C^\to</span> where <span
-class="math inline">\text{Ob}~C^\to = \text{Mor}~C</span> and where for
-every couple <span class="math inline">f : a \to b</span>, <span
-class="math inline">g : c \to d</span> of morphisms of <span
-class="math inline">C</span>,</p>
-<p><span class="math display">
-C^\to(f, g) = \{(h : a \to c, k : b \to d) \in \text{Mor}~C \times
-\text{Mor}~C | g \circ h = k \circ f : a \to d\}
-</span></p>
-<h2 data-number="1.7" id="opposite-category"><span
-class="header-section-number">1.7</span> opposite category</h2>
-<p>For a category <span class="math inline">C</span> its opposite
-category <span class="math inline">C^{op}</span> is <span
-class="math inline">\text{Ob}~C^{op} = \text{Ob}~C</span> and <span
-class="math inline">C^{op}(a, b) = C(b, a)</span></p>
-<h2 data-number="1.8" id="isomorphism"><span
-class="header-section-number">1.8</span> isomorphism</h2>
-<p>Given a morphism <span class="math inline">f : a \to b</span> in C is
-an <em>isomorphism</em>, denoted <span
-class="math inline">\stackrel{\simeq}{\to}</span> if it admits an
-inverse, ie there is a morphism <span class="math inline">g : b \to
-a</span> such that <span class="math inline">g \circ f =
-\text{Id}_a</span> and <span class="math inline">f \circ g =
-\text{Id}_b</span>. <span class="math inline">a</span> and <span
-class="math inline">b</span> are called isomorphic.</p>
-<h2 data-number="1.9" id="functors"><span
-class="header-section-number">1.9</span> functors</h2>
-<p>A morphism between categories. A functor <span class="math inline">F:
-C \to D</span> is a pair of maps <span class="math inline">F_{\text{Ob}}
-: \text{Ob}~C \to \text{Ob}~D</span> and <span
-class="math inline">F_{\text{Mor}} : \text{Mor}~C \to
-\text{Mor}~D</span> such that:</p>
-<p><span class="math display">
-F_{\text{Mor}}(f) : F_{\text{Ob}}(a) \to F_{\text{Ob}}(b)
-</span></p>
-<p>where</p>
-<p><span class="math display">
-F_{\text{Mor}}(\text{Id}_c) = \text{Id}_{F_{\text{Ob}(c)}}
-</span></p>
-<p>and</p>
-<p><span class="math display">
-F_{\text{Mor}}(g \circ f) = F_{\text{Mor}}(g) \circ F_{\text{Mor}}(f)
-</span></p>
-<p>Functors are composable in an associative manner</p>
-<h2 data-number="1.10" id="natural-transformations"><span
-class="header-section-number">1.10</span> natural transformations</h2>
-<p>Let <span class="math inline">F, F&#39; : C \to D</span> be functors.
-A natural transformation <span class="math inline">\tau : F \to
-F&#39;</span> consists of a map</p>
-<p><span class="math display">
-\tau : \text{Ob}~C \to \text{Mor}~D : c \mapsto \tau_c
-</span></p>
-<p>such that for all <span class="math inline">c \in
-\text{Ob}~C</span></p>
-<p><span class="math display">
-\tau_c \in D(F(c), F&#39;(c))
-</span></p>
-<p>and all morphisms <span class="math inline">f : b \to c</span> in
-<span class="math inline">C</span>, the diagram commutes</p>
-<figure>
-<img src="assets/natural_transformation.png"
-alt="natural transformation diagram" />
-<figcaption aria-hidden="true">natural transformation
-diagram</figcaption>
-</figure>
+<p>Note that <span class="math inline">\binom{n}{s} &lt; n^s</span> and
+<span class="math inline">(1 - p)^{n-s} \le (1 -
+p)^{\frac{n}{2}}</span></p>
+<h3 data-number="1.1.1" id="first-moment-method"><span
+class="header-section-number">1.1.1</span> first moment method</h3>
+<p><span class="math inline">E[X_n] \to 0 \implies P[X_n = 0] \to
+1</span></p>
+<h3 data-number="1.1.2" id="second-moment-method"><span
+class="header-section-number">1.1.2</span> second moment method</h3>
+<p><span class="math inline">E[X_n] &gt; 0 \land
+\frac{Var[X_n]}{E[X_n]^2} \to 0 \implies X_n &gt; 0</span></p>
+<p><strong>Thm</strong>: Almost every <span class="math inline">G(n,
+p)</span> has diameter 2</p>
+<p><strong>Proof</strong>:</p>
+<p>let <span class="math inline">X =</span> #pairs(u, v) without common
+neighbors, <span class="math inline">X_{u, v} = 1_{u, v \text{ have no
+common neighbor}}</span></p>
+<p><span class="math inline">P[X_{u,v}] = (1 - p^2)^{n-2}</span></p>
+<p><span class="math inline">E[X] = E[\sum_{u,v}X_{u,v}] =
+\sum_{u,v}E[X_{u,v}] = \binom{n}{2}(1 - p^2)^{n-2} \to 0</span></p>
 <hr />
 <p>No more notes will appear. I dropped the course due to lack of
-prerequisite knowledge.</p>
+interest in the covered topics.</p>
 </body>
 </html>
