@@ -37,6 +37,7 @@ A subcategory $C'$ of a category $C$ consists of a subgraph $(C_0', C_1')$ that 
 3. $\textsf{Gr}$ - objects are all groups and morphisms are all group homomorphisms
 4. $\textsf{Ab}$ - objects are all abelian groups and morphisms are all group homomorphisms with abelian domain and codomain
 5. $\textsf{Ch}_{\mathbb{k}}$ - where $\mathbb{k}$ is a commutative ring, objects are all chain complexes of $\mathbb{k}$-modules and morphisms are all $\mathbb{k}$-linear chain maps
+6. $\textsf{Cat}$ - objects are all small categories and morphisms are all functors of between small categories
 
 ## products
 
@@ -69,3 +70,47 @@ For a category $C$ its opposite category $C^{op}$ is $\text{Ob}~C^{op} = \text{O
 ## isomorphism
 
 Given a morphism $f : a \to b$ in C is an _isomorphism_, denoted $\stackrel{\simeq}{\to}$ if it admits an inverse, ie there is a morphism $g : b \to a$ such that $g \circ f = \text{Id}_a$ and $f \circ g = \text{Id}_b$. $a$ and $b$ are called isomorphic.
+
+## functors
+
+A morphism between categories. A functor $F: C \to D$ is a pair of maps $F_{\text{Ob}} : \text{Ob}~C \to \text{Ob}~D$ and $F_{\text{Mor}} : \text{Mor}~C \to \text{Mor}~D$ such that:
+
+$$
+F_{\text{Mor}}(f) : F_{\text{Ob}}(a) \to F_{\text{Ob}}(b)
+$$
+
+where
+
+$$
+F_{\text{Mor}}(\text{Id}_c) = \text{Id}_{F_{\text{Ob}(c)}}
+$$
+
+and
+
+$$
+F_{\text{Mor}}(g \circ f) = F_{\text{Mor}}(g) \circ F_{\text{Mor}}(f)
+$$
+
+Functors are composable in an associative manner
+
+## natural transformations
+
+Let $F, F' : C \to D$ be functors. A natural transformation $\tau : F \to F'$ consists of a map
+
+$$
+\tau : \text{Ob}~C \to \text{Mor}~D : c \mapsto \tau_c
+$$
+
+such that for all $c \in \text{Ob}~C$
+
+$$
+\tau_c \in D(F(c), F'(c))
+$$
+
+and all morphisms $f : b \to c$ in $C$, the diagram commutes
+
+![natural transformation diagram](assets/natural_transformation.png)
+
+---
+
+No more notes will appear. I dropped the course due to lack of prerequisite knowledge.
