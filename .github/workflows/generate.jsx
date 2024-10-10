@@ -1,6 +1,6 @@
-import renderToString from "https://cdn.skypack.dev/preact-render-to-string";
-import { h } from "https://cdn.skypack.dev/preact@^10.11.3";
-import { walk, walkSync } from "https://deno.land/std@0.204.0/fs/walk.ts";
+import renderToString from "https://cdn.jsdelivr.net/npm/preact-render-to-string@6.5.11/+esm";
+import { h } from "https://cdn.jsdelivr.net/npm/preact@10.24.2/+esm";
+import { walk, walkSync } from "jsr:@std/fs@1.0.4";
 
 const React = { createElement: h }; // I don't want to create a jsconfig just to change the jsx factory...
 
