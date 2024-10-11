@@ -487,11 +487,11 @@
 class="header-section-number">1</span> P vs NP</h1>
 <h2 data-number="1.1" id="time-complexity"><span
 class="header-section-number">1.1</span> TIME complexity</h2>
-<p><span class="math inline">\text{TIME}(t(n))</span> = the set of
+<p><span class="math inline">\mathsf{TIME}(t(n))</span> = the set of
 languages that can be decided by a TM in time <span
 class="math inline">O(t(n))</span></p>
 <p><span class="math display">
-P = \bigcup_{k = 1}^\infty \text{TIME}(n^k)
+\mathsf P = \bigcup_{k = 1}^\infty \mathsf{TIME}(n^k)
 </span></p>
 <h2 data-number="1.2" id="decider"><span
 class="header-section-number">1.2</span> decider</h2>
@@ -516,13 +516,14 @@ that M accepts <span class="math inline">\langle x, C
 <li>if <span class="math inline">x \notin L</span> then for every C, M
 rejects <span class="math inline">\langle x, C \rangle</span></li>
 </ul>
-<h2 data-number="1.4" id="np"><span
-class="header-section-number">1.4</span> NP</h2>
+<h2 data-number="1.4" id="mathsfnp"><span
+class="header-section-number">1.4</span> <span
+class="math inline">\mathsf{NP}</span></h2>
 <p>The class of languages that has verifiers that work in polynomial
 time. Or equivalently, the class of languages that has nondeterministic
 deciders that work in polynomial time.</p>
 <p><span class="math display">
-NP = \bigcup_{k = 1}^\infty \text{NTIME}(n^k)
+\mathsf{NP} = \bigcup_{k = 1}^\infty \mathsf{NTIME}(n^k)
 </span></p>
 <h3 data-number="1.4.1" id="reductions"><span
 class="header-section-number">1.4.1</span> reductions</h3>
@@ -532,13 +533,144 @@ problem B.</p>
 class="header-section-number">1.4.1.1</span> poly-time reducible</h4>
 <p><span class="math inline">A \le_P B</span>: language A is poly-time
 reducible to B</p>
-<h3 data-number="1.4.2" id="np-completeness"><span
-class="header-section-number">1.4.2</span> NP-completeness</h3>
-<p>A language <span class="math inline">L</span> is NP-complete when</p>
+<h3 data-number="1.4.2" id="mathsfnp-completeness"><span
+class="header-section-number">1.4.2</span> <span
+class="math inline">\mathsf{NP}</span>-completeness</h3>
+<p>A language <span class="math inline">L</span> is <span
+class="math inline">\mathsf{NP}</span>-complete when</p>
 <ol type="1">
-<li><span class="math inline">L</span> is in NP</li>
-<li><span class="math inline">\forall_{L&#39; \in NP} L&#39; \le_P
-L</span></li>
+<li><span class="math inline">L</span> is in<span
+class="math inline">\mathsf{NP}</span></li>
+<li><span class="math inline">\forall_{L&#39; \in \mathsf{NP}} L&#39;
+\le_P L</span></li>
 </ol>
+<h2 data-number="1.5" id="undecidable-language"><span
+class="header-section-number">1.5</span> undecidable language</h2>
+<p>Let <span class="math inline">M_i</span> be the i-th turing machine.
+Let <span class="math inline">\langle M_i \rangle</span> be its
+encoding. There is a countable number of TMs, so we can enumerate all of
+them. Consider the language <span class="math inline">D = \{\langle M
+\rangle : M(\langle M \rangle) = 0\}</span>, ie the language of all
+encodings of turing machines that do not accept their own encoding as
+input.</p>
+<p>Assume <span class="math inline">M_i</span> to be the TM recognizing
+<span class="math inline">D</span>.</p>
+<ul>
+<li>if <span class="math inline">M_i(\langle M_i \rangle) = 1</span>
+then <span class="math inline">\langle M_i \rangle \in D</span> but that
+means that <span class="math inline">M_i(\langle M_i \rangle) =
+0</span>, contradiction</li>
+<li>if <span class="math inline">M_i(\langle M_i \rangle) = 0</span>
+then <span class="math inline">\langle M_i \rangle \notin D</span> but
+that means that <span class="math inline">M_i(\langle M_i \rangle) =
+1</span>, contradiction</li>
+</ul>
+<p>So there is no <span class="math inline">M_i</span> that recognizes
+<span class="math inline">D</span>.</p>
+<h2 data-number="1.6" id="time-hierarchy-theorem"><span
+class="header-section-number">1.6</span> time hierarchy theorem</h2>
+<p><span class="math display">
+    \mathsf{TIME}(o(f(n))) \subsetneq \mathsf{TIME}(f(n) \log f(n))
+</span></p>
+<h2 data-number="1.7" id="universal-turing-machine"><span
+class="header-section-number">1.7</span> universal turing machine</h2>
+<p>There exists a TM <span class="math inline">U</span> such that <span
+class="math inline">U(\langle M, x \rangle) = M(x)</span> which runs in
+<span class="math inline">c_M \cdot t^2_M(|x|)</span></p>
+<h2 data-number="1.8" id="oracle-tms"><span
+class="header-section-number">1.8</span> oracle TMs</h2>
+<p>Denoted by OTM. Let <span class="math inline">A \subseteq \{0,
+1\}^*</span> be an arbitrary language. Then <span
+class="math inline">M^A</span> is an OTM is a TM which additionally is
+able to answer the query of <span class="math inline">x
+\stackrel{?}{\in} A</span> in a single step.</p>
+<h3 data-number="1.8.1" id="complexity-classes"><span
+class="header-section-number">1.8.1</span> complexity classes</h3>
+<ul>
+<li><span class="math inline">\mathsf P^A</span> is the set of languages
+decidable by some poly-time OTM <span
+class="math inline">M^A</span></li>
+<li><span class="math inline">\mathsf{NP}^A</span> is the set of
+languages decidable by some poly-time N-OTM <span
+class="math inline">M^A</span></li>
+</ul>
+<h2 data-number="1.9" id="space-complexity"><span
+class="header-section-number">1.9</span> space complexity</h2>
+<p>Space complexity of a TM is the maximal number of work cells accessed
+by the TM. A work cell is separate from the input.</p>
+<p><span class="math display">
+    \mathsf{SPACE}(s(n)) = \{L : \exists \text{TM deciding } L \text{ in
+space } O(s(n))\}
+</span></p>
+<ul>
+<li><span class="math inline">\mathsf{SPACE}(O(1)) =</span> regular
+languages</li>
+<li><span class="math inline">\mathsf L = \mathsf{SPACE}(\log
+n)</span></li>
+<li><span class="math inline">\mathsf{NL} = \mathsf{NSPACE}(\log
+n)</span></li>
+<li><span class="math inline">\mathsf{PSPACE} = \bigcup_{k = 1}^\infty
+\mathsf{SPACE}(n^k)</span></li>
+<li><span class="math inline">\mathsf{SAT} \in
+\mathsf{SPACE}(n)</span></li>
+<li><span class="math inline">\mathsf{NP} \subseteq
+\mathsf{PSPACE}</span></li>
+</ul>
+<h3 data-number="1.9.1" id="stconn"><span
+class="header-section-number">1.9.1</span> STCONN</h3>
+<p>Given a directed graph, does there exist a path between two
+vertices?</p>
+<ul>
+<li><span class="math inline">\mathsf{STCONN} \in
+\mathsf{NL}</span></li>
+<li><span class="math inline">\mathsf{STCONN} \stackrel{?}{\in}
+\mathsf{L}</span> if yes, then <span class="math inline">\mathsf{NL} =
+\mathsf{L}</span></li>
+<li><span class="math inline">\mathsf{UndirectedSTCONN} \in
+\mathsf{L}</span> (Reingold ’05)</li>
+</ul>
+<h4 data-number="1.9.1.1"
+id="mathsfstconn-in-mathsfspacelog2-n-savitch-70"><span
+class="header-section-number">1.9.1.1</span> <span
+class="math inline">\mathsf{STCONN} \in \mathsf{SPACE}(\log^2 n)</span>
+(Savitch ’70)</h4>
+<p>Let <span class="math inline">G = ([n], E)</span>. Then the following
+routine solves the problem, invoked with Path(s, t, n):</p>
+<p>Path(u, v, k)</p>
+<ul>
+<li>if <span class="math inline">k \le 1</span> return (<span
+class="math inline">u = v</span>) <span class="math inline">\lor</span>
+<span class="math inline">(u, v) \in E</span></li>
+<li>else for each <span class="math inline">w \in [n]</span>
+<ul>
+<li>if Path(u, w, k/2) <span class="math inline">\land</span> Path(w, v,
+k/2) return TRUE</li>
+</ul></li>
+<li>return FALSE</li>
+</ul>
+<h3 data-number="1.9.2" id="space-vs-time"><span
+class="header-section-number">1.9.2</span> space vs time</h3>
+<ul>
+<li><span class="math inline">\mathsf{TIME}(t(n)) \subseteq
+\mathsf{SPACE}(t(n))</span></li>
+<li><span class="math inline">\mathsf{SPACE}(s(n)) \subseteq
+\mathsf{TIME}(2^{O(s(n))})</span></li>
+</ul>
+<p><span class="math display">
+\mathsf{L} \subseteq \mathsf{NL} \subseteq \mathsf{P} \subseteq
+\mathsf{PSPACE} \subseteq \mathsf{EXP}
+</span></p>
+<h3 data-number="1.9.3" id="mathsfpspace-completeness"><span
+class="header-section-number">1.9.3</span> <span
+class="math inline">\mathsf{PSPACE}</span>-completeness</h3>
+<p><span class="math inline">\mathsf{TQBF}</span> is SAT, but with
+leading quantifiers. Let <span class="math inline">Q_i \in \{\forall,
+\exists\}</span>. Let <span class="math inline">\varphi</span> be in
+CNF.</p>
+<p><span class="math display">
+Q_1x_1Q_2x_2 \cdots Q_nx_n \varphi(x)
+</span></p>
+<p><span class="math inline">\mathsf{TQBF}</span> is <span
+class="math inline">\mathsf{PSPACE}</span>-complete</p>
 </body>
 </html>
