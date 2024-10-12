@@ -89,6 +89,7 @@ $$
 - $\mathsf{PSPACE} = \bigcup_{k = 1}^\infty \mathsf{SPACE}(n^k)$
 - $\mathsf{SAT} \in \mathsf{SPACE}(n)$
 - $\mathsf{NP} \subseteq \mathsf{PSPACE}$
+- $\mathsf{NSPACE}(s(n)) \subseteq \mathsf{SPACE}(s^2(n))$
 
 ### STCONN
 
