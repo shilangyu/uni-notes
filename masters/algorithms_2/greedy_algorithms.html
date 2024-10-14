@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>greedy_algorithms</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="greedy-algorithms"><span
+class="header-section-number">1</span> greedy algorithms</h1>
+<h2 data-number="1.1" id="max-weight-spanning-trees"><span
+class="header-section-number">1.1</span> max-weight spanning trees</h2>
+<p>Given a graph <span class="math inline">G = (V, E)</span>, <span
+class="math inline">w : E \to \R</span>, find tree <span
+class="math inline">T \subseteq E</span> of maximum total weight <span
+class="math inline">w(T) = \sum_{e \in T} w(e)</span>.</p>
+<p>The solution does not have to be unique. Greedy algorithm
+solution:</p>
+<ol type="1">
+<li>Sort and label edges such that <span class="math inline">w_{e_1} \ge
+w_{e_2} \ge \cdots \ge w_{e_m}</span> where <span class="math inline">m
+= |E|</span></li>
+<li><span class="math inline">S \leftarrow \emptyset</span></li>
+<li>for <span class="math inline">i = 1</span> to <span
+class="math inline">|E|</span>
+<ol type="1">
+<li>if <span class="math inline">S + e_i</span> is acyclic then <span
+class="math inline">S \leftarrow S + e_i</span></li>
+</ol></li>
+<li>return <span class="math inline">S</span></li>
+</ol>
+<h2 data-number="1.2" id="matroids"><span
+class="header-section-number">1.2</span> matroids</h2>
+<p><span class="math inline">M = (E, I)</span>. Finite ground set <span
+class="math inline">E</span>, family <span class="math inline">I</span>
+of subsets of <span class="math inline">E</span>. This is a matroid
+if:</p>
+<ol type="1">
+<li>if <span class="math inline">X \subseteq Y</span> and <span
+class="math inline">Y \in I</span>, then <span class="math inline">X \in
+I</span></li>
+<li>if <span class="math inline">X \in I</span> and <span
+class="math inline">Y \in I</span> and <span class="math inline">|Y|
+&gt; |X| \implies \exists_{e \in Y\setminus X} X + e \in I</span></li>
+</ol>
+<p>Elements of <span class="math inline">I</span> are called independent
+sets. Every maximal independent set is of the same cardinality, they are
+called a <strong>base</strong>.</p>
+<h3 data-number="1.2.1" id="theorem"><span
+class="header-section-number">1.2.1</span> theorem</h3>
+<p>For any ground set <span class="math inline">E</span>, a family <span
+class="math inline">I</span> of subsets of <span
+class="math inline">E</span> greedy finds a max weight base of <span
+class="math inline">M</span> for every <span class="math inline">w: E
+\to \R</span> iff <span class="math inline">M</span> is a matroid.</p>
+<h3 data-number="1.2.2" id="example-matroids"><span
+class="header-section-number">1.2.2</span> example matroids</h3>
+<ul>
+<li>graphic matroid. <span class="math inline">F \in I</span> iff <span
+class="math inline">F</span> is acyclic</li>
+<li>k-uniform matroid. <span class="math inline">I = \{F \subseteq E :
+|F| \le k\}</span></li>
+<li>partition matroid. Partition <span class="math inline">E</span> into
+disjoint sets <span class="math inline">E_1, E_2, \cdots, E_\ell</span>,
+<span class="math inline">I = \{X \subseteq E : \forall_{i = 1, \cdots,
+\ell} |X \cap E_i| \le k_i\}</span></li>
+<li>linear matroid. The ground set are the columns of a matrix <span
+class="math inline">A</span>. <span class="math inline">I =\{X \subseteq
+E : rank(A_X) = |X|\}</span></li>
+<li>truncating matroid. Given a matroid <span
+class="math inline">M</span>, the <span
+class="math inline">k</span>-truncation of <span
+class="math inline">M</span> is <span class="math inline">M_k = (E,
+I_k)</span> where <span class="math inline">I_k = \{X \subseteq E : X
+\in I \land |X| \le k\}</span></li>
+</ul>
+<h3 data-number="1.2.3" id="matroid-intersection"><span
+class="header-section-number">1.2.3</span> matroid intersection</h3>
+<p>Given <span class="math inline">G = (V, E)</span>, find a matching of
+maximum size. If we let <span class="math inline">I = \{M \subseteq E :
+M \text{ is a matching}\}</span>, this does not form an independent set
+for a matroid as it violates axiom 2.</p>
+<p>Given two matroids <span class="math inline">M_1 = (E, I_1)</span>
+and <span class="math inline">M_2 = (E, I_2)</span> the intersection of
+<span class="math inline">M_1</span> and <span
+class="math inline">M_2</span> is <span class="math inline">M_1 \cap M_2
+= (E, I_1 \cap I_2)</span>. There exists a polynomial time algorithm for
+finding the max weight independent set in intersection of any two
+matroids (not necessarily max cardinality!).</p>
+<h2 data-number="1.3" id="maximum-cardinality-bipartite-matchings"><span
+class="header-section-number">1.3</span> maximum cardinality bipartite
+matchings</h2>
+<ul>
+<li><strong>alternating path</strong> - a path that alternates between a
+matching <span class="math inline">M</span> and <span
+class="math inline">E \setminus M</span></li>
+<li><strong>augmenting path</strong> - an alternating path that starts
+and ends with unmatched vertices from a matching <span
+class="math inline">M</span></li>
+</ul>
+<ol type="1">
+<li><span class="math inline">M \leftarrow \emptyset</span></li>
+<li>while there exists an augmenting path <span
+class="math inline">P</span>
+<ol type="1">
+<li><span class="math inline">M \leftarrow M \Delta P</span></li>
+</ol></li>
+<li>return <span class="math inline">M</span></li>
+</ol>
+<p>For all matchings <span class="math inline">M</span> and all vertex
+covers <span class="math inline">C</span> of a graph <span
+class="math inline">|M| \le |C|</span></p>
+<h3 data-number="1.3.1" id="kőnigs-theorem"><span
+class="header-section-number">1.3.1</span> Kőnig’s theorem</h3>
+<p>For any bipartite graph, the size of the max matching is equal to the
+size of min vertex cover.</p>
+<p>For a bipartite graph <span class="math inline">G = (A \cup B,
+E)</span> and a maximal matching <span class="math inline">M</span>, the
+minimal vertex cover is <span class="math inline">C = (A \setminus L)
+\cup (B \cap L)</span> where <span class="math inline">L</span> is the
+set of vertices reachable from unmatched vertices of <span
+class="math inline">A</span> by alternating path with respect to <span
+class="math inline">M</span>.</p>
+</body>
+</html>

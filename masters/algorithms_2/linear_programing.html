@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>linear_programing</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    html {
+      font-size: 100%;
+      overflow-y: scroll;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      color: #444;
+      font-family: Georgia, Palatino, "Palatino Linotype", Times,
+        "Times New Roman", serif;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 1em;
+      margin: auto;
+      max-width: 42em;
+      background: #fefefe;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:hover {
+      color: #06e;
+    }
+    a:active {
+      color: #faa700;
+    }
+    a:focus {
+      outline: thin dotted;
+    }
+    ::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    ::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #000;
+    }
+    a::-moz-selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    a::selection {
+      background: rgba(255, 255, 0, 0.3);
+      color: #0645ad;
+    }
+    p {
+      margin: 1em 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #111;
+      line-height: 125%;
+      margin-top: 2em;
+      font-weight: 400;
+    }
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      font-size: 2em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.2em;
+    }
+    h5 {
+      font-size: 1em;
+    }
+    h6 {
+      font-size: 0.9em;
+    }
+    blockquote {
+      color: #666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #eee solid;
+    }
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+    code,
+    kbd,
+    pre,
+    samp {
+      color: #000;
+      font-family: monospace, monospace;
+      font-size: 0.98em;
+    }
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    b,
+    strong {
+      font-weight: 700;
+    }
+    dfn {
+      font-style: italic;
+    }
+    ins {
+      background: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+    mark {
+      background: #ff0;
+      color: #000;
+      font-style: italic;
+      font-weight: 700;
+    }
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup {
+      top: -0.5em;
+    }
+    sub {
+      bottom: -0.25em;
+    }
+    ol,
+    ul {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+    li p:last-child {
+      margin-bottom: 0;
+    }
+    ol ol,
+    ul ul {
+      margin: 0.3em 0;
+    }
+    dl {
+      margin-bottom: 1em;
+    }
+    dt {
+      font-weight: 700;
+      margin-bottom: 0.8em;
+    }
+    dd {
+      margin: 0 0 0.8em 2em;
+    }
+    dd:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+    figure {
+      display: block;
+      text-align: center;
+      margin: 1em 0;
+    }
+    figure img {
+      border: none;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-size: 0.8em;
+      font-style: italic;
+      margin: 0 0 0.8em;
+    }
+    table {
+      margin-bottom: 2em;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+    table th {
+      padding: 0.2em 1em;
+      background-color: #eee;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+    }
+    table td {
+      padding: 0.2em 1em;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .author {
+      font-size: 1.2em;
+      text-align: center;
+    }
+    @media only screen and (min-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+    }
+    @media print {
+      * {
+        background: 0 0 !important;
+        color: #000 !important;
+        filter: none !important;
+        -ms-filter: none !important;
+      }
+      body {
+        font-size: 12pt;
+        max-width: 100%;
+      }
+      a,
+      a:visited {
+        text-decoration: underline;
+      }
+      hr {
+        height: 1px;
+        border: 0;
+        border-bottom: 1px solid #000;
+      }
+      a[href]:after {
+        content: " (" attr(href) ")";
+      }
+      abbr[title]:after {
+        content: " (" attr(title) ")";
+      }
+      .ir a:after,
+      a[href^="#"]:after,
+      a[href^="javascript:"]:after {
+        content: "";
+      }
+      blockquote,
+      pre {
+        border: 1px solid #999;
+        padding-right: 1em;
+        page-break-inside: avoid;
+      }
+      img,
+      tr {
+        page-break-inside: avoid;
+      }
+      img {
+        max-width: 100% !important;
+      }
+      @page :left {
+        margin: 15mm 20mm 15mm 10mm;
+      }
+      @page :right {
+        margin: 15mm 10mm 15mm 20mm;
+      }
+      h2,
+      h3,
+      p {
+        orphans: 3;
+        widows: 3;
+      }
+      h2,
+      h3 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.7.15/darkreader.min.js"></script>
+  <script>
+    DarkReader.enable({
+      brightness: 100,
+      contrast: 90,
+      sepia: 10
+    });
+  </script>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+  />
+  <meta name="theme-color" content="#252525" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 data-number="1" id="linear-programming"><span
+class="header-section-number">1</span> linear programming</h1>
+<p>Find values of <span class="math inline">x_1, \cdots, x_n \in
+\R</span> that minimize or maximize a linear objective function</p>
+<p><span class="math display">
+\sum_{i=1}^n c_ix_i = c^Tx
+</span></p>
+<p>subject to <span class="math inline">m</span> linear constraints
+(<span class="math inline">=, \le, \ge</span> but not <span
+class="math inline">&lt;, &gt;</span>)</p>
+<ul>
+<li><span class="math inline">a^Tz \le b</span></li>
+<li><span class="math inline">a&#39;^Tz&#39; \ge b&#39;</span></li>
+<li><span class="math inline">a&#39;&#39;^Tz&#39;&#39; =
+b&#39;&#39;</span></li>
+</ul>
+<p>The constraints create a feasible region which is a convex set. The
+solutions are extreme points/vertices.</p>
+<h2 data-number="1.1" id="solvers"><span
+class="header-section-number">1.1</span> solvers</h2>
+<h3 data-number="1.1.1" id="simplex-method"><span
+class="header-section-number">1.1.1</span> simplex method</h3>
+<p>Does not guarantee polynomial runtime, but in practice it is very
+fast.</p>
+<p>Pick an extreme point and look at its neighbors. If any is better
+move to it. Continue until no neighbor is better. Since we are moving in
+a convex polytope we eventually reach the optimal solution.</p>
+<h3 data-number="1.1.2" id="ellipsoid-method"><span
+class="header-section-number">1.1.2</span> ellipsoid method</h3>
+<p>Guaranteed polynomial runtime, but in practice it is slow.</p>
+<h2 data-number="1.2" id="feasible-solution"><span
+class="header-section-number">1.2</span> feasible solution</h2>
+<h3 data-number="1.2.1" id="def-1"><span
+class="header-section-number">1.2.1</span> def 1</h3>
+<p>Suppose <span class="math inline">\bar x \in \R^d</span>. An extreme
+point is a feasible solution where <span class="math inline">d</span>
+linearly independent inequalities are tight</p>
+<h3 data-number="1.2.2" id="def-2"><span
+class="header-section-number">1.2.2</span> def 2</h3>
+<p>A feasible solution is an extreme point if it cannot be written as a
+convex combination of other feasible solutions</p>
+<p><strong>convex combination</strong>: of points <span
+class="math inline">x_1, \cdots, x_n</span> is a point of the form <span
+class="math inline">\lambda^Tx</span> where <span
+class="math inline">\lambda_i \ge 0</span> and <span
+class="math inline">\sum \lambda_i = 1</span></p>
+<p>If feasible region is bounded and nonempty, there always exists an
+optimum which is an extreme point.</p>
+<h2 data-number="1.3" id="max-weight-perfect-matching"><span
+class="header-section-number">1.3</span> max-weight perfect
+matching</h2>
+<p>For every edge in <span class="math inline">e \in E</span></p>
+<p><span class="math display">
+x_e \in \begin{cases}
+    1 \text{ if }   e \in \text{matching} \\
+    0 \text{ otherwise}
+\end{cases}
+</span></p>
+<p><span class="math display">
+\begin{align*}
+    \text{maximize} \quad&amp; \sum_{e \in E} w(e) \cdot x_e \\
+    \text{subject to} \quad&amp; \sum_{e \in \delta(v)} x_e = 1
+\qquad&amp;\forall_{e \in E}\\
+    &amp; x_e \ge 0 \qquad&amp;\forall_{e \in E}
+\end{align*}
+</span></p>
+<p>Where <span class="math inline">\delta(v)</span> are all edges
+incident to a vertex <span class="math inline">v</span>.</p>
+<p>For a bipartite graph, any extreme point (and thus optimal solution)
+is integral.</p>
+<h2 data-number="1.4" id="minimum-weight-vertex-cover"><span
+class="header-section-number">1.4</span> minimum weight vertex
+cover</h2>
+<p>For every vertex in <span class="math inline">v \in V</span></p>
+<p><span class="math display">
+x_v \in \begin{cases}
+    1 \text{ if }   v \in \text{vertex cover} \\
+    0 \text{ otherwise}
+\end{cases}
+</span></p>
+<p><span class="math display">
+\begin{align*}
+    \text{minimize} \quad&amp; \sum_{v \in V} w(v) \cdot x_v \\
+    \text{subject to} \quad&amp; x_u + x_v \ge 1
+\qquad&amp;\forall_{\{u, v\} \in E}\\
+    &amp; 0 \le x_v \le 1 \qquad&amp;\forall_{v \in V}
+\end{align*}
+</span></p>
+<p>For a bipartite graph, any extreme point (and thus optimal solution)
+is integral.</p>
+<h2 data-number="1.5" id="normal-form"><span
+class="header-section-number">1.5</span> normal form</h2>
+<p>Each LP can be represented in a normal form:</p>
+<p><span class="math display">
+\begin{align*}
+    \text{minimize} \quad c^Tx&amp; \\
+    \text{subject to} \quad Ax &amp;\ge b \\
+    \quad x &amp;\ge 0
+\end{align*}
+</span></p>
+<h2 data-number="1.6" id="duality"><span
+class="header-section-number">1.6</span> duality</h2>
+<p>A reformulation of an LP to give a bound on the answer. For a normal
+form primal LP, the dual gives the lower bound on the cost.</p>
+<p>It serves as a certificate that can verify the optimality of a
+solution of the primal.</p>
+<p>Given a normal form LP, the dual is</p>
+<p><span class="math display">
+\begin{align*}
+    \text{maximize} \quad b^Ty&amp; \\
+    \text{subject to} \quad A^Ty &amp;\le c \\
+    \quad y &amp;\ge 0
+\end{align*}
+</span></p>
+<h3 data-number="1.6.1" id="weak-duality"><span
+class="header-section-number">1.6.1</span> weak duality</h3>
+<p>For all <span class="math inline">x</span> which are primal feasible
+and all <span class="math inline">y</span> which are dual feasible</p>
+<p><span class="math display">
+c^Tx \ge b^Ty
+</span></p>
+<h3 data-number="1.6.2" id="strong-duality"><span
+class="header-section-number">1.6.2</span> strong duality</h3>
+<p>If <span class="math inline">x</span> is an optimal solution and
+<span class="math inline">y</span> is an optimal dual solution then</p>
+<p><span class="math display">
+c^Tx = b^Ty
+</span></p>
+<p>If the primal problem is unbounded then the dual problem is
+infeasible and vice versa.</p>
+<h3 data-number="1.6.3" id="complementarity-slackness"><span
+class="header-section-number">1.6.3</span> complementarity
+slackness</h3>
+<p>If <span class="math inline">x</span> is primal feasible and <span
+class="math inline">y</span> is dual feasible then</p>
+<p><span class="math display">
+x \text{ and } y \text{ are both optimal} \iff \begin{cases}
+    \forall_i x_i &gt; 0 \implies c_i = \sum_j A_{j,i} y_j \\
+    \forall_j y_j &gt; 0 \implies b_j = \sum_i A_{j,i} x_i \\
+\end{cases}
+</span></p>
+</body>
+</html>
