@@ -121,10 +121,54 @@ $$
 
 ### $\mathsf{PSPACE}$-completeness
 
-$\mathsf{TQBF}$ is SAT, but with leading quantifiers. Let $Q_i \in \{\forall, \exists\}$. Let $\varphi$ be in CNF.
+$\mathsf{TQBF}$ is SAT, but with leading quantifiers. Let $Q \in \{\forall, \exists\}$. Let $\varphi$ be in CNF.
 
 $$
-Q_1x_1Q_2x_2 \cdots Q_nx_n \varphi(x)
+\exists_{x_1}\forall_{x_2}\exists_{x_3} \cdots Q{x_m} \varphi(x)
 $$
 
 $\mathsf{TQBF}$ is $\mathsf{PSPACE}$-complete
+
+## polynomial hierarchy
+
+### $\Sigma$ class
+
+For $L \in \Sigma_i \mathsf P$ where $i \ge 0$, we mean a language where
+
+$$
+x \in L \iff \exists_{y_1}\forall_{y_2}\exists_{y_3} \cdots Q{y_i} : M(x, y) = 1
+$$
+
+### $\Pi$ class
+
+For $L \in \Pi_i \mathsf P = co\Sigma_i \mathsf P$ where $i \ge 0$, we mean a language where
+
+$$
+x \in L \iff \forall_{y_1}\exists_{y_2}\forall_{y_3} \cdots Q{y_i} : M(x, y) = 1
+$$
+
+### inclusions
+
+![](https://upload.wikimedia.org/wikipedia/commons/9/9e/Polynomial_time_hierarchy.svg)
+
+$\mathsf{PH} = \bigcup_{i \in \N} \Sigma_i \mathsf P$
+
+$\mathsf{PH} \subseteq \mathsf{PSPACE}$
+
+### lemmas
+
+$$
+\Sigma_i \mathsf{P} = \Pi_i \mathsf{P} \implies \mathsf{PH} \text{ collapses at } i
+$$
+
+$\mathsf{PH}$ collapsing means that $\mathsf{PH} = \Sigma_i \mathsf P$
+
+$$
+\exists_{A} \mathsf{PH}^A \text{ is infinite}
+$$
+
+**Karp-Lipton:**
+
+$$
+\mathsf{NP} \subseteq \mathsf{P}/poly \implies \Sigma_2 \mathsf{P} = \Pi_2 \mathsf{P}
+$$
