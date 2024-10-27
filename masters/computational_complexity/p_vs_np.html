@@ -666,13 +666,58 @@ class="header-section-number">1.9.2</span> space vs time</h3>
 class="header-section-number">1.9.3</span> <span
 class="math inline">\mathsf{PSPACE}</span>-completeness</h3>
 <p><span class="math inline">\mathsf{TQBF}</span> is SAT, but with
-leading quantifiers. Let <span class="math inline">Q_i \in \{\forall,
+leading quantifiers. Let <span class="math inline">Q \in \{\forall,
 \exists\}</span>. Let <span class="math inline">\varphi</span> be in
 CNF.</p>
 <p><span class="math display">
-Q_1x_1Q_2x_2 \cdots Q_nx_n \varphi(x)
+\exists_{x_1}\forall_{x_2}\exists_{x_3} \cdots Q{x_m} \varphi(x)
 </span></p>
 <p><span class="math inline">\mathsf{TQBF}</span> is <span
 class="math inline">\mathsf{PSPACE}</span>-complete</p>
+<h2 data-number="1.10" id="polynomial-hierarchy"><span
+class="header-section-number">1.10</span> polynomial hierarchy</h2>
+<h3 data-number="1.10.1" id="sigma-class"><span
+class="header-section-number">1.10.1</span> <span
+class="math inline">\Sigma</span> class</h3>
+<p>For <span class="math inline">L \in \Sigma_i \mathsf P</span> where
+<span class="math inline">i \ge 0</span>, we mean a language where</p>
+<p><span class="math display">
+x \in L \iff \exists_{y_1}\forall_{y_2}\exists_{y_3} \cdots Q{y_i} :
+M(x, y) = 1
+</span></p>
+<h3 data-number="1.10.2" id="pi-class"><span
+class="header-section-number">1.10.2</span> <span
+class="math inline">\Pi</span> class</h3>
+<p>For <span class="math inline">L \in \Pi_i \mathsf P = co\Sigma_i
+\mathsf P</span> where <span class="math inline">i \ge 0</span>, we mean
+a language where</p>
+<p><span class="math display">
+x \in L \iff \forall_{y_1}\exists_{y_2}\forall_{y_3} \cdots Q{y_i} :
+M(x, y) = 1
+</span></p>
+<h3 data-number="1.10.3" id="inclusions"><span
+class="header-section-number">1.10.3</span> inclusions</h3>
+<p><img
+src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Polynomial_time_hierarchy.svg" /></p>
+<p><span class="math inline">\mathsf{PH} = \bigcup_{i \in \N} \Sigma_i
+\mathsf P</span></p>
+<p><span class="math inline">\mathsf{PH} \subseteq
+\mathsf{PSPACE}</span></p>
+<h3 data-number="1.10.4" id="lemmas"><span
+class="header-section-number">1.10.4</span> lemmas</h3>
+<p><span class="math display">
+\Sigma_i \mathsf{P} = \Pi_i \mathsf{P} \implies \mathsf{PH} \text{
+collapses at } i
+</span></p>
+<p><span class="math inline">\mathsf{PH}</span> collapsing means that
+<span class="math inline">\mathsf{PH} = \Sigma_i \mathsf P</span></p>
+<p><span class="math display">
+\exists_{A} \mathsf{PH}^A \text{ is infinite}
+</span></p>
+<p><strong>Karp-Lipton:</strong></p>
+<p><span class="math display">
+\mathsf{NP} \subseteq \mathsf{P}/poly \implies \Sigma_2 \mathsf{P} =
+\Pi_2 \mathsf{P}
+</span></p>
 </body>
 </html>
