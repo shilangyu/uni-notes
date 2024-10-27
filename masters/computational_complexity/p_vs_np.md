@@ -149,7 +149,7 @@ $$
 
 ### inclusions
 
-![](https://upload.wikimedia.org/wikipedia/commons/9/9e/Polynomial_time_hierarchy.svg)
+![](https://upload.wikimedia.org/wikipedia/commons/9/9e/Polynomial_time_hierarchy.svg){style="filter: invert(1);"}
 
 $\mathsf{PH} = \bigcup_{i \in \N} \Sigma_i \mathsf P$
 
