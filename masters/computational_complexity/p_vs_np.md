@@ -75,6 +75,8 @@ Denoted by OTM. Let $A \subseteq \{0, 1\}^*$ be an arbitrary language. Then $M^A
 - $\mathsf P^A$ is the set of languages decidable by some poly-time OTM $M^A$
 - $\mathsf{NP}^A$ is the set of languages decidable by some poly-time N-OTM $M^A$
 
+- $\mathsf{NP} \cup \mathsf P \subseteq \mathsf P^{\mathsf{SAT}}$
+
 ## space complexity
 
 Space complexity of a TM is the maximal number of work cells accessed by the TM. A work cell is separate from the input.
