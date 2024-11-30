@@ -33,6 +33,7 @@
     "Borel",
     "Borsuk",
     "boxdot",
+    "BPTIME",
     "Br",
     "Bródka",
     "Brouwer's",
@@ -48,6 +49,7 @@
     "Cezary",
     "CGHA",
     "cheatsheet",
+    "chebyshev's",
     "Ciphertext",
     "ciphertexts",
     "Civita",
@@ -137,6 +139,8 @@
     "Kalbarczyk",
     "Kaleta",
     "Kalisiak",
+    "Karger",
+    "Karger's",
     "Karp",
     "Karpisz",
     "Kasami",
@@ -355,6 +359,7 @@
     "Wronskian",
     "Zabołotny",
     "Zamecznik",
-    "Zbigniew"
+    "Zbigniew",
+    "Zippel"
   ]
 }
