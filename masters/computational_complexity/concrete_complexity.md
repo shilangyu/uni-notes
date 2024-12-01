@@ -125,4 +125,43 @@ Game ends when Tree solves Search.
 
 If there exists an adversary that can score $\le r$ points then the decision tree's size is $\ge 2^r$
 
+## communication complexity
+
+Given two players we want to know the cost (number of exchanged bits) needed to compute the function $f: \{0, 1\}^n \times \{0, 1\}^n \to \{0, 1\}$ where each player has one half of the input.
+
+### cost
+
+$D^{cc}(f) =$ least cost of protocol for $f$. For all $f$ we have $D^{cc}(f) \le D^{dt}(f)$
+
+### communication matrix
+
+$M_f \in \{0, 1\}^{2^n \times 2^n}$ where $(M_f)_{x, y} = f(x, y)$
+
+Protocols of cost $c$ partition $M_f$ into $2^c$ monochromatic (meaning every output is the same for a rectangle) rectangles (where a rectangle is just a product $A \times B$ of inputs $A$, $B$ of player one and two)
+
+### partition number
+
+$part(f) =$ least number of rectangles in any monochromatic rectangle partition of $M_f$
+
+$$
+D^{cc}(f) \ge \log part(f)
+$$
+
+$$
+D^{cc}(f) \le (\log part(f))^2
+$$
+
+### nondeterminism
+
+The protocol on input $(x, y)$:
+
+1. Guess certificate string $w \in \{0, 1\}^s$ where $s$ is the cost
+2. Verify: accept iff player 1 accepts $(x, w)$ and player 2 accepts $(y, w)$
+
+Where $s$ is the cost.
+
+$N_b^{cc}(f) =$ least cost of nondeterministic protocol accepting $f^{-1}(b) = \{(x, y) : f(x, y) = b\}$
+
+$$
+D^{cc}(f) \le N_0(f) \cdot N_1(f)
 $$
