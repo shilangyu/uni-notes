@@ -558,5 +558,118 @@ class="math inline">f(x) \ne f(x^{B_i})</span></p>
 <p><span class="math display">
 C(f) \le s(f) \cdot bs(f)
 </span></p>
+<h2 data-number="1.2" id="proof-complexity"><span
+class="header-section-number">1.2</span> proof complexity</h2>
+<h3 data-number="1.2.1" id="proof-system"><span
+class="header-section-number">1.2.1</span> proof system</h3>
+<p>For any language <span class="math inline">L</span> the proof system
+is a TM <span class="math inline">P</span> that on input <span
+class="math inline">\langle x, \pi \rangle</span> runs in time <span
+class="math inline">(|x| + |\pi|)^{O(1)}</span> such that</p>
+<p><span class="math display">
+x \in L \iff \exists_\pi P(x, \pi) = 1
+</span></p>
+<h3 data-number="1.2.2" id="propositional-proof-system"><span
+class="header-section-number">1.2.2</span> propositional proof
+system</h3>
+<p>When <span class="math inline">L \in \mathsf{UNSAT}</span></p>
+<p><span class="math display">
+P \text{ is poly bounded} \iff \forall_{x\in\mathsf{UNSAT}} \exists_\pi
+|\pi| \le |x|^{O(1)} P(x, \pi) = 1
+</span></p>
+<p><span class="math display">
+\mathsf{NP} = \mathsf{coNP} \iff \exists \text{poly-bounded proof
+system}
+</span></p>
+<h3 data-number="1.2.3" id="resolution-proof-system"><span
+class="header-section-number">1.2.3</span> resolution proof system</h3>
+<p>A resolution refutation proof of <span
+class="math inline">\phi</span> is <span class="math inline">(C_1,
+\cdots, C_s)</span> where <span class="math inline">C_s =
+\emptyset</span> and for all <span class="math inline">i</span> either
+<span class="math inline">C_i</span> is a clause of <span
+class="math inline">\phi</span> or <span class="math inline">C_i = A
+\lor B</span> is obtained from <span class="math inline">C_j=A\lor
+x</span>, <span class="math inline">C_{j&#39;} = B \lor \neg x</span>
+<span class="math inline">j, j&#39; &lt; i</span> resolution rule:</p>
+<p><span class="math display">
+\frac{A \lor x \quad B \lor \neg x}{A \lor B}
+</span></p>
+<p>Resolution is not poly-bounded.</p>
+<h3 data-number="1.2.4" id="tree-like"><span
+class="header-section-number">1.2.4</span> tree-like</h3>
+<p>A proof is tree like if the underlying DAG is a tree. Then <span
+class="math inline">\phi \in \mathsf{UNSAT}</span> defines Search(<span
+class="math inline">\phi</span>), where <span
+class="math inline">\phi</span> has n variables. Given <span
+class="math inline">x \in \{0, 1\}^n</span> return the clause <span
+class="math inline">C</span> of <span class="math inline">\phi</span>
+where <span class="math inline">C(x) = 0</span>.</p>
+<p>Tree-like refutation is the same as a decision tree solving
+Search.</p>
+<h3 data-number="1.2.5" id="tree-vs-adversary-game"><span
+class="header-section-number">1.2.5</span> tree-vs-adversary game</h3>
+<p>In each round:</p>
+<ul>
+<li>Tree queries <span class="math inline">x_i</span></li>
+<li>Adversary either chooses value of <span
+class="math inline">x_i</span> or lets Tree choose it (that gives a
+point to the Adversary)</li>
+</ul>
+<p>Game ends when Tree solves Search.</p>
+<p>If there exists an adversary that can score <span
+class="math inline">\le r</span> points then the decision tree’s size is
+<span class="math inline">\ge 2^r</span></p>
+<h2 data-number="1.3" id="communication-complexity"><span
+class="header-section-number">1.3</span> communication complexity</h2>
+<p>Given two players we want to know the cost (number of exchanged bits)
+needed to compute the function <span class="math inline">f: \{0, 1\}^n
+\times \{0, 1\}^n \to \{0, 1\}</span> where each player has one half of
+the input.</p>
+<h3 data-number="1.3.1" id="cost"><span
+class="header-section-number">1.3.1</span> cost</h3>
+<p><span class="math inline">D^{cc}(f) =</span> least cost of protocol
+for <span class="math inline">f</span>. For all <span
+class="math inline">f</span> we have <span class="math inline">D^{cc}(f)
+\le D^{dt}(f)</span></p>
+<h3 data-number="1.3.2" id="communication-matrix"><span
+class="header-section-number">1.3.2</span> communication matrix</h3>
+<p><span class="math inline">M_f \in \{0, 1\}^{2^n \times 2^n}</span>
+where <span class="math inline">(M_f)_{x, y} = f(x, y)</span></p>
+<p>Protocols of cost <span class="math inline">c</span> partition <span
+class="math inline">M_f</span> into <span class="math inline">2^c</span>
+monochromatic (meaning every output is the same for a rectangle)
+rectangles (where a rectangle is just a product <span
+class="math inline">A \times B</span> of inputs <span
+class="math inline">A</span>, <span class="math inline">B</span> of
+player one and two)</p>
+<h3 data-number="1.3.3" id="partition-number"><span
+class="header-section-number">1.3.3</span> partition number</h3>
+<p><span class="math inline">part(f) =</span> least number of rectangles
+in any monochromatic rectangle partition of <span
+class="math inline">M_f</span></p>
+<p><span class="math display">
+D^{cc}(f) \ge \log part(f)
+</span></p>
+<p><span class="math display">
+D^{cc}(f) \le (\log part(f))^2
+</span></p>
+<h3 data-number="1.3.4" id="nondeterminism"><span
+class="header-section-number">1.3.4</span> nondeterminism</h3>
+<p>The protocol on input <span class="math inline">(x, y)</span>:</p>
+<ol type="1">
+<li>Guess certificate string <span class="math inline">w \in \{0,
+1\}^s</span> where <span class="math inline">s</span> is the cost</li>
+<li>Verify: accept iff player 1 accepts <span class="math inline">(x,
+w)</span> and player 2 accepts <span class="math inline">(y,
+w)</span></li>
+</ol>
+<p>Where <span class="math inline">s</span> is the cost.</p>
+<p><span class="math inline">N_b^{cc}(f) =</span> least cost of
+nondeterministic protocol accepting <span class="math inline">f^{-1}(b)
+= \{(x, y) : f(x, y) = b\}</span></p>
+<p><span class="math display">
+D^{cc}(f) \le N_0(f) \cdot N_1(f)
+</span></p>
 </body>
 </html>
