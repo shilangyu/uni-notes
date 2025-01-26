@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>linear_programing</title>
+  <title>randomized_algorithms</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,152 +483,130 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="linear-programming"><span
-class="header-section-number">1</span> linear programming</h1>
-<p>Find values of <span class="math inline">x_1, \cdots, x_n \in
-\R</span> that minimize or maximize a linear objective function</p>
+<h1 data-number="1" id="randomized-algorithms"><span
+class="header-section-number">1</span> randomized algorithms</h1>
+<p>And algorithm with access to coin-flips</p>
+<h2 data-number="1.1" id="min-cut"><span
+class="header-section-number">1.1</span> min-cut</h2>
+<p>Given a graph <span class="math inline">G = (V, E)</span> find a
+non-trivial <span class="math inline">S \subseteq V</span> such that
+<span class="math inline">|E(S, \bar S)|</span> is minimized. Where
+<span class="math inline">E(S, \bar S)</span> is the set of edges
+between <span class="math inline">S</span> and <span
+class="math inline">\bar S</span>.</p>
+<h3 data-number="1.1.1" id="kargers-min-cut"><span
+class="header-section-number">1.1.1</span> Karger’s min-cut</h3>
+<p>If the graph has two vertices, output the only possibility.
+Otherwise,</p>
+<ol type="1">
+<li>select an edge <span class="math inline">e</span> uniformly at
+random</li>
+<li>contract the vertices <span class="math inline">\{u, v\} = e</span>
+to construct a graph <span class="math inline">G&#39;</span> with <span
+class="math inline">|V| - 1</span> vertices</li>
+<li>recurse on <span class="math inline">G&#39;</span></li>
+</ol>
+<p>This returns a chosen min-cut with probability at least <span
+class="math inline">\frac{1}{\binom{n}{2}}</span>. It’s runtime is <span
+class="math inline">O(n^4 \cdot \ln n)</span>.</p>
+<p>If we run the algorithm <span class="math inline">T = c \cdot n^2
+\cdot \ln n</span> times and choose the best result we get a fail
+probability of <span class="math inline">\frac{1}{n^c}</span>.</p>
+<h3 data-number="1.1.2" id="karger-stain-min-cut"><span
+class="header-section-number">1.1.2</span> Karger-Stain min-cut</h3>
+<p>If the graph has two vertices, output the only possibility.
+Otherwise,</p>
+<ol type="1">
+<li>for <span class="math inline">i = n \to n -
+\frac{n}{\sqrt{2}}</span>
+<ol type="1">
+<li>select an edge <span class="math inline">e</span> uniformly at
+random and contract it</li>
+</ol></li>
+<li>Let <span class="math inline">G&#39;</span> be the new graph with
+contracted edges</li>
+<li>recurse on <span class="math inline">G&#39;</span> twice, and choose
+the better result</li>
+</ol>
+<p>This returns a min-cut with probability at least <span
+class="math inline">\frac{1}{2\log n}</span>. It’s runtime is <span
+class="math inline">O(n^2 \cdot \log n)</span>.</p>
+<h2 data-number="1.2" id="polynomial-identity-testing-pit"><span
+class="header-section-number">1.2</span> polynomial identity testing
+(PIT)</h2>
+<p>Given polynomials <span class="math inline">p(x)</span> and <span
+class="math inline">q(x)</span> we want to know whether they are equal
+for any <span class="math inline">x</span>. In other words whether <span
+class="math inline">p(x) - q(x) \equiv 0</span>. We do not know how
+<span class="math inline">p</span> or <span class="math inline">q</span>
+looks like, we can only evaluate their values.</p>
+<h3 data-number="1.2.1" id="schwartz-zippel-lemma"><span
+class="header-section-number">1.2.1</span> Schwartz-Zippel lemma</h3>
+<p>Let <span class="math inline">p(x_1, \cdots, x_n)</span> be a
+non-zero polynomial of degree <span class="math inline">d</span>. Let
+<span class="math inline">S</span> be a finite subset of <span
+class="math inline">\R</span> with at least <span
+class="math inline">d</span> elements. If <span class="math inline">x_i
+\sim U(S)</span> then</p>
 <p><span class="math display">
-\sum_{i=1}^n c_ix_i = c^Tx
+P[p(x_1, \cdots, x_n) = 0] \le \frac{d}{|S|}
 </span></p>
-<p>subject to <span class="math inline">m</span> linear constraints
-(<span class="math inline">=, \le, \ge</span> but not <span
-class="math inline">&lt;, &gt;</span>)</p>
-<ul>
-<li><span class="math inline">a^Tz \le b</span></li>
-<li><span class="math inline">a&#39;^Tz&#39; \ge b&#39;</span></li>
-<li><span class="math inline">a&#39;&#39;^Tz&#39;&#39; =
-b&#39;&#39;</span></li>
-</ul>
-<p>The constraints create a feasible region which is a convex set. The
-solutions are extreme points/vertices.</p>
-<h2 data-number="1.1" id="solvers"><span
-class="header-section-number">1.1</span> solvers</h2>
-<h3 data-number="1.1.1" id="simplex-method"><span
-class="header-section-number">1.1.1</span> simplex method</h3>
-<p>Does not guarantee polynomial runtime, but in practice it is very
-fast.</p>
-<p>Pick an extreme point and look at its neighbors. If any is better
-move to it. Continue until no neighbor is better. Since we are moving in
-a convex polytope we eventually reach the optimal solution.</p>
-<h3 data-number="1.1.2" id="ellipsoid-method"><span
-class="header-section-number">1.1.2</span> ellipsoid method</h3>
-<p>Guaranteed polynomial runtime, but in practice it is slow.</p>
-<h2 data-number="1.2" id="feasible-solution"><span
-class="header-section-number">1.2</span> feasible solution</h2>
-<h3 data-number="1.2.1" id="def-1"><span
-class="header-section-number">1.2.1</span> def 1</h3>
-<p>Suppose <span class="math inline">\bar x \in \R^d</span>. An extreme
-point is a feasible solution where <span class="math inline">d</span>
-linearly independent inequalities are tight</p>
-<h3 data-number="1.2.2" id="def-2"><span
-class="header-section-number">1.2.2</span> def 2</h3>
-<p>A feasible solution is an extreme point if it cannot be written as a
-convex combination of other feasible solutions</p>
-<p><strong>convex combination</strong>: of points <span
-class="math inline">x_1, \cdots, x_n</span> is a point of the form <span
-class="math inline">\lambda^Tx</span> where <span
-class="math inline">\lambda_i \ge 0</span> and <span
-class="math inline">\sum \lambda_i = 1</span></p>
-<p>If feasible region is bounded and nonempty, there always exists an
-optimum which is an extreme point.</p>
-<h2 data-number="1.3" id="max-weight-perfect-matching"><span
-class="header-section-number">1.3</span> max-weight perfect
-matching</h2>
-<p>For every edge in <span class="math inline">e \in E</span></p>
+<h2 data-number="1.3" id="sampling"><span
+class="header-section-number">1.3</span> sampling</h2>
+<p>Distribution <span class="math inline">D</span>, want to estimate
+mean of <span class="math inline">D</span>. Draw independent samples
+from <span class="math inline">D</span> and return the empirical
+average. How close should we expect this average to be the real mean and
+how often?</p>
+<h3 data-number="1.3.1" id="markovs-inequality"><span
+class="header-section-number">1.3.1</span> markov’s inequality</h3>
+<p>Given a random variable <span class="math inline">X \ge 0</span>, for
+all <span class="math inline">k &gt; 0</span></p>
 <p><span class="math display">
-x_e \in \begin{cases}
-    1 \text{ if }   e \in \text{matching} \\
-    0 \text{ otherwise}
-\end{cases}
+Pr[X \ge k] \le \frac{\mathbb E[X]}{k}
+</span></p>
+<p>or</p>
+<p><span class="math display">
+Pr[X \ge k \cdot \mathbb E[X]] \le \frac{1}{k}
+</span></p>
+<h3 data-number="1.3.2" id="chebyshevs-inequality"><span
+class="header-section-number">1.3.2</span> chebyshev’s inequality</h3>
+<p><span class="math display">
+Pr[|X - \mathbb E[X]| &gt; \epsilon] \le \frac{Var[X]}{\epsilon^2}
+</span></p>
+<p>or</p>
+<p><span class="math display">
+Pr[|X - \mathbb E[X]| &gt; k \cdot \sigma] \le \frac{1}{k^2}
+</span></p>
+<p>where <span class="math inline">\sigma = \sqrt{Var[X]}</span></p>
+<h3 data-number="1.3.3" id="chernoff-bounds"><span
+class="header-section-number">1.3.3</span> chernoff bounds</h3>
+<h4 data-number="1.3.3.1" id="bernoulli"><span
+class="header-section-number">1.3.3.1</span> bernoulli</h4>
+<p>Let <span class="math inline">X = \sum_{i=1}^n X_i</span> where <span
+class="math inline">X_i</span> are independent and <span
+class="math inline">X_i = 1</span> with probability <span
+class="math inline">p_i</span> and <span class="math inline">X_i =
+0</span> otherwise. Let <span class="math inline">\mu = \mathbb
+E[X]</span> and <span class="math inline">\delta &gt; 0</span></p>
+<p><span class="math display">
+P[X \ge (1 + \delta) \mu] \le e^{-\frac{\delta^2}{2 + \delta}\mu}
 </span></p>
 <p><span class="math display">
-\begin{align*}
-    \text{maximize} \quad&amp; \sum_{e \in E} w(e) \cdot x_e \\
-    \text{subject to} \quad&amp; \sum_{e \in \delta(v)} x_e = 1
-\qquad&amp;\forall_{v \in V}\\
-    &amp; x_e \ge 0 \qquad&amp;\forall_{e \in E}
-\end{align*}
+P[X \le (1 - \delta) \mu] \le e^{-\frac{\delta^2}{2}\mu}
 </span></p>
-<p>Where <span class="math inline">\delta(v)</span> are all edges
-incident to a vertex <span class="math inline">v</span>.</p>
-<p>For a bipartite graph, any extreme point (and thus optimal solution)
-is integral.</p>
-<h2 data-number="1.4" id="minimum-weight-vertex-cover"><span
-class="header-section-number">1.4</span> minimum weight vertex
-cover</h2>
-<p>For every vertex in <span class="math inline">v \in V</span></p>
+<h4 data-number="1.3.3.2" id="bounded"><span
+class="header-section-number">1.3.3.2</span> bounded</h4>
+<p>Let <span class="math inline">X = \sum_{i=1}^n X_i</span> where <span
+class="math inline">X_i</span> are independent such that <span
+class="math inline">a \le X_i \le b</span>. Let <span
+class="math inline">\mu = \mathbb E[X]</span> and <span
+class="math inline">\delta &gt; 0</span></p>
 <p><span class="math display">
-x_v \in \begin{cases}
-    1 \text{ if }   v \in \text{vertex cover} \\
-    0 \text{ otherwise}
-\end{cases}
+P[X \ge (1 + \delta) \mu] \le e^{-\frac{2\delta^2\mu^2}{n(b-a)^2}}
 </span></p>
 <p><span class="math display">
-\begin{align*}
-    \text{minimize} \quad&amp; \sum_{v \in V} w(v) \cdot x_v \\
-    \text{subject to} \quad&amp; x_u + x_v \ge 1
-\qquad&amp;\forall_{\{u, v\} \in E}\\
-    &amp; 0 \le x_v \le 1 \qquad&amp;\forall_{v \in V}
-\end{align*}
+P[X \le (1 - \delta) \mu] \le e^{-\frac{\delta^2\mu^2}{n(b-a)^2}}
 </span></p>
-<p>For a bipartite graph, any extreme point (and thus optimal solution)
-is integral.</p>
-<h2 data-number="1.5" id="normal-form"><span
-class="header-section-number">1.5</span> normal form</h2>
-<p>Each LP can be represented in a normal form:</p>
-<p><span class="math display">
-\begin{align*}
-    \text{minimize} \quad c^Tx&amp; \\
-    \text{subject to} \quad Ax &amp;\ge b \\
-    \quad x &amp;\ge 0
-\end{align*}
-</span></p>
-<h2 data-number="1.6" id="duality"><span
-class="header-section-number">1.6</span> duality</h2>
-<p>A reformulation of an LP to give a bound on the answer. For a normal
-form primal LP, the dual gives the lower bound on the cost.</p>
-<p>It serves as a certificate that can verify the optimality of a
-solution of the primal.</p>
-<p>Given a normal form LP, the dual is</p>
-<p><span class="math display">
-\begin{align*}
-    \text{maximize} \quad b^Ty&amp; \\
-    \text{subject to} \quad A^Ty &amp;\le c \\
-    \quad y &amp;\ge 0
-\end{align*}
-</span></p>
-<h3 data-number="1.6.1" id="weak-duality"><span
-class="header-section-number">1.6.1</span> weak duality</h3>
-<p>For all <span class="math inline">x</span> which are primal feasible
-and all <span class="math inline">y</span> which are dual feasible</p>
-<p><span class="math display">
-c^Tx \ge b^Ty
-</span></p>
-<h3 data-number="1.6.2" id="strong-duality"><span
-class="header-section-number">1.6.2</span> strong duality</h3>
-<p>If <span class="math inline">x</span> is an optimal solution and
-<span class="math inline">y</span> is an optimal dual solution then</p>
-<p><span class="math display">
-c^Tx = b^Ty
-</span></p>
-<p>If the primal problem is unbounded then the dual problem is
-infeasible and vice versa.</p>
-<h3 data-number="1.6.3" id="complementarity-slackness"><span
-class="header-section-number">1.6.3</span> complementarity
-slackness</h3>
-<p>If <span class="math inline">x</span> is primal feasible and <span
-class="math inline">y</span> is dual feasible then</p>
-<p><span class="math display">
-x \text{ and } y \text{ are both optimal} \iff \begin{cases}
-    \forall_i x_i &gt; 0 \implies c_i = \sum_j A_{j,i} y_j \\
-    \forall_j y_j &gt; 0 \implies b_j = \sum_i A_{j,i} x_i \\
-\end{cases}
-</span></p>
-<h2 data-number="1.7" id="halls-theorem"><span
-class="header-section-number">1.7</span> Hall’s theorem</h2>
-<p>An <span class="math inline">n \times n</span> bipartite graph <span
-class="math inline">G = (A \cup B, E)</span> has a perfect matching iff
-<span class="math inline">|S| \le |N(S)|</span> for all <span
-class="math inline">S \subseteq A</span>.</p>
 </body>
 </html>

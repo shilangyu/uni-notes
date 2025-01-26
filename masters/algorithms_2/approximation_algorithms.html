@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>linear_programing</title>
+  <title>approximation_algorithms</title>
   <style>
     html {
       line-height: 1.5;
@@ -483,152 +483,150 @@
   <![endif]-->
 </head>
 <body>
-<h1 data-number="1" id="linear-programming"><span
-class="header-section-number">1</span> linear programming</h1>
-<p>Find values of <span class="math inline">x_1, \cdots, x_n \in
-\R</span> that minimize or maximize a linear objective function</p>
-<p><span class="math display">
-\sum_{i=1}^n c_ix_i = c^Tx
-</span></p>
-<p>subject to <span class="math inline">m</span> linear constraints
-(<span class="math inline">=, \le, \ge</span> but not <span
-class="math inline">&lt;, &gt;</span>)</p>
+<h1 data-number="1" id="approximation-algorithms"><span
+class="header-section-number">1</span> approximation algorithms</h1>
+<p>Algorithms which relax the requirement of finding the optimal
+solution while preserving reliability and efficiency.</p>
+<p>An <span class="math inline">\alpha</span>-approximation algorithm is
+such that outputs <span class="math inline">S</span> in poly time
+where</p>
 <ul>
-<li><span class="math inline">a^Tz \le b</span></li>
-<li><span class="math inline">a&#39;^Tz&#39; \ge b&#39;</span></li>
-<li><span class="math inline">a&#39;&#39;^Tz&#39;&#39; =
-b&#39;&#39;</span></li>
+<li><span class="math inline">\frac{\text{cost(S)}}{\text{cost(OPT)}}
+\le \alpha</span> for minimization problems</li>
+<li><span
+class="math inline">\frac{\text{profit(S)}}{\text{profit(OPT)}} \ge
+\alpha</span> for maximization problems</li>
 </ul>
-<p>The constraints create a feasible region which is a convex set. The
-solutions are extreme points/vertices.</p>
-<h2 data-number="1.1" id="solvers"><span
-class="header-section-number">1.1</span> solvers</h2>
-<h3 data-number="1.1.1" id="simplex-method"><span
-class="header-section-number">1.1.1</span> simplex method</h3>
-<p>Does not guarantee polynomial runtime, but in practice it is very
-fast.</p>
-<p>Pick an extreme point and look at its neighbors. If any is better
-move to it. Continue until no neighbor is better. Since we are moving in
-a convex polytope we eventually reach the optimal solution.</p>
-<h3 data-number="1.1.2" id="ellipsoid-method"><span
-class="header-section-number">1.1.2</span> ellipsoid method</h3>
-<p>Guaranteed polynomial runtime, but in practice it is slow.</p>
-<h2 data-number="1.2" id="feasible-solution"><span
-class="header-section-number">1.2</span> feasible solution</h2>
-<h3 data-number="1.2.1" id="def-1"><span
-class="header-section-number">1.2.1</span> def 1</h3>
-<p>Suppose <span class="math inline">\bar x \in \R^d</span>. An extreme
-point is a feasible solution where <span class="math inline">d</span>
-linearly independent inequalities are tight</p>
-<h3 data-number="1.2.2" id="def-2"><span
-class="header-section-number">1.2.2</span> def 2</h3>
-<p>A feasible solution is an extreme point if it cannot be written as a
-convex combination of other feasible solutions</p>
-<p><strong>convex combination</strong>: of points <span
-class="math inline">x_1, \cdots, x_n</span> is a point of the form <span
-class="math inline">\lambda^Tx</span> where <span
-class="math inline">\lambda_i \ge 0</span> and <span
-class="math inline">\sum \lambda_i = 1</span></p>
-<p>If feasible region is bounded and nonempty, there always exists an
-optimum which is an extreme point.</p>
-<h2 data-number="1.3" id="max-weight-perfect-matching"><span
-class="header-section-number">1.3</span> max-weight perfect
-matching</h2>
-<p>For every edge in <span class="math inline">e \in E</span></p>
+<p>The goal is to tend towards <span class="math inline">\alpha =
+1</span></p>
+<h2 data-number="1.1" id="min-weight-vertex-cover"><span
+class="header-section-number">1.1</span> min-weight vertex cover</h2>
+<p>The LP relaxation gives some result <span
+class="math inline">x^*</span>. We perform approximation by picking the
+vertex cover to be <span class="math inline">C = \{v \in V : x_v^* \ge
+\frac{1}{2}\}</span>.</p>
+<p><span class="math inline">C</span> is a feasible solution and its
+weight is at most twice of the optimal one.</p>
+<h2 data-number="1.2" id="integrality-gap"><span
+class="header-section-number">1.2</span> integrality gap</h2>
+<p>The ratio describing the LP relaxation. Let <span
+class="math inline">\mathcal I</span> be the set of all instances of a
+problem. The for a minimization problem the integrality gap is</p>
 <p><span class="math display">
-x_e \in \begin{cases}
-    1 \text{ if }   e \in \text{matching} \\
-    0 \text{ otherwise}
-\end{cases}
+g = \max_{I \in \mathcal I}\frac{\text{OPT}(I)}{\text{OPT}_{LP}(I)}
 </span></p>
+<h2 data-number="1.3" id="set-cover"><span
+class="header-section-number">1.3</span> set cover</h2>
+<p>Given universe <span class="math inline">U = \{e_1, \cdots,
+e_n\}</span> and a family of subset <span class="math inline">T = \{S_1,
+\cdots, S_m\}</span> and a cost function <span class="math inline">c : T
+\to \R^+</span> find a collection <span class="math inline">C \subseteq
+T</span> such that <span class="math inline">\bigcup C = U</span> and
+minimizes the cost</p>
+<h3 data-number="1.3.1" id="deterministic"><span
+class="header-section-number">1.3.1</span> deterministic</h3>
+<p>Suppose each element belongs to at most <span
+class="math inline">f</span> sets. Then the LP solution where we pick
+the solution to be <span class="math inline">C = \{S_i : x_i^* \ge
+\frac{1}{f}\}</span> is an <span
+class="math inline">f</span>-approximation.</p>
+<h3 data-number="1.3.2" id="randomized"><span
+class="header-section-number">1.3.2</span> randomized</h3>
+<p>We repeat <span class="math inline">d \cdot \ln(n)</span> times the
+following: for each <span class="math inline">i \in [m]</span> add set
+<span class="math inline">S_i</span> to the solution <span
+class="math inline">C</span> with probability <span
+class="math inline">x^*_i</span>.</p>
+<p>The expected cost after <span class="math inline">d \cdot
+\ln(n)</span> repetitions is at most <span class="math inline">d \cdot
+\ln(n) \cdot OPT</span>.</p>
+<p>The output is a feasible solution with probability at least <span
+class="math inline">1 - \frac{1}{n^{d - 1}}</span></p>
+<h2 data-number="1.4" id="prediction-with-experts-advice"><span
+class="header-section-number">1.4</span> prediction with experts
+advice</h2>
+<p>Given <span class="math inline">N</span> experts which individually
+advise either <span class="math inline">0</span> or <span
+class="math inline">1</span>, we predict an answer. Then, the adversary
+with the knowledge of the advices and our answer, answers. The goal is
+to minimize the amount of mistakes relative to the best expert. We
+consider <span class="math inline">T</span> trials.</p>
+<h3 data-number="1.4.1" id="majority-vote"><span
+class="header-section-number">1.4.1</span> majority vote</h3>
+<p>If a perfect expert exists, we can always take the majority vote of
+those experts that have not made a mistake. So we make at most <span
+class="math inline">\log N</span> mistakes.</p>
+<p>Without a perfect expert we can use the same strategy but restarting
+whenever we are out of experts. If the best expert has made <span
+class="math inline">M</span> mistakes by time <span
+class="math inline">T</span>, we make at most <span
+class="math inline">(M+1) \log N</span> mistakes.</p>
+<h3 data-number="1.4.2" id="weighted-majority"><span
+class="header-section-number">1.4.2</span> weighted majority</h3>
+<p>We take the weighted majority vote of all experts. Weights are
+initialized to 1, and a mistake is penalized by halving that weight for
+the given expert. The amount of mistakes we make is</p>
 <p><span class="math display">
-\begin{align*}
-    \text{maximize} \quad&amp; \sum_{e \in E} w(e) \cdot x_e \\
-    \text{subject to} \quad&amp; \sum_{e \in \delta(v)} x_e = 1
-\qquad&amp;\forall_{v \in V}\\
-    &amp; x_e \ge 0 \qquad&amp;\forall_{e \in E}
-\end{align*}
+M \le \frac{1}{\log{4 \over 3}}(M_i + \log N)
 </span></p>
-<p>Where <span class="math inline">\delta(v)</span> are all edges
-incident to a vertex <span class="math inline">v</span>.</p>
-<p>For a bipartite graph, any extreme point (and thus optimal solution)
-is integral.</p>
-<h2 data-number="1.4" id="minimum-weight-vertex-cover"><span
-class="header-section-number">1.4</span> minimum weight vertex
-cover</h2>
-<p>For every vertex in <span class="math inline">v \in V</span></p>
+<p>Where <span class="math inline">M_i</span> is the amount of mistakes
+done by expert <span class="math inline">i</span>.</p>
+<h3 data-number="1.4.3" id="hedge"><span
+class="header-section-number">1.4.3</span> Hedge</h3>
+<p>The game is changed to produce a distribution <span
+class="math inline">p</span> over the experts while the adversary
+produces a cost vector <span class="math inline">m \in [-1,
+1]^N</span></p>
+<p>Let <span class="math inline">\Phi(t) = \sum_{i \in [N]}
+w_i^{(t)}</span> be the sum of all weights at time <span
+class="math inline">t</span>. Then <span class="math inline">p_i^{(t)} =
+\frac{w_i^{(t)}}{\Phi(t)}</span>. We update the weights according to
+<span class="math inline">w_i^{(t+1)} = w_i^{(t)} \cdot e^{-\epsilon
+\cdot m_i^{(t)}}</span></p>
+<p>For <span class="math inline">\epsilon \le 1</span> Hedge
+produces</p>
 <p><span class="math display">
-x_v \in \begin{cases}
-    1 \text{ if }   v \in \text{vertex cover} \\
-    0 \text{ otherwise}
-\end{cases}
+\sum_{t = 1}^T p^{(t)} \cdot m^{(t)} \le \sum_{t=1}^T m_i^{(t)} +
+\frac{\ln N}{\epsilon} + \epsilon T
 </span></p>
-<p><span class="math display">
-\begin{align*}
-    \text{minimize} \quad&amp; \sum_{v \in V} w(v) \cdot x_v \\
-    \text{subject to} \quad&amp; x_u + x_v \ge 1
-\qquad&amp;\forall_{\{u, v\} \in E}\\
-    &amp; 0 \le x_v \le 1 \qquad&amp;\forall_{v \in V}
-\end{align*}
-</span></p>
-<p>For a bipartite graph, any extreme point (and thus optimal solution)
-is integral.</p>
-<h2 data-number="1.5" id="normal-form"><span
-class="header-section-number">1.5</span> normal form</h2>
-<p>Each LP can be represented in a normal form:</p>
+<p>for any expert <span class="math inline">i</span>.</p>
+<h2 data-number="1.5" id="covering-lps"><span
+class="header-section-number">1.5</span> covering LPs</h2>
+<p>A covering linear program is such that <span class="math inline">A
+\in \R^{m \times n}_+</span>, <span class="math inline">b \in
+\R^m_+</span>, <span class="math inline">c \in \R^n_+</span>.</p>
 <p><span class="math display">
 \begin{align*}
     \text{minimize} \quad c^Tx&amp; \\
     \text{subject to} \quad Ax &amp;\ge b \\
-    \quad x &amp;\ge 0
+    \quad 1 &amp;\ge x \ge 0
 \end{align*}
 </span></p>
-<h2 data-number="1.6" id="duality"><span
-class="header-section-number">1.6</span> duality</h2>
-<p>A reformulation of an LP to give a bound on the answer. For a normal
-form primal LP, the dual gives the lower bound on the cost.</p>
-<p>It serves as a certificate that can verify the optimality of a
-solution of the primal.</p>
-<p>Given a normal form LP, the dual is</p>
+<h3 data-number="1.5.1" id="hedge-1"><span
+class="header-section-number">1.5.1</span> Hedge</h3>
+<p>The number of experts equals to <span
+class="math inline">m</span></p>
+<ol type="1">
+<li>Initialize weights to 1</li>
+<li>Pick the distribution to be <span class="math inline">p_i^{(t)} =
+\frac{w_i^{(t)}}{\Phi(t)}</span></li>
+<li>Let <span class="math inline">x^{(t)}</span> be the solution to the
+reduced LP</li>
+<li>Let <span class="math inline">m_i^{(t)} = A_ix - b_i</span></li>
+<li>Update weights per Hedge</li>
+<li>Output the solution as <span
+class="math inline">\frac{1}{T}\sum_{t=1}^T x^{(t)}</span></li>
+</ol>
+<p>The reduced LP being</p>
 <p><span class="math display">
 \begin{align*}
-    \text{maximize} \quad b^Ty&amp; \\
-    \text{subject to} \quad A^Ty &amp;\le c \\
-    \quad y &amp;\ge 0
+    \text{minimize} \quad c^Tx&amp; \\
+    \text{subject to} \quad (\sum_{i=1}^m p_i A_i) \cdot x &amp;\ge
+\sum_{i=1}^m p_i b_i \\
+    \quad 1 &amp;\ge x \ge 0
 \end{align*}
 </span></p>
-<h3 data-number="1.6.1" id="weak-duality"><span
-class="header-section-number">1.6.1</span> weak duality</h3>
-<p>For all <span class="math inline">x</span> which are primal feasible
-and all <span class="math inline">y</span> which are dual feasible</p>
-<p><span class="math display">
-c^Tx \ge b^Ty
-</span></p>
-<h3 data-number="1.6.2" id="strong-duality"><span
-class="header-section-number">1.6.2</span> strong duality</h3>
-<p>If <span class="math inline">x</span> is an optimal solution and
-<span class="math inline">y</span> is an optimal dual solution then</p>
-<p><span class="math display">
-c^Tx = b^Ty
-</span></p>
-<p>If the primal problem is unbounded then the dual problem is
-infeasible and vice versa.</p>
-<h3 data-number="1.6.3" id="complementarity-slackness"><span
-class="header-section-number">1.6.3</span> complementarity
-slackness</h3>
-<p>If <span class="math inline">x</span> is primal feasible and <span
-class="math inline">y</span> is dual feasible then</p>
-<p><span class="math display">
-x \text{ and } y \text{ are both optimal} \iff \begin{cases}
-    \forall_i x_i &gt; 0 \implies c_i = \sum_j A_{j,i} y_j \\
-    \forall_j y_j &gt; 0 \implies b_j = \sum_i A_{j,i} x_i \\
-\end{cases}
-</span></p>
-<h2 data-number="1.7" id="halls-theorem"><span
-class="header-section-number">1.7</span> Hall’s theorem</h2>
-<p>An <span class="math inline">n \times n</span> bipartite graph <span
-class="math inline">G = (A \cup B, E)</span> has a perfect matching iff
-<span class="math inline">|S| \le |N(S)|</span> for all <span
-class="math inline">S \subseteq A</span>.</p>
+<p>The solution is almost feasible while having a cost at most that of
+the optimal one</p>
 </body>
 </html>
