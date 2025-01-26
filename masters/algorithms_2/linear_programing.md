@@ -54,7 +54,7 @@ $$
 $$
 \begin{align*}
 	\text{maximize} \quad& \sum_{e \in E} w(e) \cdot x_e \\
-	\text{subject to} \quad& \sum_{e \in \delta(v)} x_e = 1 \qquad&\forall_{e \in E}\\
+	\text{subject to} \quad& \sum_{e \in \delta(v)} x_e = 1 \qquad&\forall_{v \in V}\\
 	& x_e \ge 0 \qquad&\forall_{e \in E}
 \end{align*}
 $$
@@ -140,3 +140,7 @@ x \text{ and } y \text{ are both optimal} \iff \begin{cases}
 	\forall_j y_j > 0 \implies b_j = \sum_i A_{j,i} x_i \\
 \end{cases}
 $$
+
+## Hall's theorem
+
+An $n \times n$ bipartite graph $G = (A \cup B, E)$ has a perfect matching iff $|S| \le |N(S)|$ for all $S \subseteq A$.
