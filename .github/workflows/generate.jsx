@@ -1,6 +1,6 @@
 import renderToString from "https://cdn.jsdelivr.net/npm/preact-render-to-string@6.5.11/+esm";
 import { h } from "https://cdn.jsdelivr.net/npm/preact@10.24.2/+esm";
-import { walk, walkSync } from "jsr:@std/fs@1.0.4";
+import { walk, walkSync, existsSync } from "jsr:@std/fs@1.0.4";
 
 const React = { createElement: h }; // I don't want to create a jsconfig just to change the jsx factory...
 
@@ -9,7 +9,7 @@ const outFolder = "docs";
 await Deno.remove(outFolder, { recursive: true }).catch(() => {});
 await Deno.mkdir(outFolder);
 
-/// return a tuple of all the markdown files and directories in a given path
+/// return a tuple of all the markdown files, directories, and optional favicon in a given path
 /// respects internal excluded directories
 /// everything is sorted alphabetically
 function filesAndDirs(path) {
@@ -31,23 +31,36 @@ function filesAndDirs(path) {
     }
   }
 
+  const faviconPath = "favicon.png";
+  const favicon = existsSync(path + "/" + faviconPath, { isFile: true }) ? faviconPath : undefined;
+
   const lowerCaseSort = (a, b) =>
     a.toLowerCase().localeCompare(b.toLowerCase());
-  return [files.sort(lowerCaseSort), dirs.sort(lowerCaseSort)];
+  return [files.sort(lowerCaseSort), dirs.sort(lowerCaseSort), favicon];
+}
+
+const rawHeaderContent = Deno.readTextFileSync(".github/workflows/headers.html");
+function createHeader(faviconPath) {
+    const file = Deno.makeTempFileSync();
+    const content = rawHeaderContent.replace("%%FAVICON%%", faviconPath);
+    Deno.writeTextFileSync(file, content);
+    return [file, content];
 }
 
 const pandocExec = [];
 const folderIndexes = [];
 
 /// recursively generates html files with pandoc and creates a jsx tree of a table of contents
-function Summary({ path }) {
-  const [files, dirs] = filesAndDirs(path);
+function Summary({ path, faviconPath }) {
+  const [files, dirs, newFavicon] = filesAndDirs(path);
   const base = path + "/";
+  const favicon = newFavicon ? ("./" + newFavicon) : faviconPath;
 
   for (const dirname of dirs) {
     Deno.mkdirSync(outFolder + "/" + base + dirname);
   }
 
+  const [headerFile, _] = createHeader(favicon);
   pandocExec.push(
     ...files.map((filename) =>
       new Deno.Command("pandoc", {
@@ -61,7 +74,7 @@ function Summary({ path }) {
           "--metadata",
           `pagetitle=${filename.slice(0, -3)}`,
           "-H",
-          ".github/workflows/headers.html",
+          headerFile,
         ],
       }).output()
     )
@@ -71,7 +84,7 @@ function Summary({ path }) {
   if (path !== ".") {
     folderIndexes.push([
       outFolder + "/" + base + "index.html",
-      <Helmet title={base}>
+      <Helmet title={base} faviconPath={favicon}>
         <a href="..">Go up</a>
 
         <ul>
@@ -104,16 +117,15 @@ function Summary({ path }) {
       {dirs.map((dirname) => (
         <li>
           {dirname}
-          <Summary path={base + dirname} />
+          <Summary path={base + dirname} faviconPath={"./." + favicon} />
         </li>
       ))}
     </ul>
   );
 }
 
-const headerContent = await Deno.readTextFile(".github/workflows/headers.html");
-
-function Helmet({ title, children }) {
+function Helmet({ title, children, faviconPath }) {
+  const [_, headerContent] = createHeader(faviconPath)
   return (
     <html lang="en">
       <head>
