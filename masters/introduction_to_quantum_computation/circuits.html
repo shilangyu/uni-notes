@@ -457,7 +457,7 @@
   <link
     rel="icon"
     type="image/png"
-    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJg97A-Sa8mxjkRCmjR51WjHATLvq2aF89Z1CprR2WcQ60qYZC"
+    href="./../.undefined"
   />
   <meta name="theme-color" content="#252525" />
   <script defer=""
@@ -554,5 +554,112 @@ class="math inline">| \psi_{12} \rangle = | \psi_1 \rangle \otimes |
 <p>An entangled state is such that cannot be decomposed into a product
 of two other ones. There is no simple way to know if a state is
 entangled or not.</p>
+<h2 data-number="1.3" id="quantum-gates"><span
+class="header-section-number">1.3</span> quantum gates</h2>
+<h3 data-number="1.3.1" id="x-gate-not"><span
+class="header-section-number">1.3.1</span> X gate (NOT)</h3>
+<ul>
+<li><span class="math inline">| 0 \rangle \mapsto | 1
+\rangle</span></li>
+<li><span class="math inline">| 1 \rangle \mapsto | 0
+\rangle</span></li>
+</ul>
+<p><span class="math display">
+\begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{pmatrix}
+</span></p>
+<h3 data-number="1.3.2" id="t-gate-phase"><span
+class="header-section-number">1.3.2</span> T gate (Phase)</h3>
+<ul>
+<li><span class="math inline">| 0 \rangle \mapsto | 0
+\rangle</span></li>
+<li><span class="math inline">| 1 \rangle \mapsto e^{i\frac{\pi}{4}}| 0
+\rangle</span></li>
+</ul>
+<p><span class="math display">
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; e^{i\frac{\pi}{4}} \\
+\end{pmatrix}
+</span></p>
+<h3 data-number="1.3.3" id="h-gate-hadamard"><span
+class="header-section-number">1.3.3</span> H gate (Hadamard)</h3>
+<ul>
+<li><span class="math inline">| 0 \rangle \mapsto | +
+\rangle</span></li>
+<li><span class="math inline">| 1 \rangle \mapsto | -
+\rangle</span></li>
+</ul>
+<p><span class="math display">
+\frac{1}{\sqrt{2}}\begin{pmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{pmatrix}
+</span></p>
+<h3 data-number="1.3.4" id="cnot-gate"><span
+class="header-section-number">1.3.4</span> CNOT gate</h3>
+<ul>
+<li><span class="math inline">| 0 \rangle| 0 \rangle \mapsto | 0
+\rangle| 0 \rangle</span></li>
+<li><span class="math inline">| 0 \rangle| 1 \rangle \mapsto | 0
+\rangle| 1 \rangle</span></li>
+<li><span class="math inline">| 1 \rangle| 0 \rangle \mapsto | 1
+\rangle| 1 \rangle</span></li>
+<li><span class="math inline">| 1 \rangle| 1 \rangle \mapsto | 1
+\rangle| 0 \rangle</span></li>
+<li><span class="math inline">| x \rangle| y \rangle \mapsto | x
+\rangle| y \oplus x \rangle</span></li>
+</ul>
+<p><span class="math display">
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+\end{pmatrix}
+</span></p>
+<h3 data-number="1.3.5" id="swap-gate"><span
+class="header-section-number">1.3.5</span> SWAP gate</h3>
+<ul>
+<li><span class="math inline">| x \rangle| y \rangle \mapsto | y
+\rangle| x \rangle</span></li>
+</ul>
+<p><span class="math display">
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{pmatrix}
+</span></p>
+<h3 data-number="1.3.6" id="q-oracle"><span
+class="header-section-number">1.3.6</span> Q oracle</h3>
+<p>Turns any function into an invertible one.</p>
+<p>For <span class="math inline">f: \{0, 1\}^n \to \{0, 1\}^m</span> we
+define <span class="math inline">\tilde f: \{0, 1\}^{n+m} \to \{0,
+1\}^{n+m}</span> as <span class="math inline">(x, y) \mapsto (x, y
+\oplus f(x))</span></p>
+<p><em>Theorem</em>: For all unitary matrices <span
+class="math inline">U \in \mathbf{C}^{2 \times 2}</span> and all <span
+class="math inline">\delta &gt; 0</span> there exists <span
+class="math inline">\tilde U</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\tilde U</span> is a product of only T and
+H gates</li>
+<li><span class="math inline">||U - \tilde U||_\infty \le
+\delta</span></li>
+</ol>
+<p><em>Theorem</em>: For all unitary matrices <span
+class="math inline">U \in \mathbf{C}^{2^n \times 2^n}</span> and all
+<span class="math inline">\delta &gt; 0</span> there exists <span
+class="math inline">\tilde U</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\tilde U</span> is a quantym circuit with
+gates of only T, H, and CNOT gates</li>
+<li><span class="math inline">||U - \tilde U||_\infty \le
+\delta</span></li>
+</ol>
 </body>
 </html>
